@@ -1,6 +1,7 @@
-import com.getconfig.*
-import com.getconfig.Model.*
+package com.getconfig
+
 import spock.lang.Specification
+import com.getconfig.Model.*
 
 // gradle --daemon test --tests "ConfigTest.初期化"
 
@@ -9,11 +10,11 @@ class ConfigTest extends Specification {
 
     def "初期化"() {
         when:
-        Config.instance.readConfig(configFile)
+        ConfigObject config = Config.instance.readConfig(configFile)
 
         then:
         1 == 1
-        println Config.instance.config
+        println config
     }
 
     def "encript"() {

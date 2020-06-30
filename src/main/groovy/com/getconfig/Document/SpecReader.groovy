@@ -1,7 +1,6 @@
 package com.getconfig.Document
 
 import groovy.transform.CompileStatic
-import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import com.poiji.bind.Poiji
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException
@@ -11,6 +10,7 @@ import com.poiji.option.PoijiOptions.PoijiOptionsBuilder
 import com.poiji.exception.*
 import com.poiji.annotation.ExcelCell
 import com.getconfig.Model.TestServer
+import com.getconfig.ConfigEnv
 
 @Slf4j
 @CompileStatic 
@@ -32,7 +32,7 @@ public class SpecReader {
                   TestServer.class, options);
 
         servers.each { server ->
-            if (server.validate() == 1) {
+            if (server.checkKey()) {
                 log.info "server : ${server}"
                 this.testServers << server
             }
@@ -43,18 +43,32 @@ public class SpecReader {
         return this.testServers.size()
     }
 
+    List<TestServer> testServers() {
+        return this.testServers
+    }
+
+    void mergeConfig() {
+        def configEnv = ConfigEnv.instance
+        List<TestServer> servers = new ArrayList<TestServer>()
+        this.testServers.each { server ->
+            configEnv.setAccont(server)
+            if (server.validate()) {
+                servers << server
+            }
+        }
+        this.testServers = servers
+    }
+
     void print() {
         println this.testServers.size();
         this.testServers.each { server ->
             println server
         }
-        // // 3
-        // TestServer firstServer = servers.get(0);
-        // println firstServer;
     }
 
     void run() {
         this.parse()
+        this.mergeConfig()
         this.print()
     }
 }

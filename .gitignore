@@ -6,6 +6,7 @@
 *.jar
 *.war
 *.ear
+.idea
 .mtj.tmp/
 /libdeps/
 /config/cmdb.groovy

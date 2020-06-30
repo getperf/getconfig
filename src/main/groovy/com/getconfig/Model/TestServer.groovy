@@ -1,55 +1,82 @@
 package com.getconfig.Model
 
+import groovy.transform.CompileStatic
+import groovy.transform.ToString
 import com.poiji.annotation.*
 
+@CompileStatic
+@ToString
 public class TestServer {
     @ExcelRow
     private int rowIndex;
 
     @ExcelCell(1)
-    protected String serverName = "";
+    String serverName = "";
 
     @ExcelCell(2)
-    protected String domain = "";
+    String domain = "";
 
     @ExcelCell(3)
-    protected String ip = "";
+    String ip = "";
 
     @ExcelCell(4)
-    protected String accountId = "";
+    String accountId = "";
 
     @ExcelCell(5)
-    protected String user = "";
+    String user = "";
 
     @ExcelCell(6)
-    protected String password = "";
+    String password = "";
 
     @ExcelCell(7)
-    protected String remoteAlias = "";
+    String remoteAlias = "";
 
     @ExcelCell(8)
-    protected String compareServer = "";
+    String compareServer = "";
 
     @ExcelCell(9)
-    protected String loginOption = "";
+    String loginOption = "";
 
-    @Override
-    public String toString() {
-        return "TestServer{" + rowIndex +
-                ", serverName='" + serverName + '\'' +
-                ", domain='" + domain + '\'' +
-                ", ip=" + ip +
-                ", accountId=" + accountId +
-                ", user='" + user + '\'' +
-                '}';
+    // キー項目の有無をチェックをします
+    public boolean checkKey() {
+        return !(this.serverName == "" || this.domain == "")
     }
 
-    // 属性の値チェックをし、成功したら1を返します。エラーの場合は 例外をスローします
-    public int validate() {
+    // 属性の値チェックをします。エラーの場合は 例外をスローします
+    public boolean validate() {
+        List<String> notFoundMsgs = new ArrayList<String>()
         if (this.serverName == "" || this.domain == "") {
-            return 0
+            notFoundMsgs << "server_name or domain"
         }
-        // Todo : キー項目以外の値チェック
-        return 1
+        if (domain != "{LocalFile(Hub)}") {
+            if (this.ip == "") {
+                notFoundMsgs << "ip"
+            }
+            if (domain != "{Agent}") {
+                if (this.user == "") {
+                    notFoundMsgs << "user"
+                }
+                if (this.password == "" && this.loginOption == "") {
+                    notFoundMsgs << "password or loginOption"
+                }
+            }
+        }
+        if (notFoundMsgs.size() > 0) {
+            throw new IllegalArgumentException("not found value : ${notFoundMsgs}")
+        }
+        return true
+    }
+
+    void setAccont(ConfigObject account) {
+        if (this.user == "")
+            this.user = account["user"]
+        if (this.password == "")
+            this.password = account["password"]
+        if (this.remoteAlias == "")
+            this.remoteAlias = account["remoteAlias"]
+        if (this.compareServer == "")
+            this.compareServer = account["compareServer"]
+        if (this.loginOption == "")
+            this.loginOption = account["loginOption"]
     }
 }

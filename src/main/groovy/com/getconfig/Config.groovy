@@ -17,23 +17,23 @@ class Config {
     final String date_format = "yyyyMMdd_HHmmss"
 
     String configFile
-    ConfigObject config
+    // ConfigObject config
 
-    byte[] decryptData(byte[] bytes, SecretKeySpec key) {
+    private byte[] decryptData(byte[] bytes, SecretKeySpec key) {
       def cph = Cipher.getInstance(EncryptionMode)
       cph.init(Cipher.DECRYPT_MODE, key)
 
       return cph.doFinal(bytes)
     }
 
-    byte[] encryptData(byte[] bytes, SecretKeySpec key) {
+    private byte[] encryptData(byte[] bytes, SecretKeySpec key) {
       def cph = Cipher.getInstance(EncryptionMode)
       cph.init(Cipher.ENCRYPT_MODE, key)
 
       return cph.doFinal(bytes)
     }
 
-    String readConfigWithEncription(String configFile, String keyword)
+    private String readConfigWithEncription(String configFile, String keyword)
         throws IOException, IllegalArgumentException {
         new File(configFile).with {
             def decrypte_file_name = it.name.replaceAll(/-encrypted$/, "")
@@ -46,11 +46,12 @@ class Config {
         }
     }
 
-    void readConfig(String configFile = 'config/config.groovy', String keyword = null) {
+    ConfigObject readConfig(String configFile = 'config/config.groovy', String keyword = null) {
         this.configFile = configFile
         String configText = this.readConfigWithEncription(configFile, keyword)
         ConfigSlurper slurper = new ConfigSlurper()
-        this.config = slurper.parse(configText)
+        // this.config = slurper.parse(configText)
+        return slurper.parse(configText)
     }
 
     void encrypt(String configFile, String keyword = null)
@@ -80,5 +81,4 @@ class Config {
             log.info "OK\nDecrypted ${configFileDecrypted}"
         }
     }
-
 }
