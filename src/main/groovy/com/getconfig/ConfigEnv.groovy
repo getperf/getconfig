@@ -3,20 +3,22 @@ package com.getconfig
 import groovy.io.FileType
 import groovy.transform.*
 import groovy.util.logging.Slf4j
-import groovy.transform.ToString
-import java.nio.file.Paths 
+
+import java.lang.invoke.MethodHandleImpl
+import java.nio.file.Paths
 
 import com.getconfig.Model.TestServer
-import com.getconfig.GconfWrapper.GconfWrapper
+import com.getconfig.AgentWrapper.*
 
 @Slf4j
 @CompileStatic(TypeCheckingMode.SKIP)
 @Singleton
 class ConfigEnv {
+
     String home
     String configFile
     ConfigObject config
-    Map<String, GconfWrapper> gconfWrappers = new LinkedHashMap<String, GconfWrapper>()
+    def agentConfigWrappers = new LinkedHashMap<String, AgentConfigWrapper>()
 
     static final String accountNotFound = "account not found in config"
 
@@ -45,22 +47,35 @@ class ConfigEnv {
         return (osName.toLowerCase().contains('windows'))
     }
 
+    AgentConfigWrapper getAgentConfigWrapper(String platform) {
+        return agentConfigWrappers[platform]
+    }
+
+    void accept(Controller visitor) {
+        visitor.setEnvironment(this)
+    }
+    
     void loadGconfWrapper() {
-        String userLib = this.getGconfWrapperLib()
-        new File(userLib).eachFileMatch(FileType.FILES, ~/\w+.groovy/) { source ->
-            // def className = source.name 
-            def loader = new GroovyClassLoader()
-            loader.addClasspath(userLib)
-            loader.clearCache()
-            def code = source.getText('UTF-8')
-            try {
-                def clazz = loader.parseClass(code)
-                def className = clazz.name.replaceFirst(/.+\./, "")
-                this.gconfWrappers[className] = clazz
-            } catch (Exception e) {
-                log.warn "Read error : ${source} :" + e
-            }
-        }
+//        Reflections reflections = new Reflections("my.project.prefix");
+//
+//        Set<Class<? extends Object>> allClasses =
+//                reflections.getSubTypesOf(Object.class);
+
+//        String userLib = this.getGconfWrapperLib()
+//        new File(userLib).eachFileMatch(FileType.FILES, ~/\w+.groovy/) { source ->
+//            // def className = source.name
+//            def loader = new GroovyClassLoader()
+//            loader.addClasspath(userLib)
+//            loader.clearCache()
+//            def code = source.getText('UTF-8')
+//            try {
+//                def clazz = loader.parseClass(code)
+//                def className = clazz.name.replaceFirst(/.+\./, "")
+//                this.gconfWrappers[className] = clazz
+//            } catch (Exception e) {
+//                log.warn "Read error : ${source} :" + e
+//            }
+//        }
         // Match(FileType.FILES, ~/groovy/) { println it.name }
 
         // def user_script = "${user_lib}/${user_package}/${test_platform.name}Spec.groovy"
@@ -120,25 +135,25 @@ class ConfigEnv {
 
     // gconf 実行パス
     String getGconfExe() {
-        String gconfExe = (this.isWindows())?"gconf.exe":"gconf"
+        String gconfExe = (this.isWindows()) ? "gconf.exe" : "gconf"
         return Paths.get(this.getGetconfigHome(), gconfExe)
     }
 
     // getconfig 実行パス
     String getGetconfigExe() {
-        String getconfigExe = (this.isWindows())?"getconfig.bat":"getconfig"
+        String getconfigExe = (this.isWindows()) ? "getconfig.bat" : "getconfig"
         return Paths.get(this.getGetconfigHome(), getconfigExe)
     }
 
     // 検査シートパス  チェックシート.xslx
     String getCheckSheetPath() {
         return this.config?.excel_file ?:
-               this.config?.get('evidence')?.get('source') ?:
-               Paths.get(this.getProjectHome(), 'check_sheet.xlsx')
+                this.config?.get('evidence')?.get('source') ?:
+                        Paths.get(this.getProjectHome(), 'check_sheet.xlsx')
     }
 
     // プロジェクトログディレクトリ   src/test/resources/log
-    String getProjectLogDir() {
+    def getProjectLogDir() {
         return Paths.get(this.getProjectHome(), 'src/test/resources/log')
     }
 
@@ -149,34 +164,34 @@ class ConfigEnv {
 
     // 構成管理DB設定パス  config/cmdb.groovy
     String getCmdbConfigPath() {
-        return this.config?.db_config ?: 
-               Paths.get(this.getGetconfigHome(), "config/cmdb.groovy")
+        return this.config?.db_config ?:
+                Paths.get(this.getGetconfigHome(), "config/cmdb.groovy")
     }
 
     // gconf設定ファイル用ディレクトリ  build/gconf
     String getGconfConfigDir() {
-        return this.config?.gconf_config_dir ?: 
-               Paths.get(this.getProjectHome(), "build/gconf")
+        return this.config?.gconf_config_dir ?:
+                Paths.get(this.getProjectHome(), "build/gconf")
     }
 
     // gconf ラッパー用ディレクトリ  lib/gconf
     String getGconfWrapperLib() {
-        return this.config?.gconf_wrapper_lib ?: 
-               Paths.get(this.getProjectHome(), "lib/gconf")
+        return this.config?.gconf_wrapper_lib ?:
+                Paths.get(this.getProjectHome(), "lib/gconf")
 
     }
 
     // TLS証明書用ディレクトリ  config/network
     String getTlsConfigDir() {
-        return this.config?.db_config ?: 
-               Paths.get(this.getProjectHome(), "config/network")
+        return this.config?.db_config ?:
+                Paths.get(this.getProjectHome(), "config/network")
     }
 
     // 検査結果    buikd/チェックシート_<date>.xlsx
     String getEvidenceSheetPath() {
-        return this.config?.output_evidence ?: 
-               this.config?.evidence?.target ?:
-               Paths.get(this.getProjectHome(), "build/check_sheet.xlsx")
+        return this.config?.output_evidence ?:
+                this.config?.evidence?.target ?:
+                        Paths.get(this.getProjectHome(), "build/check_sheet.xlsx")
     }
 
     // 一時ログディレクトリ  /build/log

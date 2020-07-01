@@ -1,13 +1,8 @@
 package com.getconfig
 
+import com.getconfig.Model.TestServer
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
-import groovy.transform.ToString
-import com.moandjiezana.toml.TomlWriter
-
-import com.getconfig.GconfWrapper.*
-import com.getconfig.Model.*
-import com.getconfig.Document.*
 
 @Slf4j
 @CompileStatic

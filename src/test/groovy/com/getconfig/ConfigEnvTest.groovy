@@ -52,7 +52,10 @@ class ConfigEnvTest extends Specification {
         env.readConfig(configFile)
         env.loadGconfWrapper()
 
+        def agentConfigWrapper = env.getAgentConfigWrapper("Linux")
+
         then:
+        println agentConfigWrapper
         1 == 1
     }
 
