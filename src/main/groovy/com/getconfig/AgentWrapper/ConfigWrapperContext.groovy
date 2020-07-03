@@ -15,6 +15,10 @@ class ConfigWrapperContext {
     private ConfigWrapperContext() {
         agentConfigWrappers.with {
             it["Linux"] = new Linux()
+            it["Windows"] = new Windows()
+            it["vCenter"] = new vCenter()
+            it["{Agent}"] = new RemoteAgent()
+            it["{LocalFile(Hub)}"] = new RemoteAgent()
         }
     }
 

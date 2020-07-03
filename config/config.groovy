@@ -30,21 +30,24 @@ ticket.custom_field.inventory = 'インベントリ'
 // コマンド採取のタイムアウト
 // Windows,vCenterの場合、全コマンドをまとめたバッチスクリプトのタイムアウト値
 
-test.Linux.timeout   = 30
-test.Windows.timeout = 300
-test.vCenter.timeout = 300
+test.timeout         = 30
+test.timeout.Linux   = 30
+test.timeout.Windows = 300
+test.timeout.vCenter = 300
 
 // コマンド採取のデバッグモード
 
-test.Linux.debug   = false
-test.Windows.debug = false
-test.vCenter.debug = false
+test.debug         = false
+test.debug.Linux   = false
+test.debug.Windows = false
+test.debug.vCenter = false
 
 // DryRun 予行演習モード
 
-test.Linux.dry_run   = false
-test.Windows.dry_run = false
-test.vCenter.dry_run = false
+test.dry_run         = false
+test.dry_run.Linux   = false
+test.dry_run.Windows = false
+test.dry_run.vCenter = false
 
 // vCenter接続情報
 

@@ -46,16 +46,14 @@ class ConfigEnvTest extends Specification {
         thrown(IllegalArgumentException)
     }
 
-    def "Gconfラッパー初期化"() {
+    def "タイムアウト取得"() {
         when:
         def env = ConfigEnv.instance
         env.readConfig(configFile)
-        env.loadGconfWrapper()
-
-        def agentConfigWrapper = env.getAgentConfigWrapper("Linux")
+        def timeout = env.getGconfTimeout()
 
         then:
-        println agentConfigWrapper
+        println timeout
         1 == 1
     }
 

@@ -14,7 +14,7 @@ import com.getconfig.AgentWrapper.*
 @CompileStatic(TypeCheckingMode.SKIP)
 @Singleton
 class ConfigEnv {
-
+    static int DefaultGconfTimeout = 120
     String home
     String configFile
     ConfigObject config
@@ -217,5 +217,15 @@ class ConfigEnv {
     // 検査スクリプト /lib/InfraTestSpec
     String getTestSpecDir() {
         return Paths.get(this.getProjectHome(), "node")
+    }
+
+    // gconf エージェントコマンドタイムアウト
+    int getGconfTimeout(String platform = "Default") {
+        def timeouts = this.config?.test?.timeout as Map<String, int>
+        if (timeouts) {
+            return timeouts[platform] ?: DefaultGconfTimeout
+        } else {
+            return DefaultGconfTimeout
+        }
     }
 }

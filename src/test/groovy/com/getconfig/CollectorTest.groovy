@@ -19,27 +19,11 @@ class CollectorTest extends Specification {
         specReader.mergeConfig()
         def testServers = specReader.testServers()
 
-        Collector collector = new Collector(
-             gconfExe : env.getGconfExe(),
-             tlsConfigDir : env.getTlsConfigDir(),
-             currentLogDir : env.getCurrentLogDir(),
-             gconfConfigDir : env.getGconfConfigDir(),
-             testServers : testServers,
-        )
-        // collector.init()
+        Collector collector = new Collector(testServers)
+        collector.run()
 
         then:
         collector.testServers.size() > 0
     }
-
-    // def "収集設定ファイル作成"() {
-    //     when:
-    //     Collector collector = new Collector(checkSheet, configFile)
-    //     collector.init()
-    //     collector.makeConfig()
-
-    //     then:
-    //     collector.testServers.size() > 0
-    // }
 
 }

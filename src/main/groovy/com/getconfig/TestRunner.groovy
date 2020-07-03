@@ -1,32 +1,41 @@
 package com.getconfig
 
-import groovy.transform.ToString
-import com.moandjiezana.toml.TomlWriter
+import com.getconfig.AgentWrapper.AgentExecuter
+import com.getconfig.Model.TestServer
+import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
+import com.getconfig.Command.GetconfigCommand.RunCommand
 
-@ToString
-class Server {
-  String Server
-  String Url
-  String User
-  String Password
-}
+// * コマンド引数の解析
+// * Excel 仕様から検査対象サーバ読込み（委譲）
+// * コレクターに引き渡して実行
+// * パーサーに引き渡して実行
+// * レポートに引き渡して実行
 
-@ToString
-class Linux {
-    String Server
-    boolean local_exec
-    Server[] Servers
-}
-
+@Slf4j
+@CompileStatic
 class TestRunner {
-    void run() {
-        def servers = [
-             new Server(Server:"ostrich", Url:"192.168.0.5", User:"psadmin", Password:"psadmin"),
-             new Server(Server:"centos7", Url:"192.168.0.20", User:"psadmin", Password:"psadmin"),
-        ]
-        def linux = new Linux(Server:"cent80", local_exec:true, Servers:servers)
+    RunCommand runCommand
 
-        TomlWriter tomlWriter = new TomlWriter();
-        println tomlWriter.write(linux)
+    TestRunner(RunCommand runCommand) {
+        this.runCommand = runCommand
+    }
+
+    void setCommandArg(ConfigEnv env) {
+        ConfigObject config = env.config
+    }
+
+    void run() {
+        this.setCommandArg(ConfigEnv.instance)
+        log.info("args: ${this.runCommand.level}")
+        // def env = ConfigEnv.instance
+        // env.readConfig(configFile)
+        // def specReader = new SpecReader(inExcel : checkSheet)
+        // specReader.parse()
+        // specReader.mergeConfig()
+        // def testServers = specReader.testServers()
+
+        // Collector collector = new Collector(testServers)
+        // collector.run()
     }
 }

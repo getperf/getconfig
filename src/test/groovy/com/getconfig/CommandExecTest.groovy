@@ -5,7 +5,6 @@ import java.nio.file.Paths
 
 class CommandExecTest extends Specification {
 
-
     def "Run with timeout"() {
         when:
         def exec = new CommandExec(3000)

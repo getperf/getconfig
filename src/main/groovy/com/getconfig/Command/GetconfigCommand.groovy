@@ -1,6 +1,7 @@
 package com.getconfig.Command
 
 import groovy.transform.CompileStatic
+import groovy.transform.ToString
 import groovy.transform.TypeChecked
 import picocli.CommandLine
 import picocli.CommandLine.Command
@@ -170,6 +171,7 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
         }
     }
 
+    @ToString
     @Command(name = "run", mixinStandardHelpOptions = true,
             versionProvider = GetconfigCommand.class,
             description = "run inventory collector")
@@ -209,10 +211,8 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
         @Override
         public Integer call() {
             println "Run"
-            // TestRunner runner = new TestRunner()
-            // runner.run()
-            SpecReader reader = new SpecReader()
-            reader.run()
+            TestRunner runner = new TestRunner(this)
+            runner.run()
             return ExitCode.OK
         }
     }
