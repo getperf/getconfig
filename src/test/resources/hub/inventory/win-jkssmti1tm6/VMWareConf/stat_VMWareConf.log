@@ -1,0 +1,19 @@
+schedule:
+  start: 2020-06-12T10:56:40.8712449+09:00
+  end: 2020-06-12T10:56:41.3444565+09:00
+jobs:
+- id: 1
+  out: ""
+  cmd: C:\ptune\script\gconf.exe--templatevmwareconfrun-oC:\ptune\log\VMWareConf\20200612\105500
+  start: 2020-06-12T10:56:40.8722382+09:00
+  end: 2020-06-12T10:56:41.3444565+09:00
+  pid: 156
+  rc: 0
+  error: |
+    time="2020-06-12T10:56:40+09:00" level=info msg="set base home : C:\\ptune\\script"
+    time="2020-06-12T10:56:41+09:00" level=info msg="set inventory datastore : C:\\ptune\\log\\VMWareConf\\20200612\\105500"
+    time="2020-06-12T10:56:41+09:00" level=info msg="run (label=VMWare : win-jkssmti1tm6, template=vmwareconf)\n"
+    time="2020-06-12T10:56:41+09:00" level=info msg="search vm : w2016"
+    time="2020-06-12T10:56:41+09:00" level=info msg="json size : 22825"
+    time="2020-06-12T10:56:41+09:00" level=info msg="retrieve vm : 1, elapse 231.5919ms"
+  status: exit status 0

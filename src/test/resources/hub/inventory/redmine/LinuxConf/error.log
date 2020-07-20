@@ -1,0 +1,5 @@
+cat: /etc/snmp/snmpd.conf: 許可がありません
+exit 1, pid 16253
+ls: cannot access /root/package/*: そのようなファイルやディレクトリはありません
+exit 2, pid 16278
+exit 1, pid 16280

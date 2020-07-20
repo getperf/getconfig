@@ -1,0 +1,3 @@
+
+*          soft    nproc     1024
+root       soft    nproc     unlimited

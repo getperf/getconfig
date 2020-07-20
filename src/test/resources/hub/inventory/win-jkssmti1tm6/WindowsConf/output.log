@@ -1,0 +1,9 @@
+TestId::system
+TestId::os_conf
+TestId::system
+TestId::os_conf
+TestId::os
+TestId::cpu
+TestId::memory
+TestId::patch_lists
+TestId::packages

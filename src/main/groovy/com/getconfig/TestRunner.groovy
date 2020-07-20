@@ -23,12 +23,15 @@ class TestRunner {
 
     void setCommandArg(ConfigEnv env) {
         ConfigObject config = env.config
+        this.runCommand.properties.each { prop, val ->
+            println "$prop, $val"
+        }
     }
 
     void run() {
-        this.setCommandArg(ConfigEnv.instance)
-        log.info("args: ${this.runCommand.level}")
-        // def env = ConfigEnv.instance
+        def env = ConfigEnv.instance
+        this.setCommandArg(env)
+        log.info("args: ${this.runCommand.configPath}")
         // env.readConfig(configFile)
         // def specReader = new SpecReader(inExcel : checkSheet)
         // specReader.parse()

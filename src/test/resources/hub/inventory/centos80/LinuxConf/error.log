@@ -1,0 +1,12 @@
+grep: /etc/security/limits.d/*: そのようなファイルやディレクトリはありません
+exit 2, pid 4008
+no crontab for psadmin
+exit 1, pid 4011
+Unit iptables.service could not be found.
+exit 4, pid 4026
+cat: /etc/snmp/snmpd.conf: そのようなファイルやディレクトリはありません
+exit 1, pid 4038
+ls: '/root/package/*' にアクセスできません: そのようなファイルやディレクトリはありません
+exit 2, pid 4053
+Unit vncserver.service could not be found.
+exit 4, pid 4057

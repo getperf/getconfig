@@ -1,0 +1,2 @@
+15 0 * * * (perl /home/psadmin/getperf/script/ssladmin.pl update_client_cert > /dev/null 2>&1) &
+#0,5,10,15,20,25,30,35,40,45,50,55 * * * * (cd /home/psadmin/site/site1; /home/psadmin/getperf/script/sitesync --purge rsync://192.168.0.15/archive_site1 > /dev/null 2>&1) &

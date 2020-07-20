@@ -1,0 +1,1 @@
+ro root=/dev/mapper/vg_redmine-lv_root rd_LVM_LV=vg_redmine/lv_root rd_NO_LUKS rd_NO_MD crashkernel=129M@48M  KEYBOARDTYPE=pc KEYTABLE=jp106 LANG=ja_JP.UTF-8 rd_NO_DM rd_LVM_LV=vg_redmine/lv_swap rhgb quiet

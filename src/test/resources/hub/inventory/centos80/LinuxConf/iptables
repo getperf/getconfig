@@ -1,0 +1,9 @@
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)
+   Active: inactive (dead)
+     Docs: man:firewalld(1)
+
+ 5月 02 08:48:16 centos80.getperf systemd[1]: Starting firewalld - dynamic firewall daemon...
+ 5月 02 08:48:18 centos80.getperf systemd[1]: Started firewalld - dynamic firewall daemon.
+ 5月 02 08:49:32 centos80.getperf systemd[1]: Stopping firewalld - dynamic firewall daemon...
+ 5月 02 08:49:32 centos80.getperf systemd[1]: Stopped firewalld - dynamic firewall daemon.
