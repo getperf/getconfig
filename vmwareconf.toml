@@ -1,0 +1,32 @@
+
+# VMWare inventory collector configuration
+# Enter the information for vCenter login account and target vm
+# 
+# example:
+#
+# url = "https://192.168.10.100/sdk"  # vCenter URL
+# user = "test_user"
+# password = "P@ssword"
+# server = "w2016"                    # vm name
+
+url = "https://192.168.10.100/sdk"
+user = "test_user"
+password = "P@ssword"
+server = "desktop-n8a02v9"
+
+# The following parameters are optional
+
+# Additional metrics list of VMWare Managed Object. 
+# 
+# Reference : http://pubs.vmware.com/vsphere-60/topic/com.vmware.wssdk.apiref.doc/vim.VirtualMachine.html
+# 
+# example:
+#
+# metrics = ["parentVApp", "layout", "environmentBrowser"]
+
+# List of monitored servers other than the local server
+#
+# example:
+#
+# servers = ["host1", "host2"]
+servers = ["ostrich", "centos80", "w2016"]

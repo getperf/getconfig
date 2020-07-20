@@ -3,12 +3,9 @@ package com.getconfig.Document
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import com.poiji.bind.Poiji
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException
-import org.apache.poi.ss.usermodel.*
 import com.poiji.option.PoijiOptions
 import com.poiji.option.PoijiOptions.PoijiOptionsBuilder
 import com.poiji.exception.*
-import com.poiji.annotation.ExcelCell
 import com.getconfig.Model.TestServer
 import com.getconfig.ConfigEnv
 
@@ -33,7 +30,6 @@ public class SpecReader {
 
         servers.each { server ->
             if (server.checkKey()) {
-                log.info "server : ${server}"
                 this.testServers << server
             }
         }
@@ -51,7 +47,7 @@ public class SpecReader {
         def configEnv = ConfigEnv.instance
         List<TestServer> servers = new ArrayList<TestServer>()
         this.testServers.each { server ->
-            configEnv.setAccont(server)
+            configEnv.setAccount(server)
             if (server.validate()) {
                 servers << server
             }

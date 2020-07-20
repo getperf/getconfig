@@ -17,6 +17,7 @@ class ConfigWrapperContext {
             it["Linux"] = new Linux()
             it["Windows"] = new Windows()
             it["vCenter"] = new vCenter()
+            it["VMHost"] = new VMHost()
             it["{Agent}"] = new RemoteAgent()
             it["{LocalFile(Hub)}"] = new RemoteAgent()
         }

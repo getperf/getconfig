@@ -5,7 +5,7 @@ evidence.source = './サーバチェックシート.xlsx'
 // 検査結果ファイル出力先
 
 // evidence.target='./build/サーバチェックシート_<date>.xlsx'
- evidence.target='./build/check_sheet.xlsx'
+evidence.target='./build/サーバチェックシート_<date>.xlsx'
 
 // 検査結果ログディレクトリ
 
@@ -55,6 +55,12 @@ account.vCenter.Account01.server   = '192.168.10.100'
 account.vCenter.Account01.user     = 'test_user'
 account.vCenter.Account01.password = 'P@ssword'
 
+// VMHost 接続情報
+
+account.VMHost.Account01.server   = '192.168.10.100'
+account.VMHost.Account01.user     = 'test_user'
+account.VMHost.Account01.password = 'P@ssword'
+
 // Linux 接続情報
 
 account.Linux.Account01.user      = 'someuser'
@@ -64,5 +70,5 @@ account.Linux.Account01.work_dir  = '/tmp/gradle_test'
 // Windows 接続情報
 
 account.Windows.Account01.user     = 'administrator'
-account.Windows.Account01.password = 'P@ssword'
+account.Windows.Account01.password = 'P@ssw0rd'
 

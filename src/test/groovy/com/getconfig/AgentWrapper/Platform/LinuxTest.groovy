@@ -18,7 +18,7 @@ class LinuxTest extends Specification {
             domain:"Linux",
             ip:"192.168.10.1",
             accountId:"Account01")
-        AgentCommandConfig gconf = converter.convert(server)
+        AgentCommandConfig gconf = converter.makeServerConfig(server)
 
         then:
         gconf.server == 'localhost'
@@ -32,7 +32,7 @@ class LinuxTest extends Specification {
             domain:"Linux",
             ip:"192.168.10.1",
             accountId:"Account01")
-        AgentCommandConfig gconf = converter.convert(server)
+        AgentCommandConfig gconf = converter.makeServerConfig(server)
         TomlWriter tomlWriter = new TomlWriter()
         def toml = tomlWriter.write(gconf)
         def s = """server = "localhost"

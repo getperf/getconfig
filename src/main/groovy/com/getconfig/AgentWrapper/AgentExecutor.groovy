@@ -15,9 +15,9 @@ import java.nio.file.Paths
 @ToString
 @TypeChecked
 @CompileStatic
-class AgentExecuter implements Controller {
+class AgentExecutor implements Controller {
     static final String AgentUrlPrefix = "https://"
-    static final int AgentUrlPort = 59001
+    static final int AgentUrlPort = 59443
 
     String platform
     TestServer server
@@ -27,10 +27,11 @@ class AgentExecuter implements Controller {
     String gconfExe
     String gconfConfigDir
     String currentLogDir
+    String gconfLogDir
     String tlsConfigDir
     int timeout = 0
 
-    AgentExecuter(String platform, TestServer server) {
+    AgentExecutor(String platform, TestServer server) {
         this.platform = platform
         this.server = server
         this.agentMode = this.getAgentMode(platform)
@@ -57,7 +58,7 @@ class AgentExecuter implements Controller {
     }
 
     String toml() {
-        AgentCommandConfig config = wrapper.convert(server)
+        def config = wrapper.makeServerConfig(server)
         TomlWriter tomlWriter = new TomlWriter()
         return tomlWriter.write(config)
     }
@@ -77,14 +78,16 @@ class AgentExecuter implements Controller {
     }
 
     String agentUrl() {
-        def ip = this.server.ip as String
+        // TLS クライアント証明を使用する場合、自己証明書がホスト名で認証されているため、
+        // IP アドレスではなく、ホスト名を使用
+        def ip = this.server.remoteAlias as String
         if (!ip.startsWith("http")) {
             ip = AgentUrlPrefix + ip + ":" + AgentUrlPort.toString()
         }
         def urlValidator = new UrlValidator()
-        if (!urlValidator.isValid(ip)) {
-            throw new IllegalArgumentException("url parse error ${ip}")
-        }
+//        if (!urlValidator.isValid(ip)) {
+//            throw new IllegalArgumentException("url parse error ${ip}")
+//        }
         return ip
     }
 
@@ -94,17 +97,33 @@ class AgentExecuter implements Controller {
             args.addAll("-t", this.label())
             args.addAll("-c", this.tomlPath())
             args.addAll("run")
+            args.addAll("-o", this.makeLocalAgentLogDir())
         } else if (this.agentMode == AgentMode.RemoteAgent) {
             args.addAll("get")
             args.addAll("-f", this.agentUrl())
-            args.addAll("-ca", tlsPath("ca.cert"))
+            args.addAll("-ca", tlsPath("server/ca.crt"))
             args.addAll("-cert", tlsPath("client.pem"))
+            args.addAll("-o", this.makeRemoteAgentLogDir())
         }
-        args.addAll("-o", this.currentLogDir)
         if (this.timeout > 0) {
             args.addAll("--timeout", this.timeout as String)
         }
         return args
+    }
+
+    String makeAgentLogDir(String logPath) {
+        new File(logPath).mkdirs()
+        return logPath
+    }
+
+    String makeRemoteAgentLogDir() {
+        String logPath = Paths.get(this.currentLogDir, server.serverName)
+        return makeAgentLogDir(logPath)
+    }
+
+    String makeLocalAgentLogDir() {
+        String logPath = Paths.get(this.currentLogDir, server.serverName, server.domain)
+        return makeAgentLogDir(logPath)
     }
 
     int run() {

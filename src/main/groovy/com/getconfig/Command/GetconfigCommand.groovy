@@ -1,28 +1,26 @@
 package com.getconfig.Command
 
+
+import com.getconfig.ConfigEnv
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
+import groovy.util.logging.Slf4j
 import picocli.CommandLine
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
 import picocli.CommandLine.Parameters
 import picocli.CommandLine.ExitCode
-import picocli.CommandLine.IFactory
-import picocli.CommandLine.ParameterException
-import picocli.CommandLine.ParseResult
 import picocli.CommandLine.IVersionProvider
 import picocli.CommandLine.IExitCodeExceptionMapper
 
-import java.math.BigDecimal
-import java.util.Arrays
-import java.util.Optional
 import java.util.concurrent.Callable
 
 import com.getconfig.TestRunner
-import com.getconfig.Document.SpecReader
 
+@Slf4j
 @CompileStatic
+@TypeChecked
 @Command(name = "getconfig", mixinStandardHelpOptions = true,
         versionProvider = GetconfigCommand.class,
         description = "Getconfig inventory collector",
@@ -33,7 +31,7 @@ import com.getconfig.Document.SpecReader
                 GetconfigCommand.ListCommand.class,
                 GetconfigCommand.UpdateCommand.class,
                 GetconfigCommand.RegistCommand.class,
-                GetconfigCommand.EncriptCommand.class
+                EncodeCommand.class
         ])
 public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IExitCodeExceptionMapper {
 
@@ -45,6 +43,7 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
 
     @Override
     public Integer call() {
+        println "run base"
         return ExitCode.OK;
     }
 
@@ -62,76 +61,20 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
     @Override
     public String[] getVersion() {
         // return new String[]{buildProperties.getVersion()};
-        return new String[]{"Groovy picocli demo v4.1"};
+        return new String[]{"Getconfig inventory collector v1.9"};
     }
 
-    @Option(names = ["-c", "--config"], paramLabel = "FILE",
-            description = "config file path (default : config/config.groovy)")
-    File configFile
-
-    @Option(names = ["-p", "--password"], 
-            description = "config file password")
-    String password
-
     void run() {
-        // count.times {
-        //     println("hello world $it...")
-        // }
+        println "run base"
+        // def args = ConfigEnv.instance.commandArgs
+        // args.configFile = configFile
+        // args.password = password
     }
 
     static void main(String[] args) {
         CommandLine cmd = new CommandLine(new GetconfigCommand())
         cmd.execute(args)
     }
-
-    // @Command(name = "add", mixinStandardHelpOptions = true,
-    //         versionProvider = GetconfigCommand.class,
-    //         description = "渡された数値を加算する")
-    // static class AddCommand implements Callable<Integer> {
-
-    //     @Option(names = ["-a", "--avg"], description = "平均値を算出する")
-    //     private boolean optAvg;
-
-    //     @Parameters(paramLabel = "数値", arity = "1..*", description = "加算する数値")
-    //     private BigDecimal[] nums;
-
-    //     @Override
-    //     public Integer call() {
-    //         BigDecimal sum =
-    //                 Arrays.asList(nums).stream()
-    //                         .reduce(new BigDecimal("0"), (a, v) -> a.add(v));
-    //         Optional<BigDecimal> avg = optAvg
-    //                 ? Optional.of(sum.divide(BigDecimal.valueOf(nums.length)))
-    //                 : Optional<BigDecimal>.empty();
-    //         System.out.println(avg.orElse(sum));
-    //         return ExitCode.OK;
-    //     }
-    // }
-
-    // @Command(name = "multi", mixinStandardHelpOptions = true,
-    //         versionProvider = GetconfigCommand.class,
-    //         description = "渡された数値を乗算する")
-    // static class MultiCommand implements Callable<Integer> {
-
-    //     @Parameters(paramLabel = "数値", arity = "1..*", description = "乗算する数値")
-    //     private BigDecimal[] nums;
-
-    //     @Option(names = ["-c", "--compare"],
-    //             description = "計算結果と比較して、計算結果 < 数値なら -1、計算結果 = 数値なら 0、計算結果 > 数値なら 1 を返す")
-    //     private BigDecimal compareNum;
-
-    //     @Override
-    //     public Integer call() {
-    //         BigDecimal result =
-    //                 Arrays.asList(nums).stream()
-    //                         .reduce(new BigDecimal("1"), (a, v) -> a.multiply(v));
-    //         Optional<Integer> compareResult = (compareNum == null)
-    //                 ? Optional<Integer>.empty()
-    //                 : Optional.of(result.compareTo(compareNum));
-    //         System.out.println(compareResult.isPresent() ? compareResult.get() : result);
-    //         return ExitCode.OK;
-    //     }
-    // }
 
     @Command(name = "init", mixinStandardHelpOptions = true,
             versionProvider = GetconfigCommand.class,
@@ -140,13 +83,17 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
 
         @Option(names = ["-d", "--dryrun"], 
                 description="generate project dirdectory with test")
-        private boolean dryRun
+        Boolean dryRun
 
         @Parameters(paramLabel = "DIR", description = "project directory to init")
-        private String projectDir;
+        String projectDir;
 
         @Override
         public Integer call() {
+            ConfigEnv.instance.commandArgs.with {
+                it.dryRun = dryRun
+                it.projectDir = projectDir
+            }
             println("init ${projectDir}, ${dryRun}");
             return ExitCode.OK;
         }
@@ -159,13 +106,16 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
 
         @Option(names = ["-a", "--archive"], paramLabel="FILE", 
                 description="archive project zip file")
-        private File zipPath
+        File zipPath
 
         @Parameters(paramLabel = "DIR", description = "project directory to backup")
-        private String projectDir
+        String projectDir
 
         @Override
         public Integer call() {
+            def args = ConfigEnv.instance.commandArgs
+            args.zipPath = zipPath
+            args.projectDir = projectDir
             println "backup ${zipPath}, ${projectDir}"
             return ExitCode.OK
         }
@@ -177,54 +127,81 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
             description = "run inventory collector")
     static class RunCommand implements Callable<Integer> {
 
+        @Option(names = ["-c", "--config"], paramLabel = "FILE",
+                description = "config file path (default : config/config.groovy)")
+        File configFile
+
+        @Option(names = ["-p", "--password"], 
+                description = "config file password")
+        String password
+
         @Option(names = ["--level"], description = "test item filtering level(default : 0)")
-        private int level = 0
+        Integer level
 
         @Option(names = ["-a", "--auto-tag"], description = "use auto tag mode")
-        private boolean autoTagFlag
+        Boolean autoTagFlag
 
         @Option(names = ["-an", "--auto-tag-number"], paramLabel = "COUNT",
                 description = "use auto tag mode with the count")
-        private int autoTagNumber = 0
+        Integer autoTagNumber
 
         @Option(names = ["-d", "--dryrun"], 
                 description="dry run test")
-        private boolean dryRun
+        Boolean dryRun
 
         @Option(names = ["-e", "--excel"], paramLabel="FILE", 
                 description="check sheet input (default: check_sheet.xlsx)")
-        private File checkSheetPath
+        File checkSheetPath
 
         @Option(names = ["-o", "--output"], paramLabel="FILE", 
                 description="evidence sheet output (default: build/check_sheet.xlsx)")
-        private File evidenceSheetPath
+        File evidenceSheetPath
 
         @Option(names = ["-s", "--server"], description = "keyword of filtering server")
-        private String keywordServer
+        String keywordServer
 
         @Option(names = ["-t", "--test"], description = "keyword of filtering test")
-        private String keywordTest
+        String keywordTest
 
         @Option(names = ["--silent"], description="silent mode")
-        private boolean slient
+        Boolean silent
 
         @Override
         public Integer call() {
-            println "Run"
-            TestRunner runner = new TestRunner(this)
-            runner.run()
+            try {
+                def env = ConfigEnv.instance
+                env.commandArgs.copyPropeties(this)
+                env.readConfig()
+                TestRunner runner = new TestRunner()
+                env.accept(runner)
+                runner.run()
+            } catch (Exception e) {
+                log.error "run command : " + e
+                return ExitCode.SOFTWARE
+            }
             return ExitCode.OK
         }
     }
 
     // ToDo: make spec encode/demode options.
-    @Command(name = "encript", mixinStandardHelpOptions = true,
+    @Command(name = "encode", mixinStandardHelpOptions = true,
             versionProvider = GetconfigCommand.class,
-            description = "encript config file")
-    static class EncriptCommand implements Callable<Integer> {
+            description = "encode config file")
+    static class EncodeCommand implements Callable<Integer> {
+
+        @Option(names = ["-c", "--config"], paramLabel = "FILE",
+                description = "config file path (default : config/config.groovy)")
+        File configFile
+
+        @Option(names = ["-p", "--password"], 
+                description = "config file password")
+        String password
 
         @Override
         public Integer call() {
+            def args = ConfigEnv.instance.commandArgs
+            args.configFile = configFile
+            args.password = password
             println("encript");
             return ExitCode.OK;
         }
@@ -236,16 +213,18 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
     static class ListCommand implements Callable<Integer> {
 
         @Option(names = ["-a", "--all"], description="print all inventory list")
-        private boolean allFlag
+        boolean allFlag
 
         @Option(names = ["-s", "--server"], description = "keyword of filtering server")
-        private String keywordServer
+        String keywordServer
 
         @Option(names = ["-p", "--platform"], description = "keyword of filtering platform")
-        private String keywordPlatform
+        String keywordPlatform
 
         @Override
         public Integer call() {
+            ConfigEnv.instance.commandArgs.copyPropeties(this)
+
             println("list");
             return ExitCode.OK;
         }
@@ -256,11 +235,23 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
             description = "update inventory data")
     static class UpdateCommand implements Callable<Integer> {
 
+        @Option(names = ["-c", "--config"], paramLabel = "FILE",
+                description = "config file path (default : config/config.groovy)")
+        File configFile
+
+        @Option(names = ["-p", "--password"], 
+                description = "config file password")
+        String password
+
         @Parameters(paramLabel = "[local|db|db-all]", description = "update inventory database")
-        private String targetType = "local"
+        String targetType = "local"
 
         @Override
         public Integer call() {
+            def args = ConfigEnv.instance.commandArgs
+            args.configFile = configFile
+            args.password = password
+            args.targetType = targetType
             println("update");
             return ExitCode.OK;
         }
@@ -271,11 +262,23 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
             description = "regist redmine inventory ticket")
     static class RegistCommand implements Callable<Integer> {
 
-        @Option(names = ["-p", "--project"], description = "redmine project")
-        private String project
+        @Option(names = ["-c", "--config"], paramLabel = "FILE",
+                description = "config file path (default : config/config.groovy)")
+        File configFile
+
+        @Option(names = ["-p", "--password"], 
+                description = "config file password")
+        String password
+
+        @Option(names = ["--project"], description = "redmine project")
+        String project
 
         @Override
         public Integer call() {
+            def args = ConfigEnv.instance.commandArgs
+            args.configFile = configFile
+            args.password = password
+            args.redmineProject = project
             println("regist");
             return ExitCode.OK;
         }

@@ -1,41 +1,56 @@
 package com.getconfig
 
-import groovy.io.FileType
-import groovy.transform.*
-import groovy.util.logging.Slf4j
-
-import java.lang.invoke.MethodHandleImpl
-import java.nio.file.Paths
 
 import com.getconfig.Model.TestServer
-import com.getconfig.AgentWrapper.*
+import groovy.transform.CompileStatic
+import groovy.transform.TypeCheckingMode
+import groovy.util.logging.Slf4j
+
+import java.nio.file.Paths
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @Slf4j
 @CompileStatic(TypeCheckingMode.SKIP)
 @Singleton
 class ConfigEnv {
-    static int DefaultGconfTimeout = 120
-    String home
-    String configFile
+    final static String DefaultDateFormat = "yyyyMMdd_HHmmss"
+    final static int DefaultGconfTimeout = 120
+    final static int DefaultAutoTagNumber = 10
+
     ConfigObject config
-    def agentConfigWrappers = new LinkedHashMap<String, AgentConfigWrapper>()
+    ConfigCommandArgs commandArgs = new ConfigCommandArgs()
 
-    static final String accountNotFound = "account not found in config"
+    final static String accountNotFound = "account not found in config"
 
-    void readConfig(String configFile, String keyword = null) {
-        this.configFile = configFile
-        this.config = Config.instance.readConfig(configFile, keyword)
+    void readConfig(String configFile = null, String keyword = null) {
+        this.config = Config.instance.readConfig(
+                configFile ?: this.getConfigFile() as String,
+                keyword ?: this.getPassword())
+        convertDateFormat()
     }
 
-    void setAccont(TestServer sv) {
+    void convertDateFormat() {
+        def localDateTime = LocalDateTime.now()
+        def formatter = DateTimeFormatter.ofPattern(DefaultDateFormat)
+        def nowLabel = localDateTime.format(formatter)
+        def evidence = (Map<String, GString>) this.config?.evidence
+        if (evidence) {
+            evidence.each { key, value ->
+                evidence[key] = value.replaceAll(/<date>/, nowLabel)
+            }
+        }
+    }
+
+    void setAccount(TestServer sv) {
         if (sv.accountId.size() == 0 || sv.domain.size() == 0) {
             return
         }
-        def accounts = this.config.get("account")
+        ConfigObject accounts = this.config.get("account")
         if (!accounts) {
             throw new IllegalArgumentException(accountNotFound)
         }
-        ConfigObject account = accounts?.get(sv.domain)?.get(sv.accountId)
+        ConfigObject account = accounts.get(sv.domain)?.get(sv.accountId)
         if (!account) {
             throw new IllegalArgumentException(accountNotFound)
         }
@@ -47,77 +62,10 @@ class ConfigEnv {
         return (osName.toLowerCase().contains('windows'))
     }
 
-    AgentConfigWrapper getAgentConfigWrapper(String platform) {
-        return agentConfigWrappers[platform]
-    }
-
     void accept(Controller visitor) {
         visitor.setEnvironment(this)
     }
     
-    void loadGconfWrapper() {
-//        Reflections reflections = new Reflections("my.project.prefix");
-//
-//        Set<Class<? extends Object>> allClasses =
-//                reflections.getSubTypesOf(Object.class);
-
-//        String userLib = this.getGconfWrapperLib()
-//        new File(userLib).eachFileMatch(FileType.FILES, ~/\w+.groovy/) { source ->
-//            // def className = source.name
-//            def loader = new GroovyClassLoader()
-//            loader.addClasspath(userLib)
-//            loader.clearCache()
-//            def code = source.getText('UTF-8')
-//            try {
-//                def clazz = loader.parseClass(code)
-//                def className = clazz.name.replaceFirst(/.+\./, "")
-//                this.gconfWrappers[className] = clazz
-//            } catch (Exception e) {
-//                log.warn "Read error : ${source} :" + e
-//            }
-//        }
-        // Match(FileType.FILES, ~/groovy/) { println it.name }
-
-        // def user_script = "${user_lib}/${user_package}/${test_platform.name}Spec.groovy"
-        // log.debug "Load ${user_script}"
-        // def clazz = test_config.test_specs[user_script]
-        // if (!(clazz)) {
-        //     log.info "Load script '${user_script}'"
-        //     long start = System.currentTimeMillis()
-        //     def loader = new GroovyClassLoader()
-        //     loader.addClasspath(user_lib)
-        //     loader.clearCache()
-        //     def code = new File(user_script).getText('UTF-8')
-        //     clazz = loader.parseClass(code)
-        //     test_config.test_specs[user_script] = clazz
-        //     long elapse = System.currentTimeMillis() - start
-        //     log.info "Finish Load script, Elapse : ${elapse} ms"
-        // }
-
-    }
-    // * getconfig[.bat]
-    // * gconf[.exe]
-    // * チェックシート.xlsx  検査シート
-    // * config/
-    //     * config.groovy  設定ファイル
-    //     * cmdb.groovy 構成管理DB設定
-    //     * network/{server}.key  キーファイル <新規>
-    // * build/
-    //     * チェックシート_<date>.xlsx  実行結果
-    //     * lib/getconfig-0.2.xx-all.jar
-    //     * log/  コマンド実行結果
-    //     * json/
-    //         * {server}__{platform}.json IP集計結果
-    //         * {server}/{platform}.json 集計結果
-    //     * gconf/{platform}.toml <新規>
-    // * lib/
-    //     * InfraTestSpec/{platform}.groovy 検査スクリプト
-    //     * script/*.groovy   ツール
-    //     * template/*.template   PowerShell スクリプトテンプレート
-    // * src/test/resources/log/
-    //     * ドライラン用ログ保存ディレクトリ
-    // * node/ --- build/json のコピー
-
     // インストールディレクトリ
     String getGetconfigHome() {
         return this.config?.getconfig_home ?: System.getProperty("getconfig_home") ?: '.'
@@ -147,19 +95,14 @@ class ConfigEnv {
 
     // 検査シートパス  チェックシート.xslx
     String getCheckSheetPath() {
-        return this.config?.excel_file ?:
+        return this.commandArgs.checkSheetPath ?:
                 this.config?.get('evidence')?.get('source') ?:
                         Paths.get(this.getProjectHome(), 'check_sheet.xlsx')
     }
 
     // プロジェクトログディレクトリ   src/test/resources/log
-    def getProjectLogDir() {
+    String getProjectLogDir() {
         return Paths.get(this.getProjectHome(), 'src/test/resources/log')
-    }
-
-    // 設定ファイル   config/config.groovy
-    String getConfigPath() {
-        return this.configFile
     }
 
     // 構成管理DB設定パス  config/cmdb.groovy
@@ -183,7 +126,8 @@ class ConfigEnv {
 
     // TLS証明書用ディレクトリ  config/network
     String getTlsConfigDir() {
-        return this.config?.db_config ?:
+        return this.config?.gconf_tls_config ?:
+                System.getProperty("ptune_network_config") ?:
                 Paths.get(this.getProjectHome(), "config/network")
     }
 
@@ -221,11 +165,77 @@ class ConfigEnv {
 
     // gconf エージェントコマンドタイムアウト
     int getGconfTimeout(String platform = "Default") {
-        def timeouts = this.config?.test?.timeout as Map<String, int>
+        def timeouts = this.config?.test?.timeout as Map<String, Integer>
         if (timeouts) {
             return timeouts[platform] ?: DefaultGconfTimeout
         } else {
             return DefaultGconfTimeout
         }
     }
+
+    boolean  getDryRun(String platform = "Default") {
+        boolean dryRun = false
+        def dryRuns = this.config?.test?.dry_run as Map<String, Integer>
+        if (dryRuns) {
+            dryRun = dryRuns[platform] ?: false
+        }
+        return this.commandArgs.dryRun ?: dryRun
+    }
+
+    // 共通設定
+    String getConfigFile() {
+        def configFile = Paths.get(this.getProjectHome(), 'config/config.groovy')
+        return this.commandArgs.configFile ?: configFile
+    }
+
+    String getPassword() {
+        return this.commandArgs.password
+    }
+
+    int getLevel() {
+        return this.commandArgs.level ?: 0
+    }
+
+    boolean getAutoTagFlag() {
+        return this.commandArgs.autoTagFlag ?: false
+    }
+
+    int getAutoTagNumber() {
+        return this.commandArgs.autoTagNumber ?: DefaultAutoTagNumber
+    }
+    String getKeywordServer() {
+        return this.commandArgs.keywordServer
+    }
+
+    String getKeywordTest() {
+        return this.commandArgs.keywordTest
+    }
+
+    String getKeywordPlatform() {
+        return this.commandArgs.keywordPlatform
+    }
+
+    boolean getSilent() {
+        return this.commandArgs.silent ?: false
+    }
+
+    String getZipPath() {
+        return this.commandArgs.zipPath
+    }
+
+    // ls サブコマンド用
+    boolean getAllFlag() {
+        return this.commandArgs.allFlag ?: false
+    }
+
+    // update サブコマンド用
+    String getTargetType() {
+        return this.commandArgs.targetType
+    }
+
+    // regist サブコマンド用
+    String getRedmineProject() {
+        return this.commandArgs.redmineProject
+    }
+
 }

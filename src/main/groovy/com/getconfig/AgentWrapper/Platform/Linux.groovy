@@ -9,20 +9,29 @@ import com.getconfig.Model.TestServer
 @Slf4j
 @CompileStatic
 @InheritConstructors
-class Linux {
+class Linux implements AgentConfigWrapper {
+    @Override
     String getLabel() {
         return "linuxconf"
     }
 
+    @Override
     String getConfigName() {
         return "linuxconf.toml"
     }
 
-    AgentCommandConfig convertAll(List<TestServer> servers) {
+    @Override
+    boolean getBatchEnable() {
+        return false
+    }
+
+    @Override
+    def makeAllServersConfig(List<TestServer> servers) {
         // TODO: Create specification
     }
 
-    AgentCommandConfig convert(TestServer server) {
+    @Override
+    def makeServerConfig(TestServer server) {
         def config = new AgentCommandConfig(
                 server: 'localhost',
                 local_exec: false,

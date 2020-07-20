@@ -26,7 +26,7 @@ class ConfigEnvTest extends Specification {
             domain:"Linux",
             ip:"192.168.10.1",
             accountId:"Account01")
-        configEnv.setAccont(server)
+        configEnv.setAccount(server)
 
         then:
         server.user == "someuser"
@@ -40,7 +40,7 @@ class ConfigEnvTest extends Specification {
             domain:"Linux",
             ip:"192.168.10.1",
             accountId:"AccountHoge")
-        configEnv.setAccont(server)
+        configEnv.setAccount(server)
 
         then:
         thrown(IllegalArgumentException)
@@ -57,4 +57,30 @@ class ConfigEnvTest extends Specification {
         1 == 1
     }
 
+    def "既定値取得"() {
+        when:
+        def env = ConfigEnv.instance
+        env.readConfig(configFile)
+        println env.getTlsConfigDir()
+
+        then:
+        env.getProjectName() == "getconfig"
+        env.getGetconfigExe() =~ /getconfig/
+        env.getCheckSheetPath() =~ /サーバチェックシート\.xlsx/
+        env.getGconfWrapperLib() =~ /gconf/
+        env.getTlsConfigDir() =~ /network/
+        env.getGconfTimeout("Hoge") == 120
+        env.getPassword() == null
+        env.getLevel() == 0
+        env.getAutoTagFlag() == false
+        env.getAutoTagNumber() == 10
+        env.getKeywordServer() == null
+        env.getKeywordTest() == null
+        env.getKeywordPlatform() == null
+        env.getSilent() == false
+        env.getZipPath() == null
+        env.getAllFlag() == false
+        env.getTargetType() == null
+        env.getRedmineProject() == null
+    }
 }

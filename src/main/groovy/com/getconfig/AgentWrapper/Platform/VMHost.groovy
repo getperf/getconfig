@@ -9,15 +9,15 @@ import com.getconfig.Model.TestServer
 @Slf4j
 @CompileStatic
 @InheritConstructors
-class vCenter implements AgentConfigWrapper {
+class VMHost implements AgentConfigWrapper {
     @Override
     String getLabel() {
-        return "vmwareconf"
+        return "vmhostconf"
     }
 
     @Override
     String getConfigName() {
-        return "vmwareconf.toml"
+        return "vmhostconf.toml"
     }
 
     @Override
@@ -32,7 +32,7 @@ class vCenter implements AgentConfigWrapper {
         if (!ip.startsWith("http")) {
             ip = "https://${ip}/sdk"
         }
-        def config = new vCenterConfig(
+        def config = new VMHostConfig(
                 server: "",
                 url: ip,
                 user: firstServer.user,
@@ -52,15 +52,11 @@ class vCenter implements AgentConfigWrapper {
             ip = "https://${ip}/sdk"
         }
         def remoteAlias = server.remoteAlias ?: server.serverName
-        def config = new vCenterConfig(
-                server: server.serverName,
+        def config = new VMHostConfig(
+                server: remoteAlias,
                 url: ip,
                 user: server.user,
                 password: server.password,
-
-                servers : [
-                        remoteAlias
-                ]
         )
         return config
     }

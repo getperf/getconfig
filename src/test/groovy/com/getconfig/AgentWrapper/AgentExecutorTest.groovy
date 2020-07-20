@@ -6,7 +6,7 @@ import spock.lang.Specification
 
 // gradle --daemon test --tests "GconfExecuterTest.初期化"
 
-class AgentExecuterTest extends Specification {
+class AgentExecutorTest extends Specification {
     String checkSheet = './src/test/resources/サーバチェックシート.xlsx'
     String configFile = './src/test/resources/config/config.groovy'
     TestServer server = new TestServer(serverName:"centos80",
@@ -16,7 +16,7 @@ class AgentExecuterTest extends Specification {
 
      def "初期化"() {
          when:
-         def executer = new AgentExecuter("Linux", server)
+         def executer = new AgentExecutor("Linux", server)
          ConfigEnv.instance.accept(executer)
 
          then:
@@ -27,7 +27,7 @@ class AgentExecuterTest extends Specification {
 
     def "不明プラットフォーム初期化"() {
         when:
-        new AgentExecuter("Hoge", server)
+        new AgentExecutor("Hoge", server)
 
         then:
         thrown(IllegalArgumentException)
@@ -35,7 +35,7 @@ class AgentExecuterTest extends Specification {
 
     def "エージェントコマンド実行"() {
         when:
-        def executer = new AgentExecuter("Linux", server)
+        def executer = new AgentExecutor("Linux", server)
         ConfigEnv.instance.accept(executer)
         def rc =executer.run()
 
@@ -45,7 +45,7 @@ class AgentExecuterTest extends Specification {
 
     def "リモートエージェント初期化"() {
         when:
-        def executer = new AgentExecuter("{Agent}", server)
+        def executer = new AgentExecutor("{Agent}", server)
         executer.currentLogDir = "build/log"
         executer.tlsConfigDir = "config/network"
 

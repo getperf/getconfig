@@ -1,23 +1,24 @@
 package com.getconfig
 
+import com.getconfig.Model.TestServer
 import spock.lang.Specification
 import com.getconfig.Command.GetconfigCommand.RunCommand
 
 class TestRunnerTest extends Specification {
-    RunCommand runCommand
+
     void setup() {
-        runCommand = new RunCommand()
-        runCommand.level = 2
+        ConfigEnv.instance.readConfig()
     }
 
     def "Run"() {
         when:
-        def runner = new TestRunner(runCommand)
+        def runner = new TestRunner(
+                dryRun: true,
+                checkSheetPath: "サーバチェックシート.xlsx",
+        )
         runner.run()
 
         then:
-        println runner.runCommand.level
-//        println runner
         1 == 1
     }
 }

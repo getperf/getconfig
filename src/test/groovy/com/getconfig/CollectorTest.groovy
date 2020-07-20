@@ -9,21 +9,32 @@ import com.getconfig.Document.*
 class CollectorTest extends Specification {
     String checkSheet = './src/test/resources/サーバチェックシート.xlsx'
     String configFile = './src/test/resources/config/config.groovy'
+    List<TestServer> testServers
 
-    def "初期化"() {
-        when:
+    def setup() {
         def env = ConfigEnv.instance
         env.readConfig(configFile)
         def specReader = new SpecReader(inExcel : checkSheet)
         specReader.parse()
         specReader.mergeConfig()
-        def testServers = specReader.testServers()
+        testServers = specReader.testServers()
+    }
 
+    def "初期化"() {
+        when:
         Collector collector = new Collector(testServers)
-        collector.run()
 
         then:
         collector.testServers.size() > 0
     }
 
+    def "検査対象分類"() {
+        when:
+        Collector collector = new Collector(testServers)
+        collector.classifyTestServers()
+        collector.runAgent()
+
+        then:
+        collector.testServers.size() > 0
+    }
 }

@@ -9,19 +9,29 @@ import com.getconfig.Model.TestServer
 @Slf4j
 @CompileStatic
 @InheritConstructors
-class RemoteAgent {
+class RemoteAgent implements AgentConfigWrapper {
+    @Override
     String getLabel() {
         return "remoteagent"
     }
 
+    @Override
     String getConfigName() {
         return "remoteagent"
     }
 
-    AgentCommandConfig convertAll(List<TestServer> servers) {
+    @Override
+    boolean getBatchEnable() {
+        return false
     }
 
-    AgentCommandConfig convert(TestServer server) {
+    @Override
+    def makeAllServersConfig(List<TestServer> servers) {
+        return null
+    }
+
+    @Override
+    def makeServerConfig(TestServer server) {
         def config = new AgentCommandConfig(
                 server: 'localhost',
                 local_exec: false,

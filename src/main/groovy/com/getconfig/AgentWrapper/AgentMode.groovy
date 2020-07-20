@@ -1,6 +1,6 @@
 package com.getconfig.AgentWrapper
 
-protected enum AgentMode {
+enum AgentMode {
     LocalAgent,
     RemoteAgent,
     Hub,
