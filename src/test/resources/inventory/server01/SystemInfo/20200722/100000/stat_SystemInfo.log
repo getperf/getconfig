@@ -1,0 +1,40 @@
+schedule:
+  start: 2020-07-22T10:12:04.73385367+09:00
+  end: 2020-07-22T10:12:04.779513223+09:00
+jobs:
+- id: 1
+  out: cpuinfo.txt
+  cmd: cat/proc/cpuinfo
+  start: 2020-07-22T10:12:04.734030116+09:00
+  end: 2020-07-22T10:12:04.75239027+09:00
+  pid: 6967
+  rc: 0
+  error: ""
+  status: exit status 0
+- id: 2
+  out: meminfo.txt
+  cmd: cat/proc/meminfo
+  start: 2020-07-22T10:12:04.7524032+09:00
+  end: 2020-07-22T10:12:04.769542117+09:00
+  pid: 6979
+  rc: 0
+  error: ""
+  status: exit status 0
+- id: 3
+  out: uname_a.txt
+  cmd: uname-a
+  start: 2020-07-22T10:12:04.769599784+09:00
+  end: 2020-07-22T10:12:04.773882951+09:00
+  pid: 6986
+  rc: 0
+  error: ""
+  status: exit status 0
+- id: 4
+  out: issue.txt
+  cmd: cat/etc/issue
+  start: 2020-07-22T10:12:04.773921332+09:00
+  end: 2020-07-22T10:12:04.779469957+09:00
+  pid: 6989
+  rc: 0
+  error: ""
+  status: exit status 0

@@ -1,0 +1,17 @@
+schedule:
+  start: 2020/06/12 11:00:20
+  end: 2020/06/12 11:00:25
+jobs:
+  - id: 1
+    out: (null)
+    cmd: _script_/gconf --template vmhostconf run -o _odir_
+    start: 2020/06/12 11:00:20
+    end: 2020/06/12 11:00:20
+    pid: 16160
+    rc: 0
+    errormsg: |
+      time="2020-06-12T11:00:20+09:00" level=info msg="set base home : /home/psadmin/ptune/script"
+      time="2020-06-12T11:00:20+09:00" level=info msg="set inventory datastore : /home/psadmin/ptune/log/VMHostConf/20200612/110000"
+      time="2020-06-12T11:00:20+09:00" level=info msg="run (label=ESXi : redmine, template=vmhostconf)\n"
+      time="2020-06-12T11:00:20+09:00" level=info msg="search host : esxi.local"
+      time="2020-06-12T11:00:20+09:00" level=info msg="json size : 44512"

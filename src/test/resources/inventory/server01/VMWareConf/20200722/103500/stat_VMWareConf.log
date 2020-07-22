@@ -1,0 +1,19 @@
+schedule:
+  start: 2020-07-22T10:37:04.728897462+09:00
+  end: 2020-07-22T10:37:04.846157319+09:00
+jobs:
+- id: 1
+  out: ""
+  cmd: /home/psadmin/ptune/script/gconf--templatevmwareconfrun-o/home/psadmin/ptune/log/VMWareConf/20200722/103500
+  start: 2020-07-22T10:37:04.729058065+09:00
+  end: 2020-07-22T10:37:04.84612465+09:00
+  pid: 7761
+  rc: 0
+  error: |
+    time="2020-07-22T10:37:04+09:00" level=info msg="set base home : /home/psadmin/ptune/script"
+    time="2020-07-22T10:37:04+09:00" level=info msg="set inventory datastore : /home/psadmin/ptune/log/VMWareConf/20200722/103500"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run (label=VMWare : centos80, template=vmwareconf)\n"
+    time="2020-07-22T10:37:04+09:00" level=info msg="search vm : centos80"
+    time="2020-07-22T10:37:04+09:00" level=info msg="json size : 23749"
+    time="2020-07-22T10:37:04+09:00" level=info msg="retrieve vm : 1, elapse 103.537667ms"
+  status: exit status 0

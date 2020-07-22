@@ -1,0 +1,19 @@
+schedule:
+  start: 2020-07-22T10:37:04.743955762+09:00
+  end: 2020-07-22T10:37:04.890252669+09:00
+jobs:
+- id: 1
+  out: ""
+  cmd: /home/psadmin/ptune/script/gconf--templatevmhostconfrun-o/home/psadmin/ptune/log/VMHostConf/20200722/103500
+  start: 2020-07-22T10:37:04.744159885+09:00
+  end: 2020-07-22T10:37:04.890224167+09:00
+  pid: 7769
+  rc: 0
+  error: |
+    time="2020-07-22T10:37:04+09:00" level=info msg="set base home : /home/psadmin/ptune/script"
+    time="2020-07-22T10:37:04+09:00" level=info msg="set inventory datastore : /home/psadmin/ptune/log/VMHostConf/20200722/103500"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run (label=ESXi : centos80, template=vmhostconf)\n"
+    time="2020-07-22T10:37:04+09:00" level=info msg="search host : esxi.local"
+    time="2020-07-22T10:37:04+09:00" level=info msg="json size : 44512"
+    time="2020-07-22T10:37:04+09:00" level=info msg="retrieve host : 1, elapse 125.527351ms"
+  status: exit status 0

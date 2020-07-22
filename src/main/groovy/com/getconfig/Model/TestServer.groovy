@@ -68,6 +68,8 @@ public class TestServer {
     }
 
     void setAccont(ConfigObject account) {
+        if (this.ip == "")
+            this.ip = account["server"]
         if (this.user == "")
             this.user = account["user"]
         if (this.password == "")

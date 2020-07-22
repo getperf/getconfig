@@ -238,4 +238,11 @@ class ConfigEnv {
         return this.commandArgs.redmineProject
     }
 
+    // 検査シートパス  チェックシート.xslx
+    String getHubInventoryDir() {
+        return this.config?.get('test')?.get('hub_inventory_dir') ?:
+                        Paths.get(this.getGetconfigHome(),
+                                'src/test/resources/hub/inventory')
+    }
+
 }

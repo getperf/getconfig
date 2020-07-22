@@ -8,6 +8,5 @@ import groovy.transform.*
 class AgentCommandConfig {
     String server
     boolean local_exec
-//    List<AgentCommandServerConfig>
-    def servers = new ArrayList<ServerConfig>()
+    List<Server> servers = new ArrayList<Server>()
 }

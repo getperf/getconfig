@@ -1,6 +1,6 @@
 package com.getconfig.AgentWrapper.Platform
 
-import com.getconfig.*
+
 import com.getconfig.Model.*
 import spock.lang.Specification
 import com.moandjiezana.toml.TomlWriter
@@ -22,7 +22,7 @@ class LinuxTest extends Specification {
 
         then:
         gconf.server == 'localhost'
-        gconf.servers.size() == 1
+        gconf.serverConfigs.size() == 1
     }
 
     def "gconfコマンド用構設定ファイル変換"() {

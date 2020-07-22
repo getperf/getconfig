@@ -1,0 +1,34 @@
+﻿
+
+BuildBranch               : rs1_release
+BuildGUID                 : ffffffff-ffff-ffff-ffff-ffffffffffff
+BuildLab                  : 14393.rs1_release.200504-1524
+BuildLabEx                : 14393.3686.amd64fre.rs1_release.200504-1524
+CompositionEditionID      : ServerStandardEval
+CurrentBuild              : 14393
+CurrentBuildNumber        : 14393
+CurrentMajorVersionNumber : 10
+CurrentMinorVersionNumber : 0
+CurrentType               : Multiprocessor Free
+CurrentVersion            : 6.3
+EditionID                 : ServerStandardEval
+InstallationType          : Server
+InstallDate               : 0
+ProductName               : Windows Server 2016 Standard Evaluation
+ReleaseId                 : 1607
+SoftwareType              : System
+SystemRoot                : C:\Windows
+UBR                       : 3686
+RegisteredOwner           : Windows ユーザー
+RegisteredOrganization    : 
+PathName                  : C:\Windows
+PSPath                    : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACH
+                            INE\SOFTWARE\Microsoft\Windows NT\CurrentVersion
+PSParentPath              : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACH
+                            INE\SOFTWARE\Microsoft\Windows NT
+PSChildName               : CurrentVersion
+PSDrive                   : HKLM
+PSProvider                : Microsoft.PowerShell.Core\Registry
+
+
+

@@ -1,0 +1,64 @@
+schedule:
+  start: 2020-07-22T10:37:04.735156451+09:00
+  end: 2020-07-22T10:37:05.813960095+09:00
+jobs:
+- id: 1
+  out: ""
+  cmd: /home/psadmin/ptune/script/gconf--templatelinuxconfrun-o/home/psadmin/ptune/log/LinuxConf/20200722/103500
+  start: 2020-07-22T10:37:04.735350444+09:00
+  end: 2020-07-22T10:37:05.81392908+09:00
+  pid: 7765
+  rc: 0
+  error: |
+    time="2020-07-22T10:37:04+09:00" level=info msg="set base home : /home/psadmin/ptune/script"
+    time="2020-07-22T10:37:04+09:00" level=info msg="set inventory datastore : /home/psadmin/ptune/log/LinuxConf/20200722/103500"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run (label=Linux, template=linuxconf)\n"
+    time="2020-07-22T10:37:04+09:00" level=info msg="collect local server : true"
+    time="2020-07-22T10:37:04+09:00" level=info msg="collect local server : centos80/home/psadmin/ptune/log/LinuxConf/20200722/103500/centos80"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:hostname,elapse 5.301911ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:hostname_fqdn,elapse 10.196869ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:uname,elapse 2.463092ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:lsb,elapse 2.477341ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:cpu,elapse 14.030296ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:machineid,elapse 3.727489ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:meminfo,elapse 2.535167ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:network,elapse 3.478959ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:net_onboot,elapse 2.847436ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:net_route,elapse 2.987051ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:net_bond,elapse 2.991747ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:block_device,elapse 30.951536ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:mdadb,elapse 13.071848ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:filesystem,elapse 5.155094ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:fips,elapse 3.735528ms"
+    time="2020-07-22T10:37:04+09:00" level=info msg="run centos80:virturization,elapse 21.378233ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:packages,elapse 700.629192ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:cron,elapse 31.67511ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:yum,elapse 4.549514ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:resource_limits,elapse 3.93986ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:user,elapse 2.330812ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:group,elapse 2.290311ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:crontab,elapse 11.376831ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:service,elapse 11.219849ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:mount_iso,elapse 3.886146ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:oracle,elapse 3.608517ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:proxy_global,elapse 2.876326ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:kdump,elapse 11.713001ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:crash_size,elapse 2.926876ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:kdump_path,elapse 4.262811ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:iptables,elapse 16.280703ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:runlevel,elapse 10.350791ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:resolve_conf,elapse 3.667889ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:grub,elapse 3.274645ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:ntp,elapse 4.32259ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:ntp_slew,elapse 2.952916ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:snmp_trap,elapse 2.305776ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:sestatus,elapse 2.422878ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:keyboard,elapse 2.582179ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:vmwaretool_timesync,elapse 12.192909ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:vmware_scsi_timeout,elapse 3.056561ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:language,elapse 2.303028ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:timezone,elapse 29.238298ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:oracle_module,elapse 28.637263ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="run centos80:vncserver,elapse 10.596006ms"
+    time="2020-07-22T10:37:05+09:00" level=info msg="Complete Linux inventory collection Elapse 1.060322346s"
+  status: exit status 0

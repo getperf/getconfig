@@ -35,8 +35,8 @@ class Windows implements AgentConfigWrapper {
         def config = new AgentCommandConfig(
                 server: 'localhost',
                 local_exec: false,
-                servers : [
-                        new ServerConfig(
+                servers: [
+                        new Server(
                                 server : server.serverName,
                                 url : server.ip,
                                 user : server.user,

@@ -23,6 +23,10 @@ test.serialization.tasks = ['vCenter']
 
 test.dry_run_staging_dir = './src/test/resources/log/'
 
+// HUBサーバエージェントログ保存ディレクトリ
+
+test.hub_inventory_dir = './src/test/resources/hub/inventory'
+
 // インベントリ用チケットカスタムフィールド名
 
 ticket.custom_field.inventory = 'インベントリ'

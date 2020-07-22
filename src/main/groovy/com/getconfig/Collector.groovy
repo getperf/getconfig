@@ -2,10 +2,14 @@ package com.getconfig
 
 import com.getconfig.AgentWrapper.AgentConfigWrapper
 import com.getconfig.AgentWrapper.AgentExecutor
-import com.getconfig.AgentWrapper.AgentExecutorBatch
+import com.getconfig.AgentWrapper.AgentMode
+import com.getconfig.AgentWrapper.LocalAgentExecutor
+import com.getconfig.AgentWrapper.LocalAgentBatchExecutor
+import com.getconfig.AgentWrapper.RemoteAgentExecutor
+import com.getconfig.AgentWrapper.RemoteAgentHubExecutor
 import com.getconfig.AgentWrapper.ConfigWrapperContext
 import com.getconfig.Model.TestServer
-import com.getconfig.Model.TestServers
+import com.getconfig.Model.TestServerGroup
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 
@@ -13,78 +17,100 @@ import groovy.util.logging.Slf4j
 @CompileStatic
 class Collector implements Controller {
     protected List<TestServer> testServers
-    private Map<String,TestServers> categorizedServers
+    private Map<String,TestServerGroup> testServerGroups
+    String filterServer
 
     Collector(List<TestServer> testServers) {
         this.testServers = testServers
-        this.categorizedServers = new LinkedHashMap<String,TestServers>()
+        this.testServerGroups = new LinkedHashMap<String,TestServerGroup>()
     }
 
     void setEnvironment(ConfigEnv env) {
+        this.filterServer = env.getKeywordServer()
     }
 
-    String getCategorizedKey(TestServer server) {
-        String domain = server.domain
-        AgentConfigWrapper wrapper
-        wrapper = ConfigWrapperContext.instance.getWrapper(domain)
-        String categorizedKey = server.serverName
-        if (wrapper.getBatchEnable()) {
-            server.with {
-                categorizedKey = (ip) ? "${domain}_${ip}_${accountId}" :
-                        "${domain}_${accountId}"
+    AgentMode getAgentMode(String domain) {
+        if (domain == '{LocalFile(Hub)}') {
+            return AgentMode.RemoteAgentHub
+        } else if (domain == '{Agent}') {
+            return AgentMode.RemoteAgent
+        } else {
+            AgentConfigWrapper wrapper = ConfigWrapperContext.instance.getWrapper(domain)
+            if (wrapper.getBatchEnable()) {
+                return AgentMode.LocalAgentBatch
+            } else {
+                return AgentMode.LocalAgent
             }
         }
-        return categorizedKey
+    }
+
+    String getServerGroupKey(AgentMode agentMode, TestServer testServer) {
+        String serverGroupKey = "${agentMode}"
+        testServer.with {
+            if (agentMode == AgentMode.LocalAgentBatch) {
+                serverGroupKey += "_${domain}_${ip}_${accountId}"
+            } else {
+                serverGroupKey += "_${serverName}_${domain}"
+            }
+        }
+        return serverGroupKey
     }
 
     void classifyTestServers() {
-        ConfigEnv env = ConfigEnv.instance
-        String filterServer = env.getKeywordServer()
-        if (filterServer) {
-            log.info "set server filter : ${filterServer}"
+        if (this.filterServer) {
+            log.info "set server filter : ${this.filterServer}"
         }
         testServers.each { server ->
-            if ((filterServer) && !(server.serverName =~ /${filterServer}/)) {
-                log.info "skip:${server.serverName}"
+            if ((this.filterServer) && !(server.serverName =~ /${this.filterServer}/)) {
+                log.info "skip:${server.serverName}, ${server.domain}"
                 return
             }
-            String categorizedKey = this.getCategorizedKey(server)
-            if (!categorizedServers.get(categorizedKey)) {
-                categorizedServers[categorizedKey] = new TestServers(server.domain)
+            AgentMode agentMode = this.getAgentMode(server.domain)
+            String serverGroupKey = this.getServerGroupKey(agentMode, server)
+            if (!testServerGroups.get(serverGroupKey)) {
+                testServerGroups[serverGroupKey] = new TestServerGroup(server.domain, agentMode)
             }
-            categorizedServers[categorizedKey].put(server)
+            testServerGroups[serverGroupKey].put(server)
         }
     }
 
     void runAgent() {
         ConfigEnv env = ConfigEnv.instance
-        categorizedServers.each { categorizedKey, testServers ->
-            def domain = testServers.domain
-            if  (ConfigWrapperContext.instance.getWrapper(domain).getBatchEnable()) {
-                log.info("run batch ${categorizedKey}")
-                try {
-                    def agentExecutorBatch = new AgentExecutorBatch(categorizedKey, testServers)
-                    env.accept(agentExecutorBatch)
-                    agentExecutorBatch.run()
-                } catch (IllegalArgumentException e) {
-                    log.info "batch ${categorizedKey} error, skip\n $e"
-                }
-            } else {
-                TestServer server = testServers.get(0)
-                log.info("run ${server.serverName}")
-                try {
-                    def agentExecutor = new AgentExecutor(domain, server)
-                    env.accept(agentExecutor)
-                    agentExecutor.run()
-                } catch (IllegalArgumentException e) {
-                    log.info "${server.serverName} agent error, skip\n $e"
-                }
+        def testServerGroupsSorted = testServerGroups.sort {
+            a, b -> a.key <=> b.key
+        }
+        testServerGroupsSorted.each { key, testServerGroup ->
+            def domain = testServerGroup.groupKey
+            def agentMode = testServerGroup.agentMode
+            def server = testServerGroup.get(0)
+            AgentExecutor agentExecutor
+            switch(agentMode) {
+                case AgentMode.LocalAgent:
+                    agentExecutor = new LocalAgentExecutor(domain, server)
+                    break
+                case AgentMode.LocalAgentBatch:
+                    agentExecutor = new LocalAgentBatchExecutor(key, testServerGroup)
+                    break
+                case AgentMode.RemoteAgent:
+                    agentExecutor = new RemoteAgentExecutor(server)
+                    break
+                case AgentMode.RemoteAgentHub:
+                    agentExecutor = new RemoteAgentHubExecutor(testServerGroup)
+                    break
+            }
+            try {
+                env.accept(agentExecutor)
+                log.info("LOG:${agentExecutor.getAgentLogDir()}")
+                agentExecutor.run()
+            } catch (IllegalArgumentException e) {
+                log.info "${server.serverName} agent error, skip\n $e"
             }
         }
     }
 
-    void run() {
+    int run() {
         this.classifyTestServers()
         this.runAgent()
+        return 0
     }
 }

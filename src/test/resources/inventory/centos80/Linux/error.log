@@ -1,0 +1,7 @@
+no crontab for someuser
+run centos80:crontab : run command: Process exited with status 1
+cat: /etc/snmp/snmpd.conf: 許可がありません
+run centos80:snmp_trap : run command: Process exited with status 1
+ls: cannot access /root/package/*: そのようなファイルやディレクトリはありません
+run centos80:oracle_module : run command: Process exited with status 2
+run centos80:vncserver : run shell: Process exited with status 1

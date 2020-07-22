@@ -1,0 +1,44 @@
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+ens192: 13490040682 47209481    0 191490    0     0          0    234236 54617067786 23072480    0    0    0     0       0          0
+    lo: 107217362  255746    0    0    0     0          0         0 107217362  255746    0    0    0     0       0          0
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+ens192: 13490185064 47209718    0 191494    0     0          0    234237 54617314103 23072657    0    0    0     0       0          0
+    lo: 107217362  255746    0    0    0     0          0         0 107217362  255746    0    0    0     0       0          0
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+ens192: 13490195186 47209780    0 191498    0     0          0    234238 54617338608 23072682    0    0    0     0       0          0
+    lo: 107217362  255746    0    0    0     0          0         0 107217362  255746    0    0    0     0       0          0
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+ens192: 13490196956 47209809    0 191502    0     0          0    234239 54617338982 23072685    0    0    0     0       0          0
+    lo: 107217362  255746    0    0    0     0          0         0 107217362  255746    0    0    0     0       0          0
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+ens192: 13490199906 47209848    0 191507    0     0          0    234240 54617339228 23072690    0    0    0     0       0          0
+    lo: 107217362  255746    0    0    0     0          0         0 107217362  255746    0    0    0     0       0          0
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+ens192: 13490204614 47209893    0 191514    0     0          0    234241 54617339692 23072694    0    0    0     0       0          0
+    lo: 107217362  255746    0    0    0     0          0         0 107217362  255746    0    0    0     0       0          0
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+ens192: 13490207860 47209940    0 191523    0     0          0    234242 54617340070 23072701    0    0    0     0       0          0
+    lo: 107217362  255746    0    0    0     0          0         0 107217362  255746    0    0    0     0       0          0
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+ens192: 13490210895 47209975    0 191529    0     0          0    234243 54617340444 23072704    0    0    0     0       0          0
+    lo: 107217362  255746    0    0    0     0          0         0 107217362  255746    0    0    0     0       0          0
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+ens192: 13490213581 47210019    0 191540    0     0          0    234244 54617340690 23072709    0    0    0     0       0          0
+    lo: 107217362  255746    0    0    0     0          0         0 107217362  255746    0    0    0     0       0          0
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+ens192: 13490215351 47210048    0 191544    0     0          0    234245 54617341064 23072712    0    0    0     0       0          0
+    lo: 107217362  255746    0    0    0     0          0         0 107217362  255746    0    0    0     0       0          0
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+ens192: 13490218758 47210084    0 191546    0     0          0    234246 54617342209 23072722    0    0    0     0       0          0
+    lo: 107217362  255746    0    0    0     0          0         0 107217362  255746    0    0    0     0       0          0

@@ -1,0 +1,58 @@
+schedule:
+  start: 2020-07-22T10:32:04.710116484+09:00
+  end: 2020-07-22T10:37:34.726397429+09:00
+jobs:
+- id: 1
+  out: vmstat.txt
+  cmd: /usr/bin/vmstat-a561
+  start: 2020-07-22T10:32:04.713054362+09:00
+  end: 2020-07-22T10:37:04.766433165+09:00
+  pid: 7603
+  rc: 0
+  error: ""
+  status: exit status 0
+- id: 2
+  out: memfree.txt
+  cmd: /usr/bin/free-s30-c12
+  start: 2020-07-22T10:32:04.717404065+09:00
+  end: 2020-07-22T10:37:34.726318164+09:00
+  pid: 7604
+  rc: 0
+  error: ""
+  status: exit status 0
+- id: 3
+  out: iostat.txt
+  cmd: /usr/bin/iostat-xk3012
+  start: 2020-07-22T10:32:04.721592423+09:00
+  end: 2020-07-22T10:32:04.729101376+09:00
+  pid: 7605
+  rc: 127
+  error: ""
+  status: exit status 127
+- id: 4
+  out: net_dev.txt
+  cmd: /bin/cat/proc/net/dev
+  start: 2020-07-22T10:32:04.723455778+09:00
+  end: 2020-07-22T10:37:04.766346188+09:00
+  pid: 7773
+  rc: 0
+  error: ""
+  status: exit status 0
+- id: 5
+  out: df_k.txt
+  cmd: /bin/df-k-l
+  start: 2020-07-22T10:32:04.725825815+09:00
+  end: 2020-07-22T10:32:04.72914944+09:00
+  pid: 7607
+  rc: 0
+  error: ""
+  status: exit status 0
+- id: 6
+  out: loadavg.txt
+  cmd: /bin/cat/proc/loadavg
+  start: 2020-07-22T10:32:04.710500138+09:00
+  end: 2020-07-22T10:37:04.758521498+09:00
+  pid: 7764
+  rc: 0
+  error: ""
+  status: exit status 0

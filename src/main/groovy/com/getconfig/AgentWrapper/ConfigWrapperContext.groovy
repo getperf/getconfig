@@ -19,7 +19,7 @@ class ConfigWrapperContext {
             it["vCenter"] = new vCenter()
             it["VMHost"] = new VMHost()
             it["{Agent}"] = new RemoteAgent()
-            it["{LocalFile(Hub)}"] = new RemoteAgent()
+            it["{LocalFile(Hub)}"] = new LocalAgent()
         }
     }
 

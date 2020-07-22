@@ -61,11 +61,15 @@ class TestRunner implements Controller {
         log.info "run report"
     }
 
-    void run() {
+    int run() {
+        long start = System.currentTimeMillis()
         log.info new GetconfigCommand().getVersion() as String
         this.setLogLevel()
         this.readExcel()
         this.runCollector()
         this.report()
+        long elapse = System.currentTimeMillis() - start
+        log.info "Finish, Total Elapse : ${elapse} ms"
+        return 0
     }
 }

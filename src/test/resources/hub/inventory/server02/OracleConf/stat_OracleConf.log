@@ -1,0 +1,22 @@
+schedule:
+  start: 2020-06-12T10:46:40.8620159+09:00
+  end: 2020-06-12T10:46:41.041019+09:00
+jobs:
+- id: 1
+  out: TcpKeepAlive.txt
+  cmd: C:\ptune\script\get_tcp_param.bat
+  start: 2020-06-12T10:46:40.8631394+09:00
+  end: 2020-06-12T10:46:41.041019+09:00
+  pid: 6068
+  rc: 0
+  error: ""
+  status: exit status 0
+- id: 2
+  out: ""
+  cmd: copyC:\oracle\product\11.1.0\db_1\NETWORK\ADMIN\tnsnames.oraC:\ptune\log\OracleConf\20200612\100000
+  start: 2020-06-12T10:46:40.8620159+09:00
+  end: 2020-06-12T10:46:40.9720146+09:00
+  pid: 5496
+  rc: 0
+  error: " \0 \0 \0 \0 \0 \0 \0 \01\0 \0\vPn0ﾕ0｡0､0�0�0ｳ0ﾔ0�0W0~0W0_0\x020\r\0\n\0"
+  status: exit status 0

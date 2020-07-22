@@ -32,6 +32,27 @@ class CollectorTest extends Specification {
         when:
         Collector collector = new Collector(testServers)
         collector.classifyTestServers()
+
+        then:
+        collector.testServerGroups.size() > 0
+    }
+
+    def "HUBサーバローカルファイル処理"() {
+        when:
+        Collector collector = new Collector(testServers)
+        collector.filterServer = "server02"
+        collector.classifyTestServers()
+        collector.runAgent()
+
+        then:
+        collector.testServers.size() > 0
+    }
+
+    def "リモートエージェント処理"() {
+        when:
+        Collector collector = new Collector(testServers)
+        collector.filterServer = "centos80"
+        collector.classifyTestServers()
         collector.runAgent()
 
         then:

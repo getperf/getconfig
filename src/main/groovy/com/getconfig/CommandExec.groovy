@@ -36,7 +36,7 @@ class CommandExec {
         } catch (IOException e) {
             log.warn("file access error $command : $e")
         }
-        log.info(outputStream.toString())
+        log.debug(outputStream.toString())
         return rc
     }
 }

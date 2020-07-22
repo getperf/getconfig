@@ -1,0 +1,18 @@
+schedule:
+  start: 2020-06-12T10:56:40.8712449+09:00
+  end: 2020-06-12T10:56:47.6989886+09:00
+jobs:
+- id: 1
+  out: ""
+  cmd: C:\ptune\script\gconf.exe--templatewindowsconfrun-oC:\ptune\log\WindowsConf\20200612\105500
+  start: 2020-06-12T10:56:40.8722382+09:00
+  end: 2020-06-12T10:56:47.6989886+09:00
+  pid: 3744
+  rc: 0
+  error: |
+    time="2020-06-12T10:56:40+09:00" level=info msg="set base home : C:\\ptune\\script"
+    time="2020-06-12T10:56:41+09:00" level=info msg="set inventory datastore : C:\\ptune\\log\\WindowsConf\\20200612\\105500"
+    time="2020-06-12T10:56:41+09:00" level=info msg="run (label=Windows, template=windowsconf)\n"
+    time="2020-06-12T10:56:41+09:00" level=info msg="create temporary log dir for test C:\\ptune\\log\\WindowsConf\\20200612\\105500"
+    time="2020-06-12T10:56:47+09:00" level=info msg="Complete Windows inventory collection RC:0,Signal:false,Elapse 6.6441167s"
+  status: exit status 0

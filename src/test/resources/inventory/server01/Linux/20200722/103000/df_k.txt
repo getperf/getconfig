@@ -1,0 +1,8 @@
+ファイルシス                 1K-ブロック     使用   使用可 使用% マウント位置
+devtmpfs                          919080        0   919080    0% /dev
+tmpfs                             936772        0   936772    0% /dev/shm
+tmpfs                             936772    94360   842412   11% /run
+tmpfs                             936772        0   936772    0% /sys/fs/cgroup
+/dev/mapper/cl_centos80-root    49181224 15577788 33603436   32% /
+/dev/sda1                         999320   141976   788532   16% /boot
+tmpfs                             187352        0   187352    0% /run/user/1000
