@@ -5,6 +5,7 @@ import ch.qos.logback.classic.Logger
 import com.getconfig.Command.GetconfigCommand
 import com.getconfig.Document.SpecReader
 import com.getconfig.Model.TestServer
+import com.getconfig.Model.TestServerGroup
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.util.logging.Slf4j
@@ -19,6 +20,7 @@ class TestRunner implements Controller {
     String checkSheetPath
     String evidenceSheetPath
     List<TestServer> testServers
+    private Map<String, TestServerGroup> testServerGroups
 
     void setEnvironment(ConfigEnv env) {
         this.silent = env.getSilent()
@@ -54,6 +56,7 @@ class TestRunner implements Controller {
         Collector collector = new Collector(this.testServers)
         ConfigEnv.instance.accept(collector)
         collector.run()
+        this.testServerGroups = collector.getTestServerGroups()
         log.info "finish collector"
     }
 

@@ -2,11 +2,11 @@ package com.getconfig.AgentWrapper
 
 import spock.lang.Specification
 
-class ConfigWrapperContextTest extends Specification {
+class AgentWrapperContextTest extends Specification {
 
     def "初期化"() {
         when:
-        def env = ConfigWrapperContext.instance
+        def env = AgentWrapperContext.instance
         def agentConfigWrapper = env.getWrapper("Linux")
 
         then:
@@ -15,7 +15,7 @@ class ConfigWrapperContextTest extends Specification {
 
     def "不明プラットフォームの初期化"() {
         when:
-        def env = ConfigWrapperContext.instance
+        def env = AgentWrapperContext.instance
         env.getWrapper("Hoge")
 
         then:

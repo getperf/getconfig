@@ -10,6 +10,7 @@ class TestServerGroup {
     String groupKey
     AgentMode agentMode
     List<TestServer> testServers
+    String agentLogPath
 
     TestServerGroup(String groupKey, AgentMode agentMode) {
         this.groupKey = groupKey

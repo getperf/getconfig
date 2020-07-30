@@ -2,7 +2,6 @@ package com.getconfig.AgentWrapper
 
 import com.getconfig.CommandExec
 import com.getconfig.ConfigEnv
-import com.getconfig.Controller
 import com.getconfig.Model.TestServer
 import com.moandjiezana.toml.TomlWriter
 import groovy.transform.CompileStatic
@@ -30,7 +29,7 @@ class LocalAgentExecutor implements AgentExecutor {
     LocalAgentExecutor(String platform, TestServer server) {
         this.platform = platform
         this.server = server
-        this.wrapper = ConfigWrapperContext.instance.getWrapper(platform)
+        this.wrapper = AgentWrapperContext.instance.getWrapper(platform)
     }
 
     void setEnvironment(ConfigEnv env) {

@@ -9,11 +9,11 @@ import com.getconfig.AgentWrapper.Platform.*
 @CompileStatic
 @TypeChecked
 @Singleton(strict = false)
-class ConfigWrapperContext {
-    def agentConfigWrappers = new LinkedHashMap<String, AgentConfigWrapper>()
+class AgentWrapperContext {
+    def agentWrappers = new LinkedHashMap<String, AgentConfigWrapper>()
 
-    private ConfigWrapperContext() {
-        agentConfigWrappers.with {
+    private AgentWrapperContext() {
+        agentWrappers.with {
             it["Linux"] = new Linux()
             it["Windows"] = new Windows()
             it["vCenter"] = new vCenter()
@@ -24,10 +24,10 @@ class ConfigWrapperContext {
     }
 
     AgentConfigWrapper getWrapper(String platform) {
-        def agentConfigWrapper = agentConfigWrappers[platform]
+        def agentConfigWrapper = agentWrappers[platform]
         if (!agentConfigWrapper) {
             throw new IllegalArgumentException("not found agent wrapper : " + platform)
         } 
-        return agentConfigWrappers[platform] as AgentConfigWrapper
+        return agentWrappers[platform] as AgentConfigWrapper
     }
 }

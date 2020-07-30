@@ -7,7 +7,7 @@ import com.getconfig.AgentWrapper.LocalAgentExecutor
 import com.getconfig.AgentWrapper.LocalAgentBatchExecutor
 import com.getconfig.AgentWrapper.RemoteAgentExecutor
 import com.getconfig.AgentWrapper.RemoteAgentHubExecutor
-import com.getconfig.AgentWrapper.ConfigWrapperContext
+import com.getconfig.AgentWrapper.AgentWrapperContext
 import com.getconfig.Model.TestServer
 import com.getconfig.Model.TestServerGroup
 import groovy.transform.CompileStatic
@@ -29,13 +29,17 @@ class Collector implements Controller {
         this.filterServer = env.getKeywordServer()
     }
 
+    Map<String, TestServerGroup> getTestServerGroups() {
+        return testServerGroups
+    }
+
     AgentMode getAgentMode(String domain) {
         if (domain == '{LocalFile(Hub)}') {
             return AgentMode.RemoteAgentHub
         } else if (domain == '{Agent}') {
             return AgentMode.RemoteAgent
         } else {
-            AgentConfigWrapper wrapper = ConfigWrapperContext.instance.getWrapper(domain)
+            AgentConfigWrapper wrapper = AgentWrapperContext.instance.getWrapper(domain)
             if (wrapper.getBatchEnable()) {
                 return AgentMode.LocalAgentBatch
             } else {
@@ -100,7 +104,8 @@ class Collector implements Controller {
             }
             try {
                 env.accept(agentExecutor)
-                log.info("LOG:${agentExecutor.getAgentLogDir()}")
+                testServerGroup.agentLogPath = agentExecutor.getAgentLogDir()
+//                log.info("LOG:${agentExecutor.getAgentLogDir()}")
                 agentExecutor.run()
             } catch (IllegalArgumentException e) {
                 log.info "${server.serverName} agent error, skip\n $e"
