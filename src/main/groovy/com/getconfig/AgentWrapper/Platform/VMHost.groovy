@@ -10,6 +10,16 @@ import com.getconfig.Model.TestServer
 @CompileStatic
 @InheritConstructors
 class VMHost implements AgentConfigWrapper {
+    class VMHostConfig {
+        String server
+        String url
+        String user
+        String password
+        boolean local_exec = false
+
+        List<String> servers = new ArrayList<String>()
+    }
+
     @Override
     String getLabel() {
         return "vmhostconf"

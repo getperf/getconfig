@@ -111,17 +111,22 @@ class ConfigEnv {
                 Paths.get(this.getGetconfigHome(), "config/cmdb.groovy")
     }
 
-    // gconf設定ファイル用ディレクトリ  build/gconf
-    String getGconfConfigDir() {
+    // エージェント設定ファイル用ディレクトリ  build/gconf
+    String getAgentConfigDir() {
         return this.config?.gconf_config_dir ?:
                 Paths.get(this.getProjectHome(), "build/gconf")
     }
 
-    // gconf ラッパー用ディレクトリ  lib/gconf
-    String getGconfWrapperLib() {
+    // エージェントラッパーライブラリパス  lib/gconf
+    String getAgentWrapperLib() {
         return this.config?.gconf_wrapper_lib ?:
-                Paths.get(this.getProjectHome(), "lib/gconf")
+                Paths.get(this.getProjectHome(), "lib/agentconf")
+    }
 
+    // gconf ラッパー用ディレクトリ  lib/gconf
+    String getAgentLogParserLib() {
+        return this.config?.agent_log_parser_lib ?:
+                Paths.get(this.getProjectHome(), "lib/parser")
     }
 
     // TLS証明書用ディレクトリ  config/network

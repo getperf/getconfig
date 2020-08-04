@@ -34,7 +34,7 @@ class LocalAgentExecutor implements AgentExecutor {
 
     void setEnvironment(ConfigEnv env) {
         this.gconfExe       = env.getGconfExe()
-        this.gconfConfigDir = env.getGconfConfigDir()
+        this.gconfConfigDir = env.getAgentConfigDir()
         this.currentLogDir  = env.getCurrentLogDir()
         this.tlsConfigDir   = env.getTlsConfigDir()
         this.timeout        = env.getGconfTimeout(this.platform)

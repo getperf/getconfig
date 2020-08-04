@@ -10,8 +10,9 @@ import org.slf4j.LoggerFactory
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+
 /**
- * 简单的文件目录操作封装
+ * Simple file directory operation package
  *
  * @author chao
  *

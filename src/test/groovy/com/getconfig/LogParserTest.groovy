@@ -6,7 +6,7 @@ import com.getconfig.Document.*
 
 // gradle --daemon test --tests "LogParserTest.初期化"
 
-class ParserTest extends Specification {
+class LogParserTest extends Specification {
     String checkSheet = './src/test/resources/サーバチェックシート.xlsx'
     String configFile = './src/test/resources/config/config.groovy'
     String currentLogDir = './src/test/resources/inventory'
@@ -32,7 +32,8 @@ class ParserTest extends Specification {
     def "パース処理"() {
         when:
         LogParser logParser = new LogParser(testServers)
-        logParser.baseDir = this.currentLogDir
+        logParser.agentLogPath = this.currentLogDir
+        logParser.parserLibPath = "./lib/parser"
 
         then:
         logParser.run() == 0

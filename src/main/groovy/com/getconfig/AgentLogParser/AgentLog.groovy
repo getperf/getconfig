@@ -3,6 +3,8 @@ package com.getconfig.AgentLogParser
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 
+import java.nio.file.Paths
+
 @CompileStatic
 @ToString
 class AgentLog {
@@ -12,9 +14,11 @@ class AgentLog {
     String alias
     String platform
     String metricFile
+    String base
 
-    AgentLog(String path) {
+    AgentLog(String path, String base = null) {
         this.path = path
+        this.base = base
         this.agentLogMode = AgentLogMode.UNKNOWN
     }
 
@@ -76,5 +80,9 @@ class AgentLog {
                 this.serverName = serverNameAliases.getServerName(this.alias)
             }
         }
+    }
+
+    String getLogPath() {
+        return Paths.get(base, path)
     }
 }
