@@ -1,12 +1,12 @@
 package com.getconfig.Model
 
-import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
-import groovy.util.logging.Slf4j
+import groovy.transform.CompileStatic
+import groovy.transform.ToString
 
 @TypeChecked
 @CompileStatic
-@Slf4j
+@ToString(includePackage = false)
 class TestResult {
     enum ResultStatus {
         OK, NG, WARNING, MATCH, UNMATCH, UNKNOWN
@@ -18,6 +18,7 @@ class TestResult {
 
     String platform
     String metricName
+    String parentMetric
     String serverName
     Object value
     String error
@@ -27,4 +28,10 @@ class TestResult {
     ResultStatus verify
     ResultStatus comparison
     TestResultLine devices
+
+    TestResult(String platform, String metricName, String serverName) {
+        this.platform = platform
+        this.metricName = metricName
+        this.serverName = serverName
+    }
 }

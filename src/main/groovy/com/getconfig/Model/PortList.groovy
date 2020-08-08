@@ -7,7 +7,7 @@ import groovy.transform.ToString
 @TypeChecked
 @CompileStatic
 @ToString(includePackage = false)
-class TestResultLine {
-    List headers
-    List csv
+class PortList {
+    String ip
+    String device
 }

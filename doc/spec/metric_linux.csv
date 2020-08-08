@@ -1,0 +1,90 @@
+﻿,,,,,,
+,,,,,,
+,,,,,,
+Test,Category,Metric,ID,Device,Comment,Platform
+,VMリソース割当て,仮想マシン名,vm.name,,仮想マシン名,vCenter
+,VMリソース割当て,CPU割り当て数,vm.NumCpu,,仮想マシンのCPU仮想ソケット数,vCenter
+,VMリソース割当て,電源状態,vm.PowerState,,電源On/Off,vCenter
+,VMリソース割当て,メモリ割り当て,vm.MemoryGB,,メモリ割り当てサイズ[GB],vCenter
+,VMリソース割当て,ESXiホスト,vm.VMHost,,ESXiホスト名,vCenter
+,VMリソース割当て,クラスター,vm.Cluster,,vCenterクラスタ名,vCenter
+Y,VMリソース割当て,VMWare リソース,vm,,Get-VM コマンドで、VMWare リソース割り当てを検索,vCenter
+,VMカスタマイズ,リソース制限,vm_conf.limit,,CPU,メモリリソース制限設定,vCenter
+,VMカスタマイズ,シェアレベル,vm_conf.shares_level,,CPU,メモリ共有レベル設定,vCenter
+,VMカスタマイズ,CPUアフィニティ,vm_conf.cpu_affinity,,CPUアフィニティ設定,vCenter
+Y,VMカスタマイズ,VMWare カスタマイズ(予約メモリGB),vm_conf,,Get-VMResourceConfiguration コマンドで、VMWare リソース設定を検索,vCenter
+,VM拡張設定,CPUホットアドの有効化,vmext.CpuHotAddEnabled,,CPUホットアドの有効化,vCenter
+,VM拡張設定,すべてのゲストメモリを予約,vmext.MemoryReservationLockedToMax,,すべてのゲストメモリを予約（全てロック）,vCenter
+,VM拡張設定,メモリホットプラグ,vmext.MemoryHotAddEnabled,,メモリホットプラグ,vCenter
+Y,VM拡張設定,VMWare CPU/メモリ ホットアド設定,vmext,,Get-VM コマンドで VMWare CPU/メモリ ホットアド設定を検索,vCenter
+Y,VMデータストア,データストア,datastore,Y,Get-Datastore コマンドで、データストアパスを検索,vCenter
+Y,VMハードディスク,VMWare ハードディスク構成,vm_storage,Y,Get-Harddisk コマンドで、ストレージ構成情報検索,vCenter
+Y,VMネットワーク,VMWare ネットワーク,vmnet,Y,Get-NetworkAdapter コマンドで、ネットワーク・アダプタを検索,vCenter
+,その他VM設定,VMWare ツールバージョン,vmwaretool.version,,VMWare ツールバージョン,vCenter
+Y,その他VM設定,VMWare ツール,vmwaretool,,Get-VM コマンドで、VMWare ツールの有無、バージョンを検索,vCenter
+Y,その他VM設定,VMWare 時刻同期,vm_timesync,,Get-VM コマンドで、VMWare 時刻同期の有無を検索,vCenter
+Y,その他VM設定,ストレージIOPS制限,vm_iops_limit,,Get-VMResourceConfiguration コマンドで、ストレージリソースのIOPS制限値を検索,vCenter
+Y,その他VM設定,ネットワークアダプタ制限,vm_nic_limit,,Get-NetworkAdapter コマンドで、ネットワーク制限値を検索,vCenter
+Y,その他VM設定,フロッピーディスク構成,vm_floppy,,Get-Vm $vm | Get-FloppyDriveコマンドで、フロッピィディスク構成を検索,vCenter
+Y,その他VM設定,ビデオRAM構成,vm_video_ram,,Get-VM コマンドで、ビデオ RAM メモリ割り当てを検索,vCenter
+Y,OSリリース,ホスト名,hostname,,hostname -s　コマンドで、ホスト名を検索,Linux
+Y,OSリリース,FQDN名,hostname_fqdn,,hostname --fqdn コマンドで、FQDN名を検索,Linux
+Y,OSリリース,OSカーネル,uname,,uname -a コマンドで、OSカーネルバージョンを検索,Linux
+,OSリリース,カーネル,kernel,,Linux カーネル,Linux
+,OSリリース,アーキテクチャ,arch,,アーキテクチャ,Linux
+,OSリリース,OracleLinuxカーネルモード,oracle_linux_kernel,,Oracle Linux起動カーネル選択(UEK/RH互換),Linux
+Y,OSリリース,OSバージョン,lsb,,cat /etc/*-release コマンドで、Linux OSディストリビューションを検索,Linux
+,OSリリース,OSリリース,os_release,,OSリリース,Linux
+,OSリリース,OSディストリビューション,os,,OSディストリビューション,Linux
+Y,OS設定,サーバの識別子,machineid,,"以下のファイルを検索してマシンの識別子を検索
+    /etc/machine-id
+    /var/lib/dbus/machine-id",Linux
+Y1,OS設定,データの暗号化,fips,,"以下ファイルを読んで、データ暗号化の有無を確認
+/proc/sys/crypto/fips_enabled",Linux
+Y1,OS設定,仮想化プラットフォーム,virturization,,/proc/cpuinfo を検索して、XEN, KVM, Virtualbox など Linux の仮想化プラットフォームの検索,Linux
+Y1,OS設定,SELinuxステータス,sestatus,,sestatus コマンドで、SELinux ステータスを検索,Linux
+,OS設定,└─SELinux モード,se_mode,,SELinuxモードの検索。SELinuxが無効の場合は空白,Linux
+Y1,OS設定,ISOマウントの有無,mount_iso,,mount コマンドで.isoファイルのマウント有無検索,Linux
+Y1,OS設定,yumコマンドプロキシ設定有無,proxy_global,,/etc/yum.conf から、proxyサーバ定義を検索,Linux
+Y1,OS設定,クラッシュダンプサイズ,crash_size,,/sys/kernel/kexec_crash_size を検索,Linux
+Y1,OS設定,クラッシュダンプパス,kdump_path,,/etc/kdump.conf からカーネルダンプの出力先設定を検索,Linux
+,OS設定,コアコレクター設定,core_collector,,コアコレクター設定,Linux
+Y1,OS設定,ランレベル,runlevel,,/etc/inittabから、OS起動時のランレベルからコンソール設定(3 : CUIコンソール、5 : GUIコンソール)を検索,Linux
+Y1,OS設定,コンソール,runlevel.console,,コンソール設定(GUI、CUI),Linux
+Y1,OS設定,DNS設定,resolve_conf,,/etc/resolve.conf から nameserver を検索,Linux
+,OS設定,└─DNSサーバ名,nameservers,,DNSサーバの検索,Linux
+Y1,OS設定,キーボード配列,keyboard,,/etc/sysconfig/keyboard、/etc/vconsole.conf からキーボード配列を検索,Linux
+Y1,OS設定,OS言語,language,,/proc/cmdline からOS言語を検索,Linux
+Y1,OS設定,ブートローダー,grub,,/etc/default/grupからGRUB_CMDLINE_LINUXのvgaを検索,Linux
+Y1,OS設定,タイムゾーン,timezone,,/etc/sysconfig/clock からタイムゾーンを検索,Linux
+Y1,NTP設定,NTP slewモード,ntp_slew,,/etc/sysconfig/ntpd から、NTP設定を検索。設定しない＝「-u」、設定する「-x」,Linux
+Y1,NTP設定,NTPサーバ名,ntp,,/etc/ntp.conf から、NTPサーバを検索,Linux
+Y1,SNMP設定,SNMPトラップ,snmp_trap,,'/etc/snmp/snmpd.confから、trapsink <管理サーバ> <コミュニティ名> <ポート番号> 行を検索,Linux
+Y1,VMWare設定,VMWare SCSIタイムアウト,vmware_scsi_timeout,,/etc/udev/rules.d/99-vmware-scsi-udev.rulesからVMWare SCSIタイムアウト検索,Linux
+Y1,VMWare設定,VMware Tools の時刻同期,vmwaretool_timesync,,VMWareツールの時刻同期設定,Linux
+,CPU,プロセッサーモデル,model_name,,CPUプロセッサーモデル,Linux
+,CPU,CPUクロック,mhz,,CPUクロック数[MHz],Linux
+,CPU,CPUスレッド数,cpu_total,,CPUスレッド数,Linux
+,CPU,CPUコア数,cpu_core,,CPUコア数。VMの場合は未記入,Linux
+,CPU,CPUソケット数,cpu_real,,CPUソケット数,Linux
+Y,CPU,CPU情報,cpu,,/proc/cpuinfo を検索し,プロセッサ構成を検索,Linux
+,メモリ,メモリ総容量,mem_total,,メモリ総容量[GB],Linux
+,メモリ,メモリ空容量,mem_free,,メモリ空き容量[GB],Linux
+Y,メモリ,メモリ情報,meminfo,,/proc/meminfo を検索してメモリ構成を検索,Linux
+Y,ネットワーク,ネットワークブート,net_onboot,,/etc/sysconfig/network-scripts からネットワークブート構成を検索,Linux
+Y,ネットワーク,デフォルトゲートウェイ,net_route,,/sbin/ip route コマンドで、デフォルトゲートウェイアドレスを検索,Linux
+Y,ネットワーク,NICの冗長化(bonding設定),net_bond,Y,/etc/sysconfig/network-scripts/ からNIC冗長設定を検索,Linux
+Y,ネットワーク,ネットワーク情報,network,Y,/sbin/ip addr コマンドで、ネットワーク構成を検索,Linux
+Y,ストレージ,ストレージデバイス,block_device,,/sys/block/下からデバイス構成を検索,Linux
+Y,ストレージ,ディスクRAID,mdadb,,/proc/mdstat からmd([0-9]+)デバイスを取得,Linux
+Y,ストレージ,自動マウントの設定,fstab,,/etc/fstab から設定値が/dev/から始まるパスで、defaultのデバイスを検索,Linux
+,ストレージ,ファイルシステムタイプ,fstypes,,マウントポイントのファイルシステム,Linux
+Y,ストレージ,論理ボリューム情報,lvm,Y,mountコマンドで、/dev/mapper/下のLVMボリュームを検索,Linux
+Y,ストレージ,ファイルシステム,filesystem,Y,/bin/lsblk -i　コマンドで、マウントポイント構成を検索,Linux
+Y1,ユーザー,ユーザ情報,user,Y,/etc/passwd を検索して、ユーザ名を検索,Linux
+Y1,サービス,サービス構成,service,Y,chkconfig --list コマンドで、サービス数を検索,Linux
+,パッケージ,必須パッケージ,packages.requirements,,必須パッケージリスト,Linux
+Y1,パッケージ,パッケージ構成,packages,Y,rpm -qa コマンドで、パッケージ情報検索,Linux
+Y2,その他OS設定,Syslogエラー,error_messages,Y,/var/log/messages から error,warning,failed を含む行を検索,Linux
+Y2,その他OS設定,Oracleインストーラの有無,oracle_module,,/root/package の下にOracleインストールファイルがあるかを検索,Linux
+Y2,その他OS設定,Oracleモジュールの有無,oracle,,ls -d /opt/oracle/app/product/*/* でOracleのバージョン、サーバ/クライアントを検索,Linux

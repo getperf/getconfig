@@ -1,0 +1,443 @@
+platform = "Windows"
+
+[[metrics]]
+
+metricId = "Domain"
+metricName = "ドメイン名"
+category = "システム情報"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "ドメイン名"
+
+[[metrics]]
+
+metricId = "Manufacturer"
+metricName = "メーカー"
+category = "システム情報"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "メーカー"
+
+[[metrics]]
+
+metricId = "Model"
+metricName = "モデル"
+category = "システム情報"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "モデル"
+
+[[metrics]]
+
+metricId = "PrimaryOwnerName"
+metricName = "所有者"
+category = "システム情報"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "所有者"
+
+[[metrics]]
+
+metricId = "Name"
+metricName = "コンピューター名"
+category = "システム情報"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "コンピューター名"
+
+[[metrics]]
+
+metricId = "system"
+metricName = "システム情報"
+category = "システム情報"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "Win32_ComputerSystem オブジェクトから、システム情報を検索"
+
+[[metrics]]
+
+metricId = "os_conf.install_date"
+metricName = "インストール日付"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "インストール日付"
+
+[[metrics]]
+
+metricId = "os_conf.version"
+metricName = "カレントバージョン"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "OSカレントバージョン"
+
+[[metrics]]
+
+metricId = "os_conf.build"
+metricName = "カレントビルド"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "OSカレントビルド"
+
+[[metrics]]
+
+metricId = "os_conf.product_id"
+metricName = "製品ID"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "OSプロダクトID"
+
+[[metrics]]
+
+metricId = "os_conf"
+metricName = "OSバージョン"
+category = "OSリリース"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersionレジストリからOSバージョン検索"
+
+[[metrics]]
+
+metricId = "os_caption"
+metricName = "OS名"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "OS名称"
+
+[[metrics]]
+
+metricId = "os_csd_version"
+metricName = "サービスパック"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "サービスパック名"
+
+[[metrics]]
+
+metricId = "os_architecture"
+metricName = "アーキテクチャ"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "アーキテクチャ(32bit/64bit)"
+
+[[metrics]]
+
+metricId = "os_product_type"
+metricName = "製品タイプ"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "1:ワークステーション 2:ドメインコントローラ 3:サーバー"
+
+[[metrics]]
+
+metricId = "os"
+metricName = "OS情報"
+category = "OSリリース"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "Win32_OperatingSystem オブジェクトから、OS情報を検索"
+
+[[metrics]]
+
+metricId = "driver"
+metricName = "ドライバー"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Win32_PnPSignedDriver オブジェクトから、ドライバー登録件数を検索"
+
+[[metrics]]
+
+metricId = "virturalization"
+metricName = "仮想化プラットフォーム"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "Win32_ComputerSystem オブジェクトから仮想化プラットフォームを検索"
+
+[[metrics]]
+
+metricId = "monitor"
+metricName = "ディスプレイの設定"
+category = "OS設定"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "Win32_DesktopMonitorオブジェクトから、ディスプレイの詳細設定を検索"
+
+[[metrics]]
+
+metricId = "monitor.height"
+metricName = "ディスプレイ解像度Y"
+category = "OS設定"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "ディスプレイ解像度Y"
+
+[[metrics]]
+
+metricId = "monitor.width"
+metricName = "ディスプレイ解像度X"
+category = "OS設定"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "ディスプレイ解像度X"
+
+[[metrics]]
+
+metricId = "system_log"
+metricName = "Windowsシステムイベントログ"
+category = "OS設定"
+commandLevel = "Level2" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Get-EventLog コマンドで、Windowsシステムイベントログのエラーメッセージを検索"
+
+[[metrics]]
+
+metricId = "apps_log"
+metricName = "Windowsアプリイベントログ"
+category = "OS設定"
+commandLevel = "Level2" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Get-EventLog コマンドで、Windowsアプリイベントログのエラーメッセージを検索"
+
+[[metrics]]
+
+metricId = "model_name"
+metricName = "プロセッサーモデル"
+category = "CPU"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "CPUプロセッサーモデル"
+
+[[metrics]]
+
+metricId = "mhz"
+metricName = "CPUクロック"
+category = "CPU"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "CPUクロック数[MHz]"
+
+[[metrics]]
+
+metricId = "cpu_socket"
+metricName = "CPUソケット数"
+category = "CPU"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "CPUソケット数"
+
+[[metrics]]
+
+metricId = "cpu_core"
+metricName = "CPUコア数"
+category = "CPU"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "CPUコア数"
+
+[[metrics]]
+
+metricId = "cpu_total"
+metricName = "CPUスレッド数"
+category = "CPU"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "CPUスレッド数"
+
+[[metrics]]
+
+metricId = "cpu"
+metricName = "CPU情報"
+category = "CPU"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "Win32_Processor オブジェクトからCPU情報を検索"
+
+[[metrics]]
+
+metricId = "visible_memory"
+metricName = "物理メモリ量"
+category = "メモリ"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "物理メモリ量[KB]"
+
+[[metrics]]
+
+metricId = "virtual_memory"
+metricName = "仮想メモリ量"
+category = "メモリ"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "仮想メモリ量[KB]"
+
+[[metrics]]
+
+metricId = "free_memory"
+metricName = "空きメモリ量"
+category = "メモリ"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "メモリ空き容量[KB]"
+
+[[metrics]]
+
+metricId = "memory"
+metricName = "メモリ情報"
+category = "メモリ"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "Win32_OperatingSystem オブジェクトから、メモリ情報を検索"
+
+[[metrics]]
+
+metricId = "dns"
+metricName = "DNSサーバ"
+category = "ネットワーク"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "Get-DnsClientServerAddress　コマンドで、DNSサーバ検索"
+
+[[metrics]]
+
+metricId = "nic_teaming_config"
+metricName = "NICチーミング設定"
+category = "ネットワーク"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Get-NetLbfoTeam コマンドで、NICチーミング(NetLBFO)設定を検索"
+
+[[metrics]]
+
+metricId = "nic_teaming"
+metricName = "NICチーミング"
+category = "ネットワーク"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Get-NetLbfoTeamNic コマンドで、NICチーミング(NetLBFO)名を検索"
+
+[[metrics]]
+
+metricId = "network"
+metricName = "ネットワーク構成"
+category = "ネットワーク"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Win32_NetworkAdapterConfiguration オブジェクトから、IP,GW,Indexを検索"
+
+[[metrics]]
+
+metricId = "network_profile"
+metricName = "ネットワークプロファイル"
+category = "ネットワークI/F"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Get-NetConnectionProfile コマンドで、ネットワークプロファイル検索。0:パブリック,1:プライベート,2:ドメイン認証"
+
+[[metrics]]
+
+metricId = "net_ip"
+metricName = "ネットワークI/F状態"
+category = "ネットワークI/F"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Get-NetIPInterface コマンドで、ネットワーク優先順位を検索"
+
+[[metrics]]
+
+metricId = "firewall"
+metricName = "ファイヤーウォール受信許可設定"
+category = "ファイヤーウォール"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Get-NetFirewallRuleコマンドで、Windows Firewall の受信規制リストを検索"
+
+[[metrics]]
+
+metricId = "filesystem"
+metricName = "ディスク容量"
+category = "ストレージ"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Win32_LogicalDisk オブジェクトから、ストレージ容量を検索"
+
+[[metrics]]
+
+metricId = "logon_test"
+metricName = "ログオンテスト"
+category = "ユーザ"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "config.groovyに記述したログオン検査用ユーザでPowerShellリモート疎通を確認"
+
+[[metrics]]
+
+metricId = "user"
+metricName = "ユーザ情報"
+category = "ユーザ"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Win32_UserAccount オブジェクトから、ローカルアカウントのロック情報を検索"
+
+[[metrics]]
+
+metricId = "etc_hosts"
+metricName = "hostsファイル"
+category = "ホスト"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "{win_dir}\\system32\\drivers\\etc\\hosts からホストリスト検索"
+
+[[metrics]]
+
+metricId = "patch_lists"
+metricName = "パッチリスト"
+category = "パッチ"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "wmic qfeコマンドで、パッチリストを検索"
+
+[[metrics]]
+
+metricId = "service"
+metricName = "サービス構成"
+category = "サービス"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Get-Service コマンドで、サービスのステータスを検索"
+
+[[metrics]]
+
+metricId = "packages"
+metricName = "パッケージ構成"
+category = "パッケージ"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Win32_Product オブジェクトから、パッケージ情報検索"
+
+[[metrics]]
+
+metricId = "feature"
+metricName = "Windows機能"
+category = "Windows機能"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Get-WindowsFeature コマンドで、インストールされたWindows機能を検索"
+
+[[metrics]]
+
+metricId = "task_scheduler"
+metricName = "タスクスケジューラ"
+category = "タスク"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "Get-ScheduledTask　コマンドで、Windows タスクスケジューラ情報を検索"
+

@@ -7,7 +7,7 @@ import com.poiji.annotation.*
 
 @TypeChecked
 @CompileStatic
-@ToString
+@ToString(includePackage = false)
 public class TestServer {
     @ExcelRow
     private int rowIndex;

@@ -3,7 +3,7 @@ package com.getconfig.AgentWrapper
 import com.getconfig.CommandExec
 import com.getconfig.ConfigEnv
 import com.getconfig.Model.TestServer
-import com.moandjiezana.toml.TomlWriter
+import com.getconfig.Utils.TomlUtils
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
@@ -42,8 +42,7 @@ class LocalAgentExecutor implements AgentExecutor {
 
     String toml() {
         def config = wrapper.makeServerConfig(server)
-        TomlWriter tomlWriter = new TomlWriter()
-        return tomlWriter.write(config)
+        return TomlUtils.decode(config)
     }
 
     String label() {

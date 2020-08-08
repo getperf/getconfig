@@ -4,6 +4,8 @@ import com.getconfig.AgentLogParser.AgentLog
 import com.getconfig.AgentLogParser.AgentLogMode
 import com.getconfig.AgentLogParser.AgentLogParserManager
 import com.getconfig.AgentLogParser.ServerNameAliases
+import com.getconfig.Model.TestResult
+import com.getconfig.Model.TestResultGroup
 import com.getconfig.Model.TestServer
 import groovy.io.FileType
 import groovy.transform.CompileStatic
@@ -18,9 +20,14 @@ class LogParser implements Controller {
     String parserLibPath
     protected List<TestServer> testServers
     protected List<AgentLog> agentLogs = new ArrayList<AgentLog>()
+    Map<String, TestResultGroup> testResultGroups = new LinkedHashMap<>()
 
     LogParser(List<TestServer> testServers) {
         this.testServers = testServers
+        testServers.each {TestServer testServer ->
+            TestResultGroup testResultGroup = new TestResultGroup(testServer)
+            this.testResultGroups.put(testServer.serverName, testResultGroup)
+        }
     }
 
     @Override

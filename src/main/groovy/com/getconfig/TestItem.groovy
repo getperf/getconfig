@@ -1,6 +1,7 @@
 package com.getconfig
 
 import com.getconfig.AgentLogParser.AgentLog
+import com.getconfig.Model.TestResultGroup
 import com.getconfig.TestItem.PortListRegister
 import com.getconfig.TestItem.TargetServerInfo
 import com.getconfig.TestItem.TestResultRegister
@@ -18,18 +19,21 @@ class TestItem {
     String platform
     String metricFile
     String logPath
+    TestResultGroup testResultGroup
 
-    TestItem(String serverName, String platform, String metricFile) {
+    TestItem(String serverName, String platform, String metricFile, TestResultGroup testResultGroup = null) {
         this.serverName = serverName
         this.platform = platform
         this.metricFile = metricFile
+        this.testResultGroup = testResultGroup ?: new TestResultGroup(this.serverName)
     }
 
-    TestItem(AgentLog agentLog) {
+    TestItem(AgentLog agentLog, TestResultGroup testResultGroup = null) {
         this.serverName = agentLog.serverName
         this.platform = agentLog.platform
         this.metricFile = agentLog.metricFile
         this.logPath = agentLog.getLogPath()
+        this.testResultGroup = testResultGroup ?: new TestResultGroup(this.serverName)
     }
 
     def readLine = { String charset = 'UTF-8', Closure closure ->
@@ -49,6 +53,14 @@ class TestItem {
         TestResultRegister.results(this, value)
     }
 
+    void error(String errorMessage) {
+        TestResultRegister.error(this, errorMessage)
+    }
+
+    void devices(List headers, List csv) {
+        TestResultRegister.devices(this, headers, csv)
+    }
+
     void newMetric(String metric, String description, Object value, Map<String,Object> results) {
         TestResultRegister.newMetric(this, metric, description, value, results)
     }
@@ -57,7 +69,4 @@ class TestItem {
         PortListRegister.portList(this, ip, device)
     }
 
-    void error(String s) {
-        log.error(s)
-    }
 }

@@ -1,0 +1,94 @@
+﻿,,,,,,
+,,,,,,
+,,,,,,
+Test,Category,Metric,ID,Device,Comment,Platform
+,VMリソース割当て,仮想マシン名,vm.name,,仮想マシン名,vCenter
+,VMリソース割当て,CPU割り当て数,vm.NumCpu,,仮想マシンのCPU仮想ソケット数,vCenter
+,VMリソース割当て,電源状態,vm.PowerState,,電源On/Off,vCenter
+,VMリソース割当て,メモリ割り当て,vm.MemoryGB,,メモリ割り当てサイズ[GB],vCenter
+,VMリソース割当て,ESXiホスト,vm.VMHost,,ESXiホスト名,vCenter
+,VMリソース割当て,クラスター,vm.Cluster,,vCenterクラスタ名,vCenter
+Y,VMリソース割当て,VMWare リソース,vm,,Get-VM コマンドで、VMWare リソース割り当てを検索,vCenter
+,VMカスタマイズ,リソース制限,vm_conf.limit,,CPU,メモリリソース制限設定,vCenter
+,VMカスタマイズ,シェアレベル,vm_conf.shares_level,,CPU,メモリ共有レベル設定,vCenter
+,VMカスタマイズ,CPUアフィニティ,vm_conf.cpu_affinity,,CPUアフィニティ設定,vCenter
+Y,VMカスタマイズ,VMWare カスタマイズ(予約メモリGB),vm_conf,,Get-VMResourceConfiguration コマンドで、VMWare リソース設定を検索,vCenter
+,VM拡張設定,CPUホットアドの有効化,vmext.CpuHotAddEnabled,,CPUホットアドの有効化,vCenter
+,VM拡張設定,すべてのゲストメモリを予約,vmext.MemoryReservationLockedToMax,,すべてのゲストメモリを予約（全てロック）,vCenter
+,VM拡張設定,メモリホットプラグ,vmext.MemoryHotAddEnabled,,メモリホットプラグ,vCenter
+Y,VM拡張設定,VMWare CPU/メモリ ホットアド設定,vmext,,Get-VM コマンドで VMWare CPU/メモリ ホットアド設定を検索,vCenter
+Y,VMデータストア,データストア,datastore,Y,Get-Datastore コマンドで、データストアパスを検索,vCenter
+Y,VMハードディスク,VMWare ハードディスク構成,vm_storage,Y,Get-Harddisk コマンドで、ストレージ構成情報検索,vCenter
+Y,VMネットワーク,VMWare ネットワーク,vmnet,Y,Get-NetworkAdapter コマンドで、ネットワーク・アダプタを検索,vCenter
+,その他VM設定,VMWare ツールバージョン,vmwaretool.version,,VMWare ツールバージョン,vCenter
+Y,その他VM設定,VMWare ツール,vmwaretool,,Get-VM コマンドで、VMWare ツールの有無、バージョンを検索,vCenter
+Y,その他VM設定,VMWare 時刻同期,vm_timesync,,Get-VM コマンドで、VMWare 時刻同期の有無を検索,vCenter
+Y,その他VM設定,ストレージIOPS制限,vm_iops_limit,,Get-VMResourceConfiguration コマンドで、ストレージリソースのIOPS制限値を検索,vCenter
+Y,その他VM設定,ネットワークアダプタ制限,vm_nic_limit,,Get-NetworkAdapter コマンドで、ネットワーク制限値を検索,vCenter
+Y,その他VM設定,フロッピーディスク構成,vm_floppy,,Get-Vm $vm | Get-FloppyDriveコマンドで、フロッピィディスク構成を検索,vCenter
+Y,その他VM設定,ビデオRAM構成,vm_video_ram,,Get-VM コマンドで、ビデオ RAM メモリ割り当てを検索,vCenter
+,システム情報,ドメイン名,Domain,,ドメイン名,Windows
+,システム情報,メーカー,Manufacturer,,メーカー,Windows
+,システム情報,モデル,Model,,モデル,Windows
+,システム情報,所有者,PrimaryOwnerName,,所有者,Windows
+,システム情報,コンピューター名,Name,,コンピューター名,Windows
+Y,システム情報,システム情報,system,,Win32_ComputerSystem オブジェクトから、システム情報を検索,Windows
+,OSリリース,インストール日付,os_conf.install_date,,インストール日付,Windows
+,OSリリース,カレントバージョン,os_conf.version,,OSカレントバージョン,Windows
+,OSリリース,カレントビルド,os_conf.build,,OSカレントビルド,Windows
+,OSリリース,製品ID,os_conf.product_id,,OSプロダクトID,Windows
+Y,OSリリース,OSバージョン,os_conf,,"""HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion""レジストリからOSバージョン検索",Windows
+,OSリリース,OS名,os_caption,,OS名称,Windows
+,OSリリース,サービスパック,os_csd_version,,サービスパック名,Windows
+,OSリリース,アーキテクチャ,os_architecture,,アーキテクチャ(32bit/64bit),Windows
+,OSリリース,製品タイプ,os_product_type,,1:ワークステーション 2:ドメインコントローラ 3:サーバー,Windows
+Y,OSリリース,OS情報,os,,Win32_OperatingSystem オブジェクトから、OS情報を検索,Windows
+Y1,OS設定,ドライバー,driver,Y,Win32_PnPSignedDriver オブジェクトから、ドライバー登録件数を検索,Windows
+Y1,OS設定,システム暗号化,fips,,"以下システム暗号化ポリシーレジストリの Enabled 値を検索
+HKLM:System\\CurrentControlSet\\Control\\Lsa\\FIPSAlgorithmPolicy",Windows
+Y1,OS設定,仮想化プラットフォーム,virturalization,,Win32_ComputerSystem オブジェクトから仮想化プラットフォームを検索,Windows
+Y,OS設定,ストレージタイムアウト値,storage_timeout,,"以下レジストリからストレージタイムアウト[秒]を検索
+""HKLM:SYSTEM\\CurrentControlSet\\Services\\disk""",Windows
+Y,OS設定,ディスプレイの設定,monitor,,Win32_DesktopMonitorオブジェクトから、ディスプレイの詳細設定を検索,Windows
+,OS設定,ディスプレイ解像度Y,monitor.height,,ディスプレイ解像度Y,Windows
+,OS設定,ディスプレイ解像度X,monitor.width,,ディスプレイ解像度X,Windows
+Y1,OS設定,InternetExplorerバージョン,ie_version,,"以下レジストリから、InternetExplorerバージョンを検索
+""HKLM:SOFTWARE\\Microsoft\\Internet Explorer""",Windows
+Y2,OS設定,Windowsシステムイベントログ,system_log,Y,Get-EventLog コマンドで、Windowsシステムイベントログのエラーメッセージを検索,Windows
+Y2,OS設定,Windowsアプリイベントログ,apps_log,Y,Get-EventLog コマンドで、Windowsアプリイベントログのエラーメッセージを検索,Windows
+Y1,OS設定,NTPサーバ情報,ntp,,"以下レジストリからNTPサーバ名検索
+""HKLM:System\\CurrentControlSet\\Services\\W32Time\\Parameters""",Windows
+Y1,OS設定,ユーザーアカウント制御,user_account_control,,"以下レジストリからユーザアカウント制御を検索
+""HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System""",Windows
+Y1,OS設定,リモートデスクトップ接続許可設定,remote_desktop,,"以下レジストリからリモートデスクトップ接続の許可設定を検索
+""HKLM:System\\CurrentControlSet\\Control\\Terminal Server""",Windows
+,CPU,プロセッサーモデル,model_name,,CPUプロセッサーモデル,Windows
+,CPU,CPUクロック,mhz,,CPUクロック数[MHz],Windows
+,CPU,CPUソケット数,cpu_socket,,CPUソケット数,Windows
+,CPU,CPUコア数,cpu_core,,CPUコア数,Windows
+,CPU,CPUスレッド数,cpu_total,,CPUスレッド数,Windows
+Y,CPU,CPU情報,cpu,,Win32_Processor オブジェクトからCPU情報を検索,Windows
+,メモリ,物理メモリ量,visible_memory,,物理メモリ量[KB],Windows
+,メモリ,仮想メモリ量,virtual_memory,,仮想メモリ量[KB],Windows
+,メモリ,空きメモリ量,free_memory,,メモリ空き容量[KB],Windows
+Y,メモリ,メモリ情報,memory,,Win32_OperatingSystem オブジェクトから、メモリ情報を検索,Windows
+Y1,ネットワーク,DNSサーバ,dns,,Get-DnsClientServerAddress　コマンドで、DNSサーバ検索,Windows
+Y,ネットワーク,NICチーミング設定,nic_teaming_config,Y,Get-NetLbfoTeam コマンドで、NICチーミング(NetLBFO)設定を検索,Windows
+Y,ネットワーク,NICチーミング,nic_teaming,Y,Get-NetLbfoTeamNic コマンドで、NICチーミング(NetLBFO)名を検索,Windows
+Y,ネットワーク,TCP keepalive 設定,tcp,,"以下レジストリからTCP Keepalive設定を検索
+""HKLM:SYSTEM\CurrentControlSet\Services\Tcpip\Parameters""",Windows
+Y,ネットワーク,ネットワーク構成,network,Y,Win32_NetworkAdapterConfiguration オブジェクトから、IP,GW,Indexを検索,Windows
+Y,ネットワークI/F,ネットワークプロファイル,network_profile,Y,Get-NetConnectionProfile コマンドで、ネットワークプロファイル検索。0:パブリック,1:プライベート,2:ドメイン認証,Windows
+Y,ネットワークI/F,ネットワークバインディング,net_bind,Y,"Get-NetAdapterBinding
+ コマンドで、ネットワークコンポーネントの状態を検索",Windows
+Y,ネットワークI/F,ネットワークI/F状態,net_ip,Y,Get-NetIPInterface コマンドで、ネットワーク優先順位を検索,Windows
+Y1,ファイヤーウォール,ファイヤーウォール受信許可設定,firewall,Y,Get-NetFirewallRuleコマンドで、Windows Firewall の受信規制リストを検索,Windows
+Y,ストレージ,ディスク容量,filesystem,Y,Win32_LogicalDisk オブジェクトから、ストレージ容量を検索,Windows
+Y,ユーザ,ログオンテスト,logon_test,,config.groovyに記述したログオン検査用ユーザでPowerShellリモート疎通を確認,Windows
+Y,ユーザ,ユーザ情報,user,Y,Win32_UserAccount オブジェクトから、ローカルアカウントのロック情報を検索,Windows
+Y1,ホスト,hostsファイル,etc_hosts,Y,{win_dir}\system32\drivers\etc\hosts からホストリスト検索,Windows
+Y1,パッチ,パッチリスト,patch_lists,Y,wmic qfeコマンドで、パッチリストを検索,Windows
+Y1,サービス,サービス構成,service,Y,Get-Service コマンドで、サービスのステータスを検索,Windows
+Y1,パッケージ,パッケージ構成,packages,Y,Win32_Product オブジェクトから、パッケージ情報検索,Windows
+Y1,Windows機能,Windows機能,feature,Y,Get-WindowsFeature コマンドで、インストールされたWindows機能を検索,Windows
+Y1,タスク,タスクスケジューラ,task_scheduler,Y,Get-ScheduledTask　コマンドで、Windows タスクスケジューラ情報を検索,Windows

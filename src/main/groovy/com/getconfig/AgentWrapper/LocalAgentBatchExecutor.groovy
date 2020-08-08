@@ -3,7 +3,7 @@ package com.getconfig.AgentWrapper
 import com.getconfig.CommandExec
 import com.getconfig.Model.TestServer
 import com.getconfig.Model.TestServerGroup
-import com.moandjiezana.toml.TomlWriter
+import com.getconfig.Utils.TomlUtils
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
@@ -30,8 +30,7 @@ class LocalAgentBatchExecutor extends LocalAgentExecutor {
         if (!config) {
             throw new IllegalArgumentException("create agent config : not found servers")
         }
-        TomlWriter tomlWriter = new TomlWriter()
-       return tomlWriter.write(config)
+        return TomlUtils.decode(config)
     }
 
     String tomlPath() {

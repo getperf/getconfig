@@ -1,0 +1,506 @@
+platform = "Linux"
+
+[[metrics]]
+
+metricId = "hostname"
+metricName = "ホスト名"
+category = "OSリリース"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "hostname -s　コマンドで、ホスト名を検索"
+
+[[metrics]]
+
+metricId = "hostname_fqdn"
+metricName = "FQDN名"
+category = "OSリリース"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "hostname --fqdn コマンドで、FQDN名を検索"
+
+[[metrics]]
+
+metricId = "uname"
+metricName = "OSカーネル"
+category = "OSリリース"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "uname -a コマンドで、OSカーネルバージョンを検索"
+
+[[metrics]]
+
+metricId = "kernel"
+metricName = "カーネル"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "Linux カーネル"
+
+[[metrics]]
+
+metricId = "arch"
+metricName = "アーキテクチャ"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "アーキテクチャ"
+
+[[metrics]]
+
+metricId = "oracle_linux_kernel"
+metricName = "OracleLinuxカーネルモード"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "Oracle Linux起動カーネル選択(UEK/RH互換)"
+
+[[metrics]]
+
+metricId = "lsb"
+metricName = "OSバージョン"
+category = "OSリリース"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "cat /etc/*-release コマンドで、Linux OSディストリビューションを検索"
+
+[[metrics]]
+
+metricId = "os_release"
+metricName = "OSリリース"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "OSリリース"
+
+[[metrics]]
+
+metricId = "os"
+metricName = "OSディストリビューション"
+category = "OSリリース"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "OSディストリビューション"
+
+[[metrics]]
+
+metricId = "virturization"
+metricName = "仮想化プラットフォーム"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/proc/cpuinfo を検索して、XEN, KVM, Virtualbox など Linux の仮想化プラットフォームの検索"
+
+[[metrics]]
+
+metricId = "sestatus"
+metricName = "SELinuxステータス"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "sestatus コマンドで、SELinux ステータスを検索"
+
+[[metrics]]
+
+metricId = "se_mode"
+metricName = "└─SELinux モード"
+category = "OS設定"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "SELinuxモードの検索。SELinuxが無効の場合は空白"
+
+[[metrics]]
+
+metricId = "mount_iso"
+metricName = "ISOマウントの有無"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "mount コマンドで.isoファイルのマウント有無検索"
+
+[[metrics]]
+
+metricId = "proxy_global"
+metricName = "yumコマンドプロキシ設定有無"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/yum.conf から、proxyサーバ定義を検索"
+
+[[metrics]]
+
+metricId = "crash_size"
+metricName = "クラッシュダンプサイズ"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/sys/kernel/kexec_crash_size を検索"
+
+[[metrics]]
+
+metricId = "kdump_path"
+metricName = "クラッシュダンプパス"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/kdump.conf からカーネルダンプの出力先設定を検索"
+
+[[metrics]]
+
+metricId = "core_collector"
+metricName = "コアコレクター設定"
+category = "OS設定"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "コアコレクター設定"
+
+[[metrics]]
+
+metricId = "runlevel"
+metricName = "ランレベル"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/inittabから、OS起動時のランレベルからコンソール設定(3 : CUIコンソール、5 : GUIコンソール)を検索"
+
+[[metrics]]
+
+metricId = "runlevel.console"
+metricName = "コンソール"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "コンソール設定(GUI、CUI)"
+
+[[metrics]]
+
+metricId = "resolve_conf"
+metricName = "DNS設定"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/resolve.conf から nameserver を検索"
+
+[[metrics]]
+
+metricId = "nameservers"
+metricName = "└─DNSサーバ名"
+category = "OS設定"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "DNSサーバの検索"
+
+[[metrics]]
+
+metricId = "keyboard"
+metricName = "キーボード配列"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/sysconfig/keyboard、/etc/vconsole.conf からキーボード配列を検索"
+
+[[metrics]]
+
+metricId = "language"
+metricName = "OS言語"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/proc/cmdline からOS言語を検索"
+
+[[metrics]]
+
+metricId = "grub"
+metricName = "ブートローダー"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/default/grupからGRUB_CMDLINE_LINUXのvgaを検索"
+
+[[metrics]]
+
+metricId = "timezone"
+metricName = "タイムゾーン"
+category = "OS設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/sysconfig/clock からタイムゾーンを検索"
+
+[[metrics]]
+
+metricId = "ntp_slew"
+metricName = "NTP slewモード"
+category = "NTP設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/sysconfig/ntpd から、NTP設定を検索。設定しない＝「-u」、設定する「-x」"
+
+[[metrics]]
+
+metricId = "ntp"
+metricName = "NTPサーバ名"
+category = "NTP設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/ntp.conf から、NTPサーバを検索"
+
+[[metrics]]
+
+metricId = "snmp_trap"
+metricName = "SNMPトラップ"
+category = "SNMP設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "'/etc/snmp/snmpd.confから、trapsink <管理サーバ> <コミュニティ名> <ポート番号> 行を検索"
+
+[[metrics]]
+
+metricId = "vmware_scsi_timeout"
+metricName = "VMWare SCSIタイムアウト"
+category = "VMWare設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/udev/rules.d/99-vmware-scsi-udev.rulesからVMWare SCSIタイムアウト検索"
+
+[[metrics]]
+
+metricId = "vmwaretool_timesync"
+metricName = "VMware Tools の時刻同期"
+category = "VMWare設定"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "VMWareツールの時刻同期設定"
+
+[[metrics]]
+
+metricId = "model_name"
+metricName = "プロセッサーモデル"
+category = "CPU"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "CPUプロセッサーモデル"
+
+[[metrics]]
+
+metricId = "mhz"
+metricName = "CPUクロック"
+category = "CPU"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "CPUクロック数[MHz]"
+
+[[metrics]]
+
+metricId = "cpu_total"
+metricName = "CPUスレッド数"
+category = "CPU"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "CPUスレッド数"
+
+[[metrics]]
+
+metricId = "cpu_core"
+metricName = "CPUコア数"
+category = "CPU"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "CPUコア数。VMの場合は未記入"
+
+[[metrics]]
+
+metricId = "cpu_real"
+metricName = "CPUソケット数"
+category = "CPU"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "CPUソケット数"
+
+[[metrics]]
+
+metricId = "cpu"
+metricName = "CPU情報"
+category = "CPU"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/proc/cpuinfo を検索し,プロセッサ構成を検索"
+
+[[metrics]]
+
+metricId = "mem_total"
+metricName = "メモリ総容量"
+category = "メモリ"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "メモリ総容量[GB]"
+
+[[metrics]]
+
+metricId = "mem_free"
+metricName = "メモリ空容量"
+category = "メモリ"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "メモリ空き容量[GB]"
+
+[[metrics]]
+
+metricId = "meminfo"
+metricName = "メモリ情報"
+category = "メモリ"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/proc/meminfo を検索してメモリ構成を検索"
+
+[[metrics]]
+
+metricId = "net_onboot"
+metricName = "ネットワークブート"
+category = "ネットワーク"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/sysconfig/network-scripts からネットワークブート構成を検索"
+
+[[metrics]]
+
+metricId = "net_route"
+metricName = "デフォルトゲートウェイ"
+category = "ネットワーク"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/sbin/ip route コマンドで、デフォルトゲートウェイアドレスを検索"
+
+[[metrics]]
+
+metricId = "net_bond"
+metricName = "NICの冗長化(bonding設定)"
+category = "ネットワーク"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "/etc/sysconfig/network-scripts/ からNIC冗長設定を検索"
+
+[[metrics]]
+
+metricId = "network"
+metricName = "ネットワーク情報"
+category = "ネットワーク"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "/sbin/ip addr コマンドで、ネットワーク構成を検索"
+
+[[metrics]]
+
+metricId = "block_device"
+metricName = "ストレージデバイス"
+category = "ストレージ"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/sys/block/下からデバイス構成を検索"
+
+[[metrics]]
+
+metricId = "mdadb"
+metricName = "ディスクRAID"
+category = "ストレージ"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/proc/mdstat からmd([0-9]+)デバイスを取得"
+
+[[metrics]]
+
+metricId = "fstab"
+metricName = "自動マウントの設定"
+category = "ストレージ"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/etc/fstab から設定値が/dev/から始まるパスで、defaultのデバイスを検索"
+
+[[metrics]]
+
+metricId = "fstypes"
+metricName = "ファイルシステムタイプ"
+category = "ストレージ"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "マウントポイントのファイルシステム"
+
+[[metrics]]
+
+metricId = "lvm"
+metricName = "論理ボリューム情報"
+category = "ストレージ"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "mountコマンドで、/dev/mapper/下のLVMボリュームを検索"
+
+[[metrics]]
+
+metricId = "filesystem"
+metricName = "ファイルシステム"
+category = "ストレージ"
+commandLevel = "Level0" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "/bin/lsblk -i　コマンドで、マウントポイント構成を検索"
+
+[[metrics]]
+
+metricId = "user"
+metricName = "ユーザ情報"
+category = "ユーザー"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "/etc/passwd を検索して、ユーザ名を検索"
+
+[[metrics]]
+
+metricId = "service"
+metricName = "サービス構成"
+category = "サービス"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "chkconfig --list コマンドで、サービス数を検索"
+
+[[metrics]]
+
+metricId = "packages.requirements"
+metricName = "必須パッケージ"
+category = "パッケージ"
+commandLevel = "None" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "必須パッケージリスト"
+
+[[metrics]]
+
+metricId = "packages"
+metricName = "パッケージ構成"
+category = "パッケージ"
+commandLevel = "Level1" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "rpm -qa コマンドで、パッケージ情報検索"
+
+[[metrics]]
+
+metricId = "error_messages"
+metricName = "Syslogエラー"
+category = "その他OS設定"
+commandLevel = "Level2" # None,Level0,Level1,Level2
+deviceFlag = true
+comment = "/var/log/messages から error,warning,failed を含む行を検索"
+
+[[metrics]]
+
+metricId = "oracle_module"
+metricName = "Oracleインストーラの有無"
+category = "その他OS設定"
+commandLevel = "Level2" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "/root/package の下にOracleインストールファイルがあるかを検索"
+
+[[metrics]]
+
+metricId = "oracle"
+metricName = "Oracleモジュールの有無"
+category = "その他OS設定"
+commandLevel = "Level2" # None,Level0,Level1,Level2
+deviceFlag = false
+comment = "ls -d /opt/oracle/app/product/*/* でOracleのバージョン、サーバ/クライアントを検索"
+

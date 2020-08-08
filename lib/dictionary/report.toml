@@ -1,0 +1,214 @@
+[[columns]]
+id = "hostName"
+name = "ホスト名"
+redmineField = "subject"
+
+[[columns]]
+id = "domain"
+name = "ドメイン"
+redmineField = "tracker"
+
+[[columns]]
+id = "model"
+name = "機種"
+redmineField = "機種"
+
+    [columns.inventories]
+    iLo = "HSI_SPN"
+    CiscoUCS = "chassis.productname"
+    XSCF = "hardconf.system"
+    AIX = "prtconf.System Model"
+    Eternus = "enclosure.StorageSystemName"
+    NetAppDataONTAP = "processor"
+
+[[columns]]
+id = "type"
+name = "型番"
+redmineField = "型番"
+
+    [columns.inventories]
+    iLo = "HSI_PRODUCTID"
+    CiscoUCS = "chassis.productid"
+    Eternus = "enclosure.ModelName"
+    HitachiVSP2 = "storage.modelName"
+    NetAppDataONTAP = "version"
+
+[[columns]]
+id = "serial"
+name = "S/N"
+redmineField = "S/N"
+
+    [columns.inventories]
+    iLo = "HSI_SBSN"
+    CiscoUCS = "chassis.sn"
+    XSCF = "hardconf.serial"
+    AIX = "prtconf.Machine Serial Number"
+    Eternus = "enclosure.SerialNumber"
+    HitachiVSP2 = "storage.serial"
+
+[[columns]]
+id = "os"
+name = "OS名"
+redmineField = "OS名"
+
+    [columns.inventories]
+    Linux = "os"
+    Windows = "os_caption"
+    VMHost = "Version"
+    Solaris = "System"
+    AIX = "osname"
+    iLo = "HSI_SBSN"
+    CiscoUCS = "chassis.sn"
+    XSCF = "hardconf.serial"
+
+[[columns]]
+id = "arch"
+name = "アーキテクチャ"
+
+    [columns.inventories]
+    Linux = "arch"
+    Windows = "os_architecture"
+    VMHost = "ProcessorType"
+    Solaris = "Machine"
+    HitachiVSP2 = "storage.network"
+
+[[columns]]
+id = "cpu"
+name = "CPU数"
+redmineField = "CPU数"
+
+    [columns.inventories]
+    Linux = "cpu_total"
+    Windows = "cpu_total"
+    VMHost = "NumCpu"
+    Solaris = "cpu_total"
+    AIX = "prtconf.Number Of Processors"
+    NetAppDataONTAP = "hw.cpu"
+
+[[columns]]
+id = "cpuCore"
+name = "CPUコア数"
+
+    [columns.inventories]
+    Linux = "cpu_total"
+    Windows = "cpu_total"
+    VMHost = "NumCpu"
+    Solaris = "cpu_total"
+    AIX = "prtconf.Number Of Processors"
+    NetAppDataONTAP = "hw.cpu"
+
+[[columns]]
+id = "mem"
+name = "MEM容量"
+redmineField = "MEM容量"
+
+    [columns.inventories]
+    Linux = "mem_total"
+    Windows = "visible_memory"
+    VMHost = "MemoryTotalGB"
+    Solaris = "memory"
+    AIX = "prtconf.Memory Size"
+
+[[columns]]
+id = "internalDisk"
+name = "内臓ディスク"
+
+    [columns.inventories]
+    iLo = "Storage"
+    Primergy = "disk"
+    CiscoUCS = "hdd"
+
+[[columns]]
+id = "disk"
+name = "ディスク構成"
+
+    [columns.inventories]
+    Linux = "filesystem"
+    Windows = "filesystem"
+    VMHost = "Disk"
+    Solaris = "filesystem"
+    AIX = "prtconf.disk"
+    Eternus = "raid_groups"
+    NetAppDataONTAP = "storage.volume"
+
+[[columns]]
+id = "network"
+name = "ネットワーク構成"
+
+    [columns.inventories]
+    Linux = "net_ip"
+    Windows = "network"
+    VMHost = "NetworkAdapter"
+    Solaris = "network"
+    AIX = "network"
+    Eternus = "network"
+    NetAppDataONTAP = "network_interface"
+
+[[columns]]
+id = "subnet"
+name = "サブネット構成"
+
+    [columns.inventories]
+    Linux = "net_subnet"
+    Windows = "network.subnet"
+    Solaris = "net_subnet"
+    Eternus = "net_subnet"
+
+[[columns]]
+id = "gateway"
+name = "ゲートウェイ構成"
+
+    [columns.inventories]
+    Linux = "net_route"
+    Windows = "network.gw"
+    Solaris = "net_route"
+    AIX = "network"
+    Eternus = "net_route"
+
+[[columns]]
+id = "managedLan"
+name = "管理LAN"
+
+    [columns.inventories]
+    iLo = "ip_mng"
+    Primergy = "network"
+    CiscoUCS = "network"
+    XSCF = "network"
+
+[[columns]]
+id = "ntp"
+name = "NTP"
+
+    [columns.inventories]
+    Linux = "ntp"
+    Windows = "ntp"
+    Solaris = "ntp"
+
+[[columns]]
+id = "console"
+name = "コンソール"
+
+    [columns.inventories]
+    Linux = "runlevel.console"
+
+[[columns]]
+id = "package"
+name = "パッケージ"
+
+    [columns.inventories]
+    Linux = "packages.requirements"
+
+[[columns]]
+id = "hostGroup"
+name = "監視ホストグループ"
+
+    [columns.inventories]
+    Zabbix = "groups"
+
+[[columns]]
+id = "template"
+name = "監視テンプレート"
+
+    [columns.inventories]
+    Zabbix = "parentTemplates"
+
