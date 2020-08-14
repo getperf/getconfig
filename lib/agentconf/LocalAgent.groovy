@@ -1,23 +1,24 @@
 package com.getconfig.AgentWrapper.Platform
 
 import groovy.transform.*
-import groovy.util.logging.Slf4j
+// import groovy.util.logging.Slf4j
 
 import com.getconfig.AgentWrapper.*
 import com.getconfig.Model.TestServer
+import com.getconfig.Model.TestMetric
 
-@Slf4j
+// @Slf4j
 @CompileStatic
 @InheritConstructors
 class LocalAgent implements AgentConfigWrapper {
     @Override
     String getLabel() {
-        return "localeagent"
+        return "localagent"
     }
 
     @Override
     String getConfigName() {
-        return "localeagent"
+        return "localagent"
     }
 
     @Override
@@ -26,12 +27,12 @@ class LocalAgent implements AgentConfigWrapper {
     }
 
     @Override
-    def makeAllServersConfig(List<TestServer> servers) {
+    def makeAllServersConfig(List<TestServer> servers, List<TestMetric> testMetrics) {
         return new AgentCommandConfig()
     }
 
     @Override
-    def makeServerConfig(TestServer server) {
+    def makeServerConfig(TestServer server, List<TestMetric> testMetrics) {
         return new AgentCommandConfig()
     }
 }

@@ -1,6 +1,7 @@
 package com.getconfig.AgentWrapper
 
 import com.getconfig.CommandExec
+import com.getconfig.Model.TestMetric
 import com.getconfig.Model.TestServer
 import com.getconfig.Model.TestServerGroup
 import com.getconfig.Utils.TomlUtils
@@ -18,15 +19,17 @@ import java.nio.file.Paths
 class LocalAgentBatchExecutor extends LocalAgentExecutor {
     String batchId
     List<TestServer> testServers
+    List<TestMetric> testMetrics
 
-    LocalAgentBatchExecutor(String batchId, TestServerGroup testServers) {
+    LocalAgentBatchExecutor(String batchId, TestServerGroup testServers, List<TestMetric> testMetrics = null) {
         super(testServers.groupKey, testServers.get(0))
         this.batchId = batchId
         this.testServers = testServers.getAll()
+        this.testMetrics = testMetrics
     }
 
     String toml() {
-        def config = wrapper.makeAllServersConfig(this.testServers)
+        def config = wrapper.makeAllServersConfig(this.testServers, this.testMetrics)
         if (!config) {
             throw new IllegalArgumentException("create agent config : not found servers")
         }

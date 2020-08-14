@@ -12,19 +12,20 @@ class TestMetric {
     String metricId
     String metricName
     String category
-    MetricCommandLevel commandLevel
+    int commandLevel
     Boolean deviceFlag
     String comment
+    String text
 
     Map <String, AddedTestMetric> addedTestMetrics
 
     TestMetric(String platform, String id, String name, String category,
-               MetricCommandLevel type, boolean deviceFlag, String comment ) {
+               int level, boolean deviceFlag, String comment ) {
         this.platform = platform
         this.metricId = id
         this.metricName = name
         this.category = category
-        this.commandLevel = type
+        this.commandLevel = level
         this.deviceFlag = deviceFlag
         this.comment = comment
     }

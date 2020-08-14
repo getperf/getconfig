@@ -230,7 +230,7 @@ class ConfigEnv {
 
     // ls サブコマンド用
     boolean getAllFlag() {
-        return this.commandArgs.allFlag ?: false
+        return this.commandArgs.allFlag ?: true
     }
 
     // update サブコマンド用

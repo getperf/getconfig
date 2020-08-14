@@ -8,7 +8,7 @@ class TestServerTest extends Specification {
     def "値チェック"() {
         when:
         TestServer server = new TestServer(serverName:"hoge",
-            domain:"{LocalFile(Hub)}")
+            domain:"{LocalFile}")
         TestServer server2 = new TestServer(serverName:"hoge",
             domain:"{Agent}",
             ip:"192.168.10.1")

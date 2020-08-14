@@ -50,7 +50,7 @@ public class TestServer {
         if (this.serverName == "" || this.domain == "") {
             notFoundMsgs << "server_name or domain"
         }
-        if (domain != "{LocalFile(Hub)}") {
+        if (domain != "{LocalFile}") {
             if (this.ip == "") {
                 notFoundMsgs << "ip"
             }
@@ -64,7 +64,7 @@ public class TestServer {
             }
         }
         if (notFoundMsgs.size() > 0) {
-            throw new IllegalArgumentException("not found value : ${notFoundMsgs}")
+            throw new IllegalArgumentException("not found value in ${this.serverName},${this.domain} : ${notFoundMsgs}")
         }
         return true
     }

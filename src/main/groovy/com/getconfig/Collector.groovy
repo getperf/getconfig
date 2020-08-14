@@ -7,7 +7,7 @@ import com.getconfig.AgentWrapper.LocalAgentExecutor
 import com.getconfig.AgentWrapper.LocalAgentBatchExecutor
 import com.getconfig.AgentWrapper.RemoteAgentExecutor
 import com.getconfig.AgentWrapper.RemoteAgentHubExecutor
-import com.getconfig.AgentWrapper.AgentWrapperContext
+import com.getconfig.AgentWrapper.AgentWrapperManager
 import com.getconfig.Model.TestServer
 import com.getconfig.Model.TestServerGroup
 import groovy.transform.CompileStatic
@@ -19,6 +19,7 @@ class Collector implements Controller {
     protected List<TestServer> testServers
     private Map<String,TestServerGroup> testServerGroups
     String filterServer
+    String agentWrapperLib
 
     Collector(List<TestServer> testServers) {
         this.testServers = testServers
@@ -27,6 +28,8 @@ class Collector implements Controller {
 
     void setEnvironment(ConfigEnv env) {
         this.filterServer = env.getKeywordServer()
+        this.agentWrapperLib = getAgentWrapperLib()
+        AgentWrapperManager.instance.init(this.agentWrapperLib)
     }
 
     Map<String, TestServerGroup> getTestServerGroups() {
@@ -39,7 +42,7 @@ class Collector implements Controller {
         } else if (domain == '{Agent}') {
             return AgentMode.RemoteAgent
         } else {
-            AgentConfigWrapper wrapper = AgentWrapperContext.instance.getWrapper(domain)
+            AgentConfigWrapper wrapper = AgentWrapperManager.instance.getWrapper(domain)
             if (wrapper.getBatchEnable()) {
                 return AgentMode.LocalAgentBatch
             } else {

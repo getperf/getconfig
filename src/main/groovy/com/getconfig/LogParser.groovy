@@ -4,9 +4,9 @@ import com.getconfig.AgentLogParser.AgentLog
 import com.getconfig.AgentLogParser.AgentLogMode
 import com.getconfig.AgentLogParser.AgentLogParserManager
 import com.getconfig.AgentLogParser.ServerNameAliases
-import com.getconfig.Model.TestResult
 import com.getconfig.Model.TestResultGroup
 import com.getconfig.Model.TestServer
+import com.getconfig.Testing.TestUtil
 import groovy.io.FileType
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
@@ -54,8 +54,8 @@ class LogParser implements Controller {
         AgentLogParserManager parserManager = new AgentLogParserManager(this.parserLibPath)
         parserManager.init()
         this.agentLogs.each { AgentLog agentLog ->
-            TestItem testItem = new TestItem(agentLog)
-            parserManager.invoke(testItem)
+            TestUtil t = new TestUtil(agentLog)
+            parserManager.invoke(t)
         }
     }
 

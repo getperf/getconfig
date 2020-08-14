@@ -15,7 +15,7 @@ class TestMetricTest extends Specification {
             "hostname",
             "ホスト名",
             "OSリリース",
-            MetricCommandLevel.Level0,
+            0,
             false,
             "hostname -s　コマンドで、ホスト名を検索",
         )
@@ -32,7 +32,7 @@ class TestMetricTest extends Specification {
         TestMetricGroup metrics = TomlUtils.read("lib/dictionary/Linux.toml", TestMetricGroup);
 
         then:
-//        println metrics.validate().getAll()
+        println metrics.validate().getAll()
         metrics.validate().getAll().size() > 0
     }
 }

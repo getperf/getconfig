@@ -67,7 +67,7 @@ class ConfigEnvTest extends Specification {
         env.getProjectName() == "getconfig"
         env.getGetconfigExe() =~ /getconfig/
         env.getCheckSheetPath() =~ /サーバチェックシート\.xlsx/
-        env.getAgentWrapperLib() =~ /gconf/
+        env.getAgentWrapperLib() =~ /agentconf/
         env.getTlsConfigDir() =~ /network/
         env.getGconfTimeout("Hoge") == 120
         env.getPassword() == null
@@ -79,7 +79,7 @@ class ConfigEnvTest extends Specification {
         env.getKeywordPlatform() == null
         env.getSilent() == false
         env.getZipPath() == null
-        env.getAllFlag() == false
+        env.getAllFlag() == true
         env.getTargetType() == null
         env.getRedmineProject() == null
     }

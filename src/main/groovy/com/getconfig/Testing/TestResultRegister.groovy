@@ -1,20 +1,19 @@
-package com.getconfig.TestItem
+package com.getconfig.Testing
 
-import com.getconfig.Model.TestResult
+import com.getconfig.Model.AddedTestMetric
 import com.getconfig.Model.TestResultGroup
-import com.getconfig.TestItem
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 
 @TypeChecked
 @CompileStatic
 class TestResultRegister {
-    static void results(TestItem t, String s) {
+    static void results(TestUtil t, String s) {
         t.testResultGroup.setValue(t.platform, t.metricFile, s)
         println "SET ${s}"
     }
 
-    static void results(TestItem t, Map<String, Object> values) {
+    static void results(TestUtil t, Map<String, Object> values) {
         TestResultGroup testResultGroup = t.testResultGroup
         values.each { String metricName, Object value ->
             println "${t.metricFile}, ${metricName}"
@@ -27,16 +26,19 @@ class TestResultRegister {
         println "SET ${values}"
     }
 
-    static void error(TestItem t, String s) {
+    static void error(TestUtil t, String s) {
         t.testResultGroup.setError(t.platform, t.metricFile, s)
         println "ERR ${s}"
     }
 
-    static void devices(TestItem t, List headers, List csv) {
+    static void devices(TestUtil t, List headers, List csv) {
         t.testResultGroup.setDevices(t.platform, t.metricFile, headers, csv)
     }
 
-    static void newMetric(TestItem t, String metric, String description, Object value, Map<String, Object> results) {
-
+    static void newMetric(TestUtil t, String metric, String description, Object value) {
+        AddedTestMetric addedTestMetric = t.addedTestMetrics.get(metric) ?:
+                new AddedTestMetric(t.platform, metric, t.metricFile, description)
+        t.addedTestMetrics.put(metric, addedTestMetric)
+        t.testResultGroup.setValue(t.platform, metric, value, t.metricFile)
     }
 }

@@ -10,6 +10,7 @@ import groovy.transform.ToString
 class TestMetricGroup {
     String platform
     List<TestMetric> metrics = new ArrayList<>()
+    Map<String, TestMetric> dictMetrics = new LinkedHashMap<>()
 
     List<TestMetric> getAll() {
         return metrics
@@ -18,7 +19,12 @@ class TestMetricGroup {
     TestMetricGroup validate() {
         this.metrics.each {TestMetric metric ->
             metric.platform = this.platform
+            dictMetrics[metric.metricName] = metric
         }
         return this
+    }
+
+    TestMetric get(String metric) {
+        return dictMetrics.get(metric)
     }
 }

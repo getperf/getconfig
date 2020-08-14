@@ -3,6 +3,7 @@ package com.getconfig
 import spock.lang.Specification
 import com.getconfig.Model.*
 import com.getconfig.Document.*
+import com.getconfig.AgentWrapper.AgentWrapperManager
 
 // gradle --daemon test --tests "CollectorTest.初期化"
 
@@ -12,6 +13,7 @@ class CollectorTest extends Specification {
     List<TestServer> testServers
 
     def setup() {
+        AgentWrapperManager.instance.init("lib/agentconf")
         def env = ConfigEnv.instance
         env.readConfig(configFile)
         def specReader = new SpecReader(inExcel : checkSheet)

@@ -5,7 +5,7 @@ platform = "VMHost"
 metricId = "Version"
 metricName = "バージョン"
 category = "システム情報"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "バージョン"
 
@@ -14,7 +14,7 @@ comment = "バージョン"
 metricId = "Build"
 metricName = "ビルド"
 category = "システム情報"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "ビルド"
 
@@ -23,7 +23,7 @@ comment = "ビルド"
 metricId = "LicenseKey"
 metricName = "ライセンス"
 category = "システム情報"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "ライセンス"
 
@@ -32,7 +32,7 @@ comment = "ライセンス"
 metricId = "VMHost"
 metricName = "ホスト状態"
 category = "システム情報"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = false
 comment = "vCenter情報のホスト情報を検索します"
 
@@ -41,7 +41,7 @@ comment = "vCenter情報のホスト情報を検索します"
 metricId = "FirewallDefaultPolicy"
 metricName = "ファイヤーウォールポリシー"
 category = "OS設定"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "ファイヤーウォールポリシー"
 
@@ -50,7 +50,7 @@ comment = "ファイヤーウォールポリシー"
 metricId = "HyperthreadingActive"
 metricName = "ハイパースレッディング"
 category = "OS設定"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "ハイパースレッディング"
 
@@ -59,7 +59,7 @@ comment = "ハイパースレッディング"
 metricId = "TimeZone"
 metricName = "タイムゾーン"
 category = "OS設定"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "タイムゾーン"
 
@@ -68,7 +68,7 @@ comment = "タイムゾーン"
 metricId = "Parent"
 metricName = "クラスター"
 category = "OS設定"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "クラスター"
 
@@ -77,7 +77,7 @@ comment = "クラスター"
 metricId = "PowerState"
 metricName = "電源状態"
 category = "OS設定"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "電源状態"
 
@@ -86,7 +86,7 @@ comment = "電源状態"
 metricId = "VMSwapfilePolicy"
 metricName = "スワップポリシー"
 category = "OS設定"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "スワップポリシー"
 
@@ -95,7 +95,7 @@ comment = "スワップポリシー"
 metricId = "Manufacturer"
 metricName = "メーカー"
 category = "OS設定"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "メーカー"
 
@@ -104,7 +104,7 @@ comment = "メーカー"
 metricId = "NumCpu"
 metricName = "CPUコア数"
 category = "CPU"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "CPUコア数"
 
@@ -113,7 +113,7 @@ comment = "CPUコア数"
 metricId = "CpuTotalMhz"
 metricName = "CPUクロック"
 category = "CPU"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "CPUクロック"
 
@@ -122,7 +122,7 @@ comment = "CPUクロック"
 metricId = "ProcessorType"
 metricName = "プロセッサタイプ"
 category = "CPU"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "プロセッサタイプ"
 
@@ -131,7 +131,7 @@ comment = "プロセッサタイプ"
 metricId = "MemoryTotalGB"
 metricName = "メモリ容量"
 category = "メモリ"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "メモリ容量"
 
@@ -140,7 +140,7 @@ comment = "メモリ容量"
 metricId = "NetworkInfo"
 metricName = "ネットワーク"
 category = "ネットワーク"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "ネットワーク"
 
@@ -149,7 +149,7 @@ comment = "ネットワーク"
 metricId = "NetworkAdapter"
 metricName = "ネットワーク構成"
 category = "ネットワーク"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = true
 comment = "ネットワーク構成数を検索し、別シートに詳細情報を登録します"
 
@@ -158,7 +158,7 @@ comment = "ネットワーク構成数を検索し、別シートに詳細情報
 metricId = "DiskPartition"
 metricName = "ディスクパーティション"
 category = "ストレージ"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = true
 comment = "ディスクパーティション数を検索し、別シートに詳細情報を登録します"
 
@@ -167,7 +167,7 @@ comment = "ディスクパーティション数を検索し、別シートに詳
 metricId = "Datastore"
 metricName = "データストア"
 category = "ストレージ"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = true
 comment = "データストア数を検索し、別シートに詳細情報を登録します"
 
@@ -176,7 +176,7 @@ comment = "データストア数を検索し、別シートに詳細情報を登
 metricId = "Disk"
 metricName = "ディスク構成"
 category = "ストレージ"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = true
 comment = "ディスク構成数を検索し、別シートに詳細情報を登録します"
 
@@ -185,7 +185,7 @@ comment = "ディスク構成数を検索し、別シートに詳細情報を登
 metricId = "Account"
 metricName = "アカウント情報"
 category = "ユーザ"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = true
 comment = "アカウント数を検索し、別シートに詳細情報を登録します"
 

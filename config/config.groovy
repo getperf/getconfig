@@ -55,13 +55,13 @@ test.dry_run.vCenter = false
 
 // vCenterÚ‘±î•ñ
 
-account.vCenter.Account01.server   = '192.168.10.100'
+account.vCenter.Account01.server   = '192.168.0.200'
 account.vCenter.Account01.user     = 'test_user'
 account.vCenter.Account01.password = 'P@ssword'
 
 // VMHost Ú‘±î•ñ
 
-account.VMHost.Account01.server   = '192.168.10.100'
+account.VMHost.Account01.server   = '192.168.0.200'
 account.VMHost.Account01.user     = 'test_user'
 account.VMHost.Account01.password = 'P@ssword'
 

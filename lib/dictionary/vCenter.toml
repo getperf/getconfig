@@ -5,7 +5,7 @@ platform = "vCenter"
 metricId = "vm.name"
 metricName = "仮想マシン名"
 category = "VMリソース割当て"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "仮想マシン名"
 
@@ -14,7 +14,7 @@ comment = "仮想マシン名"
 metricId = "vm.NumCpu"
 metricName = "CPU割り当て数"
 category = "VMリソース割当て"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "仮想マシンのCPU仮想ソケット数"
 
@@ -23,7 +23,7 @@ comment = "仮想マシンのCPU仮想ソケット数"
 metricId = "vm.PowerState"
 metricName = "電源状態"
 category = "VMリソース割当て"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "電源On/Off"
 
@@ -32,7 +32,7 @@ comment = "電源On/Off"
 metricId = "vm.MemoryGB"
 metricName = "メモリ割り当て"
 category = "VMリソース割当て"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "メモリ割り当てサイズ[GB]"
 
@@ -41,7 +41,7 @@ comment = "メモリ割り当てサイズ[GB]"
 metricId = "vm.VMHost"
 metricName = "ESXiホスト"
 category = "VMリソース割当て"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "ESXiホスト名"
 
@@ -50,7 +50,7 @@ comment = "ESXiホスト名"
 metricId = "vm.Cluster"
 metricName = "クラスター"
 category = "VMリソース割当て"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "vCenterクラスタ名"
 
@@ -59,7 +59,7 @@ comment = "vCenterクラスタ名"
 metricId = "vm"
 metricName = "VMWare リソース"
 category = "VMリソース割当て"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = false
 comment = "Get-VM コマンドで、VMWare リソース割り当てを検索"
 
@@ -68,7 +68,7 @@ comment = "Get-VM コマンドで、VMWare リソース割り当てを検索"
 metricId = "vm_conf.limit"
 metricName = "リソース制限"
 category = "VMカスタマイズ"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "CPU,メモリリソース制限設定"
 
@@ -77,7 +77,7 @@ comment = "CPU,メモリリソース制限設定"
 metricId = "vm_conf.shares_level"
 metricName = "シェアレベル"
 category = "VMカスタマイズ"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "CPU,メモリ共有レベル設定"
 
@@ -86,7 +86,7 @@ comment = "CPU,メモリ共有レベル設定"
 metricId = "vm_conf.cpu_affinity"
 metricName = "CPUアフィニティ"
 category = "VMカスタマイズ"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "CPUアフィニティ設定"
 
@@ -95,7 +95,7 @@ comment = "CPUアフィニティ設定"
 metricId = "vm_conf"
 metricName = "VMWare カスタマイズ(予約メモリGB)"
 category = "VMカスタマイズ"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = false
 comment = "Get-VMResourceConfiguration コマンドで、VMWare リソース設定を検索"
 
@@ -104,7 +104,7 @@ comment = "Get-VMResourceConfiguration コマンドで、VMWare リソース設�
 metricId = "vmext.CpuHotAddEnabled"
 metricName = "CPUホットアドの有効化"
 category = "VM拡張設定"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "CPUホットアドの有効化"
 
@@ -113,7 +113,7 @@ comment = "CPUホットアドの有効化"
 metricId = "vmext.MemoryReservationLockedToMax"
 metricName = "すべてのゲストメモリを予約"
 category = "VM拡張設定"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "すべてのゲストメモリを予約（全てロック）"
 
@@ -122,7 +122,7 @@ comment = "すべてのゲストメモリを予約（全てロック）"
 metricId = "vmext.MemoryHotAddEnabled"
 metricName = "メモリホットプラグ"
 category = "VM拡張設定"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "メモリホットプラグ"
 
@@ -131,7 +131,7 @@ comment = "メモリホットプラグ"
 metricId = "vmext"
 metricName = "VMWare CPU/メモリ ホットアド設定"
 category = "VM拡張設定"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = false
 comment = "Get-VM コマンドで VMWare CPU/メモリ ホットアド設定を検索"
 
@@ -140,7 +140,7 @@ comment = "Get-VM コマンドで VMWare CPU/メモリ ホットアド設定を�
 metricId = "datastore"
 metricName = "データストア"
 category = "VMデータストア"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = true
 comment = "Get-Datastore コマンドで、データストアパスを検索"
 
@@ -149,7 +149,7 @@ comment = "Get-Datastore コマンドで、データストアパスを検索"
 metricId = "vm_storage"
 metricName = "VMWare ハードディスク構成"
 category = "VMハードディスク"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = true
 comment = "Get-Harddisk コマンドで、ストレージ構成情報検索"
 
@@ -158,7 +158,7 @@ comment = "Get-Harddisk コマンドで、ストレージ構成情報検索"
 metricId = "vmnet"
 metricName = "VMWare ネットワーク"
 category = "VMネットワーク"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = true
 comment = "Get-NetworkAdapter コマンドで、ネットワーク・アダプタを検索"
 
@@ -167,7 +167,7 @@ comment = "Get-NetworkAdapter コマンドで、ネットワーク・アダプ�
 metricId = "vmwaretool.version"
 metricName = "VMWare ツールバージョン"
 category = "その他VM設定"
-commandLevel = "None" # None,Level0,Level1,Level2
+commandLevel = -1
 deviceFlag = false
 comment = "VMWare ツールバージョン"
 
@@ -176,7 +176,7 @@ comment = "VMWare ツールバージョン"
 metricId = "vmwaretool"
 metricName = "VMWare ツール"
 category = "その他VM設定"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = false
 comment = "Get-VM コマンドで、VMWare ツールの有無、バージョンを検索"
 
@@ -185,7 +185,7 @@ comment = "Get-VM コマンドで、VMWare ツールの有無、バージョン�
 metricId = "vm_timesync"
 metricName = "VMWare 時刻同期"
 category = "その他VM設定"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = false
 comment = "Get-VM コマンドで、VMWare 時刻同期の有無を検索"
 
@@ -194,7 +194,7 @@ comment = "Get-VM コマンドで、VMWare 時刻同期の有無を検索"
 metricId = "vm_iops_limit"
 metricName = "ストレージIOPS制限"
 category = "その他VM設定"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = false
 comment = "Get-VMResourceConfiguration コマンドで、ストレージリソースのIOPS制限値を検索"
 
@@ -203,7 +203,7 @@ comment = "Get-VMResourceConfiguration コマンドで、ストレージリソ�
 metricId = "vm_nic_limit"
 metricName = "ネットワークアダプタ制限"
 category = "その他VM設定"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = false
 comment = "Get-NetworkAdapter コマンドで、ネットワーク制限値を検索"
 
@@ -212,7 +212,7 @@ comment = "Get-NetworkAdapter コマンドで、ネットワーク制限値を�
 metricId = "vm_floppy"
 metricName = "フロッピーディスク構成"
 category = "その他VM設定"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = false
 comment = "Get-Vm $vm | Get-FloppyDriveコマンドで、フロッピィディスク構成を検索"
 
@@ -221,7 +221,7 @@ comment = "Get-Vm $vm | Get-FloppyDriveコマンドで、フロッピィディ�
 metricId = "vm_video_ram"
 metricName = "ビデオRAM構成"
 category = "その他VM設定"
-commandLevel = "Level0" # None,Level0,Level1,Level2
+commandLevel = 0
 deviceFlag = false
 comment = "Get-VM コマンドで、ビデオ RAM メモリ割り当てを検索"
 

@@ -1,6 +1,6 @@
 package com.getconfig.AgentLogParser
 
-import com.getconfig.TestItem
+import com.getconfig.Testing.TestUtil
 import com.getconfig.Utils.DirUtils
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
@@ -98,13 +98,13 @@ class AgentLogParserManager {
     /**
      * プロトコル呼び出し
      */
-    void invoke(TestItem testItem) {
-        String platform = testItem.platform
-        String metricFile = testItem.metricFile
+    void invoke(TestUtil t) {
+        String platform = t.platform
+        String metricFile = t.metricFile
         Parser commander = commanders.get(new ParserKey(platform, metricFile));
         if(commander != null) {
             try {
-                commander.method.invoke(commander.o, testItem);
+                commander.method.invoke(commander.o, t);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {

@@ -1,12 +1,13 @@
 package com.getconfig.AgentWrapper.Platform
 
 import groovy.transform.*
-import groovy.util.logging.Slf4j
+// import groovy.util.logging.Slf4j
 
 import com.getconfig.AgentWrapper.*
 import com.getconfig.Model.TestServer
+import com.getconfig.Model.TestMetric
 
-@Slf4j
+// @Slf4j
 @CompileStatic
 @InheritConstructors
 class vCenter implements AgentConfigWrapper {
@@ -36,7 +37,7 @@ class vCenter implements AgentConfigWrapper {
     }
 
     @Override
-    def makeAllServersConfig(List<TestServer> servers) {
+    def makeAllServersConfig(List<TestServer> servers, List<TestMetric> testMetrics = null) {
         def firstServer = servers[0]
         String ip = firstServer.ip
         if (!ip.startsWith("http")) {
@@ -56,7 +57,7 @@ class vCenter implements AgentConfigWrapper {
     }
 
     @Override
-    def makeServerConfig(TestServer server) {
+    def makeServerConfig(TestServer server, List<TestMetric> testMetrics = null) {
         String ip = server.ip
         if (!ip.startsWith("http")) {
             ip = "https://${ip}/sdk"

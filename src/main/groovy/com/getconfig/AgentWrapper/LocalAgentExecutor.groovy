@@ -2,6 +2,7 @@ package com.getconfig.AgentWrapper
 
 import com.getconfig.CommandExec
 import com.getconfig.ConfigEnv
+import com.getconfig.Model.TestMetric
 import com.getconfig.Model.TestServer
 import com.getconfig.Utils.TomlUtils
 import groovy.transform.CompileStatic
@@ -18,6 +19,7 @@ import java.nio.file.Paths
 class LocalAgentExecutor implements AgentExecutor {
     String platform
     TestServer server
+    List<TestMetric> testMetrics
     AgentConfigWrapper wrapper
 
     String gconfExe
@@ -26,10 +28,11 @@ class LocalAgentExecutor implements AgentExecutor {
     String tlsConfigDir
     int timeout = 0
 
-    LocalAgentExecutor(String platform, TestServer server) {
+    LocalAgentExecutor(String platform, TestServer server, List<TestMetric> testMetrics = null) {
         this.platform = platform
         this.server = server
-        this.wrapper = AgentWrapperContext.instance.getWrapper(platform)
+        this.testMetrics = testMetrics
+        this.wrapper = AgentWrapperManager.instance.getWrapper(platform)
     }
 
     void setEnvironment(ConfigEnv env) {
@@ -41,7 +44,7 @@ class LocalAgentExecutor implements AgentExecutor {
     }
 
     String toml() {
-        def config = wrapper.makeServerConfig(server)
+        def config = wrapper.makeServerConfig(this.server, this.testMetrics)
         return TomlUtils.decode(config)
     }
 
