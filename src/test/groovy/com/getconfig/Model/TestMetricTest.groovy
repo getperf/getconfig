@@ -27,12 +27,17 @@ class TestMetricTest extends Specification {
         toml.size() > 0
     }
 
-    def "Toml読込み"() {
-        when:
-        TestMetricGroup metrics = TomlUtils.read("lib/dictionary/Linux.toml", TestMetricGroup);
+    def "Toml読込み"(String platform, int size) {
+        expect:
+        TestMetricGroup metrics = TomlUtils.read("lib/dictionary/${platform}.toml", TestMetricGroup);
+//        println metrics.validate().getAll()
+        metrics.validate().getAll().size() > size
 
-        then:
-        println metrics.validate().getAll()
-        metrics.validate().getAll().size() > 0
+        where:
+        platform  | size
+        "Linux"   | 0
+        "Windows" | 0
+        "vCenter" | 0
+        "VMHost"  | 0
     }
 }

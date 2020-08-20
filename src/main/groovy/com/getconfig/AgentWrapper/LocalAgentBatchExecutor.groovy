@@ -29,7 +29,7 @@ class LocalAgentBatchExecutor extends LocalAgentExecutor {
     }
 
     String toml() {
-        def config = wrapper.makeAllServersConfig(this.testServers, this.testMetrics)
+        def config = wrapper.makeAllServersConfig(this.testServers)
         if (!config) {
             throw new IllegalArgumentException("create agent config : not found servers")
         }

@@ -1,11 +1,9 @@
-platform = "Linux"
-
 [[metrics]]
 
-metricId = "hostname"
-metricName = "ホスト名"
+id = "hostname"
+name = "ホスト名"
 category = "OSリリース"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "hostname -s　コマンドで、ホスト名を検索"
 text = '''
@@ -14,10 +12,10 @@ hostname -s
 
 [[metrics]]
 
-metricId = "hostname_fqdn"
-metricName = "FQDN名"
+id = "hostname_fqdn"
+name = "FQDN名"
 category = "OSリリース"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "hostname --fqdn コマンドで、FQDN名を検索"
 text = '''
@@ -29,10 +27,10 @@ fi
 
 [[metrics]]
 
-metricId = "uname"
-metricName = "OSカーネル"
+id = "uname"
+name = "OSカーネル"
 category = "OSリリース"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "uname -a コマンドで、OSカーネルバージョンを検索"
 text = '''
@@ -41,37 +39,37 @@ uname -a
 
 [[metrics]]
 
-metricId = "kernel"
-metricName = "カーネル"
+id = "kernel"
+name = "カーネル"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "Linux カーネル"
 
 [[metrics]]
 
-metricId = "arch"
-metricName = "アーキテクチャ"
+id = "arch"
+name = "アーキテクチャ"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "アーキテクチャ"
 
 [[metrics]]
 
-metricId = "oracle_linux_kernel"
-metricName = "OracleLinuxカーネルモード"
+id = "oracle_linux_kernel"
+name = "OracleLinuxカーネルモード"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "Oracle Linux起動カーネル選択(UEK/RH互換)"
 
 [[metrics]]
 
-metricId = "lsb"
-metricName = "OSバージョン"
+id = "lsb"
+name = "OSバージョン"
 category = "OSリリース"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "cat /etc/*-release コマンドで、Linux OSディストリビューションを検索"
 text = '''
@@ -80,28 +78,28 @@ cat /etc/*-release
 
 [[metrics]]
 
-metricId = "os_release"
-metricName = "OSリリース"
+id = "os_release"
+name = "OSリリース"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "OSリリース"
 
 [[metrics]]
 
-metricId = "os"
-metricName = "OSディストリビューション"
+id = "os"
+name = "OSディストリビューション"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "OSディストリビューション"
 
 [[metrics]]
 
-metricId = "virturization"
-metricName = "仮想化プラットフォーム"
+id = "virturization"
+name = "仮想化プラットフォーム"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/proc/cpuinfo を検索して、XEN, KVM, Virtualbox など Linux の仮想化プラットフォームの検索"
 text = '''
@@ -110,10 +108,10 @@ cat /proc/cpuinfo
 
 [[metrics]]
 
-metricId = "sestatus"
-metricName = "SELinuxステータス"
+id = "sestatus"
+name = "SELinuxステータス"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "sestatus コマンドで、SELinux ステータスを検索"
 text = '''
@@ -122,10 +120,10 @@ text = '''
 
 [[metrics]]
 
-metricId = "se_mode"
-metricName = "└─SELinux モード"
+id = "se_mode"
+name = "└─SELinux モード"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "SELinuxモードの検索。SELinuxが無効の場合は空白"
 text = '''
@@ -133,10 +131,10 @@ text = '''
 
 [[metrics]]
 
-metricId = "mount_iso"
-metricName = "ISOマウントの有無"
+id = "mount_iso"
+name = "ISOマウントの有無"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "mount コマンドで.isoファイルのマウント有無検索"
 text = '''
@@ -145,10 +143,10 @@ mount
 
 [[metrics]]
 
-metricId = "proxy_global"
-metricName = "yumコマンドプロキシ設定有無"
+id = "proxy_global"
+name = "yumコマンドプロキシ設定有無"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/etc/yum.conf から、proxyサーバ定義を検索"
 text = '''
@@ -160,10 +158,10 @@ fi
 
 [[metrics]]
 
-metricId = "crash_size"
-metricName = "クラッシュダンプサイズ"
+id = "crash_size"
+name = "クラッシュダンプサイズ"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/sys/kernel/kexec_crash_size を検索"
 text = '''
@@ -176,10 +174,10 @@ fi
 
 [[metrics]]
 
-metricId = "kdump_path"
-metricName = "クラッシュダンプパス"
+id = "kdump_path"
+name = "クラッシュダンプパス"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/etc/kdump.conf からカーネルダンプの出力先設定を検索"
 text = '''
@@ -191,19 +189,19 @@ fi
 
 [[metrics]]
 
-metricId = "core_collector"
-metricName = "コアコレクター設定"
+id = "core_collector"
+name = "コアコレクター設定"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "コアコレクター設定"
 
 [[metrics]]
 
-metricId = "runlevel"
-metricName = "ランレベル"
+id = "runlevel"
+name = "ランレベル"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/etc/inittabから、OS起動時のランレベルからコンソール設定(3 : CUIコンソール、5 : GUIコンソール)を検索"
 text = '''
@@ -216,10 +214,10 @@ fi
 
 [[metrics]]
 
-metricId = "runlevel.console"
-metricName = "コンソール"
+id = "runlevel.console"
+name = "コンソール"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "コンソール設定(GUI、CUI)"
 text = '''
@@ -227,10 +225,10 @@ text = '''
 
 [[metrics]]
 
-metricId = "resolve_conf"
-metricName = "DNS設定"
+id = "resolve_conf"
+name = "DNS設定"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/etc/resolve.conf から nameserver を検索"
 text = '''
@@ -242,19 +240,19 @@ fi
 
 [[metrics]]
 
-metricId = "nameservers"
-metricName = "└─DNSサーバ名"
+id = "nameservers"
+name = "└─DNSサーバ名"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "DNSサーバの検索"
 
 [[metrics]]
 
-metricId = "keyboard"
-metricName = "キーボード配列"
+id = "keyboard"
+name = "キーボード配列"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/etc/sysconfig/keyboard、/etc/vconsole.conf からキーボード配列を検索"
 text = '''
@@ -267,10 +265,10 @@ fi
 
 [[metrics]]
 
-metricId = "language"
-metricName = "OS言語"
+id = "language"
+name = "OS言語"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/proc/cmdline からOS言語を検索"
 text = '''
@@ -279,10 +277,10 @@ cat /proc/cmdline
 
 [[metrics]]
 
-metricId = "grub"
-metricName = "ブートローダー"
+id = "grub"
+name = "ブートローダー"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/etc/default/grupからGRUB_CMDLINE_LINUXのvgaを検索"
 text = '''
@@ -294,10 +292,10 @@ fi
 
 [[metrics]]
 
-metricId = "timezone"
-metricName = "タイムゾーン"
+id = "timezone"
+name = "タイムゾーン"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/etc/sysconfig/clock からタイムゾーンを検索"
 text = '''
@@ -310,10 +308,10 @@ fi
 
 [[metrics]]
 
-metricId = "ntp_slew"
-metricName = "NTP slewモード"
+id = "ntp_slew"
+name = "NTP slewモード"
 category = "NTP設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/etc/sysconfig/ntpd から、NTP設定を検索。設定しない＝「-u」、設定する「-x」"
 text = '''
@@ -325,10 +323,10 @@ fi
 
 [[metrics]]
 
-metricId = "ntp"
-metricName = "NTPサーバ名"
+id = "ntp"
+name = "NTPサーバ名"
 category = "NTP設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/etc/ntp.conf から、NTPサーバを検索"
 text = '''
@@ -340,10 +338,10 @@ fi
 
 [[metrics]]
 
-metricId = "snmp_trap"
-metricName = "SNMPトラップ"
+id = "snmp_trap"
+name = "SNMPトラップ"
 category = "SNMP設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "'/etc/snmp/snmpd.confから、trapsink <管理サーバ> <コミュニティ名> <ポート番号> 行を検索"
 text = '''
@@ -352,10 +350,10 @@ cat /etc/snmp/snmpd.conf
 
 [[metrics]]
 
-metricId = "vmware_scsi_timeout"
-metricName = "VMWare SCSIタイムアウト"
+id = "vmware_scsi_timeout"
+name = "VMWare SCSIタイムアウト"
 category = "VMWare設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "/etc/udev/rules.d/99-vmware-scsi-udev.rulesからVMWare SCSIタイムアウト検索"
 text = '''
@@ -367,10 +365,10 @@ fi
 
 [[metrics]]
 
-metricId = "vmwaretool_timesync"
-metricName = "VMware Tools の時刻同期"
+id = "vmwaretool_timesync"
+name = "VMware Tools の時刻同期"
 category = "VMWare設定"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "VMWareツールの時刻同期設定"
 text = '''
@@ -382,55 +380,55 @@ fi
 
 [[metrics]]
 
-metricId = "model_name"
-metricName = "プロセッサーモデル"
+id = "model_name"
+name = "プロセッサーモデル"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUプロセッサーモデル"
 
 [[metrics]]
 
-metricId = "mhz"
-metricName = "CPUクロック"
+id = "mhz"
+name = "CPUクロック"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUクロック数[MHz]"
 
 [[metrics]]
 
-metricId = "cpu_total"
-metricName = "CPUスレッド数"
+id = "cpu_total"
+name = "CPUスレッド数"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUスレッド数"
 
 [[metrics]]
 
-metricId = "cpu_core"
-metricName = "CPUコア数"
+id = "cpu_core"
+name = "CPUコア数"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUコア数。VMの場合は未記入"
 
 [[metrics]]
 
-metricId = "cpu_real"
-metricName = "CPUソケット数"
+id = "cpu_real"
+name = "CPUソケット数"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUソケット数"
 
 [[metrics]]
 
-metricId = "cpu"
-metricName = "CPU情報"
+id = "cpu"
+name = "CPU情報"
 category = "CPU"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "/proc/cpuinfo を検索し,プロセッサ構成を検索"
 text = '''
@@ -439,28 +437,28 @@ cat /proc/cpuinfo
 
 [[metrics]]
 
-metricId = "mem_total"
-metricName = "メモリ総容量"
+id = "mem_total"
+name = "メモリ総容量"
 category = "メモリ"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "メモリ総容量[GB]"
 
 [[metrics]]
 
-metricId = "mem_free"
-metricName = "メモリ空容量"
+id = "mem_free"
+name = "メモリ空容量"
 category = "メモリ"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "メモリ空き容量[GB]"
 
 [[metrics]]
 
-metricId = "meminfo"
-metricName = "メモリ情報"
+id = "meminfo"
+name = "メモリ情報"
 category = "メモリ"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "/proc/meminfo を検索してメモリ構成を検索"
 text = '''
@@ -469,10 +467,10 @@ cat /proc/meminfo
 
 [[metrics]]
 
-metricId = "net_onboot"
-metricName = "ネットワークブート"
+id = "net_onboot"
+name = "ネットワークブート"
 category = "ネットワーク"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "/etc/sysconfig/network-scripts からネットワークブート構成を検索"
 text = '''
@@ -482,10 +480,10 @@ grep ONBOOT ifcfg-*
 
 [[metrics]]
 
-metricId = "net_route"
-metricName = "デフォルトゲートウェイ"
+id = "net_route"
+name = "デフォルトゲートウェイ"
 category = "ネットワーク"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "/sbin/ip route コマンドで、デフォルトゲートウェイアドレスを検索"
 text = '''
@@ -494,10 +492,10 @@ text = '''
 
 [[metrics]]
 
-metricId = "net_bond"
-metricName = "NICの冗長化(bonding設定)"
+id = "net_bond"
+name = "NICの冗長化(bonding設定)"
 category = "ネットワーク"
-commandLevel = 0
+level = 0
 deviceFlag = true
 comment = "/etc/sysconfig/network-scripts/ からNIC冗長設定を検索"
 text = '''
@@ -510,10 +508,10 @@ fi
 
 [[metrics]]
 
-metricId = "network"
-metricName = "ネットワーク情報"
+id = "network"
+name = "ネットワーク情報"
 category = "ネットワーク"
-commandLevel = 0
+level = 0
 deviceFlag = true
 comment = "/sbin/ip addr コマンドで、ネットワーク構成を検索"
 text = '''
@@ -522,10 +520,10 @@ text = '''
 
 [[metrics]]
 
-metricId = "block_device"
-metricName = "ストレージデバイス"
+id = "block_device"
+name = "ストレージデバイス"
 category = "ストレージ"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "/sys/block/下からデバイス構成を検索"
 text = '''
@@ -541,10 +539,10 @@ egrep -H '.*' /sys/block/*/device/queue_depth
 
 [[metrics]]
 
-metricId = "mdadb"
-metricName = "ディスクRAID"
+id = "mdadb"
+name = "ディスクRAID"
 category = "ストレージ"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "/proc/mdstat からmd([0-9]+)デバイスを取得"
 text = '''
@@ -553,10 +551,10 @@ cat /proc/mdstat
 
 [[metrics]]
 
-metricId = "fstab"
-metricName = "自動マウントの設定"
+id = "fstab"
+name = "自動マウントの設定"
 category = "ストレージ"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "/etc/fstab から設定値が/dev/から始まるパスで、defaultのデバイスを検索"
 text = '''
@@ -565,19 +563,19 @@ cat /etc/fstab
 
 [[metrics]]
 
-metricId = "fstypes"
-metricName = "ファイルシステムタイプ"
+id = "fstypes"
+name = "ファイルシステムタイプ"
 category = "ストレージ"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "マウントポイントのファイルシステム"
 
 [[metrics]]
 
-metricId = "lvm"
-metricName = "論理ボリューム情報"
+id = "lvm"
+name = "論理ボリューム情報"
 category = "ストレージ"
-commandLevel = 0
+level = 0
 deviceFlag = true
 comment = "mountコマンドで、/dev/mapper/下のLVMボリュームを検索"
 text = '''
@@ -586,10 +584,10 @@ mount
 
 [[metrics]]
 
-metricId = "filesystem"
-metricName = "ファイルシステム"
+id = "filesystem"
+name = "ファイルシステム"
 category = "ストレージ"
-commandLevel = 0
+level = 0
 deviceFlag = true
 comment = "/bin/lsblk -i　コマンドで、マウントポイント構成を検索"
 text = '''
@@ -602,10 +600,10 @@ fi
 
 [[metrics]]
 
-metricId = "filesystem_df_ip"
-metricName = "iノード"
+id = "filesystem_df_ip"
+name = "iノード"
 category = "ストレージ"
-commandLevel = 0
+level = 0
 deviceFlag = true
 comment = "df -iP　コマンドで、iノードを検索"
 text = '''
@@ -614,10 +612,10 @@ df -iP
 
 [[metrics]]
 
-metricId = "user"
-metricName = "ユーザ情報"
+id = "user"
+name = "ユーザ情報"
 category = "ユーザー"
-commandLevel = 1
+level = 1
 deviceFlag = true
 comment = "/etc/passwd を検索して、ユーザ名を検索"
 text = '''
@@ -626,10 +624,10 @@ cat /etc/passwd
 
 [[metrics]]
 
-metricId = "service"
-metricName = "サービス構成"
+id = "service"
+name = "サービス構成"
 category = "サービス"
-commandLevel = 1
+level = 1
 deviceFlag = true
 comment = "chkconfig --list コマンドで、サービス数を検索"
 text = '''
@@ -642,19 +640,19 @@ fi
 
 [[metrics]]
 
-metricId = "packages.requirements"
-metricName = "必須パッケージ"
+id = "packages.requirements"
+name = "必須パッケージ"
 category = "パッケージ"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "必須パッケージリスト"
 
 [[metrics]]
 
-metricId = "packages"
-metricName = "パッケージ構成"
+id = "packages"
+name = "パッケージ構成"
 category = "パッケージ"
-commandLevel = 1
+level = 1
 deviceFlag = true
 comment = "rpm -qa コマンドで、パッケージ情報検索"
 text = '''
@@ -663,10 +661,10 @@ rpm -qa --qf "%{NAME}\t%|EPOCH?{%{EPOCH}}:{0}|\t%{VERSION}\t%{RELEASE}\t%{INSTAL
 
 [[metrics]]
 
-metricId = "error_messages"
-metricName = "Syslogエラー"
+id = "error_messages"
+name = "Syslogエラー"
 category = "その他OS設定"
-commandLevel = 2
+level = 2
 deviceFlag = true
 comment = "/var/log/messages から error,warning,failed を含む行を検索"
 text = '''
@@ -675,10 +673,10 @@ egrep -i '(error|warning|failed)' /var/log/messages | head -100
 
 [[metrics]]
 
-metricId = "oracle_module"
-metricName = "Oracleインストーラの有無"
+id = "oracle_module"
+name = "Oracleインストーラの有無"
 category = "その他OS設定"
-commandLevel = 2
+level = 2
 deviceFlag = false
 comment = "/root/package の下にOracleインストールファイルがあるかを検索"
 text = '''
@@ -687,10 +685,10 @@ sudo -A ls /root/package/*
 
 [[metrics]]
 
-metricId = "oracle"
-metricName = "Oracleモジュールの有無"
+id = "oracle"
+name = "Oracleモジュールの有無"
 category = "その他OS設定"
-commandLevel = 2
+level = 2
 deviceFlag = false
 comment = "ls -d /opt/oracle/app/product/*/* でOracleのバージョン、サーバ/クライアントを検索"
 text = '''

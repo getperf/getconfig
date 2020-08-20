@@ -12,46 +12,16 @@ import com.getconfig.AgentWrapper.Platform.*
 @Singleton(strict = false)
 class AgentWrapperManager {
     Map<String, AgentConfigWrapper> agentWrappers = new LinkedHashMap<>()
-    private GroovyClassLoader gcl = new GroovyClassLoader();
 
-    private Collection<Class> loadClassFromFile(String path) throws IOException {
-        gcl.clearCache();
-        File[] files = DirUtils.ls(path, "groovy");
-
-        List<Class> classes = new ArrayList<>();
-        for (File file : files) {
-            println "load file = ${file.getAbsolutePath()}"
-            Class cls = gcl.parseClass(file);
-            classes.add(cls);
+    private AgentWrapperManager() {
+        agentWrappers.with {
+            it["Linux"] = new Linux()
+            it["Windows"] = new Windows()
+            it["vCenter"] = new vCenter()
+            it["VMHost"] = new VMHost()
+            it["{Agent}"] = new RemoteAgent()
+            it["{LocalFile}"] = new LocalAgent()
         }
-        return classes;
-    }
-
-    String getDomainName(String className) {
-        if (className == "RemoteAgent") {
-            return "{Agent}"
-        } else if (className == "LocalAgent") {
-            return "{LocalFile}"
-        } else {
-            return className
-        }
-    }
-
-    private void load(Collection<Class> classes){
-        for (Class cls : classes) {
-            try {
-                Object o = cls.newInstance();
-                String domainName = this.getDomainName(cls.getSimpleName())
-                agentWrappers.put(domainName, o as AgentConfigWrapper)
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    void init(String agentWrapperLibPath = null) {
-        Collection<Class> fileClasses = this.loadClassFromFile(agentWrapperLibPath ?: "lib/agentconf")
-        this.load(fileClasses)
     }
 
     AgentConfigWrapper getWrapper(String platform) {

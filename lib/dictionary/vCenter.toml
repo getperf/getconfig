@@ -1,227 +1,291 @@
-platform = "vCenter"
+# Additional metrics list of VMWare Managed Object. 
+#
+# Notice: 
+#   The results of all added metrics are saved in the "all.json".
+#
+# Reference : http://pubs.vmware.com/vsphere-60/topic/com.vmware.wssdk.apiref.doc/vim.VirtualMachine.html
 
 [[metrics]]
 
-metricId = "vm.name"
-metricName = "仮想マシン名"
+id = "config"
+
+[[metrics]]
+
+id = "summary"
+
+[[metrics]]
+
+id = "capability"
+
+[[metrics]]
+
+id = "datastore"
+
+[[metrics]]
+
+id = "environmentBrowser"
+
+[[metrics]]
+
+id = "guest"
+
+[[metrics]]
+
+id = "guestHeartbeatStatus"
+
+[[metrics]]
+
+id = "layoutEx"
+
+[[metrics]]
+
+id = "network"
+
+[[metrics]]
+
+id = "resourceConfig"
+
+[[metrics]]
+
+id = "resourcePool"
+
+[[metrics]]
+
+id = "snapshot"
+
+[[metrics]]
+
+id = "storage"
+
+[[metrics]]
+
+id = "runtime"
+
+# Metric definitions used in the check sheet report. 
+# Get value from VMWare Managed Object result
+
+[[metrics]]
+
+id = "vm.name"
+name = "仮想マシン名"
 category = "VMリソース割当て"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "仮想マシン名"
 
 [[metrics]]
 
-metricId = "vm.NumCpu"
-metricName = "CPU割り当て数"
+id = "vm.NumCpu"
+name = "CPU割り当て数"
 category = "VMリソース割当て"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "仮想マシンのCPU仮想ソケット数"
 
 [[metrics]]
 
-metricId = "vm.PowerState"
-metricName = "電源状態"
+id = "vm.PowerState"
+name = "電源状態"
 category = "VMリソース割当て"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "電源On/Off"
 
 [[metrics]]
 
-metricId = "vm.MemoryGB"
-metricName = "メモリ割り当て"
+id = "vm.MemoryGB"
+name = "メモリ割り当て"
 category = "VMリソース割当て"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "メモリ割り当てサイズ[GB]"
 
 [[metrics]]
 
-metricId = "vm.VMHost"
-metricName = "ESXiホスト"
+id = "vm.VMHost"
+name = "ESXiホスト"
 category = "VMリソース割当て"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "ESXiホスト名"
 
 [[metrics]]
 
-metricId = "vm.Cluster"
-metricName = "クラスター"
+id = "vm.Cluster"
+name = "クラスター"
 category = "VMリソース割当て"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "vCenterクラスタ名"
 
 [[metrics]]
 
-metricId = "vm"
-metricName = "VMWare リソース"
+id = "vm"
+name = "VMWare リソース"
 category = "VMリソース割当て"
-commandLevel = 0
+level = -1
 deviceFlag = false
 comment = "Get-VM コマンドで、VMWare リソース割り当てを検索"
 
 [[metrics]]
 
-metricId = "vm_conf.limit"
-metricName = "リソース制限"
+id = "vm_conf.limit"
+name = "リソース制限"
 category = "VMカスタマイズ"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPU,メモリリソース制限設定"
 
 [[metrics]]
 
-metricId = "vm_conf.shares_level"
-metricName = "シェアレベル"
+id = "vm_conf.shares_level"
+name = "シェアレベル"
 category = "VMカスタマイズ"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPU,メモリ共有レベル設定"
 
 [[metrics]]
 
-metricId = "vm_conf.cpu_affinity"
-metricName = "CPUアフィニティ"
+id = "vm_conf.cpu_affinity"
+name = "CPUアフィニティ"
 category = "VMカスタマイズ"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUアフィニティ設定"
 
 [[metrics]]
 
-metricId = "vm_conf"
-metricName = "VMWare カスタマイズ(予約メモリGB)"
+id = "vm_conf"
+name = "VMWare カスタマイズ(予約メモリGB)"
 category = "VMカスタマイズ"
-commandLevel = 0
+level = -1
 deviceFlag = false
 comment = "Get-VMResourceConfiguration コマンドで、VMWare リソース設定を検索"
 
 [[metrics]]
 
-metricId = "vmext.CpuHotAddEnabled"
-metricName = "CPUホットアドの有効化"
+id = "vmext.CpuHotAddEnabled"
+name = "CPUホットアドの有効化"
 category = "VM拡張設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUホットアドの有効化"
 
 [[metrics]]
 
-metricId = "vmext.MemoryReservationLockedToMax"
-metricName = "すべてのゲストメモリを予約"
+id = "vmext.MemoryReservationLockedToMax"
+name = "すべてのゲストメモリを予約"
 category = "VM拡張設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "すべてのゲストメモリを予約（全てロック）"
 
 [[metrics]]
 
-metricId = "vmext.MemoryHotAddEnabled"
-metricName = "メモリホットプラグ"
+id = "vmext.MemoryHotAddEnabled"
+name = "メモリホットプラグ"
 category = "VM拡張設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "メモリホットプラグ"
 
 [[metrics]]
 
-metricId = "vmext"
-metricName = "VMWare CPU/メモリ ホットアド設定"
+id = "vmext"
+name = "VMWare CPU/メモリ ホットアド設定"
 category = "VM拡張設定"
-commandLevel = 0
+level = -1
 deviceFlag = false
 comment = "Get-VM コマンドで VMWare CPU/メモリ ホットアド設定を検索"
 
 [[metrics]]
 
-metricId = "datastore"
-metricName = "データストア"
+id = "datastore"
+name = "データストア"
 category = "VMデータストア"
-commandLevel = 0
+level = -1
 deviceFlag = true
 comment = "Get-Datastore コマンドで、データストアパスを検索"
 
 [[metrics]]
 
-metricId = "vm_storage"
-metricName = "VMWare ハードディスク構成"
+id = "vm_storage"
+name = "VMWare ハードディスク構成"
 category = "VMハードディスク"
-commandLevel = 0
+level = -1
 deviceFlag = true
 comment = "Get-Harddisk コマンドで、ストレージ構成情報検索"
 
 [[metrics]]
 
-metricId = "vmnet"
-metricName = "VMWare ネットワーク"
+id = "vmnet"
+name = "VMWare ネットワーク"
 category = "VMネットワーク"
-commandLevel = 0
+level = -1
 deviceFlag = true
 comment = "Get-NetworkAdapter コマンドで、ネットワーク・アダプタを検索"
 
 [[metrics]]
 
-metricId = "vmwaretool.version"
-metricName = "VMWare ツールバージョン"
+id = "vmwaretool.version"
+name = "VMWare ツールバージョン"
 category = "その他VM設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "VMWare ツールバージョン"
 
 [[metrics]]
 
-metricId = "vmwaretool"
-metricName = "VMWare ツール"
+id = "vmwaretool"
+name = "VMWare ツール"
 category = "その他VM設定"
-commandLevel = 0
+level = -1
 deviceFlag = false
 comment = "Get-VM コマンドで、VMWare ツールの有無、バージョンを検索"
 
 [[metrics]]
 
-metricId = "vm_timesync"
-metricName = "VMWare 時刻同期"
+id = "vm_timesync"
+name = "VMWare 時刻同期"
 category = "その他VM設定"
-commandLevel = 0
+level = -1
 deviceFlag = false
 comment = "Get-VM コマンドで、VMWare 時刻同期の有無を検索"
 
 [[metrics]]
 
-metricId = "vm_iops_limit"
-metricName = "ストレージIOPS制限"
+id = "vm_iops_limit"
+name = "ストレージIOPS制限"
 category = "その他VM設定"
-commandLevel = 0
+level = -1
 deviceFlag = false
 comment = "Get-VMResourceConfiguration コマンドで、ストレージリソースのIOPS制限値を検索"
 
 [[metrics]]
 
-metricId = "vm_nic_limit"
-metricName = "ネットワークアダプタ制限"
+id = "vm_nic_limit"
+name = "ネットワークアダプタ制限"
 category = "その他VM設定"
-commandLevel = 0
+level = -1
 deviceFlag = false
 comment = "Get-NetworkAdapter コマンドで、ネットワーク制限値を検索"
 
 [[metrics]]
 
-metricId = "vm_floppy"
-metricName = "フロッピーディスク構成"
+id = "vm_floppy"
+name = "フロッピーディスク構成"
 category = "その他VM設定"
-commandLevel = 0
+level = -1
 deviceFlag = false
 comment = "Get-Vm $vm | Get-FloppyDriveコマンドで、フロッピィディスク構成を検索"
 
 [[metrics]]
 
-metricId = "vm_video_ram"
-metricName = "ビデオRAM構成"
+id = "vm_video_ram"
+name = "ビデオRAM構成"
 category = "その他VM設定"
-commandLevel = 0
+level = -1
 deviceFlag = false
 comment = "Get-VM コマンドで、ビデオ RAM メモリ割り当てを検索"
 

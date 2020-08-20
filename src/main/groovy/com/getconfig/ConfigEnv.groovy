@@ -118,12 +118,18 @@ class ConfigEnv {
     }
 
     // エージェントラッパーライブラリパス  lib/gconf
-    String getAgentWrapperLib() {
-        return this.config?.gconf_wrapper_lib ?:
-                Paths.get(this.getProjectHome(), "lib/agentconf")
+    // String getAgentWrapperLib() {
+    //     return this.config?.gconf_wrapper_lib ?:
+    //             Paths.get(this.getProjectHome(), "lib/agentconf")
+    // }
+
+    // メトリックライブラリパス  lib/dictionary
+    String getMetricLib() {
+        return this.config?.metric_lib ?:
+                Paths.get(this.getProjectHome(), "lib/dictionary")
     }
 
-    // gconf ラッパー用ディレクトリ  lib/gconf
+    // メトリックパーサーライブラリパス  lib/parser
     String getAgentLogParserLib() {
         return this.config?.agent_log_parser_lib ?:
                 Paths.get(this.getProjectHome(), "lib/parser")

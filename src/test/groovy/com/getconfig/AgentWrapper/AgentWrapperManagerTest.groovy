@@ -7,7 +7,6 @@ class AgentWrapperManagerTest extends Specification {
     def "初期化"() {
         when:
         def env = AgentWrapperManager.instance
-        env.init('lib/agentconf')
         def agentConfigWrapper = env.getWrapper("Linux")
 
         then:

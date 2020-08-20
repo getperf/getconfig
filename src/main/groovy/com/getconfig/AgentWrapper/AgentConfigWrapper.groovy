@@ -5,8 +5,8 @@ import com.getconfig.Model.*
 
 @CompileStatic
 interface AgentConfigWrapper {
-    def makeServerConfig(TestServer testServer, List<TestMetric> testMetrics)
-    def makeAllServersConfig(List<TestServer> servers, List<TestMetric> testMetrics)
+    def makeServerConfig(TestServer testServer)
+    def makeAllServersConfig(List<TestServer> servers)
     boolean getBatchEnable()
     String getConfigName()
     String getLabel()

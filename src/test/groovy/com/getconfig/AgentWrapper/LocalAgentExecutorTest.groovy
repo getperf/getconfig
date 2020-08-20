@@ -12,17 +12,10 @@ class LocalAgentExecutorTest extends Specification {
             domain:"Linux",
             ip:"192.168.10.1",
             accountId:"Account01")
-    TestMetricGroup metrics
-
-    def setup() {
-        def manager = AgentWrapperManager.instance
-        manager.init("lib/agentconf")
-        metrics = TomlUtils.read("lib/dictionary/Linux.toml", TestMetricGroup);
-    }
 
     def "初期化"() {
          when:
-         def executor = new LocalAgentExecutor("Linux", server, metrics.getAll())
+         def executor = new LocalAgentExecutor("Linux", server)
          ConfigEnv.instance.accept(executor)
 
          then:
@@ -31,6 +24,16 @@ class LocalAgentExecutorTest extends Specification {
          executor.toml().size() > 0
          executor.gconfExe.size() > 0
      }
+
+    def "TOML読込み"() {
+        when:
+        def executor = new LocalAgentExecutor("Linux", server)
+        ConfigEnv.instance.accept(executor)
+        executor.metricLib = 'src/test/resources/lib/dictionary'
+
+        then:
+        executor.getMetricLibsText().size() > 0
+    }
 
     def "不明プラットフォーム初期化"() {
         when:

@@ -10,7 +10,6 @@ class vCenterTest extends Specification {
     AgentConfigWrapper wrapper
 
     def setup() {
-        agentWrapperManager.init("lib/agentconf")
         wrapper = agentWrapperManager.getWrapper("vCenter")
     }
 

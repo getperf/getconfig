@@ -19,7 +19,7 @@ class TestMetricGroup {
     TestMetricGroup validate() {
         this.metrics.each {TestMetric metric ->
             metric.platform = this.platform
-            dictMetrics[metric.metricName] = metric
+            dictMetrics[metric.name] = metric
         }
         return this
     }

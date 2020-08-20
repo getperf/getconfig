@@ -1,443 +1,665 @@
-platform = "Windows"
-
 [[metrics]]
 
-metricId = "Domain"
-metricName = "ドメイン名"
+id = "Domain"
+name = "ドメイン名"
 category = "システム情報"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "ドメイン名"
 
 [[metrics]]
 
-metricId = "Manufacturer"
-metricName = "メーカー"
+id = "Manufacturer"
+name = "メーカー"
 category = "システム情報"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "メーカー"
 
 [[metrics]]
 
-metricId = "Model"
-metricName = "モデル"
+id = "Model"
+name = "モデル"
 category = "システム情報"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "モデル"
 
 [[metrics]]
 
-metricId = "PrimaryOwnerName"
-metricName = "所有者"
+id = "PrimaryOwnerName"
+name = "所有者"
 category = "システム情報"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "所有者"
 
 [[metrics]]
 
-metricId = "Name"
-metricName = "コンピューター名"
+id = "Name"
+name = "コンピューター名"
 category = "システム情報"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "コンピューター名"
 
 [[metrics]]
 
-metricId = "system"
-metricName = "システム情報"
+id = "system"
+name = "システム情報"
 category = "システム情報"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "Win32_ComputerSystem オブジェクトから、システム情報を検索"
+type = "Cmdlet"
+text = '''
+Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' |
+Format-List
+'''
 
 [[metrics]]
 
-metricId = "os_conf.install_date"
-metricName = "インストール日付"
+id = "os_conf.install_date"
+name = "インストール日付"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "インストール日付"
 
 [[metrics]]
 
-metricId = "os_conf.version"
-metricName = "カレントバージョン"
+id = "os_conf.version"
+name = "カレントバージョン"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "OSカレントバージョン"
 
 [[metrics]]
 
-metricId = "os_conf.build"
-metricName = "カレントビルド"
+id = "os_conf.build"
+name = "カレントビルド"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "OSカレントビルド"
 
 [[metrics]]
 
-metricId = "os_conf.product_id"
-metricName = "製品ID"
+id = "os_conf.product_id"
+name = "製品ID"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "OSプロダクトID"
 
 [[metrics]]
 
-metricId = "os_conf"
-metricName = "OSバージョン"
+id = "os_conf"
+name = "OSバージョン"
 category = "OSリリース"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersionレジストリからOSバージョン検索"
+type = "Cmdlet"
+text = '''
+Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' |
+Format-List
+'''
 
 [[metrics]]
 
-metricId = "os_caption"
-metricName = "OS名"
+id = "os_caption"
+name = "OS名"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "OS名称"
 
 [[metrics]]
 
-metricId = "os_csd_version"
-metricName = "サービスパック"
+id = "os_csd_version"
+name = "サービスパック"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "サービスパック名"
 
 [[metrics]]
 
-metricId = "os_architecture"
-metricName = "アーキテクチャ"
+id = "os_architecture"
+name = "アーキテクチャ"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "アーキテクチャ(32bit/64bit)"
 
 [[metrics]]
 
-metricId = "os_product_type"
-metricName = "製品タイプ"
+id = "os_product_type"
+name = "製品タイプ"
 category = "OSリリース"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "1:ワークステーション 2:ドメインコントローラ 3:サーバー"
 
 [[metrics]]
 
-metricId = "os"
-metricName = "OS情報"
+id = "os"
+name = "OS情報"
 category = "OSリリース"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "Win32_OperatingSystem オブジェクトから、OS情報を検索"
 
 [[metrics]]
 
-metricId = "driver"
-metricName = "ドライバー"
+id = "driver"
+name = "ドライバー"
 category = "OS設定"
-commandLevel = 1
+level = 1
 deviceFlag = true
 comment = "Win32_PnPSignedDriver オブジェクトから、ドライバー登録件数を検索"
+type = "Cmdlet"
+text = '''
+Get-WmiObject Win32_OperatingSystem |
+Format-List Caption,CSDVersion,ProductType,OSArchitecture
+'''
 
 [[metrics]]
 
-metricId = "virturalization"
-metricName = "仮想化プラットフォーム"
+id = "fips"
+name = "FIPSモード"
 category = "OS設定"
-commandLevel = 1
+level = 1
+comment = "HKLM:System\\CurrentControlSet\\Control\\Lsa\\FIPSAlgorithmPolicyから、FIPSモードを検索"
+type = "Cmdlet"
+text = '''
+Get-Item 'HKLM:System\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy'
+'''
+
+[[metrics]]
+
+id = "virturalization"
+name = "仮想化プラットフォーム"
+category = "OS設定"
+level = 1
 deviceFlag = false
 comment = "Win32_ComputerSystem オブジェクトから仮想化プラットフォームを検索"
+type = "Cmdlet"
+text = '''
+Get-WmiObject -Class Win32_ComputerSystem | Select Model | FL
+'''
 
 [[metrics]]
 
-metricId = "monitor"
-metricName = "ディスプレイの設定"
+id = "storage_timeout"
+name = "ストレージタイムアウト"
 category = "OS設定"
-commandLevel = 0
+level = 1
+comment = "HKLM:SYSTEM\\CurrentControlSet\\Services\\diskからストレージタイムアウトを検索"
+type = "Cmdlet"
+text = '''
+Get-ItemProperty 'HKLM:SYSTEM\CurrentControlSet\Services\disk'
+'''
+
+[[metrics]]
+
+id = "monitor"
+name = "ディスプレイの設定"
+category = "OS設定"
+level = 1
 deviceFlag = false
 comment = "Win32_DesktopMonitorオブジェクトから、ディスプレイの詳細設定を検索"
+type = "Cmdlet"
+text = '''
+Get-WmiObject Win32_DesktopMonitor | FL
+'''
 
 [[metrics]]
 
-metricId = "monitor.height"
-metricName = "ディスプレイ解像度Y"
+id = "monitor.height"
+name = "ディスプレイ解像度Y"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "ディスプレイ解像度Y"
 
 [[metrics]]
 
-metricId = "monitor.width"
-metricName = "ディスプレイ解像度X"
+id = "monitor.width"
+name = "ディスプレイ解像度X"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "ディスプレイ解像度X"
 
 [[metrics]]
 
-metricId = "system_log"
-metricName = "Windowsシステムイベントログ"
+id = "ie_version"
+name = "IEバージョン"
 category = "OS設定"
-commandLevel = 2
+deviceFlag = false
+level = 1
+comment = "HKLM:SOFTWARE\\Microsoft\\Internet Explorerから、IEバージョンを検索"
+type = "Cmdlet"
+text = '''
+Get-ItemProperty 'HKLM:SOFTWARE\Microsoft\Internet Explorer'
+'''
+
+[[metrics]]
+
+id = "system_log"
+name = "Windowsシステムイベントログ"
+category = "OS設定"
+level = 2
 deviceFlag = true
 comment = "Get-EventLog コマンドで、Windowsシステムイベントログのエラーメッセージを検索"
+type = "Cmdlet"
+text = '''
+Get-EventLog system | Where-Object { $_.EntryType -eq 'Error' } | FL
+'''
 
 [[metrics]]
 
-metricId = "apps_log"
-metricName = "Windowsアプリイベントログ"
+id = "apps_log"
+name = "Windowsアプリイベントログ"
 category = "OS設定"
-commandLevel = 2
+level = 2
 deviceFlag = true
 comment = "Get-EventLog コマンドで、Windowsアプリイベントログのエラーメッセージを検索"
+type = "Cmdlet"
+text = '''
+Get-EventLog application | Where-Object { $_.EntryType -eq 'Error' } | FL
+'''
 
 [[metrics]]
 
-metricId = "model_name"
-metricName = "プロセッサーモデル"
+id = "ntp"
+name = "NTP"
+category = "OS設定"
+level = 1
+deviceFlag = true
+comment = "HKLM:System\\CurrentControlSet\\Services\\W32Time\\ParametersからNTP設定を検索"
+type = "Cmdlet"
+text = '''
+(Get-Item 'HKLM:System\CurrentControlSet\Services\W32Time\Parameters').GetValue('NtpServer')
+'''
+
+[[metrics]]
+
+id = "user_account_control"
+name = "ユーザ制御"
+category = "OS設定"
+level = 1
+deviceFlag = true
+comment = "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Systemからユーザ制御を検索"
+type = "Cmdlet"
+text = '''
+Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'
+'''
+
+[[metrics]]
+
+id = "remote_desktop"
+name = "リモートデスクトップ"
+category = "OS設定"
+level = 1
+deviceFlag = false
+comment = "HKLM:System\\CurrentControlSet\\Control\\Terminal Serverからリモートデスクトップ設定を検索"
+type = "Cmdlet"
+text = '''
+(Get-Item 'HKLM:System\CurrentControlSet\Control\Terminal Server').GetValue('fDenyTSConnections')
+'''
+
+[[metrics]]
+
+id = "model_name"
+name = "プロセッサーモデル"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUプロセッサーモデル"
 
 [[metrics]]
 
-metricId = "mhz"
-metricName = "CPUクロック"
+id = "mhz"
+name = "CPUクロック"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUクロック数[MHz]"
 
 [[metrics]]
 
-metricId = "cpu_socket"
-metricName = "CPUソケット数"
+id = "cpu_socket"
+name = "CPUソケット数"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUソケット数"
 
 [[metrics]]
 
-metricId = "cpu_core"
-metricName = "CPUコア数"
+id = "cpu_core"
+name = "CPUコア数"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUコア数"
 
 [[metrics]]
 
-metricId = "cpu_total"
-metricName = "CPUスレッド数"
+id = "cpu_total"
+name = "CPUスレッド数"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUスレッド数"
 
 [[metrics]]
 
-metricId = "cpu"
-metricName = "CPU情報"
+id = "cpu"
+name = "CPU情報"
 category = "CPU"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "Win32_Processor オブジェクトからCPU情報を検索"
+type = "Cmdlet"
+text = '''
+Get-WmiObject -Class Win32_Processor | Format-List DeviceID, Name, MaxClockSpeed, SocketDesignation, NumberOfCores, NumberOfLogicalProcessors
+'''
 
 [[metrics]]
 
-metricId = "visible_memory"
-metricName = "物理メモリ量"
+id = "visible_memory"
+name = "物理メモリ量"
 category = "メモリ"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "物理メモリ量[KB]"
 
 [[metrics]]
 
-metricId = "virtual_memory"
-metricName = "仮想メモリ量"
+id = "virtual_memory"
+name = "仮想メモリ量"
 category = "メモリ"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "仮想メモリ量[KB]"
 
 [[metrics]]
 
-metricId = "free_memory"
-metricName = "空きメモリ量"
+id = "free_memory"
+name = "空きメモリ量"
 category = "メモリ"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "メモリ空き容量[KB]"
 
 [[metrics]]
 
-metricId = "memory"
-metricName = "メモリ情報"
+id = "memory"
+name = "メモリ情報"
 category = "メモリ"
-commandLevel = 0
+level = 0
 deviceFlag = false
 comment = "Win32_OperatingSystem オブジェクトから、メモリ情報を検索"
+type = "Cmdlet"
+text = '''
+Get-WmiObject Win32_OperatingSystem |
+select TotalVirtualMemorySize,TotalVisibleMemorySize,
+FreePhysicalMemory,FreeVirtualMemory,FreeSpaceInPagingFiles
+'''
 
 [[metrics]]
 
-metricId = "dns"
-metricName = "DNSサーバ"
+id = "dns"
+name = "DNSサーバ"
 category = "ネットワーク"
-commandLevel = 1
+level = 1
 deviceFlag = false
 comment = "Get-DnsClientServerAddress　コマンドで、DNSサーバ検索"
+type = "Cmdlet"
+text = '''
+Get-DnsClientServerAddress|FL
+'''
 
 [[metrics]]
 
-metricId = "nic_teaming_config"
-metricName = "NICチーミング設定"
+id = "nic_teaming"
+name = "NICチーミング"
 category = "ネットワーク"
-commandLevel = 0
-deviceFlag = true
-comment = "Get-NetLbfoTeam コマンドで、NICチーミング(NetLBFO)設定を検索"
-
-[[metrics]]
-
-metricId = "nic_teaming"
-metricName = "NICチーミング"
-category = "ネットワーク"
-commandLevel = 0
+level = 2
 deviceFlag = true
 comment = "Get-NetLbfoTeamNic コマンドで、NICチーミング(NetLBFO)名を検索"
+type = "Cmdlet"
+text = '''
+Get-NetLbfoTeamNic
+'''
 
 [[metrics]]
 
-metricId = "network"
-metricName = "ネットワーク構成"
+id = "tcp"
+category = "TCP"
+level = 2
+deviceFlag = true
+comment = "HKLM:SYSTEM\\CurrentControlSet\\Services\\Tcpip\\ParametersからTCP設定を検索"
+type = "Cmdlet"
+text = '''
+Get-ItemProperty 'HKLM:SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' |
+Format-List
+'''
+
+[[metrics]]
+
+id = "network"
+name = "ネットワーク構成"
 category = "ネットワーク"
-commandLevel = 0
+level = 2
 deviceFlag = true
 comment = "Win32_NetworkAdapterConfiguration オブジェクトから、IP,GW,Indexを検索"
+type = "Cmdlet"
+text = '''
+Get-WmiObject Win32_NetworkAdapterConfiguration |
+Where{$_.IpEnabled -Match 'True'} |
+Select ServiceName, MacAddress, IPAddress, DefaultIPGateway, Description, IPSubnet |
+Format-List
+'''
 
 [[metrics]]
 
-metricId = "network_profile"
-metricName = "ネットワークプロファイル"
+id = "network_profile"
+name = "ネットワークプロファイル"
 category = "ネットワークI/F"
-commandLevel = 0
+level = 0
 deviceFlag = true
 comment = "Get-NetConnectionProfile コマンドで、ネットワークプロファイル検索。0:パブリック,1:プライベート,2:ドメイン認証"
+type = "Cmdlet"
+text = '''
+Get-NetConnectionProfile
+'''
 
 [[metrics]]
 
-metricId = "net_ip"
-metricName = "ネットワークI/F状態"
+id = "net_bind"
+name = "ネットワークバインド"
 category = "ネットワークI/F"
-commandLevel = 0
+level = 2
+deviceFlag = true
+comment = "Get-NetAdapterBinding コマンドで、ネットワークバインドを検索"
+type = "Cmdlet"
+text = '''
+Get-NetAdapterBinding | FL
+'''
+
+[[metrics]]
+
+id = "net_ip"
+name = "ネットワークI/F状態"
+category = "ネットワークI/F"
+level = 2
 deviceFlag = true
 comment = "Get-NetIPInterface コマンドで、ネットワーク優先順位を検索"
+type = "Cmdlet"
+text = '''
+Get-NetIPInterface | FL
+'''
 
 [[metrics]]
 
-metricId = "firewall"
-metricName = "ファイヤーウォール受信許可設定"
+id = "firewall"
+name = "ファイヤーウォール受信許可設定"
 category = "ファイヤーウォール"
-commandLevel = 1
+level = 2
 deviceFlag = true
 comment = "Get-NetFirewallRuleコマンドで、Windows Firewall の受信規制リストを検索"
+type = "Cmdlet"
+text = '''
+Get-NetFirewallRule -Direction Inbound -Enabled True
+'''
 
 [[metrics]]
 
-metricId = "filesystem"
-metricName = "ディスク容量"
-category = "ストレージ"
-commandLevel = 0
+id = "filesystem"
+name = "ディスク容量"
+level = 1
 deviceFlag = true
+category = "ストレージ"
 comment = "Win32_LogicalDisk オブジェクトから、ストレージ容量を検索"
+type = "Cmdlet"
+text = '''
+Get-WmiObject Win32_LogicalDisk | Format-List *
+'''
 
 [[metrics]]
 
-metricId = "logon_test"
-metricName = "ログオンテスト"
-category = "ユーザ"
-commandLevel = 0
+id = "logon_test"
+name = "ログオンテスト"
+level = -1
 deviceFlag = false
+category = "ユーザ"
 comment = "config.groovyに記述したログオン検査用ユーザでPowerShellリモート疎通を確認"
 
 [[metrics]]
 
-metricId = "user"
-metricName = "ユーザ情報"
+id = "user"
+name = "ユーザ情報"
 category = "ユーザ"
-commandLevel = 0
+level = 2
 deviceFlag = true
 comment = "Win32_UserAccount オブジェクトから、ローカルアカウントのロック情報を検索"
+type = "Cmdlet"
+text = '''
+$result = @()
+$accountObjList =  Get-CimInstance -ClassName Win32_Account
+$userObjList = Get-CimInstance -ClassName Win32_UserAccount
+foreach($userObj in $userObjList)
+{
+    $IsLocalAccount = ($userObjList | ?{$_.SID -eq $userObj.SID}).LocalAccount
+    if($IsLocalAccount)
+    {
+        $query = 'WinNT://{0}/{1},user' -F $env:COMPUTERNAME,$userObj.Name
+        $dirObj = New-Object -TypeName System.DirectoryServices.DirectoryEntry -ArgumentList $query
+        $UserFlags = $dirObj.InvokeGet('UserFlags')
+        $DontExpirePasswd = [boolean]($UserFlags -band 0x10000)
+        $AccountDisable   = [boolean]($UserFlags -band 0x2)
+        $obj = New-Object -TypeName PsObject
+        Add-Member -InputObject $obj -MemberType NoteProperty -Name 'UserName' -Value $userObj.Name
+        Add-Member -InputObject $obj -MemberType NoteProperty -Name 'DontExpirePasswd' -Value $DontExpirePasswd
+        Add-Member -InputObject $obj -MemberType NoteProperty -Name 'AccountDisable' -Value $AccountDisable
+        Add-Member -InputObject $obj -MemberType NoteProperty -Name 'SID' -Value $userObj.SID
+        $result += $obj
+    }
+}
+$result | Format-List
+'''
 
 [[metrics]]
 
-metricId = "etc_hosts"
-metricName = "hostsファイル"
+id = "etc_hosts"
+name = "hostsファイル"
 category = "ホスト"
-commandLevel = 1
+level = 1
 deviceFlag = true
 comment = "{win_dir}\\system32\\drivers\\etc\\hosts からホストリスト検索"
+type = "Cmdlet"
+text = '''
+Get-Content '$($env:windir)\system32\Drivers\etc\hosts'
+'''
 
 [[metrics]]
 
-metricId = "patch_lists"
-metricName = "パッチリスト"
+id = "patch_lists"
+name = "パッチリスト"
 category = "パッチ"
-commandLevel = 1
+level = 0
 deviceFlag = true
 comment = "wmic qfeコマンドで、パッチリストを検索"
+type = "Cmd"
+text = '''
+wmic qfe
+'''
 
 [[metrics]]
 
-metricId = "service"
-metricName = "サービス構成"
+id = "service"
+name = "サービス構成"
 category = "サービス"
-commandLevel = 1
+level = 1
 deviceFlag = true
 comment = "Get-Service コマンドで、サービスのステータスを検索"
+type = "Cmdlet"
+text = '''
+Get-Service | FL
+'''
 
 [[metrics]]
 
-metricId = "packages"
-metricName = "パッケージ構成"
+id = "packages"
+name = "パッケージ構成"
 category = "パッケージ"
-commandLevel = 1
+level = 0
 deviceFlag = true
 comment = "Win32_Product オブジェクトから、パッケージ情報検索"
+type = "Cmdlet"
+text = '''
+Get-WmiObject Win32_Product |
+Select-Object Name, Vendor, Version |
+Format-List
+Get-ChildItem -Path(
+'HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall',
+'HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall') |
+% { Get-ItemProperty $_.PsPath | Select-Object DisplayName, Publisher, DisplayVersion } |
+Format-List
+'''
 
 [[metrics]]
 
-metricId = "feature"
-metricName = "Windows機能"
+id = "feature"
+name = "Windows機能"
 category = "Windows機能"
-commandLevel = 1
+level = 1
 deviceFlag = true
 comment = "Get-WindowsFeature コマンドで、インストールされたWindows機能を検索"
+type = "Cmdlet"
+text = '''
+Get-WindowsFeature | ?{$_.InstallState -eq [Microsoft.Windows.ServerManager.Commands.InstallState]::Installed} | FL
+'''
 
 [[metrics]]
 
-metricId = "task_scheduler"
-metricName = "タスクスケジューラ"
+id = "task_scheduler"
+name = "タスクスケジューラ"
 category = "タスク"
-commandLevel = 1
+level = 1
 deviceFlag = true
 comment = "Get-ScheduledTask　コマンドで、Windows タスクスケジューラ情報を検索"
-
+type = "Cmdlet"
+text = '''
+Get-ScheduledTask |
+? {$_.State -eq 'Ready'} |
+Get-ScheduledTaskInfo |
+? {$_.NextRunTime -ne $null}|
+Format-List
+'''

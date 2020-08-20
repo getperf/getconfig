@@ -15,7 +15,6 @@ class LinuxTest extends Specification {
     AgentConfigWrapper wrapper
 
     def setup() {
-        agentWrapperManager.init("lib/agentconf")
         wrapper = agentWrapperManager.getWrapper("Linux")
     }
 
@@ -54,7 +53,7 @@ class LinuxTest extends Specification {
                 accountId:"Account01")
         TestMetricGroup metrics = TomlUtils.read("lib/dictionary/Linux.toml", TestMetricGroup)
 
-        def gconf = wrapper.makeServerConfig(server, metrics.getAll())
+        def gconf = wrapper.makeServerConfig(server)
         TomlWriter tomlWriter = new TomlWriter()
         def toml = tomlWriter.write(gconf)
 

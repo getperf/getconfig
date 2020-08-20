@@ -1,0 +1,11 @@
+[[metrics]]
+
+id = "hostname"
+name = "ホスト名"
+category = "OSリリース"
+level = 0
+deviceFlag = false
+comment = "hostname -s　コマンドで、ホスト名を検索"
+text = '''
+hostname -s
+'''

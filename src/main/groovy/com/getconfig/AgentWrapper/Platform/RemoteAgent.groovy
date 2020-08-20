@@ -5,34 +5,37 @@ import groovy.transform.*
 
 import com.getconfig.AgentWrapper.*
 import com.getconfig.Model.TestServer
-import com.getconfig.Model.TestMetric
 
 // @Slf4j
 @CompileStatic
 @InheritConstructors
-class LocalAgent implements AgentConfigWrapper {
+class RemoteAgent implements AgentConfigWrapper {
     @Override
     String getLabel() {
-        return "localagent"
+        return "remoteagent"
     }
 
     @Override
     String getConfigName() {
-        return "localagent"
+        return "remoteagent"
     }
 
     @Override
     boolean getBatchEnable() {
-        return true
+        return false
     }
 
     @Override
-    def makeAllServersConfig(List<TestServer> servers, List<TestMetric> testMetrics) {
-        return new AgentCommandConfig()
+    def makeAllServersConfig(List<TestServer> servers) {
+        return null
     }
 
     @Override
-    def makeServerConfig(TestServer server, List<TestMetric> testMetrics) {
-        return new AgentCommandConfig()
+    def makeServerConfig(TestServer server) {
+        def config = new AgentCommandConfig(
+                server: 'localhost',
+                local_exec: false,
+        )
+        return config
     }
 }

@@ -10,8 +10,8 @@ import com.getconfig.Model.TestMetric
 // @Slf4j
 @CompileStatic
 @InheritConstructors
-class vCenter implements AgentConfigWrapper {
-    class vCenterConfig {
+class VMHost implements AgentConfigWrapper {
+    class VMHostConfig {
         String server
         String url
         String user
@@ -23,12 +23,12 @@ class vCenter implements AgentConfigWrapper {
 
     @Override
     String getLabel() {
-        return "vmwareconf"
+        return "vmhostconf"
     }
 
     @Override
     String getConfigName() {
-        return "vmwareconf.toml"
+        return "vmhostconf.toml"
     }
 
     @Override
@@ -37,13 +37,13 @@ class vCenter implements AgentConfigWrapper {
     }
 
     @Override
-    def makeAllServersConfig(List<TestServer> servers, List<TestMetric> testMetrics = null) {
+    def makeAllServersConfig(List<TestServer> servers) {
         def firstServer = servers[0]
         String ip = firstServer.ip
         if (!ip.startsWith("http")) {
             ip = "https://${ip}/sdk"
         }
-        def config = new vCenterConfig(
+        def config = new VMHostConfig(
                 server: "",
                 url: ip,
                 user: firstServer.user,
@@ -57,21 +57,17 @@ class vCenter implements AgentConfigWrapper {
     }
 
     @Override
-    def makeServerConfig(TestServer server, List<TestMetric> testMetrics = null) {
+    def makeServerConfig(TestServer server) {
         String ip = server.ip
         if (!ip.startsWith("http")) {
             ip = "https://${ip}/sdk"
         }
         def remoteAlias = server.remoteAlias ?: server.serverName
-        def config = new vCenterConfig(
-                server: server.serverName,
+        def config = new VMHostConfig(
+                server: remoteAlias,
                 url: ip,
                 user: server.user,
                 password: server.password,
-
-                servers : [
-                        remoteAlias
-                ]
         )
         return config
     }

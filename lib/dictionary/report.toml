@@ -9,6 +9,10 @@ name = "ドメイン"
 redmineField = "tracker"
 
 [[columns]]
+id = "ip"
+name = "接続IP"
+
+[[columns]]
 id = "model"
 name = "機種"
 redmineField = "機種"
@@ -96,6 +100,15 @@ name = "CPUコア数"
     Solaris = "cpu_total"
     AIX = "prtconf.Number Of Processors"
     NetAppDataONTAP = "hw.cpu"
+
+[[columns]]
+id = "cpuClock"
+name = "CPUクロック数"
+
+    [columns.inventories]
+    Linux = "mhz"
+    Windows = "mhz"
+    Solaris = "mhz"
 
 [[columns]]
 id = "mem"
@@ -211,4 +224,9 @@ name = "監視テンプレート"
 
     [columns.inventories]
     Zabbix = "parentTemplates"
+
+[[columns]]
+id = "misc"
+name = "備考"
+
 

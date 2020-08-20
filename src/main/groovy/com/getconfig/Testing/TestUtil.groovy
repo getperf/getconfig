@@ -26,7 +26,8 @@ class TestUtil {
     PortListGroup portListGroup
     Map<String, AddedTestMetric> addedTestMetrics = new LinkedHashMap<>()
 
-    TestUtil(String serverName, String platform, String metricFile, TestResultGroup testResultGroup = null,
+    TestUtil(String serverName, String platform, String metricFile, 
+             TestResultGroup testResultGroup = null,
              PortListGroup portListGroup = null) {
         this.serverName = serverName
         this.platform = platform

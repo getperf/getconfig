@@ -13,7 +13,6 @@ class CollectorTest extends Specification {
     List<TestServer> testServers
 
     def setup() {
-        AgentWrapperManager.instance.init("lib/agentconf")
         def env = ConfigEnv.instance
         env.readConfig(configFile)
         def specReader = new SpecReader(inExcel : checkSheet)

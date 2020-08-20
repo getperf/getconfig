@@ -23,6 +23,7 @@ class AgentLogTest extends Specification {
 
         where:
         path                               | platform | agentLogMode
+        //noinspection SpellCheckingInspection
         "\\server01\\Linux\\20200722\\103000\\loadavg.txt" | null | AgentLogMode.UNKNOWN
         "\\server01\\LinuxConf\\20200722\\103500\\centos80\\cpu" | "Linux" | AgentLogMode.NORMAL
         "\\server01\\LinuxConf\\20200722\\103500\\error.log" | null | AgentLogMode.UNKNOWN

@@ -2,8 +2,8 @@ package com.getconfig.AgentWrapper
 
 import com.getconfig.CommandExec
 import com.getconfig.ConfigEnv
-import com.getconfig.Model.TestMetric
 import com.getconfig.Model.TestServer
+import com.getconfig.Utils.DirUtils
 import com.getconfig.Utils.TomlUtils
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
@@ -19,19 +19,18 @@ import java.nio.file.Paths
 class LocalAgentExecutor implements AgentExecutor {
     String platform
     TestServer server
-    List<TestMetric> testMetrics
     AgentConfigWrapper wrapper
 
     String gconfExe
     String gconfConfigDir
     String currentLogDir
     String tlsConfigDir
+    String metricLib
     int timeout = 0
 
-    LocalAgentExecutor(String platform, TestServer server, List<TestMetric> testMetrics = null) {
+    LocalAgentExecutor(String platform, TestServer server) {
         this.platform = platform
         this.server = server
-        this.testMetrics = testMetrics
         this.wrapper = AgentWrapperManager.instance.getWrapper(platform)
     }
 
@@ -40,16 +39,31 @@ class LocalAgentExecutor implements AgentExecutor {
         this.gconfConfigDir = env.getAgentConfigDir()
         this.currentLogDir  = env.getCurrentLogDir()
         this.tlsConfigDir   = env.getTlsConfigDir()
+        this.metricLib      = env.getMetricLib()
         this.timeout        = env.getGconfTimeout(this.platform)
     }
 
     String toml() {
-        def config = wrapper.makeServerConfig(this.server, this.testMetrics)
-        return TomlUtils.decode(config)
+        def config = wrapper.makeServerConfig(this.server)
+        StringBuffer tomlText = new StringBuffer()
+        tomlText.append(TomlUtils.decode(config))
+        tomlText.append("\n")
+        tomlText.append(this.getMetricLibsText())
+        return tomlText as String
     }
 
     String label() {
         return wrapper.getLabel()
+    }
+
+    String getMetricLibsText() {
+        def metricFiles = DirUtils.ls(this.metricLib,
+                /^${this.platform}.toml$/, /^${this.platform}__(.+).toml$/)
+        StringBuffer metricText = new StringBuffer()
+        metricFiles.each {metricFile ->
+            metricText.append(metricFile.text)
+        }
+        return metricText as String
     }
 
     String tomlPath() {
@@ -95,9 +109,11 @@ class LocalAgentExecutor implements AgentExecutor {
         log.info "Run ${title}"
         def exec = new CommandExec(this.timeout * 1000)
         new File(this.gconfConfigDir).mkdirs()
-        new File(this.tomlPath()).with {
-            it.text = this.toml()
-        }
+        new File(this.tomlPath()).write(this.toml(), "UTF-8")
+
+//        new File(this.tomlPath()).withWriter('UTF-8') { writer ->
+//            writer << this.toml()
+//        }
         log.debug "agent command args : ${this.args()}"
         def rc = exec.run(this.gconfExe, this.args() as String[])
         long elapse = System.currentTimeMillis() - start

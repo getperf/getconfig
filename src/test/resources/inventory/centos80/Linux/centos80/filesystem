@@ -1,15 +1,7 @@
-
-#
-# /etc/fstab
-# Created by anaconda on Sat Jan 30 15:12:18 2016
-#
-# Accessible filesystems, by reference, are maintained under '/dev/disk'
-# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
-#
-/dev/mapper/vg_ostrich-lv_root /                       ext4    defaults        1 1
-UUID=a8c2e1f6-fd5e-4e4a-b44e-867e411ca318 /boot                   ext4    defaults        1 2
-/dev/mapper/vg_ostrich-lv_swap swap                    swap    defaults        0 0
-tmpfs                   /dev/shm                tmpfs   defaults        0 0
-devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
-sysfs                   /sys                    sysfs   defaults        0 0
-proc                    /proc                   proc    defaults        0 0
+NAME                 MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                    8:0    0   50G  0 disk 
+|-sda1                 8:1    0    1G  0 part /boot
+`-sda2                 8:2    0   49G  0 part 
+  |-cl_centos80-root 253:0    0 46.9G  0 lvm  /
+  `-cl_centos80-swap 253:1    0  2.1G  0 lvm  [SWAP]
+sr0                   11:0    1 1024M  0 rom  

@@ -1,1 +1,1 @@
-ro root=/dev/mapper/vg_ostrich-lv_root rd_NO_LUKS rd_LVM_LV=vg_ostrich/lv_swap rd_NO_MD crashkernel=129M@48M  KEYBOARDTYPE=pc KEYTABLE=jp106 rd_LVM_LV=vg_ostrich/lv_root LANG=ja_JP.UTF-8 rd_NO_DM rhgb quiet
+BOOT_IMAGE=(hd0,msdos1)/vmlinuz-4.18.0-147.el8.x86_64 root=/dev/mapper/cl_centos80-root ro crashkernel=auto resume=/dev/mapper/cl_centos80-swap rd.lvm.lv=cl_centos80/root rd.lvm.lv=cl_centos80/swap rhgb quiet

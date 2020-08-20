@@ -19,7 +19,6 @@ class Collector implements Controller {
     protected List<TestServer> testServers
     private Map<String,TestServerGroup> testServerGroups
     String filterServer
-    String agentWrapperLib
 
     Collector(List<TestServer> testServers) {
         this.testServers = testServers
@@ -28,8 +27,6 @@ class Collector implements Controller {
 
     void setEnvironment(ConfigEnv env) {
         this.filterServer = env.getKeywordServer()
-        this.agentWrapperLib = getAgentWrapperLib()
-        AgentWrapperManager.instance.init(this.agentWrapperLib)
     }
 
     Map<String, TestServerGroup> getTestServerGroups() {

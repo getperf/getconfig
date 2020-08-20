@@ -1,0 +1,27 @@
+[[metrics]]
+
+id = "hostname_fqdn"
+name = "FQDN名"
+category = "OSリリース"
+level = 0
+deviceFlag = false
+comment = "hostname --fqdn コマンドで、FQDN名を検索"
+text = '''
+hostname --fqdn 2>/dev/null
+if [ $? != 0 ]; then
+    echo 'Not Found'
+fi
+'''
+
+[[metrics]]
+
+id = "uname"
+name = "OSカーネル"
+category = "OSリリース"
+level = 0
+deviceFlag = false
+comment = "uname -a コマンドで、OSカーネルバージョンを検索"
+text = '''
+uname -a
+'''
+

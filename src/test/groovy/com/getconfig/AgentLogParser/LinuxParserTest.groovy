@@ -18,7 +18,7 @@ class LinuxParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
-        t.get().value == "ostrich"
+        t.get().value == "centos80"
     }
 
     def "hostname_fqdn"() {

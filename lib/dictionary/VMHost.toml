@@ -1,191 +1,233 @@
-platform = "VMHost"
+# Additional metrics list of VMWare Managed Object. 
+# 
+# Notice: 
+#   The results of all added metrics are saved in the "all.json".
+#
+# Reference : https://code.vmware.com/apis/42/vsphere/doc/vim.HostSystem.html
+# 
+# [[metrics]]
+# 
+# id = "config"   # object key
+# level = 0       # command level [0-2]
+# text = "config" # If not defined, use id instead
 
 [[metrics]]
 
-metricId = "Version"
-metricName = "バージョン"
+id = "summary"
+
+[[metrics]]
+
+id = "capability"
+
+[[metrics]]
+
+id = "datastore"
+
+[[metrics]]
+
+id = "configManager"
+
+[[metrics]]
+
+id = "hardware"
+
+[[metrics]]
+
+id = "licensableResource"
+
+[[metrics]]
+
+id = "network"
+
+# Metric definitions used in the check sheet report. 
+# Get value from VMWare Managed Object result
+
+[[metrics]]
+
+id = "Version"
+name = "バージョン"
 category = "システム情報"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "バージョン"
 
 [[metrics]]
 
-metricId = "Build"
-metricName = "ビルド"
+id = "Build"
+name = "ビルド"
 category = "システム情報"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "ビルド"
 
 [[metrics]]
 
-metricId = "LicenseKey"
-metricName = "ライセンス"
+id = "LicenseKey"
+name = "ライセンス"
 category = "システム情報"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "ライセンス"
 
 [[metrics]]
 
-metricId = "VMHost"
-metricName = "ホスト状態"
+id = "VMHost"
+name = "ホスト状態"
 category = "システム情報"
-commandLevel = 0
+level = -1
 deviceFlag = false
 comment = "vCenter情報のホスト情報を検索します"
 
 [[metrics]]
 
-metricId = "FirewallDefaultPolicy"
-metricName = "ファイヤーウォールポリシー"
+id = "FirewallDefaultPolicy"
+name = "ファイヤーウォールポリシー"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "ファイヤーウォールポリシー"
 
 [[metrics]]
 
-metricId = "HyperthreadingActive"
-metricName = "ハイパースレッディング"
+id = "HyperthreadingActive"
+name = "ハイパースレッディング"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "ハイパースレッディング"
 
 [[metrics]]
 
-metricId = "TimeZone"
-metricName = "タイムゾーン"
+id = "TimeZone"
+name = "タイムゾーン"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "タイムゾーン"
 
 [[metrics]]
 
-metricId = "Parent"
-metricName = "クラスター"
+id = "Parent"
+name = "クラスター"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "クラスター"
 
 [[metrics]]
 
-metricId = "PowerState"
-metricName = "電源状態"
+id = "PowerState"
+name = "電源状態"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "電源状態"
 
 [[metrics]]
 
-metricId = "VMSwapfilePolicy"
-metricName = "スワップポリシー"
+id = "VMSwapfilePolicy"
+name = "スワップポリシー"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "スワップポリシー"
 
 [[metrics]]
 
-metricId = "Manufacturer"
-metricName = "メーカー"
+id = "Manufacturer"
+name = "メーカー"
 category = "OS設定"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "メーカー"
 
 [[metrics]]
 
-metricId = "NumCpu"
-metricName = "CPUコア数"
+id = "NumCpu"
+name = "CPUコア数"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUコア数"
 
 [[metrics]]
 
-metricId = "CpuTotalMhz"
-metricName = "CPUクロック"
+id = "CpuTotalMhz"
+name = "CPUクロック"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "CPUクロック"
 
 [[metrics]]
 
-metricId = "ProcessorType"
-metricName = "プロセッサタイプ"
+id = "ProcessorType"
+name = "プロセッサタイプ"
 category = "CPU"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "プロセッサタイプ"
 
 [[metrics]]
 
-metricId = "MemoryTotalGB"
-metricName = "メモリ容量"
+id = "MemoryTotalGB"
+name = "メモリ容量"
 category = "メモリ"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "メモリ容量"
 
 [[metrics]]
 
-metricId = "NetworkInfo"
-metricName = "ネットワーク"
+id = "NetworkInfo"
+name = "ネットワーク"
 category = "ネットワーク"
-commandLevel = -1
+level = -1
 deviceFlag = false
 comment = "ネットワーク"
 
 [[metrics]]
 
-metricId = "NetworkAdapter"
-metricName = "ネットワーク構成"
+id = "NetworkAdapter"
+name = "ネットワーク構成"
 category = "ネットワーク"
-commandLevel = 0
+level = -1
 deviceFlag = true
 comment = "ネットワーク構成数を検索し、別シートに詳細情報を登録します"
 
 [[metrics]]
 
-metricId = "DiskPartition"
-metricName = "ディスクパーティション"
+id = "DiskPartition"
+name = "ディスクパーティション"
 category = "ストレージ"
-commandLevel = 0
+level = -1
 deviceFlag = true
 comment = "ディスクパーティション数を検索し、別シートに詳細情報を登録します"
 
 [[metrics]]
 
-metricId = "Datastore"
-metricName = "データストア"
+id = "Datastore"
+name = "データストア"
 category = "ストレージ"
-commandLevel = 0
+level = -1
 deviceFlag = true
 comment = "データストア数を検索し、別シートに詳細情報を登録します"
 
 [[metrics]]
 
-metricId = "Disk"
-metricName = "ディスク構成"
+id = "Disk"
+name = "ディスク構成"
 category = "ストレージ"
-commandLevel = 0
+level = -1
 deviceFlag = true
 comment = "ディスク構成数を検索し、別シートに詳細情報を登録します"
 
 [[metrics]]
 
-metricId = "Account"
-metricName = "アカウント情報"
+id = "Account"
+name = "アカウント情報"
 category = "ユーザ"
-commandLevel = 0
+level = -1
 deviceFlag = true
 comment = "アカウント数を検索し、別シートに詳細情報を登録します"
 

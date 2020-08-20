@@ -9,10 +9,10 @@ import groovy.transform.ToString
 @ToString(includePackage = false)
 class TestMetric {
     String platform
-    String metricId
-    String metricName
+    String id
+    String name
     String category
-    int commandLevel
+    int level
     Boolean deviceFlag
     String comment
     String text
@@ -22,10 +22,10 @@ class TestMetric {
     TestMetric(String platform, String id, String name, String category,
                int level, boolean deviceFlag, String comment ) {
         this.platform = platform
-        this.metricId = id
-        this.metricName = name
+        this.id = id
+        this.name = name
         this.category = category
-        this.commandLevel = level
+        this.level = level
         this.deviceFlag = deviceFlag
         this.comment = comment
     }
