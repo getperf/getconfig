@@ -1,0 +1,10 @@
+﻿
+
+    Hive: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa
+
+
+Name                           Property                                                                                
+----                           --------                                                                                
+FIPSAlgorithmPolicy            Enabled : 0                                                                             
+
+

@@ -1,5 +1,11 @@
 package com.getconfig.Testing
 
+import java.nio.file.Paths
+import groovy.transform.CompileStatic
+import groovy.transform.ToString
+import groovy.transform.TypeChecked
+import groovy.util.logging.Slf4j
+import org.apache.commons.math3.analysis.function.Add
 import com.getconfig.AgentLogParser.AgentLog
 import com.getconfig.Model.AddedTestMetric
 import com.getconfig.Model.PortListGroup
@@ -7,11 +13,6 @@ import com.getconfig.Model.TestMetric
 import com.getconfig.Model.TestResult
 import com.getconfig.Model.TestResultGroup
 import com.getconfig.Model.TestResultLine
-import groovy.transform.CompileStatic
-import groovy.transform.ToString
-import groovy.transform.TypeChecked
-import groovy.util.logging.Slf4j
-import org.apache.commons.math3.analysis.function.Add
 
 @TypeChecked
 @CompileStatic
@@ -53,6 +54,26 @@ class TestUtil {
                 closure.call(line)
             }
         }
+    }
+
+    def readOtherLogLine = { String metricFile, String charset = 'UTF-8', 
+                             Closure closure ->
+        String parentDir  = new File(this.logPath).getAbsoluteFile().getParent()
+        String otherLogPath = Paths.get(parentDir, metricFile)
+        new File(otherLogPath).withReader(charset) { reader ->
+            def line
+            while ((line = reader.readLine()) != null) {
+                closure.call(line)
+            }
+        }
+    }
+
+    String readAll(String charset = 'UTF-8') {
+        return new File(this.logPath).getText(charset)
+    }
+
+    void setMetric(String metric, Object value) {
+        TestResultRegister.setMetric(this, metric, value)
     }
 
     void results(String value) {

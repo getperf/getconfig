@@ -477,7 +477,7 @@ deviceFlag = true
 comment = "Get-NetConnectionProfile コマンドで、ネットワークプロファイル検索。0:パブリック,1:プライベート,2:ドメイン認証"
 type = "Cmdlet"
 text = '''
-Get-NetConnectionProfile
+Get-NetConnectionProfile | FL
 '''
 
 [[metrics]]
@@ -577,6 +577,19 @@ $result | Format-List
 
 [[metrics]]
 
+id = "whoami"
+name = "whoami情報"
+category = "ユーザ"
+level = 0
+deviceFlag = false
+comment = "whoami コマンドから、アカウント情報を検索"
+type = "Cmd"
+text = '''
+whoami /user
+'''
+
+[[metrics]]
+
 id = "etc_hosts"
 name = "hostsファイル"
 category = "ホスト"
@@ -585,7 +598,7 @@ deviceFlag = true
 comment = "{win_dir}\\system32\\drivers\\etc\\hosts からホストリスト検索"
 type = "Cmdlet"
 text = '''
-Get-Content '$($env:windir)\system32\Drivers\etc\hosts'
+Get-Content 'C:\Windows\system32\Drivers\etc\hosts'
 '''
 
 [[metrics]]
@@ -599,6 +612,19 @@ comment = "wmic qfeコマンドで、パッチリストを検索"
 type = "Cmd"
 text = '''
 wmic qfe
+'''
+
+[[metrics]]
+
+id = "net_accounts"
+name = "アカウント情報"
+category = "ユーザ"
+level = 2
+deviceFlag = false
+comment = "net accounts コマンドから、アカウント情報を検索"
+type = "Cmd"
+text = '''
+net accounts
 '''
 
 [[metrics]]

@@ -1,0 +1,187 @@
+﻿
+
+PSComputerName               : WIN-JKSSMTI1TM6
+Status                       : 
+Availability                 : 
+DeviceID                     : A:
+StatusInfo                   : 
+__GENUS                      : 2
+__CLASS                      : Win32_LogicalDisk
+__SUPERCLASS                 : CIM_LogicalDisk
+__DYNASTY                    : CIM_ManagedSystemElement
+__RELPATH                    : Win32_LogicalDisk.DeviceID="A:"
+__PROPERTY_COUNT             : 40
+__DERIVATION                 : {CIM_LogicalDisk, CIM_StorageExtent, CIM_LogicalDevice, CIM_LogicalElement...}
+__SERVER                     : WIN-JKSSMTI1TM6
+__NAMESPACE                  : root\cimv2
+__PATH                       : \\WIN-JKSSMTI1TM6\root\cimv2:Win32_LogicalDisk.DeviceID="A:"
+Access                       : 
+BlockSize                    : 
+Caption                      : A:
+Compressed                   : 
+ConfigManagerErrorCode       : 
+ConfigManagerUserConfig      : 
+CreationClassName            : Win32_LogicalDisk
+Description                  : 3 1/2 インチ フロッピー ドライブ
+DriveType                    : 2
+ErrorCleared                 : 
+ErrorDescription             : 
+ErrorMethodology             : 
+FileSystem                   : 
+FreeSpace                    : 
+InstallDate                  : 
+LastErrorCode                : 
+MaximumComponentLength       : 
+MediaType                    : 5
+Name                         : A:
+NumberOfBlocks               : 
+PNPDeviceID                  : 
+PowerManagementCapabilities  : 
+PowerManagementSupported     : 
+ProviderName                 : 
+Purpose                      : 
+QuotasDisabled               : 
+QuotasIncomplete             : 
+QuotasRebuilding             : 
+Size                         : 
+SupportsDiskQuotas           : 
+SupportsFileBasedCompression : 
+SystemCreationClassName      : Win32_ComputerSystem
+SystemName                   : WIN-JKSSMTI1TM6
+VolumeDirty                  : 
+VolumeName                   : 
+VolumeSerialNumber           : 
+Scope                        : System.Management.ManagementScope
+Path                         : \\WIN-JKSSMTI1TM6\root\cimv2:Win32_LogicalDisk.DeviceID="A:"
+Options                      : System.Management.ObjectGetOptions
+ClassPath                    : \\WIN-JKSSMTI1TM6\root\cimv2:Win32_LogicalDisk
+Properties                   : {Access, Availability, BlockSize, Caption...}
+SystemProperties             : {__GENUS, __CLASS, __SUPERCLASS, __DYNASTY...}
+Qualifiers                   : {dynamic, Locale, provider, UUID}
+Site                         : 
+Container                    : 
+
+PSComputerName               : WIN-JKSSMTI1TM6
+Status                       : 
+Availability                 : 
+DeviceID                     : C:
+StatusInfo                   : 
+__GENUS                      : 2
+__CLASS                      : Win32_LogicalDisk
+__SUPERCLASS                 : CIM_LogicalDisk
+__DYNASTY                    : CIM_ManagedSystemElement
+__RELPATH                    : Win32_LogicalDisk.DeviceID="C:"
+__PROPERTY_COUNT             : 40
+__DERIVATION                 : {CIM_LogicalDisk, CIM_StorageExtent, CIM_LogicalDevice, CIM_LogicalElement...}
+__SERVER                     : WIN-JKSSMTI1TM6
+__NAMESPACE                  : root\cimv2
+__PATH                       : \\WIN-JKSSMTI1TM6\root\cimv2:Win32_LogicalDisk.DeviceID="C:"
+Access                       : 0
+BlockSize                    : 
+Caption                      : C:
+Compressed                   : False
+ConfigManagerErrorCode       : 
+ConfigManagerUserConfig      : 
+CreationClassName            : Win32_LogicalDisk
+Description                  : ローカル固定ディスク
+DriveType                    : 3
+ErrorCleared                 : 
+ErrorDescription             : 
+ErrorMethodology             : 
+FileSystem                   : NTFS
+FreeSpace                    : 13151772672
+InstallDate                  : 
+LastErrorCode                : 
+MaximumComponentLength       : 255
+MediaType                    : 12
+Name                         : C:
+NumberOfBlocks               : 
+PNPDeviceID                  : 
+PowerManagementCapabilities  : 
+PowerManagementSupported     : 
+ProviderName                 : 
+Purpose                      : 
+QuotasDisabled               : True
+QuotasIncomplete             : False
+QuotasRebuilding             : False
+Size                         : 53160701952
+SupportsDiskQuotas           : True
+SupportsFileBasedCompression : True
+SystemCreationClassName      : Win32_ComputerSystem
+SystemName                   : WIN-JKSSMTI1TM6
+VolumeDirty                  : False
+VolumeName                   : 
+VolumeSerialNumber           : 74A26D84
+Scope                        : System.Management.ManagementScope
+Path                         : \\WIN-JKSSMTI1TM6\root\cimv2:Win32_LogicalDisk.DeviceID="C:"
+Options                      : System.Management.ObjectGetOptions
+ClassPath                    : \\WIN-JKSSMTI1TM6\root\cimv2:Win32_LogicalDisk
+Properties                   : {Access, Availability, BlockSize, Caption...}
+SystemProperties             : {__GENUS, __CLASS, __SUPERCLASS, __DYNASTY...}
+Qualifiers                   : {dynamic, Locale, provider, UUID}
+Site                         : 
+Container                    : 
+
+PSComputerName               : WIN-JKSSMTI1TM6
+Status                       : 
+Availability                 : 
+DeviceID                     : D:
+StatusInfo                   : 
+__GENUS                      : 2
+__CLASS                      : Win32_LogicalDisk
+__SUPERCLASS                 : CIM_LogicalDisk
+__DYNASTY                    : CIM_ManagedSystemElement
+__RELPATH                    : Win32_LogicalDisk.DeviceID="D:"
+__PROPERTY_COUNT             : 40
+__DERIVATION                 : {CIM_LogicalDisk, CIM_StorageExtent, CIM_LogicalDevice, CIM_LogicalElement...}
+__SERVER                     : WIN-JKSSMTI1TM6
+__NAMESPACE                  : root\cimv2
+__PATH                       : \\WIN-JKSSMTI1TM6\root\cimv2:Win32_LogicalDisk.DeviceID="D:"
+Access                       : 
+BlockSize                    : 
+Caption                      : D:
+Compressed                   : 
+ConfigManagerErrorCode       : 
+ConfigManagerUserConfig      : 
+CreationClassName            : Win32_LogicalDisk
+Description                  : CD-ROM ディスク
+DriveType                    : 5
+ErrorCleared                 : 
+ErrorDescription             : 
+ErrorMethodology             : 
+FileSystem                   : 
+FreeSpace                    : 
+InstallDate                  : 
+LastErrorCode                : 
+MaximumComponentLength       : 
+MediaType                    : 11
+Name                         : D:
+NumberOfBlocks               : 
+PNPDeviceID                  : 
+PowerManagementCapabilities  : 
+PowerManagementSupported     : 
+ProviderName                 : 
+Purpose                      : 
+QuotasDisabled               : 
+QuotasIncomplete             : 
+QuotasRebuilding             : 
+Size                         : 
+SupportsDiskQuotas           : 
+SupportsFileBasedCompression : 
+SystemCreationClassName      : Win32_ComputerSystem
+SystemName                   : WIN-JKSSMTI1TM6
+VolumeDirty                  : 
+VolumeName                   : 
+VolumeSerialNumber           : 
+Scope                        : System.Management.ManagementScope
+Path                         : \\WIN-JKSSMTI1TM6\root\cimv2:Win32_LogicalDisk.DeviceID="D:"
+Options                      : System.Management.ObjectGetOptions
+ClassPath                    : \\WIN-JKSSMTI1TM6\root\cimv2:Win32_LogicalDisk
+Properties                   : {Access, Availability, BlockSize, Caption...}
+SystemProperties             : {__GENUS, __CLASS, __SUPERCLASS, __DYNASTY...}
+Qualifiers                   : {dynamic, Locale, provider, UUID}
+Site                         : 
+Container                    : 
+
+
+

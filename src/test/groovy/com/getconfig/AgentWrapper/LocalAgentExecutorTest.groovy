@@ -5,12 +5,14 @@ import com.getconfig.Model.*
 import com.getconfig.Utils.TomlUtils
 import spock.lang.Specification
 
-// gradle --daemon test --tests "GconfExecuterTest.初期化"
+// gradle --daemon test --tests "GconfExecuterTest.エージェントコマンド実行"
 
 class LocalAgentExecutorTest extends Specification {
     TestServer server = new TestServer(serverName:"centos80",
             domain:"Linux",
-            ip:"192.168.10.1",
+            ip:"127.0.0.1",
+            user:"psadmin",
+            password:"psadmin",
             accountId:"Account01")
 
     def "初期化"() {

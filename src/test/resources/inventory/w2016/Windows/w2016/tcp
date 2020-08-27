@@ -1,0 +1,29 @@
+﻿
+
+DataBasePath                 : C:\Windows\System32\drivers\etc
+Domain                       : 
+ForwardBroadcasts            : 0
+ICSDomain                    : mshome.net
+IPEnableRouter               : 0
+NameServer                   : 
+SyncDomainWithMembership     : 1
+NV Hostname                  : WIN-JKSSMTI1TM6
+Hostname                     : WIN-JKSSMTI1TM6
+ReservedPorts                : {1433-1434}
+KeepAliveTime                : 7200000
+KeepAliveInterval            : 1000
+SearchList                   : 
+UseDomainNameDevolution      : 1
+EnableICMPRedirect           : 1
+DeadGWDetectDefault          : 1
+DontAddDefaultGatewayDefault : 0
+PSPath                       : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
+                               \Tcpip\Parameters
+PSParentPath                 : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
+                               \Tcpip
+PSChildName                  : Parameters
+PSDrive                      : HKLM
+PSProvider                   : Microsoft.PowerShell.Core\Registry
+
+
+

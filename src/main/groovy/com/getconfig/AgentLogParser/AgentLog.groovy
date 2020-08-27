@@ -24,6 +24,8 @@ class AgentLog {
 
     AgentLog parse() {
         String[] paths = new File(this.path).toPath().collect()*.toString()
+        println this.path
+        println paths
         this.agentLogMode = AgentLogMode.UNKNOWN
         this.metricFile = (paths.length>0)?paths[(paths.length-1)]:null;
         if (!this.metricFile) {

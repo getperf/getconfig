@@ -1,0 +1,1192 @@
+﻿
+
+Name                  : AllJoyn-Router-In-TCP
+DisplayName           : AllJoyn ルーター (TCP 受信)
+Description           : AllJoyn ルーターのトラフィックの受信規則です [TCP]
+DisplayGroup          : AllJoyn ルーター
+Group                 : @FirewallAPI.dll,-37002
+Enabled               : True
+Profile               : Domain, Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : AllJoyn-Router-In-UDP
+DisplayName           : AllJoyn ルーター (UDP 受信)
+Description           : AllJoyn ルーター トラフィックの受信規則です [UDP]
+DisplayGroup          : AllJoyn ルーター
+Group                 : @FirewallAPI.dll,-37002
+Enabled               : True
+Profile               : Domain, Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : WINRM-HTTP-In-TCP
+DisplayName           : Windows リモート管理 (HTTP 受信)
+Description           : WS-Management による Windows リモート管理のための受信規則です。[TCP 5985]
+DisplayGroup          : Windows リモート管理
+Group                 : @FirewallAPI.dll,-30267
+Enabled               : True
+Profile               : Domain, Private
+Platform              : {}
+Direction             : Inbound
+Action                : Block
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : WINRM-HTTP-In-TCP-PUBLIC
+DisplayName           : Windows リモート管理 (HTTP 受信)
+Description           : WS-Management による Windows リモート管理のための受信規則です。[TCP 5985]
+DisplayGroup          : Windows リモート管理
+Group                 : @FirewallAPI.dll,-30267
+Enabled               : True
+Profile               : Public
+Platform              : {}
+Direction             : Inbound
+Action                : Block
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : RemoteDesktop-UserMode-In-TCP
+DisplayName           : リモート デスクトップ - ユーザー モード (TCP 受信)
+Description           : RDP トラフィックを許可するためのリモート デスクトップ サービスの受信規則です。[TCP 3389]
+DisplayGroup          : リモート デスクトップ
+Group                 : @FirewallAPI.dll,-28752
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : RemoteDesktop-UserMode-In-UDP
+DisplayName           : リモート デスクトップ - ユーザー モード (UDP 受信)
+Description           : RDP トラフィックを許可するためのリモート デスクトップ サービスの受信規則です。[UDP 3389]
+DisplayGroup          : リモート デスクトップ
+Group                 : @FirewallAPI.dll,-28752
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : RemoteDesktop-Shadow-In-TCP
+DisplayName           : リモート デスクトップ - シャドウ (TCP 受信)
+Description           : 既存のリモート デスクトップ セッションのシャドウ処理を許可するリモート デスクトップ サービスの受信規則です。(TCP 受信)
+DisplayGroup          : リモート デスクトップ
+Group                 : @FirewallAPI.dll,-28752
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : DeferToApp
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-DU-In
+DisplayName           : コア ネットワーク - 到達不可能な宛先 (ICMPv6 受信)
+Description           : 到達不可能な宛先のエラー メッセージは、パケットが通過するノードで、輻輳以外の理由でパケットを転送できないときに送信されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Allow
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-PTB-In
+DisplayName           : コア ネットワーク - パケットが大きすぎます (ICMPv6 受信)
+Description           : 「パケットが大きすぎます」というエラー メッセージは、パケットがノードを通過するとき、次のリンクに対してパケットが大きすぎるために転送できない場合に任意のノードから送信されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Allow
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-TE-In
+DisplayName           : コア ネットワーク - 時間超過 (ICMPv6 受信)
+Description           : 時間超過のエラー メッセージは、パケットが通過するノードで、ホップ制限値がパスのいずれかの時点で 0 になるまで減少すると、生成されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Allow
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-PP-In
+DisplayName           : コア ネットワーク - パラメーターの問題 (ICMPv6 受信)
+Description           : パラメーターの問題のエラー メッセージは、パケットが適切に生成されなかったとき、ノードから送信されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Allow
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-NDS-In
+DisplayName           : コア ネットワーク - 近隣探索要請 (ICMPv6 受信)
+Description           : 近隣探索要請は、別のオンリンク IPv6 ノードのリンクレイヤー アドレスを探索するためにノードから送信されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Allow
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-NDA-In
+DisplayName           : コア ネットワーク - 近隣探索アドバタイズ (ICMPv6 受信)
+Description           : 近隣探索アドバタイズのメッセージは、他のノードにリンクレイヤー アドレスの変更を通知するために、または近隣探索要請の応答としてノードから送信されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Allow
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-RA-In
+DisplayName           : コア ネットワーク - ルーター アドバタイズ (ICMPv6 受信)
+Description           : ルーター アドバタイズ メッセージは、ステートレス自動構成を提供するためにルーターから他のノードに送信されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-RS-In
+DisplayName           : コア ネットワーク - ルーター要請 (ICMPv6-受信)
+Description           : ルーター要請メッセージは、ステートレス自動構成を提供するルーターを検索するノードから送信されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-LQ-In
+DisplayName           : コア ネットワーク - マルチキャスト リスナー クエリ (ICMPv6 受信)
+Description           : IPv6 マルチキャスト対応ルーターでは、マルチキャスト リスナー クエリのメッセージを使用して、リンクでマルチキャスト グループ メンバーシップを検索します。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-LR-In
+DisplayName           : コア ネットワーク - マルチキャスト リスナー レポート (ICMPv6 受信)
+Description           : マルチキャスト リスナー レポートのメッセージは、特定のマルチキャスト アドレスでのマルチキャスト トラフィックの受信、またはマルチキャスト リスナー クエリに対する応答のいずれか求める情報
+                        をすぐに報告するため、リスニング ノードで使用されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-LR2-In
+DisplayName           : コア ネットワーク - マルチキャスト リスナー レポート v2 (ICMPv6 受信)
+Description           : マルチキャスト リスナー レポート v2 のメッセージは、特定のマルチキャスト アドレスでのマルチキャスト トラフィックの受信、またはマルチキャスト リスナー クエリに対する応答のいずれか求
+                        める情報をすぐに報告するため、リスニング ノードで使用されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP6-LD-In
+DisplayName           : コア ネットワーク - マルチキャスト リスナー完了 (ICMPv6 受信)
+Description           : マルチキャスト リスナー完了のメッセージは、サブネット上の特定のマルチキャスト アドレスにメンバーがいないことをローカル ルーターに通知します。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-ICMP4-DUFRAG-In
+DisplayName           : コア ネットワーク - 到達不可能な宛先 - 断片化が必要 (ICMPv4 受信)
+Description           : 到達不可能な宛先 - 断片化が必要というエラー メッセージは、パケットが通過するノードで、断片化が必要であるのに "don't fragment bit" が設定されているために転送できない
+                        場合に送信されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-IGMP-In
+DisplayName           : コア ネットワーク - インターネット グループ管理プロトコル (IGMP 受信)
+Description           : ノードで IGMP メッセージが送受信され、マルチキャストキャスト グループの作成、参加、離脱が行われます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-DHCP-In
+DisplayName           : コア ネットワーク - 動的ホスト構成プロトコル (DHCP 受信)
+Description           : ステートフルな自動構成のための DHCP (動的ホスト構成プロトコル) メッセージを許可します。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-DHCPV6-In
+DisplayName           : コア ネットワーク - IPv6 用動的ホスト構成プロトコル (DHCPV6-受信)
+Description           : DHCPV6 (IPv6 用動的ホスト構成プロトコル) メッセージをステートフルおよびステートレス構成に対して許可します。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-Teredo-In
+DisplayName           : コア ネットワーク - Teredo (UDP 受信)
+Description           : Teredo エッジ トラバーサルを許可する受信 UDP 規則です。Teredo エッジ トラバーサルは、IPv6/IPv4 ホストが IPv4 ネットワーク アドレス変換器の後ろにある場合
+                        に、ユニキャスト IPv6 トラフィックにアドレスの割り当てと自動トンネルを提供するテクノロジです。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-IPHTTPS-In
+DisplayName           : コア ネットワーク - IPHTTPS (TCP-受信)
+Description           : IPHTTPS トンネリング テクノロジを許可することによって、HTTP プロキシやファイアウォールを越える接続を提供する受信 TCP 規則です。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : CoreNet-IPv6-In
+DisplayName           : コア ネットワーク - IPv6 (IPv6 受信)
+Description           : ISATAP (Intra-Site Automatic Tunnel Addressing Protocol) および 6to4 トンネリング サービスに対して IPv6 トラフィックを許
+                        可するために必要な受信規則です。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : MDNS-In-UDP
+DisplayName           : mDNS (UDP 受信)
+Description           : mDNS トラフィックの受信規則 [UDP]
+DisplayGroup          : mDNS
+Group                 : @%SystemRoot%\system32\firewallapi.dll,-37302
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {0BCAFD82-6FFD-4B02-A98F-D8A3219B5C58}
+DisplayName           : 職場または学校アカウント
+Description           : 職場または学校アカウント
+DisplayGroup          : 職場または学校アカウント
+Group                 : @{Microsoft.AAD.BrokerPlugin_1000.14393.0.0_neutral_neutral_cw5n1h2txyewy?ms-resource://Microso
+                        ft.AAD.BrokerPlugin/resources/PackageDisplayName}
+Enabled               : True
+Profile               : Domain, Private
+Platform              : {6.2+}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : S-1-5-21-4127652004-385634555-3113667412-500
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {45391DAE-94FF-49BA-8BAA-9501D65E9F2F}
+DisplayName           : ネットワーク探索 (Pub WSD 受信)
+Description           : 機能探索を介してデバイスを検出するためのネットワーク探索の受信規則です。[UDP 3702]
+DisplayGroup          : ネットワーク探索
+Group                 : @FirewallAPI.dll,-32752
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {C16D97AC-CC17-45C8-A4EA-C16681878DFE}
+DisplayName           : ネットワーク探索 (LLMNR UDP 受信)
+Description           : リンク ローカル マルチキャスト名前解決を許可するためのネットワーク探索の受信規則です。[UDP 5355]
+DisplayGroup          : ネットワーク探索
+Group                 : @FirewallAPI.dll,-32752
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {CE718E04-3825-4517-B685-3B81BC1769D9}
+DisplayName           : ネットワーク探索 (WSD 受信)
+Description           : 機能探索を介してデバイスを検出するためのネットワーク探索の受信規則です。[UDP 3702]
+DisplayGroup          : ネットワーク探索
+Group                 : @FirewallAPI.dll,-32752
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {2B19EB59-0657-44DF-8F27-6AA05D88DAA8}
+DisplayName           : ネットワーク探索 (SSDP 受信)
+Description           : Simple Service Discovery Protocol の使用を許可するためのネットワーク探索の受信規則です。[UDP 1900]
+DisplayGroup          : ネットワーク探索
+Group                 : @FirewallAPI.dll,-32752
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {9BBD9DC4-558B-43DA-82FD-C782F4C33575}
+DisplayName           : ネットワーク探索 (WSD イベント受信)
+Description           : 機能探索による WSDAPI イベントを許可するためのネットワーク探索の受信規則です。 [TCP 5357]
+DisplayGroup          : ネットワーク探索
+Group                 : @FirewallAPI.dll,-32752
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {5C5B6AF7-3D22-4253-824D-B93D108F6350}
+DisplayName           : ネットワーク探索 (WSD EventsSecure 受信)
+Description           : 機能探索を介してセキュリティで保護された WSDAPI イベントを許可するためのネットワーク探索の受信規則です。 [TCP 5358]
+DisplayGroup          : ネットワーク探索
+Group                 : @FirewallAPI.dll,-32752
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {98DA3964-18C1-4417-95C3-EA81D03CA1A3}
+DisplayName           : ネットワーク探索 (NB データグラム受信)
+Description           : NetBios データグラムの送受信を許可するためのネットワーク探索の受信規則です。[UDP 138]
+DisplayGroup          : ネットワーク探索
+Group                 : @FirewallAPI.dll,-32752
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {F56ADD91-D0E3-4470-B59E-872D0E9D0B47}
+DisplayName           : ネットワーク探索 (NB 名受信)
+Description           : NetBIOS 名前解決を許可するためのネットワーク探索の受信規則です。[UDP 137]
+DisplayGroup          : ネットワーク探索
+Group                 : @FirewallAPI.dll,-32752
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {D1914348-687C-46F5-8275-8B0CBBB276A9}
+DisplayName           : ネットワーク探索 (UPnP 受信)
+Description           : ユニバーサル プラグ アンド プレイの使用を許可するためのネットワーク探索の受信規則です。[TCP 2869]
+DisplayGroup          : ネットワーク探索
+Group                 : @FirewallAPI.dll,-32752
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : DIAL-Protocol-Server-In-TCP-NoScope
+DisplayName           : DIAL プロトコル サーバー (HTTP 受信)
+Description           : HTTP を使用したアプリのリモート制御を許可するための DIAL プロトコル サーバーの受信規則です。[TCP 10247]
+DisplayGroup          : DIAL プロトコル サーバー
+Group                 : @FirewallAPI.dll,-37101
+Enabled               : True
+Profile               : Domain
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : DIAL-Protocol-Server-HTTPSTR-In-TCP-LocalSubnetScope
+DisplayName           : DIAL プロトコル サーバー (HTTP 受信)
+Description           : HTTP を使用したアプリのリモート制御を許可するための DIAL プロトコル サーバーの受信規則です。[TCP 10247]
+DisplayGroup          : DIAL プロトコル サーバー
+Group                 : @FirewallAPI.dll,-37101
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-HTTPSTR-In-TCP-NoScope
+DisplayName           : デバイス キャスト ストリーミング サーバー (HTTP ストリーミング受信)
+Description           : HTTP を使用したストリーミングを許可するためのデバイス キャスト サーバーの受信規則です。[TCP 10246]
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Domain
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-HTTPSTR-In-TCP-LocalSubnetScope
+DisplayName           : デバイス キャスト ストリーミング サーバー (HTTP ストリーミング受信)
+Description           : HTTP を使用したストリーミングを許可するためのデバイス キャスト サーバーの受信規則です。[TCP 10246]
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-HTTPSTR-In-TCP-PlayToScope
+DisplayName           : デバイス キャスト ストリーミング サーバー (HTTP ストリーミング受信)
+Description           : HTTP を使用したストリーミングを許可するためのデバイス キャスト サーバーの受信規則です。[TCP 10246]
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Public
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-In-UDP-NoScope
+DisplayName           : デバイス キャスト ストリーミング サーバー (RTCP ストリーミング受信)
+Description           : RTSP および RTP を使用したストリーミングを許可するためのデバイス キャスト サーバーの受信規則です。[UDP]
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Domain
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-In-UDP-LocalSubnetScope
+DisplayName           : デバイス キャスト ストリーミング サーバー (RTCP ストリーミング受信)
+Description           : RTSP および RTP を使用したストリーミングを許可するためのデバイス キャスト サーバーの受信規則です。[UDP]
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-In-UDP-PlayToScope
+DisplayName           : デバイス キャスト ストリーミング サーバー (RTCP ストリーミング受信)
+Description           : RTSP および RTP を使用したストリーミングを許可するためのデバイス キャスト サーバーの受信規則です。[UDP]
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Public
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-In-RTSP-NoScope
+DisplayName           : デバイス キャスト ストリーミング サーバー (RTSP ストリーミング受信)
+Description           : RTSP および RTP を使用したストリーミングを許可するためのデバイス キャスト サーバーの受信規則です。[TCP 23554、23555、23556]
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Domain
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-In-RTSP-LocalSubnetScope
+DisplayName           : デバイス キャスト ストリーミング サーバー (RTSP ストリーミング受信)
+Description           : RTSP および RTP を使用したストリーミングを許可するためのデバイス キャスト サーバーの受信規則です。[TCP 23554、23555、23556]
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Private
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-In-RTSP-PlayToScope
+DisplayName           : デバイス キャスト ストリーミング サーバー (RTSP ストリーミング受信)
+Description           : RTSP および RTP を使用したストリーミングを許可するためのデバイス キャスト サーバーの受信規則です。[TCP 23554、23555、23556]
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Public
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-SSDP-Discovery-PlayToScope
+DisplayName           : デバイス キャスト SSDP 探索 (UDP 受信)
+Description           : SSDP によるデバイス キャスト ターゲットの探索を許可する受信規則
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Public
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-UPnP-Events-PlayToScope
+DisplayName           : デバイス キャスト UPnP イベント (TCP 受信)
+Description           : デバイス キャスト ターゲットからの UPnP イベントの受信を許可する受信規則
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Public
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-QWave-In-UDP-PlayToScope
+DisplayName           : デバイス キャスト機能 (qWave UDP 受信)
+Description           : 高品質な Windows オーディオ ビデオ エクスペリエンス サービスの使用を許可するためのデバイス キャスト機能の受信規則です。[UDP 2177]
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Private, Public
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : PlayTo-QWave-In-TCP-PlayToScope
+DisplayName           : デバイス キャスト機能 (qWave TCP 受信)
+Description           : 高品質な Windows オーディオ ビデオ エクスペリエンス サービスの使用を許可するためのデバイス キャスト機能の受信規則です。[TCP 2177]
+DisplayGroup          : デバイス キャスト機能
+Group                 : @FirewallAPI.dll,-36001
+Enabled               : True
+Profile               : Private, Public
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {721F014B-EE57-46C2-9890-51C9B5C8FE6E}
+DisplayName           : Cortana
+Description           : WebとWindowsを検索
+DisplayGroup          : Cortana
+Group                 : @{Microsoft.Windows.Cortana_1.7.0.14393_neutral_neutral_cw5n1h2txyewy?ms-resource://Microsoft.W
+                        indows.Cortana/resources/PackageDisplayName}
+Enabled               : True
+Profile               : Domain, Private, Public
+Platform              : {6.2+}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Allow
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : S-1-5-21-4127652004-385634555-3113667412-500
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {CF207CF4-3E70-48B7-977B-5AF19B461908}
+DisplayName           : アカウント
+Description           : アカウント
+DisplayGroup          : アカウント
+Group                 : @{Microsoft.Windows.CloudExperienceHost_10.0.14393.1066_neutral_neutral_cw5n1h2txyewy?ms-resour
+                        ce://Microsoft.Windows.CloudExperienceHost/resources/appDescription}
+Enabled               : True
+Profile               : Domain, Private
+Platform              : {6.2+}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : S-1-5-21-4127652004-385634555-3113667412-500
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {88111009-BF30-426D-AE5B-FA31D88B3B6B}
+DisplayName           : Jenkins
+Description           : 
+DisplayGroup          : 
+Group                 : 
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Allow
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : IIS-WebServerRole-HTTP-In-TCP
+DisplayName           : World Wide Web サービス (HTTP トラフィック)
+Description           : インターネット インフォメーション サービス (IIS) の HTTP トラフィックを許可するための受信規則 [TCP 80]
+DisplayGroup          : World Wide Web サービス (HTTP)
+Group                 : @%windir%\system32\inetsrv\iisres.dll,-30501
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : IIS-WebServerRole-HTTPS-In-TCP
+DisplayName           : World Wide Web サービス (HTTPS トラフィック)
+Description           : インターネット インフォメーション サービス (IIS) の HTTP トラフィックを許可するための受信規則 [TCP 443]
+DisplayGroup          : セキュア World Wide Web サービス (HTTPS)
+Group                 : @%windir%\system32\inetsrv\iisres.dll,-30503
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {A9F2F8D9-63AD-45E5-87D6-668A4B52AD54}
+DisplayName           : Google Chrome（mDNS インバウンド）
+Description           : mDNS トラフィックを許可する Google Chrome のインバウンド ルールです。
+DisplayGroup          : Google Chrome
+Group                 : Google Chrome
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+Name                  : {B4FFF433-21A4-46CF-ADE3-843C2FCD2F15}
+DisplayName           : コア ネットワーク - Teredo (ICMPv6 受信)
+Description           : エコー要求のメッセージは、他のノードに対する ping 要求として送信されます。
+DisplayGroup          : コア ネットワーク
+Group                 : @FirewallAPI.dll,-25000
+Enabled               : True
+Profile               : Any
+Platform              : {}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Block
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : 
+PrimaryStatus         : OK
+Status                : 規則は、ストアから正常に解析されました。 (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+
+

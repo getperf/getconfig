@@ -1,0 +1,24 @@
+Get-NetConnectionProfile : プロバイダーによる読み込みエラーです 
+発生場所 C:\cleansing_data\import\gcon\log\get_windows_inventory.ps1:139 文字:32
++ Invoke-Command  -ScriptBlock { Get-NetConnectionProfile
++                                ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (MSFT_NetConnectionProfile:root/StandardCi...nnectionProfile) [Get-NetConn 
+   ectionProfile], CimException
+    + FullyQualifiedErrorId : HRESULT 0x80041013,Get-NetConnectionProfile
+ 
+Get-Content : ドライブが見つかりません。名前 '$($env' のドライブが存在しません。
+発生場所 C:\cleansing_data\import\gcon\log\get_windows_inventory.ps1:196 文字:32
++ ... ScriptBlock { Get-Content '$($env:windir)\system32\Drivers\etc\hosts'
++                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: ($($env:String) [Get-Content], DriveNotFoundException
+    + FullyQualifiedErrorId : DriveNotFound,Microsoft.PowerShell.Commands.GetContentCommand
+ 
+Get-WindowsFeature : 用語 'Get-WindowsFeature' は、コマンドレット、関数、スクリプト ファイル、または操作可能なプログラ
+ムの名前として認識されません。名前が正しく記述されていることを確認し、パスが含まれている場合はそのパスが正しいことを確
+認してから、再試行してください。
+発生場所 C:\cleansing_data\import\gcon\log\get_windows_inventory.ps1:221 文字:32
++ Invoke-Command  -ScriptBlock { Get-WindowsFeature | ?{$_.InstallState ...
++                                ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-WindowsFeature:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 

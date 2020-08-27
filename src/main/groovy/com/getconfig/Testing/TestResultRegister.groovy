@@ -26,6 +26,11 @@ class TestResultRegister {
         println "SET ${values}"
     }
 
+    static void setMetric(TestUtil t, String metric, Object value) {
+        t.testResultGroup.setValue(t.platform, metric, value)
+        println "SET ${metric},${value}"
+    }
+
     static void error(TestUtil t, String s) {
         t.testResultGroup.setError(t.platform, t.metricFile, s)
         println "ERR ${s}"
@@ -40,5 +45,6 @@ class TestResultRegister {
                 new AddedTestMetric(t.platform, metric, t.metricFile, description)
         t.addedTestMetrics.put(metric, addedTestMetric)
         t.testResultGroup.setValue(t.platform, metric, value, t.metricFile)
+        println "SET ${metric},${value}"
     }
 }

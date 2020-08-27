@@ -1,0 +1,4 @@
+psadmin:#* * * * * /home/psadmin/getperf/script/monitor-sumup > /dev/null 2>&1
+psadmin:33 15 * * * (sudo -E /home/psadmin/getperf/script/backup-getperf.sh > /dev/null 2>&1)
+psadmin:
+root:0,5,10,15,20,25,30,35,40,45,50,55 * * * * (/home/psadmin/getperf/script/monitor-sumup > /dev/null 2>&1) &

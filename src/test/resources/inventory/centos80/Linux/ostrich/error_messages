@@ -1,0 +1,6 @@
+Aug 21 14:25:52 ostrich automount[3050]: create_client: hostname lookup failed: Temporary failure in name resolution
+Aug 21 14:26:02 ostrich automount[3050]: create_client: hostname lookup failed: Temporary failure in name resolution
+Aug 21 14:26:02 ostrich automount[3050]: get_exports: lookup(hosts): exports lookup failed for app
+Aug 21 14:33:50 ostrich automount[3050]: create_client: hostname lookup failed: Temporary failure in name resolution
+Aug 21 14:34:00 ostrich automount[3050]: create_client: hostname lookup failed: Temporary failure in name resolution
+Aug 21 14:34:00 ostrich automount[3050]: get_exports: lookup(hosts): exports lookup failed for app
