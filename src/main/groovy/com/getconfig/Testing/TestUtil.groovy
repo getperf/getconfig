@@ -55,6 +55,10 @@ class TestUtil {
         }
     }
 
+    String readAll(String charset = 'UTF-8') {
+        return new File(this.logPath).getText(charset)
+    }
+
     void results(String value) {
         TestResultRegister.results(this, value)
     }

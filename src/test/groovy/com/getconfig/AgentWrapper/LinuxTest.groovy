@@ -8,6 +8,8 @@ import com.moandjiezana.toml.TomlWriter
 
 import com.getconfig.AgentWrapper.*
 
+import java.text.SimpleDateFormat
+
 // gradle --daemon test --tests "LinuxTest.gconf設定ファイル変換2"
 
 class LinuxTest extends Specification {
@@ -62,6 +64,18 @@ class LinuxTest extends Specification {
         toml.size() > 0
     }
 
+    def "日付変換"() {
+        when:
+        def install_time = Long.decode("12345") * 1000L
+//        def dt = new Date(install_time).format("yyyy/MM/dd HH:mm:ss")
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        def dt = df.format(new Date(install_time))
+
+        then:
+        println dt
+        1 == 1
+
+    }
 //    def "gconf設定ファイル変換2"() {
 //        when:
 //         TestServer server = new TestServer(serverName:"hoge",
