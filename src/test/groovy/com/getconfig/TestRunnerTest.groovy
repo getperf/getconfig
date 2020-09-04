@@ -10,12 +10,12 @@ class TestRunnerTest extends Specification {
         ConfigEnv.instance.readConfig()
     }
 
-    def "Run"() {
+    def "ドライラン"() {
         when:
         def runner = new TestRunner(
-                dryRun: true,
                 checkSheetPath: "サーバチェックシート.xlsx",
         )
+        ConfigEnv.instance.setDryRun()
         runner.run()
 
         then:

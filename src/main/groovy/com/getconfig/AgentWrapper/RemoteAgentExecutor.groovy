@@ -67,7 +67,6 @@ class RemoteAgentExecutor implements AgentExecutor {
         if (this.timeout > 0) {
             args.addAll("--timeout", this.timeout as String)
         }
-        println args
         return args
     }
 
@@ -92,14 +91,14 @@ class RemoteAgentExecutor implements AgentExecutor {
     // }
 
     int run() {
-        String title = "Remote agent executer(${server.serverName})"
+        String title = "Remote agent(${server.serverName})"
         long start = System.currentTimeMillis()
         log.info "Run ${title}"
         def exec = new CommandExec(this.timeout * 1000)
         log.debug "agent command args : ${this.args()}"
         def rc = exec.run(this.gconfExe, this.args() as String[])
         long elapse = System.currentTimeMillis() - start
-        log.info "Finish[${rc}],Elapse : ${elapse} ms"
+        log.info "ExitCode : ${rc}, Elapse : ${elapse} ms"
         return rc
     }
 }

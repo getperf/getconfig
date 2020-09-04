@@ -59,4 +59,17 @@ class CollectorTest extends Specification {
         then:
         collector.testServers.size() > 0
     }
+
+
+    def "ドライラン"() {
+        when:
+        Collector collector = new Collector(testServers)
+        ConfigEnv.instance.accept(collector)
+        collector.dryRun = true
+        def rc = collector.run()
+
+        then:
+        rc == 0
+    }
+
 }

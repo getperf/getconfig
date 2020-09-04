@@ -1,5 +1,7 @@
 package com.getconfig.AgentLogParser.Platform
 
+import java.text.SimpleDateFormat
+
 import org.apache.commons.lang.math.NumberUtils
 import org.apache.commons.net.util.SubnetUtils
 import org.apache.commons.net.util.SubnetUtils.SubnetInfo
@@ -48,6 +50,7 @@ void uname(TestUtil t) {
 void lsb(TestUtil t) {
     def scan_lines = [:]
     t.readLine {
+        it = it.trim()
         if (it.indexOf('=') == -1 && it.size() > 0) {
             scan_lines[it] = ''
         }
@@ -182,13 +185,14 @@ void network(TestUtil t) {
                 // Regist Port List
                 def ip_address = subnet.getAddress()
                 if (ip_address && ip_address != '127.0.0.1') {
-                    // ticket.port_list(ip_address, device)
                     t.newMetric("network.ip.${device}",     "[${device}] IP", ip_address)
                     exclude_compares << "network.ip.${device}"
                     t.newMetric("network.subnet.${device}", "[${device}] サブネット",
                                    netmask)
                     subnets[device] = netmask
                     net_ip[device] = ip_address
+
+                    t.portList(ip_address, device)
                 }
             } catch (IllegalArgumentException e) {
                 t.error "[LinuxTest] subnet convert : m1\n" + e
@@ -300,7 +304,9 @@ void block_device(TestUtil t) {
 @Parser("mdadb")
 void mdadb(TestUtil t) {
     t.readLine {
-        t.results(it)
+        (it =~ /^(\w+?)\s*:\s*(\w.+?)$/).each {m0, device, config->
+            t.newMetric("mdadb.${device}", "[${device}]", config)
+        }
     }
 }
 
@@ -321,9 +327,19 @@ void filesystem(TestUtil t) {
     // def filesystems = [:]
     def infos = [:]
     def res = [:]
-    // println fstypes
+
+    def fstypes = [:].withDefault{[]}
+    def fstypes2 = [:]
+    t.readOtherLogLine("fstab") {
+        (it =~/^([^#].+?)\s+(.+?)\s+(.+?)\s/).each {m0, m1, m2, m3 ->
+            def filter_fstype = m3 in ['tmpfs', 'devpts', 'sysfs', 'proc', 'swap']
+            if (!filter_fstype) {
+                fstypes[m3] << m2
+            }
+            fstypes2[m2] = m3
+        }
+    }
     t.readLine {
-        println it
         (it =~  /^(.+?)\s+(\d+:\d+\s.+)$/).each { m0,m1,m2->
             def device = m1
             def device_node = device
@@ -407,165 +423,541 @@ void lvm(TestUtil t) {
 
 @Parser("filesystem_df_ip")
 void filesystem_df_ip(TestUtil t) {
-
+    // /dev/mapper/vg_ostrich-lv_root on / type ext4 (rw)
+    def csv    = []
+    def res = [:]
+    t.readLine {
+        println it
+        (it =~  /(\d+)\s+(\d+)\s+(\d+)\s+(\d+%)\s+(.+?)$/).each {
+            m0, inodes, iused, ifree, usage, mount ->
+            if (mount =~/^\/(dev|run|sys|boot)/) {
+                return
+            }
+            def columns = [inodes, iused, ifree, usage, mount]
+            csv << columns
+            res[mount] = "$iused/$inodes"
+           t.newMetric("inode.${mount}", "Inode [${mount}]", inodes)
+        }
+    }
+    def headers = ['inodes', 'iused', 'ifree', 'usage', 'mount']
+    t.devices(csv, headers)
+    t.results(res.toString())
 }
 
 @Parser("fstab")
 void fstab(TestUtil t) {
-
+    def mounts = [:]
+    def fstypes = [:].withDefault{[]}
+    t.readLine {
+        // /dev/mapper/vg_paas-lv_root /  ext4  defaults        1 1
+        (it =~ /^([^#].+?)\s+(.+?)\s+(.+?)\s+defaults\s/).each {m0,m1,m2,m3->
+            mounts[m2] = m1
+            def filter_fstype = m3 in ['tmpfs', 'devpts', 'sysfs', 'proc', 'swap']
+            if (!filter_fstype) {
+                fstypes[m3] << m2
+            }
+        }
+    }
+    def infos = [
+        'fstab' : (mounts.size() == 0) ? 'Not Found' : "${mounts.keySet()}",
+        'fstypes': "${fstypes}",
+    ]
+    t.results(infos)
 }
 
 @Parser("fips")
 void fips(TestUtil t) {
-
+    def enabled = 'False'
+    t.readLine {
+        if (it == '1') {
+            enabled = 'True'
+        }
+    }
+    t.results(enabled)
 }
 
 @Parser("virturization")
 void virturization(TestUtil t) {
-
+    def virturization = 'no KVM'
+    t.readLine {
+        (it =~ /QEMU Virtual CPU|Common KVM processor|Common 32-bit KVM processor/).each {
+            virturization = 'KVM Guest'
+        }
+    }
+    t.results(virturization)
 }
 
 @Parser("packages")
 void packages(TestUtil t) {
+    def package_info = [:].withDefault{'unkown'}
+    def versions = [:]
+    def distributions = [:].withDefault{0}
+    def csv = []
+    SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
 
+    t.readLine {
+        def arr = it.split(/\t/)
+        def packagename = arr[0]
+        def release = arr[3]
+        def release_label = 'COMMON'
+        if (release =~ /el5/) {
+            release_label = 'RHEL5'
+        } else if (release =~ /el6/) {
+            release_label = 'RHEL6'
+        } else if (release =~ /el7/) {
+            release_label = 'RHEL7'
+        } else if (release =~ /el8/) {
+            release_label = 'RHEL8'
+        }
+        def install_time = Long.decode(arr[4]) * 1000L
+        arr[4] = df.format(new Date(install_time))
+        csv << arr
+        def arch    = (arr[5] == '(none)') ? 'noarch' : arr[5]
+        distributions[release_label] ++
+        if (arch == 'i686') {
+            packagename += ".i686"
+        }
+        // package_info['packages.' + packagename] = arr[2]
+        versions[packagename] = arr[2]
+    }
+    def headers = ['name', 'epoch', 'version', 'release', 'installtime', 'arch']
+    package_info['packages'] = distributions.toString()
+
+    // def package_list = test_item.target_info('packages')
+    // if (package_list) {
+    //     def template_id = this.test_platform.test_target.template_id
+    //     package_info['packages.requirements'] = "${package_list.keySet()}"
+    //     def verify = true
+    //     package_list.each { package_name, value ->
+    //         def test_id = "packages.${template_id}.${package_name}"
+    //         def version = versions[package_name] ?: 'Not Found'
+    //         if (version == 'Not Found') {
+    //             verify = false
+    //         }
+    //         add_new_metric(test_id, "${template_id}.${package_name}", "'${version}'", package_info)
+    //     }
+    //     test_item.verify(verify)
+    // }
+    versions.sort().each { package_name, version ->
+        // if (package_list?."${package_name}") {
+        //     return
+        // }
+        def test_id = "packages.Etc.${package_name}"
+        t.newMetric(test_id, package_name, "'${version}'")
+    }
+    t.devices(csv, headers)
+    t.results(package_info)
+    // test_item.verify_text_search_list('packages', package_info)
 }
 
 @Parser("cron")
 void cron(TestUtil t) {
-
+    def res = [:].withDefault{""}
+    def csv = []
+    t.readLine { 
+        (it =~/^(.+?):(.+)$/).each {m0, user, line ->
+            (line =~ /^\s*[^#].+$/).each {
+                res[user] += line + "\n"
+                csv << [user, line]
+            }
+        }
+    }
+    res.each { user, lines ->
+        t.newMetric("cron.${user}", user, lines)
+    }
+    def headers = ['user', 'crontab']
+    t.devices(csv, headers)
 }
 
 @Parser("yum")
 void yum(TestUtil t) {
-
+    def yum_info = [:].withDefault{[:]}
+    def repository = 'Unkown'
+    def csv = []
+    t.readLine {
+        (it =~/\[(.+)\]/).each {m0, m1 ->
+            repository = m1
+        }
+        (it =~/:\s*enabled=(\d+)/).each {m0, enabled ->
+            yum_info[enabled][repository] = 1
+            csv << [repository, enabled]
+        }
+    }
+    def headers = ['repository', 'enabled']
+    t.devices(csv, headers)
+    t.results(yum_info["1"].keySet().toString())
 }
 
 @Parser("resource_limits")
 void resource_limits(TestUtil t) {
-
+    def csv = []
+    t.readLine {
+        (it =~/limits\.d\/(.+?):(.+)$/).each {m0, m1, m2 ->
+            csv << [m1, m2]
+        }
+    }
+    def headers = ['source', 'limits']
+    t.devices(csv, headers)
+    def csv_rows = csv.size()
+    def result = (csv_rows == 0) ? 'No limits setting' : "${csv_rows} records found"
+    t.results(result)
 }
 
 @Parser("user")
 void user(TestUtil t) {
+    def groups = [:].withDefault{0}
+    t.readOtherLogLine("group") {
+        ( it =~ /^(.+?):(.+?):(\d+)/).each {m0,m1,m2,m3->
+            groups[m3] = m1
+        }
+    }
+    def csv = []
+    def general_users = [:]
+    def users = [:].withDefault{'unkown'}
+    t.readLine {
+        def arr = it.split(/:/)
+        if (arr.size() == 7) {
+            def username = arr[0]
+            def user_id  = "'${arr[2]}'"
+            def group_id = arr[3]
+            def home     = arr[5]
+            def shell    = arr[6]
+            def group    = groups[group_id] ?: 'Unkown'
 
-}
-
-@Parser("crontab")
-void crontab(TestUtil t) {
-
+            csv << [username, user_id, group_id, group, home, shell]
+            (shell =~ /sh$/).each {
+                general_users[username] = 'OK'
+                t.newMetric("user.${username}.id",    "[${username}] ID",       user_id)
+                t.newMetric("user.${username}.home",  "[${username}] ホーム",   home)
+                t.newMetric("user.${username}.group", "[${username}] グループ", group)
+                t.newMetric("user.${username}.shell", "[${username}] シェル",   shell)
+            }
+        }
+    }
+    def headers = ['UserName', 'UserID', 'GroupID', 'Group', 'Home', 'Shell']
+    t.devices(csv, headers)
+    t.results(general_users.keySet().toString())
 }
 
 @Parser("service")
 void service(TestUtil t) {
+    def services = [:].withDefault{'Not found'}
+    def statuses = [:]
+    def csv = []
+    def service_count = 0
 
+    t.readLine {
+        // For RHEL7
+        // abrt-ccpp.service     loaded    active   exited  Install ABRT coredump hook
+          // NetworkManager.service   loaded    inactive dead    Network Manager
+        ( it =~ /\s+(.+?)\.service\s+loaded\s+(\w+)\s+(\w+)\s/).each {m0,m1,m2,m3->
+            def service_name = m1
+            (service_name =~/^(.+?)@(.+?)$/).each { n0, n1, n2 ->
+                service_name = n1 + '@' + 'LABEL'
+            }
+            def status = m2 + '.' + m3
+            statuses[service_name] = status
+            def columns = [service_name, status]
+            csv << columns
+            service_count ++
+        }
+        // For RHEL6
+        // ypbind          0:off   1:off   2:off   3:off   4:off   5:off   6:off
+        ( it =~ /^(.+?)\s.*\s+3:(.+?)\s+4:(.+?)\s+5:(.+?)\s+/).each {m0,m1,m2,m3,m4->
+            def service_name = m1
+            def status = (m2 == 'on' && m3 == 'on' && m4 == 'on') ? 'On' : 'Off'
+            statuses[service_name] = status
+            // infos[service_name] = status
+            def columns = [m1, status]
+            csv << columns
+            service_count ++
+        }
+    }
+    // def service_list = test_item.target_info('service')
+    // if (service_list) {
+    //     def template_id = this.test_platform.test_target.template_id
+    //     service_list.each { service_name, value ->
+    //         def test_id = "service.${template_id}.${service_name}"
+    //         def status = statuses[service_name] ?: 'Not Found'
+    //         add_new_metric(test_id, "${template_id}.${service_name}", status, services)
+    //     }
+    // }
+    statuses.sort().each { service_name, status ->
+        // if (service_list?."${service_name}") {
+        //     return
+        // }
+        def test_id = "service.Etc.${service_name}"
+        t.newMetric(test_id, service_name, status)
+    }
+    t.devices(csv, ['Name', 'Status'])
+    t.results("${service_count} services")
 }
 
 @Parser("mount_iso")
 void mount_iso(TestUtil t) {
-
-}
-
-@Parser("oracle")
-void oracle(TestUtil t) {
-
+    def res = [:]
+    t.readLine {
+        ( it =~ /\.iso on (.+?)\s/).each {m0,m1->
+            res[m1] = 'On'
+        }
+    }
+    def result = (res.size() > 0) ? res.toString() : 'no mount'
+    t.results(result)
 }
 
 @Parser("proxy_global")
 void proxy_global(TestUtil t) {
-
+    t.readLine {
+        t.results(it)
+    }
 }
 
 @Parser("kdump")
 void kdump(TestUtil t) {
-
+    def kdump = 'off'
+    t.readLine {
+        // For RHEL7
+        ( it =~ /Active: (.+?)\s/).each {m0,m1->
+             kdump = m1
+        }
+        // For RHEL6
+        ( it =~ /\s+3:(.+?)\s+4:(.+?)\s+5:(.+?)\s+/).each {m0,m1,m2,m3->
+            if (m1 == 'on' && m2 == 'on' && m3 == 'on') {
+                kdump = 'on'
+            }
+        }
+    }
+    t.results(kdump)
 }
 
 @Parser("crash_size")
 void crash_size(TestUtil t) {
-
+    t.readLine {
+        t.results(it)
+    }
 }
 
 @Parser("kdump_path")
 void kdump_path(TestUtil t) {
-
+    def path = '/var/crash'
+    def core_collector = 'unkown'
+    t.readLine {
+        ( it =~ /path\s+(.+?)$/).each {m0, m1->
+            path = m1
+        }
+        ( it =~ /core_collector\s+(.+?)$/).each {m0, m1->
+            core_collector = m1
+        }
+    }
+    def infos = [
+        'kdump_path' : path,
+        'core_collector' : core_collector
+    ]
+    t.results(infos)
 }
 
 @Parser("iptables")
 void iptables(TestUtil t) {
-
+    def services = [:]
+    def service = 'iptables'
+    t.readLine {
+        ( it =~ /\s(.+?)\.service\s/).each {m0,m1->
+             service = m1
+        }
+        ( it =~ /^\s+Active: (.+?)\s/).each {m0,m1->
+             services[service] = m1
+        }
+        ( it =~ /\s+3:(.+?)\s+4:(.+?)\s+5:(.+?)\s+/).each {m0,m1,m2,m3->
+            if (m1 == 'on' && m2 == 'on' && m3 == 'on') {
+                services[service] = 'on'
+            }
+        }
+    }
+    t.results(services.toString())
 }
 
 @Parser("runlevel")
 void runlevel(TestUtil t) {
-
+    def runlevel = 'Unknown'
+    def console  = 'CUI'
+    t.readLine {
+        runlevel = it
+        ( it =~ /^id:(\d+):/).each {m0, m1->
+            runlevel = m1
+        }
+    }
+    if (runlevel == 'graphical.target' || runlevel == '5') {
+        console == 'GUI'
+    }
+    t.results(['runlevel':runlevel, 'runlevel.console':console])
 }
 
 @Parser("resolve_conf")
 void resolve_conf(TestUtil t) {
-
+    def nameservers = [:]
+    def nameserver_number = 1
+    t.readLine {
+        ( it =~ /^nameserver\s+(\w.+)$/).each {m0,m1->
+            nameservers["nameserver${nameserver_number}"] = m1
+            nameserver_number ++
+        }
+    }
+    t.results([
+        'resolve_conf' : (nameserver_number == 1) ? 'off' : 'on',
+        'nameservers' : nameservers
+    ])
 }
 
 @Parser("grub")
 void grub(TestUtil t) {
-
+    def infos = [:].withDefault{'Not Found'}
+    t.readLine {
+        ( it =~ /^GRUB_CMDLINE_LINUX="(.+)"/).each {m0,m1->
+            def parameters = m1.split(/\s/)
+            parameters.each { parameter ->
+                ( parameter =~ /^(.+)=(.+)$/).each {n0, n1, n2->
+                    infos["grub.${n1}"] = n2
+                }
+            }
+        }
+    }
+    def key_values = ['ipv6.disable', 'vga'].collect {
+        def key = "grub.${it}"
+        "$it=${infos[key]}"
+    }
+    infos['grub'] = key_values.join(",")
+    t.results(infos)
 }
 
 @Parser("ntp")
 void ntp(TestUtil t) {
-
+    def ntpservers = []
+    t.readLine {
+        ( it =~ /^server\s+(\w.+)$/).each {m0,ntp_server->
+            t.newMetric("ntp.${ntp_server}", ntp_server, 'Enable')
+            ntpservers.add(ntp_server)
+        }
+    }
+    t.results((ntpservers.size() == 0) ? 'off' : 'on')
 }
 
 @Parser("ntp_slew")
 void ntp_slew(TestUtil t) {
-
+    def result = 'Not Found'
+    t.readLine {
+        (it =~ /-u/).each {m0->
+            result = 'Disabled'
+        }
+        (it =~ /-x/).each {m0->
+            result = 'Enabled'
+        }
+    }
+    t.results(result)
 }
 
 @Parser("snmp_trap")
 void snmp_trap(TestUtil t) {
-
+    def config = 'NotConfigured'
+    t.readLine {
+        (it =~  /(trapsink|trapcommunity|trap2sink|informsink)\s+(.*)$/).each { m0, m1, m2 ->
+            config = 'Configured'
+            t.newMetric("snmp_trap.${m1}", "SNMPトラップ.${m1}", m2)
+        }
+    }
+    t.results(config)
 }
 
 @Parser("sestatus")
 void sestatus(TestUtil t) {
-
+    def res = [:]
+    t.readLine {
+        ( it =~ /SELinux status:\s+(.+?)$/).each {m0,m1->
+            res['sestatus'] = m1
+        }
+        ( it =~ /Current mode:\s+(.+?)$/).each {m0,m1->
+            res['se_mode'] = m1
+        }
+    }
+    t.results(res)
 }
 
 @Parser("keyboard")
 void keyboard(TestUtil t) {
-
+    t.readLine {
+        ( it =~ /^(LAYOUT|KEYMAP)="(.+)"$/).each {m0,m1,m2->
+            t.results(m2)
+        }
+    }
 }
 
 @Parser("vmwaretool_timesync")
 void vmwaretool_timesync(TestUtil t) {
-
+    t.readLine {
+        t.results(it)
+    }
 }
 
 @Parser("vmware_scsi_timeout")
 void vmware_scsi_timeout(TestUtil t) {
-
+    def result = ''
+    t.readLine {
+        (it =~/^([^#].+?)$/).each {m0, m1 ->
+            result += it
+        }
+    }
+    t.results(result)
 }
 
 @Parser("language")
 void language(TestUtil t) {
-
+    def res = 'NotConfigured'
+    t.readLine {
+        def params = it.split(/\s/)
+        params.each { param ->
+            ( param =~ /LANG=(.+)$/).each {m0,m1->
+                res = m1
+            }
+        }
+    }
+    t.results(res)
 }
 
 @Parser("timezone")
 void timezone(TestUtil t) {
-
+    t.readLine {
+        ( it =~ /Time zone: (.+)$/).each {m0,m1->
+            t.results(m1)
+        }
+        ( it =~ /ZONE="(.+)"$/).each {m0,m1->
+            t.results(m1)
+        }
+    }
 }
 
 @Parser("error_messages")
 void error_messages(TestUtil t) {
-
+    def csv = []
+    t.readLine {
+        if (it.size() > 0) {
+            csv << [it]
+        }
+    }
+    def headers = ['message']
+    t.devices(csv, headers)
+    t.results((csv.size() == 0) ? 'Not found' : 'Message found')
 }
 
 @Parser("oracle_module")
 void oracle_module(TestUtil t) {
-
+    def n_requiements = 0
+    def requiements = [:]
+    ['compat-libcap1','compat-libstdc++-33','libstdc++-devel'].each {
+        requiements[it] = 1
+    }
+    t.readLine {
+        if (requiements[packagename])
+            n_requiements ++
+    }
+    t.results((requiements.size() == n_requiements) ? 'OK' : 'NG')
 }
 
-@Parser("vncserver")
-void vncserver(TestUtil t) {
-
-}

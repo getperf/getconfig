@@ -3,8 +3,8 @@
 SystemRoot                : C:\Windows
 BuildBranch               : rs1_release
 BuildGUID                 : ffffffff-ffff-ffff-ffff-ffffffffffff
-BuildLab                  : 14393.rs1_release.200707-2105
-BuildLabEx                : 14393.3808.amd64fre.rs1_release.200707-2105
+BuildLab                  : 14393.rs1_release.200805-1327
+BuildLabEx                : 14393.3866.amd64fre.rs1_release.200805-1327
 CompositionEditionID      : ServerStandardEval
 CurrentBuild              : 14393
 CurrentBuildNumber        : 14393
@@ -18,7 +18,7 @@ InstallDate               : 1554581021
 ProductName               : Windows Server 2016 Standard Evaluation
 ReleaseId                 : 1607
 SoftwareType              : System
-UBR                       : 3808
+UBR                       : 3866
 PathName                  : C:\Windows
 Customizations            : None
 DigitalProductId          : {164, 0, 0, 0...}

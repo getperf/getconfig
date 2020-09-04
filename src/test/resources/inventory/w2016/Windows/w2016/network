@@ -1,0 +1,11 @@
+
+
+ServiceName      : e1iexpress
+MacAddress       : 00:0C:29:56:AC:81
+IPAddress        : {192.168.0.27, fe80::532:8309:c6f0:d83f, 240b:10:a001:8100:532:8309:c6f0:d83f}
+DefaultIPGateway : {192.168.0.1, fe80::fab7:97ff:fe36:1ed0}
+Description      : Intel(R) 82574L Gigabit Network Connection
+IPSubnet         : {255.255.255.0, 64, 64}
+
+
+

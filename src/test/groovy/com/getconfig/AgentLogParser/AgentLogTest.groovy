@@ -1,8 +1,10 @@
 package com.getconfig.AgentLogParser
 
+import spock.lang.IgnoreIf
 import spock.lang.Specification
 
 class AgentLogTest extends Specification {
+    @IgnoreIf({ !System.getProperty("os.name").contains("windows") })
     def "ログパス解析"(String path, String platform, AgentLogMode agentLogMode) {
         expect:
         def agentLog = new AgentLog(path).parse()
@@ -15,6 +17,7 @@ class AgentLogTest extends Specification {
         "\\centos80\\Linux\\error.log"     | null     | AgentLogMode.UNKNOWN
     }
 
+    @IgnoreIf({ !System.getProperty("os.name").contains("windows") })
     def "リモートエージェントログパス解析"(String path, String platform, AgentLogMode agentLogMode) {
         expect:
         def agentLog = new AgentLog(path).parse()
@@ -30,6 +33,7 @@ class AgentLogTest extends Specification {
         "\\server01\\VMHostConf\\20200722\\103500\\esxi.ostrich\\all.json" | "VMHost" | AgentLogMode.NORMAL
     }
 
+    @IgnoreIf({ !System.getProperty("os.name").contains("windows") })
     def "ローカルエージェントバッチログパス解析"(String path, String platform, AgentLogMode agentLogMode) {
         expect:
         def agentLog = new AgentLog(path).parse()
@@ -42,6 +46,7 @@ class AgentLogTest extends Specification {
         "\\LocalAgentBatch_vCenter_192.168.10.100_Account01\\error.log" | null | AgentLogMode.UNKNOWN
     }
 
+    @IgnoreIf({ !System.getProperty("os.name").contains("windows") })
     def "Hub サーバログパス解析"(String path, String platform, AgentLogMode agentLogMode) {
         expect:
         def agentLog = new AgentLog(path).parse()

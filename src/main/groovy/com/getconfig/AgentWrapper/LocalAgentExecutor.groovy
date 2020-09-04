@@ -27,6 +27,7 @@ class LocalAgentExecutor implements AgentExecutor {
     String tlsConfigDir
     String metricLib
     int timeout = 0
+    int level = 0
 
     LocalAgentExecutor(String platform, TestServer server) {
         this.platform = platform
@@ -40,6 +41,7 @@ class LocalAgentExecutor implements AgentExecutor {
         this.currentLogDir  = env.getCurrentLogDir()
         this.tlsConfigDir   = env.getTlsConfigDir()
         this.metricLib      = env.getMetricLib()
+        this.level          = env.getLevel()
         this.timeout        = env.getGconfTimeout(this.platform)
     }
 
@@ -82,6 +84,10 @@ class LocalAgentExecutor implements AgentExecutor {
         args.addAll("-c", this.tomlPath())
         args.addAll("run")
         args.addAll("-o", this.makeAgentLogDir())
+        args.addAll("--log-level", AgentConstants.AGENT_LOG_LEVEL as String)
+        if (this.level > 0) {
+            args.addAll("--level", this.level as String)
+        }
         if (this.timeout > 0) {
             args.addAll("--timeout", this.timeout as String)
         }
@@ -104,7 +110,7 @@ class LocalAgentExecutor implements AgentExecutor {
     // }
 
     int run() {
-        String title = "${this.platform} agent executer(${server.serverName})"
+        String title = "${this.platform} agent(${server.serverName})"
         long start = System.currentTimeMillis()
         log.info "Run ${title}"
         def exec = new CommandExec(this.timeout * 1000)
@@ -117,7 +123,7 @@ class LocalAgentExecutor implements AgentExecutor {
         log.debug "agent command args : ${this.args()}"
         def rc = exec.run(this.gconfExe, this.args() as String[])
         long elapse = System.currentTimeMillis() - start
-        log.info "Finish[${rc}],Elapse : ${elapse} ms"
+        log.info "ExitCode : ${rc}, Elapse : ${elapse} ms"
         return rc
     }
 }

@@ -5,12 +5,14 @@ import com.getconfig.Model.*
 import com.getconfig.Utils.TomlUtils
 import spock.lang.Specification
 
-// gradle --daemon test --tests "GconfExecuterTest.初期化"
+// gradle --daemon test --tests "GconfExecuterTest.エージェントコマンド実行"
 
 class LocalAgentExecutorTest extends Specification {
     TestServer server = new TestServer(serverName:"centos80",
             domain:"Linux",
-            ip:"192.168.10.1",
+            ip:"127.0.0.1",
+            user:"psadmin",
+            password:"psadmin",
             accountId:"Account01")
 
     def "初期化"() {
@@ -45,9 +47,9 @@ class LocalAgentExecutorTest extends Specification {
 
     def "エージェントコマンド実行"() {
         when:
-        def executer = new LocalAgentExecutor("Linux", server)
-        ConfigEnv.instance.accept(executer)
-        def rc =executer.run()
+        def executor = new LocalAgentExecutor("Linux", server)
+        ConfigEnv.instance.accept(executor)
+        def rc =executor.run()
 
         then:
         rc == 0
@@ -55,12 +57,13 @@ class LocalAgentExecutorTest extends Specification {
 
     def "リモートエージェント初期化"() {
         when:
-        def executer = new RemoteAgentExecutor(server)
-        executer.currentLogDir = "build/log"
-        executer.tlsConfigDir = "config/network"
+        def executor = new RemoteAgentExecutor(server)
+
+        executor.currentLogDir = "build/log"
+        executor.tlsConfigDir = "config/network"
 
         then:
-        println executer.args()
-        executer.args().size() > 0
+        println executor.args()
+        executor.args().size() > 0
     }
 }

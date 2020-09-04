@@ -1,0 +1,34 @@
+
+
+Index              : 2196625
+EntryType          : Error
+InstanceId         : 3221226480
+Message            : The description for Event ID '-1073740816' in Source 'Perflib' cannot be found.  The local compute
+                     r may not have the necessary registry information or message DLL files to display the message, or 
+                     you may not have permission to access them.  The following information is part of the event:'BITS'
+                     , 'C:\Windows\System32\bitsperf.dll', '4'
+Category           : (0)
+CategoryNumber     : 0
+ReplacementStrings : {BITS, C:\Windows\System32\bitsperf.dll, 4}
+Source             : Perflib
+TimeGenerated      : 2020/09/04 14:06:28
+TimeWritten        : 2020/09/04 14:06:28
+UserName           : 
+
+Index              : 2186228
+EntryType          : Error
+InstanceId         : 3221226480
+Message            : The description for Event ID '-1073740816' in Source 'Perflib' cannot be found.  The local compute
+                     r may not have the necessary registry information or message DLL files to display the message, or 
+                     you may not have permission to access them.  The following information is part of the event:'BITS'
+                     , 'C:\Windows\System32\bitsperf.dll', '4'
+Category           : (0)
+CategoryNumber     : 0
+ReplacementStrings : {BITS, C:\Windows\System32\bitsperf.dll, 4}
+Source             : Perflib
+TimeGenerated      : 2020/09/03 11:55:36
+TimeWritten        : 2020/09/03 11:55:36
+UserName           : 
+
+
+

@@ -1,0 +1,184 @@
+
+
+Caption              : MSFT_NetAdapterBindingSettingData 'Intel(R) 82574L Gigabit Network Connection'
+Description          : Microsoft LLDP プロトコル ドライバー
+ElementName          : ms_lldp
+InstanceID           : {534C22FF-5D21-4D60-87B1-8A60947B1308}::ms_lldp
+InterfaceDescription : Intel(R) 82574L Gigabit Network Connection
+Name                 : イーサネット
+Source               : 1
+SystemName           : WIN-JKSSMTI1TM6
+BindName             : MsLldp
+Characteristics      : 132
+ComponentClassGuid   : {4D36E975-E325-11CE-BFC1-08002BE10318}
+ComponentClassName   : Transport
+ComponentID          : ms_lldp
+DisplayName          : Microsoft LLDP プロトコル ドライバー
+Enabled              : True
+PSComputerName       : 
+ifAlias              : イーサネット
+InterfaceAlias       : イーサネット
+ifDesc               : Intel(R) 82574L Gigabit Network Connection
+
+Caption              : MSFT_NetAdapterBindingSettingData 'Intel(R) 82574L Gigabit Network Connection'
+Description          : Microsoft Network Adapter Multiplexor Protocol
+ElementName          : ms_implat
+InstanceID           : {534C22FF-5D21-4D60-87B1-8A60947B1308}::ms_implat
+InterfaceDescription : Intel(R) 82574L Gigabit Network Connection
+Name                 : イーサネット
+Source               : 1
+SystemName           : WIN-JKSSMTI1TM6
+BindName             : NdisImPlatform
+Characteristics      : 132
+ComponentClassGuid   : {4D36E975-E325-11CE-BFC1-08002BE10318}
+ComponentClassName   : Transport
+ComponentID          : ms_implat
+DisplayName          : Microsoft Network Adapter Multiplexor Protocol
+Enabled              : False
+PSComputerName       : 
+ifAlias              : イーサネット
+InterfaceAlias       : イーサネット
+ifDesc               : Intel(R) 82574L Gigabit Network Connection
+
+Caption              : MSFT_NetAdapterBindingSettingData 'Intel(R) 82574L Gigabit Network Connection'
+Description          : Link-Layer Topology Discovery Mapper I/O Driver
+ElementName          : ms_lltdio
+InstanceID           : {534C22FF-5D21-4D60-87B1-8A60947B1308}::ms_lltdio
+InterfaceDescription : Intel(R) 82574L Gigabit Network Connection
+Name                 : イーサネット
+Source               : 1
+SystemName           : WIN-JKSSMTI1TM6
+BindName             : lltdio
+Characteristics      : 132
+ComponentClassGuid   : {4D36E975-E325-11CE-BFC1-08002BE10318}
+ComponentClassName   : Transport
+ComponentID          : ms_lltdio
+DisplayName          : Link-Layer Topology Discovery Mapper I/O Driver
+Enabled              : True
+PSComputerName       : 
+ifAlias              : イーサネット
+InterfaceAlias       : イーサネット
+ifDesc               : Intel(R) 82574L Gigabit Network Connection
+
+Caption              : MSFT_NetAdapterBindingSettingData 'Intel(R) 82574L Gigabit Network Connection'
+Description          : インターネット プロトコル バージョン 6 (TCP/IPv6)
+ElementName          : ms_tcpip6
+InstanceID           : {534C22FF-5D21-4D60-87B1-8A60947B1308}::ms_tcpip6
+InterfaceDescription : Intel(R) 82574L Gigabit Network Connection
+Name                 : イーサネット
+Source               : 1
+SystemName           : WIN-JKSSMTI1TM6
+BindName             : Tcpip6
+Characteristics      : 132
+ComponentClassGuid   : {4D36E975-E325-11CE-BFC1-08002BE10318}
+ComponentClassName   : Transport
+ComponentID          : ms_tcpip6
+DisplayName          : インターネット プロトコル バージョン 6 (TCP/IPv6)
+Enabled              : True
+PSComputerName       : 
+ifAlias              : イーサネット
+InterfaceAlias       : イーサネット
+ifDesc               : Intel(R) 82574L Gigabit Network Connection
+
+Caption              : MSFT_NetAdapterBindingSettingData 'Intel(R) 82574L Gigabit Network Connection'
+Description          : Microsoft ネットワーク用クライアント
+ElementName          : ms_msclient
+InstanceID           : {534C22FF-5D21-4D60-87B1-8A60947B1308}::ms_msclient
+InterfaceDescription : Intel(R) 82574L Gigabit Network Connection
+Name                 : イーサネット
+Source               : 1
+SystemName           : WIN-JKSSMTI1TM6
+BindName             : LanmanWorkstation
+Characteristics      : 132
+ComponentClassGuid   : {4D36E973-E325-11CE-BFC1-08002BE10318}
+ComponentClassName   : Client
+ComponentID          : ms_msclient
+DisplayName          : Microsoft ネットワーク用クライアント
+Enabled              : True
+PSComputerName       : 
+ifAlias              : イーサネット
+InterfaceAlias       : イーサネット
+ifDesc               : Intel(R) 82574L Gigabit Network Connection
+
+Caption              : MSFT_NetAdapterBindingSettingData 'Intel(R) 82574L Gigabit Network Connection'
+Description          : インターネット プロトコル バージョン 4 (TCP/IPv4)
+ElementName          : ms_tcpip
+InstanceID           : {534C22FF-5D21-4D60-87B1-8A60947B1308}::ms_tcpip
+InterfaceDescription : Intel(R) 82574L Gigabit Network Connection
+Name                 : イーサネット
+Source               : 1
+SystemName           : WIN-JKSSMTI1TM6
+BindName             : Tcpip
+Characteristics      : 132
+ComponentClassGuid   : {4D36E975-E325-11CE-BFC1-08002BE10318}
+ComponentClassName   : Transport
+ComponentID          : ms_tcpip
+DisplayName          : インターネット プロトコル バージョン 4 (TCP/IPv4)
+Enabled              : True
+PSComputerName       : 
+ifAlias              : イーサネット
+InterfaceAlias       : イーサネット
+ifDesc               : Intel(R) 82574L Gigabit Network Connection
+
+Caption              : MSFT_NetAdapterBindingSettingData 'Intel(R) 82574L Gigabit Network Connection'
+Description          : Link-Layer Topology Discovery Responder
+ElementName          : ms_rspndr
+InstanceID           : {534C22FF-5D21-4D60-87B1-8A60947B1308}::ms_rspndr
+InterfaceDescription : Intel(R) 82574L Gigabit Network Connection
+Name                 : イーサネット
+Source               : 1
+SystemName           : WIN-JKSSMTI1TM6
+BindName             : rspndr
+Characteristics      : 132
+ComponentClassGuid   : {4D36E975-E325-11CE-BFC1-08002BE10318}
+ComponentClassName   : Transport
+ComponentID          : ms_rspndr
+DisplayName          : Link-Layer Topology Discovery Responder
+Enabled              : True
+PSComputerName       : 
+ifAlias              : イーサネット
+InterfaceAlias       : イーサネット
+ifDesc               : Intel(R) 82574L Gigabit Network Connection
+
+Caption              : MSFT_NetAdapterBindingSettingData 'Intel(R) 82574L Gigabit Network Connection'
+Description          : Microsoft ネットワーク用ファイルとプリンター共有
+ElementName          : ms_server
+InstanceID           : {534C22FF-5D21-4D60-87B1-8A60947B1308}::ms_server
+InterfaceDescription : Intel(R) 82574L Gigabit Network Connection
+Name                 : イーサネット
+Source               : 1
+SystemName           : WIN-JKSSMTI1TM6
+BindName             : LanmanServer
+Characteristics      : 132
+ComponentClassGuid   : {4D36E974-E325-11CE-BFC1-08002BE10318}
+ComponentClassName   : Service
+ComponentID          : ms_server
+DisplayName          : Microsoft ネットワーク用ファイルとプリンター共有
+Enabled              : True
+PSComputerName       : 
+ifAlias              : イーサネット
+InterfaceAlias       : イーサネット
+ifDesc               : Intel(R) 82574L Gigabit Network Connection
+
+Caption              : MSFT_NetAdapterBindingSettingData 'Intel(R) 82574L Gigabit Network Connection'
+Description          : QoS パケット スケジューラ
+ElementName          : ms_pacer
+InstanceID           : {534C22FF-5D21-4D60-87B1-8A60947B1308}::ms_pacer
+InterfaceDescription : Intel(R) 82574L Gigabit Network Connection
+Name                 : イーサネット
+Source               : 1
+SystemName           : WIN-JKSSMTI1TM6
+BindName             : 
+Characteristics      : 132
+ComponentClassGuid   : {4D36E974-E325-11CE-BFC1-08002BE10318}
+ComponentClassName   : Filter
+ComponentID          : ms_pacer
+DisplayName          : QoS パケット スケジューラ
+Enabled              : True
+PSComputerName       : 
+ifAlias              : イーサネット
+InterfaceAlias       : イーサネット
+ifDesc               : Intel(R) 82574L Gigabit Network Connection
+
+
+

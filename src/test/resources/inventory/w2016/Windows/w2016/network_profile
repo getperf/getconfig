@@ -1,0 +1,11 @@
+
+
+Name             : ネットワーク  2
+InterfaceAlias   : イーサネット
+InterfaceIndex   : 3
+NetworkCategory  : Private
+IPv4Connectivity : Internet
+IPv6Connectivity : Internet
+
+
+

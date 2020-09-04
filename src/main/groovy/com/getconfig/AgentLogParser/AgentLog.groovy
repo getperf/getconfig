@@ -26,7 +26,7 @@ class AgentLog {
         String[] paths = new File(this.path).toPath().collect()*.toString()
         this.agentLogMode = AgentLogMode.UNKNOWN
         this.metricFile = (paths.length>0)?paths[(paths.length-1)]:null;
-        if (!this.metricFile) {
+        if (!this.metricFile || paths.length <= 2) {
             return this
         }
 

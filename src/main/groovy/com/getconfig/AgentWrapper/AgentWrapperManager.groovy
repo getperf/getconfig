@@ -1,6 +1,6 @@
 package com.getconfig.AgentWrapper
 
-import com.getconfig.Utils.DirUtils
+
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
@@ -17,10 +17,10 @@ class AgentWrapperManager {
         agentWrappers.with {
             it["Linux"] = new Linux()
             it["Windows"] = new Windows()
-            it["vCenter"] = new vCenter()
+            it["VMWare"] = new VMWare()
             it["VMHost"] = new VMHost()
-            it["{Agent}"] = new RemoteAgent()
-            it["{LocalFile}"] = new LocalAgent()
+            it[AgentConstants.AGENT_LABEL_REMOTE] = new RemoteAgent()
+            it[AgentConstants.AGENT_LABEL_LOCAL_FILE] = new LocalAgent()
         }
     }
 

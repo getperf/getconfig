@@ -96,6 +96,18 @@ comment = "OSディストリビューション"
 
 [[metrics]]
 
+id = "fips"
+name = "FIPS モード"
+category = "OS設定"
+level = 1
+deviceFlag = false
+comment = "/proc/sys/crypto/fips_enabled を検索して、FIPS モードを検索"
+text = '''
+cat /proc/sys/crypto/fips_enabled
+'''
+
+[[metrics]]
+
 id = "virturization"
 name = "仮想化プラットフォーム"
 category = "OS設定"
@@ -158,6 +170,22 @@ fi
 
 [[metrics]]
 
+id = "kdump"
+name = "クラッシュダンプ"
+category = "OS設定"
+level = 1
+deviceFlag = false
+comment = "クラッシュダンプサービスを検索"
+text = '''
+if [ -f /usr/bin/systemctl ]; then
+    /usr/bin/systemctl status kdump
+else
+    /sbin/chkconfig --list|grep kdump
+fi
+'''
+
+[[metrics]]
+
 id = "crash_size"
 name = "クラッシュダンプサイズ"
 category = "OS設定"
@@ -195,6 +223,22 @@ category = "OS設定"
 level = -1
 deviceFlag = false
 comment = "コアコレクター設定"
+
+[[metrics]]
+
+id = "iptables"
+name = "ファイヤーウォール有効設定"
+category = "OS設定"
+level = 1
+deviceFlag = false
+comment = "iptables, firewalld サービスを検索"
+text = '''
+if [ -f /usr/bin/systemctl ]; then
+    /usr/bin/systemctl status iptables firewalld
+else
+    /sbin/chkconfig --list|grep iptables
+fi
+'''
 
 [[metrics]]
 
@@ -475,7 +519,7 @@ deviceFlag = false
 comment = "/etc/sysconfig/network-scripts からネットワークブート構成を検索"
 text = '''
 cd /etc/sysconfig/network-scripts/
-grep ONBOOT ifcfg-*
+grep -H ONBOOT ifcfg-*
 '''
 
 [[metrics]]
@@ -540,7 +584,7 @@ egrep -H '.*' /sys/block/*/device/queue_depth
 [[metrics]]
 
 id = "mdadb"
-name = "ディスクRAID"
+name = "ソフトウェアRAID"
 category = "ストレージ"
 level = 0
 deviceFlag = false
@@ -624,6 +668,18 @@ cat /etc/passwd
 
 [[metrics]]
 
+id = "group"
+name = "グループ情報"
+category = "ユーザー"
+level = 1
+deviceFlag = true
+comment = "/etc/group を検索して、グループ名を検索"
+text = '''
+cat /etc/group
+'''
+
+[[metrics]]
+
 id = "service"
 name = "サービス構成"
 category = "サービス"
@@ -657,6 +713,42 @@ deviceFlag = true
 comment = "rpm -qa コマンドで、パッケージ情報検索"
 text = '''
 rpm -qa --qf "%{NAME}\t%|EPOCH?{%{EPOCH}}:{0}|\t%{VERSION}\t%{RELEASE}\t%{INSTALLTIME}\t%{ARCH}\n"
+'''
+
+[[metrics]]
+
+id = "cron"
+name = "cron スケジューラ構成"
+category = "その他OS設定"
+level = 1
+deviceFlag = true
+comment = "/var/spool/cron/ を検索して、cron スケジューラ情報検索"
+text = '''
+sudo -A sh -c "cd /var/spool/cron/; egrep -H '.*' *"
+'''
+
+[[metrics]]
+
+id = "yum"
+name = "yum レポジトリ"
+category = "その他OS設定"
+level = 1
+deviceFlag = true
+comment = "/etc/yum.repos.d/ を検索して、有効化されている yum リポジトリを検索"
+text = '''
+egrep -e '\[|enabled' /etc/yum.repos.d/*.repo
+'''
+
+[[metrics]]
+
+id = "resource_limits"
+name = "リソースリミット"
+category = "その他OS設定"
+level = 1
+deviceFlag = true
+comment = "/etc/security/limits.d/ を検索して、リソースリミットを検索"
+text = '''
+egrep -v '^#' /etc/security/limits.d/*
 '''
 
 [[metrics]]

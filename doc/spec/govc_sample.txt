@@ -1,0 +1,150 @@
+govc調査
+========
+
+環境変数設定
+------------
+
+接続設定
+
+    export GOVC_USERNAME="xxx"
+    export GOVC_PASSWORD="yyy"
+    export GOVC_URL="https://192.168.0.200"
+    export GOVC_INSECURE=true
+
+    export GOVC_HOST="esxi.ostrich"
+
+各種コマンドサンプル
+--------------------
+
+govc vm.info centos80
+
+    Name:           centos80
+      Path:         /ha-datacenter/vm/centos80
+      UUID:         564ddde0-5cc7-5e98-26a0-ea8b9c4525fe
+      Guest name:   Red Hat Enterprise Linux 6 (64-bit)
+      Memory:       2048MB
+      CPU:          1 vCPU(s)
+      Power state:  poweredOn
+      Boot time:    2020-07-25 12:46:07.697809 +0000 UTC
+      IP address:   192.168.0.5
+      Host:         esxi.ostrich
+
+govc host.info
+
+    Name:              esxi.ostrich
+      Path:            /ha-datacenter/host/esxi.ostrich/esxi.ostrich
+      Manufacturer:    ASUS
+      Logical CPUs:    4 CPUs @ 3192MHz
+      Processor type:  Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz
+      CPU usage:       3706 MHz (29.0%)
+      Memory:          24451MB
+      Memory usage:    18884 MB (77.2%)
+      Boot time:       2020-07-25 12:43:56.479091 +0000 UTC
+      State:           connected
+
+govc host.service.ls
+
+    Key             Policy     Status   Label
+    DCUI            on         Running  Direct Console UI
+    TSM             off        Stopped  ESXi Shell
+    TSM-SSH         off        Stopped  SSH
+    lbtd            on         Running  lbtd
+    lsassd          off        Stopped  Local Security Authentication Server (Active Directory Service)
+    lwiod           off        Stopped  I/O Redirector (Active Directory Service)
+    netlogond       off        Stopped  Network Login Server (Active Directory Service)
+    ntpd            automatic  Running  NTP Daemon
+    sfcbd-watchdog  on         Stopped  CIM Server
+    snmpd           on         Stopped  snmpd
+    vprobed         off        Stopped  vprobed
+    vpxa            on         Stopped  vpxa
+    xorg            on         Stopped  xorg
+
+govc host.date.info
+
+    Current date and time:  Thu Aug 27 01:14:03 UTC 2020
+    NTP client status:      Automatic
+    NTP service status:     Running
+    NTP servers:            ntp.nict.jp
+
+govc host.cert.info
+
+    govc: ServerFaultCode: InvalidProperty
+
+govc host.autostart.info
+
+    VM                                          StartAction  StartDelay  StartOrder  StopAction     StopDelay  WaitForHeartbeat
+    /ha-datacenter/vm/video_recorder01.ostrich  PowerOn      -1          1           SystemDefault  -1         systemDefault
+
+govc host.portgroup.info
+
+    Virtual switch:          vSwitch0
+    VLAN ID:                 0
+    Active ports:            1
+    Allow promiscuous mode:  Yes
+    Allow forged transmits:  Yes
+    Allow MAC changes:       Yes
+
+    Name:                    LIVING-LAN
+    Virtual switch:          vSwitch1
+    VLAN ID:                 0
+    Active ports:            8
+    Allow promiscuous mode:  Yes
+    Allow forged transmits:  Yes
+    Allow MAC changes:       Yes
+
+    Name:                    VMkernel
+    Virtual switch:          vSwitch1
+    VLAN ID:                 0
+    Active ports:            1
+    Allow promiscuous mode:  Yes
+    Allow forged transmits:  Yes
+    Allow MAC changes:       Yes
+
+govc host.storage.info
+
+    Name                                                                                            Type  Capacity  Model
+    /vmfs/devices/disks/t10.ATA_____WDC_WD30EZRX2D00D8PB0_________________________WD2DWMC4N0K6TKCV  disk  2.7TB     WDC WD30EZRX-00D
+    /vmfs/devices/disks/t10.ATA_____CT500MX500SSD1__________________________1904E1E58B50________    disk  465.8GB   CT500MX500SSD1   (ssd)
+    /vmfs/devices/disks/t10.ATA_____HFS250G32TND2DN1A2A______________________EJ75N535710705F34___   disk  232.9GB   HFS250G32TND-N1A (ssd)
+    /vmfs/devices/disks/t10.ATA_____TOSHIBA_THNSNJ128GCSU___________________________44SS108GT7RW    disk  119.2GB   TOSHIBA THNSNJ12 (ssd)
+
+govc host.vnic.info
+
+    Device:            vmk0
+    Network label:     Management Network
+    Switch:            vSwitch0
+    IP address:        192.168.10.100
+    TCP/IP stack:      defaultTcpipStack
+    Enabled services:  management
+    Device:            vmk1
+    Network label:     VMkernel
+    Switch:            vSwitch1
+    IP address:        192.168.0.200
+    TCP/IP stack:      defaultTcpipStack
+    Enabled services:  management
+
+govc host.vswitch.info
+
+    Name:                    vSwitch0
+    Portgroup:               VM Network, Management Network
+    Pnic:                    vmnic0
+    MTU:                     1500
+    Ports:                   1792
+    Ports Available:         1773
+    Allow promiscuous mode:  Yes
+    Allow forged transmits:  Yes
+    Allow MAC changes:       Yes
+
+    Name:                    vSwitch1
+    Portgroup:               LIVING-LAN, VMkernel
+    Pnic:                    vmnic1
+    MTU:                     1500
+    Ports:                   1792
+    Ports Available:         1773
+    Allow promiscuous mode:  Yes
+    Allow forged transmits:  Yes
+    Allow MAC changes:       Yes
+
+govc host.esxcli network ip connection list
+
+

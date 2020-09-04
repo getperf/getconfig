@@ -17,7 +17,7 @@ evidence.json_dir='./src/test/resources/json'
 
 // 並列化しないタスク
 
-test.serialization.tasks = ['vCenter']
+test.serialization.tasks = ['VMWare', 'VMHost']
 
 // DryRunモードログ保存先
 
@@ -37,27 +37,27 @@ ticket.custom_field.inventory = 'インベントリ'
 test.timeout.Default = 30
 test.timeout.Linux   = 30
 test.timeout.Windows = 300
-test.timeout.vCenter = 300
+test.timeout.VMWare = 300
 
 // コマンド採取のデバッグモード
 
 test.debug.Default = false
 test.debug.Linux   = false
 test.debug.Windows = false
-test.debug.vCenter = false
+test.debug.VMWare = false
 
 // DryRun 予行演習モード
 
 test.dry_run.Default = false
 test.dry_run.Linux   = false
 test.dry_run.Windows = false
-test.dry_run.vCenter = false
+test.dry_run.VMWare = false
 
 // vCenter接続情報
 
-account.vCenter.Account01.server   = '192.168.0.200'
-account.vCenter.Account01.user     = 'test_user'
-account.vCenter.Account01.password = 'P@ssword'
+account.VMWare.Account01.server   = '192.168.0.200'
+account.VMWare.Account01.user     = 'test_user'
+account.VMWare.Account01.password = 'P@ssword'
 
 // VMHost 接続情報
 

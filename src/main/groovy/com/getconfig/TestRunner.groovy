@@ -4,8 +4,11 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import com.getconfig.Command.GetconfigCommand
 import com.getconfig.Document.SpecReader
+import com.getconfig.Model.TestResultGroup
+import com.getconfig.Model.TestScenario
 import com.getconfig.Model.TestServer
 import com.getconfig.Model.TestServerGroup
+import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.util.logging.Slf4j
@@ -13,14 +16,16 @@ import org.slf4j.LoggerFactory
 
 @Slf4j
 @ToString
-@CompileStatic
+//@CompileStatic
+@CompileDynamic
 class TestRunner implements Controller {
     boolean silent = false
     boolean dryRun = false
     String checkSheetPath
     String evidenceSheetPath
     List<TestServer> testServers
-    private Map<String, TestServerGroup> testServerGroups
+    Map<String, TestServerGroup> testServerGroups
+    Map<String, TestResultGroup> testResultGroups
 
     void setEnvironment(ConfigEnv env) {
         this.silent = env.getSilent()
@@ -48,19 +53,34 @@ class TestRunner implements Controller {
     }
 
     void runCollector() {
-        if (this.dryRun) {
-            log.info "skip inventory collector, because dryRun is true"
-            return
-        }
         log.info "run collector"
         Collector collector = new Collector(this.testServers)
         ConfigEnv.instance.accept(collector)
         collector.run()
-        this.testServerGroups = collector.getTestServerGroups()
+        this.testServerGroups = collector.testServerGroups
         log.info "finish collector"
     }
 
-    void report() {
+    void runLogParser() {
+        log.info "run parser"
+        LogParser logParser = new LogParser(this.testServers)
+        ConfigEnv.instance.accept(logParser)
+        logParser.run()
+        this.testResultGroups = logParser.testResultGroups
+        logParser.testResultGroups.each {String key, TestResultGroup testResultGroup ->
+            println "KEY:$key, RESULTS:${testResultGroup}"
+        }
+        log.info "finish parser"
+    }
+
+    void runReporter() {
+        TestScenario testScenario = new TestScenario(
+                testServers: this.testServers,
+                testServerGroups: this.testServerGroups,
+                testResultGroups: this.testResultGroups,
+        )
+        // メトリック定義の読込み
+        // 検査結果の収集、サーバ、メトリック毎
         log.info "run report"
     }
 
@@ -70,7 +90,9 @@ class TestRunner implements Controller {
         this.setLogLevel()
         this.readExcel()
         this.runCollector()
-        this.report()
+        this.runLogParser()
+
+        this.runReporter()
         long elapse = System.currentTimeMillis() - start
         log.info "Finish, Total Elapse : ${elapse} ms"
         return 0

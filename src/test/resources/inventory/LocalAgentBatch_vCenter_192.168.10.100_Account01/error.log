@@ -1,4 +1,0 @@
-get local vm defined in 'server' parameter : vm '' not found
-not found json query[w2016:disk] : 'Guest.Disk'
-not found json query[w2016:ipstack] : 'Guest.IpStack'
-not found json query[w2016:net] : 'Guest.Net'

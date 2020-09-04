@@ -10,4 +10,5 @@ import groovy.transform.ToString
 class PortList {
     String ip
     String device
+    boolean forManagement
 }

@@ -46,6 +46,10 @@ class LocalAgentBatchExecutor extends LocalAgentExecutor {
         args.addAll("-c", this.tomlPath())
         args.addAll("run")
         args.addAll("-o", this.makeAgentLogDir())
+        args.addAll("--log-level", AgentConstants.AGENT_LOG_LEVEL as String)
+        if (this.level > 0) {
+            args.addAll("--level", this.level as String)
+        }
         if (this.timeout > 0) {
             args.addAll("--timeout", this.timeout as String)
         }
@@ -58,7 +62,7 @@ class LocalAgentBatchExecutor extends LocalAgentExecutor {
 
     int run() {
         List<String> serverNames = testServers*.serverName
-        String title = "${this.platform} agent executer(${serverNames})"
+        String title = "${this.platform} agent(${serverNames})"
         long start = System.currentTimeMillis()
         log.info "Run ${title}"
         def exec = new CommandExec(this.timeout * 1000)
@@ -69,7 +73,7 @@ class LocalAgentBatchExecutor extends LocalAgentExecutor {
         log.debug "agent command args : ${this.args()}"
         def rc = exec.run(this.gconfExe, this.args() as String[])
         long elapse = System.currentTimeMillis() - start
-        log.info "Finish[${rc}],Elapse : ${elapse} ms"
+        log.info "ExitCode : ${rc}, Elapse : ${elapse} ms"
         return rc
     }
 }

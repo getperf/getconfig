@@ -55,7 +55,7 @@ class RemoteAgentHubExecutor implements AgentExecutor {
             }
         }
         long elapse = System.currentTimeMillis() - start
-        log.info "Finish[${rc}],Elapse : ${elapse} ms"
+        log.info "ExitCode : ${rc}, Elapse : ${elapse} ms"
         return rc
     }
 }

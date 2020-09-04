@@ -1,5 +1,0 @@
-/etc/security/limits.d/90-nproc.conf:
-/etc/security/limits.d/90-nproc.conf:*          soft    nproc     1024
-/etc/security/limits.d/90-nproc.conf:root       soft    nproc     unlimited
-/etc/security/limits.d/95-redis.conf:redis soft nofile 10240
-/etc/security/limits.d/95-redis.conf:redis hard nofile 10240

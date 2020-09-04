@@ -12,4 +12,8 @@ class TestScenario {
     String description
 
     TestMetricGroup testMetrics
+    List<TestServer> testServers
+    Map <String, TestServerGroup> testServerGroups
+    Map <String,TestResultGroup> testResultGroups
+    PortListGroup portLists
 }

@@ -1,0 +1,19 @@
+
+
+Build             : 914393
+IntegratedBrowser : 1
+MkEnabled         : Yes
+svcKBFWLink       : https://aka.ms/IECU2008B
+svcKBNumber       : KB4571687
+svcUpdateVersion  : 11.0.205
+svcVersion        : 11.3866.14393.0
+Version           : 9.11.14393.0
+W2kVersion        : 9.11.14393.0
+PSPath            : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer
+PSParentPath      : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft
+PSChildName       : Internet Explorer
+PSDrive           : HKLM
+PSProvider        : Microsoft.PowerShell.Core\Registry
+
+
+

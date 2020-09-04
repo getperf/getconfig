@@ -3,6 +3,7 @@ package com.getconfig
 import com.getconfig.AgentWrapper.AgentConfigWrapper
 import com.getconfig.AgentWrapper.AgentExecutor
 import com.getconfig.AgentWrapper.AgentMode
+import com.getconfig.AgentWrapper.LogManager
 import com.getconfig.AgentWrapper.LocalAgentExecutor
 import com.getconfig.AgentWrapper.LocalAgentBatchExecutor
 import com.getconfig.AgentWrapper.RemoteAgentExecutor
@@ -10,6 +11,7 @@ import com.getconfig.AgentWrapper.RemoteAgentHubExecutor
 import com.getconfig.AgentWrapper.AgentWrapperManager
 import com.getconfig.Model.TestServer
 import com.getconfig.Model.TestServerGroup
+import com.getconfig.Utils.CommonUtil
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 
@@ -18,6 +20,9 @@ import groovy.util.logging.Slf4j
 class Collector implements Controller {
     protected List<TestServer> testServers
     private Map<String,TestServerGroup> testServerGroups
+    boolean dryRun
+    String projectLogDir
+    String currentLogDir
     String filterServer
 
     Collector(List<TestServer> testServers) {
@@ -26,7 +31,10 @@ class Collector implements Controller {
     }
 
     void setEnvironment(ConfigEnv env) {
+        this.dryRun = env.getDryRun()
         this.filterServer = env.getKeywordServer()
+        this.projectLogDir = env.getProjectLogDir()
+        this.currentLogDir = env.getCurrentLogDir()
     }
 
     Map<String, TestServerGroup> getTestServerGroups() {
@@ -34,7 +42,7 @@ class Collector implements Controller {
     }
 
     AgentMode getAgentMode(String domain) {
-        if (domain == '{LocalFile(Hub)}') {
+        if (domain == '{LocalFile}') {
             return AgentMode.RemoteAgentHub
         } else if (domain == '{Agent}') {
             return AgentMode.RemoteAgent
@@ -105,8 +113,11 @@ class Collector implements Controller {
             try {
                 env.accept(agentExecutor)
                 testServerGroup.agentLogPath = agentExecutor.getAgentLogDir()
-//                log.info("LOG:${agentExecutor.getAgentLogDir()}")
-                agentExecutor.run()
+                if (dryRun) {
+                    LogManager.restoreProjectLogs(this, agentExecutor.getAgentLogDir())
+                }else {
+                    agentExecutor.run()
+                }
             } catch (IllegalArgumentException e) {
                 log.info "${server.serverName} agent error, skip\n $e"
             }
@@ -114,8 +125,10 @@ class Collector implements Controller {
     }
 
     int run() {
+        CommonUtil.resetDir(this.currentLogDir)
         this.classifyTestServers()
         this.runAgent()
         return 0
     }
+
 }

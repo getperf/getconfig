@@ -50,10 +50,13 @@ class LogParser implements Controller {
     }
 
     void parseAgentLogs() {
-        println this.parserLibPath
+        long start = System.currentTimeMillis()
         AgentLogParserManager parserManager = new AgentLogParserManager(this.parserLibPath)
-        parserManager.init()
+//        parserManager.init()
+        long elapse = System.currentTimeMillis() - start
+        log.debug "parser load elapse : ${elapse} ms"
         this.agentLogs.each { AgentLog agentLog ->
+            parserManager.init(agentLog.platform)
             TestUtil t = new TestUtil(agentLog)
             parserManager.invoke(t)
         }

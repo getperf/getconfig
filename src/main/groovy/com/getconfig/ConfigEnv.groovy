@@ -57,6 +57,10 @@ class ConfigEnv {
         sv.setAccont(account)
     }
 
+    void  setDryRun(String platform = "Default") {
+        this.config.test.dry_run[platform] = true
+    }
+
     boolean isWindows() {
         String osName = System.properties['os.name']
         return (osName.toLowerCase().contains('windows'))
@@ -102,7 +106,7 @@ class ConfigEnv {
 
     // プロジェクトログディレクトリ   src/test/resources/log
     String getProjectLogDir() {
-        return Paths.get(this.getProjectHome(), 'src/test/resources/log')
+        return Paths.get(this.getProjectHome(), 'src/test/resources/inventory')
     }
 
     // 構成管理DB設定パス  config/cmdb.groovy

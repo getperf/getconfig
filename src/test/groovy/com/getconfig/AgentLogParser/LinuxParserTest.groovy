@@ -1,20 +1,28 @@
 package com.getconfig.AgentLogParser
 
-import com.getconfig.Testing.TestUtil
 import spock.lang.Specification
+import java.nio.file.Paths
+import com.getconfig.Testing.TestUtil
+
+// gradle cleanTest test --tests "LinuxParserTest.fstab"
 
 class LinuxParserTest extends Specification {
-    AgentLogParserManager logParsers
+    static AgentLogParserManager logParsers
+    String logPath = "src/test/resources/inventory/centos80/Linux/centos80"
 
-    def setup() {
+    def setupSpec() {
         logParsers = new AgentLogParserManager("./lib/parser")
-        logParsers.init()
+        logParsers.init("Linux")
+    }
+
+    def testLogPath(String filename) {
+        return Paths.get(logPath, filename)
     }
 
     def "hostname"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "hostname")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/hostname"
+        TestUtil t = new TestUtil("centos80", "Linux", "hostname")
+        t.logPath = testLogPath("hostname")
         logParsers.invoke(t)
 
         then:
@@ -23,8 +31,8 @@ class LinuxParserTest extends Specification {
 
     def "hostname_fqdn"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "hostname_fqdn")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/hostname_fqdn"
+        TestUtil t = new TestUtil("centos80", "Linux", "hostname_fqdn")
+        t.logPath = testLogPath("hostname_fqdn")
         logParsers.invoke(t)
 
         then:
@@ -33,32 +41,32 @@ class LinuxParserTest extends Specification {
 
     def "uname"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "uname")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/uname"
+        TestUtil t = new TestUtil("centos80", "Linux", "uname")
+        t.logPath = testLogPath("uname")
         logParsers.invoke(t)
 
         then:
-        t.get("Linux", "uname").value == "Linux ostrich 2.6.32-754.11.1.el6.x86_64"
-        t.get("Linux", "kernel").value == "Linux ostrich 2.6.32-754.11.1.el6"
+        t.get("Linux", "uname").value == "Linux centos80.getperf 4.18.0-147.el8.x86_64"
+        t.get("Linux", "kernel").value == "Linux centos80.getperf 4.18.0-147.el8"
         t.get("Linux", "arch").value == "x86_64"
     }
 
     def "lsb"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "lsb")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/lsb"
+        TestUtil t = new TestUtil("centos80", "Linux", "lsb")
+        t.logPath = testLogPath("lsb")
         logParsers.invoke(t)
 
         then:
-        t.get("Linux", "lsb").value == "[CentOS release 6.10 (Final)]"
-        t.get("Linux", "os").value == "CentOS release 6.10"
-        t.get("Linux", "os_release").value == "6.10"
+        t.get("Linux", "lsb").value == "[CentOS Linux release 8.1.1911 (Core)]"
+        t.get("Linux", "os").value == "CentOS Linux release 8.1.1911"
+        t.get("Linux", "os_release").value == "8.1.1911"
     }
 
     def "cpu"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "cpu")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/cpu"
+        TestUtil t = new TestUtil("centos80", "Linux", "cpu")
+        t.logPath = testLogPath("cpu")
         logParsers.invoke(t)
 
         then:
@@ -68,8 +76,8 @@ class LinuxParserTest extends Specification {
 
     def "machineid"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "machineid")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/machineid"
+        TestUtil t = new TestUtil("centos80", "Linux", "machineid")
+        t.logPath = testLogPath("machineid")
         logParsers.invoke(t)
 
         then:
@@ -78,93 +86,91 @@ class LinuxParserTest extends Specification {
 
     def "meminfo"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "meminfo")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/meminfo"
+        TestUtil t = new TestUtil("centos80", "Linux", "meminfo")
+        t.logPath = testLogPath("meminfo")
         logParsers.invoke(t)
 
         then:
-        t.get("Linux", "meminfo").value == "1922008 kB"
+        t.get("Linux", "meminfo").value == "1873544 kB"
         t.get("Linux", "mem_total").value == "1.8"
-        t.get("Linux", "mem_free").value == "0.3"
     }
 
     def "network"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "network")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/network"
+        TestUtil t = new TestUtil("centos80", "Linux", "network")
+        t.logPath = testLogPath('network')
+        logParsers.invoke(t)
 
         then:
-        logParsers.invoke(t)
         1 == 1
     }
 
     def "net_onboot"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "net_onboot")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/net_onboot"
+        TestUtil t = new TestUtil("centos80", "Linux", "net_onboot")
+        t.logPath = testLogPath("net_onboot")
         logParsers.invoke(t)
 
         then:
-        t.get().value == "[eth0:yes, eth0:1:no, lo:yes]"
+        t.get().value == "[ens192:yes]"
     }
 
     def "net_route"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "net_route")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/net_route"
+        TestUtil t = new TestUtil("centos80", "Linux", "net_route")
+        t.logPath = testLogPath("net_route")
         logParsers.invoke(t)
 
         then:
-        t.get().value == "[192.168.10.254:eth0]"
+        t.get().value == "[192.168.0.1:ens192]"
     }
 
     def "net_bond"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "net_bond")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/net_bond"
+        TestUtil t = new TestUtil("centos80", "Linux", "net_bond")
+        t.logPath = testLogPath("net_bond")
         logParsers.invoke(t)
 
         then:
         t.get().value == "[bonding:NotConfigured, devices:[], options:[]]"
-        1 == 1
     }
 
     def "block_device"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "block_device")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/block_device"
+        TestUtil t = new TestUtil("centos80", "Linux", "block_device")
+        t.logPath = testLogPath("block_device")
         logParsers.invoke(t)
 
         then:
         t.get().value == "2 devices"
-        t.get("Linux", "block_device.sda.timeout").value == "180"
-        t.get("Linux", "block_device.sda.queue_depth").value == "32"
     }
 
     def "mdadb"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "mdadb")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/mdadb"
+        TestUtil t = new TestUtil("centos80", "Linux", "mdadb")
+        t.logPath = testLogPath("mdadb")
         logParsers.invoke(t)
 
         then:
-        1 == 1
+        t.get("Linux", "mdadb.md0").value == "active raid1 hdb1[0] hdd1[1]"
     }
 
     def "filesystem"() {
+
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "filesystem")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/filesystem"
+        TestUtil t = new TestUtil("centos80", "Linux", "filesystem")
+        t.logPath = testLogPath("filesystem")
         logParsers.invoke(t)
 
         then:
+        t.get().value == "[/boot:1G, /:46.9G, [SWAP]:2.1G]"
         1 == 1
     }
 
     def "lvm"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "lvm")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/lvm"
+        TestUtil t = new TestUtil("centos80", "Linux", "lvm")
+        t.logPath = testLogPath("lvm")
         logParsers.invoke(t)
 
         then:
@@ -173,28 +179,28 @@ class LinuxParserTest extends Specification {
 
     def "filesystem_df_ip"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "filesystem_df_ip")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/filesystem_df_ip"
+        TestUtil t = new TestUtil("centos80", "Linux", "filesystem_df_ip")
+        t.logPath = testLogPath("filesystem_df_ip")
         logParsers.invoke(t)
 
         then:
-        1 == 1
+        t.get().value == "[/:754877/24602624]"
     }
 
     def "fstab"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "fstab")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/fstab"
+        TestUtil t = new TestUtil("centos80", "Linux", "fstab")
+        t.logPath = testLogPath("fstab")
         logParsers.invoke(t)
 
         then:
-        1 == 1
+        t.get('Linux', 'fstypes').value == "[xfs:[/], ext4:[/boot]]"
     }
 
     def "fips"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "fips")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/fips"
+        TestUtil t = new TestUtil("centos80", "Linux", "fips")
+        t.logPath = testLogPath("fips")
         logParsers.invoke(t)
 
         then:
@@ -203,28 +209,28 @@ class LinuxParserTest extends Specification {
 
     def "virturization"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "virturization")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/virturization"
+        TestUtil t = new TestUtil("centos80", "Linux", "virturization")
+        t.logPath = testLogPath("virturization")
         logParsers.invoke(t)
 
         then:
-        1 == 1
+        t.get().value == "no KVM"
     }
 
     def "packages"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "packages")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/packages"
+        TestUtil t = new TestUtil("centos80", "Linux", "packages")
+        t.logPath = testLogPath("packages")
         logParsers.invoke(t)
 
         then:
-        1 == 1
+        t.get().value == "[RHEL8:1051, COMMON:2]"
     }
 
     def "cron"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "cron")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/cron"
+        TestUtil t = new TestUtil("centos80", "Linux", "cron")
+        t.logPath = testLogPath("cron")
         logParsers.invoke(t)
 
         then:
@@ -233,8 +239,8 @@ class LinuxParserTest extends Specification {
 
     def "yum"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "yum")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/yum"
+        TestUtil t = new TestUtil("centos80", "Linux", "yum")
+        t.logPath = testLogPath("yum")
         logParsers.invoke(t)
 
         then:
@@ -243,8 +249,8 @@ class LinuxParserTest extends Specification {
 
     def "resource_limits"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "resource_limits")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/resource_limits"
+        TestUtil t = new TestUtil("centos80", "Linux", "resource_limits")
+        t.logPath = testLogPath("resource_limits")
         logParsers.invoke(t)
 
         then:
@@ -253,8 +259,8 @@ class LinuxParserTest extends Specification {
 
     def "user"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "user")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/user"
+        TestUtil t = new TestUtil("centos80", "Linux", "user")
+        t.logPath = testLogPath("user")
         logParsers.invoke(t)
 
         then:
@@ -263,8 +269,8 @@ class LinuxParserTest extends Specification {
 
     def "crontab"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "crontab")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/crontab"
+        TestUtil t = new TestUtil("centos80", "Linux", "crontab")
+        t.logPath = testLogPath("crontab")
         logParsers.invoke(t)
 
         then:
@@ -273,8 +279,8 @@ class LinuxParserTest extends Specification {
 
     def "service"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "service")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/service"
+        TestUtil t = new TestUtil("centos80", "Linux", "service")
+        t.logPath = testLogPath("service")
         logParsers.invoke(t)
 
         then:
@@ -283,8 +289,8 @@ class LinuxParserTest extends Specification {
 
     def "mount_iso"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "mount_iso")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/mount_iso"
+        TestUtil t = new TestUtil("centos80", "Linux", "mount_iso")
+        t.logPath = testLogPath("mount_iso")
         logParsers.invoke(t)
 
         then:
@@ -293,8 +299,8 @@ class LinuxParserTest extends Specification {
 
     def "oracle"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "oracle")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/oracle"
+        TestUtil t = new TestUtil("centos80", "Linux", "oracle")
+        t.logPath = testLogPath("oracle")
         logParsers.invoke(t)
 
         then:
@@ -303,8 +309,8 @@ class LinuxParserTest extends Specification {
 
     def "proxy_global"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "proxy_global")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/proxy_global"
+        TestUtil t = new TestUtil("centos80", "Linux", "proxy_global")
+        t.logPath = testLogPath("proxy_global")
         logParsers.invoke(t)
 
         then:
@@ -313,8 +319,8 @@ class LinuxParserTest extends Specification {
 
     def "kdump"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "kdump")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/kdump"
+        TestUtil t = new TestUtil("centos80", "Linux", "kdump")
+        t.logPath = testLogPath("kdump")
         logParsers.invoke(t)
 
         then:
@@ -323,8 +329,8 @@ class LinuxParserTest extends Specification {
 
     def "crash_size"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "crash_size")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/crash_size"
+        TestUtil t = new TestUtil("centos80", "Linux", "crash_size")
+        t.logPath = testLogPath("crash_size")
         logParsers.invoke(t)
 
         then:
@@ -333,8 +339,8 @@ class LinuxParserTest extends Specification {
 
     def "kdump_path"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "kdump_path")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/kdump_path"
+        TestUtil t = new TestUtil("centos80", "Linux", "kdump_path")
+        t.logPath = testLogPath("kdump_path")
         logParsers.invoke(t)
 
         then:
@@ -343,8 +349,8 @@ class LinuxParserTest extends Specification {
 
     def "iptables"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "iptables")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/iptables"
+        TestUtil t = new TestUtil("centos80", "Linux", "iptables")
+        t.logPath = testLogPath("iptables")
         logParsers.invoke(t)
 
         then:
@@ -353,8 +359,8 @@ class LinuxParserTest extends Specification {
 
     def "runlevel"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "runlevel")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/runlevel"
+        TestUtil t = new TestUtil("centos80", "Linux", "runlevel")
+        t.logPath = testLogPath("runlevel")
         logParsers.invoke(t)
 
         then:
@@ -363,8 +369,8 @@ class LinuxParserTest extends Specification {
 
     def "resolve_conf"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "resolve_conf")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/resolve_conf"
+        TestUtil t = new TestUtil("centos80", "Linux", "resolve_conf")
+        t.logPath = testLogPath("resolve_conf")
         logParsers.invoke(t)
 
         then:
@@ -373,8 +379,8 @@ class LinuxParserTest extends Specification {
 
     def "grub"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "grub")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/grub"
+        TestUtil t = new TestUtil("centos80", "Linux", "grub")
+        t.logPath = testLogPath("grub")
         logParsers.invoke(t)
 
         then:
@@ -383,8 +389,8 @@ class LinuxParserTest extends Specification {
 
     def "ntp"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "ntp")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/ntp"
+        TestUtil t = new TestUtil("centos80", "Linux", "ntp")
+        t.logPath = testLogPath("ntp")
         logParsers.invoke(t)
 
         then:
@@ -393,8 +399,8 @@ class LinuxParserTest extends Specification {
 
     def "ntp_slew"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "ntp_slew")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/ntp_slew"
+        TestUtil t = new TestUtil("centos80", "Linux", "ntp_slew")
+        t.logPath = testLogPath("ntp_slew")
         logParsers.invoke(t)
 
         then:
@@ -403,8 +409,8 @@ class LinuxParserTest extends Specification {
 
     def "snmp_trap"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "snmp_trap")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/snmp_trap"
+        TestUtil t = new TestUtil("centos80", "Linux", "snmp_trap")
+        t.logPath = testLogPath("snmp_trap")
         logParsers.invoke(t)
 
         then:
@@ -413,8 +419,8 @@ class LinuxParserTest extends Specification {
 
     def "sestatus"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "sestatus")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/sestatus"
+        TestUtil t = new TestUtil("centos80", "Linux", "sestatus")
+        t.logPath = testLogPath("sestatus")
         logParsers.invoke(t)
 
         then:
@@ -423,8 +429,8 @@ class LinuxParserTest extends Specification {
 
     def "keyboard"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "keyboard")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/keyboard"
+        TestUtil t = new TestUtil("centos80", "Linux", "keyboard")
+        t.logPath = testLogPath("keyboard")
         logParsers.invoke(t)
 
         then:
@@ -433,8 +439,8 @@ class LinuxParserTest extends Specification {
 
     def "vmwaretool_timesync"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "vmwaretool_timesync")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/vmwaretool_timesync"
+        TestUtil t = new TestUtil("centos80", "Linux", "vmwaretool_timesync")
+        t.logPath = testLogPath("vmwaretool_timesync")
         logParsers.invoke(t)
 
         then:
@@ -443,8 +449,8 @@ class LinuxParserTest extends Specification {
 
     def "vmware_scsi_timeout"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "vmware_scsi_timeout")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/vmware_scsi_timeout"
+        TestUtil t = new TestUtil("centos80", "Linux", "vmware_scsi_timeout")
+        t.logPath = testLogPath("vmware_scsi_timeout")
         logParsers.invoke(t)
 
         then:
@@ -453,8 +459,8 @@ class LinuxParserTest extends Specification {
 
     def "language"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "language")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/language"
+        TestUtil t = new TestUtil("centos80", "Linux", "language")
+        t.logPath = testLogPath("language")
         logParsers.invoke(t)
 
         then:
@@ -463,8 +469,8 @@ class LinuxParserTest extends Specification {
 
     def "timezone"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "timezone")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/timezone"
+        TestUtil t = new TestUtil("centos80", "Linux", "timezone")
+        t.logPath = testLogPath("timezone")
         logParsers.invoke(t)
 
         then:
@@ -473,8 +479,8 @@ class LinuxParserTest extends Specification {
 
     def "error_messages"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "error_messages")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/error_messages"
+        TestUtil t = new TestUtil("centos80", "Linux", "error_messages")
+        t.logPath = testLogPath("error_messages")
         logParsers.invoke(t)
 
         then:
@@ -483,21 +489,12 @@ class LinuxParserTest extends Specification {
 
     def "oracle_module"() {
         when:
-        TestUtil t = new TestUtil("cent80", "Linux", "oracle_module")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/oracle_module"
+        TestUtil t = new TestUtil("centos80", "Linux", "oracle_module")
+        t.logPath = testLogPath("oracle_module")
         logParsers.invoke(t)
 
         then:
         1 == 1
     }
 
-    def "vncserver"() {
-        when:
-        TestUtil t = new TestUtil("cent80", "Linux", "vncserver")
-        t.logPath = "src/test/resources/inventory/centos80/Linux/centos80/vncserver"
-        logParsers.invoke(t)
-
-        then:
-        1 == 1
-    }
 }

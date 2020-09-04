@@ -1,5 +1,6 @@
 package com.getconfig.Model
 
+import com.getconfig.AgentWrapper.AgentConstants
 import groovy.transform.TypeChecked
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
@@ -50,11 +51,11 @@ public class TestServer {
         if (this.serverName == "" || this.domain == "") {
             notFoundMsgs << "server_name or domain"
         }
-        if (domain != "{LocalFile}") {
+        if (domain != AgentConstants.AGENT_LABEL_LOCAL_FILE) {
             if (this.ip == "") {
                 notFoundMsgs << "ip"
             }
-            if (domain != "{Agent}") {
+            if (domain != AgentConstants.AGENT_LABEL_REMOTE) {
                 if (this.user == "") {
                     notFoundMsgs << "user"
                 }

@@ -1,5 +1,7 @@
 package com.getconfig.Document
 
+import com.getconfig.Model.TestMetricGroup
+import com.getconfig.Utils.TomlUtils
 import org.apache.poi.ss.usermodel.CellStyle
 import spock.lang.Specification
 
@@ -75,6 +77,39 @@ class ReportMakerTest extends Specification {
 
         then:
         println reportMaker.cellStyles
+        1 == 1
+    }
+
+    def "検査結果プロトタイプ"() {
+        when:
+        ReportMaker reportMaker = new ReportMaker(excelTemplate).read()
+        reportMaker.parseCellStyles("CellStyle")
+        reportMaker.setTemplateSheet("TestResult")
+        reportMaker.copyTemplate("検査結果")
+        SheetManager manager = reportMaker.createSheetManager()
+
+        TestMetricGroup metrics = TomlUtils.read("lib/dictionary/Linux.toml",
+                                                TestMetricGroup)
+        metrics.platform = 'Linux'
+        metrics.validate()
+        manager.nextRow()
+        metrics.getAll().each { metric ->
+            println metric
+            manager.setCellValue(metric.level)
+            manager.setCellValue(metric.category)
+            manager.setCellValue(metric.name)
+            manager.setCellValue(metric.id)
+            manager.setCellValue(metric.deviceFlag.toString())
+            manager.setCellValue(metric.comment)
+            manager.setCellValue(metric.platform)
+            manager.nextRow()
+            manager.shiftRows()
+        }
+
+        reportMaker.finish()
+        reportMaker.write("build/report4.xlsx")
+
+        then:
         1 == 1
     }
 

@@ -1,10 +1,10 @@
 
 
-TotalVirtualMemorySize : 12519936
+TotalVirtualMemorySize : 12581992
 TotalVisibleMemorySize : 6290996
-FreePhysicalMemory     : 3788260
-FreeVirtualMemory      : 9945352
-FreeSpaceInPagingFiles : 6132616
+FreePhysicalMemory     : 5060400
+FreeVirtualMemory      : 11470640
+FreeSpaceInPagingFiles : 6290996
 
 
 
