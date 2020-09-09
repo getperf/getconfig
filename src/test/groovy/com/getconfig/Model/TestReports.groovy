@@ -4,13 +4,13 @@ import com.getconfig.Utils.TomlUtils
 import groovy.json.JsonBuilder
 import spock.lang.Specification
 
-class TestReportsTest extends Specification {
+class TestReports extends Specification {
     def "Decode"() {
         when:
-        TestReports reports = new TestReports()
+        Reports reports = new Reports()
         reports.addColumn("hostName", "ホスト名", "subject")
         reports.addColumn("domain", "ドメイン", "tracker")
-        TestReports.ReportColumn column = reports.addColumn("model", "機種", "機種")
+        Reports.ReportColumn column = reports.addColumn("model", "機種", "機種")
         column.inventories["iLo"] = "HSI_SPN"
         column.inventories["CiscoUCS"] = "chassis.productname"
 //        new InventoryFields()
@@ -26,7 +26,7 @@ class TestReportsTest extends Specification {
 
     def "toml読込み"() {
         when:
-        TestReports testReports = TomlUtils.read("lib/dictionary/report.toml", TestReports)
+        Reports testReports = TomlUtils.read("lib/dictionary/report.toml", Reports)
 
         then:
 //        print testReports

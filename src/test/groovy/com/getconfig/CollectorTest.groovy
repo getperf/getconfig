@@ -3,14 +3,13 @@ package com.getconfig
 import spock.lang.Specification
 import com.getconfig.Model.*
 import com.getconfig.Document.*
-import com.getconfig.AgentWrapper.AgentWrapperManager
 
 // gradle --daemon test --tests "CollectorTest.初期化"
 
 class CollectorTest extends Specification {
     String checkSheet = './src/test/resources/サーバチェックシート.xlsx'
     String configFile = './src/test/resources/config/config.groovy'
-    List<TestServer> testServers
+    List<Server> testServers
 
     def setup() {
         def env = ConfigEnv.instance

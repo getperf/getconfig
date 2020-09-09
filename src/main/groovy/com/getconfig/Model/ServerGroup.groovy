@@ -6,27 +6,27 @@ import groovy.transform.ToString
 
 @CompileStatic
 @ToString(includePackage = false)
-class TestServerGroup {
+class ServerGroup {
     String groupKey
     AgentMode agentMode
-    List<TestServer> testServers
+    List<Server> testServers
     String agentLogPath
 
-    TestServerGroup(String groupKey, AgentMode agentMode) {
+    ServerGroup(String groupKey, AgentMode agentMode) {
         this.groupKey = groupKey
         this.agentMode = agentMode
-        this.testServers = new ArrayList<TestServer>()
+        this.testServers = new ArrayList<Server>()
     }
 
-    void put(TestServer testServer) {
+    void put(Server testServer) {
         this.testServers << testServer
     }
 
-    TestServer get(int n) {
+    Server get(int n) {
         return this.testServers[n]
     }
 
-    List<TestServer> getAll() {
+    List<Server> getAll() {
         return this.testServers
     }
 }

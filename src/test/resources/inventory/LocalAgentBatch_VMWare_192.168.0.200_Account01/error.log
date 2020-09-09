@@ -1,4 +1,6 @@
 get local vm defined in 'server' parameter : vm '' not found
+not found json query[w2016:snapshot] : 'Snapshot'
 not found json query[w2016:base_disk] : 'Guest.Disk'
 not found json query[w2016:base_ipstack] : 'Guest.IpStack'
 not found json query[w2016:base_net] : 'Guest.Net'
+not found json query[centos80:snapshot] : 'Snapshot'

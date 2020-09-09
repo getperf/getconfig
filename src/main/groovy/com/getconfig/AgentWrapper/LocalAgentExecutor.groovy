@@ -2,7 +2,7 @@ package com.getconfig.AgentWrapper
 
 import com.getconfig.CommandExec
 import com.getconfig.ConfigEnv
-import com.getconfig.Model.TestServer
+import com.getconfig.Model.Server
 import com.getconfig.Utils.DirUtils
 import com.getconfig.Utils.TomlUtils
 import groovy.transform.CompileStatic
@@ -18,7 +18,7 @@ import java.nio.file.Paths
 @CompileStatic
 class LocalAgentExecutor implements AgentExecutor {
     String platform
-    TestServer server
+    Server server
     AgentConfigWrapper wrapper
 
     String gconfExe
@@ -29,7 +29,7 @@ class LocalAgentExecutor implements AgentExecutor {
     int timeout = 0
     int level = 0
 
-    LocalAgentExecutor(String platform, TestServer server) {
+    LocalAgentExecutor(String platform, Server server) {
         this.platform = platform
         this.server = server
         this.wrapper = AgentWrapperManager.instance.getWrapper(platform)
@@ -117,9 +117,6 @@ class LocalAgentExecutor implements AgentExecutor {
         new File(this.gconfConfigDir).mkdirs()
         new File(this.tomlPath()).write(this.toml(), "UTF-8")
 
-//        new File(this.tomlPath()).withWriter('UTF-8') { writer ->
-//            writer << this.toml()
-//        }
         log.debug "agent command args : ${this.args()}"
         def rc = exec.run(this.gconfExe, this.args() as String[])
         long elapse = System.currentTimeMillis() - start

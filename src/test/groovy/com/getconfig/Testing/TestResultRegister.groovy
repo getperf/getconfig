@@ -1,9 +1,9 @@
 package com.getconfig.Testing
 
-import com.getconfig.Model.TestResult
+import com.getconfig.Model.Result
 import spock.lang.Specification
 
-class TestResultRegisterTest extends Specification {
+class TestResultRegister extends Specification {
     TestUtil t = new TestUtil("cent80", "Linux", "uname")
 
     def "値登録"() {
@@ -11,7 +11,7 @@ class TestResultRegisterTest extends Specification {
         t.results("4.18.0-147.el8.x86_64")
 
         then:
-        TestResult testResult = t.testResultGroup.get("Linux", "uname")
+        Result testResult = t.testResultGroup.get("Linux", "uname")
         testResult.platform == "Linux"
         testResult.metricName == "uname"
         testResult.serverName == "cent80"

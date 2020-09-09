@@ -2,8 +2,7 @@ package com.getconfig.AgentWrapper
 
 import com.getconfig.CommandExec
 import com.getconfig.ConfigEnv
-import com.getconfig.Controller
-import com.getconfig.Model.TestServer
+import com.getconfig.Model.Server
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
@@ -17,17 +16,19 @@ import java.nio.file.Paths
 @TypeChecked
 @CompileStatic
 class RemoteAgentExecutor implements AgentExecutor {
-    static final String AgentUrlPrefix = "https://"
-    static final int AgentUrlPort = 59443
+    // "https://"
+    static final String AgentUrlPrefix = AgentConstants.REMOTE_AGENT_URL_PREFIX
+    // 59443
+    static final int AgentUrlPort = AgentConstants.REMOTE_AGENT_PORT
 
-    TestServer server
+    Server server
 
     String gconfExe
     String currentLogDir
     String tlsConfigDir
     int timeout = 0
 
-    RemoteAgentExecutor(TestServer server) {
+    RemoteAgentExecutor(Server server) {
         this.server = server
     }
 
@@ -64,6 +65,7 @@ class RemoteAgentExecutor implements AgentExecutor {
         args.addAll("-ca", tlsPath("server/ca.crt"))
         args.addAll("-cert", tlsPath("client.pem"))
         args.addAll("-o", this.makeAgentLogDir())
+        args.addAll("--log-level", AgentConstants.AGENT_LOG_LEVEL as String)
         if (this.timeout > 0) {
             args.addAll("--timeout", this.timeout as String)
         }

@@ -2,9 +2,8 @@ package com.getconfig.AgentWrapper
 
 
 import com.getconfig.ConfigEnv
-import com.getconfig.Controller
-import com.getconfig.Model.TestServer
-import com.getconfig.Model.TestServerGroup
+import com.getconfig.Model.Server
+import com.getconfig.Model.ServerGroup
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
@@ -18,11 +17,11 @@ import java.nio.file.Paths
 @TypeChecked
 @CompileStatic
 class RemoteAgentHubExecutor implements AgentExecutor {
-    List<TestServer> testServers
+    List<Server> testServers
     String currentLogDir
     String hubInventoryDir
 
-    RemoteAgentHubExecutor(TestServerGroup testServerGroup) {
+    RemoteAgentHubExecutor(ServerGroup testServerGroup) {
         this.testServers = testServers = testServerGroup.getAll()
     }
 

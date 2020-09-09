@@ -1,9 +1,9 @@
 package com.getconfig.AgentWrapper
 
 import com.getconfig.CommandExec
-import com.getconfig.Model.TestMetric
-import com.getconfig.Model.TestServer
-import com.getconfig.Model.TestServerGroup
+import com.getconfig.Model.Metric
+import com.getconfig.Model.Server
+import com.getconfig.Model.ServerGroup
 import com.getconfig.Utils.TomlUtils
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
@@ -18,10 +18,10 @@ import java.nio.file.Paths
 @CompileStatic
 class LocalAgentBatchExecutor extends LocalAgentExecutor {
     String batchId
-    List<TestServer> testServers
-    List<TestMetric> testMetrics
+    List<Server> testServers
+    List<Metric> testMetrics
 
-    LocalAgentBatchExecutor(String batchId, TestServerGroup testServers, List<TestMetric> testMetrics = null) {
+    LocalAgentBatchExecutor(String batchId, ServerGroup testServers, List<Metric> testMetrics = null) {
         super(testServers.groupKey, testServers.get(0))
         this.batchId = batchId
         this.testServers = testServers.getAll()
@@ -33,7 +33,11 @@ class LocalAgentBatchExecutor extends LocalAgentExecutor {
         if (!config) {
             throw new IllegalArgumentException("create agent config : not found servers")
         }
-        return TomlUtils.decode(config)
+        StringBuffer tomlText = new StringBuffer()
+        tomlText.append(TomlUtils.decode(config))
+        tomlText.append("\n")
+        tomlText.append(this.getMetricLibsText())
+        return tomlText as String
     }
 
     String tomlPath() {
@@ -67,9 +71,10 @@ class LocalAgentBatchExecutor extends LocalAgentExecutor {
         log.info "Run ${title}"
         def exec = new CommandExec(this.timeout * 1000)
         new File(this.gconfConfigDir).mkdirs()
-        new File(this.tomlPath()).with {
-            it.text = this.toml()
-        }
+        new File(this.tomlPath()).write(this.toml(), "UTF-8")
+//        new File(this.tomlPath()).with {
+//            it.text = this.toml()
+//        }
         log.debug "agent command args : ${this.args()}"
         def rc = exec.run(this.gconfExe, this.args() as String[])
         long elapse = System.currentTimeMillis() - start

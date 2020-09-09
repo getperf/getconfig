@@ -32,7 +32,9 @@ class CommandExec {
             executor.setExitValue(0)    // 正常終了の場合に返される値
             rc = executor.execute(commandLine)
         } catch (ExecuteException e) {
-            log.warn("execute error $command $args : $e")
+            String commandArg = args.join(" ")
+            log.warn(outputStream.toString())
+            log.warn("execute error $command $commandArg : $e")
         } catch (IOException e) {
             log.warn("file access error $command : $e")
         }

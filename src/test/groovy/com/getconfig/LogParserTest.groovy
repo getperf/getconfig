@@ -10,7 +10,7 @@ class LogParserTest extends Specification {
     String checkSheet = './src/test/resources/サーバチェックシート.xlsx'
     String configFile = './src/test/resources/config/config.groovy'
     String currentLogDir = './src/test/resources/inventory'
-    List<TestServer> testServers
+    List<Server> testServers
 
     def setup() {
         def env = ConfigEnv.instance

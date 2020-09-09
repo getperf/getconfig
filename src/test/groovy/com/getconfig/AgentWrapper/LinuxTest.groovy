@@ -6,8 +6,6 @@ import com.getconfig.Utils.TomlUtils
 import spock.lang.Specification
 import com.moandjiezana.toml.TomlWriter
 
-import com.getconfig.AgentWrapper.*
-
 import java.text.SimpleDateFormat
 
 // gradle --daemon test --tests "LinuxTest.gconf設定ファイル変換2"
@@ -22,7 +20,7 @@ class LinuxTest extends Specification {
 
     def "gconfコマンド用構造体変換"() {
         when:
-        TestServer server = new TestServer(serverName:"hoge",
+        com.getconfig.Model.Server server = new com.getconfig.Model.Server(serverName:"hoge",
             domain:"Linux",
             ip:"192.168.10.1",
             accountId:"Account01")
@@ -34,7 +32,7 @@ class LinuxTest extends Specification {
 
     def "gconfコマンド用構設定ファイル変換"() {
         when:
-        TestServer server = new TestServer(serverName:"hoge",
+        com.getconfig.Model.Server server = new com.getconfig.Model.Server(serverName:"hoge",
             domain:"Linux",
             ip:"192.168.10.1",
             accountId:"Account01")
@@ -49,11 +47,11 @@ class LinuxTest extends Specification {
 
     def "設定ファイル変換メトリック付き"() {
         when:
-        TestServer server = new TestServer(serverName:"hoge",
+        com.getconfig.Model.Server server = new com.getconfig.Model.Server(serverName:"hoge",
                 domain:"Linux",
                 ip:"192.168.10.1",
                 accountId:"Account01")
-        TestMetricGroup metrics = TomlUtils.read("lib/dictionary/Linux.toml", TestMetricGroup)
+        MetricGroup metrics = TomlUtils.read("lib/dictionary/Linux.toml", MetricGroup)
 
         def gconf = wrapper.makeServerConfig(server)
         TomlWriter tomlWriter = new TomlWriter()

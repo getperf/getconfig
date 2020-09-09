@@ -7,7 +7,7 @@ import groovy.transform.ToString
 @TypeChecked
 @CompileStatic
 @ToString(includePackage = false)
-class TestResult {
+class Result {
     enum ResultStatus {
         OK, NG, WARNING, MATCH, UNMATCH, UNKNOWN
     }
@@ -27,9 +27,9 @@ class TestResult {
     ResultStatus status
     ResultStatus verify
     ResultStatus comparison
-    TestResultLine devices
+    ResultLine devices
 
-    TestResult(String platform, String metricName, String serverName) {
+    Result(String platform, String metricName, String serverName) {
         this.platform = platform
         this.metricName = metricName
         this.serverName = serverName

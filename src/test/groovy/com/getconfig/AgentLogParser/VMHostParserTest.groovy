@@ -9,7 +9,7 @@ import com.getconfig.Testing.TestUtil
 class VMHostParserTest extends Specification {
     static AgentLogParserManager logParsers
     // String logPath = "src/test/resources/inventory/w2016/Windows/w2016"
-    String logPath = "src/test/resources/inventory/LocalAgentBatch_VMHost_192.168.10.100_Account01/esxi.ostrich"
+    String logPath = "src/test/resources/inventory/LocalAgentBatch_VMHost_192.168.0.200_Account01/esxi.ostrich"
     def setupSpec() {
         logParsers = new AgentLogParserManager("./lib/parser")
         logParsers.init("VMHost")
@@ -37,6 +37,7 @@ class VMHostParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
+        println t.portListGroup
         // t.get().value = ""
         1 == 1
     }

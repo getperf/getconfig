@@ -4,8 +4,7 @@ import groovy.transform.*
 // import groovy.util.logging.Slf4j
 
 import com.getconfig.AgentWrapper.*
-import com.getconfig.Model.TestServer
-import com.getconfig.Model.TestMetric
+import com.getconfig.Model.Server
 
 // @Slf4j
 @CompileStatic
@@ -37,7 +36,7 @@ class VMHost implements AgentConfigWrapper {
     }
 
     @Override
-    def makeAllServersConfig(List<TestServer> servers) {
+    def makeAllServersConfig(List<Server> servers) {
         def firstServer = servers[0]
         String ip = firstServer.ip
         if (!ip.startsWith("http")) {
@@ -57,7 +56,7 @@ class VMHost implements AgentConfigWrapper {
     }
 
     @Override
-    def makeServerConfig(TestServer server) {
+    def makeServerConfig(Server server) {
         String ip = server.ip
         if (!ip.startsWith("http")) {
             ip = "https://${ip}/sdk"

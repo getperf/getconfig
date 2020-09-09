@@ -7,7 +7,7 @@ import groovy.transform.ToString
 @TypeChecked
 @CompileStatic
 @ToString(includePackage = false)
-class TestMetric {
+class Metric {
     String platform
     String id
     String name
@@ -17,10 +17,10 @@ class TestMetric {
     String comment
     String text
 
-    Map <String, AddedTestMetric> addedTestMetrics
+    Map <String, AddedMetric> addedTestMetrics
 
-    TestMetric(String platform, String id, String name, String category,
-               int level, boolean deviceFlag, String comment ) {
+    Metric(String platform, String id, String name, String category,
+           int level, boolean deviceFlag, String comment ) {
         this.platform = platform
         this.id = id
         this.name = name

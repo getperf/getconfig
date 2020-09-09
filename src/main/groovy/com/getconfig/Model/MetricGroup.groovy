@@ -7,24 +7,24 @@ import groovy.transform.ToString
 @TypeChecked
 @CompileStatic
 @ToString(includePackage = false)
-class TestMetricGroup {
+class MetricGroup {
     String platform
-    List<TestMetric> metrics = new ArrayList<>()
-    Map<String, TestMetric> dictMetrics = new LinkedHashMap<>()
+    List<Metric> metrics = new ArrayList<>()
+    Map<String, Metric> dictMetrics = new LinkedHashMap<>()
 
-    List<TestMetric> getAll() {
+    List<Metric> getAll() {
         return metrics
     }
 
-    TestMetricGroup validate() {
-        this.metrics.each {TestMetric metric ->
+    MetricGroup validate() {
+        this.metrics.each { Metric metric ->
             metric.platform = this.platform
             dictMetrics[metric.name] = metric
         }
         return this
     }
 
-    TestMetric get(String metric) {
+    Metric get(String metric) {
         return dictMetrics.get(metric)
     }
 }

@@ -4,7 +4,7 @@ import groovy.transform.*
 
 @ToString
 @CompileStatic
-class Server {
+class ServerConfig {
     String  server
     String  url
     String  user

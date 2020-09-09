@@ -1,8 +1,7 @@
 package com.getconfig
 
-import com.getconfig.Model.TestServer
+
 import spock.lang.Specification
-import com.getconfig.Command.GetconfigCommand.RunCommand
 
 class TestRunnerTest extends Specification {
 

@@ -9,8 +9,8 @@ import com.getconfig.AgentWrapper.LocalAgentBatchExecutor
 import com.getconfig.AgentWrapper.RemoteAgentExecutor
 import com.getconfig.AgentWrapper.RemoteAgentHubExecutor
 import com.getconfig.AgentWrapper.AgentWrapperManager
-import com.getconfig.Model.TestServer
-import com.getconfig.Model.TestServerGroup
+import com.getconfig.Model.Server
+import com.getconfig.Model.ServerGroup
 import com.getconfig.Utils.CommonUtil
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
@@ -18,16 +18,16 @@ import groovy.util.logging.Slf4j
 @Slf4j
 @CompileStatic
 class Collector implements Controller {
-    protected List<TestServer> testServers
-    private Map<String,TestServerGroup> testServerGroups
+    protected List<Server> testServers
+    private Map<String,ServerGroup> testServerGroups
     boolean dryRun
     String projectLogDir
     String currentLogDir
     String filterServer
 
-    Collector(List<TestServer> testServers) {
+    Collector(List<Server> testServers) {
         this.testServers = testServers
-        this.testServerGroups = new LinkedHashMap<String,TestServerGroup>()
+        this.testServerGroups = new LinkedHashMap<String,ServerGroup>()
     }
 
     void setEnvironment(ConfigEnv env) {
@@ -37,7 +37,7 @@ class Collector implements Controller {
         this.currentLogDir = env.getCurrentLogDir()
     }
 
-    Map<String, TestServerGroup> getTestServerGroups() {
+    Map<String, ServerGroup> getTestServerGroups() {
         return testServerGroups
     }
 
@@ -56,7 +56,7 @@ class Collector implements Controller {
         }
     }
 
-    String getServerGroupKey(AgentMode agentMode, TestServer testServer) {
+    String getServerGroupKey(AgentMode agentMode, Server testServer) {
         String serverGroupKey = "${agentMode}"
         testServer.with {
             if (agentMode == AgentMode.LocalAgentBatch) {
@@ -80,7 +80,7 @@ class Collector implements Controller {
             AgentMode agentMode = this.getAgentMode(server.domain)
             String serverGroupKey = this.getServerGroupKey(agentMode, server)
             if (!testServerGroups.get(serverGroupKey)) {
-                testServerGroups[serverGroupKey] = new TestServerGroup(server.domain, agentMode)
+                testServerGroups[serverGroupKey] = new ServerGroup(server.domain, agentMode)
             }
             testServerGroups[serverGroupKey].put(server)
         }

@@ -4,7 +4,7 @@ import groovy.transform.*
 // import groovy.util.logging.Slf4j
 
 import com.getconfig.AgentWrapper.*
-import com.getconfig.Model.TestServer
+import com.getconfig.Model.Server
 
 // @Slf4j
 @CompileStatic
@@ -26,12 +26,12 @@ class RemoteAgent implements AgentConfigWrapper {
     }
 
     @Override
-    def makeAllServersConfig(List<TestServer> servers) {
+    def makeAllServersConfig(List<Server> servers) {
         return null
     }
 
     @Override
-    def makeServerConfig(TestServer server) {
+    def makeServerConfig(Server server) {
         def config = new AgentCommandConfig(
                 server: 'localhost',
                 local_exec: false,

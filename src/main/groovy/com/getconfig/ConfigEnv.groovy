@@ -1,7 +1,7 @@
 package com.getconfig
 
 
-import com.getconfig.Model.TestServer
+import com.getconfig.Model.Server
 import groovy.transform.CompileStatic
 import groovy.transform.TypeCheckingMode
 import groovy.util.logging.Slf4j
@@ -42,7 +42,7 @@ class ConfigEnv {
         }
     }
 
-    void setAccount(TestServer sv) {
+    void setAccount(Server sv) {
         if (sv.accountId.size() == 0 || sv.domain.size() == 0) {
             return
         }

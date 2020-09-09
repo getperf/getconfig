@@ -22,7 +22,7 @@ class ConfigEnvTest extends Specification {
         when:
         def configEnv = ConfigEnv.instance
         configEnv.readConfig(configFile)
-        TestServer server = new TestServer(serverName:"hoge",
+        Server server = new Server(serverName:"hoge",
             domain:"Linux",
             ip:"192.168.10.1",
             accountId:"Account01")
@@ -36,7 +36,7 @@ class ConfigEnvTest extends Specification {
         when:
         def configEnv = ConfigEnv.instance
         configEnv.readConfig(configFile)
-        TestServer server = new TestServer(serverName:"hoge",
+        Server server = new Server(serverName:"hoge",
             domain:"Linux",
             ip:"192.168.10.1",
             accountId:"AccountHoge")

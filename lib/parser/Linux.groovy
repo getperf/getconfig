@@ -103,7 +103,6 @@ void cpu(TestUtil t) {
     else
         cpu_text += " ${cpu_number} CPU"
     cpuinfo["cpu"] = cpu_text
-
     t.results(cpuinfo)
     // test_item.verify_number_equal('cpu_total', cpuinfo['cpu_total'])
     // test_item.verify_number_equal('cpu_real', cpuinfo['cpu_real'])
@@ -280,7 +279,7 @@ void net_bond(TestUtil t) {
 
 @Parser("block_device")
 void block_device(TestUtil t) {
-    int device_count = 0
+    def devices = [:]
     def res = [:]
     t.readLine {
         (it =~  /^\/sys\/block\/(.+?)\/(.+):(.+)$/).each { m0,m1,m2,m3->
@@ -290,15 +289,15 @@ void block_device(TestUtil t) {
             if (m2 == 'device/timeout') {
                 t.newMetric("block_device.${m1}.timeout", 
                                "[${m1}] タイムアウト", m3)
-                device_count ++
             }
             if (m2 == 'device/queue_depth') {
                 t.newMetric("block_device.${m1}.queue_depth", 
                                "[${m1}] キューサイズ", m3)
             }
+            devices[m1] = 1
         }
     }
-    t.results("${device_count} devices")
+    t.results("${devices.size()} devices")
 }
 
 @Parser("mdadb")
@@ -389,8 +388,6 @@ void filesystem(TestUtil t) {
         }
     }
     def headers = ['name', 'maj:min', 'rm', 'size', 'ro', 'type', 'mountpoint', 'fstype']
-    // println csv
-    // println filesystems
     t.devices(csv, headers)
     res['filesystem'] = "${infos}"
     t.results(res)
@@ -427,7 +424,6 @@ void filesystem_df_ip(TestUtil t) {
     def csv    = []
     def res = [:]
     t.readLine {
-        println it
         (it =~  /(\d+)\s+(\d+)\s+(\d+)\s+(\d+%)\s+(.+?)$/).each {
             m0, inodes, iused, ifree, usage, mount ->
             if (mount =~/^\/(dev|run|sys|boot)/) {
@@ -435,7 +431,7 @@ void filesystem_df_ip(TestUtil t) {
             }
             def columns = [inodes, iused, ifree, usage, mount]
             csv << columns
-            res[mount] = "$iused/$inodes"
+            res[mount] = usage
            t.newMetric("inode.${mount}", "Inode [${mount}]", inodes)
         }
     }

@@ -1,0 +1,20 @@
+/sys/block/dm-0/size:98410496
+/sys/block/dm-1/size:4341760
+/sys/block/sda/size:104857600
+/sys/block/sr0/size:2097151
+/sys/block/dm-0/removable:0
+/sys/block/dm-1/removable:0
+/sys/block/sda/removable:0
+/sys/block/sr0/removable:1
+/sys/block/sda/device/model:Virtual disk    
+/sys/block/sr0/device/model:VMware IDE CDR10
+/sys/block/sda/device/rev:1.0 
+/sys/block/sr0/device/rev:1.00
+/sys/block/sda/device/state:running
+/sys/block/sr0/device/state:running
+/sys/block/sda/device/timeout:180
+/sys/block/sr0/device/timeout:30
+/sys/block/sda/device/vendor:VMware  
+/sys/block/sr0/device/vendor:NECVMWar
+/sys/block/sda/device/queue_depth:254
+/sys/block/sr0/device/queue_depth:1

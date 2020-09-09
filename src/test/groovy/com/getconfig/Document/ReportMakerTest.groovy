@@ -1,8 +1,7 @@
 package com.getconfig.Document
 
-import com.getconfig.Model.TestMetricGroup
+import com.getconfig.Model.MetricGroup
 import com.getconfig.Utils.TomlUtils
-import org.apache.poi.ss.usermodel.CellStyle
 import spock.lang.Specification
 
 class ReportMakerTest extends Specification {
@@ -88,8 +87,8 @@ class ReportMakerTest extends Specification {
         reportMaker.copyTemplate("検査結果")
         SheetManager manager = reportMaker.createSheetManager()
 
-        TestMetricGroup metrics = TomlUtils.read("lib/dictionary/Linux.toml",
-                                                TestMetricGroup)
+        MetricGroup metrics = TomlUtils.read("lib/dictionary/Linux.toml",
+                                                MetricGroup)
         metrics.platform = 'Linux'
         metrics.validate()
         manager.nextRow()

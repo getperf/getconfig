@@ -6,13 +6,13 @@ import com.getconfig.Testing.TestUtil
 
 // gradle cleanTest test --tests "VCenterParserTest.Summary"
 
-class VCenterParserTest extends Specification {
+class VMWareParserTest extends Specification {
     static AgentLogParserManager logParsers
     // String logPath = "src/test/resources/inventory/w2016/Windows/w2016"
-    String logPath = "src/test/resources/inventory/LocalAgentBatch_vCenter_192.168.10.100_Account01/centos80"
+    String logPath = "src/test/resources/inventory/LocalAgentBatch_VMWare_192.168.0.200_Account01/centos80"
     def setupSpec() {
         logParsers = new AgentLogParserManager("./lib/parser")
-        logParsers.init("vCenter")
+        logParsers.init("VMWare")
     }
 
     def testLogPath(String filename) {

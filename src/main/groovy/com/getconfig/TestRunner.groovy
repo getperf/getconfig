@@ -4,12 +4,11 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import com.getconfig.Command.GetconfigCommand
 import com.getconfig.Document.SpecReader
-import com.getconfig.Model.TestResultGroup
+import com.getconfig.Model.ResultGroup
 import com.getconfig.Model.TestScenario
-import com.getconfig.Model.TestServer
-import com.getconfig.Model.TestServerGroup
+import com.getconfig.Model.Server
+import com.getconfig.Model.ServerGroup
 import groovy.transform.CompileDynamic
-import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.util.logging.Slf4j
 import org.slf4j.LoggerFactory
@@ -23,9 +22,9 @@ class TestRunner implements Controller {
     boolean dryRun = false
     String checkSheetPath
     String evidenceSheetPath
-    List<TestServer> testServers
-    Map<String, TestServerGroup> testServerGroups
-    Map<String, TestResultGroup> testResultGroups
+    List<Server> testServers
+    Map<String, ServerGroup> testServerGroups
+    Map<String, ResultGroup> testResultGroups
 
     void setEnvironment(ConfigEnv env) {
         this.silent = env.getSilent()
@@ -67,8 +66,9 @@ class TestRunner implements Controller {
         ConfigEnv.instance.accept(logParser)
         logParser.run()
         this.testResultGroups = logParser.testResultGroups
-        logParser.testResultGroups.each {String key, TestResultGroup testResultGroup ->
-            println "KEY:$key, RESULTS:${testResultGroup}"
+        logParser.testResultGroups.each { String key, ResultGroup testResultGroup ->
+//            println "KEY:$key, RESULTS:${testResultGroup}"
+            println "KEY:$key, PORTLISTS:${testResultGroup.portListGroup}"
         }
         log.info "finish parser"
     }

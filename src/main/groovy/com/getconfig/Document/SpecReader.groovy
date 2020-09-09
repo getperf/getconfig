@@ -6,7 +6,7 @@ import com.poiji.bind.Poiji
 import com.poiji.option.PoijiOptions
 import com.poiji.option.PoijiOptions.PoijiOptionsBuilder
 import com.poiji.exception.*
-import com.getconfig.Model.TestServer
+import com.getconfig.Model.Server
 import com.getconfig.ConfigEnv
 
 @Slf4j
@@ -17,7 +17,7 @@ public class SpecReader {
     static final int SpecHeaderRow = 2
 
     String inExcel = ExcelFilename // "./サーバチェックシート.xlsx"
-    protected List<TestServer> testServers = new ArrayList<TestServer>()
+    protected List<Server> testServers = new ArrayList<Server>()
 
     void parse() throws FileNotFoundException {
         PoijiOptions options =PoijiOptionsBuilder.settings()
@@ -25,8 +25,8 @@ public class SpecReader {
                   .headerStart(SpecHeaderRow)
                   .build()
         InputStream stream = new FileInputStream(new File(inExcel))
-        List<TestServer> servers = Poiji.fromExcel(stream, PoijiExcelType.XLSX, 
-                  TestServer.class, options);
+        List<Server> servers = Poiji.fromExcel(stream, PoijiExcelType.XLSX,
+                  Server.class, options);
 
         servers.each { server ->
             if (server.checkKey()) {
@@ -39,13 +39,13 @@ public class SpecReader {
         return this.testServers.size()
     }
 
-    List<TestServer> testServers() {
+    List<Server> testServers() {
         return this.testServers
     }
 
     void mergeConfig() {
         def configEnv = ConfigEnv.instance
-        List<TestServer> servers = new ArrayList<TestServer>()
+        List<Server> servers = new ArrayList<Server>()
         this.testServers.each { server ->
             configEnv.setAccount(server)
             if (server.validate()) {

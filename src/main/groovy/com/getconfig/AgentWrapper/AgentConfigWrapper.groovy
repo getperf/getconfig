@@ -1,12 +1,11 @@
 package com.getconfig.AgentWrapper
 
 import groovy.transform.*
-import com.getconfig.Model.*
 
 @CompileStatic
 interface AgentConfigWrapper {
-    def makeServerConfig(TestServer testServer)
-    def makeAllServersConfig(List<TestServer> servers)
+    def makeServerConfig(com.getconfig.Model.Server testServer)
+    def makeAllServersConfig(List<com.getconfig.Model.Server> servers)
     boolean getBatchEnable()
     String getConfigName()
     String getLabel()

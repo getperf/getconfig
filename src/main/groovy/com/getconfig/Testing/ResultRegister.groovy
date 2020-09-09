@@ -1,7 +1,7 @@
 package com.getconfig.Testing
 
-import com.getconfig.Model.AddedTestMetric
-import com.getconfig.Model.TestResultGroup
+import com.getconfig.Model.AddedMetric
+import com.getconfig.Model.ResultGroup
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
@@ -9,14 +9,14 @@ import groovy.util.logging.Slf4j
 @TypeChecked
 @CompileStatic
 @Slf4j
-class TestResultRegister {
+class ResultRegister {
     static void results(TestUtil t, String s) {
         t.testResultGroup.setValue(t.platform, t.metricFile, s)
          log.debug "SET ${s}"
     }
 
     static void results(TestUtil t, Map<String, Object> values) {
-        TestResultGroup testResultGroup = t.testResultGroup
+        ResultGroup testResultGroup = t.testResultGroup
         values.each { String metricName, Object value ->
             log.debug "${t.metricFile}, ${metricName}"
             if (t.metricFile == metricName) {
@@ -43,8 +43,8 @@ class TestResultRegister {
     }
 
     static void newMetric(TestUtil t, String metric, String description, Object value) {
-        AddedTestMetric addedTestMetric = t.addedTestMetrics.get(metric) ?:
-                new AddedTestMetric(t.platform, metric, t.metricFile, description)
+        AddedMetric addedTestMetric = t.addedTestMetrics.get(metric) ?:
+                new AddedMetric(t.platform, metric, t.metricFile, description)
         t.addedTestMetrics.put(metric, addedTestMetric)
         t.testResultGroup.setValue(t.platform, metric, value, t.metricFile)
         log.debug  "SET ${metric},${value}"

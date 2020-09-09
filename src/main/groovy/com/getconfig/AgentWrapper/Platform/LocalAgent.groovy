@@ -4,7 +4,7 @@ import groovy.transform.*
 // import groovy.util.logging.Slf4j
 
 import com.getconfig.AgentWrapper.*
-import com.getconfig.Model.TestServer
+import com.getconfig.Model.Server
 
 // @Slf4j
 @TypeChecked
@@ -27,12 +27,12 @@ class LocalAgent implements AgentConfigWrapper {
     }
 
     @Override
-    def makeAllServersConfig(List<TestServer> servers) {
+    def makeAllServersConfig(List<Server> servers) {
         return new AgentCommandConfig()
     }
 
     @Override
-    def makeServerConfig(TestServer server) {
+    def makeServerConfig(Server server) {
         return new AgentCommandConfig()
     }
 }

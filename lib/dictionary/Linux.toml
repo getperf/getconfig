@@ -1,3 +1,23 @@
+# [[metrics]]
+
+# id  
+#     メトリックID。必須。ユニークにする必要あり
+# name 
+#     メトリック名
+# category 
+#     メトリックの分類
+# level 
+#     採取レベル。高い方が優先度が下がる
+#     -1, 0, 1, 2 から選択、-1の場合、コマンドを実行しない。既定は0
+# deviceFlag
+#     true, false. デバイス結果を登録する場合、trueにする
+# comment
+#     メトリックの定義
+# type = "Cmd"
+#     コマンドが1行の実行の場合、"Cmd"、複数行の場合、"Script"
+# text 
+#     コマンド実行テキスト、 ''' で括る
+
 [[metrics]]
 
 id = "hostname"
@@ -6,6 +26,7 @@ category = "OSリリース"
 level = 0
 deviceFlag = false
 comment = "hostname -s　コマンドで、ホスト名を検索"
+type = "Cmd"
 text = '''
 hostname -s
 '''
@@ -18,6 +39,7 @@ category = "OSリリース"
 level = 0
 deviceFlag = false
 comment = "hostname --fqdn コマンドで、FQDN名を検索"
+type = "Script"
 text = '''
 hostname --fqdn 2>/dev/null
 if [ $? != 0 ]; then
@@ -33,6 +55,7 @@ category = "OSリリース"
 level = 0
 deviceFlag = false
 comment = "uname -a コマンドで、OSカーネルバージョンを検索"
+type = "Cmd"
 text = '''
 uname -a
 '''
@@ -72,6 +95,7 @@ category = "OSリリース"
 level = 0
 deviceFlag = false
 comment = "cat /etc/*-release コマンドで、Linux OSディストリビューションを検索"
+type = "Cmd"
 text = '''
 cat /etc/*-release
 '''
@@ -102,6 +126,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "/proc/sys/crypto/fips_enabled を検索して、FIPS モードを検索"
+type = "Cmd"
 text = '''
 cat /proc/sys/crypto/fips_enabled
 '''
@@ -114,6 +139,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "/proc/cpuinfo を検索して、XEN, KVM, Virtualbox など Linux の仮想化プラットフォームの検索"
+type = "Cmd"
 text = '''
 cat /proc/cpuinfo
 '''
@@ -126,6 +152,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "sestatus コマンドで、SELinux ステータスを検索"
+type = "Cmd"
 text = '''
 /usr/sbin/sestatus
 '''
@@ -143,12 +170,30 @@ text = '''
 
 [[metrics]]
 
+id = "machineid"
+name = "MachineID"
+category = "OS設定"
+level = 1
+deviceFlag = false
+comment = "/etc/machine-id,/var/lib/dbus/machine-id から machineidを検索"
+type = "Script"
+text = '''
+if [ -f /etc/machine-id ]; then
+    cat /etc/machine-id
+elif [ -f /var/lib/dbus/machine-id ]; then
+    cat /var/lib/dbus/machine-id
+fi
+'''
+
+[[metrics]]
+
 id = "mount_iso"
 name = "ISOマウントの有無"
 category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "mount コマンドで.isoファイルのマウント有無検索"
+type = "Cmd"
 text = '''
 mount
 '''
@@ -161,6 +206,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "/etc/yum.conf から、proxyサーバ定義を検索"
+type = "Script"
 text = '''
 grep proxy /etc/yum.conf
 if [ \$? != 0 ]; then
@@ -176,6 +222,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "クラッシュダンプサービスを検索"
+type = "Script"
 text = '''
 if [ -f /usr/bin/systemctl ]; then
     /usr/bin/systemctl status kdump
@@ -192,6 +239,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "/sys/kernel/kexec_crash_size を検索"
+type = "Script"
 text = '''
 cat /sys/kernel/kexec_crash_size 2>/dev/null
 if [ $? != 0 ]; then
@@ -208,6 +256,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "/etc/kdump.conf からカーネルダンプの出力先設定を検索"
+type = "Script"
 text = '''
 egrep -e '^(path|core_collector)' /etc/kdump.conf 2>/dev/null
 if [ $? != 0 ]; then
@@ -232,6 +281,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "iptables, firewalld サービスを検索"
+type = "Script"
 text = '''
 if [ -f /usr/bin/systemctl ]; then
     /usr/bin/systemctl status iptables firewalld
@@ -248,6 +298,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "/etc/inittabから、OS起動時のランレベルからコンソール設定(3 : CUIコンソール、5 : GUIコンソール)を検索"
+type = "Script"
 text = '''
 if [ -f /usr/bin/systemctl ]; then
     /usr/bin/systemctl get-default
@@ -264,8 +315,6 @@ category = "OS設定"
 level = -1
 deviceFlag = false
 comment = "コンソール設定(GUI、CUI)"
-text = '''
-'''
 
 [[metrics]]
 
@@ -275,6 +324,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "/etc/resolve.conf から nameserver を検索"
+type = "Script"
 text = '''
 grep nameserver /etc/resolv.conf 2>/dev/null
 if [ $? != 0 ]; then
@@ -299,6 +349,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "/etc/sysconfig/keyboard、/etc/vconsole.conf からキーボード配列を検索"
+type = "Script"
 text = '''
 if [ -f /etc/sysconfig/keyboard ]; then
     cat /etc/sysconfig/keyboard
@@ -315,6 +366,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "/proc/cmdline からOS言語を検索"
+type = "Cmd"
 text = '''
 cat /proc/cmdline
 '''
@@ -327,6 +379,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "/etc/default/grupからGRUB_CMDLINE_LINUXのvgaを検索"
+type = "Script"
 text = '''
 grep GRUB_CMDLINE_LINUX /etc/default/grub 2>/dev/null
 if [ $? != 0 ]; then
@@ -342,6 +395,7 @@ category = "OS設定"
 level = 1
 deviceFlag = false
 comment = "/etc/sysconfig/clock からタイムゾーンを検索"
+type = "Script"
 text = '''
 if [ -x /bin/timedatectl ]; then
     /bin/timedatectl
@@ -358,6 +412,7 @@ category = "NTP設定"
 level = 1
 deviceFlag = false
 comment = "/etc/sysconfig/ntpd から、NTP設定を検索。設定しない＝「-u」、設定する「-x」"
+type = "Script"
 text = '''
 grep -i options /etc/sysconfig/ntpd 2>/dev/null
 if [ $? != 0 ]; then
@@ -373,6 +428,7 @@ category = "NTP設定"
 level = 1
 deviceFlag = false
 comment = "/etc/ntp.conf から、NTPサーバを検索"
+type = "Script"
 text = '''
 egrep -e '^server' /etc/ntp.conf 2>/dev/null
 if [ $? != 0 ]; then
@@ -388,6 +444,7 @@ category = "SNMP設定"
 level = 1
 deviceFlag = false
 comment = "'/etc/snmp/snmpd.confから、trapsink <管理サーバ> <コミュニティ名> <ポート番号> 行を検索"
+type = "Cmd"
 text = '''
 cat /etc/snmp/snmpd.conf
 '''
@@ -400,6 +457,7 @@ category = "VMWare設定"
 level = 1
 deviceFlag = false
 comment = "/etc/udev/rules.d/99-vmware-scsi-udev.rulesからVMWare SCSIタイムアウト検索"
+type = "Script"
 text = '''
 cat /etc/udev/rules.d/99-vmware-scsi-udev.rules 2>/dev/null
 if [ $? != 0 ]; then
@@ -415,6 +473,7 @@ category = "VMWare設定"
 level = 1
 deviceFlag = false
 comment = "VMWareツールの時刻同期設定"
+type = "Script"
 text = '''
 LANG=c /usr/bin/vmware-toolbox-cmd timesync status 2>/dev/null
 if [ $? == 127 ]; then
@@ -475,6 +534,7 @@ category = "CPU"
 level = 0
 deviceFlag = false
 comment = "/proc/cpuinfo を検索し,プロセッサ構成を検索"
+type = "Cmd"
 text = '''
 cat /proc/cpuinfo
 '''
@@ -505,6 +565,7 @@ category = "メモリ"
 level = 0
 deviceFlag = false
 comment = "/proc/meminfo を検索してメモリ構成を検索"
+type = "Cmd"
 text = '''
 cat /proc/meminfo
 '''
@@ -517,6 +578,7 @@ category = "ネットワーク"
 level = 0
 deviceFlag = false
 comment = "/etc/sysconfig/network-scripts からネットワークブート構成を検索"
+type = "Script"
 text = '''
 cd /etc/sysconfig/network-scripts/
 grep -H ONBOOT ifcfg-*
@@ -530,6 +592,7 @@ category = "ネットワーク"
 level = 0
 deviceFlag = false
 comment = "/sbin/ip route コマンドで、デフォルトゲートウェイアドレスを検索"
+type = "Cmd"
 text = '''
 /sbin/ip route
 '''
@@ -542,6 +605,7 @@ category = "ネットワーク"
 level = 0
 deviceFlag = true
 comment = "/etc/sysconfig/network-scripts/ からNIC冗長設定を検索"
+type = "Script"
 text = '''
 cd /etc/sysconfig/network-scripts/
 cat *-bond* 2>/dev/null
@@ -558,6 +622,7 @@ category = "ネットワーク"
 level = 0
 deviceFlag = true
 comment = "/sbin/ip addr コマンドで、ネットワーク構成を検索"
+type = "Cmd"
 text = '''
 /sbin/ip addr
 '''
@@ -570,6 +635,7 @@ category = "ストレージ"
 level = 0
 deviceFlag = false
 comment = "/sys/block/下からデバイス構成を検索"
+type = "Script"
 text = '''
 egrep -H '.*' /sys/block/*/size
 egrep -H '.*' /sys/block/*/removable
@@ -589,6 +655,7 @@ category = "ストレージ"
 level = 0
 deviceFlag = false
 comment = "/proc/mdstat からmd([0-9]+)デバイスを取得"
+type = "Cmd"
 text = '''
 cat /proc/mdstat
 '''
@@ -601,6 +668,7 @@ category = "ストレージ"
 level = 0
 deviceFlag = false
 comment = "/etc/fstab から設定値が/dev/から始まるパスで、defaultのデバイスを検索"
+type = "Cmd"
 text = '''
 cat /etc/fstab
 '''
@@ -622,6 +690,7 @@ category = "ストレージ"
 level = 0
 deviceFlag = true
 comment = "mountコマンドで、/dev/mapper/下のLVMボリュームを検索"
+type = "Cmd"
 text = '''
 mount
 '''
@@ -634,6 +703,7 @@ category = "ストレージ"
 level = 0
 deviceFlag = true
 comment = "/bin/lsblk -i　コマンドで、マウントポイント構成を検索"
+type = "Script"
 text = '''
 if [ -x /bin/lsblk ]; then
     /bin/lsblk -i
@@ -650,6 +720,7 @@ category = "ストレージ"
 level = 0
 deviceFlag = true
 comment = "df -iP　コマンドで、iノードを検索"
+type = "Cmd"
 text = '''
 df -iP
 '''
@@ -662,6 +733,7 @@ category = "ユーザー"
 level = 1
 deviceFlag = true
 comment = "/etc/passwd を検索して、ユーザ名を検索"
+type = "Cmd"
 text = '''
 cat /etc/passwd
 '''
@@ -674,6 +746,7 @@ category = "ユーザー"
 level = 1
 deviceFlag = true
 comment = "/etc/group を検索して、グループ名を検索"
+type = "Cmd"
 text = '''
 cat /etc/group
 '''
@@ -686,6 +759,7 @@ category = "サービス"
 level = 1
 deviceFlag = true
 comment = "chkconfig --list コマンドで、サービス数を検索"
+type = "Script"
 text = '''
 if [ -f /usr/bin/systemctl ]; then
     /usr/bin/systemctl list-units --type service --all
@@ -711,6 +785,7 @@ category = "パッケージ"
 level = 1
 deviceFlag = true
 comment = "rpm -qa コマンドで、パッケージ情報検索"
+type = "Cmd"
 text = '''
 rpm -qa --qf "%{NAME}\t%|EPOCH?{%{EPOCH}}:{0}|\t%{VERSION}\t%{RELEASE}\t%{INSTALLTIME}\t%{ARCH}\n"
 '''
@@ -723,6 +798,7 @@ category = "その他OS設定"
 level = 1
 deviceFlag = true
 comment = "/var/spool/cron/ を検索して、cron スケジューラ情報検索"
+type = "Cmd"
 text = '''
 sudo -A sh -c "cd /var/spool/cron/; egrep -H '.*' *"
 '''
@@ -735,6 +811,7 @@ category = "その他OS設定"
 level = 1
 deviceFlag = true
 comment = "/etc/yum.repos.d/ を検索して、有効化されている yum リポジトリを検索"
+type = "Cmd"
 text = '''
 egrep -e '\[|enabled' /etc/yum.repos.d/*.repo
 '''
@@ -747,6 +824,7 @@ category = "その他OS設定"
 level = 1
 deviceFlag = true
 comment = "/etc/security/limits.d/ を検索して、リソースリミットを検索"
+type = "Cmd"
 text = '''
 egrep -v '^#' /etc/security/limits.d/*
 '''
@@ -759,6 +837,7 @@ category = "その他OS設定"
 level = 2
 deviceFlag = true
 comment = "/var/log/messages から error,warning,failed を含む行を検索"
+type = "Cmd"
 text = '''
 egrep -i '(error|warning|failed)' /var/log/messages | head -100
 '''
@@ -771,6 +850,7 @@ category = "その他OS設定"
 level = 2
 deviceFlag = false
 comment = "/root/package の下にOracleインストールファイルがあるかを検索"
+type = "Cmd"
 text = '''
 sudo -A ls /root/package/*
 '''
@@ -783,6 +863,7 @@ category = "その他OS設定"
 level = 2
 deviceFlag = false
 comment = "ls -d /opt/oracle/app/product/*/* でOracleのバージョン、サーバ/クライアントを検索"
+type = "Script"
 text = '''
 ls -d /opt/oracle/app/product/*/* /*/app/oracle/product/*/* 2>/dev/null
 if [ \$? != 0 ]; then

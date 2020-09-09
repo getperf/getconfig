@@ -1,16 +1,14 @@
 package com.getconfig.Model
 
 import spock.lang.Specification
-import com.moandjiezana.toml.Toml
-import com.moandjiezana.toml.TomlWriter
 import com.getconfig.Utils.TomlUtils
 
 // gradle --daemon test --tests "TestMetricTest.値チェック"
 
-class TestMetricTest extends Specification {
+class TestMetric extends Specification {
     def "Toml書き込み"() {
         when:
-        TestMetric metric = new TestMetric(
+        Metric metric = new Metric(
             "Linux",
             "hostname",
             "ホスト名",
@@ -19,7 +17,7 @@ class TestMetricTest extends Specification {
             false,
             "hostname -s　コマンドで、ホスト名を検索",
         )
-        TestMetricGroup metricGroup = new TestMetricGroup()
+        MetricGroup metricGroup = new MetricGroup()
         metricGroup.metrics << metric
 
         then:
@@ -29,7 +27,7 @@ class TestMetricTest extends Specification {
 
     def "Toml読込み"(String platform, int size) {
         expect:
-        TestMetricGroup metrics = TomlUtils.read("lib/dictionary/${platform}.toml", TestMetricGroup);
+        MetricGroup metrics = TomlUtils.read("lib/dictionary/${platform}.toml", MetricGroup);
 //        println metrics.validate().getAll()
         metrics.validate().getAll().size() > size
 

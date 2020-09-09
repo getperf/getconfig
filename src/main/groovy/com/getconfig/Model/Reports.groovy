@@ -7,7 +7,7 @@ import groovy.transform.TypeChecked
 @TypeChecked
 @CompileStatic
 @ToString(includePackage = false)
-class TestReports {
+class Reports {
     @ToString(includePackage = false)
     class ReportColumn {
         String id

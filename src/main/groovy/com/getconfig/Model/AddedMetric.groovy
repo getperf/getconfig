@@ -7,13 +7,13 @@ import groovy.transform.ToString
 @TypeChecked
 @CompileStatic
 @ToString(includePackage = false)
-class AddedTestMetric {
+class AddedMetric {
     String platform
     String metricName
     String parentMetric
     String comment
 
-    AddedTestMetric(String platform, String metricName, String parentMetric, String comment = null) {
+    AddedMetric(String platform, String metricName, String parentMetric, String comment = null) {
         this.platform = platform
         this.metricName = metricName
         this.parentMetric = parentMetric

@@ -4,7 +4,7 @@ import groovy.transform.*
 // import groovy.util.logging.Slf4j
 
 import com.getconfig.AgentWrapper.*
-import com.getconfig.Model.TestServer
+import com.getconfig.Model.Server
 
 // @Slf4j
 @CompileStatic
@@ -26,17 +26,17 @@ class Windows implements AgentConfigWrapper {
     }
 
     @Override
-    def makeAllServersConfig(List<TestServer> servers) {
+    def makeAllServersConfig(List<Server> servers) {
         // TODO: Create specification
     }
 
     @Override
-    def makeServerConfig(TestServer server) {
+    def makeServerConfig(Server server) {
         def config = new AgentCommandConfig(
                 server: 'localhost',
                 local_exec: false,
                 servers: [
-                        new Server(
+                        new ServerConfig(
                                 server : server.serverName,
                                 url : server.ip,
                                 user : server.user,

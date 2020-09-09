@@ -1,7 +1,6 @@
 package com.getconfig.AgentWrapper
 
 
-import com.getconfig.Model.*
 import spock.lang.Specification
 import com.moandjiezana.toml.TomlWriter
 
@@ -10,13 +9,13 @@ class VMWareTest extends Specification {
     AgentConfigWrapper wrapper
 
     def setup() {
-        wrapper = agentWrapperManager.getWrapper("vCenter")
+        wrapper = agentWrapperManager.getWrapper("VMWare")
     }
 
     def "gconfコマンド用構設定ファイル変換"() {
         when:
 //        def converter = new vCenter()
-        TestServer server = new TestServer(serverName:"hoge",
+        com.getconfig.Model.Server server = new com.getconfig.Model.Server(serverName:"hoge",
                 domain:"Linux",
                 ip:"192.168.10.1",
                 user:"test_user",

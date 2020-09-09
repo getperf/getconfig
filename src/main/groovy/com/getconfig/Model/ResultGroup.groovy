@@ -4,10 +4,12 @@ import groovy.transform.TypeChecked
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 
+import javax.sound.sampled.Port
+
 @TypeChecked
 @CompileStatic
 @ToString(includePackage = false)
-class TestResultGroup {
+class ResultGroup {
     @ToString(includePackage = false)
     class ResultKey {
         private final String platform
@@ -36,31 +38,34 @@ class TestResultGroup {
 
     String serverName
     String compareServer
-    Map<ResultKey, TestResult> testResults = new LinkedHashMap<>()
-    Map<String, PortList> portLists = new LinkedHashMap<>()
+    Map<ResultKey, Result> testResults = new LinkedHashMap<>()
+    PortListGroup portListGroup
+//    Map<String, PortList> portLists = new LinkedHashMap<>()
 
-    TestResultGroup(TestServer testServer) {
+    ResultGroup(Server testServer) {
         this.serverName = testServer.serverName
         this.compareServer = testServer.compareServer
+        this.portListGroup = new PortListGroup(this.serverName)
     }
 
-    TestResultGroup(String serverName, String compareServer = null) {
+    ResultGroup(String serverName, String compareServer = null) {
         this.serverName = serverName
         this.compareServer = compareServer
+        this.portListGroup = new PortListGroup(this.serverName)
     }
 
-    void put(String platform, String metric, TestResult testResult) {
+    void put(String platform, String metric, Result testResult) {
         this.testResults.put(new ResultKey(platform, metric), testResult)
     }
 
-    TestResult get(String platform, String metric) {
+    Result get(String platform, String metric) {
         return this.testResults.get(new ResultKey(platform, metric))
     }
 
-    TestResult setValue(String platform, String metric, Object value, String parentMetric = null) {
-        TestResult testResult = this.get(platform, metric)
+    Result setValue(String platform, String metric, Object value, String parentMetric = null) {
+        Result testResult = this.get(platform, metric)
         if (!testResult) {
-            testResult = new TestResult(platform, metric, this.serverName)
+            testResult = new Result(platform, metric, this.serverName)
         }
         testResult.parentMetric = parentMetric
         testResult.value = value
@@ -68,28 +73,28 @@ class TestResultGroup {
         return testResult
     }
 
-    TestResult setError(String platform, String metric, String error) {
-        TestResult testResult = this.get(platform, metric)
+    Result setError(String platform, String metric, String error) {
+        Result testResult = this.get(platform, metric)
         if (!testResult) {
-            testResult = new TestResult(platform, metric, this.serverName)
+            testResult = new Result(platform, metric, this.serverName)
         }
         testResult.error = error
         this.put(platform, metric, testResult)
         return testResult
     }
 
-    TestResult setDevices(String platform, String metric, List headers, List csv) {
-        TestResult testResult = this.get(platform, metric)
+    Result setDevices(String platform, String metric, List headers, List csv) {
+        Result testResult = this.get(platform, metric)
         if (!testResult) {
-            testResult = new TestResult(platform, metric, this.serverName)
+            testResult = new Result(platform, metric, this.serverName)
         }
-        TestResultLine testResultLine = new TestResultLine(headers: headers, csv: csv)
+        ResultLine testResultLine = new ResultLine(headers: headers, csv: csv)
         testResult.devices = testResultLine
         this.put(platform, metric, testResult)
         return testResult
     }
 
     PortList setPortList(PortList portList) {
-        portLists.put(portList.ip, portList)
+        this.portListGroup.setPortList(portList)
     }
 }

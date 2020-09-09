@@ -5,14 +5,11 @@ import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
-import org.apache.commons.math3.analysis.function.Add
 import com.getconfig.AgentLogParser.AgentLog
-import com.getconfig.Model.AddedTestMetric
+import com.getconfig.Model.AddedMetric
 import com.getconfig.Model.PortListGroup
-import com.getconfig.Model.TestMetric
-import com.getconfig.Model.TestResult
-import com.getconfig.Model.TestResultGroup
-import com.getconfig.Model.TestResultLine
+import com.getconfig.Model.Result
+import com.getconfig.Model.ResultGroup
 
 @TypeChecked
 @CompileStatic
@@ -23,28 +20,28 @@ class TestUtil {
     String platform
     String metricFile
     String logPath
-    TestResultGroup testResultGroup
+    ResultGroup testResultGroup
     PortListGroup portListGroup
-    Map<String, AddedTestMetric> addedTestMetrics = new LinkedHashMap<>()
+    Map<String, AddedMetric> addedTestMetrics = new LinkedHashMap<>()
 
-    TestUtil(String serverName, String platform, String metricFile, 
-             TestResultGroup testResultGroup = null,
+    TestUtil(String serverName, String platform, String metricFile,
+             ResultGroup testResultGroup = null,
              PortListGroup portListGroup = null) {
         this.serverName = serverName
         this.platform = platform
         this.metricFile = metricFile
-        this.testResultGroup = testResultGroup ?: new TestResultGroup(this.serverName)
+        this.testResultGroup = testResultGroup ?: new ResultGroup(this.serverName)
         this.portListGroup = portListGroup ?: new PortListGroup(this.serverName)
     }
 
-    TestUtil(AgentLog agentLog, TestResultGroup testResultGroup = null,
+    TestUtil(AgentLog agentLog, ResultGroup testResultGroup = null,
              PortListGroup portListGroup = null) {
         this.serverName = agentLog.serverName
         this.platform = agentLog.platform
         this.metricFile = agentLog.metricFile
         this.logPath = agentLog.getLogPath()
-        this.testResultGroup = testResultGroup ?: new TestResultGroup(this.serverName)
-        this.portListGroup = portListGroup ?: new PortListGroup(this.serverName)
+        this.testResultGroup = testResultGroup ?: new ResultGroup(this.serverName)
+        this.portListGroup = portListGroup ?: this.testResultGroup.portListGroup ?: new PortListGroup(this.serverName)
     }
 
     def readLine = { String charset = 'UTF-8', Closure closure ->
@@ -77,31 +74,31 @@ class TestUtil {
     }
 
     void setMetric(String metric, Object value) {
-        TestResultRegister.setMetric(this, metric, value)
+        ResultRegister.setMetric(this, metric, value)
     }
 
     void results(String value) {
-        TestResultRegister.results(this, value)
+        ResultRegister.results(this, value)
     }
 
     void results(Map<String,Object> value) {
-        TestResultRegister.results(this, value)
+        ResultRegister.results(this, value)
     }
 
-    TestResult get(String platform = null, String metric = null) {
+    Result get(String platform = null, String metric = null) {
         return this.testResultGroup.get(platform ?: this.platform, metric ?: this.metricFile)
     }
 
     void error(String errorMessage) {
-        TestResultRegister.error(this, errorMessage)
+        ResultRegister.error(this, errorMessage)
     }
 
     void devices(List headers, List csv) {
-        TestResultRegister.devices(this, headers, csv)
+        ResultRegister.devices(this, headers, csv)
     }
 
     void newMetric(String metric, String description, Object value) {
-        TestResultRegister.newMetric(this, metric, description, value)
+        ResultRegister.newMetric(this, metric, description, value)
     }
 
     void portList(String ip, String device, boolean forManagement = false) {

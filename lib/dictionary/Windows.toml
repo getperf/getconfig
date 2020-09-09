@@ -456,7 +456,7 @@ Format-List
 id = "network"
 name = "ネットワーク構成"
 category = "ネットワーク"
-level = 2
+level = 0
 deviceFlag = true
 comment = "Win32_NetworkAdapterConfiguration オブジェクトから、IP,GW,Indexを検索"
 type = "Cmdlet"
