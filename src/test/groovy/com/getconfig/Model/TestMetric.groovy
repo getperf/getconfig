@@ -35,7 +35,7 @@ class TestMetric extends Specification {
         platform  | size
         "Linux"   | 0
         "Windows" | 0
-        "vCenter" | 0
+        "VMWare"  | 0
         "VMHost"  | 0
     }
 }
