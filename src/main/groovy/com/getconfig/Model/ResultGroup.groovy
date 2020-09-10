@@ -3,6 +3,7 @@ package com.getconfig.Model
 import groovy.transform.TypeChecked
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
+import org.apache.commons.math3.analysis.function.Add
 
 import javax.sound.sampled.Port
 
@@ -40,6 +41,8 @@ class ResultGroup {
     String compareServer
     Map<ResultKey, Result> testResults = new LinkedHashMap<>()
     PortListGroup portListGroup
+    Map<ResultKey, AddedMetric> addedTestMetrics = new LinkedHashMap<>()
+
 //    Map<String, PortList> portLists = new LinkedHashMap<>()
 
     ResultGroup(Server testServer) {
@@ -71,6 +74,17 @@ class ResultGroup {
         testResult.value = value
         this.put(platform, metric, testResult)
         return testResult
+    }
+
+    AddedMetric getMetric(String platform, String metric) {
+        return this.addedTestMetrics.get(new ResultKey(platform, metric))
+    }
+
+    void setMetric(String platform, String metric, AddedMetric newMetric) {
+        ResultKey key = new ResultKey(platform, metric)
+        if (!this.addedTestMetrics.get(key)) {
+            this.addedTestMetrics.put(key, newMetric)
+        }
     }
 
     Result setError(String platform, String metric, String error) {

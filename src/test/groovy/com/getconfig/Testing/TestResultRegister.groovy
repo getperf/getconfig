@@ -70,7 +70,7 @@ class TestResultRegister extends Specification {
 
         then:
         t.get("Linux", "uname.hoge").value == "abc"
-        t.addedTestMetrics.get("uname.hoge").with {
+        t.testResultGroup.getMetric("Linux", "uname.hoge").with {
             parentMetric == "uname"
             comment == "uname hoge"
         }

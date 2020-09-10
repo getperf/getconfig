@@ -36,7 +36,7 @@ class LogParser implements Controller {
         this.parserLibPath = env.getAgentLogParserLib()
     }
 
-    void MakeAgentLogLists() {
+    void makeAgentLogLists() {
         def serverNameAliases = new ServerNameAliases(this.testServers)
         def baseDir = new File(this.agentLogPath)
         baseDir.eachFileRecurse(FileType.FILES) { logFile ->
@@ -64,10 +64,21 @@ class LogParser implements Controller {
         }
     }
 
+    void sumUp() {
+        this.testResultGroups.each { String serverName, ResultGroup testResultGroup ->
+            testResultGroup.with {
+                log.info "finish '${serverName}', ${it.testResults.size()} item / " +
+                        "${it.portListGroup.portLists.size()} ip / " +
+                        "${it.addedTestMetrics.size()} added metric"
+            }
+        }
+    }
+
     @Override
     int run() {
-        MakeAgentLogLists()
+        makeAgentLogLists()
         parseAgentLogs()
+        sumUp()
         return 0
     }
 }

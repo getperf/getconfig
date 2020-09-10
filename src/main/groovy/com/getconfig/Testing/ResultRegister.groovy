@@ -43,9 +43,10 @@ class ResultRegister {
     }
 
     static void newMetric(TestUtil t, String metric, String description, Object value) {
-        AddedMetric addedTestMetric = t.addedTestMetrics.get(metric) ?:
-                new AddedMetric(t.platform, metric, t.metricFile, description)
-        t.addedTestMetrics.put(metric, addedTestMetric)
+        if (!t.testResultGroup.getMetric(t.platform, metric)) {
+            t.testResultGroup.setMetric(t.platform, metric,
+                new AddedMetric(t.platform, metric, t.metricFile, description))
+        }
         t.testResultGroup.setValue(t.platform, metric, value, t.metricFile)
         log.debug  "SET ${metric},${value}"
     }

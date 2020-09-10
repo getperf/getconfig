@@ -22,7 +22,6 @@ class TestUtil {
     String logPath
     ResultGroup testResultGroup
     PortListGroup portListGroup
-    Map<String, AddedMetric> addedTestMetrics = new LinkedHashMap<>()
 
     TestUtil(String serverName, String platform, String metricFile,
              ResultGroup testResultGroup = null,

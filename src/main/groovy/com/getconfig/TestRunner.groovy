@@ -56,7 +56,6 @@ class TestRunner implements Controller {
         Collector collector = new Collector(this.testServers)
         ConfigEnv.instance.accept(collector)
         collector.run()
-        this.testServerGroups = collector.testServerGroups
         log.info "finish collector"
     }
 
@@ -66,17 +65,12 @@ class TestRunner implements Controller {
         ConfigEnv.instance.accept(logParser)
         logParser.run()
         this.testResultGroups = logParser.testResultGroups
-        logParser.testResultGroups.each { String key, ResultGroup testResultGroup ->
-//            println "KEY:$key, RESULTS:${testResultGroup}"
-            println "KEY:$key, PORTLISTS:${testResultGroup.portListGroup}"
-        }
         log.info "finish parser"
     }
 
     void runReporter() {
         TestScenario testScenario = new TestScenario(
                 testServers: this.testServers,
-                testServerGroups: this.testServerGroups,
                 testResultGroups: this.testResultGroups,
         )
         // メトリック定義の読込み
