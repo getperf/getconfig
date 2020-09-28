@@ -7,7 +7,7 @@ import groovy.transform.ToString
 @TypeChecked
 @CompileStatic
 @ToString(includePackage = false)
-class MetricGroup {
+class PlatformMetric {
     String platform
     List<Metric> metrics = new ArrayList<>()
     Map<String, Metric> dictMetrics = new LinkedHashMap<>()
@@ -16,7 +16,7 @@ class MetricGroup {
         return metrics
     }
 
-    MetricGroup validate() {
+    PlatformMetric validate() {
         this.metrics.each { Metric metric ->
             metric.platform = this.platform
             dictMetrics[metric.name] = metric

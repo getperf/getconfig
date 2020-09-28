@@ -91,7 +91,7 @@ void driver(TestUtil t) {
         }
         csv << columns
     }
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results("${device_number} drivers")
 }
 
@@ -211,18 +211,18 @@ void network(TestUtil t) {
         ip_addresses << ip_address
 
         if (ip_address && ip_address != '127.0.0.1') {
-            t.newMetric("network.dev.${row}",     "[${row}] デバイス", device)
+            t.newMetric("network.dev.${row}",     "[${row}] Device", device)
             t.newMetric("network.ip.${row}",      "[${row}] IP", ip_address)
             exclude_compares << "network.ip.${row}"
-            t.newMetric("network.subnet.${row}",  "[${row}] サブネット", subnet)
-            t.newMetric("network.gateway.${row}", "[${row}] ゲートウェイ", gateway)
+            t.newMetric("network.subnet.${row}",  "[${row}] Subnet", subnet)
+            t.newMetric("network.gateway.${row}", "[${row}] Gateway", gateway)
 
             t.portList(ip_address, device)
         }
 
     }
 
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     res['network'] = "${ip_addresses}"
     t.results(res)
 }
@@ -237,13 +237,13 @@ void nic_teaming_config(TestUtil t) {
             alias = m1
         }
         (it =~ /^Members\s+:\s(.+)/).each {m0, m1->
-            t.newMetric("nic_teaming_config.${alias}.members", "チーミング[${alias}] メンバー", m1)
+            t.newMetric("nic_teaming_config.${alias}.members", "Teaming[${alias}] Member", m1)
         }
         (it =~ /^TeamingMode\s+:\s(.+)/).each {m0, m1->
-            t.newMetric("nic_teaming_config.${alias}.mode", "チーミング[${alias}] モード", m1)
+            t.newMetric("nic_teaming_config.${alias}.mode", "Teaming[${alias}] Mode", m1)
         }
         (it =~ /^LoadBalancingAlgorithm\s+:\s(.+)/).each {m0, m1->
-            t.newMetric("nic_teaming_config.${alias}.algorithm", "チーミング[${alias}] 負荷分散モード", m1)
+            t.newMetric("nic_teaming_config.${alias}.algorithm", "Teaming[${alias}] Load Balance", m1)
         }
     }
     t.results(teaming)
@@ -289,7 +289,7 @@ void network_profile(TestUtil t) {
                 csv << columns
                 def device = it['InterfaceAlias']
                 t.newMetric("network_profile.Category.${device}", 
-                            "[${device}] カテゴリ", 
+                            "[${device}] Category", 
                             it['NetworkCategory'])
                 t.newMetric("network_profile.IPv4.${device}", 
                             "[${device}] IPv4", 
@@ -303,7 +303,7 @@ void network_profile(TestUtil t) {
         }
     }
     // res['network_profile'] = "${network_categorys}"
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results(network_categorys)
 }
 
@@ -347,7 +347,7 @@ void net_bind(TestUtil t) {
     }
     // println bind_components.keySet().sort()
     // infos['net_bind'] = "${bind_components.keySet().sort()}"
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results("${bind_components.keySet().sort()}")
 }
 
@@ -390,7 +390,7 @@ void net_ip(TestUtil t) {
             }
         }
     }
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results("${connect_if}")
 }
 
@@ -399,11 +399,11 @@ void tcp(TestUtil t) {
     def settings = [:]
     t.readLine {
         (it =~ /^KeepAliveInterval\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("tcp.keepalive_interval", "TCP.KeepAlive間隔", m1)
+            t.newMetric("tcp.keepalive_interval", "TCP.KeepAlive interval", m1)
             settings['KeepAliveInterval'] = m1
         }
         (it =~ /^KeepAliveTime\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("tcp.keepalive_time", "TCP.KeepAliveタイム", m1)
+            t.newMetric("tcp.keepalive_time", "TCP.KeepAlive time", m1)
             settings['KeepAliveTime'] = m1
         }
         (it =~ /^TcpMaxDataRetransmissions\s*:\s+(.+)$/).each {m0,m1->
@@ -441,7 +441,7 @@ void firewall(TestUtil t) {
             groups[group_key] = 1
         }
     }
-    t.devices(csv, headers)
+    t.devices(headers, csv)
 
     def res = [:]
     groups.each { group_key, value ->
@@ -462,19 +462,19 @@ void filesystem(TestUtil t) {
         }
         (it =~ /^Size\s*:\s+(\d+)$/).each {m0,m1->
             def size_gb = Math.ceil(m1.toDouble()/(1024*1024*1024)) as Integer
-            t.newMetric("filesystem.${drive_letter}.size_gb", "ドライブ[${drive_letter}] 容量GB", size_gb)
+            t.newMetric("filesystem.${drive_letter}.size_gb", "Drive[${drive_letter}] GB", size_gb)
             csv << [drive_letter, size_gb]
             filesystems[drive_letter] = size_gb
         }
         (it =~ /^Description\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("filesystem.${drive_letter}.desc", "ドライブ[${drive_letter}] 種別", m1)
+            t.newMetric("filesystem.${drive_letter}.desc", "Drive[${drive_letter}] Type", m1)
         }
         (it =~ /^FileSystem\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("filesystem.${drive_letter}.filesystem", "ドライブ[${drive_letter}] ファイルシステム", m1)
+            t.newMetric("filesystem.${drive_letter}.filesystem", "Drive[${drive_letter}] Filesystem", m1)
         }
     }
     def headers = ['device_id', 'size_gb']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     infos['filesystem'] = "${filesystems}"
     t.results(infos)
 }
@@ -528,7 +528,7 @@ void service(TestUtil t) {
         def test_id = "service.Etc.${service_name}"
         t.newMetric(test_id, service_name, status)
     }
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results("${instance_number} services")
 }
 
@@ -559,15 +559,15 @@ void user(TestUtil t) {
         def account_disable  = account_info[row]['AccountDisable']
 
         t.newMetric("user.${user_name}.DontExpirePasswd", 
-                    "[${user_name}] パスワード無期限", 
+                    "[${user_name}] Password expire disable", 
                     dont_expire_pass)
         t.newMetric("user.${user_name}.AccountDisable", 
-                    "[${user_name}] アカウント失効", 
+                    "[${user_name}] Account disable", 
                     account_disable)
         users[user_name] = account_disable
         csv << columns
     }
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results("${users}")
 
 }
@@ -622,7 +622,7 @@ void packages(TestUtil t) {
     }
     // println package_info
     def headers = ['name', 'vendor', 'version']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results("${csv.size()} packages")
 }
 
@@ -637,17 +637,17 @@ void user_account_control(TestUtil t) {
         }
         (it =~ /^ConsentPromptBehaviorAdmin\s*:\s+(.+)$/).each {m0,m1->
             t.newMetric("user_account_control.ConsentPromptBehaviorAdmin", 
-                        "ユーザアカウント制御 ConsentPromptBehaviorAdmin", 
+                        "User Account Control ConsentPromptBehaviorAdmin", 
                         "'${m1}'")
         }
         (it =~ /^ConsentPromptBehaviorUser\s*:\s+(.+)$/).each {m0,m1->
             t.newMetric("user_account_control.ConsentPromptBehaviorUser", 
-                        "ユーザアカウント制御 ConsentPromptBehaviorUser", 
+                        "User Account Control ConsentPromptBehaviorUser", 
                         "'${m1}'")
         }
         (it =~ /^EnableInstallerDetection\s*:\s+(.+)$/).each {m0,m1->
             t.newMetric("user_account_control.EnableInstallerDetection", 
-                        "ユーザアカウント制御 EnableInstallerDetection", 
+                        "User Account Control EnableInstallerDetection", 
                         "'${m1}'")
         }
     }
@@ -747,7 +747,7 @@ void etc_hosts(TestUtil t) {
         }
     }
     def headers = ['ip', 'host_name']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results("${csv.size()} hosts")
 }
 
@@ -762,7 +762,7 @@ void net_accounts(TestUtil t) {
         }
     }
     def headers = ['item_name', 'value']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results((policy_number > 0) ? 'Policy found' : 'NG')
 }
 
@@ -805,7 +805,7 @@ void patch_lists(TestUtil t) {
         }
     }
     def headers = ['knowledge_base']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results("${csv.size()} patches")
 }
 
@@ -814,7 +814,7 @@ void ie_version(TestUtil t) {
     def res = [:]
     t.readLine {
         (it =~ /^(svcVersion|svcUpdateVersion|RunspaceId)\s*:\s+(.+?)$/).each {m0, m1, m2->
-            t.newMetric("ie_version.${m1}", "IEバージョン.${m1}", m2)
+            t.newMetric("ie_version.${m1}", "IE Version.${m1}", m2)
             res[m1] = m2
          }
     }
@@ -854,7 +854,7 @@ void feature(TestUtil t) {
             }
         }
     }
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results("${csv.size().toString()} installed")
 }
 
@@ -888,7 +888,7 @@ void system_log(TestUtil t) {
             }
         }
     }
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results("${csv.size().toString()} events")
 }
 
@@ -922,7 +922,7 @@ void apps_log(TestUtil t) {
             }
         }
     }
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results("${csv.size().toString()} events")
 }
 

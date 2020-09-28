@@ -51,7 +51,7 @@ class LinuxTest extends Specification {
                 domain:"Linux",
                 ip:"192.168.10.1",
                 accountId:"Account01")
-        MetricGroup metrics = TomlUtils.read("lib/dictionary/Linux.toml", MetricGroup)
+        PlatformMetric metrics = TomlUtils.read("lib/dictionary/Linux.toml", PlatformMetric)
 
         def gconf = wrapper.makeServerConfig(server)
         TomlWriter tomlWriter = new TomlWriter()

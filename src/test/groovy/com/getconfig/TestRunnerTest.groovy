@@ -15,7 +15,7 @@ class TestRunnerTest extends Specification {
                 checkSheetPath: "サーバチェックシート.xlsx",
         )
         ConfigEnv.instance.setDryRun()
-        runner.run()
+//        runner.run()
 
         then:
         1 == 1

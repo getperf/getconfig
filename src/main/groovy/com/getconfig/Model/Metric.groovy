@@ -30,4 +30,13 @@ class Metric {
         this.comment = comment
     }
 
+    static Metric make(AddedMetric addedMetric, Metric parent = null) {
+        String platform = addedMetric.platform
+        String id = addedMetric.metricName
+        String name = addedMetric.comment ?: parent?.name
+        String category = parent?.category
+        String comment = parent?.comment
+
+        return new Metric(platform, id, name, category, -1, false, comment)
+    }
 }

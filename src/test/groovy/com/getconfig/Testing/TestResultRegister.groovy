@@ -1,6 +1,7 @@
 package com.getconfig.Testing
 
 import com.getconfig.Model.Result
+
 import spock.lang.Specification
 
 class TestResultRegister extends Specification {

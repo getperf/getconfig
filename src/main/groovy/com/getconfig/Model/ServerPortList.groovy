@@ -7,11 +7,11 @@ import groovy.transform.ToString
 @TypeChecked
 @CompileStatic
 @ToString(includePackage = false)
-class PortListGroup {
+class ServerPortList {
     String serverName
     Map<String, PortList> portLists = new LinkedHashMap<>()
 
-    PortListGroup(String serverName) {
+    ServerPortList(String serverName) {
         this.serverName = serverName
     }
 

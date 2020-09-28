@@ -235,3 +235,9 @@ level = -1
 deviceFlag = true
 comment = "アカウント数を検索し、別シートに詳細情報を登録します"
 
+[[metrics]]
+
+id = "config.json"
+name = "システム情報"
+category = "システム情報"
+level = -1

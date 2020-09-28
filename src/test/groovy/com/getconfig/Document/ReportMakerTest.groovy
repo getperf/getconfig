@@ -1,11 +1,11 @@
 package com.getconfig.Document
 
-import com.getconfig.Model.MetricGroup
+import com.getconfig.Model.PlatformMetric
 import com.getconfig.Utils.TomlUtils
 import spock.lang.Specification
 
 class ReportMakerTest extends Specification {
-    String excelTemplate = "lib/template/summary_report.xlsx"
+    String excelTemplate = "lib/template/report_summary.xlsx"
 
     def "テンプレート読込み"() {
         when:
@@ -87,8 +87,8 @@ class ReportMakerTest extends Specification {
         reportMaker.copyTemplate("検査結果")
         SheetManager manager = reportMaker.createSheetManager()
 
-        MetricGroup metrics = TomlUtils.read("lib/dictionary/Linux.toml",
-                                                MetricGroup)
+        PlatformMetric metrics = TomlUtils.read("lib/dictionary/Linux.toml",
+                                                PlatformMetric)
         metrics.platform = 'Linux'
         metrics.validate()
         manager.nextRow()

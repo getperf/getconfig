@@ -19,4 +19,12 @@ class AddedMetric {
         this.parentMetric = parentMetric
         this.comment = comment
     }
+
+    String metricId() {
+        return MetricId.make(this.platform, this.metricName)
+    }
+
+    String parentMetricId() {
+        return MetricId.make(this.platform, this.parentMetric)
+    }
 }

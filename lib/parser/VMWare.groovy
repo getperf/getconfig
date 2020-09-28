@@ -87,7 +87,7 @@ void Config(TestUtil t) {
             return
         }
         label = CommonUtil.toCamelCase(label)
-        t.newMetric("vm_storage.${label}.summary", "[${label}] 容量", disk.DeviceInfo.Summary)
+        t.newMetric("vm_storage.${label}.summary", "[${label}] Size", disk.DeviceInfo.Summary)
         t.newMetric("vm_storage.${label}.uuid",    "[${label}] UUID", disk.Backing.Uuid)
         t.newMetric("vm_storage.${label}.ThinProvisioned", "", disk.Backing.ThinProvisioned)
         t.newMetric("vm_storage.${label}.WriteThrough", "",    disk.Backing.WriteThrough)

@@ -6,8 +6,7 @@ import groovy.transform.ToString
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import com.getconfig.AgentLogParser.AgentLog
-import com.getconfig.Model.AddedMetric
-import com.getconfig.Model.PortListGroup
+import com.getconfig.Model.ServerPortList
 import com.getconfig.Model.Result
 import com.getconfig.Model.ResultGroup
 
@@ -21,26 +20,26 @@ class TestUtil {
     String metricFile
     String logPath
     ResultGroup testResultGroup
-    PortListGroup portListGroup
+    ServerPortList portListGroup
 
     TestUtil(String serverName, String platform, String metricFile,
              ResultGroup testResultGroup = null,
-             PortListGroup portListGroup = null) {
+             ServerPortList portListGroup = null) {
         this.serverName = serverName
         this.platform = platform
         this.metricFile = metricFile
         this.testResultGroup = testResultGroup ?: new ResultGroup(this.serverName)
-        this.portListGroup = portListGroup ?: new PortListGroup(this.serverName)
+        this.portListGroup = portListGroup ?: new ServerPortList(this.serverName)
     }
 
     TestUtil(AgentLog agentLog, ResultGroup testResultGroup = null,
-             PortListGroup portListGroup = null) {
+             ServerPortList portListGroup = null) {
         this.serverName = agentLog.serverName
         this.platform = agentLog.platform
         this.metricFile = agentLog.metricFile
         this.logPath = agentLog.getLogPath()
         this.testResultGroup = testResultGroup ?: new ResultGroup(this.serverName)
-        this.portListGroup = portListGroup ?: this.testResultGroup.portListGroup ?: new PortListGroup(this.serverName)
+        this.portListGroup = portListGroup ?: this.testResultGroup.serverPortList ?: new ServerPortList(this.serverName)
     }
 
     def readLine = { String charset = 'UTF-8', Closure closure ->

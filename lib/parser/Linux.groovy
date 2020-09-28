@@ -99,9 +99,9 @@ void cpu(TestUtil t) {
     cpuinfo["cpu_core"] = real_cpu.size() * cpuinfo["cores"].toInteger()
     def cpu_text = cpuinfo['model_name']
     if (cpuinfo["cpu_real"] > 0)
-        cpu_text += " ${cpuinfo['cpu_real']} Socket ${cpuinfo['cpu_core']} Core"
+        cpu_text += " ${cpuinfo['cpu_real']} Socket ${cpuinfo['cpu_core']} Core"  as String
     else
-        cpu_text += " ${cpu_number} CPU"
+        cpu_text += " ${cpu_number} CPU"  as String
     cpuinfo["cpu"] = cpu_text
     t.results(cpuinfo)
     // test_item.verify_number_equal('cpu_total', cpuinfo['cpu_total'])
@@ -132,7 +132,7 @@ void meminfo(TestUtil t) {
     def meminfo    = [:].withDefault{0}
     t.readLine {
         (it =~ /^MemTotal:\s+(\d+) (.+)$/).each {m0,m1,m2->
-            meminfo['meminfo'] = "${m1} ${m2}"
+            meminfo['meminfo'] = "${m1} ${m2}" 
             meminfo['mem_total'] = norm(m1, m2)
         }
         (it =~ /^MemFree:\s+(\d+) (.+)$/).each {m0,m1,m2->
@@ -186,7 +186,7 @@ void network(TestUtil t) {
                 if (ip_address && ip_address != '127.0.0.1') {
                     t.newMetric("network.ip.${device}",     "[${device}] IP", ip_address)
                     exclude_compares << "network.ip.${device}"
-                    t.newMetric("network.subnet.${device}", "[${device}] サブネット",
+                    t.newMetric("network.subnet.${device}", "[${device}] Subnet",
                                    netmask)
                     subnets[device] = netmask
                     net_ip[device] = ip_address
@@ -208,7 +208,7 @@ void network(TestUtil t) {
             ipv6 = 'Enabled'
         }
     }
-    t.newMetric("network.ipv6_enabled", "ネットワーク.IPv6", ipv6)
+    t.newMetric("network.ipv6_enabled", "Network.IPv6", ipv6)
     // mtu:1500, qdisc:noqueue, state:DOWN, ip:172.17.0.1/16
     def csv        = []
     network.each { device_id, items ->
@@ -224,7 +224,7 @@ void network(TestUtil t) {
     res['net_subnet'] = subnets.toString()
     res['network'] = "${subnets.size()} IPs, IPv6:${ipv6}"
     t.results(res)
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     // test_item.verify_text_search_list('net_ip', net_ip)
     // test_item.exclude_compare(exclude_compares)
 }
@@ -288,11 +288,11 @@ void block_device(TestUtil t) {
             }
             if (m2 == 'device/timeout') {
                 t.newMetric("block_device.${m1}.timeout", 
-                               "[${m1}] タイムアウト", m3)
+                               "[${m1}] Timeout", m3)
             }
             if (m2 == 'device/queue_depth') {
                 t.newMetric("block_device.${m1}.queue_depth", 
-                               "[${m1}] キューサイズ", m3)
+                               "[${m1}] Quesize", m3)
             }
             devices[m1] = 1
         }
@@ -351,16 +351,16 @@ void filesystem(TestUtil t) {
                 def mount    = columns[5]
                 def capacity = columns[2]
                 t.newMetric("filesystem.capacity.${mount}",
-                            "[${mount}] 容量", 
+                            "[${mount}] Size", 
                             capacity)
                 t.newMetric("filesystem.device.${mount}",
-                            "[${mount}] デバイス", 
+                            "[${mount}] Device", 
                             convert_mount_short_name(device_node))
                 t.newMetric("filesystem.type.${mount}",
-                            "[${mount}] タイプ", 
+                            "[${mount}] Type", 
                             columns[4])
                 t.newMetric("filesystem.fstype.${mount}",
-                            "[${mount}] ファイルシステム", 
+                            "[${mount}] Filesystem", 
                             fstypes2[mount] ?: '')
                 // this.test_platform.add_test_metric(id, "ディスク容量.${mount}")
                 // res[id] = capacity
@@ -378,17 +378,17 @@ void filesystem(TestUtil t) {
             infos[convert_mount_short_name(mount)] = capacity
             // columns << fstypes[mount] ?: ''
             t.newMetric("filesystem.capacity.${mount}",
-                        "[${mount}] 容量",
+                        "[${mount}] Size",
                         capacity)
             t.newMetric("filesystem.device.${mount}",
-                        "[${mount}] デバイス",
+                        "[${mount}] Device",
                         device)
 
             csv << columns
         }
     }
     def headers = ['name', 'maj:min', 'rm', 'size', 'ro', 'type', 'mountpoint', 'fstype']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     res['filesystem'] = "${infos}"
     t.results(res)
 }
@@ -413,7 +413,7 @@ void lvm(TestUtil t) {
         }
     }
     def headers = ['vg_name', 'lv_name', 'mountpoint']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     res['lvm'] = config
     t.results(res)
 }
@@ -436,7 +436,7 @@ void filesystem_df_ip(TestUtil t) {
         }
     }
     def headers = ['inodes', 'iused', 'ifree', 'usage', 'mount']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results(res.toString())
 }
 
@@ -541,7 +541,7 @@ void packages(TestUtil t) {
         def test_id = "packages.Etc.${package_name}"
         t.newMetric(test_id, package_name, "'${version}'")
     }
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results(package_info)
     // test_item.verify_text_search_list('packages', package_info)
 }
@@ -562,7 +562,7 @@ void cron(TestUtil t) {
         t.newMetric("cron.${user}", user, lines)
     }
     def headers = ['user', 'crontab']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
 }
 
 @Parser("yum")
@@ -580,7 +580,7 @@ void yum(TestUtil t) {
         }
     }
     def headers = ['repository', 'enabled']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results(yum_info["1"].keySet().toString())
 }
 
@@ -593,7 +593,7 @@ void resource_limits(TestUtil t) {
         }
     }
     def headers = ['source', 'limits']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     def csv_rows = csv.size()
     def result = (csv_rows == 0) ? 'No limits setting' : "${csv_rows} records found"
     t.results(result)
@@ -624,14 +624,14 @@ void user(TestUtil t) {
             (shell =~ /sh$/).each {
                 general_users[username] = 'OK'
                 t.newMetric("user.${username}.id",    "[${username}] ID",       user_id)
-                t.newMetric("user.${username}.home",  "[${username}] ホーム",   home)
-                t.newMetric("user.${username}.group", "[${username}] グループ", group)
-                t.newMetric("user.${username}.shell", "[${username}] シェル",   shell)
+                t.newMetric("user.${username}.home",  "[${username}] Home",   home)
+                t.newMetric("user.${username}.group", "[${username}] Group", group)
+                t.newMetric("user.${username}.shell", "[${username}] Shell",   shell)
             }
         }
     }
     def headers = ['UserName', 'UserID', 'GroupID', 'Group', 'Home', 'Shell']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results(general_users.keySet().toString())
 }
 
@@ -857,7 +857,7 @@ void snmp_trap(TestUtil t) {
     t.readLine {
         (it =~  /(trapsink|trapcommunity|trap2sink|informsink)\s+(.*)$/).each { m0, m1, m2 ->
             config = 'Configured'
-            t.newMetric("snmp_trap.${m1}", "SNMPトラップ.${m1}", m2)
+            t.newMetric("snmp_trap.${m1}", "SNMP Trap.${m1}", m2)
         }
     }
     t.results(config)
@@ -939,7 +939,7 @@ void error_messages(TestUtil t) {
         }
     }
     def headers = ['message']
-    t.devices(csv, headers)
+    t.devices(headers, csv)
     t.results((csv.size() == 0) ? 'Not found' : 'Message found')
 }
 

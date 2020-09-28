@@ -289,3 +289,9 @@ level = -1
 deviceFlag = false
 comment = "Get-VM コマンドで、ビデオ RAM メモリ割り当てを検索"
 
+[[metrics]]
+
+id = "config.json"
+name = "システム情報"
+category = "システム情報"
+level = -1

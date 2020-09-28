@@ -17,7 +17,7 @@ class TestMetric extends Specification {
             false,
             "hostname -s　コマンドで、ホスト名を検索",
         )
-        MetricGroup metricGroup = new MetricGroup()
+        PlatformMetric metricGroup = new PlatformMetric()
         metricGroup.metrics << metric
 
         then:
@@ -27,7 +27,7 @@ class TestMetric extends Specification {
 
     def "Toml読込み"(String platform, int size) {
         expect:
-        MetricGroup metrics = TomlUtils.read("lib/dictionary/${platform}.toml", MetricGroup);
+        PlatformMetric metrics = TomlUtils.read("lib/dictionary/${platform}.toml", PlatformMetric);
 //        println metrics.validate().getAll()
         metrics.validate().getAll().size() > size
 

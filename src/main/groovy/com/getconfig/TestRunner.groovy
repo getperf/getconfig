@@ -4,6 +4,7 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import com.getconfig.Command.GetconfigCommand
 import com.getconfig.Document.SpecReader
+import com.getconfig.Document.TestScenarioManager
 import com.getconfig.Model.ResultGroup
 import com.getconfig.Model.TestScenario
 import com.getconfig.Model.Server
@@ -25,6 +26,7 @@ class TestRunner implements Controller {
     List<Server> testServers
     Map<String, ServerGroup> testServerGroups
     Map<String, ResultGroup> testResultGroups
+    TestScenario testScenario
 
     void setEnvironment(ConfigEnv env) {
         this.silent = env.getSilent()
@@ -61,21 +63,28 @@ class TestRunner implements Controller {
 
     void runLogParser() {
         log.info "run parser"
+        long start = System.currentTimeMillis()
         LogParser logParser = new LogParser(this.testServers)
         ConfigEnv.instance.accept(logParser)
         logParser.run()
         this.testResultGroups = logParser.testResultGroups
-        log.info "finish parser"
+        long elapse = System.currentTimeMillis() - start
+        log.info "finish parser elapse : ${elapse} ms"
     }
 
     void runReporter() {
-        TestScenario testScenario = new TestScenario(
-                testServers: this.testServers,
-                testResultGroups: this.testResultGroups,
-        )
-        // メトリック定義の読込み
-        // 検査結果の収集、サーバ、メトリック毎
-        log.info "run report"
+        log.info "run reporter"
+        long start = System.currentTimeMillis()
+        TestScenarioManager manager
+        manager = new TestScenarioManager("lib/dictionary",
+                                          this.testResultGroups)
+        manager.run()
+
+        this.testScenario = manager.testScenario
+        Reporter reporter = new Reporter(this.testScenario, "build/check_sheet.xlsx")
+        reporter.run()
+        long elapse = System.currentTimeMillis() - start
+        log.info "finish reporter elapse : ${elapse} ms"
     }
 
     int run() {
@@ -85,7 +94,6 @@ class TestRunner implements Controller {
         this.readExcel()
         this.runCollector()
         this.runLogParser()
-
         this.runReporter()
         long elapse = System.currentTimeMillis() - start
         log.info "Finish, Total Elapse : ${elapse} ms"

@@ -68,7 +68,7 @@ class LogParser implements Controller {
         this.testResultGroups.each { String serverName, ResultGroup testResultGroup ->
             testResultGroup.with {
                 log.info "finish '${serverName}', ${it.testResults.size()} item / " +
-                        "${it.portListGroup.portLists.size()} ip / " +
+                        "${it.serverPortList.portLists.size()} ip / " +
                         "${it.addedTestMetrics.size()} added metric"
             }
         }

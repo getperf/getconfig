@@ -1,0 +1,132 @@
+[platforms]
+
+    HW = [
+        "VMWare", "HPiLO", "PRIMERGY", "CiscoUCS",
+        "XSCF", "OracleVMServer", "SolarisZone",
+        "HitachiVSP", "ETERNUS", "NetApp",
+    ]
+
+    OS = [
+        "Windows", "Linux", "VMHost", "Solaris",
+    ]
+
+    MONITOR = [
+        "Zabbix",
+    ]
+
+
+[[sheets]]
+
+name = "Windows(VM)"
+tracker = "IAサーバ"
+
+    [sheets.platforms]
+
+        HW = ["VMWare"]
+        OS = ["Windows"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "Windows(オンプレ)"
+tracker = "IAサーバ"
+
+    [sheets.platforms]
+
+        HW = ["HPiLO", "PRIMERGY", "CiscoUCS"]
+        OS = ["Windows"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "Linux(VM)"
+tracker = "IAサーバ"
+
+    [sheets.platforms]
+
+        HW = ["VMWare"]
+        OS = ["Linux"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "Linux(オンプレ)"
+tracker = "IAサーバ"
+
+    [sheets.platforms]
+
+        HW = ["HPiLO", "PRIMERGY", "CiscoUCS"]
+        OS = ["Linux"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "ESXi"
+tracker = "IAサーバ"
+
+    [sheets.platforms]
+
+        HW = ["HPiLO", "PRIMERGY", "CiscoUCS"]
+        OS = ["VMHost"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "IAサーバ(OS不明)"
+tracker = "IAサーバ"
+
+    [sheets.platforms]
+
+        HW = ["HPiLO", "PRIMERGY", "CiscoUCS"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "SPARCサーバ"
+tracker = "SPARCサーバ"
+
+    [sheets.platforms]
+
+        OS = ["Solaris"]
+        HW = ["XSCF", "OracleVMServer", "SolarisZone"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "SPARCサーバ(OS無し)"
+tracker = "SPARCサーバ"
+
+    [sheets.platforms]
+
+        HW = ["XSCF", "OracleVMServer", "SolarisZone"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "HitachiVSP"
+tracker = "ストレージ"
+
+    [sheets.platforms]
+
+        HW = ["HitachiVSP"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "ETERNUS"
+tracker = "ストレージ"
+
+    [sheets.platforms]
+
+        HW = ["ETERNUS"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "NetApp"
+tracker = "ストレージ"
+
+    [sheets.platforms]
+
+        HW = ["NetAppDataONTAP"]
+        MONITOR = ["Zabbix"]

@@ -58,7 +58,7 @@ class SheetManager {
     /**
      * シートの先頭行からコメントを読込み、ヘッダー辞書を作成する
      */
-    public parseHeaderComment() {
+    Map<String,Integer> parseHeaderComment() {
         this.headers = new LinkedHashMap<>()
         Row headerRow = templateSheet.getRow(templateSheet.getFirstRowNum())
         for (Cell headerCell : headerRow) {
@@ -68,6 +68,7 @@ class SheetManager {
                 this.headers.put(headerId, new Integer(headerCell.getColumnIndex()))
             }
         }
+        return this.headers
     }
 
     /**
@@ -280,7 +281,7 @@ class SheetManager {
      * @param columnOffset
      */
     public void setCellValue(String value, int columnOffset) {
-        if(value.trim().length() == 0) {
+        if(!value || value.trim().length() == 0) {
             this.cell.setBlank();
         }else {
             this.cell.setCellValue(value);

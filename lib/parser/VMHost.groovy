@@ -32,7 +32,7 @@ void Config(TestUtil t) {
     json.Network?.Vnic*.Spec.each {
         t.newMetric("NIC.ip.${id}", "[${id}] IP", it.Ip.IpAddress)
         t.newMetric("NIC.Dhcp.${id}", "[${id}] Dhcp", it.Ip.Dhcp)
-        t.newMetric("NIC.IPv6Auto.${id}", "[${id}] IPv6自動設定", it.Ip.IpV6Config.AutoConfigurationEnabled)
+        t.newMetric("NIC.IPv6Auto.${id}", "[${id}] IPv6 Auto", it.Ip.IpV6Config.AutoConfigurationEnabled)
         t.newMetric("NIC.Mac.${id}", "[${id}] Mac", it.Mac)
         t.newMetric("NIC.Mtu.${id}", "[${id}] Mtu", it.Mtu)
         t.newMetric("NIC.NetStack.${id}", "[${id}] NetStack", it.NetStackInstanceKey)

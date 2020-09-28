@@ -7,18 +7,11 @@ import com.getconfig.Document.*
 // gradle --daemon test --tests "LogParserTest.初期化"
 
 class LogParserTest extends Specification {
-    String checkSheet = './src/test/resources/サーバチェックシート.xlsx'
-    String configFile = './src/test/resources/config/config.groovy'
     String currentLogDir = './src/test/resources/inventory'
     List<Server> testServers
 
     def setup() {
-        def env = ConfigEnv.instance
-        env.readConfig(configFile)
-        def specReader = new SpecReader(inExcel : checkSheet)
-        specReader.parse()
-        specReader.mergeConfig()
-        testServers = specReader.testServers()
+        testServers = TestData.readTestServers()
     }
 
     def "初期化"() {

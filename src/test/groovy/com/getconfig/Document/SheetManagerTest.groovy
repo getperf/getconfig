@@ -7,7 +7,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 class SheetManagerTest extends Specification {
-    String FILE_PATH_TEMPLATE = 'lib/template/summary_report.xlsx'
+    String FILE_PATH_TEMPLATE = 'lib/template/report_summary.xlsx'
     String FILE_PATH_OUTPUT = 'build/report.xlsx'
     Workbook wb
     Sheet templateSheet

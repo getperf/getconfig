@@ -12,7 +12,7 @@ class ServerGroup {
     List<Server> testServers
     String agentLogPath
 
-    ServerGroup(String groupKey, AgentMode agentMode) {
+    ServerGroup(String groupKey, AgentMode agentMode = AgentMode.LocalAgent) {
         this.groupKey = groupKey
         this.agentMode = agentMode
         this.testServers = new ArrayList<Server>()

@@ -12,6 +12,12 @@ class ExcelConstants {
     // セルスタイルシート名
     public static final String CELL_STYLE_SHEET_NAME = "CellStyle";
 
+    // 非該当項目のセル値
+    public static final String CELL_NOT_APPLICABLE_VALUE = "-";
+
+    // セル欠損値
+    public static final String CELL_NOT_UNKOWN_VALUE = "(不明)";
+
     // 既定のセルスタイルID
     public static final String DEFAULT_CELL_STYLE_ID = "Normal";
 
@@ -32,4 +38,11 @@ class ExcelConstants {
 
     // デバイスシート名
     public static final String DEVICE_SHEET_NAME = "検査詳細";
+
+    // 検査結果レポート定義ファイル名
+    public static final String REPORT_RESULT_CONFIG_TOML = "report_result.toml";
+
+    // サマリレポート定義ファイル名
+    public static final String REPORT_SUMMARY_CONFIG_TOML = "report_summary.toml";
+
 }
