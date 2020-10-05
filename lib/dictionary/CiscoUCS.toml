@@ -1,0 +1,67 @@
+[[metrics]]
+
+id = "bios"
+
+[[metrics]]
+
+id = "chassis"
+
+[[metrics]]
+
+id = "cimc"
+
+[[metrics]]
+
+id = "cpu"
+
+[[metrics]]
+
+id = "memory"
+
+[[metrics]]
+
+id = "hdd"
+
+[[metrics]]
+
+id = "storageadapter"
+
+[[metrics]]
+
+id = "physical_drive"
+
+[[metrics]]
+
+id = "virtual_drive"
+
+[[metrics]]
+
+id = "network"
+
+[[metrics]]
+
+id = "snmp"
+
+[[metrics]]
+
+id = "snmp_trap"
+
+[[metrics]]
+
+id = "ntp"
+
+[[metrics]]
+
+id = "system"
+
+[[metrics]]
+
+id = "storage"
+
+[[metrics]]
+
+id = "subsystem_health"
+
+[[metrics]]
+
+id = "system_node"

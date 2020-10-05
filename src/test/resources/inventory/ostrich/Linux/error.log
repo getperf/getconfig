@@ -1,0 +1,6 @@
+cat: /etc/snmp/snmpd.conf: 許可がありません
+run ostrich:snmp_trap : run command: Process exited with status 1
+sudo: パスワードを尋ねる (askpass) プログラムが指定されていません。 SUDO_ASKPASS の設定を試みます
+run ostrich:cron : run command: Process exited with status 1
+sudo: パスワードを尋ねる (askpass) プログラムが指定されていません。 SUDO_ASKPASS の設定を試みます
+run ostrich:oracle_module : run command: Process exited with status 1

@@ -18,6 +18,7 @@ class TestScenarioManager implements Controller {
     String metricLib
     TestScenario testScenario
     Map<String,ResultGroup> resultGroups
+    Map<Integer,String> serverOrders = new LinkedHashMap<>()
 
     TestScenarioManager(String metricLib = null, 
                         Map<String,ResultGroup> resultGroups = null) {
@@ -38,6 +39,7 @@ class TestScenarioManager implements Controller {
     }
 
     void setResultGroup(String serverName, ResultGroup resultGroup) {
+        this.serverOrders.put(resultGroup.order, serverName)
         resultGroup.testResults.each { String metricId, Result result ->
             this.testScenario.setResult(serverName, metricId, result)
         }
@@ -84,7 +86,7 @@ class TestScenarioManager implements Controller {
             throw new IllegalArgumentException(
                 "metricLib is not defined")
         }
-        testScenario.platformIndex.keySet().each {String platform ->
+        testScenario.platformServerKeys.keySet().each { String platform ->
             String tomlPath = Paths.get(metricLib, "${platform}.toml")
             PlatformMetric platformMetric = TomlUtils.read(tomlPath, PlatformMetric.class) as PlatformMetric
             setMetrics(platform, platformMetric)
@@ -108,14 +110,19 @@ class TestScenarioManager implements Controller {
 
     TestScenario setServerToReport() {
         testScenario.with {
-            Map serverIndex = serverIndex.asMap()
-            serverIndex.each { String server, Collection platforms ->
+            this.serverOrders.sort().each {
+                if (it.key > 0) {
+                    servers.add(it.value)
+                }
+            }
+            Map serverPlatformKeys = serverPlatformKeys.asMap()
+            serverPlatformKeys.each { String server, Collection platforms ->
                 ResultSheet resultSheet
                 resultSheet = reportResult.findSheet(platforms as List)
                 if (resultSheet) {
                     String sheetName = resultSheet.name
                     resultSheets.put(sheetName, resultSheet)
-                    resultSheetServers.put(sheetName, server)
+                    resultSheetServerKeys.put(sheetName, server)
                 }
             }
         }

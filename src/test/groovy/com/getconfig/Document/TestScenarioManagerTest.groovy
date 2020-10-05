@@ -22,9 +22,9 @@ class TestScenarioManagerTest extends Specification {
         then:
         testScenario.with {
             portLists.get("centos80.192.168.0.5").ip == "192.168.0.5"
-            portListIndex.get("centos80").getAt(0) == "192.168.0.5"
-            serverIndex.get("centos80") as Set == [ "VMWare", "Linux" ]
-            platformIndex.get("VMWare") as Set == ["centos80", "w2016"]
+            portListKeys.get("centos80").getAt(0) == "192.168.0.5"
+            serverPlatformKeys.get("centos80") as Set == ["VMWare", "Linux" ]
+            platformServerKeys.get("VMWare") as Set == ["centos80", "w2016"]
             results.rowKeySet() as Set == ["centos80", "esxi.ostrich",
                                            "server01","server02",
                                            "w2016"]
@@ -60,8 +60,8 @@ class TestScenarioManagerTest extends Specification {
         testScenario.with {
             metrics.get("Linux.000000001.000000000").id == "hostname"
             metrics.get("Linux.000000055.000000002").id == "user.root.group"
-            metricKeys.get("Linux.uname") == "Linux.000000003.000000000"
-            metricKeys.get("Linux.user.root.home") == "Linux.000000055.000000001"
+            metricIndex.get("Linux.uname") == "Linux.000000003.000000000"
+            metricIndex.get("Linux.user.root.home") == "Linux.000000055.000000001"
         }
     }
 
@@ -74,7 +74,7 @@ class TestScenarioManagerTest extends Specification {
 
         then:
         testScenario.with {
-            resultSheetServers.get("Linux(VM)") == ["centos80"]
+            resultSheetServerKeys.get("Linux(VM)") == ["centos80"]
             resultSheets.get("Linux(VM)") != null
         }
     }
@@ -88,7 +88,8 @@ class TestScenarioManagerTest extends Specification {
         int result = manager.run()
 
         then:
-        manager.testScenario.resultSheetServers.get("Linux(VM)") != null
+        manager.testScenario.servers[0] == "centos80"
+        manager.testScenario.resultSheetServerKeys.get("Linux(VM)") != null
         result == 0
     }
 }

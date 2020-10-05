@@ -18,12 +18,12 @@ name = "機種"
 redmineField = "機種"
 
     [columns.inventories]
-    iLo = "HSI_SPN"
+    HPiLO = "overview.product_name"
     CiscoUCS = "chassis.productname"
     XSCF = "hardconf.system"
     AIX = "prtconf.System Model"
     Eternus = "enclosure.StorageSystemName"
-    NetAppDataONTAP = "processor"
+    NetAppONTAP = "processor"
 
 [[columns]]
 id = "type"
@@ -31,11 +31,11 @@ name = "型番"
 redmineField = "型番"
 
     [columns.inventories]
-    iLo = "HSI_PRODUCTID"
+    HPiLO = "overview.product_id"
     CiscoUCS = "chassis.productid"
     Eternus = "enclosure.ModelName"
-    HitachiVSP2 = "storage.modelName"
-    NetAppDataONTAP = "version"
+    HitachiVSP = "storage.modelName"
+    NetAppONTAP = "version"
 
 [[columns]]
 id = "serial"
@@ -43,12 +43,12 @@ name = "S/N"
 redmineField = "S/N"
 
     [columns.inventories]
-    iLo = "HSI_SBSN"
+    HPiLO = "overview.serial_num"
     CiscoUCS = "chassis.sn"
     XSCF = "hardconf.serial"
     AIX = "prtconf.Machine Serial Number"
     Eternus = "enclosure.SerialNumber"
-    HitachiVSP2 = "storage.serial"
+    HitachiVSP = "storage.serial"
 
 [[columns]]
 id = "os"
@@ -58,10 +58,10 @@ redmineField = "OS名"
     [columns.inventories]
     Linux = "os"
     Windows = "os_caption"
-    VMHost = "Version"
+    VMHost = "summary.version"
     Solaris = "System"
     AIX = "osname"
-    iLo = "HSI_SBSN"
+    HPiLO = "HSI_SBSN"
     CiscoUCS = "chassis.sn"
     XSCF = "hardconf.serial"
 
@@ -72,9 +72,9 @@ name = "アーキテクチャ"
     [columns.inventories]
     Linux = "arch"
     Windows = "os_architecture"
-    VMHost = "ProcessorType"
+    VMHost = "summary.arch"
     Solaris = "Machine"
-    HitachiVSP2 = "storage.network"
+    HitachiVSP = "storage.network"
 
 [[columns]]
 id = "cpu"
@@ -84,10 +84,10 @@ redmineField = "CPU数"
     [columns.inventories]
     Linux = "cpu_total"
     Windows = "cpu_total"
-    VMHost = "NumCpu"
+    VMHost = "NumCpuPkgs"
     Solaris = "cpu_total"
     AIX = "prtconf.Number Of Processors"
-    NetAppDataONTAP = "hw.cpu"
+    NetAppONTAP = "hw.cpu"
 
 [[columns]]
 id = "cpuCore"
@@ -96,10 +96,10 @@ name = "CPUコア数"
     [columns.inventories]
     Linux = "cpu_total"
     Windows = "cpu_total"
-    VMHost = "NumCpu"
+    VMHost = "NumCpuCores"
     Solaris = "cpu_total"
     AIX = "prtconf.Number Of Processors"
-    NetAppDataONTAP = "hw.cpu"
+    NetAppONTAP = "hw.cpu"
 
 [[columns]]
 id = "cpuClock"
@@ -108,6 +108,7 @@ name = "CPUクロック数"
     [columns.inventories]
     Linux = "mhz"
     Windows = "mhz"
+    VMHost = "CpuTotalMhz"
     Solaris = "mhz"
 
 [[columns]]
@@ -127,7 +128,7 @@ id = "internalDisk"
 name = "内臓ディスク"
 
     [columns.inventories]
-    iLo = "Storage"
+    HPiLO = "Storage"
     Primergy = "disk"
     CiscoUCS = "hdd"
 
@@ -142,7 +143,7 @@ name = "ディスク構成"
     Solaris = "filesystem"
     AIX = "prtconf.disk"
     Eternus = "raid_groups"
-    NetAppDataONTAP = "storage.volume"
+    NetAppONTAP = "storage.volume"
 
 [[columns]]
 id = "network"
@@ -155,7 +156,7 @@ name = "ネットワーク構成"
     Solaris = "network"
     AIX = "network"
     Eternus = "network"
-    NetAppDataONTAP = "network_interface"
+    NetAppONTAP = "network_interface"
 
 [[columns]]
 id = "subnet"
@@ -183,7 +184,7 @@ id = "managedLan"
 name = "管理LAN"
 
     [columns.inventories]
-    iLo = "ip_mng"
+    HPiLO = "ip_mng"
     Primergy = "network"
     CiscoUCS = "network"
     XSCF = "network"

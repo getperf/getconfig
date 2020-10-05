@@ -1,0 +1,90 @@
+WinRM調査
+========
+
+
+デフォルトのポート番号は、5985 (HTTP) および 5986 (HTTPS) です。
+
+winrm get winrm/config/service
+
+winrm set winrm/config/service/auth 
+
+
+go run test8.go -pswd "P@ssw0rd" -host 192.168.0.27 -port 5985 test
+⇒接続できる
+
+go run test8.go -pswd "P@ssw0rd" -host 192.168.0.27 -port 5986 test
+⇒NG,クライアント認証などが必要
+
+NRLM調査
+
+PS C:\Users\Administrator> winrm get winrm/config/service
+Service
+    RootSDDL = O:NSG:BAD:P(A;;GA;;;BA)(A;;GR;;;IU)S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)
+    MaxConcurrentOperations = 4294967295
+    MaxConcurrentOperationsPerUser = 1500
+    EnumerationTimeoutms = 240000
+    MaxConnections = 300
+    MaxPacketRetrievalTimeSeconds = 120
+    AllowUnencrypted = true
+    Auth
+        Basic = true
+        Kerberos = true
+        Negotiate = true
+        Certificate = false
+        CredSSP = false
+        CbtHardeningLevel = Relaxed
+    DefaultPorts
+        HTTP = 5985
+        HTTPS = 5986
+    IPv4Filter = *
+    IPv6Filter = *
+    EnableCompatibilityHttpListener = false
+    EnableCompatibilityHttpsListener = false
+    CertificateThumbprint
+    AllowRemoteAccess = true
+
+PS C:\Users\Administrator> winrm get winrm/config/client
+Client
+    NetworkDelayms = 5000
+    URLPrefix = wsman
+    AllowUnencrypted = false
+    Auth
+        Basic = true
+        Digest = true
+        Kerberos = true
+        Negotiate = true
+        Certificate = true
+        CredSSP = false
+    DefaultPorts
+        HTTP = 5985
+        HTTPS = 5986
+    TrustedHosts = *
+
+
+https://stackoverflow.com/questions/45387108/ntlm-and-golang
+
+
+I have recently learnt Go and I am experimenting with the net/http library. I have been trying to authenticate into a site using the http.SetBasicAuth function but it never seems to work. It works fine with cURL but not with Go. I know this has something to do with NTLM but I don't know how to fix the problem
+
+cURL:
+
+curl -v "http://server_that_im_trying_to_auth_with" --ntlm -u user:pass
+
+Go:
+
+ req, _ := http.NewRequest("GET", "url", nil)
+ req.SetBasicAuth(user, pass)
+ resp, _ := http.DefaultClient.Do(req)
+ body, _ := ioutil.ReadAll(resp.Body)
+
+The body keeps on returning the sites 401 Page.
+
+winrm get winrm/config/client
+
+Supported on: At least Windows Vista
+Registry Hive	HKEY_LOCAL_MACHINE
+Registry Path	Software\Policies\Microsoft\Windows\WinRM\Client
+Value Name	AllowBasic
+Value Type	REG_DWORD
+Enabled Value	1
+Disabled Value	0

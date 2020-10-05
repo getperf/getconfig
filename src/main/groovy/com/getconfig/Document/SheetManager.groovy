@@ -345,6 +345,35 @@ class SheetManager {
         }
     }
 
+    public setCell(Object value, String cellStyleId = DEFAULT_CELL_STYLE_ID) {
+        println "TYPE:$value, ${value.getClass()}"
+        if (value instanceof Long) {
+            this.setCell((double)value, "Integer")
+        } else if (value instanceof Integer) {
+            this.setCell((int)value, "Integer")
+        } else if (value instanceof Double || value instanceof Float || 
+            value instanceof BigDecimal) {
+            this.setCell((double)value, "Double")
+        } else {
+            this.setCell(value as String)
+        }
+        // if (value instanceof Long) {
+        //     this.setCell((double)value, "Integer")
+        // } else if (value instanceof Integer) {
+        //     this.setCell((int)value as Integer, "Integer")
+        // } else if (value instanceof Double || value instanceof Float || 
+        //     value instanceof BigDecimal) {
+        //     this.setCell(value as Double, "Double")
+        // } else {
+        //     this.setCell(value as String)
+        // }
+        // println value instanceof Integer
+        // println value instanceof Double
+
+        // this.setCellStyle(cellStyleId)
+        // this.setCellValue(value as String)
+    }
+
     public setCell(String value, String cellStyleId = DEFAULT_CELL_STYLE_ID) {
         this.setCellStyle(cellStyleId)
         this.setCellValue(value)

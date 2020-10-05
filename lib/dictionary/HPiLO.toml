@@ -1,0 +1,92 @@
+[[metrics]]
+
+id = "overview.product_name"
+name = "機種"
+category = "システム情報"
+
+[[metrics]]
+
+id = "overview.product_id"
+name = "型番"
+category = "システム情報"
+
+[[metrics]]
+
+id = "overview.serial_num"
+name = "S/N"
+category = "システム情報"
+
+[[metrics]]
+
+id = "overview.license"
+name = "ライセンスタイプ"
+category = "システム情報"
+
+[[metrics]]
+
+id = "overview.ilo_fw_version"
+name = "FWバージョン"
+category = "システム情報"
+
+[[metrics]]
+
+id = "overview.isUEFI"
+name = "UEFI有効化"
+category = "システム情報"
+
+[[metrics]]
+
+id = "overview.system_rom"
+name = "システムロムバージョン"
+category = "システム情報"
+
+[[metrics]]
+
+id = "overview.ip_address"
+name = "管理IP"
+category = "システム情報"
+
+[[metrics]]
+
+id = "overview.system_health"
+name = "システム状態"
+category = "システム情報"
+
+[[metrics]]
+
+id = "License"
+name = "ライセンス"
+category = "システム情報"
+level = 0
+
+[[metrics]]
+
+id = "License.Key"
+name = "ライセンスキー"
+category = "システム情報"
+
+[[metrics]]
+
+id = "proc_info"
+name = "プロセッサ"
+category = "CPU"
+level = 0
+
+[[metrics]]
+
+id = "mem_info"
+name = "メモリGB"
+category = "Memory"
+level = 0
+
+[[metrics]]
+
+id = "mem_info.mem_op_speed"
+name = "メモリスピード"
+category = "Memory"
+
+[[metrics]]
+
+id = "mem_info.mem_condition"
+name = "メモリ状態"
+category = "Memory"

@@ -1,0 +1,6 @@
+ cluster time-service ntp server show
+server<|>version<|>is-authentication-enabled<|>key-id<|>
+NTP Server Host Name, IPv4 or IPv6 Address<|>NTP Version for Server (default: auto)<|>Is NTP Symmetric Key Authentication Enabled<|>NTP Symmetric Authentication Key ID<|>
+192.168.0.25<|>auto<|>false<|>-<|>
+
+NetAPP1

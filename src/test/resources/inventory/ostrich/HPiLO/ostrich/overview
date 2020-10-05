@@ -1,0 +1,37 @@
+{
+    "date": "Mon Dec  9 10:07:10 2019",
+    "server_name": "yqsc537",
+    "option_ROM_measuring": "Disabled",
+    "ilo_fw_bootleg": "",
+    "nic": 0,
+    "uuid": "37543851-4131-4E43-3739-XXXXXXXXXXXXX",
+    "uid_led": "UID_OFF",
+    "self_test": "OP_STATUS_OK",
+    "https_port": 443,
+    "isUEFI": 1,
+    "system_rom": "U32 v2.14 (09/05/2019)",
+    "product_id": "Q8T71A",
+    "backup_rom_date": "09/05/2019",
+    "removable_hw": [
+        {
+            "sd_card": "NOT_PRESENT",
+            "tpm_status": "NOT_PRESENT",
+            "module_type": "UNSPECIFIED"
+        }
+    ],
+    "has_reset_priv": 1,
+    "virtual_serial_num": null,
+    "power": "ON",
+    "ers_state": "ERS_INACTIVE",
+    "system_rom_date": "09/05/2019",
+    "virtual_uuid": null,
+    "ilo_fw_version": "1.45 Jun 27 2019",
+    "ilo_name": "ILOCN79430JGQ.",
+    "ip_address": "192.168.1.148",
+    "product_name": "ProLiant DL360 Gen10",
+    "serial_num": "XXXXXXXXXXXX",
+    "ipv6_link_local": "FE80::AF1:EAFF:FE79:F744",
+    "license": "iLO Standard",
+    "system_health": "OP_STATUS_OK",
+    "chassis_sn": ""
+}

@@ -1,0 +1,3 @@
+ifcfg-eth0:ONBOOT=yes
+ifcfg-eth1:ONBOOT=yes
+ifcfg-lo:ONBOOT=yes

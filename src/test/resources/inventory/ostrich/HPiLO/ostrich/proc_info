@@ -1,0 +1,31 @@
+{
+    "hostpwr_state": "ON",
+    "processors": [
+        {
+            "proc_num_cores_enabled": 4,
+            "proc_num_l3cache": 8448,
+            "proc_num_cores": 4,
+            "proc_speed": 2600,
+            "proc_num_threads": 8,
+            "proc_socket": "Proc 1",
+            "proc_mem_technology": "64-bit Capable",
+            "proc_status": "OP_STATUS_OK",
+            "proc_num_l1cache": 256,
+            "proc_name": "Intel(R) Xeon(R) Silver 4112 CPU @ 2.60GHz",
+            "proc_num_l2cache": 4096
+        },
+        {
+            "proc_num_cores_enabled": 4,
+            "proc_num_l3cache": 8448,
+            "proc_num_cores": 4,
+            "proc_speed": 2600,
+            "proc_num_threads": 8,
+            "proc_socket": "Proc 2",
+            "proc_mem_technology": "64-bit Capable",
+            "proc_status": "OP_STATUS_OK",
+            "proc_num_l1cache": 256,
+            "proc_name": "Intel(R) Xeon(R) Silver 4112 CPU @ 2.60GHz",
+            "proc_num_l2cache": 4096
+        }
+    ]
+}

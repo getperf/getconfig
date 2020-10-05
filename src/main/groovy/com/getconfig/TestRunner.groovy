@@ -79,12 +79,12 @@ class TestRunner implements Controller {
         manager = new TestScenarioManager("lib/dictionary",
                                           this.testResultGroups)
         manager.run()
+        long elapse = System.currentTimeMillis() - start
+        log.info "prepare report data elapse : ${elapse} ms"
 
         this.testScenario = manager.testScenario
         Reporter reporter = new Reporter(this.testScenario, "build/check_sheet.xlsx")
         reporter.run()
-        long elapse = System.currentTimeMillis() - start
-        log.info "finish reporter elapse : ${elapse} ms"
     }
 
     int run() {

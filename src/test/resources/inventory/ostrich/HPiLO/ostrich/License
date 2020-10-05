@@ -1,0 +1,60 @@
+{
+    "Description": "iLO License View",
+    "LicenseErr": "",
+    "@odata.type": "#HpeiLOLicense.v2_1_1.HpeiLOLicense",
+    "@odata.etag": "W/\"9635F4BE\"",
+    "License": "iLO Standard",
+    "@odata.context": "/redfish/v1/$metadata#HpeiLOLicense.HpeiLOLicense",
+    "LicenseClass": "",
+    "LicenseType": "Unlicensed",
+    "Name": "iLO License",
+    "LicenseTier": "STD",
+    "LicenseInstallDate": "",
+    "@odata.id": "/redfish/v1/Managers/1/LicenseService/1/",
+    "LicenseFeatures": {
+        "EmailAlert": false,
+        "Jitter": false,
+        "Scrncap": false,
+        "PowerReg": false,
+        "DirectoryAuth": false,
+        "FWScan": false,
+        "RemoteSyslog": false,
+        "Recovery": false,
+        "VMScript": false,
+        "SecureErase": false,
+        "SmartCard": false,
+        "SuiteB": false,
+        "RC": false,
+        "DowngradePolicy": false,
+        "VSPLogging": false,
+        "Federation": false,
+        "VM": false,
+        "KD": true,
+        "KeyMgr": false,
+        "MURC": false,
+        "TextCons": false
+    },
+    "Id": "1",
+    "Confirmation": {
+        "Status": false,
+        "Message": "",
+        "Service": "reserved for liconf URI",
+        "Code": ""
+    },
+    "ConfirmationRequest": {
+        "Signer": "iLO 5",
+        "EON": {
+            "State": "unlicensed",
+            "License": "iLO Standard",
+            "Quantity": 1,
+            "LicenseKey": ""
+        },
+        "System": {
+            "SerialNumber": "XXXXXXXXXXX",
+            "ChipId": "E93761C6002E8B0E",
+            "Product": "ProLiant DL360 Gen10"
+        }
+    },
+    "LicenseExpire": "",
+    "LicenseKey": ""
+}

@@ -18,10 +18,22 @@ void Summary(TestUtil t) {
     t.setMetric("Build", json.Config.Product.Build)
     t.setMetric("PowerState", json.Runtime.PowerState)
     t.setMetric("Manufacturer", json.Hardware.Vendor)
-    t.setMetric("NumCpu", json.Hardware.findAll { it =~ /NumCpu/ }. toString())
-    t.setMetric("CpuTotalMhz", json?.Hardware?.CpuMhz)
-    t.setMetric("ProcessorType", json?.Hardware?.CpuModel)
-    t.setMetric("MemoryTotalGB", json?.Hardware?.MemorySize)
+    t.setMetric("NumCpuPkgs", json.Hardware?.NumCpuPkgs)
+    t.setMetric("NumCpuCores", json.Hardware?.NumCpuCores)
+    t.setMetric("CpuTotalMhz", json.Hardware?.CpuMhz)
+    t.setMetric("CputTotal", json.Hardware.findAll { it =~ /NumCpu/ }. toString())
+    t.setMetric("ProcessorType", json.Hardware?.CpuModel)
+
+    def os = "ESXi ${json.Config.Product.Version} Build ${json.Config.Product.Build}"
+    t.newMetric("summary.version", "ESXi Version", os)
+    def arch = "x86_64"
+    if (!(json.Hardware?.CpuModel =~ /Intel/)) {
+        arch = json.Hardware?.CpuModel
+    }
+    t.newMetric("summary.arch", "ESXi Architecture", arch)
+
+    def memTotal = (json.Hardware?.MemorySize ?: 0) / (1024.0 ** 3)
+    t.setMetric("MemoryTotalGB", memTotal)
 }
 
 @Parser("config.json")

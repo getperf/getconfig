@@ -12,13 +12,15 @@ import groovy.util.logging.Slf4j
 @ToString(includePackage = false)
 class TestScenario {
     // 辞書定義
-    Multimap<String, String> serverIndex
-    Multimap<String, String> platformIndex
-    Multimap<String, String> metricKeyIndex
-    Multimap<String, String> portListIndex
+    List<String> servers
+    Multimap<String, String> serverPlatformKeys
+    Multimap<String, String> platformServerKeys
+    Multimap<String, String> platformMetricKeys
+    Map<String, String> metricIndex
+    Multimap<String, String> portListKeys
+    Multimap<String, String> resultSheetServerKeys
 
     // ファクト定義
-    Map<String, String> metricKeys
     Table<String, String, Result> results
     Table<String, String, ResultLine> devices
     Map<String, Metric> metrics
@@ -28,26 +30,26 @@ class TestScenario {
     ReportResult reportResult
     ReportSummary reportSummary
     Map<String, ResultSheet> resultSheets
-    Multimap<String, String> resultSheetServers
 
     TestScenario() {
-        this.serverIndex = HashMultimap.create()
-        this.platformIndex = HashMultimap.create()
-        this.metricKeyIndex = HashMultimap.create()
-        this.portListIndex = HashMultimap.create()
+        this.servers = new ArrayList<>()
+        this.serverPlatformKeys = HashMultimap.create()
+        this.platformServerKeys = HashMultimap.create()
+        this.platformMetricKeys = HashMultimap.create()
+        this.portListKeys = HashMultimap.create()
+        this.metricIndex = new LinkedHashMap<>()
+        this.resultSheetServerKeys = HashMultimap.create()
 
-        this.metricKeys = new LinkedHashMap<>()
         this.results = HashBasedTable.create()
         this.devices = HashBasedTable.create()
         this.metrics = new LinkedHashMap<>()
         this.portLists = new LinkedHashMap<>()
         this.resultSheets = new LinkedHashMap<>()
-        this.resultSheetServers = HashMultimap.create()
     }
 
     TestScenario setPortList(String serverName, String ip, PortList portList) {
         String serverIp = "${serverName}.${ip}"
-        this.portListIndex.put(serverName, ip)
+        this.portListKeys.put(serverName, ip)
         this.portLists.put(serverIp, portList)
 
         return this
@@ -55,8 +57,8 @@ class TestScenario {
 
     TestScenario setResult(String serverName, String metricId, Result result) {
         String platform = MetricId.platform(metricId)
-        this.serverIndex.put(serverName, platform)
-        this.platformIndex.put(platform, serverName)
+        this.serverPlatformKeys.put(serverName, platform)
+        this.platformServerKeys.put(platform, serverName)
         // this.metricIndex.put(platform, metricId)
         this.results.put(serverName, metricId, result)
         if (result.devices) {
@@ -69,8 +71,8 @@ class TestScenario {
         String metricId = MetricId.make(platform, metric.id)
         String metricKey = MetricId.orderParentKey(platform, order)
 
-        this.metricKeyIndex.put(platform, metricKey)
-        this.metricKeys.put(metricId, metricKey)
+        this.platformMetricKeys.put(platform, metricKey)
+        this.metricIndex.put(metricId, metricKey)
         this.metrics.put(metricKey, metric)
 
         return this
@@ -81,7 +83,7 @@ class TestScenario {
         String metricId = addedMetric.metricId()
         String parentMetricId = addedMetric.parentMetricId()
 
-        String parentMetricKey = this.metricKeys.get(parentMetricId)
+        String parentMetricKey = this.metricIndex.get(parentMetricId)
         if (!parentMetricKey) {
             log.error "'${parentMetricId}' parent metric not found for '${metricId}'"
             return
@@ -91,8 +93,8 @@ class TestScenario {
         Metric baseMetric = this.metrics.get(parentMetricKey)
         Metric metric = Metric.make(addedMetric, baseMetric)
 
-        this.metricKeyIndex.put(platform, metricKey)
-        this.metricKeys.put(metricId, metricKey)
+        this.platformMetricKeys.put(platform, metricKey)
+        this.metricIndex.put(metricId, metricKey)
         this.metrics.put(metricKey, metric)
 
         return this
@@ -100,14 +102,14 @@ class TestScenario {
 
     Map<String, String> getDomains() {
         Map<String, String> domains = new LinkedHashMap<>()
-        this.resultSheetServers.entries().each {
+        this.resultSheetServerKeys.entries().each {
             domains.put(it.getValue(), it.getKey());
         }
         return domains
     }
 
     String getMetricKey(String metricId) {
-        return this.metricKeys.get(metricId)
+        return this.metricIndex.get(metricId)
     }
 
     ResultSheet getResultSheet(String sheetName) {
@@ -115,6 +117,6 @@ class TestScenario {
     }
 
     List<String> getServers(String sheetName) {
-        return this.resultSheetServers.asMap().get(sheetName) as List<String>
+        return this.resultSheetServerKeys.asMap().get(sheetName) as List<String>
     }
 }

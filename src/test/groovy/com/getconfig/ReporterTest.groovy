@@ -39,4 +39,17 @@ class ReporterTest extends Specification {
         then:
         1 == 1
     }
+
+    def "デバイスレポート作成"() {
+        when:
+        Reporter reporter = new Reporter(this.testScenario, reportPath)
+        reporter.initReport()
+        reporter.makeDeviceReport()
+        reporter.finishReport()
+
+        then:
+        1 == 1
+    }
+
+
 }

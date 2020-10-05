@@ -28,9 +28,11 @@ public class SpecReader {
         List<Server> servers = Poiji.fromExcel(stream, PoijiExcelType.XLSX,
                   Server.class, options);
 
+        String previousServerName
         servers.each { server ->
-            if (server.checkKey()) {
+            if (server.checkKey(previousServerName)) {
                 this.testServers << server
+                previousServerName = server.serverName
             }
         }
     }

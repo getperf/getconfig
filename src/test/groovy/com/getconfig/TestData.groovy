@@ -9,17 +9,21 @@ class TestData {
     static String currentLogDir = './src/test/resources/inventory'
     static String parserLibPath = './lib/parser'
 
-    static List<Server> readTestServers() {
+    static List<Server> readTestServers(String suffix = null) {
         def env = ConfigEnv.instance
         env.readConfig(configFile)
-        def specReader = new SpecReader(inExcel : checkSheet)
+        String excelFile = checkSheet
+        if (suffix) {
+            excelFile = checkSheet.replace(".xlsx", "_${suffix}.xlsx")
+        }
+        def specReader = new SpecReader(inExcel : excelFile)
         specReader.parse()
         specReader.mergeConfig()
         return specReader.testServers()
     }
 
-    static Map<String, ResultGroup> prepareResultGroup() {
-        List<Server> testServers = this.readTestServers()
+    static Map<String, ResultGroup> prepareResultGroup(String suffix = null) {
+        List<Server> testServers = this.readTestServers(suffix)
         LogParser logParser = new LogParser(testServers)
         logParser.agentLogPath = this.currentLogDir
         logParser.parserLibPath = this.parserLibPath

@@ -33,37 +33,39 @@ class ReportMakerSummary {
                 testScenario.reportSummary.getColumns()
 
         int order = 1
-        testScenario.serverIndex.asMap().each {
-            String server, Collection platforms ->
-                headers.each { String columnId, int columnNo ->
-                    if (columnId == "no") {
-                        manager.setCellValue(order)
-                    } else if (columnId == "hostName") {
-                        manager.setCellValue(server)
-                    } else if (columnId == "domain") {
-                        manager.setCellValue(domains[server] ?: 'unknown')
-                    } else if (columnId == "ip") {
-                        String ip = testScenario.portListIndex.get(server) ?: 'unknown'
-                        manager.setCellValue(ip)
-                    } else {
-                        ReportSummary.ReportColumn summaryColumn
-                        summaryColumn = summaryColumns.get(columnId)
-                        String metricId = summaryColumn.findMetricId(platforms as List)
-                        if (metricId) {
-                            Result result = testScenario.results.get(server, metricId)
-                            if (result) {
-                                manager.setCellValue(result.value as String)
-                            } else {
-                                manager.setCellValue(ExcelConstants.CELL_NOT_UNKOWN_VALUE)
-                            }
+        testScenario.servers.each { String server ->
+            List<String> platforms
+            platforms = testScenario.serverPlatformKeys.get(server) as List<String>
+            headers.each { String columnId, int columnNo ->
+                if (columnId == "no") {
+                    manager.setCell(order)
+                } else if (columnId == "hostName") {
+                    manager.setCell(server)
+                } else if (columnId == "domain") {
+                    manager.setCell(domains[server] ?: 'unknown')
+                } else if (columnId == "ip") {
+                    String ip = testScenario.portListKeys.get(server) ?: 'unknown'
+                    manager.setCell(ip)
+                } else {
+                    ReportSummary.ReportColumn summaryColumn
+                    summaryColumn = summaryColumns.get(columnId)
+                    String metricId = summaryColumn.findMetricId(platforms as List)
+                    if (metricId) {
+                        Result result = testScenario.results.get(server, metricId)
+                        if (result) {
+                            // manager.setCell(result.value as String)
+                            manager.setCell(result.value)
                         } else {
-                            manager.setCellValue(ExcelConstants.CELL_NOT_APPLICABLE_VALUE)
+                            manager.setCell(ExcelConstants.CELL_NOT_UNKOWN_VALUE)
                         }
+                    } else {
+                        manager.setCell(ExcelConstants.CELL_NOT_APPLICABLE_VALUE)
                     }
                 }
-                manager.nextRow()
-                manager.shiftRows()
-                order++
+            }
+            manager.nextRow()
+            // manager.shiftRows()
+            order++
         }
     }
 }

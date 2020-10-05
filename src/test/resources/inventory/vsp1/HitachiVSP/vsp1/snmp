@@ -1,0 +1,31 @@
+{
+    "requestAuthenticationSetting": {
+        "snmpv1v2cSettings": [
+            {
+                "requestsPermitted": [
+                    
+                ],
+                "community": "cloud"
+            }
+        ]
+    },
+    "snmpVersion": "v2c",
+    "isSNMPAgentEnabled": true,
+    "systemGroupInformation": {
+        "contact": "",
+        "location": "",
+        "storageSystemName": "atovsp10"
+    },
+    "sendingTrapSetting": {
+        "snmpv1v2cSettings": [
+            {
+                "sendTrapTo": [
+                    "192.168.0.177",
+                    "192.168.0.178"
+                ],
+                "community": "cloud"
+            }
+        ]
+    },
+    "snmpEngineID": "0x80000074043563383132353061"
+}

@@ -76,3 +76,12 @@ account.Linux.Account01.work_dir  = '/tmp/gradle_test'
 account.Windows.Account01.user     = 'administrator'
 account.Windows.Account01.password = 'P@ssw0rd'
 
+// CiscoUCS Ú‘±î•ñ
+
+account.CiscoUCS.Account01.user     = 'root'
+account.CiscoUCS.Account01.password = 'P@ssw0rd'
+
+// HPiLO Ú‘±î•ñ
+
+account.HPiLO.Account01.user     = 'root'
+account.HPiLO.Account01.password = 'P@ssw0rd'

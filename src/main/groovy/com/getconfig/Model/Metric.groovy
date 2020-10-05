@@ -12,6 +12,7 @@ class Metric {
     String id
     String name
     String category
+    // 採取レベル-1,0,1,2の範囲で値が高いほど負荷が高い。結果レポートで0以下は表示させない
     int level
     Boolean deviceFlag
     String comment

@@ -2,6 +2,15 @@ package com.getconfig.Document
 
 import com.getconfig.Model.PlatformMetric
 import com.getconfig.Utils.TomlUtils
+import org.apache.poi.common.usermodel.HyperlinkType
+import org.apache.poi.ss.usermodel.Cell
+import org.apache.poi.ss.usermodel.CellStyle
+import org.apache.poi.ss.usermodel.CreationHelper
+import org.apache.poi.ss.usermodel.Font
+import org.apache.poi.ss.usermodel.Hyperlink
+import org.apache.poi.ss.usermodel.Row
+import org.apache.poi.ss.usermodel.Workbook
+import org.apache.poi.common.usermodel.Hyperlink
 import spock.lang.Specification
 
 class ReportMakerTest extends Specification {
@@ -110,6 +119,39 @@ class ReportMakerTest extends Specification {
 
         then:
         1 == 1
+    }
+
+    def "リンク作成"() {
+        when:
+        ReportMaker reportMaker = new ReportMaker(excelTemplate).read()
+        reportMaker.setTemplateSheet("Summary")
+        reportMaker.copyTemplate("検査シート")
+        Workbook wb = reportMaker.wb
+        CreationHelper ch = wb.getCreationHelper()
+
+        Hyperlink link = ch.createHyperlink(HyperlinkType.DOCUMENT)
+        link.setAddress("検査シート!A1")
+        Row row = reportMaker.sheet.createRow(10);
+        Cell cell = row.createCell(1);
+        cell.setCellValue("abc")
+
+        // cell.setHyperlink()は、String 型のアドレスを指定する必要がある
+        // 詳細シートへのリンクの場合、シート作成時にどこのシートのアドレスの指定は困難。
+        // 詳細シート作成時にリンクキー：アドレスの辞書を作成し、その後にサマリシート
+        // に戻ってリンクを設定する
+
+        cell.setHyperlink(link)
+        CellStyle style = wb.createCellStyle()
+        Font font = wb.createFont()
+        font.setUnderline(Font.U_SINGLE)
+        style.setFont(font)
+        cell.setCellStyle(style)
+
+        reportMaker.finish()
+        reportMaker.write("build/report5.xlsx")
+
+        then:
+        new File("build/report5.xlsx").exists() == true
     }
 
 }

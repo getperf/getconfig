@@ -31,4 +31,17 @@ class LogParserTest extends Specification {
         then:
         logParser.run() == 0
     }
+
+    def "オンプレIAサーバシナリオパース"() {
+        when:
+        def testServers2 = TestData.readTestServers("ia_on_premises")
+        println testServers2
+        LogParser logParser = new LogParser(testServers2)
+        logParser.agentLogPath = this.currentLogDir
+        logParser.parserLibPath = "./lib/parser"
+
+        then:
+        logParser.run() == 0
+    }
+
 }

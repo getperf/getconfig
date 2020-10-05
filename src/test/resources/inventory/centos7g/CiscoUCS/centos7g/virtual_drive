@@ -1,0 +1,2 @@
+show virtual-drive detail
+esxi.ostrich /chassis/storageadapter 

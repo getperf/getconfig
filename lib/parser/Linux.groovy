@@ -685,7 +685,7 @@ void service(TestUtil t) {
         def test_id = "service.Etc.${service_name}"
         t.newMetric(test_id, service_name, status)
     }
-    t.devices(csv, ['Name', 'Status'])
+    t.devices(['Name', 'Status'], csv)
     t.results("${service_count} services")
 }
 

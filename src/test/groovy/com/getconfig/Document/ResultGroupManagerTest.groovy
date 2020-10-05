@@ -19,6 +19,16 @@ class ResultGroupManagerTest extends Specification {
         res.addedTestMetrics.containsKey("Linux.block_device.sda.timeout")
     }
 
+    void "JSON保存2"() {
+        when:
+        def resultGroups = TestData.prepareResultGroup("ia_on_premises")
+        def resultGroupManager = new ResultGroupManager()
+        resultGroupManager.saveResultGroups(resultGroups)
+
+        then:
+        1 == 1
+    }
+
     void "JSON読込み"() {
         when:
         def resultGroupManager = new ResultGroupManager(
@@ -28,6 +38,7 @@ class ResultGroupManagerTest extends Specification {
 
         then:
         ResultGroup res = resultGroups['centos80']
+        res.order > 0
         res.serverPortList.serverName == "centos80"
         res.serverPortList.portLists["192.168.0.5"].device == "ens192"
         res.addedTestMetrics.containsKey("Linux.block_device.sda.timeout")

@@ -74,6 +74,7 @@ class Collector implements Controller {
         }
         testServers.each { server ->
             if ((this.filterServer) && !(server.serverName =~ /${this.filterServer}/)) {
+                server.order = -1
                 log.info "skip:${server.serverName}, ${server.domain}"
                 return
             }

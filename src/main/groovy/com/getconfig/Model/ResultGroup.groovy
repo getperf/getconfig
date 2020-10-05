@@ -35,6 +35,7 @@ class ResultGroup {
 //        }
 //    }
 
+    int order
     String serverName
     String compareServer
     Map<String, Result> testResults = new LinkedHashMap<>()
@@ -44,12 +45,14 @@ class ResultGroup {
 //    Map<String, PortList> portLists = new LinkedHashMap<>()
 
     ResultGroup(Server testServer) {
+        this.order = testServer.order
         this.serverName = testServer.serverName
         this.compareServer = testServer.compareServer
         this.serverPortList = new ServerPortList(this.serverName)
     }
 
-    ResultGroup(String serverName, String compareServer = null) {
+    ResultGroup(String serverName, String compareServer = null, int order = 0) {
+        this.order = order
         this.serverName = serverName
         this.compareServer = compareServer
         this.serverPortList = new ServerPortList(this.serverName)

@@ -33,6 +33,9 @@ class ExcelConstants {
     // 検査結果シート名
     public static final String RESULT_SHEET_NAME = "検査結果";
 
+    // 検査結果シートのプラットフォーム種別表示順
+    public static final List<String> RESULT_SHEET_PLATFORM_CATEGORY_ORDER =
+            ["HW", "OS", "MONITOR", "MW"]
     // テンプレートのデバイスシート名
     public static final String TEMPLATE_DEVICE_SHEET_NAME = "Device";
 

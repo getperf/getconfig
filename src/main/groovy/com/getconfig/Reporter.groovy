@@ -2,6 +2,7 @@ package com.getconfig
 
 import com.getconfig.Document.ExcelConstants
 import com.getconfig.Document.ReportMaker
+import com.getconfig.Document.ReportMakerDevice
 import com.getconfig.Document.ReportMakerResult
 import com.getconfig.Document.ReportMakerSummary
 import com.getconfig.Document.SheetManager
@@ -43,11 +44,24 @@ class Reporter implements Controller {
     }
 
     void makeSummaryReport() {
+        long start = System.currentTimeMillis()
         new ReportMakerSummary(testScenario, reportMaker).make()
+        long elapse = System.currentTimeMillis() - start
+        log.info "create summary sheet elapse : ${elapse} ms"
     }
 
     void makeResultReport() {
+        long start = System.currentTimeMillis()
         new ReportMakerResult(testScenario, reportMaker).make()
+        long elapse = System.currentTimeMillis() - start
+        log.info "create result sheet elapse : ${elapse} ms"
+    }
+
+    void makeDeviceReport() {
+        long start = System.currentTimeMillis()
+        new ReportMakerDevice(testScenario, reportMaker).make()
+        long elapse = System.currentTimeMillis() - start
+        log.info "create device sheet elapse : ${elapse} ms"
     }
 
     void finishReport() {
@@ -61,6 +75,7 @@ class Reporter implements Controller {
         initReport()
         makeSummaryReport()
         makeResultReport()
+        makeDeviceReport()
         finishReport()
 
         return 0

@@ -2,7 +2,6 @@ package com.getconfig.Document
 
 import com.getconfig.Model.Metric
 import com.getconfig.Model.MetricId
-import com.getconfig.Model.ReportSummary
 import com.getconfig.Model.Result
 import com.getconfig.Model.ResultSheet
 import com.getconfig.Model.TestScenario
@@ -26,7 +25,7 @@ class ReportMakerResult {
     void make() {
         reportMaker.parseCellStyles("CellStyle")
 
-        testScenario.resultSheetServers.asMap().each {
+        testScenario.resultSheetServerKeys.asMap().each {
             String sheetName, Collection<String> servers ->
             reportMaker.setTemplateSheet("TestResult")
             reportMaker.copyTemplate(sheetName)
@@ -35,25 +34,29 @@ class ReportMakerResult {
             servers.each { String server ->
                 manager.setCell(server, "HeaderServer")
             }
-            manager.setCell("TagResult", "HeaderTag")
+            // manager.setCell("TagResult", "HeaderTag")
             manager.setPosition(1, 0)
             ResultSheet resultSheet = testScenario.getResultSheet(sheetName)
-            ["HW", "OS", "MONITOR"].each { String platformCategory ->
+            int row = 1
+            ExcelConstants.RESULT_SHEET_PLATFORM_CATEGORY_ORDER.each {
+                String platformCategory ->
                 List<String> platforms = resultSheet.platforms.get(platformCategory)
                 if (!platforms) {
                     return
                 }
                 platforms.each { String platform ->
-                    testScenario.metricKeyIndex.get(platform).sort().each {
+                    testScenario.platformMetricKeys.get(platform).sort().each {
                         String metricKey ->
+                            manager.setPosition(row,0)
                             Metric metric = testScenario.metrics.get(metricKey)
-                            manager.setCellValue(metric.level)
-                            manager.setCellValue(metric.category)
-                            manager.setCellValue(metric.name)
-                            manager.setCellValue(metric.id)
-                            manager.setCellValue(metric.deviceFlag?.toString())
-                            manager.setCellValue(metric.comment)
-                            manager.setCellValue(platform)
+                            int level = (metric.level < 0) ? 0 : metric.level
+                            manager.setCell(level, "Level")
+                            manager.setCell(metric.category)
+                            manager.setCell(metric.name)
+                            manager.setCell(metric.id)
+                            manager.setCell(metric.deviceFlag?.toString())
+                            manager.setCell(metric.comment)
+                            manager.setCell(platform)
                             servers.each { String server ->
                                 String metricId = MetricId.make(platform, metric.id)
                                 Result result = testScenario.results.get(server, metricId)
@@ -63,9 +66,10 @@ class ReportMakerResult {
                                     manager.setCell(ExcelConstants.CELL_NOT_UNKOWN_VALUE, "Null")
                                 }
                             }
-                            manager.setCell("100%", "Normal")
-                            manager.nextRow()
-                            manager.shiftRows()
+                            // manager.setCell("100%", "Normal")
+                            row ++
+                            // manager.nextRow()
+                            // manager.shiftRows()
                     }
                 }
             }

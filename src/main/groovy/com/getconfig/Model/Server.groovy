@@ -10,8 +10,9 @@ import com.poiji.annotation.*
 @CompileStatic
 @ToString(includePackage = false)
 public class Server {
+    // 検査レポートの行位置。低い順にサマリレポートを表示。-1 の場合は非表示
     @ExcelRow
-    private int rowIndex;
+    int order = -1;
 
     @ExcelCell(1)
     String serverName = "";
@@ -41,7 +42,10 @@ public class Server {
     String loginOption = "";
 
     // キー項目の有無をチェックをします
-    public boolean checkKey() {
+    public boolean checkKey(String previousServerName = null) {
+        if (this.serverName == "" && previousServerName) {
+            this.serverName = previousServerName
+        }
         return !(this.serverName == "" || this.domain == "")
     }
 

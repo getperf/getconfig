@@ -19,6 +19,8 @@ class AgentWrapperManager {
             it["Windows"] = new Windows()
             it["VMWare"] = new VMWare()
             it["VMHost"] = new VMHost()
+            it["CiscoUCS"] = new CiscoUCS()
+            it["HPiLO"] = new HPiLO()
             it[AgentConstants.AGENT_LABEL_REMOTE] = new RemoteAgent()
             it[AgentConstants.AGENT_LABEL_LOCAL_FILE] = new LocalAgent()
         }

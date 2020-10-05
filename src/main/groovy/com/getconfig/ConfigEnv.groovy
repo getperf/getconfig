@@ -21,7 +21,7 @@ class ConfigEnv {
     ConfigObject config
     ConfigCommandArgs commandArgs = new ConfigCommandArgs()
 
-    final static String accountNotFound = "account not found in config"
+    final static String accountNotFound = "account not found in config.groovy"
 
     void readConfig(String configFile = null, String keyword = null) {
         this.config = Config.instance.readConfig(
@@ -52,7 +52,8 @@ class ConfigEnv {
         }
         ConfigObject account = accounts.get(sv.domain)?.get(sv.accountId)
         if (!account) {
-            throw new IllegalArgumentException(accountNotFound)
+            String parameter = "account.${sv.domain}.${sv.accountId}"
+            throw new IllegalArgumentException("${accountNotFound} : ${parameter}")
         }
         sv.setAccont(account)
     }

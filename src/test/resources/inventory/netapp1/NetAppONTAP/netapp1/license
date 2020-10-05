@@ -1,0 +1,18 @@
+ system license show
+serial-number<|>package<|>owner<|>expiration<|>description<|>type<|>legacy<|>customer-id<|>
+Serial Number<|>Package<|>Owner<|>Expiration<|>Description<|>Type<|>Legacy<|>Customer ID<|>
+1-80-163696<|>Base<|>NetAPP1<|>-<|>"Cluster Base License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000005<|>NFS<|>NetAPP1-01<|>-<|>"NFS License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000005<|>CIFS<|>NetAPP1-01<|>-<|>"CIFS License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000005<|>iSCSI<|>NetAPP1-01<|>-<|>"iSCSI License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000005<|>FCP<|>NetAPP1-01<|>-<|>"FCP License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000005<|>TPM<|>NetAPP1-01<|>-<|>"Trusted Platform Module License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000005<|>VE<|>NetAPP1-01<|>-<|>"Volume Encryption License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000006<|>NFS<|>NetAPP1-02<|>-<|>"NFS License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000006<|>CIFS<|>NetAPP1-02<|>-<|>"CIFS License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000006<|>iSCSI<|>NetAPP1-02<|>-<|>"iSCSI License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000006<|>FCP<|>NetAPP1-02<|>-<|>"FCP License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000006<|>TPM<|>NetAPP1-02<|>-<|>"Trusted Platform Module License"<|>license<|>no<|>none<|>
+1-81-0000000000000451934000006<|>VE<|>NetAPP1-02<|>-<|>"Volume Encryption License"<|>license<|>no<|>none<|>
+
+NetAPP1

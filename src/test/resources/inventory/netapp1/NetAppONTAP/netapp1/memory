@@ -1,0 +1,13 @@
+ system controller memory dimm show
+node<|>pds-id<|>slotname<|>socket<|>channel<|>slot-no<|>serial<|>part-no<|>cecc-count<|>uecc-count<|>monitor<|>status<|>name<|>display-name<|>alt-cecc-method<|>alt-cecc-dimm<|>
+Node<|>DIMM ID<|>Slot Name<|>CPU Socket<|>Channel<|>Slot Number on a Channel<|>Serial Number<|>Part Number<|>Correctable ECC Error Count<|>Uncorrectable ECC Error Count<|>Health Monitor Name<|>Status<|>Unique Name of DIMM<|>Display Name for the DIMM<|>CECC Alert Method<|>Replace DIMM<|>
+NetAPP1-01<|>1<|>DIMM-1<|>0<|>0<|>0<|>CE-01-1922-03813791<|>"STB724G4LML26P2-SC  "<|>0<|>0<|>controller<|>ok<|>DIMM-1<|>DIMM-1<|>bucket<|>false<|>
+NetAPP1-01<|>2<|>DIMM-2<|>0<|>0<|>1<|>CE-01-1922-0381AF28<|>"STB724G4LML26P2-SC  "<|>0<|>0<|>controller<|>ok<|>DIMM-2<|>DIMM-2<|>bucket<|>false<|>
+NetAPP1-01<|>3<|>DIMM-3<|>0<|>1<|>0<|>CE-01-1922-03813788<|>"STB724G4LML26P2-SC  "<|>0<|>0<|>controller<|>ok<|>DIMM-3<|>DIMM-3<|>bucket<|>false<|>
+NetAPP1-01<|>4<|>DIMM-4<|>0<|>1<|>1<|>CE-01-1922-03813789<|>"STB724G4LML26P2-SC  "<|>0<|>0<|>controller<|>ok<|>DIMM-4<|>DIMM-4<|>bucket<|>false<|>
+NetAPP1-02<|>1<|>DIMM-1<|>0<|>0<|>0<|>CE-01-1922-231AF359<|>"STB724G4LML26P2-SC  "<|>0<|>0<|>controller<|>ok<|>DIMM-1<|>DIMM-1<|>bucket<|>false<|>
+NetAPP1-02<|>2<|>DIMM-2<|>0<|>0<|>1<|>CE-01-1922-231AF342<|>"STB724G4LML26P2-SC  "<|>0<|>0<|>controller<|>ok<|>DIMM-2<|>DIMM-2<|>bucket<|>false<|>
+NetAPP1-02<|>3<|>DIMM-3<|>0<|>1<|>0<|>CE-01-1921-0380BC96<|>"STB724G4LML26P2-SC  "<|>0<|>0<|>controller<|>ok<|>DIMM-3<|>DIMM-3<|>bucket<|>false<|>
+NetAPP1-02<|>4<|>DIMM-4<|>0<|>1<|>1<|>CE-01-1921-0380BC9A<|>"STB724G4LML26P2-SC  "<|>0<|>0<|>controller<|>ok<|>DIMM-4<|>DIMM-4<|>bucket<|>false<|>
+
+NetAPP1

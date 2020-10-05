@@ -1,0 +1,9 @@
+ファイルシス             Iノード  I使用    I残り I使用% マウント位置
+/dev/mapper/centos-root 14540800 140002 14400798     1% /
+devtmpfs                  360036    346   359690     1% /dev
+tmpfs                     364351      1   364350     1% /dev/shm
+tmpfs                     364351    546   363805     1% /run
+tmpfs                     364351     16   364335     1% /sys/fs/cgroup
+/dev/sda1                 512000    354   511646     1% /boot
+tmpfs                     364351      1   364350     1% /run/user/1001
+tmpfs                     364351      1   364350     1% /run/user/1002
