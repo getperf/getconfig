@@ -1,11 +1,16 @@
 package com.getconfig.Document
 
+import com.google.common.collect.HashMultimap
+import com.google.common.collect.Multimap
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
+import org.apache.poi.common.usermodel.HyperlinkType
 import org.apache.poi.ss.usermodel.CellStyle
 import org.apache.poi.ss.usermodel.Comment
 import org.apache.poi.ss.usermodel.Cell
+import org.apache.poi.ss.usermodel.CreationHelper
+import org.apache.poi.ss.usermodel.Hyperlink
 import org.apache.poi.ss.usermodel.Row
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -24,6 +29,8 @@ class ReportMaker {
     Sheet sheet
     SheetManager sheetManager
     private Map<String,CellStyle> cellStyles
+    Map<String, Hyperlink> hyperlinks
+    Multimap<String, String> backLinkAddresses
 
     ReportMaker(String excelTemplate) {
         this.excelTemplate = excelTemplate
@@ -34,6 +41,9 @@ class ReportMaker {
         this.wb = (XSSFWorkbook)WorkbookFactory.create(fis)
         this.wb.createFont().setFontName(FONT)
         this.cellStyles = this.parseCellStyles(CELL_STYLE_SHEET_NAME)
+        this.hyperlinks = new LinkedHashMap<>()
+        this.backLinkAddresses = HashMultimap.create()
+
         return this
     }
 
@@ -114,5 +124,49 @@ class ReportMaker {
         // ファイル出力
         FileOutputStream fos = new FileOutputStream(excelOutputPath);
         wb.write(fos);
+    }
+
+    def setDetailLink(String sheetName, Cell cell, String address) {
+        CreationHelper ch = wb.getCreationHelper()
+        Hyperlink link = ch.createHyperlink(HyperlinkType.DOCUMENT)
+        link.setAddress("\"${sheetName}\"!${address}")
+        cell.setHyperlink(link)
+        String backAddress = "\"${this.sheet.sheetName}\"!${cell.getAddress()}"
+        this.backLinkAddresses.put(sheetName, backAddress)
+
+//        if (!this.backLinkAddresses.containsKey(sheetName)) {
+//            String backAddress = "\"${this.sheet.sheetName}\"!${cell.getAddress()}"
+//            this.backLinkAddresses.put(sheetName, backAddress)
+//        }
+//        Hyperlink link = this.hyperlinks.get(sheetName)
+//        if (!link) {
+//            link = ch.createHyperlink(HyperlinkType.DOCUMENT)
+//            link.setAddress("\"${sheetName}\"!${address}")
+//            this.hyperlinks.put(sheetName, link)
+//            String backAddress = "\"${this.sheet.sheetName}\"!${cell.getAddress()}"
+//            this.backLinkAddresses.put(sheetName, backAddress)
+//        }
+//        link = ch.createHyperlink(HyperlinkType.DOCUMENT)
+//        link.setAddress("\"${sheetName}\"!${address}")
+//        cell.setHyperlink(link)
+    }
+
+    Map<String, Hyperlink> getBackLinks(String sheetName) {
+        Map<String, Hyperlink> links = new LinkedHashMap<>()
+        CreationHelper ch = wb.getCreationHelper()
+        this.backLinkAddresses.get(sheetName).each {String backAddress ->
+            (backAddress =~/"(.+)"!(.+)/).each { String m0, String m1, String m2 ->
+                Hyperlink link = ch.createHyperlink(HyperlinkType.DOCUMENT)
+                link.setAddress(backAddress)
+                links.put(m1, link)
+            }
+        }
+        return links
+//        String backLinkAddress = this.backLinkAddresses.get(sheetName)
+//        if (backLinkAddress) {
+//            Hyperlink link = ch.createHyperlink(HyperlinkType.DOCUMENT)
+//            link.setAddress(backLinkAddress)
+//            cell.setHyperlink(link)
+//        }
     }
 }

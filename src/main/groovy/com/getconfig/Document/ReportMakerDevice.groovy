@@ -1,13 +1,13 @@
 package com.getconfig.Document
 
-import com.getconfig.Model.ReportSummary
-import com.getconfig.Model.Result
+
 import com.getconfig.Model.ResultLine
 import com.getconfig.Model.TestScenario
 import com.google.common.collect.*
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
+import org.apache.poi.ss.usermodel.Hyperlink
 
 @Slf4j
 @TypeChecked
@@ -29,36 +29,52 @@ class ReportMakerDevice {
             List<String> headers
             int columnSize = 0
             int row = 0
-            devices.column(sheetName).each {
+            devices.column(sheetName).reverseEach {
                 String server, ResultLine device ->
-                    if (device.csv.size() == 0) {
-                        return
+                if (device.csv.size() == 0) {
+                    return
+                }
+                if (!headers) {
+                    reportMaker.copyTemplate(sheetName)
+                    manager = reportMaker.createSheetManager()
+                    headers = device.headers as List<String>
+                    columnSize = headers.size()
+                    int columnPosition = 1
+                    manager.setPosition(0,columnPosition)
+                    headers.each { String header ->
+                        manager.setCell(header, "HeaderServer")
+                        columnPosition ++
                     }
-                    if (!headers) {
-                        reportMaker.copyTemplate(sheetName)
-                        manager = reportMaker.createSheetManager()
-                        headers = device.headers as List<String>
-                        columnSize = headers.size()
-                        manager.setPosition(0,1)
-                        headers.each { String header ->
-                            manager.setCell(header, "HeaderServer")
-                        }
-                    }
-                    device.csv.each { line ->
-                        int column = 0
-                        row ++
-                        manager.setPosition(row,0)
-                        manager.setCell(server, "Normal")
+                }
+                device.csv.each { line ->
+                    int column = 0
+                    row ++
+                    manager.setPosition(row,0)
+                    manager.setCell(server, "Normal")
+                    column ++
+                    line.each { value ->
+                        manager.setCell(value as String, "Normal")
                         column ++
-                        line.each { value ->
-                            manager.setCell(value as String, "Normal")
-                            column ++
-                        }
-                        while (column <= columnSize) {
-                            manager.setCell("", "Normal")
-                            column ++
-                        }
                     }
+                    while (column <= columnSize) {
+                        manager.setCell("", "Normal")
+                        column ++
+                    }
+                }
+            }
+            if (columnSize > 0) {
+                (0..columnSize).each { columnPosition ->
+                    manager.sheet.autoSizeColumn(columnPosition as int)
+                }
+
+                Map<String, Hyperlink> links = reportMaker.getBackLinks(sheetName)
+                links.sort().reverseEach {String backSheetName, Hyperlink link ->
+                    manager.setPosition(row + 2, 0)
+                    manager.cell.setHyperlink(link)
+//                    manager.setCell("${backSheetName}に戻る", "LinkNoFrame")
+                    manager.setCell(backSheetName, "LinkNoFrame")
+                    row ++
+                }
             }
         }
     }

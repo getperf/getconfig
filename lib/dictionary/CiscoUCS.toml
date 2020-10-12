@@ -1,67 +1,202 @@
 [[metrics]]
 
 id = "bios"
+name = "BIOS"
+category = "ファームウェア"
+level = 0
+
+[[metrics]]
+
+id = "secure_boot"
+name = "セキュアブート"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "boot_mode"
+name = "ブートモード"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "chassis"
+name = "筐体状態"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "productname"
+name = "機種"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "productid"
+name = "型番"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "sn"
+name = "S/N"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "cimc"
+name = "CIMC バージョン"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "timezone"
+name = "タイムゾーン"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "cpu"
+name = "CPU情報"
+category = "ファームウェア"
+level = 0
 
 [[metrics]]
 
 id = "memory"
+name = "メモリ"
+category = "ファームウェア"
+level = 0
+
+[[metrics]]
+
+id = "memoryspeed"
+name = "メモリスピード"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "hdd"
+name = "内臓ディスク"
+category = "内臓ディスク"
+level = 0
 
 [[metrics]]
 
 id = "storageadapter"
+name = "ディスクアダプター状態"
+category = "内臓ディスク"
+level = 0
 
 [[metrics]]
 
 id = "physical_drive"
+name = "ドライブ状態"
+category = "内臓ディスク"
+level = 0
 
 [[metrics]]
 
 id = "virtual_drive"
+name = "ボリューム状態"
+category = "内臓ディスク"
+level = 0
+
+[[metrics]]
+
+id = "disk_volume"
+name = "ボリューム構成"
+category = "内臓ディスク"
 
 [[metrics]]
 
 id = "network"
+name = "ネットワーク状態"
+category = "管理LAN"
+level = 0
+
+[[metrics]]
+
+id = "net.address"
+name = "IPv4アドレス"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "net.gateway"
+name = "IPv4ゲートウェイ"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "net.dhcp"
+name = "IPv4 DHCP"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "net.subnet"
+name = "IPv4サブネット"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "ipv6.enabled"
+name = "IPv6 有効化"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "ipv6.linklocal"
+name = "IPv6アドレス"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "ipv6.dhcp-enabled"
+name = "IPv6 DHCP"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "net.mac"
+name = "MACアドレス"
+category = "管理LAN"
 
 [[metrics]]
 
 id = "snmp"
+name = "SNMP有効化"
+category = "ファームウェア設定"
+level = 0
+
+[[metrics]]
+
+id = "snmp.port"
+name = "SNMPポート"
+category = "ファームウェア設定"
+
+[[metrics]]
+
+id = "snmp.community"
+name = "SNMPコミュニティ"
+category = "ファームウェア設定"
+
+[[metrics]]
+
+id = "snmp.trapcom"
+name = "SNMP TRAP コミュニティ"
+category = "ファームウェア設定"
 
 [[metrics]]
 
 id = "snmp_trap"
+name = "SNMP TRAP 構成"
+category = "ファームウェア設定"
+level = 0
 
 [[metrics]]
 
 id = "ntp"
-
-[[metrics]]
-
-id = "system"
-
-[[metrics]]
-
-id = "storage"
-
-[[metrics]]
-
-id = "subsystem_health"
-
-[[metrics]]
-
-id = "system_node"
+name = "NTP 構成"
+category = "ファームウェア設定"
+level = 0

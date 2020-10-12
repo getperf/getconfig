@@ -10,8 +10,9 @@ class CommonUtil {
     }
 
     static String toCamelCase( String text, boolean capitalized = false ) {
-        text = text.replaceAll( "([ _\\.\\-])([A-Za-z0-9])", {
+        text = text.replaceAll( "([ \\(\\)_\\.\\-/])([A-Za-z0-9])", {
             List<String> it -> it[2].toUpperCase() } )
+        text = text.replaceAll( "([ \\(\\)_\\.\\-/])", {""})
         return capitalized ? text.capitalize() : text
     }
 }

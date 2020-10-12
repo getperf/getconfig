@@ -7,7 +7,6 @@ import org.apache.poi.ss.usermodel.Cell
 import org.apache.poi.ss.usermodel.CellStyle
 import org.apache.poi.ss.usermodel.CreationHelper
 import org.apache.poi.ss.usermodel.Font
-import org.apache.poi.ss.usermodel.Hyperlink
 import org.apache.poi.ss.usermodel.Row
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.common.usermodel.Hyperlink
@@ -126,26 +125,36 @@ class ReportMakerTest extends Specification {
         ReportMaker reportMaker = new ReportMaker(excelTemplate).read()
         reportMaker.setTemplateSheet("Summary")
         reportMaker.copyTemplate("検査シート")
+        SheetManager manager = reportMaker.createSheetManager()
+
         Workbook wb = reportMaker.wb
         CreationHelper ch = wb.getCreationHelper()
 
-        Hyperlink link = ch.createHyperlink(HyperlinkType.DOCUMENT)
-        link.setAddress("検査シート!A1")
         Row row = reportMaker.sheet.createRow(10);
+
+        Hyperlink link = ch.createHyperlink(HyperlinkType.DOCUMENT)
+        link.setAddress("デバイス!A1")
         Cell cell = row.createCell(1);
         cell.setCellValue("abc")
+        cell.setHyperlink(link)
 
+        manager.move(11,1)
+        manager.cell.setHyperlink(link)
+        println manager.cell.getAddress()
+        manager.setCell("def", "Link")
         // cell.setHyperlink()は、String 型のアドレスを指定する必要がある
         // 詳細シートへのリンクの場合、シート作成時にどこのシートのアドレスの指定は困難。
         // 詳細シート作成時にリンクキー：アドレスの辞書を作成し、その後にサマリシート
         // に戻ってリンクを設定する
 
-        cell.setHyperlink(link)
         CellStyle style = wb.createCellStyle()
         Font font = wb.createFont()
         font.setUnderline(Font.U_SINGLE)
         style.setFont(font)
         cell.setCellStyle(style)
+
+        reportMaker.setTemplateSheet("Device")
+        reportMaker.copyTemplate("デバイス")
 
         reportMaker.finish()
         reportMaker.write("build/report5.xlsx")
@@ -154,4 +163,35 @@ class ReportMakerTest extends Specification {
         new File("build/report5.xlsx").exists() == true
     }
 
+    def "リンク作成2"() {
+        when:
+        ReportMaker reportMaker = new ReportMaker(excelTemplate).read()
+        reportMaker.setTemplateSheet("TestResult")
+        reportMaker.copyTemplate("検査結果")
+        SheetManager manager = reportMaker.createSheetManager()
+
+        Workbook wb = reportMaker.wb
+        CreationHelper ch = wb.getCreationHelper()
+        manager.move(1,4)
+        // manager.cell.setHyperlink(link)
+        println manager.cell.getAddress()
+        reportMaker.setDetailLink("デバイス", manager.cell, "A1")
+        manager.setCell("詳細", "Link")
+
+        reportMaker.setTemplateSheet("Device")
+        reportMaker.copyTemplate("デバイス")
+        manager = reportMaker.createSheetManager()
+        manager.move(3,0)
+        Map<String, Hyperlink> links = reportMaker.getBackLinks("デバイス")
+        links.each {String name, Hyperlink link ->
+            manager.cell.setHyperlink(link)
+            manager.setCell("${name}に戻る", "LinkNoFrame")
+        }
+
+        reportMaker.finish()
+        reportMaker.write("build/report6.xlsx")
+
+        then:
+        new File("build/report5.xlsx").exists() == true
+    }
 }

@@ -1,40 +1,11 @@
 
 
-SystemRoot                : C:\Windows
-BuildBranch               : rs5_release
-BuildGUID                 : ffffffff-ffff-ffff-ffff-ffffffffffff
-BuildLab                  : 17763.rs5_release.180914-1434
-BuildLabEx                : 17763.1.amd64fre.rs5_release.180914-1434
-CompositionEditionID      : ServerStandardEval
-CurrentBuild              : 17763
-CurrentBuildNumber        : 17763
-CurrentMajorVersionNumber : 10
-CurrentMinorVersionNumber : 0
-CurrentType               : Multiprocessor Free
-CurrentVersion            : 6.3
-EditionID                 : ServerStandardEval
-EditionSubManufacturer    : 
-EditionSubstring          : 
-EditionSubVersion         : 
-InstallationType          : Server
-InstallDate               : 1601425022
-ProductName               : Windows Server 2019 Standard Evaluation
-ReleaseId                 : 1809
-SoftwareType              : System
-UBR                       : 1457
-PathName                  : C:\Windows
-ProductId                 : 00431-10000-00000-AA501
-DigitalProductId          : {164, 0, 0, 0...}
-DigitalProductId4         : {248, 4, 0, 0...}
-RegisteredOwner           : Windows ユーザー
-RegisteredOrganization    : 
-InstallTime               : 132458986227645165
-PSPath                    : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Curren
-                            tVersion
-PSParentPath              : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT
-PSChildName               : CurrentVersion
-PSDrive                   : HKLM
-PSProvider                : Microsoft.PowerShell.Core\Registry
+Domain              : WORKGROUP
+Manufacturer        : VMware, Inc.
+Model               : VMware Virtual Platform
+Name                : W2019
+PrimaryOwnerName    : Windows ユーザー
+TotalPhysicalMemory : 6441979904
 
 
 

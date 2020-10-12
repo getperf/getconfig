@@ -24,7 +24,7 @@ class SheetManager {
     public Sheet templateSheet;
     public Sheet sheet;
     private Row row;
-    private Cell cell;
+    public Cell cell;
     private int offset;
     private int rowIndex;
     private int columnIndex;
@@ -346,14 +346,14 @@ class SheetManager {
     }
 
     public setCell(Object value, String cellStyleId = DEFAULT_CELL_STYLE_ID) {
-        println "TYPE:$value, ${value.getClass()}"
         if (value instanceof Long) {
             this.setCell((double)value, "Integer")
         } else if (value instanceof Integer) {
             this.setCell((int)value, "Integer")
         } else if (value instanceof Double || value instanceof Float || 
             value instanceof BigDecimal) {
-            this.setCell((double)value, "Double")
+//            this.setCell((double)value, "Double")
+            this.setCell(value as Double, "Double")
         } else {
             this.setCell(value as String)
         }

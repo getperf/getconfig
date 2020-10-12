@@ -119,4 +119,16 @@ class TestScenario {
     List<String> getServers(String sheetName) {
         return this.resultSheetServerKeys.asMap().get(sheetName) as List<String>
     }
+
+    String getResultSheetName(String serverName) {
+        String resultSheetName = 'N/A'
+        this.resultSheetServerKeys.asMap().each {
+            String sheetName, Collection<String> serverNames ->
+            if (serverName in serverNames) {
+                resultSheetName = sheetName
+                return
+            }
+        }
+        return resultSheetName
+    }
 }

@@ -8,6 +8,7 @@ import org.apache.commons.net.util.SubnetUtils.SubnetInfo
 
 import com.getconfig.AgentLogParser.Parser
 import com.getconfig.Testing.TestUtil
+import com.getconfig.Utils.CommonUtil
 
 @Parser("hostname")
 void hostname(TestUtil t) {
@@ -18,7 +19,7 @@ void hostname(TestUtil t) {
 
 @Parser("hostname_fqdn")
 void hostname_fqdn(TestUtil t) {
-    def info = 'NotConfigured'
+    def info = 'N/A'
     t.readLine {
         if (it.indexOf('.') != -1)
             info = it
@@ -33,17 +34,15 @@ void uname(TestUtil t) {
 
     t.readLine {
         (it =~ /^(.+)\.(.+?)\s*#/).each {m0, kernel, arch ->
-            infos['uname']  = "${kernel}.${arch}"
-            infos['kernel'] = kernel
-            infos['arch']   = arch
+            t.setMetric('uname', "${kernel}.${arch}")
+            t.setMetric('kernel', kernel)
+            t.setMetric('arch', arch)
         }
         (it =~/uek/).each {
             oracle_linux_kernel = 'UEK'
         }
     }
-    infos['oracle_linux_kernel'] = oracle_linux_kernel
-
-    t.results(infos)
+    t.setMetric('oracle_linux_kernel', oracle_linux_kernel)
 }
 
 @Parser("lsb")
@@ -56,12 +55,115 @@ void lsb(TestUtil t) {
         }
     }
     def lsb = scan_lines.keySet().toString()
-    def infos = [:]
-    infos['lsb'] = lsb
     (lsb =~ /^\[(.+) ([\d\.]+)/).each {m0, os, os_release ->
-        infos['os'] = "${os} ${os_release}"
-        infos['os_release'] = os_release
+        t.setMetric('os_release', os_release)
     }
+    t.results(lsb)
+}
+
+@Parser("fips")
+void fips(TestUtil t) {
+    def enabled = 'False'
+    t.readLine {
+        if (it == '1') {
+            enabled = 'True'
+        }
+    }
+    t.results(enabled)
+}
+
+@Parser("virturization")
+void virturization(TestUtil t) {
+    def virturization = 'no KVM'
+    t.readLine {
+        (it =~ /QEMU Virtual CPU|Common KVM processor|Common 32-bit KVM processor/).each {
+            virturization = 'KVM Guest'
+        }
+    }
+    t.results(virturization)
+}
+
+@Parser("sestatus")
+void sestatus(TestUtil t) {
+    def res = [:]
+    t.readLine {
+        ( it =~ /SELinux status:\s+(.+?)$/).each {m0,m1->
+            res['sestatus'] = m1
+        }
+        ( it =~ /Current mode:\s+(.+?)$/).each {m0,m1->
+            res['se_mode'] = m1
+        }
+    }
+    t.results(res)
+}
+
+@Parser("machineid")
+void machineid(TestUtil t) {
+    t.readLine {
+        t.results(it)
+    }
+}
+
+@Parser("mount_iso")
+void mount_iso(TestUtil t) {
+    def res = [:]
+    t.readLine {
+        ( it =~ /\.iso on (.+?)\s/).each {m0,m1->
+            res[m1] = 'On'
+        }
+    }
+    def result = (res.size() > 0) ? res.toString() : 'NoMount'
+    t.results(result)
+}
+
+@Parser("proxy_global")
+void proxy_global(TestUtil t) {
+    t.readLine {
+        t.results(it)
+    }
+}
+
+@Parser("kdump")
+void kdump(TestUtil t) {
+    def kdump = 'off'
+    t.readLine {
+        // For RHEL7
+        ( it =~ /Active: (.+?)\s/).each {m0,m1->
+             kdump = m1
+        }
+        // For RHEL6
+        ( it =~ /\s+3:(.+?)\s+4:(.+?)\s+5:(.+?)\s+/).each {m0,m1,m2,m3->
+            if (m1 == 'on' && m2 == 'on' && m3 == 'on') {
+                kdump = 'on'
+            }
+        }
+    }
+    t.results(kdump)
+}
+
+@Parser("crash_size")
+void crash_size(TestUtil t) {
+    t.readLine {
+        t.results(it)
+    }
+}
+
+@Parser("kdump_path")
+void kdump_path(TestUtil t) {
+    def path = '/var/crash'
+    def core_collector = 'unkown'
+    t.readLine {
+        ( it =~ /path\s+(.+?)$/).each {m0, m1->
+            path = m1
+        }
+        ( it =~ /core_collector\s+(.+?)$/).each {m0, m1->
+            core_collector = m1
+        }
+    }
+    def infos = [
+        'kdump_path' : path,
+        'core_collector' : core_collector
+    ]
     t.results(infos)
 }
 
@@ -71,29 +173,40 @@ void cpu(TestUtil t) {
     def real_cpu   = [:].withDefault{0}
     def cpu_number = 0
 
+    def csv = []
+    def row = []
     t.readLine {
         (it =~ /processor\s+:\s(.+)/).each {m0,m1->
             cpu_number += 1
-        }
-        (it =~ /physical id\s+:\s(.+)/).each {m0,m1->
-            real_cpu[m1] = true
-        }
-        (it =~ /cpu cores\s+:\s(.+)/).each {m0,m1->
-            cpuinfo["cores"] = m1
+            row << m1
         }
         (it =~ /model name\s+:\s(.+)/).each {m0,m1->
             cpuinfo["model_name"] = m1
+            row << m1
         }
         (it =~ /cpu MHz\s+:\s(.+)/).each {m0,m1->
             def mhz = NumberUtils.toDouble(m1)
             if (!cpuinfo.containsKey("mhz") || cpuinfo["mhz"] < mhz) {
                 cpuinfo["mhz"] = mhz
             }
+            row << mhz
         }
         (it =~ /cache size\s+:\s(.+)/).each {m0,m1->
             cpuinfo["cache_size"] = m1
+            row << m1
+        }
+        (it =~ /physical id\s+:\s(.+)/).each {m0,m1->
+            real_cpu[m1] = true
+            row << m1
+        }
+        (it =~ /cpu cores\s+:\s(.+)/).each {m0,m1->
+            cpuinfo["cores"] = m1
+            row << m1
+            csv << row
+            row = []
         }
     }
+    t.devices(['processor', 'model', 'mhz', 'cache', 'id', 'core'], csv)
     cpuinfo["cpu_total"] = cpu_number
     cpuinfo["cpu_real"] = real_cpu.size()
     cpuinfo["cpu_core"] = real_cpu.size() * cpuinfo["cores"].toInteger()
@@ -104,15 +217,6 @@ void cpu(TestUtil t) {
         cpu_text += " ${cpu_number} CPU"  as String
     cpuinfo["cpu"] = cpu_text
     t.results(cpuinfo)
-    // test_item.verify_number_equal('cpu_total', cpuinfo['cpu_total'])
-    // test_item.verify_number_equal('cpu_real', cpuinfo['cpu_real'])
-}
-
-@Parser("machineid")
-void machineid(TestUtil t) {
-    t.readLine {
-        t.results(it)
-    }
 }
 
 @Parser("meminfo")
@@ -120,17 +224,23 @@ void meminfo(TestUtil t) {
     Closure norm = { value, unit ->
         def value_number = NumberUtils.toDouble(value)
         if (unit == 'kB') {
-            return String.format("%1.1f", value_number / (1024 * 1024))
+            return value_number / (1024 * 1024)
         } else if (unit == 'mB') {
-            return String.format("%1.1f", value_number / 1024)
+            return value_number / 1024
         } else if (unit == 'gB') {
             return value_number
         } else {
             return "${value}${unit}"
         }
     }
-    def meminfo    = [:].withDefault{0}
+    def row = [:]
+    def meminfo = [:].withDefault{0}
     t.readLine {
+        (it =~ /^(.+):\s+(\d+.*)$/).each {m0,m1,m2->
+            label = CommonUtil.toCamelCase(m1)
+            row[label] = m2
+        }
+        label = CommonUtil.toCamelCase(label)
         (it =~ /^MemTotal:\s+(\d+) (.+)$/).each {m0,m1,m2->
             meminfo['meminfo'] = "${m1} ${m2}" 
             meminfo['mem_total'] = norm(m1, m2)
@@ -139,8 +249,8 @@ void meminfo(TestUtil t) {
             meminfo['mem_free'] = norm(m1, m2)
         }
     }
+    t.devices(row.keySet() as List<String>, [row.values()])
     t.results(meminfo)
-    // t.verify_number_equal('mem_total', meminfo['mem_total'], 0.1)
 }
 
 @Parser("network")
@@ -277,10 +387,25 @@ void net_bond(TestUtil t) {
 
 }
 
+@Parser("tcp_keepalive")
+void tcp_keepalive(TestUtil t) {
+    def infos = [:].withDefault{'N/A'}
+    int row = 0
+    def headers = ['keepaliveIntvl', 'keepaliveTime', 'keepaliveProbes']
+    t.readLine {
+        (it =~ /^(\d+)$/).each {m0,m1->
+            infos[row++] = m1
+        }
+    }
+    t.devices(headers, [[infos[0], infos[1], infos[2]]])
+    t.results(infos.values().toString())
+    // test_item.verify_text_search_list('net_route', infos)
+}
+
 @Parser("block_device")
 void block_device(TestUtil t) {
     def devices = [:]
-    def res = [:]
+    def res = [:].withDefault{[:]}
     t.readLine {
         (it =~  /^\/sys\/block\/(.+?)\/(.+):(.+)$/).each { m0,m1,m2,m3->
             if (m1 =~ /(ram|loop)/) {
@@ -294,9 +419,21 @@ void block_device(TestUtil t) {
                 t.newMetric("block_device.${m1}.queue_depth", 
                                "[${m1}] Quesize", m3)
             }
+            res[CommonUtil.toCamelCase(m2)][m1] = m3
             devices[m1] = 1
         }
     }
+    def headers = res.keySet() as List<String>
+    def csv = []
+    devices.each { device, exists ->
+        def row = []
+        headers.each { header ->
+            def value = res.get(header)?.get(device)
+            row << value ?: 'N/A'
+        }
+        csv << row
+    }
+    t.devices(headers, csv)
     t.results("${devices.size()} devices")
 }
 
@@ -397,7 +534,7 @@ void filesystem(TestUtil t) {
 void lvm(TestUtil t) {
     // /dev/mapper/vg_ostrich-lv_root on / type ext4 (rw)
     def csv    = []
-    def config = 'NotConfigured'
+    def config = 'N/A'
     def res = [:]
     t.readLine {
         (it =~  /^\/dev\/mapper\/(.+?)-(.+?) on (.+?) /).each {
@@ -424,14 +561,16 @@ void filesystem_df_ip(TestUtil t) {
     def csv    = []
     def res = [:]
     t.readLine {
-        (it =~  /(\d+)\s+(\d+)\s+(\d+)\s+(\d+%)\s+(.+?)$/).each {
+        (it =~  /(\d+)\s+(\d+)\s+(\d+)\s+(\d+)%\s+(.+?)$/).each {
             m0, inodes, iused, ifree, usage, mount ->
             if (mount =~/^\/(dev|run|sys|boot)/) {
                 return
             }
             def columns = [inodes, iused, ifree, usage, mount]
             csv << columns
-            res[mount] = usage
+            def pct = NumberUtils.toDouble(usage)
+            def limit = Math.ceil(pct/10) * 10.0
+            res[mount] = "< ${limit} %"
            t.newMetric("inode.${mount}", "Inode [${mount}]", inodes)
         }
     }
@@ -459,28 +598,6 @@ void fstab(TestUtil t) {
         'fstypes': "${fstypes}",
     ]
     t.results(infos)
-}
-
-@Parser("fips")
-void fips(TestUtil t) {
-    def enabled = 'False'
-    t.readLine {
-        if (it == '1') {
-            enabled = 'True'
-        }
-    }
-    t.results(enabled)
-}
-
-@Parser("virturization")
-void virturization(TestUtil t) {
-    def virturization = 'no KVM'
-    t.readLine {
-        (it =~ /QEMU Virtual CPU|Common KVM processor|Common 32-bit KVM processor/).each {
-            virturization = 'KVM Guest'
-        }
-    }
-    t.results(virturization)
 }
 
 @Parser("packages")
@@ -599,6 +716,18 @@ void resource_limits(TestUtil t) {
     t.results(result)
 }
 
+@Parser("group")
+void group(TestUtil t) {
+    def csv = []
+    t.readLine() {
+        ( it =~ /^(.+?):(.+?):(\d+):(.*)$/).each {m0,m1,m2,m3,m4->
+            csv << [m1,m3,m4]
+        }
+    }
+    t.devices(['group', 'goupuid', 'subgroup'], csv)
+    t.results("${csv.size()} group")
+}
+
 @Parser("user")
 void user(TestUtil t) {
     def groups = [:].withDefault{0}
@@ -623,10 +752,10 @@ void user(TestUtil t) {
             csv << [username, user_id, group_id, group, home, shell]
             (shell =~ /sh$/).each {
                 general_users[username] = 'OK'
-                t.newMetric("user.${username}.id",    "[${username}] ID",       user_id)
-                t.newMetric("user.${username}.home",  "[${username}] Home",   home)
+                t.newMetric("user.${username}.id", "[${username}] ID", user_id)
+                t.newMetric("user.${username}.home", "[${username}] Home", home)
                 t.newMetric("user.${username}.group", "[${username}] Group", group)
-                t.newMetric("user.${username}.shell", "[${username}] Shell",   shell)
+                t.newMetric("user.${username}.shell", "[${username}] Shell", shell)
             }
         }
     }
@@ -689,69 +818,6 @@ void service(TestUtil t) {
     t.results("${service_count} services")
 }
 
-@Parser("mount_iso")
-void mount_iso(TestUtil t) {
-    def res = [:]
-    t.readLine {
-        ( it =~ /\.iso on (.+?)\s/).each {m0,m1->
-            res[m1] = 'On'
-        }
-    }
-    def result = (res.size() > 0) ? res.toString() : 'no mount'
-    t.results(result)
-}
-
-@Parser("proxy_global")
-void proxy_global(TestUtil t) {
-    t.readLine {
-        t.results(it)
-    }
-}
-
-@Parser("kdump")
-void kdump(TestUtil t) {
-    def kdump = 'off'
-    t.readLine {
-        // For RHEL7
-        ( it =~ /Active: (.+?)\s/).each {m0,m1->
-             kdump = m1
-        }
-        // For RHEL6
-        ( it =~ /\s+3:(.+?)\s+4:(.+?)\s+5:(.+?)\s+/).each {m0,m1,m2,m3->
-            if (m1 == 'on' && m2 == 'on' && m3 == 'on') {
-                kdump = 'on'
-            }
-        }
-    }
-    t.results(kdump)
-}
-
-@Parser("crash_size")
-void crash_size(TestUtil t) {
-    t.readLine {
-        t.results(it)
-    }
-}
-
-@Parser("kdump_path")
-void kdump_path(TestUtil t) {
-    def path = '/var/crash'
-    def core_collector = 'unkown'
-    t.readLine {
-        ( it =~ /path\s+(.+?)$/).each {m0, m1->
-            path = m1
-        }
-        ( it =~ /core_collector\s+(.+?)$/).each {m0, m1->
-            core_collector = m1
-        }
-    }
-    def infos = [
-        'kdump_path' : path,
-        'core_collector' : core_collector
-    ]
-    t.results(infos)
-}
-
 @Parser("iptables")
 void iptables(TestUtil t) {
     def services = [:]
@@ -807,16 +873,20 @@ void resolve_conf(TestUtil t) {
 @Parser("grub")
 void grub(TestUtil t) {
     def infos = [:].withDefault{'Not Found'}
+    def csv = []
     t.readLine {
         ( it =~ /^GRUB_CMDLINE_LINUX="(.+)"/).each {m0,m1->
             def parameters = m1.split(/\s/)
             parameters.each { parameter ->
                 ( parameter =~ /^(.+)=(.+)$/).each {n0, n1, n2->
                     infos["grub.${n1}"] = n2
+                    csv << [n1, n2]
                 }
             }
         }
     }
+    t.devices(['name', 'value'], csv)
+    // println infos
     def key_values = ['ipv6.disable', 'vga'].collect {
         def key = "grub.${it}"
         "$it=${infos[key]}"
@@ -839,7 +909,7 @@ void ntp(TestUtil t) {
 
 @Parser("ntp_slew")
 void ntp_slew(TestUtil t) {
-    def result = 'Not Found'
+    def result = 'N/A'
     t.readLine {
         (it =~ /-u/).each {m0->
             result = 'Disabled'
@@ -853,7 +923,7 @@ void ntp_slew(TestUtil t) {
 
 @Parser("snmp_trap")
 void snmp_trap(TestUtil t) {
-    def config = 'NotConfigured'
+    def config = 'N/A'
     t.readLine {
         (it =~  /(trapsink|trapcommunity|trap2sink|informsink)\s+(.*)$/).each { m0, m1, m2 ->
             config = 'Configured'
@@ -861,20 +931,6 @@ void snmp_trap(TestUtil t) {
         }
     }
     t.results(config)
-}
-
-@Parser("sestatus")
-void sestatus(TestUtil t) {
-    def res = [:]
-    t.readLine {
-        ( it =~ /SELinux status:\s+(.+?)$/).each {m0,m1->
-            res['sestatus'] = m1
-        }
-        ( it =~ /Current mode:\s+(.+?)$/).each {m0,m1->
-            res['se_mode'] = m1
-        }
-    }
-    t.results(res)
 }
 
 @Parser("keyboard")

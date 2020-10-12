@@ -833,13 +833,13 @@ ServiceType         : Win32ShareProcess
 
 Name                : Netman
 DisplayName         : Network Connections
-Status              : Stopped
+Status              : Running
 DependentServices   : {}
 ServicesDependedOn  : {RpcSs, nsi}
 CanPauseAndContinue : False
 CanShutdown         : False
-CanStop             : False
-ServiceType         : Win32ShareProcess
+CanStop             : True
+ServiceType         : Win32OwnProcess, Win32ShareProcess
 
 Name                : netprofm
 DisplayName         : Network List Service
@@ -1544,12 +1544,12 @@ ServiceType         : Win32OwnProcess, Win32ShareProcess
 
 Name                : TrustedInstaller
 DisplayName         : Windows Modules Installer
-Status              : Stopped
+Status              : Running
 DependentServices   : {}
 ServicesDependedOn  : {}
 CanPauseAndContinue : False
 CanShutdown         : False
-CanStop             : False
+CanStop             : True
 ServiceType         : Win32OwnProcess
 
 Name                : tzautoupdate
@@ -2024,12 +2024,12 @@ ServiceType         : Win32OwnProcess
 
 Name                : wuauserv
 DisplayName         : Windows Update
-Status              : Stopped
+Status              : Running
 DependentServices   : {}
 ServicesDependedOn  : {rpcss}
 CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
+CanShutdown         : True
+CanStop             : True
 ServiceType         : Win32OwnProcess, Win32ShareProcess
 
 

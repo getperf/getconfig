@@ -17,6 +17,7 @@ void system(TestUtil t) {
             info[m1] = m2
         }
     }
+    info['system'] = info['Name']
     t.results(info)
 }
 
@@ -117,6 +118,66 @@ void virturalization(TestUtil t) {
     t.results(config)
 }
 
+@Parser("monitor")
+void monitor(TestUtil t) {
+    def instance_number = 0
+    def monitor_info = [:].withDefault{[:]}
+    t.readLine {
+        (it =~ /^(.+?)\s*:\s+(.+?)$/).each {m0, m1, m2->
+            monitor_info[instance_number][m1] = m2
+        }
+        if (it.size() == 0 && monitor_info[instance_number].size() > 0)
+            instance_number ++
+    }
+    instance_number --
+    def monitor_names = [:]
+    def infos = [:].withDefault{[]}
+    (0..instance_number).each { row ->
+        def alias    = monitor_info[row]['Name']
+        def screen_y = monitor_info[row]['ScreenHeight'] ?: 'Unspecified'
+        def screen_x = monitor_info[row]['ScreenWidth'] ?: 'Unspecified'
+        monitor_names[alias] = 1
+        infos["monitor.height"] << screen_y
+        infos["monitor.width"]  << screen_x
+    }
+    infos['monitor'] = "${monitor_names.keySet()}"
+    t.results(infos)
+}
+
+@Parser("ie_version")
+void ie_version(TestUtil t) {
+    t.readLine {
+        (it =~ /^(svcVersion)\s*:\s+(.+?)$/).each {m0, m1, m2->
+            t.results(m2)
+         }
+        (it =~ /^(svcUpdateVersion)\s*:\s+(.+?)$/).each {m0, m1, m2->
+            t.newMetric("ie_version.update", "IE Version.update", m2)
+         }
+    }
+}
+
+@Parser("ntp")
+void ntp(TestUtil t) {
+    t.readLine {
+        t.results(it)
+    }
+}
+
+@Parser("remote_desktop")
+void remote_desktop(TestUtil t) {
+    def res = 'Unkown'
+    t.readLine {
+        def id = it.trim()
+        (id =~ /0/).each {
+            res = 'Enable'
+        }
+        (id =~ /1/).each {
+            res = 'Disable'
+        }
+    }
+    t.results(res)
+}
+
 @Parser("cpu")
 void cpu(TestUtil t) {
     def cpuinfo    = [:].withDefault{0}
@@ -130,13 +191,13 @@ void cpu(TestUtil t) {
             cpuinfo["model_name"] = m1
         }
         (it =~ /^NumberOfCores\s+:\s(.+)$/).each {m0, m1->
-            cpuinfo["cpu_core"] = m1
+            cpuinfo["cpu_core"] = NumberUtils.toInt(m1)
         }
         (it =~ /^NumberOfLogicalProcessors\s+:\s(.+)$/).each {m0, m1->
-            cpuinfo["cpu_total"] = m1
+            cpuinfo["cpu_total"] = NumberUtils.toInt(m1)
         }
         (it =~ /^MaxClockSpeed\s+:\s(.+)$/).each {m0, m1->
-            cpuinfo["mhz"] = m1
+            cpuinfo["mhz"] = NumberUtils.toDouble(m1)
         }
         (it =~ /^SocketDesignation\s+:\s(.+)$/).each {m0, m1->
             sockets[m1] = 1
@@ -221,17 +282,17 @@ void network(TestUtil t) {
         }
 
     }
-
     t.devices(headers, csv)
     res['network'] = "${ip_addresses}"
     t.results(res)
 }
 
-@Parser("nic_teaming_config")
-void nic_teaming_config(TestUtil t) {
-    def teaming = 'NotConfigured'
+@Parser("nic_teaming")
+void nic_teaming(TestUtil t) {
+    def teaming = 'N/A'
     def alias = ''
     t.readLine {
+        println it
         (it =~ /^Name\s+:\s(.+)/).each {m0, m1->
             teaming = 'Configured'
             alias = m1
@@ -304,7 +365,7 @@ void network_profile(TestUtil t) {
     }
     // res['network_profile'] = "${network_categorys}"
     t.devices(headers, csv)
-    t.results(network_categorys)
+    t.results(network_categorys.toString())
 }
 
 @Parser("net_bind")
@@ -338,15 +399,13 @@ void net_bind(TestUtil t) {
         def component_id = bind_info[row]['ComponentID']
         def display_name = bind_info[row]['DisplayName']
         def enabled      = bind_info[row]['Enabled']
-        t.newMetric("net_bind.${name}", name, if_desc)
-        t.newMetric("net_bind.${name}.${component_id}", "[${name}] ${display_name}", 
-                       enabled)
+        // t.newMetric("net_bind.${name}", name, if_desc)
+        // t.newMetric("net_bind.${name}.${component_id}", "[${name}] ${display_name}", 
+                       // enabled)
         if (enabled == 'True') {
             bind_components[name][component_id] = 'True'
         }
     }
-    // println bind_components.keySet().sort()
-    // infos['net_bind'] = "${bind_components.keySet().sort()}"
     t.devices(headers, csv)
     t.results("${bind_components.keySet().sort()}")
 }
@@ -363,11 +422,12 @@ void net_ip(TestUtil t) {
             instance_number ++
     }
     instance_number --
-    def headers = ['InterfaceAlias', 'AddressFamily', 'NlMtu(Bytes)', 'AutomaticMetric',
-                   'InterfaceMetric', 'Dhcp', 'ConnectionState', 'PolicyStore']
+    def headers = ['InterfaceAlias', 'AddressFamily', 'NlMtu(Bytes)', 
+        'AutomaticMetric', 'InterfaceMetric', 'Dhcp', 'ConnectionState', 
+        'PolicyStore']
 
     def csv = []
-    def connect_if = [:]
+    def connect_if = [:].withDefault{[]}
     def infos = [:]
     (0..instance_number).each { row ->
         def columns = []
@@ -375,108 +435,239 @@ void net_ip(TestUtil t) {
             columns.add( ip_info[row][header] ?: '')
         }
         csv << columns
-        def alias       = ip_info[row]['InterfaceAlias']
+        def alias       = ip_info[row]['InterfaceAlias'] +
+                          ip_info[row]['AddressFamily']
         def auto_metric = ip_info[row]['AutomaticMetric']
         def int_metric  = ip_info[row]['InterfaceMetric']
         def dhcp        = ip_info[row]['Dhcp']
         def status      = ip_info[row]['ConnectionState']
-        (alias =~ /(Ethernet|イーサネット)/).each {
-            t.newMetric("net_ip.${alias}.auto_metric", "[${alias}] auto_metric", auto_metric)
-            t.newMetric("net_ip.${alias}.int_metric",  "[${alias}] int_metric", int_metric)
-            t.newMetric("net_ip.${alias}.dhcp",        "[${alias}] dhcp", dhcp)
-            t.newMetric("net_ip.${alias}.status",      "[${alias}] status", status)
+        if (!(alias =~ /Loopback/)) {
+            t.newMetric("net_ip.${alias}.auto_metric",
+                "[${alias}] auto_metric", auto_metric)
+            t.newMetric("net_ip.${alias}.int_metric",
+                "[${alias}] int_metric", int_metric)
+            t.newMetric("net_ip.${alias}.dhcp",
+                "[${alias}] dhcp", dhcp)
+            t.newMetric("net_ip.${alias}.status",
+                "[${alias}] status", status)
             if (status == 'Connected') {
-                connect_if[alias] = status
+                connect_if[status] << alias
             }
         }
     }
     t.devices(headers, csv)
-    t.results("${connect_if}")
+    t.results(connect_if.toString())
 }
 
 @Parser("tcp")
 void tcp(TestUtil t) {
-    def settings = [:]
+    def res = [:]
+    def headers = ['KeepAliveInterval' : 'KeepAliveInterval', 
+                   'KeepAliveTime' : 'KeepAliveTime',
+                   'TcpMaxDataRetransmissions' : 'MaxDataRetran']
     t.readLine {
-        (it =~ /^KeepAliveInterval\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("tcp.keepalive_interval", "TCP.KeepAlive interval", m1)
-            settings['KeepAliveInterval'] = m1
-        }
-        (it =~ /^KeepAliveTime\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("tcp.keepalive_time", "TCP.KeepAlive time", m1)
-            settings['KeepAliveTime'] = m1
-        }
-        (it =~ /^TcpMaxDataRetransmissions\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("tcp.max_data_retran", "TCP.MaxDataRetran", m1)
-            settings['MaxDataRetran'] = m1
+        headers.each { parameter, alias ->
+            (it =~ /^(${parameter})\s*:\s+(.+)$/).each {m0, m1, m2->
+                res[m1] = m2
+            }
         }
     }
-    t.results("${settings}")
+    row = []
+    headers.each { parameter, alias ->
+        def value = res[parameter] ?: 'N/A'
+        t.newMetric("tcp.${parameter}", alias, value)
+        row << value
+    }
+    t.devices(headers.keySet() as List, [row])
+    t.results((res) ? 'Configured' : 'N/A')
+}
+
+@Parser("dns")
+void dns(TestUtil t) {
+    def adresses = [:].withDefault{[:]}
+    def family = 'N/A'
+    t.readLine {
+        (it =~ /AddressFamily\s+:\s+(.+)$/).each {m0,m1->
+            family = m1
+        }
+        (it =~ /ServerAddresses\s+:\s+\{(.+)\}$/).each {m0,m1->
+            adresses[family][m1] = 1
+        }
+    }
+    def res = adresses.get('IPv4').keySet().toString()
+    t.results( res ?: 'N/A')
 }
 
 @Parser("firewall")
 void firewall(TestUtil t) {
     def instance_number = 0
-    def firewall_info = [:].withDefault{[:]}
+    def res = [:].withDefault{[:]}
     t.readLine {
         (it =~ /^(.+?)\s*:\s+(.+?)$/).each {m0, m1, m2->
-            firewall_info[instance_number][m1] = m2
+            res[instance_number][m1] = m2
         }
-        if (it.size() == 0 && firewall_info[instance_number].size() > 0)
+        if (it.size() == 0 && res[instance_number].size() > 0)
             instance_number ++
     }
     instance_number --
-    def headers = ['Name', 'DisplayGroup', 'DisplayName', 'Status']
+    def headers = ['Name', 'DisplayGroup', 'DisplayName', 'PrimaryStatus']
 
     def groups = [:]
     def csv = []
     (0..instance_number).each { row ->
         def columns = []
         headers.each { header ->
-            columns.add( firewall_info[row][header] ?: '')
+            columns.add( res[row][header] ?: '')
         }
         csv << columns
-        def group_key = firewall_info[row]['DisplayGroup']
+        def group_key = res[row]['DisplayGroup']
         if (group_key) {
             groups[group_key] = 1
         }
     }
     t.devices(headers, csv)
 
-    def res = [:]
     groups.each { group_key, value ->
         t.newMetric("firewall.${group_key}", "[${group_key}]", "Enable")
     }
-    t.results("${groups.keySet()}")
+    t.results("${groups.keySet().size()} services allowed")
+}
+
+@Parser("storage_timeout")
+void storage_timeout(TestUtil t) {
+    t.readLine {
+        (it =~ /^(TimeOutValue)\s*:\s+(.+?)$/).each {m0,m1,m2->
+            t.results(m2)
+        }
+    }
 }
 
 @Parser("filesystem")
 void filesystem(TestUtil t) {
-    def csv = []
-    def filesystems = [:]
-    def drive_letter = 'unkown'
-    def infos = [:]
+    def drives = [:]
+    def label = 'unkown'
+    def headers = ['DeviceID', 'Description', 'FileSystem', 'Size']
+    def header_label = headers.join('|')
+    def res = [:].withDefault{[:]}
     t.readLine {
-        (it =~ /^DeviceID\s*:\s+(.+):$/).each {m0,m1->
-            drive_letter = m1
-        }
-        (it =~ /^Size\s*:\s+(\d+)$/).each {m0,m1->
-            def size_gb = Math.ceil(m1.toDouble()/(1024*1024*1024)) as Integer
-            t.newMetric("filesystem.${drive_letter}.size_gb", "Drive[${drive_letter}] GB", size_gb)
-            csv << [drive_letter, size_gb]
-            filesystems[drive_letter] = size_gb
-        }
-        (it =~ /^Description\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("filesystem.${drive_letter}.desc", "Drive[${drive_letter}] Type", m1)
-        }
-        (it =~ /^FileSystem\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("filesystem.${drive_letter}.filesystem", "Drive[${drive_letter}] Filesystem", m1)
+        (it =~ /^(${header_label})\s*:\s+(.+)$/).each {m0, m1, m2->
+            if (m1 == 'DeviceID') {
+                label = m2
+            }
+            if (m1 == 'Size') {
+                def size_gb = Math.ceil(m2.toDouble()/(1024*1024*1024)) as Integer
+                def size_label = "${size_gb} GB"
+                drives[label] = size_label
+                res[label][m1] = size_label
+            } else {
+                res[label][m1] = m2
+            }
         }
     }
-    def headers = ['device_id', 'size_gb']
+    def csv = []
+    res.each { drive_letter, drive ->
+        def drive_label = drive.values().join(' ')
+        t.newMetric("filesystem.${drive_letter}", drive_letter, drive_label)
+        def row = []
+        headers.each { header ->
+            value = res.get(drive_letter)?.get(header)
+            row << value ?: 'N/A'
+        }
+        csv << row
+    }
     t.devices(headers, csv)
-    infos['filesystem'] = "${filesystems}"
-    t.results(infos)
+    t.results(drives.toString())
+}
+
+@Parser("user")
+void user(TestUtil t) {
+    def account_number = 0
+    def account_info   = [:].withDefault{[:]}
+    t.readLine {
+        (it =~ /^(.+?)\s*:\s+(.+?)$/).each {m0, m1, m2->
+            account_info[account_number][m1] = m2
+        }
+        if (it.size() == 0 && account_info[account_number].size() > 0)
+            account_number ++
+    }
+    account_number --
+    def headers = ['UserName', 'DontExpirePasswd', 'AccountDisable', 'SID']
+    def csv   = []
+    def res   = [:].withDefault{[]}
+    (0..account_number).each { row ->
+        def columns = []
+        headers.each { header ->
+            columns.add( account_info[row][header] ?: '')
+        }
+        def user_name = account_info[row]['UserName']
+        if (account_info[row]['DontExpirePasswd'] == 'False') {
+            res['DontExpirePasswd'] << user_name
+        }
+        if (account_info[row]['AccountDisable'] == 'True') {
+            res['AccountDisable'] << user_name
+        }
+        csv << columns
+    }
+    t.devices(headers, csv)
+    t.setMetric("user.DontExpirePassword", res['DontExpirePasswd'].toString())
+    t.results(res['AccountDisable'].toString())
+
+}
+
+@Parser("whoami")
+void whoami(TestUtil t) {
+    def row = 0
+    t.readLine {
+        // ヘッダのセパレータ '===' の次の行の値を抽出する
+        if (row == 1) {
+            // 空白区切りで'ユーザ名'と'SID'を抽出
+            def results = it.split(/ +/)
+            def infos = [whoami_user: results[0], whoami_sid: results[1]]
+            // 結果登録。Excelシートに 検査ID 'whoami_user' と 'whoami_sid'
+            // を追加する必要あり
+            t.results(results[0])
+        }
+        (it =~ /^====/).each {
+            row++
+        }
+    }
+}
+
+@Parser("user_account_control")
+void user_account_control(TestUtil t) {
+    def setting = 'Disable'
+    def res = [:].withDefault{'0'}
+    t.readLine {
+        (it =~ /^EnableLUA\s*:\s+(.+)$/).each {m0,m1->
+            if (m1 == '1')
+                setting = 'Enable'
+        }
+        (it =~ /^ConsentPromptBehaviorAdmin\s*:\s+(.+)$/).each {m0,m1->
+            t.setMetric("uac.ConsentPromptBehaviorAdmin", "'${m1}'")
+        }
+        (it =~ /^ConsentPromptBehaviorUser\s*:\s+(.+)$/).each {m0,m1->
+            t.setMetric("uac.ConsentPromptBehaviorUser", "'${m1}'")
+        }
+        (it =~ /^EnableInstallerDetection\s*:\s+(.+)$/).each {m0,m1->
+            t.setMetric("uac.EnableInstallerDetection", "'${m1}'")
+        }
+    }
+    t.results(setting)
+}
+
+@Parser("net_accounts")
+void net_accounts(TestUtil t) {
+    def csv = []
+    def policy_number = 0
+    t.readLine {
+        (it =~ /^(.+):\s+(.+?)$/).each {m0, item_name, value ->
+            csv << [item_name, value]
+            policy_number ++
+        }
+    }
+    def headers = ['item_name', 'value']
+    t.devices(headers, csv)
+    t.results((policy_number > 0) ? 'Policy found' : 'N/A')
 }
 
 @Parser("service")
@@ -512,15 +703,6 @@ void service(TestUtil t) {
         statuses[service_id] = status
         csv << columns
     }
-    // def service_list = test_item.target_info('service')
-    // if (service_list) {
-    //     def template_id = this.test_platform.test_target.template_id
-    //     service_list.each { service_name, value ->
-    //         def test_id = "service.${template_id}.${service_name}"
-    //         def status = statuses[service_name] ?: 'Not Found'
-    //         t.newMetric(test_id, "${template_id}.${service_name}", status)
-    //     }
-    // }
     statuses.sort().each { service_name, status ->
         // if (service_list?."${service_name}") {
         //     return
@@ -530,46 +712,6 @@ void service(TestUtil t) {
     }
     t.devices(headers, csv)
     t.results("${instance_number} services")
-}
-
-@Parser("user")
-void user(TestUtil t) {
-    def account_number = 0
-    def account_info   = [:].withDefault{[:]}
-    t.readLine {
-        (it =~ /^(.+?)\s*:\s+(.+?)$/).each {m0, m1, m2->
-            account_info[account_number][m1] = m2
-        }
-        if (it.size() == 0 && account_info[account_number].size() > 0)
-            account_number ++
-    }
-    account_number --
-    def headers = ['UserName', 'DontExpirePasswd', 'AccountDisable', 'SID']
-
-    def csv   = []
-    def res   = [:]
-    def users = [:]
-    (0..account_number).each { row ->
-        def columns = []
-        headers.each { header ->
-            columns.add( account_info[row][header] ?: '')
-        }
-        def user_name        = account_info[row]['UserName']
-        def dont_expire_pass = account_info[row]['DontExpirePasswd']
-        def account_disable  = account_info[row]['AccountDisable']
-
-        t.newMetric("user.${user_name}.DontExpirePasswd", 
-                    "[${user_name}] Password expire disable", 
-                    dont_expire_pass)
-        t.newMetric("user.${user_name}.AccountDisable", 
-                    "[${user_name}] Account disable", 
-                    account_disable)
-        users[user_name] = account_disable
-        csv << columns
-    }
-    t.devices(headers, csv)
-    t.results("${users}")
-
 }
 
 @Parser("packages")
@@ -626,88 +768,6 @@ void packages(TestUtil t) {
     t.results("${csv.size()} packages")
 }
 
-@Parser("user_account_control")
-void user_account_control(TestUtil t) {
-    def setting = 'Disable'
-    def res = [:].withDefault{'0'}
-    t.readLine {
-        (it =~ /^EnableLUA\s*:\s+(.+)$/).each {m0,m1->
-            if (m1 == '1')
-                setting = 'Enable'
-        }
-        (it =~ /^ConsentPromptBehaviorAdmin\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("user_account_control.ConsentPromptBehaviorAdmin", 
-                        "User Account Control ConsentPromptBehaviorAdmin", 
-                        "'${m1}'")
-        }
-        (it =~ /^ConsentPromptBehaviorUser\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("user_account_control.ConsentPromptBehaviorUser", 
-                        "User Account Control ConsentPromptBehaviorUser", 
-                        "'${m1}'")
-        }
-        (it =~ /^EnableInstallerDetection\s*:\s+(.+)$/).each {m0,m1->
-            t.newMetric("user_account_control.EnableInstallerDetection", 
-                        "User Account Control EnableInstallerDetection", 
-                        "'${m1}'")
-        }
-    }
-    t.results(setting)
-}
-
-@Parser("remote_desktop")
-void remote_desktop(TestUtil t) {
-    def res = 'Unkown'
-    t.readLine {
-        def id = it.trim()
-        (id =~ /0/).each {
-            res = 'Enable'
-        }
-        (id =~ /1/).each {
-            res = 'Disable'
-        }
-    }
-    t.results(res)
-}
-
-@Parser("dns")
-void dns(TestUtil t) {
-    def adresses = [:]
-    t.readLine {
-        // ServerAddresses : {192.168.0.254}
-        (it =~ /ServerAddresses\s+:\s+\{(.+)\}$/).each {m0,m1->
-            adresses[m1] = 1
-        }
-    }
-    def value = adresses.keySet().toString()
-    t.results(value)
-}
-
-@Parser("ntp")
-void ntp(TestUtil t) {
-    t.readLine {
-        t.results(it)
-    }
-}
-
-@Parser("whoami")
-void whoami(TestUtil t) {
-    def row = 0
-    t.readLine {
-        // ヘッダのセパレータ '===' の次の行の値を抽出する
-        if (row == 1) {
-            // 空白区切りで'ユーザ名'と'SID'を抽出
-            def results = it.split(/ +/)
-            def infos = [whoami_user: results[0], whoami_sid: results[1]]
-            // 結果登録。Excelシートに 検査ID 'whoami_user' と 'whoami_sid'
-            // を追加する必要あり
-            t.results(infos)
-        }
-        (it =~ /^====/).each {
-            row++
-        }
-    }
-}
-
 @Parser("task_scheduler")
 void task_scheduler(TestUtil t) {
     def schedule_info = [:].withDefault{0}
@@ -734,6 +794,7 @@ void task_scheduler(TestUtil t) {
         }
     }
     def headers = ['task_name', 'last_result', 'missed_runs', 'task_path']
+    t.devices(headers, csv)
     t.results("${csv.size()} tasks")
 }
 
@@ -751,47 +812,6 @@ void etc_hosts(TestUtil t) {
     t.results("${csv.size()} hosts")
 }
 
-@Parser("net_accounts")
-void net_accounts(TestUtil t) {
-    def csv = []
-    def policy_number = 0
-    t.readLine {
-        (it =~ /^(.+):\s+(.+?)$/).each {m0, item_name, value ->
-            csv << [item_name, value]
-            policy_number ++
-        }
-    }
-    def headers = ['item_name', 'value']
-    t.devices(headers, csv)
-    t.results((policy_number > 0) ? 'Policy found' : 'NG')
-}
-
-@Parser("monitor")
-void monitor(TestUtil t) {
-    def instance_number = 0
-    def monitor_info = [:].withDefault{[:]}
-    t.readLine {
-        (it =~ /^(.+?)\s*:\s+(.+?)$/).each {m0, m1, m2->
-            monitor_info[instance_number][m1] = m2
-        }
-        if (it.size() == 0 && monitor_info[instance_number].size() > 0)
-            instance_number ++
-    }
-    instance_number --
-    def monitor_names = [:]
-    def infos = [:].withDefault{[]}
-    (0..instance_number).each { row ->
-        def alias    = monitor_info[row]['Name']
-        def screen_y = monitor_info[row]['ScreenHeight'] ?: 'Unspecified'
-        def screen_x = monitor_info[row]['ScreenWidth'] ?: 'Unspecified'
-        monitor_names[alias] = 1
-        infos["monitor.height"] << screen_y
-        infos["monitor.width"]  << screen_x
-    }
-    infos['monitor'] = "${monitor_names.keySet()}"
-    t.results(infos)
-}
-
 @Parser("patch_lists")
 void patch_lists(TestUtil t) {
     def row = 0
@@ -807,18 +827,6 @@ void patch_lists(TestUtil t) {
     def headers = ['knowledge_base']
     t.devices(headers, csv)
     t.results("${csv.size()} patches")
-}
-
-@Parser("ie_version")
-void ie_version(TestUtil t) {
-    def res = [:]
-    t.readLine {
-        (it =~ /^(svcVersion|svcUpdateVersion|RunspaceId)\s*:\s+(.+?)$/).each {m0, m1, m2->
-            t.newMetric("ie_version.${m1}", "IE Version.${m1}", m2)
-            res[m1] = m2
-         }
-    }
-    t.results("$res")
 }
 
 @Parser("feature")
@@ -925,5 +933,4 @@ void apps_log(TestUtil t) {
     t.devices(headers, csv)
     t.results("${csv.size().toString()} events")
 }
-
 

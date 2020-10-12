@@ -58,12 +58,25 @@ void Config(TestUtil t) {
     t.setMetric("Parent", json?.VsanHostConfig?.ClusterInfo?.toString())
 
     id = 0
-    json.FileSystemVolume?.MountInfo*.Volume?.Extent*.DiskName.each {
-        (it =~/^(.+?)__+(.+?)__+(.+)/).each { m0, m1, m2, m3 ->
-            t.newMetric("Diak.model.${id}", "[${id}] Model", m2)
+    def diskSizes = [:].withDefault{0}
+    json?.StorageDevice?.ScsiLun.each { lun ->
+        def block = (double)(lun?.Capacity?.Block ?: 0)
+        def size = (double)(lun?.Capacity?.BlockSize ?: 0)
+        def diskTotal = (block * size) / (1024.0 ** 3) as Integer
+        (lun?.CanonicalName =~/^(.+?)__+(.+?)__+(.+)/).each { m0, m1, m2, m3 ->
             id ++
+            t.newMetric("Diak.model.${id}", "[${id}] Model", m2)
+            t.newMetric("Diak.size.${id}", "[${id}] Size", diskTotal)
+            diskSizes["${diskTotal}G"] ++
         }
     }
+    t.newMetric("Disk.Sizes", "Storage size", diskSizes.toString())
+    // json.FileSystemVolume?.MountInfo*.Volume?.Extent*.DiskName.each {
+    //     (it =~/^(.+?)__+(.+?)__+(.+)/).each { m0, m1, m2, m3 ->
+    //         t.newMetric("Diak.model.${id}", "[${id}] Model", m2)
+    //         id ++
+    //     }
+    // }
 }
 
 @Parser("configManager.json")

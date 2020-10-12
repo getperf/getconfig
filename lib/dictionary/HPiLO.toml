@@ -1,92 +1,217 @@
-[[metrics]]
+[[overview]]
 
-id = "overview.product_name"
-name = "機種"
-category = "システム情報"
-
-[[metrics]]
-
-id = "overview.product_id"
-name = "型番"
-category = "システム情報"
-
-[[metrics]]
-
-id = "overview.serial_num"
-name = "S/N"
-category = "システム情報"
-
-[[metrics]]
-
-id = "overview.license"
-name = "ライセンスタイプ"
-category = "システム情報"
-
-[[metrics]]
-
-id = "overview.ilo_fw_version"
-name = "FWバージョン"
-category = "システム情報"
-
-[[metrics]]
-
-id = "overview.isUEFI"
-name = "UEFI有効化"
-category = "システム情報"
-
-[[metrics]]
-
-id = "overview.system_rom"
-name = "システムロムバージョン"
-category = "システム情報"
-
-[[metrics]]
-
-id = "overview.ip_address"
-name = "管理IP"
-category = "システム情報"
-
-[[metrics]]
-
-id = "overview.system_health"
-name = "システム状態"
-category = "システム情報"
-
-[[metrics]]
-
-id = "License"
-name = "ライセンス"
-category = "システム情報"
+id = "overview"
+category = "ファームウェア"
 level = 0
 
 [[metrics]]
 
-id = "License.Key"
+id = "product_name"
+name = "機種"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "product_id"
+name = "型番"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "serial_num"
+name = "S/N"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "license"
+name = "ライセンスタイプ"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "ilo_fw_version"
+name = "FWバージョン"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "isUEFI"
+name = "UEFI有効化"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "system_rom"
+name = "システムロムバージョン"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "system_health"
+name = "システム状態"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "License"
+name = "FWライセンス"
+category = "ファームウェア"
+level = 0
+
+[[metrics]]
+
+id = "license_key"
 name = "ライセンスキー"
-category = "システム情報"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "proc_info"
-name = "プロセッサ"
-category = "CPU"
+name = "CPU情報"
+category = "ファームウェア"
 level = 0
 
 [[metrics]]
 
 id = "mem_info"
 name = "メモリGB"
-category = "Memory"
+category = "ファームウェア"
 level = 0
 
 [[metrics]]
 
-id = "mem_info.mem_op_speed"
+id = "mem_op_speed"
 name = "メモリスピード"
-category = "Memory"
+category = "ファームウェア"
 
 [[metrics]]
 
-id = "mem_info.mem_condition"
+id = "mem_condition"
 name = "メモリ状態"
-category = "Memory"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "health_phy_drives"
+name = "内臓ディスク"
+category = "内臓ディスク"
+level = 0
+
+[[metrics]]
+
+id = "disk.drives"
+name = "内臓ディスクドライブ"
+category = "内臓ディスク"
+
+[[metrics]]
+
+id = "health_drives"
+name = "内臓ディスク論理ボリューム"
+category = "内臓ディスク"
+level = 0
+
+[[metrics]]
+
+id = "disk.raid"
+name = "内臓ディスクRAID"
+category = "内臓ディスク"
+
+[[metrics]]
+
+id = "ip_address"
+name = "管理IP"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "network"
+name = "ネットワーク"
+category = "管理LAN"
+level = 0
+
+[[metrics]]
+
+id = "net.address"
+name = "IPv4アドレス"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "net.gateway"
+name = "IPv4ゲートウェイ"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "net.origin"
+name = "IPv4 origin"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "net.subnet"
+name = "IPv4サブネット"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "ipv6.address"
+name = "IPv6アドレス"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "ipv6.origin"
+name = "IPv6 origin"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "net.autoneg"
+name = "自動ネゴシエーション"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "net.mac"
+name = "MACアドレス"
+category = "管理LAN"
+
+[[metrics]]
+
+id = "snmp"
+name = "SNMP"
+category = "ファームウェア設定"
+level = 0
+
+[[metrics]]
+
+id = "snmp.community"
+name = "SNMPコミュニティ"
+category = "ファームウェア設定"
+
+[[metrics]]
+
+id = "snmp.dest"
+name = "SNMPトラップ通知"
+category = "ファームウェア設定"
+
+[[metrics]]
+
+id = "power_regulator"
+name = "電源制御モード"
+category = "ファームウェア設定"
+
+[[metrics]]
+
+id = "power_summary"
+name = "最大ワット数"
+category = "ファームウェア設定"
+level = 0
+
+[[metrics]]
+
+id = "power_cap_mode"
+name = "電源容量モード"
+category = "ファームウェア設定"

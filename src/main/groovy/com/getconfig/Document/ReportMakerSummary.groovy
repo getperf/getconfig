@@ -36,13 +36,20 @@ class ReportMakerSummary {
         testScenario.servers.each { String server ->
             List<String> platforms
             platforms = testScenario.serverPlatformKeys.get(server) as List<String>
+            String resultSheetName = testScenario.getResultSheetName(server)
             headers.each { String columnId, int columnNo ->
                 if (columnId == "no") {
                     manager.setCell(order)
                 } else if (columnId == "hostName") {
                     manager.setCell(server)
                 } else if (columnId == "domain") {
-                    manager.setCell(domains[server] ?: 'unknown')
+                    String domain = domains[server]
+                    if (domain) {
+                        reportMaker.setDetailLink(domain, manager.cell, "A1")
+                        manager.setCell(domain, "Link")
+                    }else {
+                        manager.setCell('unknown')
+                    }
                 } else if (columnId == "ip") {
                     String ip = testScenario.portListKeys.get(server) ?: 'unknown'
                     manager.setCell(ip)

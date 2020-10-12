@@ -18,8 +18,8 @@ name = "機種"
 redmineField = "機種"
 
     [columns.inventories]
-    HPiLO = "overview.product_name"
-    CiscoUCS = "chassis.productname"
+    HPiLO = "product_name"
+    CiscoUCS = "productname"
     XSCF = "hardconf.system"
     AIX = "prtconf.System Model"
     Eternus = "enclosure.StorageSystemName"
@@ -31,8 +31,8 @@ name = "型番"
 redmineField = "型番"
 
     [columns.inventories]
-    HPiLO = "overview.product_id"
-    CiscoUCS = "chassis.productid"
+    HPiLO = "product_id"
+    CiscoUCS = "productid"
     Eternus = "enclosure.ModelName"
     HitachiVSP = "storage.modelName"
     NetAppONTAP = "version"
@@ -43,8 +43,8 @@ name = "S/N"
 redmineField = "S/N"
 
     [columns.inventories]
-    HPiLO = "overview.serial_num"
-    CiscoUCS = "chassis.sn"
+    HPiLO = "serial_num"
+    CiscoUCS = "sn"
     XSCF = "hardconf.serial"
     AIX = "prtconf.Machine Serial Number"
     Eternus = "enclosure.SerialNumber"
@@ -56,14 +56,11 @@ name = "OS名"
 redmineField = "OS名"
 
     [columns.inventories]
-    Linux = "os"
+    Linux = "lsb"
     Windows = "os_caption"
     VMHost = "summary.version"
     Solaris = "System"
     AIX = "osname"
-    HPiLO = "HSI_SBSN"
-    CiscoUCS = "chassis.sn"
-    XSCF = "hardconf.serial"
 
 [[columns]]
 id = "arch"
@@ -128,7 +125,7 @@ id = "internalDisk"
 name = "内臓ディスク"
 
     [columns.inventories]
-    HPiLO = "Storage"
+    HPiLO = "disk.drives"
     Primergy = "disk"
     CiscoUCS = "hdd"
 
@@ -139,7 +136,7 @@ name = "ディスク構成"
     [columns.inventories]
     Linux = "filesystem"
     Windows = "filesystem"
-    VMHost = "Disk"
+    VMHost = "Disk.Sizes"
     Solaris = "filesystem"
     AIX = "prtconf.disk"
     Eternus = "raid_groups"
@@ -184,9 +181,9 @@ id = "managedLan"
 name = "管理LAN"
 
     [columns.inventories]
-    HPiLO = "ip_mng"
+    HPiLO = "ip_address"
     Primergy = "network"
-    CiscoUCS = "network"
+    CiscoUCS = "net.address"
     XSCF = "network"
 
 [[columns]]

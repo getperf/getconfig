@@ -1,24 +1,24 @@
 
 
-LastRunTime        : 2020/10/01 3:53:53
+LastRunTime        : 2020/10/09 3:26:26
 LastTaskResult     : 0
-NextRunTime        : 2020/10/02 4:46:46
+NextRunTime        : 2020/10/10 3:51:51
 NumberOfMissedRuns : 0
 TaskName           : Microsoft Compatibility Appraiser
 TaskPath           : \Microsoft\Windows\Application Experience\
 PSComputerName     : 
 
-LastRunTime        : 2020/10/01 12:00:00
+LastRunTime        : 2020/10/09 6:00:00
 LastTaskResult     : 0
-NextRunTime        : 2020/10/01 18:00:00
+NextRunTime        : 2020/10/09 12:00:00
 NumberOfMissedRuns : 0
 TaskName           : Consolidator
 TaskPath           : \Microsoft\Windows\Customer Experience Improvement Program\
 PSComputerName     : 
 
-LastRunTime        : 2020/10/01 4:40:40
+LastRunTime        : 2020/10/09 4:53:53
 LastTaskResult     : 0
-NextRunTime        : 2020/10/02 4:27:27
+NextRunTime        : 2020/10/10 3:26:26
 NumberOfMissedRuns : 0
 TaskName           : Device
 TaskPath           : \Microsoft\Windows\Device Information\
@@ -26,26 +26,26 @@ PSComputerName     :
 
 LastRunTime        : 1999/11/30 0:00:00
 LastTaskResult     : 267011
-NextRunTime        : 2020/10/27 17:37:37
+NextRunTime        : 2020/10/27 7:02:02
 NumberOfMissedRuns : 0
 TaskName           : Data Integrity Scan
 TaskPath           : \Microsoft\Windows\Data Integrity Scan\
 PSComputerName     : 
 
-LastRunTime        : 1999/11/30 0:00:00
-LastTaskResult     : 267011
-NextRunTime        : 2020/10/02 8:56:56
-NumberOfMissedRuns : 0
-TaskName           : RefreshCache
-TaskPath           : \Microsoft\Windows\Flighting\OneSettings\
-PSComputerName     : 
-
-LastRunTime        : 2020/09/30 9:59:59
+LastRunTime        : 2020/10/09 4:17:17
 LastTaskResult     : 0
-NextRunTime        : 2020/10/02 19:29:29
+NextRunTime        : 2020/10/10 18:10:10
 NumberOfMissedRuns : 1
 TaskName           : ScanForUpdates
 TaskPath           : \Microsoft\Windows\InstallService\
+PSComputerName     : 
+
+LastRunTime        : 1999/11/30 0:00:00
+LastTaskResult     : 267011
+NextRunTime        : 2020/10/10 9:01:01
+NumberOfMissedRuns : 0
+TaskName           : RefreshCache
+TaskPath           : \Microsoft\Windows\Flighting\OneSettings\
 PSComputerName     : 
 
 LastRunTime        : 2020/09/30 9:59:59
@@ -56,17 +56,17 @@ TaskName           : Registration
 TaskPath           : \Microsoft\Windows\PushToInstall\
 PSComputerName     : 
 
-LastRunTime        : 2020/09/30 9:26:26
-LastTaskResult     : 2147946720
-NextRunTime        : 2020/10/04 6:00:00
+LastRunTime        : 1999/11/30 0:00:00
+LastTaskResult     : 267011
+NextRunTime        : 2021/02/27 9:17:17
 NumberOfMissedRuns : 0
-TaskName           : SetupCleanupTask
-TaskPath           : \Microsoft\Windows\Setup\
+TaskName           : SvcRestartTask
+TaskPath           : \Microsoft\Windows\SoftwareProtectionPlatform\
 PSComputerName     : 
 
-LastRunTime        : 2020/10/01 1:40:40
+LastRunTime        : 2020/10/09 0:22:22
 LastTaskResult     : 0
-NextRunTime        : 2020/10/02 1:38:38
+NextRunTime        : 2020/10/10 2:38:38
 NumberOfMissedRuns : 0
 TaskName           : SpeechModelDownloadTask
 TaskPath           : \Microsoft\Windows\Speech\
@@ -82,66 +82,42 @@ PSComputerName     :
 
 LastRunTime        : 1999/11/30 0:00:00
 LastTaskResult     : 267011
-NextRunTime        : 2021/02/27 9:17:17
-NumberOfMissedRuns : 0
-TaskName           : SvcRestartTask
-TaskPath           : \Microsoft\Windows\SoftwareProtectionPlatform\
-PSComputerName     : 
-
-LastRunTime        : 1999/11/30 0:00:00
-LastTaskResult     : 267011
-NextRunTime        : 2020/10/15 9:20:20
+NextRunTime        : 2020/10/23 9:19:19
 NumberOfMissedRuns : 0
 TaskName           : Backup Scan
 TaskPath           : \Microsoft\Windows\UpdateOrchestrator\
 PSComputerName     : 
 
-LastRunTime        : 1999/11/30 0:00:00
-LastTaskResult     : 267011
-NextRunTime        : 2020/10/02 12:20:20
-NumberOfMissedRuns : 0
-TaskName           : MusUx_UpdateInterval
-TaskPath           : \Microsoft\Windows\UpdateOrchestrator\
-PSComputerName     : 
-
-LastRunTime        : 2020/10/01 9:20:20
-LastTaskResult     : 1
-NextRunTime        : 2020/10/02 22:18:18
-NumberOfMissedRuns : 0
-TaskName           : USO_UxBroker
-TaskPath           : \Microsoft\Windows\UpdateOrchestrator\
-PSComputerName     : 
-
-LastRunTime        : 1999/11/30 0:00:00
-LastTaskResult     : 267011
-NextRunTime        : 2020/10/02 8:18:18
+LastRunTime        : 2020/10/08 20:34:34
+LastTaskResult     : 0
+NextRunTime        : 2020/10/09 17:19:19
 NumberOfMissedRuns : 0
 TaskName           : Schedule Scan
 TaskPath           : \Microsoft\Windows\UpdateOrchestrator\
 PSComputerName     : 
 
-LastRunTime        : 2020/10/01 2:13:13
+LastRunTime        : 2020/10/09 9:19:19
+LastTaskResult     : 1
+NextRunTime        : 2020/10/10 11:19:19
+NumberOfMissedRuns : 0
+TaskName           : USO_UxBroker
+TaskPath           : \Microsoft\Windows\UpdateOrchestrator\
+PSComputerName     : 
+
+LastRunTime        : 2020/10/07 22:23:23
 LastTaskResult     : 0
-NextRunTime        : 2020/10/02 2:13:13
+NextRunTime        : 2020/10/09 10:14:14
+NumberOfMissedRuns : 71
+TaskName           : QueueReporting
+TaskPath           : \Microsoft\Windows\Windows Error Reporting\
+PSComputerName     : 
+
+LastRunTime        : 2020/10/09 2:58:58
+LastTaskResult     : 0
+NextRunTime        : 2020/10/10 2:58:58
 NumberOfMissedRuns : 0
 TaskName           : Windows Defender Scheduled Scan
 TaskPath           : \Microsoft\Windows\Windows Defender\
-PSComputerName     : 
-
-LastRunTime        : 2020/10/01 10:19:19
-LastTaskResult     : 0
-NextRunTime        : 2020/10/02 9:15:15
-NumberOfMissedRuns : 0
-TaskName           : Scheduled Start
-TaskPath           : \Microsoft\Windows\WindowsUpdate\
-PSComputerName     : 
-
-LastRunTime        : 2020/10/01 2:35:35
-LastTaskResult     : 0
-NextRunTime        : 2020/10/01 12:50:50
-NumberOfMissedRuns : 19
-TaskName           : QueueReporting
-TaskPath           : \Microsoft\Windows\Windows Error Reporting\
 PSComputerName     : 
 
 
