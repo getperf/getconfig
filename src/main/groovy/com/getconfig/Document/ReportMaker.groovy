@@ -129,9 +129,9 @@ class ReportMaker {
     def setDetailLink(String sheetName, Cell cell, String address) {
         CreationHelper ch = wb.getCreationHelper()
         Hyperlink link = ch.createHyperlink(HyperlinkType.DOCUMENT)
-        link.setAddress("\'${sheetName}\'!${address}")
+        link.setAddress("'${sheetName}'!${address}")
         cell.setHyperlink(link)
-        String backAddress = "\'${this.sheet.sheetName}\'!${cell.getAddress()}"
+        String backAddress = "'${this.sheet.sheetName}'!${cell.getAddress()}"
         this.backLinkAddresses.put(sheetName, backAddress)
 
 //        if (!this.backLinkAddresses.containsKey(sheetName)) {
@@ -155,7 +155,7 @@ class ReportMaker {
         Map<String, Hyperlink> links = new LinkedHashMap<>()
         CreationHelper ch = wb.getCreationHelper()
         this.backLinkAddresses.get(sheetName).each {String backAddress ->
-            (backAddress =~/"(.+)"!(.+)/).each { String m0, String m1, String m2 ->
+            (backAddress =~/'(.+)'!(.+)/).each { String m0, String m1, String m2 ->
                 Hyperlink link = ch.createHyperlink(HyperlinkType.DOCUMENT)
                 link.setAddress(backAddress)
                 links.put(m1, link)

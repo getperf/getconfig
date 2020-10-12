@@ -7,11 +7,138 @@
 
 [[metrics]]
 
-id = "config"
+id = "summary.json"
+name = "仮想マシン名"
+level = 0
+category = "VM設定"
 
 [[metrics]]
 
-id = "summary"
+id = "numCpu"
+name = "CPU割り当て数"
+category = "VM設定"
+comment = "仮想マシンのCPU仮想ソケット数"
+
+[[metrics]]
+
+id = "powerState"
+name = "電源状態"
+category = "VM設定"
+comment = "電源On/Off"
+
+[[metrics]]
+
+id = "memoryMB"
+name = "メモリ割り当て"
+category = "VM設定"
+comment = "メモリ割り当てサイズ[MB]"
+
+[[metrics]]
+
+id = "resourceConfig.json"
+name = "CPU,メモリ割り当て制限"
+level = 0
+category = "VM設定"
+
+[[metrics]]
+
+id = "cpuAffinity"
+name = "CPUアフィニティ"
+category = "VM設定"
+
+[[metrics]]
+
+id = "memAffinity"
+name = "メモリアフィニティ"
+category = "VM設定"
+
+[[metrics]]
+
+id = "cpuHotAdd"
+name = "CPUホットアドの有効化"
+category = "VM設定"
+
+[[metrics]]
+
+id = "memoryReserveLock"
+name = "すべてのゲストメモリを予約"
+category = "VM設定"
+comment = "すべてのゲストメモリを予約（全てロック）"
+
+[[metrics]]
+
+id = "memHotAdd"
+name = "メモリホットプラグ"
+category = "VM設定"
+comment = "メモリホットプラグ"
+
+[[metrics]]
+
+id = "floppyConnected"
+name = "フロッピー接続状態"
+category = "VM設定"
+
+[[metrics]]
+
+id = "floppyStartConnected"
+name = "OS起動時にフロッピー自動接続"
+category = "VM設定"
+
+[[metrics]]
+
+id = "videoRamKB"
+name = "ビデオラム[KB]"
+category = "VM設定"
+
+[[metrics]]
+
+id = "internalversion"
+name = "ツールバージョン(Internal)"
+category = "VM設定"
+
+[[metrics]]
+
+id = "requiredversion"
+name = "ツールバージョン(Required)"
+category = "VM設定"
+
+[[metrics]]
+
+id = "config.json"
+name = "ストレージ構成"
+level = 0
+category = "VMディスク"
+
+[[metrics]]
+
+id = "guest.json"
+name = "ツールインストール状態"
+category = "VM設定"
+
+[[metrics]]
+
+id = "guestHeartbeatStatus.json"
+name = "ハートビート"
+level = 0
+category = "VM設定"
+
+[[metrics]]
+
+id = "vm_timesync"
+name = "VMWareツール時刻同期"
+category = "VM設定"
+
+[[metrics]]
+
+id = "vm_iops_limit"
+name = "ストレージIOPS制限"
+category = "VM設定"
+
+[[metrics]]
+
+id = "vm_floppy"
+name = "フロッピーディスク"
+category = "VM設定"
 
 [[metrics]]
 
@@ -43,10 +170,6 @@ id = "network"
 
 [[metrics]]
 
-id = "resourceConfig"
-
-[[metrics]]
-
 id = "resourcePool"
 
 [[metrics]]
@@ -66,47 +189,9 @@ id = "runtime"
 
 [[metrics]]
 
-id = "vm.name"
-name = "仮想マシン名"
-category = "VMリソース割当て"
-level = -1
-deviceFlag = false
-comment = "仮想マシン名"
-
-[[metrics]]
-
-id = "vm.NumCpu"
-name = "CPU割り当て数"
-category = "VMリソース割当て"
-level = -1
-deviceFlag = false
-comment = "仮想マシンのCPU仮想ソケット数"
-
-[[metrics]]
-
-id = "vm.PowerState"
-name = "電源状態"
-category = "VMリソース割当て"
-level = -1
-deviceFlag = false
-comment = "電源On/Off"
-
-[[metrics]]
-
-id = "vm.MemoryGB"
-name = "メモリ割り当て"
-category = "VMリソース割当て"
-level = -1
-deviceFlag = false
-comment = "メモリ割り当てサイズ[GB]"
-
-[[metrics]]
-
 id = "vm.VMHost"
 name = "ESXiホスト"
 category = "VMリソース割当て"
-level = -1
-deviceFlag = false
 comment = "ESXiホスト名"
 
 [[metrics]]
@@ -114,8 +199,6 @@ comment = "ESXiホスト名"
 id = "vm.Cluster"
 name = "クラスター"
 category = "VMリソース割当て"
-level = -1
-deviceFlag = false
 comment = "vCenterクラスタ名"
 
 [[metrics]]
@@ -123,8 +206,6 @@ comment = "vCenterクラスタ名"
 id = "vm"
 name = "VMWare リソース"
 category = "VMリソース割当て"
-level = -1
-deviceFlag = false
 comment = "Get-VM コマンドで、VMWare リソース割り当てを検索"
 
 [[metrics]]
@@ -132,8 +213,6 @@ comment = "Get-VM コマンドで、VMWare リソース割り当てを検索"
 id = "vm_conf.limit"
 name = "リソース制限"
 category = "VMカスタマイズ"
-level = -1
-deviceFlag = false
 comment = "CPU,メモリリソース制限設定"
 
 [[metrics]]
@@ -141,80 +220,13 @@ comment = "CPU,メモリリソース制限設定"
 id = "vm_conf.shares_level"
 name = "シェアレベル"
 category = "VMカスタマイズ"
-level = -1
-deviceFlag = false
 comment = "CPU,メモリ共有レベル設定"
-
-[[metrics]]
-
-id = "vm_conf.cpu_affinity"
-name = "CPUアフィニティ"
-category = "VMカスタマイズ"
-level = -1
-deviceFlag = false
-comment = "CPUアフィニティ設定"
-
-[[metrics]]
-
-id = "vm_conf"
-name = "VMWare カスタマイズ(予約メモリGB)"
-category = "VMカスタマイズ"
-level = -1
-deviceFlag = false
-comment = "Get-VMResourceConfiguration コマンドで、VMWare リソース設定を検索"
-
-[[metrics]]
-
-id = "vmext.CpuHotAddEnabled"
-name = "CPUホットアドの有効化"
-category = "VM拡張設定"
-level = -1
-deviceFlag = false
-comment = "CPUホットアドの有効化"
-
-[[metrics]]
-
-id = "vmext.MemoryReservationLockedToMax"
-name = "すべてのゲストメモリを予約"
-category = "VM拡張設定"
-level = -1
-deviceFlag = false
-comment = "すべてのゲストメモリを予約（全てロック）"
-
-[[metrics]]
-
-id = "vmext.MemoryHotAddEnabled"
-name = "メモリホットプラグ"
-category = "VM拡張設定"
-level = -1
-deviceFlag = false
-comment = "メモリホットプラグ"
-
-[[metrics]]
-
-id = "vmext"
-name = "VMWare CPU/メモリ ホットアド設定"
-category = "VM拡張設定"
-level = -1
-deviceFlag = false
-comment = "Get-VM コマンドで VMWare CPU/メモリ ホットアド設定を検索"
-
-[[metrics]]
-
-id = "datastore"
-name = "データストア"
-category = "VMデータストア"
-level = -1
-deviceFlag = true
-comment = "Get-Datastore コマンドで、データストアパスを検索"
 
 [[metrics]]
 
 id = "vm_storage"
 name = "VMWare ハードディスク構成"
 category = "VMハードディスク"
-level = -1
-deviceFlag = true
 comment = "Get-Harddisk コマンドで、ストレージ構成情報検索"
 
 [[metrics]]
@@ -222,8 +234,6 @@ comment = "Get-Harddisk コマンドで、ストレージ構成情報検索"
 id = "vmnet"
 name = "VMWare ネットワーク"
 category = "VMネットワーク"
-level = -1
-deviceFlag = true
 comment = "Get-NetworkAdapter コマンドで、ネットワーク・アダプタを検索"
 
 [[metrics]]
@@ -231,8 +241,6 @@ comment = "Get-NetworkAdapter コマンドで、ネットワーク・アダプ�
 id = "vmwaretool.version"
 name = "VMWare ツールバージョン"
 category = "その他VM設定"
-level = -1
-deviceFlag = false
 comment = "VMWare ツールバージョン"
 
 [[metrics]]
@@ -240,8 +248,6 @@ comment = "VMWare ツールバージョン"
 id = "vmwaretool"
 name = "VMWare ツール"
 category = "その他VM設定"
-level = -1
-deviceFlag = false
 comment = "Get-VM コマンドで、VMWare ツールの有無、バージョンを検索"
 
 [[metrics]]
@@ -249,8 +255,6 @@ comment = "Get-VM コマンドで、VMWare ツールの有無、バージョン�
 id = "vm_timesync"
 name = "VMWare 時刻同期"
 category = "その他VM設定"
-level = -1
-deviceFlag = false
 comment = "Get-VM コマンドで、VMWare 時刻同期の有無を検索"
 
 [[metrics]]
@@ -258,8 +262,6 @@ comment = "Get-VM コマンドで、VMWare 時刻同期の有無を検索"
 id = "vm_iops_limit"
 name = "ストレージIOPS制限"
 category = "その他VM設定"
-level = -1
-deviceFlag = false
 comment = "Get-VMResourceConfiguration コマンドで、ストレージリソースのIOPS制限値を検索"
 
 [[metrics]]
@@ -267,8 +269,6 @@ comment = "Get-VMResourceConfiguration コマンドで、ストレージリソ�
 id = "vm_nic_limit"
 name = "ネットワークアダプタ制限"
 category = "その他VM設定"
-level = -1
-deviceFlag = false
 comment = "Get-NetworkAdapter コマンドで、ネットワーク制限値を検索"
 
 [[metrics]]
@@ -276,8 +276,6 @@ comment = "Get-NetworkAdapter コマンドで、ネットワーク制限値を�
 id = "vm_floppy"
 name = "フロッピーディスク構成"
 category = "その他VM設定"
-level = -1
-deviceFlag = false
 comment = "Get-Vm $vm | Get-FloppyDriveコマンドで、フロッピィディスク構成を検索"
 
 [[metrics]]
@@ -285,13 +283,5 @@ comment = "Get-Vm $vm | Get-FloppyDriveコマンドで、フロッピィディ�
 id = "vm_video_ram"
 name = "ビデオRAM構成"
 category = "その他VM設定"
-level = -1
-deviceFlag = false
 comment = "Get-VM コマンドで、ビデオ RAM メモリ割り当てを検索"
 
-[[metrics]]
-
-id = "config.json"
-name = "システム情報"
-category = "システム情報"
-level = -1

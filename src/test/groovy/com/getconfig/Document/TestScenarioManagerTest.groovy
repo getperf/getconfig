@@ -59,7 +59,7 @@ class TestScenarioManagerTest extends Specification {
         then:
         testScenario.with {
             metrics.get("Linux.000000001.000000000").id == "hostname"
-            metrics.get("Linux.000000055.000000002").id == "user.root.group"
+//            metrics.get("Linux.000000055.000000002").id == "user.root.group"
             metricIndex.get("Linux.uname") == "Linux.000000003.000000000"
             metricIndex.get("Linux.user.root.home") == "Linux.000000055.000000001"
         }

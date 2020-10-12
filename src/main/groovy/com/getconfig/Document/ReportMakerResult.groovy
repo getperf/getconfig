@@ -8,17 +8,6 @@ import com.getconfig.Model.TestScenario
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
-import org.apache.poi.ss.usermodel.CreationHelper
-import org.apache.poi.ss.usermodel.Workbook
-import org.apache.poi.common.usermodel.HyperlinkType
-import org.apache.poi.ss.usermodel.Cell
-import org.apache.poi.ss.usermodel.CellStyle
-import org.apache.poi.ss.usermodel.CreationHelper
-import org.apache.poi.ss.usermodel.Font
-import org.apache.poi.ss.usermodel.Hyperlink
-import org.apache.poi.ss.usermodel.Row
-import org.apache.poi.ss.usermodel.Workbook
-import org.apache.poi.common.usermodel.Hyperlink
 
 @Slf4j
 @TypeChecked
@@ -76,7 +65,7 @@ class ReportMakerResult {
         }
     }
 
-    void addCategoryRow(int row, Metric metric, List<String> servers) {
+    void addCategorySummaryRow(int row, Metric metric, List<String> servers) {
         manager.setPosition(row,0)
         String platform = metric.platform
         String metricId = MetricId.make(platform, metric.id)
@@ -134,7 +123,7 @@ class ReportMakerResult {
                         Metric metric = testScenario.metrics.get(metricKey)
                         metric.platform = platform // Fix metric.platform is null
                         if (metricOld && metric.category != metricOld.category) {
-                            this.addCategoryRow(row, metricOld, servers)
+                            this.addCategorySummaryRow(row, metricOld, servers)
                             row ++
                             groupRows << row
                         }
@@ -144,7 +133,7 @@ class ReportMakerResult {
                     }
                 }
             }
-            this.addCategoryRow(row, metricOld, servers)
+            this.addCategorySummaryRow(row, metricOld, servers)
             row ++
             groupRows << row
             this.makeRowGroup(groupRows)

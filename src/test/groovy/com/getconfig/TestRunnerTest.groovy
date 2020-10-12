@@ -12,7 +12,7 @@ class TestRunnerTest extends Specification {
     def "ドライラン"() {
         when:
         def runner = new TestRunner(
-                checkSheetPath: "サーバチェックシート.xlsx",
+                checkSheetPath: "getconfig.xlsx",
         )
         ConfigEnv.instance.setDryRun()
 //        runner.run()

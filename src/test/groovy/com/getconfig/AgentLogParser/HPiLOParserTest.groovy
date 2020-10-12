@@ -26,7 +26,7 @@ class HPiLOParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
-        t.get("HPiLO", "overview.product_name").value ==
+        t.get("HPiLO", "product_name").value ==
                 "ProLiant DL360 Gen10"
     }
 

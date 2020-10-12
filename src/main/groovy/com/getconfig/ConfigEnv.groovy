@@ -102,7 +102,7 @@ class ConfigEnv {
     String getCheckSheetPath() {
         return this.commandArgs.checkSheetPath ?:
                 this.config?.get('evidence')?.get('source') ?:
-                        Paths.get(this.getProjectHome(), 'check_sheet.xlsx')
+                        Paths.get(this.getProjectHome(), 'getconfig.xlsx')
     }
 
     // プロジェクトログディレクトリ   src/test/resources/log

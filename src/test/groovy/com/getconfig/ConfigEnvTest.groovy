@@ -66,7 +66,7 @@ class ConfigEnvTest extends Specification {
         then:
         env.getProjectName() == "getconfig"
         env.getGetconfigExe() =~ /getconfig/
-        env.getCheckSheetPath() =~ /サーバチェックシート\.xlsx/
+        env.getCheckSheetPath() =~ /getconfig\.xlsx/
         env.getTlsConfigDir() =~ /network/
         env.getGconfTimeout("Hoge") == 120
         env.getPassword() == null

@@ -8,7 +8,7 @@ import spock.lang.Specification
 
 class SpecReaderTest extends Specification {
 
-    String checkSheet = './src/test/resources/サーバチェックシート.xlsx'
+    String checkSheet = './src/test/resources/getconfig.xlsx'
     String configFile = './src/test/resources/config/config.groovy'
 
     def "初期化"() {

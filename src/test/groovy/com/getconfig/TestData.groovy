@@ -4,7 +4,7 @@ import com.getconfig.Model.*
 import com.getconfig.Document.*
 
 class TestData {
-    static String checkSheet = './src/test/resources/サーバチェックシート.xlsx'
+    static String checkSheet = './src/test/resources/getconfig.xlsx'
     static String configFile = './src/test/resources/config/config.groovy'
     static String currentLogDir = './src/test/resources/inventory'
     static String parserLibPath = './lib/parser'

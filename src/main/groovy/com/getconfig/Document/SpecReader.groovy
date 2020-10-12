@@ -12,11 +12,11 @@ import com.getconfig.ConfigEnv
 @Slf4j
 @CompileStatic 
 public class SpecReader {
-    static final String ExcelFilename = "サーバチェックシート.xlsx"
+    static final String ExcelFilename = "getconfig.xlsx"
     static final int SpecSheetIndex = 1
     static final int SpecHeaderRow = 2
 
-    String inExcel = ExcelFilename // "./サーバチェックシート.xlsx"
+    String inExcel = ExcelFilename // "./getconfig.xlsx"
     protected List<Server> testServers = new ArrayList<Server>()
 
     void parse() throws FileNotFoundException {

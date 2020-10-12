@@ -36,7 +36,7 @@ class LinuxParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
-        t.get().value == "NotConfigured"
+        t.get().value == "N/A"
     }
 
     def "uname"() {
@@ -59,7 +59,6 @@ class LinuxParserTest extends Specification {
 
         then:
         t.get("Linux", "lsb").value == "[CentOS Linux release 8.1.1911 (Core)]"
-        t.get("Linux", "os").value == "CentOS Linux release 8.1.1911"
         t.get("Linux", "os_release").value == "8.1.1911"
     }
 
@@ -92,7 +91,7 @@ class LinuxParserTest extends Specification {
 
         then:
         t.get("Linux", "meminfo").value == "1873544 kB"
-        t.get("Linux", "mem_total").value == "1.8"
+        t.get("Linux", "mem_total").value > 1.7
     }
 
     def "network"() {
@@ -185,7 +184,7 @@ class LinuxParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
-        t.get().value == "[/:4%]"
+        t.get().value == "[/:< 10.0 %]"
     }
 
     def "fstab"() {
