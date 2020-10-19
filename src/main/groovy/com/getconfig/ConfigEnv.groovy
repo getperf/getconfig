@@ -55,7 +55,7 @@ class ConfigEnv {
             String parameter = "account.${sv.domain}.${sv.accountId}"
             throw new IllegalArgumentException("${accountNotFound} : ${parameter}")
         }
-        sv.setAccont(account)
+        sv.setAccount(account)
     }
 
     void  setDryRun(String platform = "Default") {

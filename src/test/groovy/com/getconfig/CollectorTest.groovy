@@ -40,6 +40,7 @@ class CollectorTest extends Specification {
     def "HUBサーバローカルファイル処理"() {
         when:
         Collector collector = new Collector(testServers)
+        ConfigEnv.instance.accept(collector)
         collector.filterServer = "server02"
         collector.classifyTestServers()
         collector.runAgent()
@@ -51,6 +52,7 @@ class CollectorTest extends Specification {
     def "リモートエージェント処理"() {
         when:
         Collector collector = new Collector(testServers)
+        ConfigEnv.instance.accept(collector)
         collector.filterServer = "centos80"
         collector.classifyTestServers()
         collector.runAgent()

@@ -73,12 +73,15 @@ class Collector implements Controller {
             log.info "set server filter : ${this.filterServer}"
         }
         testServers.each { server ->
-            if ((this.filterServer) && !(server.serverName =~ /${this.filterServer}/)) {
+            if (!(server.dryRun) && (this.filterServer) && !(server.serverName =~ /${this.filterServer}/)) {
                 server.order = -1
                 log.info "skip:${server.serverName}, ${server.domain}"
                 return
             }
-            AgentMode agentMode = this.getAgentMode(server.domain)
+            AgentMode agentMode = AgentMode.DryRun
+            if (!(server.dryRun)) {
+                agentMode = this.getAgentMode(server.domain)
+            }
             String serverGroupKey = this.getServerGroupKey(agentMode, server)
             if (!testServerGroups.get(serverGroupKey)) {
                 testServerGroups[serverGroupKey] = new ServerGroup(server.domain, agentMode)
@@ -99,6 +102,7 @@ class Collector implements Controller {
             AgentExecutor agentExecutor
             switch(agentMode) {
                 case AgentMode.LocalAgent:
+                case AgentMode.DryRun:
                     agentExecutor = new LocalAgentExecutor(domain, server)
                     break
                 case AgentMode.LocalAgentBatch:
@@ -114,7 +118,7 @@ class Collector implements Controller {
             try {
                 env.accept(agentExecutor)
                 testServerGroup.agentLogPath = agentExecutor.getAgentLogDir()
-                if (dryRun) {
+                if (dryRun || agentMode == AgentMode.DryRun) {
                     LogManager.restoreProjectLogs(this, agentExecutor.getAgentLogDir())
                 }else {
                     agentExecutor.run()

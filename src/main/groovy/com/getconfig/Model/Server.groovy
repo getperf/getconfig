@@ -14,37 +14,43 @@ public class Server {
     @ExcelRow
     int order = -1;
 
-    @ExcelCell(1)
+    @ExcelCell(0)
     String serverName = "";
 
-    @ExcelCell(2)
+    @ExcelCell(1)
     String domain = "";
 
-    @ExcelCell(3)
+    @ExcelCell(2)
     String ip = "";
 
-    @ExcelCell(4)
+    @ExcelCell(3)
     String accountId = "";
 
-    @ExcelCell(5)
+    @ExcelCell(4)
     String user = "";
 
-    @ExcelCell(6)
+    @ExcelCell(5)
     String password = "";
 
-    @ExcelCell(7)
+    @ExcelCell(6)
     String remoteAlias = "";
 
-    @ExcelCell(8)
+    @ExcelCell(7)
     String compareServer = "";
 
-    @ExcelCell(9)
+    @ExcelCell(8)
     String loginOption = "";
 
+    boolean dryRun = false;
+
     // キー項目の有無をチェックをします
-    public boolean checkKey(String previousServerName = null) {
+    public boolean checkKey(String previousServerName = null, 
+                            String previousCompareServer = null) {
         if (this.serverName == "" && previousServerName) {
             this.serverName = previousServerName
+        }
+        if (this.compareServer == "" && previousCompareServer) {
+            this.compareServer = previousCompareServer
         }
         return !(this.serverName == "" || this.domain == "")
     }
@@ -54,6 +60,9 @@ public class Server {
         List<String> notFoundMsgs = new ArrayList<String>()
         if (this.serverName == "" || this.domain == "") {
             notFoundMsgs << "server_name or domain"
+        }
+        if (this.dryRun) {
+            return true
         }
         if (domain != AgentConstants.AGENT_LABEL_LOCAL_FILE) {
             if (this.ip == "") {
@@ -74,7 +83,11 @@ public class Server {
         return true
     }
 
-    void setAccont(ConfigObject account) {
+    String serverDomainKey() {
+        return "${this.serverName}.${this.domain}"
+    }
+
+    void setAccount(ConfigObject account) {
         if (this.ip == "")
             this.ip = account["server"]
         if (this.user == "")
@@ -87,5 +100,16 @@ public class Server {
             this.compareServer = account["compareServer"]
         if (this.loginOption == "")
             this.loginOption = account["loginOption"]
+    }
+
+    // 比較対象サーバが検査対象に含まれない場合、新規サーバを生成する。
+    // DryRun モードでの実行のみを想定し、コレクターが実行出来るよう、dryRun を true にする
+    Server cloneComparedServer(String serverName) {
+        Server addedServer = new Server()
+        addedServer.serverName = serverName
+        addedServer.domain = this.domain
+        addedServer.dryRun = true
+
+        return addedServer
     }
 }

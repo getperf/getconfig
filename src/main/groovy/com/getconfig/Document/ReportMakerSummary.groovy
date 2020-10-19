@@ -39,7 +39,7 @@ class ReportMakerSummary {
             String resultSheetName = testScenario.getResultSheetName(server)
             headers.each { String columnId, int columnNo ->
                 if (columnId == "no") {
-                    manager.setCell(order)
+                    manager.setCell(order, "Level")
                 } else if (columnId == "hostName") {
                     manager.setCell(server)
                 } else if (columnId == "domain") {
@@ -70,6 +70,7 @@ class ReportMakerSummary {
                     }
                 }
             }
+            manager.row.setHeightInPoints(ExcelConstants.REPORT_SUMMARY_ROW_HEIGHT)
             manager.nextRow()
             // manager.shiftRows()
             order++

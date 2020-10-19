@@ -38,6 +38,7 @@ class SpecReaderTest extends Specification {
         specReader.parse()
         specReader.mergeConfig()
         def servers = specReader.testServers()
+//        println servers
 
         then:
         specReader.print()

@@ -1,7 +1,7 @@
 # Additional metrics list of VMWare Managed Object. 
 # 
 # Notice: 
-#   The results of all added metrics are saved in the "all.json".
+#   The results of all added metrics are saved in the "all".
 #
 # Reference : https://code.vmware.com/apis/42/vsphere/doc/vim.HostSystem.html
 # 
@@ -14,230 +14,125 @@
 [[metrics]]
 
 id = "summary"
-
-[[metrics]]
-
-id = "config"
-
-[[metrics]]
-
-id = "capability"
-
-[[metrics]]
-
-id = "datastore"
-
-[[metrics]]
-
-id = "configManager"
-
-[[metrics]]
-
-id = "hardware"
-
-[[metrics]]
-
-id = "licensableResource"
-
-[[metrics]]
-
-id = "network"
-
-# Metric definitions used in the check sheet report. 
-# Get value from VMWare Managed Object result
-
-[[metrics]]
-
-id = "Version"
 name = "バージョン"
-category = "システム情報"
-level = -1
-deviceFlag = false
-comment = "バージョン"
+level = 0
+category = "OSリリース"
 
 [[metrics]]
 
 id = "Build"
 name = "ビルド"
-category = "システム情報"
 level = -1
-deviceFlag = false
-comment = "ビルド"
-
-[[metrics]]
-
-id = "LicenseKey"
-name = "ライセンス"
-category = "システム情報"
-level = -1
-deviceFlag = false
-comment = "ライセンス"
-
-[[metrics]]
-
-id = "VMHost"
-name = "ホスト状態"
-category = "システム情報"
-level = -1
-deviceFlag = false
-comment = "vCenter情報のホスト情報を検索します"
-
-[[metrics]]
-
-id = "FirewallDefaultPolicy"
-name = "ファイヤーウォールポリシー"
-category = "OS設定"
-level = -1
-deviceFlag = false
-comment = "ファイヤーウォールポリシー"
-
-[[metrics]]
-
-id = "HyperthreadingActive"
-name = "ハイパースレッディング"
-category = "OS設定"
-level = -1
-deviceFlag = false
-comment = "ハイパースレッディング"
-
-[[metrics]]
-
-id = "TimeZone"
-name = "タイムゾーン"
-category = "OS設定"
-level = -1
-deviceFlag = false
-comment = "タイムゾーン"
-
-[[metrics]]
-
-id = "Parent"
-name = "クラスター"
-category = "OS設定"
-level = -1
-deviceFlag = false
-comment = "クラスター"
-
-[[metrics]]
-
-id = "PowerState"
-name = "電源状態"
-category = "OS設定"
-level = -1
-deviceFlag = false
-comment = "電源状態"
-
-[[metrics]]
-
-id = "VMSwapfilePolicy"
-name = "スワップポリシー"
-category = "OS設定"
-level = -1
-deviceFlag = false
-comment = "スワップポリシー"
+category = "OSリリース"
 
 [[metrics]]
 
 id = "Manufacturer"
 name = "メーカー"
-category = "OS設定"
 level = -1
-deviceFlag = false
-comment = "メーカー"
+category = "OSリリース"
 
 [[metrics]]
 
-id = "NumCpu"
-name = "CPUコア数"
-category = "CPU"
+id = "HyperthreadingActive"
+name = "ハイパースレッディング"
 level = -1
-deviceFlag = false
-comment = "CPUコア数"
+category = "OS設定"
+
+[[metrics]]
+
+id = "TimeZone"
+name = "タイムゾーン"
+level = -1
+category = "OS設定"
+
+[[metrics]]
+
+id = "NTP"
+name = "NTP"
+level = -1
+category = "OS設定"
+
+[[metrics]]
+
+id = "Parent"
+name = "クラスター"
+level = -1
+category = "OS設定"
+
+[[metrics]]
+
+id = "PowerState"
+name = "電源状態"
+level = -1
+category = "OS設定"
+
+[[metrics]]
+
+id = "NumCpuPkgs"
+name = "CPUソケット数"
+level = -1
+category = "CPU"
+
+[[metrics]]
+
+id = "NumCpuCores"
+name = "CPUコア数"
+level = -1
+category = "CPU"
+
+[[metrics]]
+
+id = "CputTotal"
+name = "CPUスレッド数"
+level = -1
+category = "CPU"
 
 [[metrics]]
 
 id = "CpuTotalMhz"
 name = "CPUクロック"
-category = "CPU"
 level = -1
-deviceFlag = false
-comment = "CPUクロック"
+category = "CPU"
 
 [[metrics]]
 
 id = "ProcessorType"
 name = "プロセッサタイプ"
-category = "CPU"
 level = -1
-deviceFlag = false
-comment = "プロセッサタイプ"
+category = "CPU"
 
 [[metrics]]
 
 id = "MemoryTotalGB"
 name = "メモリ容量"
+level = -1
 category = "メモリ"
-level = -1
-deviceFlag = false
-comment = "メモリ容量"
 
 [[metrics]]
 
-id = "NetworkInfo"
+id = "config"
 name = "ネットワーク"
+level = 0
 category = "ネットワーク"
-level = -1
-deviceFlag = false
-comment = "ネットワーク"
 
 [[metrics]]
 
-id = "NetworkAdapter"
-name = "ネットワーク構成"
+id = "DefaultGateway"
+name = "デフォルトゲートウェイ"
+level = -1
 category = "ネットワーク"
-level = -1
-deviceFlag = true
-comment = "ネットワーク構成数を検索し、別シートに詳細情報を登録します"
 
 [[metrics]]
 
-id = "DiskPartition"
-name = "ディスクパーティション"
-category = "ストレージ"
+id = "SubnetMask"
+name = "サブネットマスク"
 level = -1
-deviceFlag = true
-comment = "ディスクパーティション数を検索し、別シートに詳細情報を登録します"
-
-[[metrics]]
-
-id = "Datastore"
-name = "データストア"
-category = "ストレージ"
-level = -1
-deviceFlag = true
-comment = "データストア数を検索し、別シートに詳細情報を登録します"
+category = "ネットワーク"
 
 [[metrics]]
 
 id = "Disk"
-name = "ディスク構成"
-category = "ストレージ"
+name = "ディスク容量"
 level = -1
-deviceFlag = true
-comment = "ディスク構成数を検索し、別シートに詳細情報を登録します"
-
-[[metrics]]
-
-id = "Account"
-name = "アカウント情報"
-category = "ユーザ"
-level = -1
-deviceFlag = true
-comment = "アカウント数を検索し、別シートに詳細情報を登録します"
-
-[[metrics]]
-
-id = "config.json"
-name = "システム情報"
-category = "システム情報"
-level = -1
+category = "ディスク"

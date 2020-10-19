@@ -4,6 +4,7 @@ import com.getconfig.Model.Metric
 import com.getconfig.Model.MetricId
 import com.getconfig.Model.Result
 import com.getconfig.Model.ResultSheet
+import com.getconfig.Model.ResultTag
 import com.getconfig.Model.TestScenario
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
@@ -58,7 +59,20 @@ class ReportMakerResult {
         servers.each { String server ->
             Result result = testScenario.results.get(server, metricId)
             if (result) {
-                manager.setCell(result.value)
+//                println result.comparison
+                if (result.comparison == Result.ResultStatus.MATCH) {
+//                    manager.setCell(result.value, "SameAs")
+                    manager.setCell("same as ", "SameAs")
+                } else {
+                    manager.setCell(result.value)
+                }
+                if (testScenario.serverGroupTags.get(server)) {
+                    ResultTag resultTag = testScenario.resultTags.get(server, metricId)
+                    if (resultTag) {
+                        double rate = resultTag.rate()
+                        manager.setCell(rate, (rate == 1.0) ? "Match": "UnMatch")
+                    }
+                }
             } else {
                 manager.setCell(ExcelConstants.CELL_NOT_UNKOWN_VALUE, "Null")
             }

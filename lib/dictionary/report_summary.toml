@@ -136,7 +136,7 @@ name = "ディスク構成"
     [columns.inventories]
     Linux = "filesystem"
     Windows = "filesystem"
-    VMHost = "Disk.Sizes"
+    VMHost = "Disk"
     Solaris = "filesystem"
     AIX = "prtconf.disk"
     Eternus = "raid_groups"
@@ -149,7 +149,7 @@ name = "ネットワーク構成"
     [columns.inventories]
     Linux = "net_ip"
     Windows = "network"
-    VMHost = "NetworkAdapter"
+    VMHost = "config"
     Solaris = "network"
     AIX = "network"
     Eternus = "network"
@@ -162,6 +162,7 @@ name = "サブネット構成"
     [columns.inventories]
     Linux = "net_subnet"
     Windows = "network.subnet"
+    VMHost = "SubnetMask"
     Solaris = "net_subnet"
     Eternus = "net_subnet"
 
@@ -172,6 +173,7 @@ name = "ゲートウェイ構成"
     [columns.inventories]
     Linux = "net_route"
     Windows = "network.gw"
+    VMHost = "DefaultGateway"
     Solaris = "net_route"
     AIX = "network"
     Eternus = "net_route"
@@ -193,6 +195,7 @@ name = "NTP"
     [columns.inventories]
     Linux = "ntp"
     Windows = "ntp"
+    VMHost = "NTP"
     Solaris = "ntp"
 
 [[columns]]

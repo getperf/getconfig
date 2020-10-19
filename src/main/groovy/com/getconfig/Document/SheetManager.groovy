@@ -23,7 +23,7 @@ import static com.getconfig.Document.ExcelConstants.*
 class SheetManager {
     public Sheet templateSheet;
     public Sheet sheet;
-    private Row row;
+    protected Row row;
     public Cell cell;
     private int offset;
     private int rowIndex;

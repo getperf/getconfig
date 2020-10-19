@@ -11,6 +11,9 @@ class TestData {
 
     static List<Server> readTestServers(String suffix = null) {
         def env = ConfigEnv.instance
+        // if (suffix) {
+        //     configFile = "./src/test/resources/config/config_${suffix}.groovy"
+        // }
         env.readConfig(configFile)
         String excelFile = checkSheet
         if (suffix) {
@@ -33,9 +36,11 @@ class TestData {
         return logParser.testResultGroups
     }
 
-    static Map<String, ResultGroup> prepareResultGroupFromJson() {
+    static Map<String, ResultGroup> prepareResultGroupFromJson(
+            String nodeDir = 'src/test/resources/node'
+    ) {
         def resultGroupManager = new ResultGroupManager(
-                nodeDir: 'src/test/resources/node'
+                nodeDir: nodeDir
         )
         return resultGroupManager.readAllResultGroups()
     }

@@ -40,6 +40,10 @@ class TestScenarioManager implements Controller {
 
     void setResultGroup(String serverName, ResultGroup resultGroup) {
         this.serverOrders.put(resultGroup.order, serverName)
+        if (resultGroup.compareServer) {
+            this.testScenario.serverGroupTags.put(resultGroup.compareServer,
+                serverName)
+        }
         resultGroup.testResults.each { String metricId, Result result ->
             this.testScenario.setResult(serverName, metricId, result)
         }
@@ -48,6 +52,7 @@ class TestScenarioManager implements Controller {
 
     TestScenario setResultGroups(Map<String,ResultGroup> resultGroups) {
         resultGroups.each { String serverName, ResultGroup resultGroup ->
+            println "server:$serverName, compare: ${resultGroup.compareServer}"
             setResultGroup(serverName, resultGroup)
         }
         return this.testScenario

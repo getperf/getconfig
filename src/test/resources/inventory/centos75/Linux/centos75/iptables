@@ -1,0 +1,10 @@
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+   Active: active (running) since 木 2020-10-15 10:28:10 JST; 1 day 1h ago
+     Docs: man:firewalld(1)
+ Main PID: 4469 (firewalld)
+   CGroup: /system.slice/firewalld.service
+           └─4469 /usr/bin/python -Es /usr/sbin/firewalld --nofork --nopid
+
+10月 15 10:28:10 localhost.localdomain systemd[1]: Starting firewalld - dynamic firewall daemon...
+10月 15 10:28:10 localhost.localdomain systemd[1]: Started firewalld - dynamic firewall daemon.

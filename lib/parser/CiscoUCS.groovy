@@ -153,11 +153,11 @@ void physical_drive(TestUtil t) {
             def value = disk?."$header"
             row << value
         }
-        res[disk.'physical-drive-health' ?: 'N/A'] ++
+        res[disk.'physical-drive-health' ?: 'N/A'] = 1
         csv << row
     }
     t.devices(headers, csv)
-    t.setMetric("physical_drive", res.toString())
+    t.setMetric("physical_drive", res.keySet().toString())
 }
 
 @Parser("virtual_drive")
@@ -182,13 +182,13 @@ void virtual_drive(TestUtil t) {
                 disk_titles << value
             } 
         }
-        res[disk.'virtual-drive-health' ?: 'N/A'] ++
+        res[disk.'virtual-drive-health' ?: 'N/A'] = 1
         disks[disk_titles.join('/')] ++
         csv << row
     }
     t.devices(headers, csv)
     t.setMetric("disk_volume", disks.toString())
-    t.setMetric("virtual_drive", res.toString())
+    t.setMetric("virtual_drive", res.keySet().toString())
 }
 
 @Parser("network")
@@ -204,7 +204,7 @@ void network(TestUtil t) {
     t.setMetric("net.dhcp",  yaml."dhcp-enabled")
     t.setMetric("net.subnet",  yaml."v4-netmask")
     t.setMetric("ipv6.enabled",  yaml."v6-enabled")
-    t.setMetric("ipv6.linklocal",  yaml."v6-linklocal")
+    // t.setMetric("ipv6.linklocal",  yaml."v6-linklocal")
     t.setMetric("ipv6.dhcp-enabled",  yaml."v6-dhcp-enabled")
     t.setMetric("net.mac",  yaml."mac")
 }

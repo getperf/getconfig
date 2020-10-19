@@ -21,7 +21,7 @@ class ResultGroupManagerTest extends Specification {
 
     void "JSON保存2"() {
         when:
-        def resultGroups = TestData.prepareResultGroup("ia_on_premises")
+        def resultGroups = TestData.prepareResultGroup("compare_test")
         def resultGroupManager = new ResultGroupManager()
         resultGroupManager.saveResultGroups(resultGroups)
 

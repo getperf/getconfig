@@ -1,0 +1,2 @@
+grep: ifcfg-ens192: 許可がありません
+run centos75:net_onboot : run shell: Process exited with status 2

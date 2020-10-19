@@ -67,8 +67,8 @@ account.VMHost.Account01.password = 'P@ssword'
 
 // Linux Ú‘±î•ñ
 
-account.Linux.Account01.user      = 'someuser'
-account.Linux.Account01.password  = 'P@ssword'
+account.Linux.Account01.user      = 'psadmin'
+account.Linux.Account01.password  = 'psadmin'
 account.Linux.Account01.work_dir  = '/tmp/gradle_test'
 
 // Windows Ú‘±î•ñ

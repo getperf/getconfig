@@ -11,17 +11,18 @@ import com.getconfig.Utils.CommonUtil
 import com.getconfig.AgentLogParser.Parser
 import com.getconfig.Testing.TestUtil
 
-@Parser("summary.json")
+@Parser("summary")
 void Summary(TestUtil t) {
     def json = new JsonSlurper().parseText(t.readAll())
 
-    t.results(json.Guest.HostName)
-    t.setMetric("numCpu", json.Config.NumCpu)
-    t.setMetric("powerState", json.Runtime.PowerState)
-    t.setMetric("memoryMB", json.Config.MemorySizeMB)
+    t.results(json.Guest?.HostName ?: 'N/A')
+    t.setMetric("numCpu", json.Config?.NumCpu ?: 'N/A')
+    t.setMetric("powerState", json.Runtime?.PowerState ?: 'N/A')
+    t.setMetric("memoryMB", json.Config?.MemorySizeMB ?: 'N/A')
+    t.setMetric("hostName", json.Runtime?.Host?.Name ?: 'N/A')
 }
 
-@Parser("resourceConfig.json")
+@Parser("resourceConfig")
 void ResourceConfig(TestUtil t) {
     def json = new JsonSlurper().parseText(t.readAll())
     def headers = ['cpuLimit', 'cpuShareLevel', 'memLimit', 'memShareLevel']
@@ -36,11 +37,14 @@ void ResourceConfig(TestUtil t) {
 }
 
 
-@Parser("config.json")
+@Parser("config")
 void Config(TestUtil t) {
     def json = new JsonSlurper().parseText(t.readAll())
-    // t.results(json.MemoryReservationLockedToMax?.toString())
-
+    // println new JsonBuilder( json ).toPrettyString()
+    // "Template": false,
+    // "GuestId": "rhel6_64Guest",
+    t.setMetric("template", json.Template)
+    t.setMetric("guestId", json.GuestId)
     t.setMetric("memoryReserveLock", json.MemoryReservationLockedToMax)
     t.setMetric("cpuAffinity", json.CpuAffinity ?: 'N/A')
     t.setMetric("memAffinity", json.MemoryAffinity ?: 'N/A')
@@ -49,7 +53,6 @@ void Config(TestUtil t) {
     t.setMetric("datastore", json.DatastoreUrl*.Name.toString())
     t.setMetric("vm_timesync", json.Tools.SyncTimeWithHost)
     t.setMetric("vm_iops_limit", json.Hardware.Device*.StorageIOAllocation.Limit.toString())
-
     def floppyDevice
     def videoCard
     def disks = []
@@ -78,6 +81,10 @@ void Config(TestUtil t) {
             return
         }
         label = CommonUtil.toCamelCase(label)
+        def datastore = disk.Backing.FileName
+        (datastore=~/\[(.+)\]/).each { m0, m1 ->
+            datastore = m1
+        }
         def row = [label,
             disk.DeviceInfo.Summary,
             disk.Backing.FileName,
@@ -88,7 +95,7 @@ void Config(TestUtil t) {
         ]
         csv << row
         t.newMetric("disk.${label}.size", "[${label}] Size", row[1])
-        t.newMetric("disk.${label}.datastore", "[${label}] File", row[2])
+        t.newMetric("disk.${label}.datastore", "[${label}] Datastore", datastore)
         t.newMetric("disk.${label}.thin", "[${label}] ThinProvisioned", row[3])
         t.newMetric("disk.${label}.writeThrough", "[${label}] WriteThrough", row[4])
         t.newMetric("disk.${label}.level", "[${label}] level", row[5])
@@ -102,12 +109,11 @@ void Config(TestUtil t) {
             res[m1] = extraConfig.Value
         }
     }
+    res['config'] = json.DatastoreUrl*.Name.toString()
     t.results(res)
-// println vmwareTools
-//     t.setMetric("internalversion", json.DatastoreUrl*.Name.toString())
 }
 
-@Parser("guest.json")
+@Parser("guest")
 void Guest(TestUtil t) {
     def json = new JsonSlurper().parseText(t.readAll())
     def csv = []
@@ -126,17 +132,16 @@ void Guest(TestUtil t) {
         ]
         csv << row
         t.newMetric("net.${label}.Connected", "[${label}] Connected", row[3])
-        t.newMetric("net.${label}.Dns", "[${label}] Dns", row[4])
-        t.newMetric("net.${label}.Dhcp", "[${label}] Dhcp", row[5])
+        // t.newMetric("net.${label}.Dns", "[${label}] Dns", row[4])
+        // t.newMetric("net.${label}.Dhcp", "[${label}] Dhcp", row[5])
     }
     t.devices(headers, csv)
-    t.results(json.ToolsStatus)
+    t.setMetric("toolsStatus", json.ToolsStatus)
+    t.results(json.IpAddress)
 }
 
-@Parser("guestHeartbeatStatus.json")
+@Parser("guestHeartbeatStatus")
 void GuestHeartbeatStatus(TestUtil t) {
-    println t.readAll()
-    // def json = new JsonSlurper().parseText(t.readAll())
-    // println new JsonBuilder( json ).toPrettyString()
+    t.results(t.readAll())
 }
 

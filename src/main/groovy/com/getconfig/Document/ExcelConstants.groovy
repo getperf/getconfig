@@ -48,4 +48,6 @@ class ExcelConstants {
     // サマリレポート定義ファイル名
     public static final String REPORT_SUMMARY_CONFIG_TOML = "report_summary.toml";
 
+    // サマリレポート行の高さ
+    public static final int REPORT_SUMMARY_ROW_HEIGHT = 50;
 }

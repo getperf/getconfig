@@ -5,6 +5,7 @@ import com.getconfig.Document.ReportMaker
 import com.getconfig.Document.ReportMakerDevice
 import com.getconfig.Document.ReportMakerResult
 import com.getconfig.Document.ReportMakerSummary
+import com.getconfig.Document.ResultComparator
 import com.getconfig.Document.SheetManager
 import com.getconfig.Model.Metric
 import com.getconfig.Model.MetricId
@@ -37,6 +38,8 @@ class Reporter implements Controller {
     }
 
     void compareData() {
+        ResultComparator resultComparator = new ResultComparator(testScenario)
+        resultComparator.run()
     }
 
     void initReport() {

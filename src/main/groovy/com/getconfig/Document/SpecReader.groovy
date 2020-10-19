@@ -1,5 +1,7 @@
 package com.getconfig.Document
 
+import com.google.common.collect.HashMultimap
+import com.google.common.collect.Multimap
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import com.poiji.bind.Poiji
@@ -17,7 +19,7 @@ public class SpecReader {
     static final int SpecHeaderRow = 2
 
     String inExcel = ExcelFilename // "./getconfig.xlsx"
-    protected List<Server> testServers = new ArrayList<Server>()
+    protected List<Server> testServers = new ArrayList<>()
 
     void parse() throws FileNotFoundException {
         PoijiOptions options =PoijiOptionsBuilder.settings()
@@ -29,10 +31,30 @@ public class SpecReader {
                   Server.class, options);
 
         String previousServerName
+        String previousCompareServer
+        Multimap<String, String> comparedServers = HashMultimap.create()
         servers.each { server ->
-            if (server.checkKey(previousServerName)) {
+            // サーバー名があり、比較対象がない行は、比較対象なしとして前行の比較対象をリセットする
+            if (server.serverName && !(server.compareServer)) {
+                previousCompareServer = null
+            }
+            // サーバ名、比較対象が空の場合、前行の値をセットする
+            if (server.checkKey(previousServerName, previousCompareServer)) {
                 this.testServers << server
+                comparedServers.put(server.serverName, server.domain)
                 previousServerName = server.serverName
+                previousCompareServer = server.compareServer
+            }
+        }
+        servers.each { server ->
+            String compareServer = server.compareServer
+            if (compareServer) {
+                if (!(comparedServers.containsEntry(compareServer, server.domain))) {
+                    log.info "clone '${compareServer}' for ${server.serverName}, ${server.domain} test"
+                    Server addedServer = server.cloneComparedServer(compareServer)
+                    comparedServers.put(compareServer, server.domain)
+                    this.testServers << addedServer
+                }
             }
         }
     }

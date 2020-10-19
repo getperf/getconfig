@@ -38,8 +38,9 @@ class ResultRegister {
         log.debug  "ERR ${s}"
     }
 
-    static void devices(TestUtil t, List headers, List csv) {
-        t.testResultGroup.setDevices(t.platform, t.metricFile, headers, csv)
+    static void devices(TestUtil t, List headers, List csv, String metric = null) {
+        String metricFile = metric ?: t.metricFile
+        t.testResultGroup.setDevices(t.platform, metricFile, headers, csv)
     }
 
     static void newMetric(TestUtil t, String metric, String description, Object value) {

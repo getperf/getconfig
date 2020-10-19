@@ -146,12 +146,6 @@ category = "管理LAN"
 
 [[metrics]]
 
-id = "ipv6.linklocal"
-name = "IPv6アドレス"
-category = "管理LAN"
-
-[[metrics]]
-
 id = "ipv6.dhcp-enabled"
 name = "IPv6 DHCP"
 category = "管理LAN"

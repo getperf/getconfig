@@ -91,8 +91,8 @@ class TestUtil {
         ResultRegister.error(this, errorMessage)
     }
 
-    void devices(List headers, List csv) {
-        ResultRegister.devices(this, headers, csv)
+    void devices(List headers, List csv, String metric = null) {
+        ResultRegister.devices(this, headers, csv, metric)
     }
 
     void newMetric(String metric, String description, Object value) {

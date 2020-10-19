@@ -5,4 +5,5 @@ enum AgentMode {
     LocalAgentBatch,
     RemoteAgent,
     RemoteAgentHub,
+    DryRun,
 }

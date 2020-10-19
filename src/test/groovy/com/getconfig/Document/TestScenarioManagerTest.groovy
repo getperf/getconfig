@@ -92,4 +92,21 @@ class TestScenarioManagerTest extends Specification {
         manager.testScenario.resultSheetServerKeys.get("Linux(VM)") != null
         result == 0
     }
+
+    def "比較テストシナリオ作成実行"() {
+        when:
+        Map<String, ResultGroup> testResultGroups
+        testResultGroups = TestData.prepareResultGroupFromJson(
+                'src/test/resources/node_compare_test'
+        )
+        TestScenarioManager manager = new TestScenarioManager(this.metricLib,
+                testResultGroups)
+        int result = manager.run()
+
+        then:
+        println manager.testScenario.serverGroupTags
+//        manager.testScenario.servers[0] == "centos80"
+//        manager.testScenario.resultSheetServerKeys.get("Linux(VM)") != null
+        result == 0
+    }
 }

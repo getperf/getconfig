@@ -32,6 +32,18 @@ class LogParserTest extends Specification {
         logParser.run() == 0
     }
 
+    def "サーバを絞り込んだパース"() {
+        when:
+        LogParser logParser = new LogParser(testServers)
+        logParser.agentLogPath = this.currentLogDir
+        logParser.parserLibPath = "./lib/parser"
+        logParser.filterServer = 'centos80'
+        logParser.filterMetric = 'summary'
+
+        then:
+        logParser.run() == 0
+    }
+
     def "オンプレIAサーバシナリオパース"() {
         when:
         def testServers2 = TestData.readTestServers("ia_on_premises")

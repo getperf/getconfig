@@ -38,6 +38,8 @@ class ResultGroup {
     int order
     String serverName
     String compareServer
+    boolean isComparison
+
     Map<String, Result> testResults = new LinkedHashMap<>()
     ServerPortList serverPortList
     Map<String, AddedMetric> addedTestMetrics = new LinkedHashMap<>()

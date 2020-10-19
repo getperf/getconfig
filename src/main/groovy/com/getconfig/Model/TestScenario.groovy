@@ -19,10 +19,12 @@ class TestScenario {
     Map<String, String> metricIndex
     Multimap<String, String> portListKeys
     Multimap<String, String> resultSheetServerKeys
+    Multimap<String, String> serverGroupTags
 
     // ファクト定義
     Table<String, String, Result> results
     Table<String, String, ResultLine> devices
+    Table<String, String, ResultTag> resultTags
     Map<String, Metric> metrics
     Map<String, PortList> portLists
 
@@ -39,8 +41,10 @@ class TestScenario {
         this.portListKeys = HashMultimap.create()
         this.metricIndex = new LinkedHashMap<>()
         this.resultSheetServerKeys = HashMultimap.create()
+        this.serverGroupTags = HashMultimap.create()
 
         this.results = HashBasedTable.create()
+        this.resultTags = HashBasedTable.create()
         this.devices = HashBasedTable.create()
         this.metrics = new LinkedHashMap<>()
         this.portLists = new LinkedHashMap<>()
