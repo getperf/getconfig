@@ -2,6 +2,9 @@ package com.getconfig.Command
 
 
 import com.getconfig.ConfigEnv
+import com.getconfig.Document.ProjectManager
+import com.getconfig.Document.ProjectManager.ProjectInitializer
+import com.getconfig.Exporter
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
@@ -85,16 +88,27 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
                 description="generate project dirdectory with test")
         Boolean dryRun
 
+        @Option(names = ["-t", "--tutorial"], 
+                description="add test data for tutorial")
+        Boolean tutorial
+
         @Parameters(paramLabel = "DIR", description = "project directory to init")
         String projectDir;
 
         @Override
         public Integer call() {
-            ConfigEnv.instance.commandArgs.with {
-                it.dryRun = dryRun
-                it.projectDir = projectDir
+            try {
+                def env = ConfigEnv.instance
+                env.commandArgs.copyPropeties(this)
+//                ProjectManager manager = new ProjectManager()
+                ProjectInitializer manager = new ProjectInitializer()
+                env.accept(manager)
+                String mode = (tutorial) ? 'detail' : 'normal'
+                manager.initProject(projectDir, mode)
+            } catch (Exception e) {
+                log.error "run command : " + e
+                return ExitCode.SOFTWARE
             }
-            println("init ${projectDir}, ${dryRun}");
             return ExitCode.OK;
         }
     }
@@ -243,17 +257,42 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
                 description = "config file password")
         String password
 
-        @Parameters(paramLabel = "[local|db|db-all]", description = "update inventory database")
+        @Option(names = ["-d", "--dryrun"], 
+                description="generate project dirdectory with test")
+        Boolean dryRun
+
+        @Option(names = ["-e", "--excel"], paramLabel="FILE", 
+                description="check sheet input (default: check_sheet.xlsx)")
+        File checkSheetPath
+
+        @Parameters(paramLabel = "[local|db]", description = "update inventory database")
         String targetType = "local"
 
         @Override
         public Integer call() {
-            def args = ConfigEnv.instance.commandArgs
-            args.configFile = configFile
-            args.password = password
-            args.targetType = targetType
-            println("update");
-            return ExitCode.OK;
+            try {
+                def env = ConfigEnv.instance
+                env.commandArgs.copyPropeties(this)
+                env.readConfig()
+                Exporter exporter = new Exporter()
+                env.accept(exporter)
+                exporter.run()
+
+                // ProjectManager manager = new ProjectManager()
+                // env.accept(manager)
+                // manager.update(targetType)
+            } catch (Exception e) {
+                log.error "update command : " + e
+                return ExitCode.SOFTWARE
+            }
+            return ExitCode.OK
+
+            // def args = ConfigEnv.instance.commandArgs
+            // args.configFile = configFile
+            // args.password = password
+            // args.targetType = targetType
+            // println("update");
+            // return ExitCode.OK;
         }
     }
 

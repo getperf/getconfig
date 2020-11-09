@@ -3,6 +3,7 @@ package com.getconfig.Document
 import com.getconfig.Model.Result
 import com.getconfig.Model.ResultTag
 import com.getconfig.Model.TestScenario
+import com.google.common.collect.Table
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
@@ -18,25 +19,32 @@ class ResultComparator {
     }
 
     void run() {
-        testScenario.metricIndex.each { String metricId, String metricKey ->
+        Table<String, String, Result> results
+            = testScenario.results
+        Table<String, String, ResultTag> resultTags
+            = testScenario.resultTags
+
+        testScenario.metricIndex.each {
+            String metricId, String metricKey ->
             testScenario.serverGroupTags.entries().each {
                 String tagServer = it.getKey()
-                String server = it.getValue()
-                ResultTag resultTag = testScenario.resultTags.get(tagServer, metricId)
-                if (!resultTag) {
-                    resultTag = new ResultTag()
-                    testScenario.resultTags.put(tagServer, metricId, resultTag)
+                String testServer = it.getValue()
+                ResultTag tag = resultTags.get(tagServer, metricId)
+                if (!tag) {
+                    tag = new ResultTag()
+                    resultTags.put(tagServer, metricId, tag)
                 }
-                Result result = testScenario.results.get(server, metricId)
-                Result resultCompare = testScenario.results.get(tagServer, metricId)
-                if (result) {
-                    result.comparison = Result.ResultStatus.UNMATCH
-                    if (resultCompare) {
-                        if (result.value == resultCompare.value) {
-                            result.comparison = Result.ResultStatus.MATCH
-                        }
-                    }
-                    resultTag.evalComparisonCounter(result.comparison)
+                Result testResult = results.get(testServer, metricId)
+                Result tagResult = results.get(tagServer, metricId)
+                boolean comparison = false
+                if (testResult && tagServer != testServer) {
+                    // println "tag:$tagServer,test:$testServer,metric:$metricId,res:$testResult"
+                    testResult.compareValue(tagResult)
+                    // comparison = (testResult.comparison == Result.ResultStatus.MATCH)
+                    comparison = testResult.isMatch()
+                }
+                if (tagServer != testServer && (tagResult || testResult)) {
+                    tag.countMatchCounter(comparison)
                 }
             }
         }

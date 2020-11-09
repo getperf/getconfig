@@ -21,3 +21,4 @@ psadmin:x:1000:1000:psadmin:/home/psadmin:/bin/bash
 apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
 mysql:x:27:27:MariaDB Server:/var/lib/mysql:/sbin/nologin
 zabbix:x:997:995:Zabbix Monitoring System:/var/lib/zabbix:/sbin/nologin
+tss:x:59:59:Account used by the trousers package to sandbox the tcsd daemon:/dev/null:/sbin/nologin

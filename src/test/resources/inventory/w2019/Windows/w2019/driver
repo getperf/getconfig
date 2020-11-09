@@ -16,166 +16,6 @@ CompatID                : GenPrintQueue
 CreationClassName       : 
 Description             : Local Print Queue
 DeviceClass             : PRINTQUEUE
-DeviceID                : SWD\PRINTENUM\{AA659E30-E55D-4DE2-8571-2B9BF21582B2}
-DeviceName              : Local Print Queue
-DevLoader               : 
-DriverDate              : 20060621000000.******+***
-DriverName              : 
-DriverProviderName      : Microsoft
-DriverVersion           : 10.0.17763.1
-FriendlyName            : Fax (リダイレクト 2)
-HardWareID              : PRINTENUM\microsoftmicrosoft_s7d14
-InfName                 : printqueue.inf
-InstallDate             : 
-IsSigned                : True
-Location                : 
-Manufacturer            : Microsoft
-Name                    : 
-PDO                     : \Device\00000151
-Signer                  : Microsoft Windows
-Started                 : 
-StartMode               : 
-Status                  : 
-SystemCreationClassName : 
-SystemName              : 
-PSComputerName          : W2019
-
-__GENUS                 : 2
-__CLASS                 : Win32_PnPSignedDriver
-__SUPERCLASS            : CIM_Service
-__DYNASTY               : CIM_ManagedSystemElement
-__RELPATH               : 
-__PROPERTY_COUNT        : 28
-__DERIVATION            : {CIM_Service, CIM_LogicalElement, CIM_ManagedSystemElement}
-__SERVER                : W2019
-__NAMESPACE             : root\cimv2
-__PATH                  : 
-Caption                 : 
-ClassGuid               : {1ed2bbf9-11f0-4084-b21f-ad83a8e6dcdc}
-CompatID                : GenPrintQueue
-CreationClassName       : 
-Description             : Local Print Queue
-DeviceClass             : PRINTQUEUE
-DeviceID                : SWD\PRINTENUM\{3BD9F3EA-0A0C-49ED-B68A-237B5E58A1FF}
-DeviceName              : Local Print Queue
-DevLoader               : 
-DriverDate              : 20060621000000.******+***
-DriverName              : 
-DriverProviderName      : Microsoft
-DriverVersion           : 10.0.17763.1
-FriendlyName            : Microsoft Print to PDF (リダイレクト 2)
-HardWareID              : PRINTENUM\{084f01fa-e634-4d77-83ee-074817c03581}
-InfName                 : printqueue.inf
-InstallDate             : 
-IsSigned                : True
-Location                : 
-Manufacturer            : Microsoft
-Name                    : 
-PDO                     : \Device\00000150
-Signer                  : Microsoft Windows
-Started                 : 
-StartMode               : 
-Status                  : 
-SystemCreationClassName : 
-SystemName              : 
-PSComputerName          : W2019
-
-__GENUS                 : 2
-__CLASS                 : Win32_PnPSignedDriver
-__SUPERCLASS            : CIM_Service
-__DYNASTY               : CIM_ManagedSystemElement
-__RELPATH               : 
-__PROPERTY_COUNT        : 28
-__DERIVATION            : {CIM_Service, CIM_LogicalElement, CIM_ManagedSystemElement}
-__SERVER                : W2019
-__NAMESPACE             : root\cimv2
-__PATH                  : 
-Caption                 : 
-ClassGuid               : {1ed2bbf9-11f0-4084-b21f-ad83a8e6dcdc}
-CompatID                : GenPrintQueue
-CreationClassName       : 
-Description             : Local Print Queue
-DeviceClass             : PRINTQUEUE
-DeviceID                : SWD\PRINTENUM\{C993E2BF-F838-4417-A2B6-F795307F59C2}
-DeviceName              : Local Print Queue
-DevLoader               : 
-DriverDate              : 20060621000000.******+***
-DriverName              : 
-DriverProviderName      : Microsoft
-DriverVersion           : 10.0.17763.1
-FriendlyName            : Microsoft XPS Document Writer (リダイレクト 2)
-HardWareID              : PRINTENUM\{0f4130dd-19c7-7ab6-99a1-980f03b2ee4e}
-InfName                 : printqueue.inf
-InstallDate             : 
-IsSigned                : True
-Location                : 
-Manufacturer            : Microsoft
-Name                    : 
-PDO                     : \Device\0000014f
-Signer                  : Microsoft Windows
-Started                 : 
-StartMode               : 
-Status                  : 
-SystemCreationClassName : 
-SystemName              : 
-PSComputerName          : W2019
-
-__GENUS                 : 2
-__CLASS                 : Win32_PnPSignedDriver
-__SUPERCLASS            : CIM_Service
-__DYNASTY               : CIM_ManagedSystemElement
-__RELPATH               : 
-__PROPERTY_COUNT        : 28
-__DERIVATION            : {CIM_Service, CIM_LogicalElement, CIM_ManagedSystemElement}
-__SERVER                : W2019
-__NAMESPACE             : root\cimv2
-__PATH                  : 
-Caption                 : 
-ClassGuid               : {1ed2bbf9-11f0-4084-b21f-ad83a8e6dcdc}
-CompatID                : GenPrintQueue
-CreationClassName       : 
-Description             : Local Print Queue
-DeviceClass             : PRINTQUEUE
-DeviceID                : SWD\PRINTENUM\{7CA4CE54-31B2-4D97-B6F5-C6FC8B0C5BA7}
-DeviceName              : Local Print Queue
-DevLoader               : 
-DriverDate              : 20060621000000.******+***
-DriverName              : 
-DriverProviderName      : Microsoft
-DriverVersion           : 10.0.17763.1
-FriendlyName            : OneNote for Windows 10 (リダイレクト 2)
-HardWareID              : PRINTENUM\{133619e4-143b-463a-b809-b1f51d05f973}
-InfName                 : printqueue.inf
-InstallDate             : 
-IsSigned                : True
-Location                : 
-Manufacturer            : Microsoft
-Name                    : 
-PDO                     : \Device\0000014e
-Signer                  : Microsoft Windows
-Started                 : 
-StartMode               : 
-Status                  : 
-SystemCreationClassName : 
-SystemName              : 
-PSComputerName          : W2019
-
-__GENUS                 : 2
-__CLASS                 : Win32_PnPSignedDriver
-__SUPERCLASS            : CIM_Service
-__DYNASTY               : CIM_ManagedSystemElement
-__RELPATH               : 
-__PROPERTY_COUNT        : 28
-__DERIVATION            : {CIM_Service, CIM_LogicalElement, CIM_ManagedSystemElement}
-__SERVER                : W2019
-__NAMESPACE             : root\cimv2
-__PATH                  : 
-Caption                 : 
-ClassGuid               : {1ed2bbf9-11f0-4084-b21f-ad83a8e6dcdc}
-CompatID                : GenPrintQueue
-CreationClassName       : 
-Description             : Local Print Queue
-DeviceClass             : PRINTQUEUE
 DeviceID                : SWD\PRINTENUM\{5D6F0DF1-B8A7-497D-807A-D06E85F826AA}
 DeviceName              : Local Print Queue
 DevLoader               : 
@@ -191,7 +31,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\00000039
+PDO                     : \Device\00000036
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -231,7 +71,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\00000038
+PDO                     : \Device\00000035
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -271,87 +111,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\00000037
-Signer                  : Microsoft Windows
-Started                 : 
-StartMode               : 
-Status                  : 
-SystemCreationClassName : 
-SystemName              : 
-PSComputerName          : W2019
-
-__GENUS                 : 2
-__CLASS                 : Win32_PnPSignedDriver
-__SUPERCLASS            : CIM_Service
-__DYNASTY               : CIM_ManagedSystemElement
-__RELPATH               : 
-__PROPERTY_COUNT        : 28
-__DERIVATION            : {CIM_Service, CIM_LogicalElement, CIM_ManagedSystemElement}
-__SERVER                : W2019
-__NAMESPACE             : root\cimv2
-__PATH                  : 
-Caption                 : 
-ClassGuid               : {62f9c741-b25a-46ce-b54c-9bccce08b6f2}
-CompatID                : SWD\GenericRaw
-CreationClassName       : 
-Description             : Generic software device
-DeviceClass             : SOFTWAREDEVICE
-DeviceID                : SWD\SCDEVICEENUMBUS\1
-DeviceName              : Generic software device
-DevLoader               : 
-DriverDate              : 20060621000000.******+***
-DriverName              : 
-DriverProviderName      : Microsoft
-DriverVersion           : 10.0.17763.1
-FriendlyName            : Microsoft Passport Container Enumeration Bus
-HardWareID              : 
-InfName                 : c_swdevice.inf
-InstallDate             : 
-IsSigned                : True
-Location                : 
-Manufacturer            : Microsoft
-Name                    : 
-PDO                     : \Device\00000036
-Signer                  : Microsoft Windows
-Started                 : 
-StartMode               : 
-Status                  : 
-SystemCreationClassName : 
-SystemName              : 
-PSComputerName          : W2019
-
-__GENUS                 : 2
-__CLASS                 : Win32_PnPSignedDriver
-__SUPERCLASS            : CIM_Service
-__DYNASTY               : CIM_ManagedSystemElement
-__RELPATH               : 
-__PROPERTY_COUNT        : 28
-__DERIVATION            : {CIM_Service, CIM_LogicalElement, CIM_ManagedSystemElement}
-__SERVER                : W2019
-__NAMESPACE             : root\cimv2
-__PATH                  : 
-Caption                 : 
-ClassGuid               : {62f9c741-b25a-46ce-b54c-9bccce08b6f2}
-CompatID                : SWD\GenericRaw
-CreationClassName       : 
-Description             : Generic software device
-DeviceClass             : SOFTWAREDEVICE
-DeviceID                : SWD\SCDEVICEENUMBUS\0
-DeviceName              : Generic software device
-DevLoader               : 
-DriverDate              : 20060621000000.******+***
-DriverName              : 
-DriverProviderName      : Microsoft
-DriverVersion           : 10.0.17763.1
-FriendlyName            : Smart Card Device Enumeration Bus
-HardWareID              : 
-InfName                 : c_swdevice.inf
-InstallDate             : 
-IsSigned                : True
-Location                : 
-Manufacturer            : Microsoft
-Name                    : 
-PDO                     : \Device\00000035
+PDO                     : \Device\00000034
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -391,7 +151,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\00000032
+PDO                     : \Device\00000033
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -431,7 +191,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\00000031
+PDO                     : \Device\00000032
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -471,7 +231,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\00000030
+PDO                     : \Device\00000031
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -511,7 +271,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\0000002f
+PDO                     : \Device\00000030
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -551,7 +311,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\0000002e
+PDO                     : \Device\0000002f
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -591,7 +351,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\0000002d
+PDO                     : \Device\0000002e
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -631,7 +391,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\0000002c
+PDO                     : \Device\0000002d
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -671,7 +431,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\0000002b
+PDO                     : \Device\0000002c
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -711,7 +471,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\0000002a
+PDO                     : \Device\0000002b
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -751,7 +511,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\00000029
+PDO                     : \Device\0000002a
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -791,7 +551,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\00000027
+PDO                     : \Device\00000028
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -831,7 +591,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\0000000d
+PDO                     : \Device\0000000e
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -871,7 +631,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\0000000c
+PDO                     : \Device\0000000d
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -911,7 +671,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\0000000b
+PDO                     : \Device\0000000c
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -951,8 +711,48 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\0000000a
+PDO                     : \Device\0000000b
 Signer                  : Microsoft Windows
+Started                 : 
+StartMode               : 
+Status                  : 
+SystemCreationClassName : 
+SystemName              : 
+PSComputerName          : W2019
+
+__GENUS                 : 2
+__CLASS                 : Win32_PnPSignedDriver
+__SUPERCLASS            : CIM_Service
+__DYNASTY               : CIM_ManagedSystemElement
+__RELPATH               : 
+__PROPERTY_COUNT        : 28
+__DERIVATION            : {CIM_Service, CIM_LogicalElement, CIM_ManagedSystemElement}
+__SERVER                : W2019
+__NAMESPACE             : root\cimv2
+__PATH                  : 
+Caption                 : 
+ClassGuid               : {4d36e97d-e325-11ce-bfc1-08002be10318}
+CompatID                : 
+CreationClassName       : 
+Description             : VMware VMCI Host Device
+DeviceClass             : SYSTEM
+DeviceID                : ROOT\VMWVMCIHOSTDEV\0000
+DeviceName              : VMware VMCI Host Device
+DevLoader               : 
+DriverDate              : 20130213000000.******+***
+DriverName              : 
+DriverProviderName      : VMware, Inc.
+DriverVersion           : 9.5.10.0
+FriendlyName            : 
+HardWareID              : ROOT\VMWVMCIHOSTDEV
+InfName                 : oem2.inf
+InstallDate             : 
+IsSigned                : True
+Location                : 
+Manufacturer            : VMware, Inc.
+Name                    : 
+PDO                     : \Device\0000000a
+Signer                  : Microsoft Windows Hardware Compatibility Publisher
 Started                 : 
 StartMode               : 
 Status                  : 
@@ -1031,7 +831,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\00000013
+PDO                     : \Device\00000014
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -1071,7 +871,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Intel
 Name                    : 
-PDO                     : \Device\00000012
+PDO                     : \Device\00000013
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -1111,7 +911,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Intel
 Name                    : 
-PDO                     : \Device\00000011
+PDO                     : \Device\00000012
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -1151,7 +951,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\00000010
+PDO                     : \Device\00000011
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -1191,7 +991,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\00000015
+PDO                     : \Device\00000016
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -1231,7 +1031,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\00000014
+PDO                     : \Device\00000015
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -2551,7 +2351,7 @@ IsSigned                : True
 Location                : Bus Number 0, Target Id 0, LUN 0
 Manufacturer            : (Standard disk drives)
 Name                    : 
-PDO                     : \Device\00000024
+PDO                     : \Device\00000025
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -2711,7 +2511,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard monitor types)
 Name                    : 
-PDO                     : \Device\00000026
+PDO                     : \Device\00000027
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -2734,25 +2534,25 @@ Caption                 :
 ClassGuid               : {4d36e968-e325-11ce-bfc1-08002be10318}
 CompatID                : PCI\VEN_15AD&DEV_0405&REV_00
 CreationClassName       : 
-Description             : Microsoft Basic Display Adapter
+Description             : VMware SVGA 3D
 DeviceClass             : DISPLAY
 DeviceID                : PCI\VEN_15AD&DEV_0405&SUBSYS_040515AD&REV_00\3&61AAA01&0&78
-DeviceName              : Microsoft Basic Display Adapter
+DeviceName              : VMware SVGA 3D
 DevLoader               : 
-DriverDate              : 20060621000000.******+***
+DriverDate              : 20130620000000.******+***
 DriverName              : 
-DriverProviderName      : Microsoft
-DriverVersion           : 10.0.17763.1
+DriverProviderName      : VMware, Inc.
+DriverVersion           : 7.14.1.2019
 FriendlyName            : 
 HardWareID              : PCI\VEN_15AD&DEV_0405&SUBSYS_040515AD&REV_00
-InfName                 : display.inf
+InfName                 : oem8.inf
 InstallDate             : 
 IsSigned                : True
 Location                : PCI bus 0, device 15, function 0
-Manufacturer            : (標準ディスプレイ)
+Manufacturer            : VMware, Inc.
 Name                    : 
 PDO                     : \Device\NTPNP_PCI0006
-Signer                  : Microsoft Windows
+Signer                  : Microsoft Windows Hardware Compatibility Publisher
 Started                 : 
 StartMode               : 
 Status                  : 
@@ -2779,10 +2579,10 @@ DeviceClass             : SYSTEM
 DeviceID                : PCI\VEN_15AD&DEV_0740&SUBSYS_074015AD&REV_10\3&61AAA01&0&3F
 DeviceName              : VMware VMCI Bus Device
 DevLoader               : 
-DriverDate              : 20190711000000.******+***
+DriverDate              : 20130213000000.******+***
 DriverName              : 
 DriverProviderName      : VMware, Inc.
-DriverVersion           : 9.8.16.0
+DriverVersion           : 9.5.10.0
 FriendlyName            : 
 HardWareID              : PCI\VEN_15AD&DEV_0740&SUBSYS_074015AD&REV_10
 InfName                 : oem2.inf
@@ -3031,7 +2831,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard floppy disk controllers)
 Name                    : 
-PDO                     : \Device\00000023
+PDO                     : \Device\00000024
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3071,7 +2871,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (標準ポート)
 Name                    : 
-PDO                     : \Device\00000022
+PDO                     : \Device\00000023
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3111,7 +2911,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (標準ポート)
 Name                    : 
-PDO                     : \Device\00000021
+PDO                     : \Device\00000022
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3191,7 +2991,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (標準ポート)
 Name                    : 
-PDO                     : \Device\00000020
+PDO                     : \Device\00000021
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3231,7 +3031,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\0000001f
+PDO                     : \Device\00000020
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3271,7 +3071,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\0000001e
+PDO                     : \Device\0000001f
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3294,25 +3094,25 @@ Caption                 :
 ClassGuid               : {4d36e96f-e325-11ce-bfc1-08002be10318}
 CompatID                : 
 CreationClassName       : 
-Description             : PS/2 Compatible Mouse
+Description             : VMware Pointing Device
 DeviceClass             : MOUSE
 DeviceID                : ACPI\PNP0F13\4&1BD7F811&0
-DeviceName              : PS/2 Compatible Mouse
+DeviceName              : VMware Pointing Device
 DevLoader               : 
-DriverDate              : 20060621000000.******+***
+DriverDate              : 20120326000000.******+***
 DriverName              : 
-DriverProviderName      : Microsoft
-DriverVersion           : 10.0.17763.1
+DriverProviderName      : VMware, Inc.
+DriverVersion           : 12.5.2.0
 FriendlyName            : 
 HardWareID              : ACPI\VEN_PNP&DEV_0F13
-InfName                 : msmouse.inf
+InfName                 : oem6.inf
 InstallDate             : 
 IsSigned                : True
 Location                : 
-Manufacturer            : Microsoft
+Manufacturer            : VMware, Inc.
 Name                    : 
-PDO                     : \Device\0000001d
-Signer                  : Microsoft Windows
+PDO                     : \Device\0000001e
+Signer                  : Microsoft Windows Hardware Compatibility Publisher
 Started                 : 
 StartMode               : 
 Status                  : 
@@ -3351,7 +3151,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard keyboards)
 Name                    : 
-PDO                     : \Device\0000001c
+PDO                     : \Device\0000001d
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3391,7 +3191,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\0000001b
+PDO                     : \Device\0000001c
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3431,7 +3231,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\0000001a
+PDO                     : \Device\0000001b
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3471,7 +3271,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\00000019
+PDO                     : \Device\0000001a
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3511,7 +3311,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\00000018
+PDO                     : \Device\00000019
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3551,7 +3351,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\00000017
+PDO                     : \Device\00000018
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3591,7 +3391,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\00000016
+PDO                     : \Device\00000017
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3751,7 +3551,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : (Standard system devices)
 Name                    : 
-PDO                     : \Device\0000000f
+PDO                     : \Device\00000010
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3791,7 +3591,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\0000000e
+PDO                     : \Device\0000000f
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 
@@ -3851,86 +3651,6 @@ __SERVER                : W2019
 __NAMESPACE             : root\cimv2
 __PATH                  : 
 Caption                 : 
-ClassGuid               : {4d36e96f-e325-11ce-bfc1-08002be10318}
-CompatID                : TI_COMPAT_DEVICE
-CreationClassName       : 
-Description             : Remote Desktop Mouse Device
-DeviceClass             : MOUSE
-DeviceID                : TERMINPUT_BUS\UMB\2&2C22BCC9&0&SESSION2MOUSE0
-DeviceName              : Remote Desktop Mouse Device
-DevLoader               : 
-DriverDate              : 20090421000000.******+***
-DriverName              : 
-DriverProviderName      : Microsoft
-DriverVersion           : 10.0.17763.1
-FriendlyName            : 
-HardWareID              : TS_INPT\TS_MOU
-InfName                 : termmou.inf
-InstallDate             : 
-IsSigned                : True
-Location                : 
-Manufacturer            : (Standard system devices)
-Name                    : 
-PDO                     : \Device\0000014d
-Signer                  : Microsoft Windows
-Started                 : 
-StartMode               : 
-Status                  : 
-SystemCreationClassName : 
-SystemName              : 
-PSComputerName          : W2019
-
-__GENUS                 : 2
-__CLASS                 : Win32_PnPSignedDriver
-__SUPERCLASS            : CIM_Service
-__DYNASTY               : CIM_ManagedSystemElement
-__RELPATH               : 
-__PROPERTY_COUNT        : 28
-__DERIVATION            : {CIM_Service, CIM_LogicalElement, CIM_ManagedSystemElement}
-__SERVER                : W2019
-__NAMESPACE             : root\cimv2
-__PATH                  : 
-Caption                 : 
-ClassGuid               : {4d36e96b-e325-11ce-bfc1-08002be10318}
-CompatID                : TI_COMPAT_DEVICE
-CreationClassName       : 
-Description             : Remote Desktop Keyboard Device
-DeviceClass             : KEYBOARD
-DeviceID                : TERMINPUT_BUS\UMB\2&2C22BCC9&0&SESSION2KEYBOARD0
-DeviceName              : Remote Desktop Keyboard Device
-DevLoader               : 
-DriverDate              : 20090421000000.******+***
-DriverName              : 
-DriverProviderName      : Microsoft
-DriverVersion           : 10.0.17763.1
-FriendlyName            : 
-HardWareID              : TS_INPT\TS_KBD
-InfName                 : termkbd.inf
-InstallDate             : 
-IsSigned                : True
-Location                : 
-Manufacturer            : (Standard system devices)
-Name                    : 
-PDO                     : \Device\0000014c
-Signer                  : Microsoft Windows
-Started                 : 
-StartMode               : 
-Status                  : 
-SystemCreationClassName : 
-SystemName              : 
-PSComputerName          : W2019
-
-__GENUS                 : 2
-__CLASS                 : Win32_PnPSignedDriver
-__SUPERCLASS            : CIM_Service
-__DYNASTY               : CIM_ManagedSystemElement
-__RELPATH               : 
-__PROPERTY_COUNT        : 28
-__DERIVATION            : {CIM_Service, CIM_LogicalElement, CIM_ManagedSystemElement}
-__SERVER                : W2019
-__NAMESPACE             : root\cimv2
-__PATH                  : 
-Caption                 : 
 ClassGuid               : {4d36e97d-e325-11ce-bfc1-08002be10318}
 CompatID                : 
 CreationClassName       : 
@@ -3951,7 +3671,7 @@ IsSigned                : True
 Location                : 
 Manufacturer            : Microsoft
 Name                    : 
-PDO                     : \Device\00000028
+PDO                     : \Device\00000029
 Signer                  : Microsoft Windows
 Started                 : 
 StartMode               : 

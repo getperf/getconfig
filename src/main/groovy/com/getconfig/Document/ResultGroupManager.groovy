@@ -18,10 +18,11 @@ class ResultGroupManager implements Controller {
     String nodeDir = "node"
 
     void setEnvironment(ConfigEnv env) {
-        this.nodeDir = env.getProjectNodeDir()
+        this.nodeDir = env.getCurrentNodeDir()
     }
 
     void saveResultGroups(Map<String, ResultGroup> resultGroups) {
+        DirUtils.mkdir(this.nodeDir)
         resultGroups.each { String serverName, ResultGroup resultGroup ->
             saveResultGroup(serverName, resultGroup)
         }

@@ -38,3 +38,7 @@ psadmin:x:1000:psadmin
 apache:x:48:
 mysql:x:27:
 zabbix:x:995:
+stapusr:x:156:
+stapsys:x:157:
+stapdev:x:158:
+tss:x:59:

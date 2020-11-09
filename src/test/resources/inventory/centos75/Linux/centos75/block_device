@@ -14,7 +14,7 @@
 /sys/block/sr0/device/rev:1.00
 /sys/block/sda/device/state:running
 /sys/block/sr0/device/state:running
-/sys/block/sda/device/timeout:30
+/sys/block/sda/device/timeout:180
 /sys/block/sr0/device/timeout:30
 /sys/block/sda/device/vendor:VMware  
 /sys/block/sr0/device/vendor:NECVMWar

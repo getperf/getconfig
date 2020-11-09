@@ -25,12 +25,19 @@ class ResultTag {
         return (double)matchCount / (matchCount + unMatchCount)
     }
 
-    void evalComparisonCounter(Result.ResultStatus resultStatus) {
-         if (resultStatus == Result.ResultStatus.MATCH) {
+    boolean used() {
+        return (matchCount != 0 ||  unMatchCount != 0)
+    }
+
+    void countMatchCounter(boolean comparison) {
+         if (comparison) {
              this.countMatch()
          } else {
              this.countUnMatch()
          }
+    }
 
+    void evalComparisonCounter(Result.ResultStatus resultStatus) {
+         this.countMatchCounter(resultStatus == Result.ResultStatus.MATCH)
     }
 }

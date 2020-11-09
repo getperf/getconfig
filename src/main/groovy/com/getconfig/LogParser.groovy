@@ -4,6 +4,8 @@ import com.getconfig.AgentLogParser.AgentLog
 import com.getconfig.AgentLogParser.AgentLogMode
 import com.getconfig.AgentLogParser.AgentLogParserManager
 import com.getconfig.AgentLogParser.ServerNameAliases
+import com.getconfig.Document.ResultGroupManager
+import com.getconfig.Model.PlatformParameter
 import com.getconfig.Model.ResultGroup
 import com.getconfig.Model.Server
 import com.getconfig.Testing.TestUtil
@@ -19,13 +21,17 @@ class LogParser implements Controller {
     String agentLogPath
     String parserLibPath
     protected List<Server> testServers
-    protected List<AgentLog> agentLogs = new ArrayList<AgentLog>()
+    Map<String,PlatformParameter> platformParameters
+    public List<AgentLog> agentLogs = new ArrayList<AgentLog>()
     Map<String, ResultGroup> testResultGroups = new LinkedHashMap<>()
+    ResultGroupManager resultGroupManager = new ResultGroupManager()
     String filterServer
     String filterMetric
 
-    LogParser(List<Server> testServers) {
+    LogParser(List<Server> testServers,
+              Map<String,PlatformParameter> platformParameters = null) {
         this.testServers = testServers
+        this.platformParameters = platformParameters
         testServers.each { Server testServer ->
             ResultGroup testResultGroup = new ResultGroup(testServer)
             this.testResultGroups.put(testServer.serverName, testResultGroup)
@@ -38,6 +44,7 @@ class LogParser implements Controller {
         this.filterMetric = env.getKeywordTest()
         this.agentLogPath = env.getCurrentLogDir()
         this.parserLibPath = env.getAgentLogParserLib()
+        env.accept(resultGroupManager)
     }
 
     void makeAgentLogLists() {
@@ -60,16 +67,22 @@ class LogParser implements Controller {
 
     void parseAgentLogs() {
         long start = System.currentTimeMillis()
-        AgentLogParserManager parserManager = new AgentLogParserManager(this.parserLibPath)
+        AgentLogParserManager parserManager = new AgentLogParserManager(
+                this.parserLibPath)
 //        parserManager.init()
         long elapse = System.currentTimeMillis() - start
         log.debug "parser load elapse : ${elapse} ms"
         this.agentLogs.each { AgentLog agentLog ->
             parserManager.init(agentLog.platform)
             ResultGroup testResultGroup = this.testResultGroups[agentLog.serverName]
-            TestUtil t = new TestUtil(agentLog, testResultGroup)
+            TestUtil t = new TestUtil(agentLog, testResultGroup,
+                    null, platformParameters)
             parserManager.invoke(t)
         }
+    }
+
+    void saveTestResultGroups() {
+        this.resultGroupManager.saveResultGroups(this.testResultGroups)
     }
 
     void sumUp() {
@@ -87,6 +100,7 @@ class LogParser implements Controller {
         makeAgentLogLists()
         parseAgentLogs()
         sumUp()
+        saveTestResultGroups()
         return 0
     }
 }

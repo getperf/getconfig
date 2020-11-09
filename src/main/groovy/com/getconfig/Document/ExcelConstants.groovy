@@ -21,6 +21,15 @@ class ExcelConstants {
     // 既定のセルスタイルID
     public static final String DEFAULT_CELL_STYLE_ID = "Normal";
 
+    // 検査仕様書の検査対象リストのシート名
+    public static final String TEST_SERVER_SHEET_NAME = "検査対象";
+
+    // 検査仕様書の検査対象リストのヘッダー行
+    public static final int TEST_SERVER_SHEET_HEADER_ROW = 2;
+
+    // 検査仕様書のパラメータシート名プレフィックス
+    public static final String TEST_PARAMETER_SHEET_NAME_PREFIX = "パラメータ";
+
     // テンプレートのサマリレポートシート名
     public static final String TEMPLATE_SUMMARY_SHEET_NAME = "Summary";
 

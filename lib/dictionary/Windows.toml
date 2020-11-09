@@ -297,6 +297,18 @@ Format-List
 
 [[metrics]]
 
+id = "subnet"
+name = "サブネット"
+category = "ネットワーク"
+
+[[metrics]]
+
+id = "gateway"
+name = "ゲートウェイ"
+category = "ネットワーク"
+
+[[metrics]]
+
 id = "nic_teaming"
 name = "NICチーミング"
 category = "ネットワーク"
@@ -386,7 +398,7 @@ Get-NetFirewallRule -Direction Inbound -Enabled True
 id = "storage_timeout"
 name = "ストレージタイムアウト"
 category = "ストレージ"
-level = 1
+level = 0
 comment = "HKLM:SYSTEM\\CurrentControlSet\\Services\\disk を検索"
 type = "Cmdlet"
 text = '''
@@ -397,7 +409,7 @@ Get-ItemProperty 'HKLM:SYSTEM\CurrentControlSet\Services\disk'
 
 id = "filesystem"
 name = "ディスク容量"
-level = 1
+level = 0
 category = "ストレージ"
 comment = "Win32_LogicalDisk を検索"
 type = "Cmdlet"

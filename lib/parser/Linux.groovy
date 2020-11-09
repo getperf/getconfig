@@ -636,21 +636,20 @@ void packages(TestUtil t) {
     def headers = ['name', 'epoch', 'version', 'release', 'installtime', 'arch']
     package_info['packages'] = distributions.toString()
 
-    // def package_list = test_item.target_info('packages')
-    // if (package_list) {
-    //     def template_id = this.test_platform.test_target.template_id
-    //     package_info['packages.requirements'] = "${package_list.keySet()}"
-    //     def verify = true
-    //     package_list.each { package_name, value ->
-    //         def test_id = "packages.${template_id}.${package_name}"
-    //         def version = versions[package_name] ?: 'Not Found'
-    //         if (version == 'Not Found') {
-    //             verify = false
-    //         }
-    //         add_new_metric(test_id, "${template_id}.${package_name}", "'${version}'", package_info)
-    //     }
-    //     test_item.verify(verify)
-    // }
+    def package_list = t.getParameter("Packages")
+    if (package_list) {
+        def verify = true
+        package_list.each { package_name ->
+            def test_id = "packages.required.${package_name}"
+            def version = versions[package_name] ?: 'Not Found'
+            if (version == 'Not Found') {
+                verify = false
+            }
+            versions.remove(package_name)
+            t.newMetric(test_id, package_name, "'${version}'")
+        }
+        t.setMetric("packages.requirements", verify)
+    }
     versions.sort().each { package_name, version ->
         // if (package_list?."${package_name}") {
         //     return

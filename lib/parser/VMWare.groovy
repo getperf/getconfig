@@ -120,7 +120,7 @@ void Guest(TestUtil t) {
     def headers = ["Network", "Address", "Mac", "Connected", "Dns", 
                    "Dhcp", "AutoConfig"]
     json.Net.each { net ->
-        def label = net.Network
+        def label = net.Network ?: 'Default'
         def row = [
             label,
             net.IpAddress,

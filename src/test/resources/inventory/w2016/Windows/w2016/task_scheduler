@@ -1,136 +1,120 @@
 
 
-LastRunTime        : 2020/09/04 15:29:29
+LastRunTime        : 2020/10/22 14:35:35
 LastTaskResult     : 0
-NextRunTime        : 2020/09/04 16:29:29
+NextRunTime        : 2020/10/22 15:35:35
 NumberOfMissedRuns : 0
 TaskName           : GoogleUpdateTaskMachineUA
 TaskPath           : \
 PSComputerName     : 
 
-LastRunTime        : 2020/09/04 14:08:08
+LastRunTime        : 2020/10/22 14:17:17
 LastTaskResult     : 0
-NextRunTime        : 2020/09/05 10:29:29
+NextRunTime        : 2020/10/23 5:35:35
 NumberOfMissedRuns : 0
 TaskName           : GoogleUpdateTaskMachineCore
 TaskPath           : \
 PSComputerName     : 
 
-LastRunTime        : 2020/09/04 2:18:18
+LastRunTime        : 2020/10/22 2:18:18
 LastTaskResult     : 0
-NextRunTime        : 2020/09/05 2:18:18
+NextRunTime        : 2020/10/23 2:18:18
 NumberOfMissedRuns : 0
 TaskName           : VSIX Auto Update 15.9.3043
 TaskPath           : \Microsoft\VisualStudio\
 PSComputerName     : 
 
-LastRunTime        : 2020/09/04 15:02:02
-LastTaskResult     : 0
-NextRunTime        : 2020/09/05 4:22:22
-NumberOfMissedRuns : 0
-TaskName           : Microsoft Compatibility Appraiser
-TaskPath           : \Microsoft\Windows\Application Experience\
-PSComputerName     : 
-
-LastRunTime        : 2020/08/29 3:00:00
-LastTaskResult     : 0
-NextRunTime        : 2020/09/05 3:00:00
-NumberOfMissedRuns : 0
-TaskName           : appuriverifierinstall
-TaskPath           : \Microsoft\Windows\ApplicationData\
-PSComputerName     : 
-
-LastRunTime        : 2020/09/04 14:16:16
+LastRunTime        : 2020/10/22 14:26:26
 LastTaskResult     : 2147946720
-NextRunTime        : 2020/09/05 3:00:00
+NextRunTime        : 2020/10/23 3:00:00
 NumberOfMissedRuns : 0
 TaskName           : appuriverifierdaily
 TaskPath           : \Microsoft\Windows\ApplicationData\
 PSComputerName     : 
 
-LastRunTime        : 2020/09/04 14:11:11
-LastTaskResult     : 0
-NextRunTime        : 2020/09/04 18:00:00
+LastRunTime        : 2020/10/22 14:20:20
+LastTaskResult     : 2147946720
+NextRunTime        : 2020/10/24 3:00:00
 NumberOfMissedRuns : 0
-TaskName           : Consolidator
-TaskPath           : \Microsoft\Windows\Customer Experience Improvement Program\
+TaskName           : appuriverifierinstall
+TaskPath           : \Microsoft\Windows\ApplicationData\
 PSComputerName     : 
 
-LastRunTime        : 2020/09/03 11:58:58
+LastRunTime        : 2020/10/01 11:49:49
 LastTaskResult     : 0
-NextRunTime        : 2020/09/27 15:27:27
+NextRunTime        : 2020/10/31 20:59:59
 NumberOfMissedRuns : 0
 TaskName           : Data Integrity Scan
 TaskPath           : \Microsoft\Windows\Data Integrity Scan\
 PSComputerName     : 
 
-LastRunTime        : 2020/09/04 3:15:15
+LastRunTime        : 2020/10/22 14:20:20
 LastTaskResult     : 0
-NextRunTime        : 2020/09/05 4:06:06
+NextRunTime        : 2020/10/22 18:00:00
+NumberOfMissedRuns : 0
+TaskName           : Consolidator
+TaskPath           : \Microsoft\Windows\Customer Experience Improvement Program\
+PSComputerName     : 
+
+LastRunTime        : 2020/10/22 3:41:41
+LastTaskResult     : 0
+NextRunTime        : 2020/10/23 3:34:34
 NumberOfMissedRuns : 0
 TaskName           : Device
 TaskPath           : \Microsoft\Windows\Device Information\
 PSComputerName     : 
 
-LastRunTime        : 2020/04/20 6:23:23
+LastRunTime        : 2020/09/26 13:00:00
 LastTaskResult     : 0
-NextRunTime        : 2020/09/05 15:04:04
-NumberOfMissedRuns : 0
-TaskName           : SvcRestartTask
-TaskPath           : \Microsoft\Windows\SoftwareProtectionPlatform\
-PSComputerName     : 
-
-LastRunTime        : 2020/09/04 0:00:00
-LastTaskResult     : 0
-NextRunTime        : 2020/09/05 0:00:00
-NumberOfMissedRuns : 0
-TaskName           : SpeechModelDownloadTask
-TaskPath           : \Microsoft\Windows\Speech\
-PSComputerName     : 
-
-LastRunTime        : 2020/08/27 13:00:00
-LastTaskResult     : 0
-NextRunTime        : 2020/09/26 13:00:00
+NextRunTime        : 2020/10/26 13:00:00
 NumberOfMissedRuns : 0
 TaskName           : RemoteFXWarningTask
 TaskPath           : \Microsoft\Windows\termsrv\RemoteFX\
 PSComputerName     : 
 
-LastRunTime        : 2020/09/04 13:57:57
+LastRunTime        : 2020/10/22 0:00:00
 LastTaskResult     : 0
-NextRunTime        : 2020/09/05 11:42:42
+NextRunTime        : 2020/10/23 0:00:00
 NumberOfMissedRuns : 0
-TaskName           : Refresh Settings
-TaskPath           : \Microsoft\Windows\UpdateOrchestrator\
+TaskName           : SpeechModelDownloadTask
+TaskPath           : \Microsoft\Windows\Speech\
 PSComputerName     : 
 
-LastRunTime        : 2020/09/04 11:58:58
+LastRunTime        : 2020/10/22 14:08:08
 LastTaskResult     : 0
-NextRunTime        : 2020/09/05 14:58:58
+NextRunTime        : 2020/10/23 17:08:08
 NumberOfMissedRuns : 0
 TaskName           : MusUx_UpdateInterval
 TaskPath           : \Microsoft\Windows\UpdateOrchestrator\
 PSComputerName     : 
 
-LastRunTime        : 2020/09/04 15:05:05
+LastRunTime        : 2020/10/22 5:06:06
 LastTaskResult     : 0
-NextRunTime        : 2020/09/05 14:48:48
-NumberOfMissedRuns : 1
+NextRunTime        : 2020/10/23 6:28:28
+NumberOfMissedRuns : 0
+TaskName           : Refresh Settings
+TaskPath           : \Microsoft\Windows\UpdateOrchestrator\
+PSComputerName     : 
+
+LastRunTime        : 2020/09/14 17:22:22
+LastTaskResult     : 0
+NextRunTime        : 2020/10/22 17:20:20
+NumberOfMissedRuns : 0
+TaskName           : Reboot
+TaskPath           : \Microsoft\Windows\UpdateOrchestrator\
+PSComputerName     : 
+
+LastRunTime        : 2020/10/22 15:12:12
+LastTaskResult     : 0
+NextRunTime        : 2020/10/23 14:49:49
+NumberOfMissedRuns : 0
 TaskName           : Schedule Scan
 TaskPath           : \Microsoft\Windows\UpdateOrchestrator\
 PSComputerName     : 
 
-LastRunTime        : 2020/09/04 14:14:14
+LastRunTime        : 2020/10/22 15:21:21
 LastTaskResult     : 0
-NextRunTime        : 2020/09/04 20:31:31
-NumberOfMissedRuns : 0
-TaskName           : Automatic App Update
-TaskPath           : \Microsoft\Windows\WindowsUpdate\
-PSComputerName     : 
-
-LastRunTime        : 2020/09/04 15:05:05
-LastTaskResult     : 0
-NextRunTime        : 2020/09/04 20:47:47
+NextRunTime        : 2020/10/22 17:06:06
 NumberOfMissedRuns : 0
 TaskName           : QueueReporting
 TaskPath           : \Microsoft\Windows\Windows Error Reporting\
@@ -138,23 +122,31 @@ PSComputerName     :
 
 LastRunTime        : 1999/11/30 0:00:00
 LastTaskResult     : 267011
-NextRunTime        : 2020/09/05 5:52:52
+NextRunTime        : 2020/10/23 5:48:48
 NumberOfMissedRuns : 0
 TaskName           : Windows Defender Scheduled Scan
 TaskPath           : \Microsoft\Windows\Windows Defender\
 PSComputerName     : 
 
-LastRunTime        : 2020/09/04 13:01:01
+LastRunTime        : 2020/10/22 11:48:48
 LastTaskResult     : 0
-NextRunTime        : 2020/09/04 15:36:36
+NextRunTime        : 2020/10/22 15:32:32
 NumberOfMissedRuns : 0
 TaskName           : Scheduled Start
 TaskPath           : \Microsoft\Windows\WindowsUpdate\
 PSComputerName     : 
 
-LastRunTime        : 2020/09/03 22:16:16
+LastRunTime        : 2020/10/22 14:22:22
 LastTaskResult     : 0
-NextRunTime        : 2020/09/04 19:03:03
+NextRunTime        : 2020/10/22 19:51:51
+NumberOfMissedRuns : 0
+TaskName           : Automatic App Update
+TaskPath           : \Microsoft\Windows\WindowsUpdate\
+PSComputerName     : 
+
+LastRunTime        : 2020/10/22 8:12:12
+LastTaskResult     : 0
+NextRunTime        : 2020/10/23 1:14:14
 NumberOfMissedRuns : 0
 TaskName           : sih
 TaskPath           : \Microsoft\Windows\WindowsUpdate\

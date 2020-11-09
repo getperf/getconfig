@@ -202,12 +202,12 @@ ServiceType         : Win32ShareProcess
 
 Name                : COMSysApp
 DisplayName         : COM+ System Application
-Status              : Stopped
+Status              : Running
 DependentServices   : {}
 ServicesDependedOn  : {EventSystem, SENS, RpcSs}
 CanPauseAndContinue : False
 CanShutdown         : False
-CanStop             : False
+CanStop             : True
 ServiceType         : Win32OwnProcess
 
 Name                : Consul
@@ -1252,12 +1252,12 @@ ServiceType         : Win32OwnProcess, InteractiveProcess
 
 Name                : sppsvc
 DisplayName         : Software Protection
-Status              : Stopped
+Status              : Running
 DependentServices   : {}
 ServicesDependedOn  : {RpcSs}
 CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
+CanShutdown         : True
+CanStop             : True
 ServiceType         : Win32OwnProcess
 
 Name                : SQLWriter
@@ -1322,22 +1322,22 @@ ServiceType         : Win32ShareProcess
 
 Name                : svsvc
 DisplayName         : Spot Verifier
-Status              : Stopped
+Status              : Running
 DependentServices   : {}
 ServicesDependedOn  : {}
 CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
+CanShutdown         : True
+CanStop             : True
 ServiceType         : Win32ShareProcess
 
 Name                : swprv
 DisplayName         : Microsoft Software Shadow Copy Provider
-Status              : Stopped
+Status              : Running
 DependentServices   : {}
 ServicesDependedOn  : {RPCSS}
 CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
+CanShutdown         : True
+CanStop             : True
 ServiceType         : Win32OwnProcess
 
 Name                : SysMain
@@ -1442,12 +1442,12 @@ ServiceType         : Win32ShareProcess
 
 Name                : TrustedInstaller
 DisplayName         : Windows Modules Installer
-Status              : Stopped
+Status              : Running
 DependentServices   : {}
 ServicesDependedOn  : {}
 CanPauseAndContinue : False
 CanShutdown         : False
-CanStop             : False
+CanStop             : True
 ServiceType         : Win32OwnProcess
 
 Name                : tzautoupdate
@@ -1630,6 +1630,16 @@ CanShutdown         : False
 CanStop             : False
 ServiceType         : Win32ShareProcess
 
+Name                : VMTools
+DisplayName         : VMware Tools
+Status              : Running
+DependentServices   : {}
+ServicesDependedOn  : {}
+CanPauseAndContinue : True
+CanShutdown         : True
+CanStop             : True
+ServiceType         : Win32OwnProcess
+
 Name                : VMUSBArbService
 DisplayName         : VMware USB Arbitration Service
 Status              : Running
@@ -1640,14 +1650,24 @@ CanShutdown         : False
 CanStop             : True
 ServiceType         : Win32OwnProcess
 
-Name                : VSS
-DisplayName         : Volume Shadow Copy
+Name                : vmvss
+DisplayName         : VMware スナップショット プロバイダ
 Status              : Stopped
 DependentServices   : {}
-ServicesDependedOn  : {RPCSS}
+ServicesDependedOn  : {rpcss}
 CanPauseAndContinue : False
 CanShutdown         : False
 CanStop             : False
+ServiceType         : Win32OwnProcess
+
+Name                : VSS
+DisplayName         : Volume Shadow Copy
+Status              : Running
+DependentServices   : {}
+ServicesDependedOn  : {RPCSS}
+CanPauseAndContinue : False
+CanShutdown         : True
+CanStop             : True
 ServiceType         : Win32OwnProcess
 
 Name                : W32Time
@@ -1912,12 +1932,12 @@ ServiceType         : Win32OwnProcess
 
 Name                : wuauserv
 DisplayName         : Windows Update
-Status              : Stopped
+Status              : Running
 DependentServices   : {}
 ServicesDependedOn  : {rpcss}
 CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
+CanShutdown         : True
+CanStop             : True
 ServiceType         : Win32ShareProcess
 
 Name                : wudfsvc

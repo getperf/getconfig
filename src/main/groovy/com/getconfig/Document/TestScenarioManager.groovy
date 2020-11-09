@@ -52,7 +52,6 @@ class TestScenarioManager implements Controller {
 
     TestScenario setResultGroups(Map<String,ResultGroup> resultGroups) {
         resultGroups.each { String serverName, ResultGroup resultGroup ->
-            println "server:$serverName, compare: ${resultGroup.compareServer}"
             setResultGroup(serverName, resultGroup)
         }
         return this.testScenario

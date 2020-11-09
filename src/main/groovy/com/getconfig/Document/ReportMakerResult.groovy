@@ -9,6 +9,7 @@ import com.getconfig.Model.TestScenario
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
+import org.apache.poi.ss.util.CellRangeAddress
 
 @Slf4j
 @TypeChecked
@@ -19,20 +20,38 @@ class ReportMakerResult {
     ReportMaker reportMaker
     SheetManager manager
     List<Integer> groupRows
+    String tagExists
 
     ReportMakerResult(TestScenario testScenario, ReportMaker reportMaker) {
         this.testScenario = testScenario
         this.reportMaker = reportMaker
     }
 
+    List<String> reOrderServersByTag(List<String> servers) {
+        servers.each { String server ->
+            if (testScenario.checkTagServer(server)) {
+                servers.remove(servers.indexOf(server))
+                servers.add(0, server)
+            }
+        }
+        return servers
+    }
+
     void makeHeader(List<String> servers) {
         int columnPosition = 7
         manager.sheet.setColumnHidden(5, true)
         manager.setPosition(0, columnPosition)
+        tagExists = null
         servers.each { String server ->
             manager.setCell(server, "HeaderServer")
             manager.sheet.setColumnWidth(columnPosition, 48*256)
+            if (testScenario.checkTagServer(server)) {
+                tagExists = server
+            }
             columnPosition ++
+        }
+        if (tagExists) {
+            manager.setCell("TAG" as String, "HeaderServer")
         }
     }
 
@@ -59,22 +78,25 @@ class ReportMakerResult {
         servers.each { String server ->
             Result result = testScenario.results.get(server, metricId)
             if (result) {
-//                println result.comparison
+                // manager.setCell(result.value)
                 if (result.comparison == Result.ResultStatus.MATCH) {
-//                    manager.setCell(result.value, "SameAs")
-                    manager.setCell("same as ", "SameAs")
+                    manager.setCell("same as", "SameAs")
                 } else {
                     manager.setCell(result.value)
                 }
-                if (testScenario.serverGroupTags.get(server)) {
-                    ResultTag resultTag = testScenario.resultTags.get(server, metricId)
-                    if (resultTag) {
-                        double rate = resultTag.rate()
-                        manager.setCell(rate, (rate == 1.0) ? "Match": "UnMatch")
-                    }
-                }
             } else {
                 manager.setCell(ExcelConstants.CELL_NOT_UNKOWN_VALUE, "Null")
+            }
+        }
+        if (tagExists) {
+            ResultTag resultTag = testScenario.resultTags.get(tagExists, metricId)
+            // if (resultTag && resultTag.used() == false) {
+            //     manager.setCell(ExcelConstants.CELL_NOT_UNKOWN_VALUE, "Null")
+            if (!resultTag || !(resultTag.used())) {
+                manager.setCell(ExcelConstants.CELL_NOT_UNKOWN_VALUE, "Null")
+            } else {
+                double rate = (resultTag) ? resultTag.rate() : 0
+                manager.setCell(rate, (rate == 1.0) ? "Match": "UnMatch")
             }
         }
     }
@@ -96,6 +118,9 @@ class ReportMakerResult {
         servers.each { String server ->
             manager.setCell("")
         }
+        if (tagExists) {
+            manager.setCell("")
+        }
     }
 
     void makeRowGroup(List<Integer> groupRows) {
@@ -109,12 +134,21 @@ class ReportMakerResult {
         }
     }
 
+    int columnSize(int serverCount) {
+        int column = 6
+        column += serverCount
+        if (tagExists) {
+            column ++
+        }
+        return column
+    }
+
     void make() {
         reportMaker.parseCellStyles("CellStyle")
         def resultSheetServerKeys = testScenario.resultSheetServerKeys.asMap()
         resultSheetServerKeys.each { String sheetName,
                                      Collection<String> refServers ->
-            List<String> servers = refServers as List
+            List<String> servers = this.reOrderServersByTag(refServers as List)
             reportMaker.setTemplateSheet("TestResult")
             reportMaker.copyTemplate(sheetName)
             manager = reportMaker.createSheetManager()
@@ -151,6 +185,8 @@ class ReportMakerResult {
             row ++
             groupRows << row
             this.makeRowGroup(groupRows)
+            int column = this.columnSize(servers.size())
+            manager.sheet.setAutoFilter(new CellRangeAddress(0, 0, 0, column))
         }
     }
 

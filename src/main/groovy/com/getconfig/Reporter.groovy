@@ -80,7 +80,7 @@ class Reporter implements Controller {
         makeResultReport()
         makeDeviceReport()
         finishReport()
-
+        log.info "finish '${reportPath}' saved"
         return 0
     }
 

@@ -1,6 +1,6 @@
 ● kdump.service - Crash recovery kernel arming
    Loaded: loaded (/usr/lib/systemd/system/kdump.service; enabled; vendor preset: enabled)
-   Active: active (exited) since 火 2020-07-28 06:02:22 JST; 2 months 22 days ago
+   Active: active (exited) since 火 2020-07-28 06:02:22 JST; 2 months 25 days ago
  Main PID: 4880 (code=exited, status=0/SUCCESS)
     Tasks: 0
    CGroup: /system.slice/kdump.service

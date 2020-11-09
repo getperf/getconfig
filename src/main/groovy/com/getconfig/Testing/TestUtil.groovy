@@ -1,5 +1,7 @@
 package com.getconfig.Testing
 
+import com.getconfig.Model.PlatformParameter
+
 import java.nio.file.Paths
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
@@ -21,25 +23,30 @@ class TestUtil {
     String logPath
     ResultGroup testResultGroup
     ServerPortList portListGroup
+    Map<String, PlatformParameter> platformParameters
 
     TestUtil(String serverName, String platform, String metricFile,
              ResultGroup testResultGroup = null,
-             ServerPortList portListGroup = null) {
+             ServerPortList portListGroup = null,
+             Map<String, PlatformParameter> platformParameters = null) {
         this.serverName = serverName
         this.platform = platform
         this.metricFile = metricFile
         this.testResultGroup = testResultGroup ?: new ResultGroup(this.serverName)
         this.portListGroup = portListGroup ?: new ServerPortList(this.serverName)
+        this.platformParameters = platformParameters
     }
 
     TestUtil(AgentLog agentLog, ResultGroup testResultGroup = null,
-             ServerPortList portListGroup = null) {
+             ServerPortList portListGroup = null,
+             Map<String, PlatformParameter> platformParameters = null) {
         this.serverName = agentLog.serverName
         this.platform = agentLog.platform
         this.metricFile = agentLog.metricFile
         this.logPath = agentLog.getLogPath()
         this.testResultGroup = testResultGroup ?: new ResultGroup(this.serverName)
         this.portListGroup = portListGroup ?: this.testResultGroup.serverPortList ?: new ServerPortList(this.serverName)
+        this.platformParameters = platformParameters
     }
 
     def readLine = { String charset = 'UTF-8', Closure closure ->
@@ -101,6 +108,10 @@ class TestUtil {
 
     void portList(String ip, String device, boolean forManagement = false) {
         PortListRegister.portList(this, ip, device, forManagement)
+    }
+
+    List getParameter(String name) {
+        return TargetServerInfo.getParameter(this, name)
     }
 
 }

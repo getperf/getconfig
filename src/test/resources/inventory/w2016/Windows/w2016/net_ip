@@ -13,7 +13,7 @@ InterfaceMetric                 : 75
 NeighborDiscoverySupported      : Yes
 NeighborUnreachabilityDetection : Enabled
 BaseReachableTime(ms)           : 15000
-ReachableTime(ms)               : 7500
+ReachableTime(ms)               : 17000
 RetransmitTime(ms)              : 2000
 DadTransmits                    : 0
 DadRetransmitTime(ms)           : 1000
@@ -46,7 +46,7 @@ InterfaceMetric                 : 75
 NeighborDiscoverySupported      : Yes
 NeighborUnreachabilityDetection : Disabled
 BaseReachableTime(ms)           : 30000
-ReachableTime(ms)               : 38000
+ReachableTime(ms)               : 34500
 RetransmitTime(ms)              : 1000
 DadTransmits                    : 0
 DadRetransmitTime(ms)           : 1000
@@ -79,7 +79,7 @@ InterfaceMetric                 : 25
 NeighborDiscoverySupported      : Yes
 NeighborUnreachabilityDetection : Enabled
 BaseReachableTime(ms)           : 30000
-ReachableTime(ms)               : 42000
+ReachableTime(ms)               : 20000
 RetransmitTime(ms)              : 1000
 DadTransmits                    : 1
 DadRetransmitTime(ms)           : 1000
@@ -112,7 +112,7 @@ InterfaceMetric                 : 75
 NeighborDiscoverySupported      : No
 NeighborUnreachabilityDetection : Disabled
 BaseReachableTime(ms)           : 30000
-ReachableTime(ms)               : 38000
+ReachableTime(ms)               : 16000
 RetransmitTime(ms)              : 1000
 DadTransmits                    : 0
 DadRetransmitTime(ms)           : 1000
@@ -145,7 +145,7 @@ InterfaceMetric                 : 25
 NeighborDiscoverySupported      : Yes
 NeighborUnreachabilityDetection : Enabled
 BaseReachableTime(ms)           : 30000
-ReachableTime(ms)               : 17500
+ReachableTime(ms)               : 28500
 RetransmitTime(ms)              : 1000
 DadTransmits                    : 3
 DadRetransmitTime(ms)           : 1000
@@ -178,7 +178,7 @@ InterfaceMetric                 : 75
 NeighborDiscoverySupported      : No
 NeighborUnreachabilityDetection : Disabled
 BaseReachableTime(ms)           : 30000
-ReachableTime(ms)               : 35000
+ReachableTime(ms)               : 29500
 RetransmitTime(ms)              : 1000
 DadTransmits                    : 0
 DadRetransmitTime(ms)           : 1000

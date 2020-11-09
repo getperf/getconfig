@@ -1,5 +1,8 @@
 package com.getconfig.AgentLogParser
 
+import com.getconfig.AgentLogParser.ServerNameAliases
+import com.getconfig.Model.Server
+import com.getconfig.TestData
 import spock.lang.IgnoreIf
 import spock.lang.Specification
 
@@ -10,6 +13,8 @@ class AgentLogTest extends Specification {
         def agentLog = new AgentLog(path).parse()
         agentLog.agentLogMode == agentLogMode
         agentLog.platform == platform
+        def agentLog2 = new AgentLog("\\centos80\\VMWare\\centos80\\cpu").parse()
+        println agentLog2
 
         where:
         path                               | platform | agentLogMode
@@ -57,4 +62,28 @@ class AgentLogTest extends Specification {
         path                               | platform | agentLogMode
         "\\server02\\WindowsConf\\cpu" | "Windows" | AgentLogMode.NORMAL
     }
+
+    def "DryRunログパス解析"() {
+        when:
+        def agentLog = new AgentLog("\\centos80\\VMWare\\centos80\\cpu").parse()
+
+        then:
+        agentLog.serverName == 'centos80'
+        agentLog.platform == 'VMWare'
+    }
+
+    def "DryRunバッチログパス解析"(String inPath, String outPath) {
+        expect:
+        List<Server> testServers = TestData.readTestServers()
+        def serverNameAliases = new ServerNameAliases(testServers)
+        def agentLog = new AgentLog(inPath).parse()
+        agentLog.patchServerName(serverNameAliases)
+        agentLog.getProjectLogPath() == outPath
+
+        where:
+        inPath                               | outPath
+        "LocalAgentBatch_VMWare_192.168.10.100_Account01\\centos80\\all.json" | "centos80\\VMWare\\centos80\\all.json"
+        "\\centos80\\Linux\\centos80\\cpu" | "centos80\\Linux\\centos80\\cpu"
+    }
+
 }

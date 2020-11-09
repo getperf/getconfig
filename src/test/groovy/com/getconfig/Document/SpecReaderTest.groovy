@@ -9,6 +9,7 @@ import spock.lang.Specification
 class SpecReaderTest extends Specification {
 
     String checkSheet = './src/test/resources/getconfig.xlsx'
+    String paramTestSheet = './src/test/resources/getconfig_param_test.xlsx'
     String configFile = './src/test/resources/config/config.groovy'
 
     def "初期化"() {
@@ -45,5 +46,16 @@ class SpecReaderTest extends Specification {
         specReader.serverCount() > 0
         servers[0].user == "someuser"
         servers[0].password == "P@ssword"
+    }
+
+    def "プラットフォームパラメータ読込み"() {
+        when:
+        def specReader = new SpecReader(inExcel : paramTestSheet)
+        specReader.parse()
+
+        then:
+        specReader.platformParameters.get('Packages').values.size() > 0
+        specReader.platformParameters.get('Hoge').values[0] == 1
+        specReader.platformParameters.get('None').values.size() == 0
     }
 }

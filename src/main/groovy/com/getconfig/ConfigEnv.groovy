@@ -156,7 +156,8 @@ class ConfigEnv {
 
     // 一時ログディレクトリ  /build/log
     String getCurrentLogDir() {
-        return Paths.get(this.getProjectHome(), "build/log")
+        return Paths.get(this.getProjectHome(), 
+            this.config?.current_log_dir ?: "build/log")
     }
 
     // 一時ノード定義ディレクトリ  /build/node

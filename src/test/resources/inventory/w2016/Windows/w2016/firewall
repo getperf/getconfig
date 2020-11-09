@@ -1148,7 +1148,7 @@ EnforcementStatus     : NotApplicable
 PolicyStoreSource     : PersistentStore
 PolicyStoreSourceType : Local
 
-Name                  : {9A875BC9-D36F-4B02-9F2D-174D56E3B6BC}
+Name                  : {5FADFCE7-0C6A-49BF-BD4F-9069DAC55FE7}
 DisplayName           : Google Chrome（mDNS インバウンド）
 Description           : mDNS トラフィックを許可する Google Chrome のインバウンド ルールです。
 DisplayGroup          : Google Chrome
@@ -1168,7 +1168,7 @@ EnforcementStatus     : NotApplicable
 PolicyStoreSource     : PersistentStore
 PolicyStoreSourceType : Local
 
-Name                  : {02B27DD5-9F09-4068-AD1D-5FB9C913D8B0}
+Name                  : {B9A9772B-3905-4170-93BC-401747547BDA}
 DisplayName           : コア ネットワーク - Teredo (ICMPv6 受信)
 Description           : エコー要求のメッセージは、他のノードに対する ping 要求として送信されます。
 DisplayGroup          : コア ネットワーク

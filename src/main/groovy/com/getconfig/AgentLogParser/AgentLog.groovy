@@ -1,5 +1,6 @@
 package com.getconfig.AgentLogParser
 
+import com.getconfig.Model.Server
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 
@@ -75,11 +76,19 @@ class AgentLog {
     }
 
     void patchServerName(ServerNameAliases serverNameAliases) {
+        // println serverNameAliases
         if (!this.serverName && this.agentLogMode == AgentLogMode.BATCH) {
             if (this.alias) {
                 this.serverName = serverNameAliases.getServerName(this.alias)
             }
         }
+    }
+
+    String getProjectLogPath() {
+        if (!serverName || !platform || !metricFile) {
+            return null
+        }
+        return Paths.get(this.serverName, this.platform, this.serverName, this.metricFile)
     }
 
     String getLogPath() {

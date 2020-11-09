@@ -256,8 +256,8 @@ void network(TestUtil t) {
                    'DefaultIPGateway', 'Description', 'IPSubnet']
     def csv          = []
 
-    def ip_addresses = []
-    def res = [:]
+    // def ip_addresses = []
+    def res = [:].withDefault{[]}
     def exclude_compares = []
     (0..device_number).each { row ->
         def columns = []
@@ -269,7 +269,6 @@ void network(TestUtil t) {
         def ip_address = parse_ip(network_info[row]['IPAddress'])
         def gateway    = parse_ip(network_info[row]['DefaultIPGateway'])
         def subnet     = parse_ip(network_info[row]['IPSubnet'])
-        ip_addresses << ip_address
 
         if (ip_address && ip_address != '127.0.0.1') {
             t.newMetric("network.dev.${row}",     "[${row}] Device", device)
@@ -277,13 +276,16 @@ void network(TestUtil t) {
             exclude_compares << "network.ip.${row}"
             t.newMetric("network.subnet.${row}",  "[${row}] Subnet", subnet)
             t.newMetric("network.gateway.${row}", "[${row}] Gateway", gateway)
+            res['network'] << ip_address
+            res['subnet'] << subnet
+            res['gateway'] << gateway
 
             t.portList(ip_address, device)
         }
 
     }
     t.devices(headers, csv)
-    res['network'] = "${ip_addresses}"
+    // res['network'] = "${ip_addresses}"
     t.results(res)
 }
 

@@ -80,7 +80,7 @@ class LinuxParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
-        t.get().value == "76d1374a96baf95519ccde830000000e"
+        t.get().value == "a84779803e4340eaa28ef0dc66ff4c1e"
     }
 
     def "meminfo"() {
@@ -224,7 +224,7 @@ class LinuxParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
-        t.get().value == "[RHEL8:1051, COMMON:2]"
+        t.get().value == "[RHEL8:1056, COMMON:2]"
     }
 
     def "cron"() {

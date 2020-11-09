@@ -5,6 +5,7 @@ import ch.qos.logback.classic.Logger
 import com.getconfig.Command.GetconfigCommand
 import com.getconfig.Document.SpecReader
 import com.getconfig.Document.TestScenarioManager
+import com.getconfig.Model.PlatformParameter
 import com.getconfig.Model.ResultGroup
 import com.getconfig.Model.TestScenario
 import com.getconfig.Model.Server
@@ -24,7 +25,7 @@ class TestRunner implements Controller {
     String checkSheetPath
     String evidenceSheetPath
     List<Server> testServers
-    Map<String, ServerGroup> testServerGroups
+    Map<String, PlatformParameter> platformParameters
     Map<String, ResultGroup> testResultGroups
     TestScenario testScenario
 
@@ -47,6 +48,7 @@ class TestRunner implements Controller {
         specReader.parse()
         specReader.mergeConfig()
         this.testServers = specReader.testServers()
+        this.platformParameters = specReader.platformParameters()
         def serverCount = testServers.size()
         if (serverCount == 0)
             throw new IllegalArgumentException("no test servers in ${this.checkSheetPath}")
@@ -64,7 +66,7 @@ class TestRunner implements Controller {
     void runLogParser() {
         log.info "run parser"
         long start = System.currentTimeMillis()
-        LogParser logParser = new LogParser(this.testServers)
+        LogParser logParser = new LogParser(this.testServers, this.platformParameters)
         ConfigEnv.instance.accept(logParser)
         logParser.run()
         this.testResultGroups = logParser.testResultGroups
@@ -96,7 +98,7 @@ class TestRunner implements Controller {
         this.runLogParser()
         this.runReporter()
         long elapse = System.currentTimeMillis() - start
-        log.info "Finish, Total Elapse : ${elapse} ms"
+        log.info "total elapse : ${elapse} ms"
         return 0
     }
 }

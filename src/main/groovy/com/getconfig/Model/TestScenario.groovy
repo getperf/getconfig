@@ -135,4 +135,8 @@ class TestScenario {
         }
         return resultSheetName
     }
+
+    boolean checkTagServer(String server) {
+        return serverGroupTags.containsKey(server)
+    }
 }

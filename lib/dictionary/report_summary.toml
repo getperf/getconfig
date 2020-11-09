@@ -161,7 +161,7 @@ name = "サブネット構成"
 
     [columns.inventories]
     Linux = "net_subnet"
-    Windows = "network.subnet"
+    Windows = "subnet"
     VMHost = "SubnetMask"
     Solaris = "net_subnet"
     Eternus = "net_subnet"
@@ -172,7 +172,7 @@ name = "ゲートウェイ構成"
 
     [columns.inventories]
     Linux = "net_route"
-    Windows = "network.gw"
+    Windows = "gateway"
     VMHost = "DefaultGateway"
     Solaris = "net_route"
     AIX = "network"

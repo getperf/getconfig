@@ -1,38 +1,11 @@
 
 
-SystemRoot                : C:\Windows
-BuildBranch               : rs1_release
-BuildGUID                 : ffffffff-ffff-ffff-ffff-ffffffffffff
-BuildLab                  : 14393.rs1_release.200805-1327
-BuildLabEx                : 14393.3866.amd64fre.rs1_release.200805-1327
-CompositionEditionID      : ServerStandardEval
-CurrentBuild              : 14393
-CurrentBuildNumber        : 14393
-CurrentMajorVersionNumber : 10
-CurrentMinorVersionNumber : 0
-CurrentType               : Multiprocessor Free
-CurrentVersion            : 6.3
-EditionID                 : ServerStandardEval
-InstallationType          : Server
-InstallDate               : 1554581021
-ProductName               : Windows Server 2016 Standard Evaluation
-ReleaseId                 : 1607
-SoftwareType              : System
-UBR                       : 3866
-PathName                  : C:\Windows
-Customizations            : None
-DigitalProductId          : {164, 0, 0, 0...}
-DigitalProductId4         : {248, 4, 0, 0...}
-ProductId                 : 00378-00000-00000-AA739
-RegisteredOwner           : Windows ユーザー
-RegisteredOrganization    : 
-InstallTime               : 131990546212520095
-PSPath                    : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Curren
-                            tVersion
-PSParentPath              : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT
-PSChildName               : CurrentVersion
-PSDrive                   : HKLM
-PSProvider                : Microsoft.PowerShell.Core\Registry
+Domain              : WORKGROUP
+Manufacturer        : VMware, Inc.
+Model               : VMware Virtual Platform
+Name                : WIN-JKSSMTI1TM6
+PrimaryOwnerName    : Windows ユーザー
+TotalPhysicalMemory : 6441979904
 
 
 

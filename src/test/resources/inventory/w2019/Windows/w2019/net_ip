@@ -13,7 +13,7 @@ InterfaceMetric                 : 25
 NeighborDiscoverySupported      : Yes
 NeighborUnreachabilityDetection : Enabled
 BaseReachableTime(ms)           : 30000
-ReachableTime(ms)               : 16500
+ReachableTime(ms)               : 18000
 RetransmitTime(ms)              : 1000
 DadTransmits                    : 1
 DadRetransmitTime(ms)           : 1000
@@ -46,7 +46,7 @@ InterfaceMetric                 : 75
 NeighborDiscoverySupported      : No
 NeighborUnreachabilityDetection : Disabled
 BaseReachableTime(ms)           : 30000
-ReachableTime(ms)               : 34000
+ReachableTime(ms)               : 24500
 RetransmitTime(ms)              : 1000
 DadTransmits                    : 0
 DadRetransmitTime(ms)           : 1000
@@ -79,7 +79,7 @@ InterfaceMetric                 : 25
 NeighborDiscoverySupported      : Yes
 NeighborUnreachabilityDetection : Enabled
 BaseReachableTime(ms)           : 30000
-ReachableTime(ms)               : 40000
+ReachableTime(ms)               : 36000
 RetransmitTime(ms)              : 1000
 DadTransmits                    : 3
 DadRetransmitTime(ms)           : 1000
@@ -112,7 +112,7 @@ InterfaceMetric                 : 75
 NeighborDiscoverySupported      : No
 NeighborUnreachabilityDetection : Disabled
 BaseReachableTime(ms)           : 30000
-ReachableTime(ms)               : 33500
+ReachableTime(ms)               : 41000
 RetransmitTime(ms)              : 1000
 DadTransmits                    : 0
 DadRetransmitTime(ms)           : 1000

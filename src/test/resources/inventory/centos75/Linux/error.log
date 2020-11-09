@@ -1,2 +1,11 @@
+Unit iptables.service could not be found.
+run centos75:iptables : run shell: Process exited with status 4
 grep: ifcfg-ens192: 許可がありません
 run centos75:net_onboot : run shell: Process exited with status 2
+cat: /etc/snmp/snmpd.conf: そのようなファイルやディレクトリはありません
+run centos75:snmp_trap : run command: Process exited with status 1
+sudo: パスワードを尋ねる (askpass) プログラムが指定されていません。 SUDO_ASKPASS を設定し、やり直してください
+run centos75:cron : run command: Process exited with status 1
+grep: /var/log/messages: 許可がありません
+sudo: パスワードを尋ねる (askpass) プログラムが指定されていません。 SUDO_ASKPASS を設定し、やり直してください
+run centos75:oracle_module : run command: Process exited with status 1

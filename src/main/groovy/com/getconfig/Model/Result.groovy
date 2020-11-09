@@ -34,4 +34,17 @@ class Result {
         this.metricName = metricName
         this.serverName = serverName
     }
+
+    void compareValue(Result result) {
+        this.comparison = ResultStatus.UNMATCH
+        if (result) {
+            if (this.value == result.value) {
+                this.comparison = ResultStatus.MATCH
+            }
+        }
+    }
+
+    boolean isMatch() {
+        return (this.comparison == ResultStatus.MATCH)
+    }
 }

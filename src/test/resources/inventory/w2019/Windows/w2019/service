@@ -178,27 +178,7 @@ ServicesDependedOn  : {}
 CanPauseAndContinue : False
 CanShutdown         : False
 CanStop             : False
-ServiceType         : Win32OwnProcess, Win32ShareProcess
-
-Name                : CaptureService_45f7e
-DisplayName         : CaptureService_45f7e
-Status              : Stopped
-DependentServices   : {}
-ServicesDependedOn  : {}
-CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
-ServiceType         : 224
-
-Name                : cbdhsvc_45f7e
-DisplayName         : クリップボード ユーザー サービス_45f7e
-Status              : Stopped
-DependentServices   : {}
-ServicesDependedOn  : {}
-CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
-ServiceType         : 224
+ServiceType         : Win32ShareProcess
 
 Name                : CDPSvc
 DisplayName         : Connected Devices Platform Service
@@ -209,16 +189,6 @@ CanPauseAndContinue : False
 CanShutdown         : False
 CanStop             : True
 ServiceType         : Win32OwnProcess, Win32ShareProcess
-
-Name                : CDPUserSvc_45f7e
-DisplayName         : Connected Devices Platform ユーザー サービス_45f7e
-Status              : Running
-DependentServices   : {}
-ServicesDependedOn  : {}
-CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : True
-ServiceType         : 240
 
 Name                : CertPropSvc
 DisplayName         : Certificate Propagation
@@ -242,23 +212,13 @@ ServiceType         : Win32OwnProcess, Win32ShareProcess
 
 Name                : COMSysApp
 DisplayName         : COM+ System Application
-Status              : Stopped
+Status              : Running
 DependentServices   : {}
 ServicesDependedOn  : {EventSystem, SENS, RpcSs}
 CanPauseAndContinue : False
 CanShutdown         : False
-CanStop             : False
+CanStop             : True
 ServiceType         : Win32OwnProcess
-
-Name                : ConsentUxUserSvc_45f7e
-DisplayName         : ConsentUX_45f7e
-Status              : Stopped
-DependentServices   : {}
-ServicesDependedOn  : {}
-CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
-ServiceType         : 224
 
 Name                : CoreMessagingRegistrar
 DisplayName         : CoreMessaging
@@ -293,8 +253,7 @@ ServiceType         : Win32ShareProcess
 Name                : DcomLaunch
 DisplayName         : DCOM Server Process Launcher
 Status              : Running
-DependentServices   : {PrintWorkflowUserSvc_45f7e, DevicesFlowUserSvc_45f7e, DevicePickerUserSvc_45f7e, ConsentUxUserSv
-                      c_45f7e...}
+DependentServices   : {wuauserv, WMPNetworkSvc, WSearch, WpnService...}
 ServicesDependedOn  : {}
 CanPauseAndContinue : False
 CanShutdown         : False
@@ -330,26 +289,6 @@ CanPauseAndContinue : False
 CanShutdown         : False
 CanStop             : False
 ServiceType         : Win32ShareProcess
-
-Name                : DevicePickerUserSvc_45f7e
-DisplayName         : DevicePicker_45f7e
-Status              : Stopped
-DependentServices   : {}
-ServicesDependedOn  : {}
-CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
-ServiceType         : 224
-
-Name                : DevicesFlowUserSvc_45f7e
-DisplayName         : デバイス フロー_45f7e
-Status              : Stopped
-DependentServices   : {}
-ServicesDependedOn  : {}
-CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
-ServiceType         : 224
 
 Name                : DevQueryBroker
 DisplayName         : DevQuery Background Discovery Broker
@@ -459,17 +398,17 @@ ServicesDependedOn  : {RpcSs}
 CanPauseAndContinue : False
 CanShutdown         : False
 CanStop             : False
-ServiceType         : Win32OwnProcess, Win32ShareProcess
+ServiceType         : Win32ShareProcess
 
 Name                : DsSvc
 DisplayName         : Data Sharing Service
-Status              : Running
+Status              : Stopped
 DependentServices   : {}
 ServicesDependedOn  : {}
 CanPauseAndContinue : False
 CanShutdown         : False
-CanStop             : True
-ServiceType         : Win32OwnProcess, Win32ShareProcess
+CanStop             : False
+ServiceType         : Win32ShareProcess
 
 Name                : Eaphost
 DisplayName         : Extensible Authentication Protocol
@@ -713,13 +652,13 @@ ServiceType         : Win32ShareProcess
 
 Name                : LicenseManager
 DisplayName         : Windows ライセンス マネージャー サービス
-Status              : Running
+Status              : Stopped
 DependentServices   : {}
 ServicesDependedOn  : {rpcss}
 CanPauseAndContinue : False
 CanShutdown         : False
-CanStop             : True
-ServiceType         : Win32OwnProcess, Win32ShareProcess
+CanStop             : False
+ServiceType         : Win32ShareProcess
 
 Name                : lltdsvc
 DisplayName         : Link-Layer Topology Discovery Mapper
@@ -833,13 +772,13 @@ ServiceType         : Win32ShareProcess
 
 Name                : Netman
 DisplayName         : Network Connections
-Status              : Running
+Status              : Stopped
 DependentServices   : {}
 ServicesDependedOn  : {RpcSs, nsi}
 CanPauseAndContinue : False
 CanShutdown         : False
-CanStop             : True
-ServiceType         : Win32OwnProcess, Win32ShareProcess
+CanStop             : False
+ServiceType         : Win32ShareProcess
 
 Name                : netprofm
 DisplayName         : Network List Service
@@ -941,16 +880,6 @@ CanShutdown         : False
 CanStop             : False
 ServiceType         : Win32ShareProcess
 
-Name                : PimIndexMaintenanceSvc_45f7e
-DisplayName         : Contact Data_45f7e
-Status              : Running
-DependentServices   : {}
-ServicesDependedOn  : {}
-CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : True
-ServiceType         : 224
-
 Name                : pla
 DisplayName         : Performance Logs & Alerts
 Status              : Stopped
@@ -1000,16 +929,6 @@ CanPauseAndContinue : False
 CanShutdown         : False
 CanStop             : False
 ServiceType         : Win32ShareProcess, InteractiveProcess
-
-Name                : PrintWorkflowUserSvc_45f7e
-DisplayName         : PrintWorkflow_45f7e
-Status              : Stopped
-DependentServices   : {}
-ServicesDependedOn  : {}
-CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
-ServiceType         : 224
 
 Name                : ProfSvc
 DisplayName         : User Profile Service
@@ -1094,7 +1013,7 @@ ServiceType         : Win32ShareProcess
 Name                : RpcEptMapper
 DisplayName         : RPC Endpoint Mapper
 Status              : Running
-DependentServices   : {Schedule, SystemEventsBroker, PrintWorkflowUserSvc_45f7e, DevicesFlowUserSvc_45f7e...}
+DependentServices   : {Schedule, SystemEventsBroker, wuauserv, WMPNetworkSvc...}
 ServicesDependedOn  : {}
 CanPauseAndContinue : False
 CanShutdown         : False
@@ -1114,8 +1033,7 @@ ServiceType         : Win32OwnProcess
 Name                : RpcSs
 DisplayName         : Remote Procedure Call (RPC)
 Status              : Running
-DependentServices   : {PrintWorkflowUserSvc_45f7e, DevicesFlowUserSvc_45f7e, DevicePickerUserSvc_45f7e, ConsentUxUserSv
-                      c_45f7e...}
+DependentServices   : {wuauserv, WMPNetworkSvc, WSearch, WpnService...}
 ServicesDependedOn  : {DcomLaunch, RpcEptMapper}
 CanPauseAndContinue : False
 CanShutdown         : False
@@ -1164,13 +1082,13 @@ ServiceType         : Win32ShareProcess
 
 Name                : ScDeviceEnum
 DisplayName         : Smart Card Device Enumeration Service
-Status              : Running
+Status              : Stopped
 DependentServices   : {}
 ServicesDependedOn  : {}
 CanPauseAndContinue : False
 CanShutdown         : False
-CanStop             : True
-ServiceType         : Win32OwnProcess, Win32ShareProcess
+CanStop             : False
+ServiceType         : Win32ShareProcess
 
 Name                : Schedule
 DisplayName         : Task Scheduler
@@ -1204,7 +1122,7 @@ ServiceType         : Win32ShareProcess
 
 Name                : SecurityHealthService
 DisplayName         : Windows セキュリティ サービス
-Status              : Running
+Status              : Stopped
 DependentServices   : {}
 ServicesDependedOn  : {RpcSs}
 CanPauseAndContinue : False
@@ -1464,13 +1382,13 @@ ServiceType         : Win32ShareProcess
 
 Name                : TabletInputService
 DisplayName         : Touch Keyboard and Handwriting Panel Service
-Status              : Running
+Status              : Stopped
 DependentServices   : {}
 ServicesDependedOn  : {RpcSs}
 CanPauseAndContinue : False
 CanShutdown         : False
 CanStop             : False
-ServiceType         : Win32OwnProcess, Win32ShareProcess
+ServiceType         : Win32ShareProcess
 
 Name                : tapisrv
 DisplayName         : Telephony
@@ -1544,12 +1462,12 @@ ServiceType         : Win32OwnProcess, Win32ShareProcess
 
 Name                : TrustedInstaller
 DisplayName         : Windows Modules Installer
-Status              : Running
+Status              : Stopped
 DependentServices   : {}
 ServicesDependedOn  : {}
 CanPauseAndContinue : False
 CanShutdown         : False
-CanStop             : True
+CanStop             : False
 ServiceType         : Win32OwnProcess
 
 Name                : tzautoupdate
@@ -1592,16 +1510,6 @@ CanShutdown         : True
 CanStop             : True
 ServiceType         : Win32OwnProcess, Win32ShareProcess
 
-Name                : UnistoreSvc_45f7e
-DisplayName         : User Data Storage_45f7e
-Status              : Running
-DependentServices   : {UserDataSvc_45f7e, PimIndexMaintenanceSvc_45f7e}
-ServicesDependedOn  : {}
-CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : True
-ServiceType         : 224
-
 Name                : upnphost
 DisplayName         : UPnP Device Host
 Status              : Stopped
@@ -1611,16 +1519,6 @@ CanPauseAndContinue : False
 CanShutdown         : False
 CanStop             : False
 ServiceType         : Win32ShareProcess
-
-Name                : UserDataSvc_45f7e
-DisplayName         : User Data Access_45f7e
-Status              : Running
-DependentServices   : {}
-ServicesDependedOn  : {}
-CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : True
-ServiceType         : 224
 
 Name                : UserManager
 DisplayName         : User Manager
@@ -1742,6 +1640,26 @@ CanShutdown         : False
 CanStop             : False
 ServiceType         : Win32ShareProcess
 
+Name                : VMTools
+DisplayName         : VMware Tools
+Status              : Running
+DependentServices   : {}
+ServicesDependedOn  : {}
+CanPauseAndContinue : True
+CanShutdown         : True
+CanStop             : True
+ServiceType         : Win32OwnProcess
+
+Name                : vmvss
+DisplayName         : VMware スナップショット プロバイダ
+Status              : Stopped
+DependentServices   : {}
+ServicesDependedOn  : {rpcss}
+CanPauseAndContinue : False
+CanShutdown         : False
+CanStop             : False
+ServiceType         : Win32OwnProcess
+
 Name                : VSS
 DisplayName         : Volume Shadow Copy
 Status              : Stopped
@@ -1764,12 +1682,12 @@ ServiceType         : Win32OwnProcess, Win32ShareProcess
 
 Name                : WaaSMedicSvc
 DisplayName         : Windows Update Medic Service
-Status              : Running
+Status              : Stopped
 DependentServices   : {}
 ServicesDependedOn  : {rpcss}
 CanPauseAndContinue : False
-CanShutdown         : True
-CanStop             : True
+CanShutdown         : False
+CanStop             : False
 ServiceType         : Win32OwnProcess, Win32ShareProcess
 
 Name                : WalletService
@@ -1800,7 +1718,7 @@ ServicesDependedOn  : {RpcSs}
 CanPauseAndContinue : False
 CanShutdown         : False
 CanStop             : False
-ServiceType         : Win32OwnProcess, Win32ShareProcess
+ServiceType         : Win32ShareProcess
 
 Name                : Wcmsvc
 DisplayName         : Windows Connection Manager
@@ -1824,12 +1742,12 @@ ServiceType         : Win32ShareProcess
 
 Name                : WdiSystemHost
 DisplayName         : Diagnostic System Host
-Status              : Stopped
+Status              : Running
 DependentServices   : {}
 ServicesDependedOn  : {}
 CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : False
+CanShutdown         : True
+CanStop             : True
 ServiceType         : Win32OwnProcess, Win32ShareProcess
 
 Name                : WdNisSvc
@@ -2002,16 +1920,6 @@ CanShutdown         : False
 CanStop             : True
 ServiceType         : Win32OwnProcess, Win32ShareProcess
 
-Name                : WpnUserService_45f7e
-DisplayName         : Windows Push Notifications User Service_45f7e
-Status              : Running
-DependentServices   : {}
-ServicesDependedOn  : {}
-CanPauseAndContinue : False
-CanShutdown         : False
-CanStop             : True
-ServiceType         : 240
-
 Name                : WSearch
 DisplayName         : Windows Search
 Status              : Stopped
@@ -2024,12 +1932,12 @@ ServiceType         : Win32OwnProcess
 
 Name                : wuauserv
 DisplayName         : Windows Update
-Status              : Running
+Status              : Stopped
 DependentServices   : {}
 ServicesDependedOn  : {rpcss}
 CanPauseAndContinue : False
-CanShutdown         : True
-CanStop             : True
+CanShutdown         : False
+CanStop             : False
 ServiceType         : Win32OwnProcess, Win32ShareProcess
 
 
