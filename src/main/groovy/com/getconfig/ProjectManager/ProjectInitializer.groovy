@@ -1,4 +1,4 @@
-package com.getconfig.Document.ProjectManager
+package com.getconfig.ProjectManager
 
 import com.getconfig.ConfigEnv
 import com.getconfig.Controller

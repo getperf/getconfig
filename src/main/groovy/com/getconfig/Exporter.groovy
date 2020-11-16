@@ -1,8 +1,8 @@
 package com.getconfig
 
 
-import com.getconfig.Document.ProjectManager
-import com.getconfig.Document.ProjectManager.InventoryLoaderLocal
+import com.getconfig.ProjectManager.InventoryLoaderDatabase
+import com.getconfig.ProjectManager.InventoryLoaderLocal
 import com.getconfig.Document.SpecReader
 import com.getconfig.Model.Server
 import groovy.transform.CompileStatic
@@ -14,19 +14,21 @@ import groovy.util.logging.Slf4j
 @CompileStatic
 class Exporter implements Controller {
     String checkSheetPath
+    String projectNodeDir
     String mode
     List<Server> testServers
-    ProjectManager projectManager = new ProjectManager()
     InventoryLoaderLocal inventoryLoaderLocal = new InventoryLoaderLocal()
+    InventoryLoaderDatabase inventoryLoaderDatabase = new InventoryLoaderDatabase()
 
     Exporter(String mode = 'local') {
         this.mode = mode
     }
 
     void setEnvironment(ConfigEnv env) {
-        env.accept(projectManager)
         env.accept(inventoryLoaderLocal)
+        env.accept(inventoryLoaderDatabase)
         this.checkSheetPath = env.getCheckSheetPath()
+        this.projectNodeDir = env.getProjectNodeDir()
         this.mode = env.getTargetType()
     }
 
@@ -49,6 +51,12 @@ class Exporter implements Controller {
 
             case 'db' :
                 println 'this.export_cmdb()'
+                inventoryLoaderDatabase.initialize()
+                inventoryLoaderDatabase.export(testServers, projectNodeDir)
+                break
+
+            case 'ticket' :
+                println ConfigEnv.getInstance().commandArgs
                 break
 
             default :

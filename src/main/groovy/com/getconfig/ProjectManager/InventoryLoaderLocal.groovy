@@ -1,9 +1,8 @@
-package com.getconfig.Document.ProjectManager
+package com.getconfig.ProjectManager
 
 import com.getconfig.ConfigEnv
 import com.getconfig.Controller
 import com.getconfig.Model.Server
-import groovy.io.FileType
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j

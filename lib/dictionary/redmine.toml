@@ -1,0 +1,21 @@
+in_operation_status_id = 10
+
+[parameters]
+
+rack_location_prefix = "RackTables:"
+port_list_tracker = "ポートリスト"
+
+[custom_fields]
+
+inventory = "インベントリ"
+rack_location = "ラック位置"
+port_no = "ポート番号"
+description = "ポートデバイス"
+mac = "MACアドレス"
+vendor = "MACアドレスベンダー"
+switch_name = "スイッチ名"
+netmask = "ネットマスク"
+device_type = "機器種別"
+lookup = "台帳つき合わせ"
+managed = "管理用"
+

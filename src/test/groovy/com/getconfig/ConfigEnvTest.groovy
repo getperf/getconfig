@@ -15,7 +15,7 @@ class ConfigEnvTest extends Specification {
         println env.getProjectLogDir()
 
         then:
-        env.getCmdbConfigPath().size() > 0
+        env.getInventoryDBConfigPath().size() > 0
     }
 
     def "アカウントセット"() {

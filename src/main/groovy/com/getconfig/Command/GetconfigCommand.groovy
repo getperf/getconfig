@@ -1,10 +1,5 @@
 package com.getconfig.Command
 
-
-import com.getconfig.ConfigEnv
-import com.getconfig.Document.ProjectManager
-import com.getconfig.Document.ProjectManager.ProjectInitializer
-import com.getconfig.Exporter
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
@@ -16,10 +11,11 @@ import picocli.CommandLine.Parameters
 import picocli.CommandLine.ExitCode
 import picocli.CommandLine.IVersionProvider
 import picocli.CommandLine.IExitCodeExceptionMapper
-
 import java.util.concurrent.Callable
-
+import com.getconfig.ConfigEnv
 import com.getconfig.TestRunner
+import com.getconfig.Exporter
+import com.getconfig.ProjectManager.ProjectInitializer
 
 @Slf4j
 @CompileStatic
@@ -265,7 +261,10 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
                 description="check sheet input (default: check_sheet.xlsx)")
         File checkSheetPath
 
-        @Parameters(paramLabel = "[local|db]", description = "update inventory database")
+        @Option(names = ["-r", "--redmine"], description = "redmine project")
+        String redmineProject
+
+        @Parameters(paramLabel = "[local|db|ticket|all]", description = "update inventory database")
         String targetType = "local"
 
         @Override

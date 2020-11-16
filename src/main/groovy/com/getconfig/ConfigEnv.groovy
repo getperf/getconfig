@@ -19,6 +19,7 @@ class ConfigEnv {
     final static int DefaultAutoTagNumber = 10
 
     ConfigObject config
+    ConfigObject dbConfig
     ConfigCommandArgs commandArgs = new ConfigCommandArgs()
 
     final static String accountNotFound = "account not found in config.groovy"
@@ -28,6 +29,7 @@ class ConfigEnv {
                 configFile ?: this.getConfigFile() as String,
                 keyword ?: this.getPassword())
         convertDateFormat()
+        readInventoryDBConfig()
     }
 
     void convertDateFormat() {
@@ -40,6 +42,10 @@ class ConfigEnv {
                 evidence[key] = value.replaceAll(/<date>/, nowLabel)
             }
         }
+    }
+
+    void readInventoryDBConfig() {
+        this.dbConfig = Config.instance.readConfig(this.getInventoryDBConfigPath())
     }
 
     void setAccount(Server sv) {
@@ -86,6 +92,11 @@ class ConfigEnv {
         return new File(this.getProjectHome()).getName()
     }
 
+    // テナント名
+    String getTenantName() {
+        return System.getProperty("CMDB_TENANT") ?: '_Default'
+    }
+
     // gconf 実行パス
     String getGconfExe() {
         String gconfExe = (this.isWindows()) ? "gconf.exe" : "gconf"
@@ -111,7 +122,7 @@ class ConfigEnv {
     }
 
     // 構成管理DB設定パス  config/cmdb.groovy
-    String getCmdbConfigPath() {
+    String getInventoryDBConfigPath() {
         return this.config?.db_config ?:
                 Paths.get(this.getGetconfigHome(), "config/cmdb.groovy")
     }
@@ -247,12 +258,12 @@ class ConfigEnv {
 
     // update サブコマンド用
     String getTargetType() {
-        return this.commandArgs.targetType
+        return this.commandArgs?.targetType
     }
 
-    // regist サブコマンド用
+    // update サブコマンド用
     String getRedmineProject() {
-        return this.commandArgs.redmineProject
+        return this.commandArgs?.redmineProject ?: 'cmdb'
     }
 
     // 検査シートパス  チェックシート.xslx
@@ -262,4 +273,44 @@ class ConfigEnv {
                                 'src/test/resources/hub/inventory')
     }
 
+    // インベントリDB接続 URL
+    String getInventoryDBUrl() {
+        return System.getenv("CMDB_URL") ?: this.dbConfig?.cmdb?.url ?:
+                'jdbc:h2:mem:'
+    }
+
+    // インベントリDB接続 ユーザ
+    String getInventoryDBUsername() {
+        return System.getenv("CMDB_USER") ?: this.dbConfig?.cmdb?.user ?:
+                'sa'
+    }
+
+    // インベントリDB接続 パスワード
+    String getInventoryDBPassword() {
+        return System.getenv("CMDB_PASSWORD") ?: this.dbConfig?.cmdb?.password ?:
+                'sa'
+    }
+    // インベントリDB接続 URL
+    String getInventoryDBDriver() {
+        return System.getenv("CMDB_DRIVER") ?: this.dbConfig?.cmdb?.driver ?:
+                'org.h2.Driver'
+    }
+    // インベントリDB 初期化スクリプト
+    String getInventoryDBCreateScript() {
+        return this.config?.get('cmdb_create_script') ?:
+                        Paths.get(this.getGetconfigHome(),
+                                'lib/template/create_db.sql')
+    }
+
+    // Redmine URL
+    String getRedmineUrl() {
+        return System.getenv("REDMINE_URL") ?: this.dbConfig?.redmine?.url ?:
+                'http://redmine/redmine'
+    }
+
+    // Redmine API Key
+    String getRedmineApiKey() {
+        return System.getenv("REDMINE_API_KEY") ?: this.dbConfig?.redmine?.url ?:
+                'http://redmine/redmine'
+    }
 }

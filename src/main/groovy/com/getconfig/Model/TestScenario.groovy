@@ -136,7 +136,24 @@ class TestScenario {
         return resultSheetName
     }
 
+    String getTracker(String serverName) {
+        String resultSheetName = this.getResultSheetName(serverName)
+        if (!resultSheetName) {
+            return
+        }
+        ResultSheet resultSheet = this.getResultSheet(resultSheetName)
+        if (!resultSheet) {
+            return
+        }
+        return resultSheet.tracker
+    }
+
     boolean checkTagServer(String server) {
         return serverGroupTags.containsKey(server)
+    }
+
+    PortList getPortList(String server, String ip) {
+        String portListKey = "${server}.${ip}"
+        return this.portLists?.get(portListKey)
     }
 }

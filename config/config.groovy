@@ -4,8 +4,8 @@ evidence.source = './getconfig.xlsx'
 
 // 検査結果ファイル出力先
 
-// evidence.target='./build/サーバチェックシート_<date>.xlsx'
-evidence.target='./build/サーバチェックシート_<date>.xlsx'
+// evidence.target='./build/check_sheet.xlsx'
+evidence.target='./build/check_sheet_<date>.xlsx'
 
 // 検査結果ログディレクトリ
 
@@ -15,17 +15,17 @@ evidence.staging_dir='./build/log'
 
 evidence.json_dir='./src/test/resources/json'
 
-// 並列化しないタスク
-
-test.serialization.tasks = ['VMWare', 'VMHost']
-
 // DryRunモードログ保存先
 
-test.dry_run_staging_dir = './src/test/resources/log/'
+// test.dry_run_staging_dir = './src/test/resources/log/'
 
 // HUBサーバエージェントログ保存ディレクトリ
 
-test.hub_inventory_dir = './src/test/resources/hub/inventory'
+// test.hub_inventory_dir = './src/test/resources/hub/inventory'
+
+// インベントリDB 初期化スクリプト
+
+// test.cmdb_create_script = './lib/template/create_db.sql'
 
 // インベントリ用チケットカスタムフィールド名
 

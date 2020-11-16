@@ -22,6 +22,7 @@ class TestMetric extends Specification {
 
         then:
         String toml = TomlUtils.decode(metricGroup)
+        println toml
         toml.size() > 0
     }
 
