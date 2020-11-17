@@ -13,11 +13,16 @@ class Ticket {
     String status
     String domain
     Map<String,String> custom_fields = new LinkedHashMap<>()
+    List<PortList> port_lists = new ArrayList<>()
 
     Ticket(String server, String tracker, String domain = null) {
         this.server = server
         this.tracker = tracker
         this.domain = domain
+    }
+
+    void addPortList(PortList portList) {
+        this.port_lists.add(portList)
     }
 
     String getSubject() {

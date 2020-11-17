@@ -5,6 +5,7 @@ import com.getconfig.ProjectManager.InventoryLoaderDatabase
 import com.getconfig.ProjectManager.InventoryLoaderLocal
 import com.getconfig.Document.SpecReader
 import com.getconfig.Model.Server
+import com.getconfig.ProjectManager.TicketExporter
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.util.logging.Slf4j
@@ -19,6 +20,7 @@ class Exporter implements Controller {
     List<Server> testServers
     InventoryLoaderLocal inventoryLoaderLocal = new InventoryLoaderLocal()
     InventoryLoaderDatabase inventoryLoaderDatabase = new InventoryLoaderDatabase()
+    TicketExporter ticketExporter = new TicketExporter()
 
     Exporter(String mode = 'local') {
         this.mode = mode
@@ -27,6 +29,7 @@ class Exporter implements Controller {
     void setEnvironment(ConfigEnv env) {
         env.accept(inventoryLoaderLocal)
         env.accept(inventoryLoaderDatabase)
+        env.accept(ticketExporter)
         this.checkSheetPath = env.getCheckSheetPath()
         this.projectNodeDir = env.getProjectNodeDir()
         this.mode = env.getTargetType()
@@ -50,13 +53,12 @@ class Exporter implements Controller {
                 break
 
             case 'db' :
-                println 'this.export_cmdb()'
                 inventoryLoaderDatabase.initialize()
                 inventoryLoaderDatabase.export(testServers, projectNodeDir)
                 break
 
             case 'ticket' :
-                println ConfigEnv.getInstance().commandArgs
+                ticketExporter.export(testServers, projectNodeDir)
                 break
 
             default :

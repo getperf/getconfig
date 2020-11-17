@@ -80,6 +80,6 @@ class ConfigEnvTest extends Specification {
         env.getZipPath() == null
         env.getAllFlag() == true
         env.getTargetType() == null
-        env.getRedmineProject() == null
+        env.getRedmineProject() == 'cmdb'
     }
 }

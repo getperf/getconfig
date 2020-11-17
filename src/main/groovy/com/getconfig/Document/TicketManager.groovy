@@ -1,8 +1,15 @@
 package com.getconfig.Document
 
 import com.getconfig.Model.RedmineParameter
+import com.getconfig.Model.Ticket
 import com.getconfig.Utils.TomlUtils
-import com.taskadapter.redmineapi.*
+import com.taskadapter.redmineapi.Include
+import com.taskadapter.redmineapi.IssueManager
+import com.taskadapter.redmineapi.NotFoundException
+import com.taskadapter.redmineapi.ProjectManager
+import com.taskadapter.redmineapi.RedmineManager
+import com.taskadapter.redmineapi.RedmineManagerFactory
+import com.taskadapter.redmineapi.RedmineProcessingException
 import com.taskadapter.redmineapi.bean.Issue
 import com.taskadapter.redmineapi.bean.IssueFactory
 import com.taskadapter.redmineapi.bean.Project
@@ -87,6 +94,7 @@ class TicketManager implements Controller {
     String redmineUrl
     String redmineApiKey
     String inventoryField
+    String redmineProject
     String rackLocationField
     String rackLocationFieldPrefix
     String trackerPortList
@@ -96,13 +104,15 @@ class TicketManager implements Controller {
     IssueManager issueManager
     ProjectManager projectManager
 
-    TicketManager(String redmineConfigPath) {
+    TicketManager(String redmineConfigPath = null) {
         this.redmineConfigPath = redmineConfigPath
     }
 
     void setEnvironment(ConfigEnv env) {
         this.redmineUrl = env.getRedmineUrl()
         this.redmineApiKey = env.getRedmineApiKey()
+        this.redmineConfigPath = env.getRedmineConfigPath()
+        this.redmineProject = env.getRedmineProject()
     }
 
     void readConfig() throws IOException {
@@ -293,5 +303,12 @@ class TicketManager implements Controller {
 
     int run() {
         return 0
+    }
+
+    void resister(Ticket ticket) {
+        println "RESISTER:${this.redmineProject},$ticket"
+        Issue issue = register(this.redmineProject, ticket.tracker,
+            ticket.subject, ticket.custom_fields)
+        println "ID:${issue.id}"
     }
 }

@@ -313,4 +313,14 @@ class ConfigEnv {
         return System.getenv("REDMINE_API_KEY") ?: this.dbConfig?.redmine?.url ?:
                 'http://redmine/redmine'
     }
+
+    String getRedmineConfigPath() {
+        return this.dbConfig?.redmine?.configPath ?:
+                Paths.get(this.getProjectHome(),'lib/dictionary/redmine.toml')
+    }
+
+    String getExcelTemplatePath() {
+        return this.config?.excel_template_path ?:
+                Paths.get(this.getProjectHome(), 'lib/template/report_summary.xlsx')
+    }
 }

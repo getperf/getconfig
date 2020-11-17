@@ -1,9 +1,17 @@
-package com.getconfig.Document
+package com.getconfig.ProjectManager
 
+import com.getconfig.ConfigEnv
+import com.getconfig.Controller
+import com.getconfig.Document.ReportMaker
+import com.getconfig.Document.ResultGroupManager
+import com.getconfig.Document.SheetManager
+import com.getconfig.Document.TestScenarioManager
+import com.getconfig.Document.TicketManager
 import com.getconfig.Model.PortList
 import com.getconfig.Model.ReportSummary
 import com.getconfig.Model.Result
-import com.getconfig.Model.ResultSheet
+import com.getconfig.Model.ResultGroup
+import com.getconfig.Model.Server
 import com.getconfig.Model.TestScenario
 import com.getconfig.Model.Ticket
 import groovy.transform.CompileStatic
@@ -13,19 +21,40 @@ import groovy.util.logging.Slf4j
 @Slf4j
 @TypeChecked
 @CompileStatic
-class TicketExporter {
-    TestScenario testScenario
-    ReportMaker reportMaker
-    TicketManager ticketManager
+class TicketExporter implements Controller {
+    String redmineConfigPath = 'lib/dictionary/redmine.toml'
+    String excelTemplatePath = 'lib/template/report_summary.xlsx'
+    String metricLib = 'lib/dictionary'
+    String nodeDir = 'src/test/resources/node'
+    TicketManager ticketManager = new TicketManager()
 
-    TicketExporter(TestScenario testScenario, ReportMaker reportMaker,
-                   TicketManager ticketManager) {
-        this.testScenario = testScenario
-        this.reportMaker = reportMaker
-        this.ticketManager = ticketManager
+    void setEnvironment(ConfigEnv env) {
+        env.accept(ticketManager)
+        this.redmineConfigPath = env.getRedmineConfigPath()
+        this.excelTemplatePath = env.getExcelTemplatePath()
+        this.metricLib = env.getMetricLib()
+        this.nodeDir = env.getProjectNodeDir()
     }
 
-    List<String> getHeaders() {
+    Map<String, ResultGroup> readResultGroup(List<String> servers, String nodeDir) {
+        ResultGroupManager manager
+        manager = new ResultGroupManager(nodeDir: nodeDir)
+        return manager.readResultGroups(servers)
+    }
+
+    TestScenario getTestScenario(List<Server> servers, String nodeDir) {
+        this.nodeDir = nodeDir
+        Map<String, ResultGroup> testResultGroups
+        List<String> serverNames = servers*.serverName?.unique()
+        testResultGroups = readResultGroup(serverNames, nodeDir)
+        TestScenarioManager manager = new TestScenarioManager(
+                this.metricLib, testResultGroups)
+        manager.run()
+        return manager.testScenario
+    }
+
+    List<String> getHeaders(String excelTemplate) {
+        ReportMaker reportMaker = new ReportMaker(excelTemplate).read()
         reportMaker.setTemplateSheet("Summary")
         reportMaker.copyTemplate("サマリレポート")
         SheetManager manager = reportMaker.createSheetManager()
@@ -46,12 +75,14 @@ class TicketExporter {
         }
     }
 
-    void make() {
-        List<String> headers = getHeaders()
+    void export(List<Server> testServers, String nodeDir) {
+        TestScenario testScenario = getTestScenario(testServers, nodeDir)
+        List<String> headers = getHeaders(this.excelTemplatePath)
         Map<String, String> domains = testScenario.getDomains()
         Map<String, ReportSummary.ReportColumn> summaryColumns =
                 testScenario.reportSummary.getColumns()
 
+        ticketManager.readConfig()
         testScenario.servers.each { String server ->
             List<String> platforms
             platforms = testScenario.serverPlatformKeys.get(server) as List<String>
@@ -61,8 +92,6 @@ class TicketExporter {
             }
             String domain = domains?.get(server)
             Ticket ticket = new Ticket(server, tracker, domain)
-            Map<String,String> fields = new LinkedHashMap<>()
-
             headers.each { String columnId ->
                 ReportSummary.ReportColumn summaryColumn
                 summaryColumn = summaryColumns.get(columnId)
@@ -78,11 +107,18 @@ class TicketExporter {
                     }
                 }
             }
-            println "TICKET:${ticket}"
+//            println "TICKET:${ticket}"
             testScenario.portListKeys.get(server)?.each { String ip ->
                 PortList portList = testScenario.getPortList(server, ip)
-                println "PORTLIST:${portList}"
+//                println "PORTLIST:${portList}"
+                ticket.addPortList(portList)
             }
+            ticketManager.resister(ticket)
         }
     }
+
+    int run() {
+        return 0
+    }
+
 }

@@ -2,6 +2,7 @@ package com.getconfig.Document
 
 import com.getconfig.Model.ResultGroup
 import com.getconfig.Model.TestScenario
+import com.getconfig.ProjectManager.TicketExporter
 import com.getconfig.TestData
 import spock.lang.Specification
 
