@@ -75,6 +75,30 @@ class TicketExporter implements Controller {
         }
     }
 
+    Ticket makeCustomFields(Ticket ticket, TestScenario testScenario,
+                            List<String> headers, String server) {
+        Map<String, ReportSummary.ReportColumn> summaryColumns =
+            testScenario.reportSummary.getColumns()
+        List<String> platforms =
+            testScenario.serverPlatformKeys.get(server) as List<String>
+        headers.each { String columnId ->
+            ReportSummary.ReportColumn summaryColumn
+            summaryColumn = summaryColumns.get(columnId)
+            if (summaryColumn) {
+                String redmineField = summaryColumn.redmineField
+                String metricId = summaryColumn.findMetricId(platforms as List)
+                if (redmineField && metricId) {
+                    Result result = testScenario.results.get(server, metricId)
+                    if (result) {
+                        String value = customFieldValue(result.value)
+                        ticket.custom_fields.put(redmineField, value)
+                    }
+                }
+            }
+        }
+        return ticket
+    }
+
     void export(List<Server> testServers, String nodeDir) {
         TestScenario testScenario = getTestScenario(testServers, nodeDir)
         List<String> headers = getHeaders(this.excelTemplatePath)
@@ -83,34 +107,17 @@ class TicketExporter implements Controller {
                 testScenario.reportSummary.getColumns()
 
         ticketManager.readConfig()
+        ticketManager.init()
         testScenario.servers.each { String server ->
-            List<String> platforms
-            platforms = testScenario.serverPlatformKeys.get(server) as List<String>
             String tracker = testScenario.getTracker(server)
             if (!tracker) {
                 return
             }
             String domain = domains?.get(server)
             Ticket ticket = new Ticket(server, tracker, domain)
-            headers.each { String columnId ->
-                ReportSummary.ReportColumn summaryColumn
-                summaryColumn = summaryColumns.get(columnId)
-                if (summaryColumn) {
-                    String redmineField = summaryColumn.redmineField
-                    String metricId = summaryColumn.findMetricId(platforms as List)
-                    if (redmineField && metricId) {
-                        Result result = testScenario.results.get(server, metricId)
-                        if (result) {
-                            String value = customFieldValue(result.value)
-                            ticket.custom_fields.put(redmineField, value)
-                        }
-                    }
-                }
-            }
-//            println "TICKET:${ticket}"
+            ticket = makeCustomFields(ticket, testScenario, headers, server)
             testScenario.portListKeys.get(server)?.each { String ip ->
                 PortList portList = testScenario.getPortList(server, ip)
-//                println "PORTLIST:${portList}"
                 ticket.addPortList(portList)
             }
             ticketManager.resister(ticket)

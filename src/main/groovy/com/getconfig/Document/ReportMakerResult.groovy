@@ -28,13 +28,17 @@ class ReportMakerResult {
     }
 
     List<String> reOrderServersByTag(List<String> servers) {
+        List<String> orderedServers = new ArrayList<>()
+        int tagIndex = 0
         servers.each { String server ->
             if (testScenario.checkTagServer(server)) {
-                servers.remove(servers.indexOf(server))
-                servers.add(0, server)
+                orderedServers.add(tagIndex, server)
+                tagIndex ++
+            }else {
+                orderedServers.add(server)
             }
         }
-        return servers
+        return orderedServers
     }
 
     void makeHeader(List<String> servers) {

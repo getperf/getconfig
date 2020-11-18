@@ -1,5 +1,6 @@
 package com.getconfig.Document
 
+import com.getconfig.Model.PortList
 import com.getconfig.Model.RedmineParameter
 import com.getconfig.Model.Ticket
 import com.getconfig.Utils.TomlUtils
@@ -93,19 +94,18 @@ class TicketManager implements Controller {
     String redmineConfigPath = 'lib/dictionary/redmine.toml'
     String redmineUrl
     String redmineApiKey
-    String inventoryField
     String redmineProject
-    String rackLocationField
-    String rackLocationFieldPrefix
-    String trackerPortList
-    int inOperationStatusId
-    LinkedHashMap<String,String> portListCustomFields = [:]
+    boolean dryRun
+
+    RedmineParameter redmineParam
     RedmineManager redmineManager
     IssueManager issueManager
     ProjectManager projectManager
 
     TicketManager(String redmineConfigPath = null) {
-        this.redmineConfigPath = redmineConfigPath
+        if (redmineConfigPath) {
+            this.redmineConfigPath = redmineConfigPath
+        }
     }
 
     void setEnvironment(ConfigEnv env) {
@@ -113,12 +113,12 @@ class TicketManager implements Controller {
         this.redmineApiKey = env.getRedmineApiKey()
         this.redmineConfigPath = env.getRedmineConfigPath()
         this.redmineProject = env.getRedmineProject()
+        this.dryRun = env.getDryRun()
     }
 
     void readConfig() throws IOException {
-        RedmineParameter config = TomlUtils.read(
+        redmineParam = TomlUtils.read(
             this.redmineConfigPath, RedmineParameter)as RedmineParameter
-        config.setTicketManager(this)
     }
 
     def init() {
@@ -167,8 +167,8 @@ class TicketManager implements Controller {
         }
     }
 
-    Issue register(String projectName, String trackerName, String subject,
-                   Map<String,String> customFields = null, Boolean in_operation = false) {
+    Issue resisterTicket(String projectName, String trackerName, String subject,
+                         Map<String,String> customFields = null, Boolean inOperation = false) {
         Issue issue = null
         try {
             def project = this.getProject(projectName)
@@ -180,67 +180,62 @@ class TicketManager implements Controller {
             }
             issue = getIssue(subject)
             if (!issue) {
-                def new_issue = IssueFactory.create(null)
-                new_issue.setProjectId(project.id)  // プロジェクト
-                new_issue.setSubject(subject)       // 題名
-                new_issue.setTracker(tracker)       // トラッカー
-                issue = this.issueManager.createIssue(new_issue)
+                def newIssue = IssueFactory.create(null)
+                newIssue.setProjectId(project.id)  // プロジェクト
+                newIssue.setSubject(subject)       // 題名
+                newIssue.setTracker(tracker)       // トラッカー
+                issue = this.issueManager.createIssue(newIssue)
             }
             issue.setProjectId(project.id)
             issue.setSubject(subject)
             issue.setTracker(tracker)
-            if (in_operation) {
-                issue.setStatusId(this.inOperationStatusId)
+            if (inOperation) {
+                issue.setStatusId(redmineParam.inOperationStatusId())
             }
             updateCustomFields(issue, customFields)
-            // log.info "Regist '${tracker_name}:${subject}(${project_name})'"
         } catch (NotFoundException e) {
-            def msg = "Ticket regist failed '${trackerName}:${subject}'."
+            def msg = "register '${trackerName}:${subject}'." + e
             log.error(msg)
             issue = null
         }
         return issue
     }
 
-    def updateCustomFields(Issue issue, Map<String, String> customFields = null) {
-        def trackerName = issue.getTracker().getName()
-        def projectName = issue.getProjectName()
-        def subject  = issue.getSubject()
-        customFields.each { String fieldName, String value ->
-            // println "UPDATE_CUSTOM_FIELDS:${field_name}, ${value}, ${value.getClass()}"
-            def customField = issue.getCustomFieldByName(fieldName)
-            if (!customField) {
-                def msg = "Not found Redmine custom field '${fieldName}' in '${trackerName}'"
-                log.error(msg)
-                throw new NotFoundException(msg)
-            }
-            customField.setValue(value)
-        }
-        def customFieldInventory = issue.getCustomFieldByName(this.inventoryField)
-        if (customFieldInventory) {
-            customFieldInventory.setValue(subject)
-        }
-        def customFieldRackLocation = issue.getCustomFieldByName(this.rackLocationField)
-        if (customFieldRackLocation) {
-            def value = subject
-            if (this.rackLocationFieldPrefix) {
-                value = this.rackLocationFieldPrefix + subject
-            }
-            customFieldRackLocation.setValue(value)
-        }
-        try {
-            this.issueManager.update(issue)
-        } catch (RedmineProcessingException e) {
-            def msg = "Redmine update error '${trackerName}:${subject}' set to '${customFields}' : ${e}."
+    void updateCustomField(Issue issue, String fieldName, String value,
+                           boolean ignoreError = true) {
+        def customField = issue.getCustomFieldByName(fieldName)
+        if (!customField && !ignoreError) {
+            def msg = "not found custom field '${fieldName}'"
             log.error(msg)
             throw new NotFoundException(msg)
         }
-        log.info "Regist '${trackerName}:${subject}'"
+        if (customField) {
+            customField.setValue(value)
+        }
+    }
+
+    def updateCustomFields(Issue issue, Map<String, String> customFields = null) {
+        def trackerName = issue.getTracker().getName()
+        def subject  = issue.getSubject()
+        customFields.each { String fieldName, String value ->
+            updateCustomField(issue, fieldName, value, false)
+        }
+        updateCustomField(issue, redmineParam.inventoryField(), subject)
+        updateCustomField(issue, redmineParam.rackLocationField(),
+            redmineParam.rackLocation(subject))
+        try {
+            this.issueManager.update(issue)
+        } catch (RedmineProcessingException e) {
+            def msg = "update '${trackerName}:${subject}' set to '${customFields}' : ${e}."
+            log.error(msg)
+            throw new NotFoundException(msg)
+        }
+        log.info "resister(#${issue.id}) '${trackerName}:${subject}'"
     }
 
     Map<String,String> getPortListCustomFields(Map<String, String> customFields) {
         Map<String,String> fields = new LinkedHashMap<>()
-        this.portListCustomFields.each { redmineName, testItemName ->
+        redmineParam.custom_fields.each { String testItemName, String redmineName ->
             if (customFields.containsKey(testItemName)) {
                 def value = customFields[testItemName]
                 // println "PORT_LIST_CUSTOM_FIELDS:${test_item_name},${value}"
@@ -252,22 +247,20 @@ class TicketManager implements Controller {
         return fields
     }
 
-    Boolean checkLookupedPortList(Map<String, String> customFields) {
+    Boolean checkLookedUpPortList(Map<String, String> customFields) {
         return (customFields.containsKey('lookup') && customFields['lookup'] == true)
     }
 
-    Issue regist_port_list(String projectName, String subject, Map customFields = [:]) {
-        // println "CUSTOM_FIELDS:${custom_fields}"
-        // println "PORT_LIST_CUSTOM_FIELDS:${this.port_list_custom_fields}"
-        // println "TRACKER_PORT_LIST: ${this.tracker_port_list}"
-        if (this.portListCustomFields.size() == 0) {
-            def msg = "Redmine update error '${subject}' : Not found 'port_list_custom_fields'"
+    Issue resisterPortList(String projectName, String subject, Map customFields = [:]) {
+        if (redmineParam.custom_fields.size() == 0) {
+            def msg = "not found 'port_list_custom_fields' parameter"
             log.error(msg)
             throw new NotFoundException(msg)
         }
         def fields = this.getPortListCustomFields(customFields)
-        def lookuped = this.checkLookupedPortList(customFields)
-        return this.register(projectName, this.trackerPortList, subject, fields, lookuped)
+        def lookedUp = this.checkLookedUpPortList(customFields)
+        return this.resisterTicket(projectName, redmineParam.portListTracker(),
+                subject, fields, lookedUp)
     }
 
     Boolean link(Issue ticket_from, List<Integer> ticket_to_ids) {
@@ -295,20 +288,35 @@ class TicketManager implements Controller {
             }
             isok = true
         } catch (RedmineProcessingException e) {
-            def msg = "Redmine link error '${ticket_from}' to '${ticket_to_ids}' : ${e}."
+            def msg = "link error '${ticket_from}' to '${ticket_to_ids}' : ${e}."
             log.info(msg)
         }
         return isok
     }
 
-    int run() {
-        return 0
+    void resister(Ticket ticket) {
+        if (this.dryRun) {
+            println "register ${ticket}"
+            return
+        }
+        Issue issue = resisterTicket(this.redmineProject, ticket.tracker,
+            ticket.subject, ticket.custom_fields)
+        List<Integer> portListIds = new ArrayList<>()
+        ticket.port_lists.each { PortList portList ->
+            Issue portListIssue
+            portListIssue = resisterPortList(this.redmineProject,
+                    portList.ip,
+                    portList.customFields())
+            if (portListIssue) {
+                portListIds.add(portListIssue.id)
+            }
+        }
+        if (portListIds.size() > 0) {
+            link(issue, portListIds)
+        }
     }
 
-    void resister(Ticket ticket) {
-        println "RESISTER:${this.redmineProject},$ticket"
-        Issue issue = register(this.redmineProject, ticket.tracker,
-            ticket.subject, ticket.custom_fields)
-        println "ID:${issue.id}"
+    int run() {
+        return 0
     }
 }

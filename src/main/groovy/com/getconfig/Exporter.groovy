@@ -46,7 +46,6 @@ class Exporter implements Controller {
     }
 
     void runExporter() {
-//        projectManager.update(testServers, mode)
         switch (mode) {
             case 'local' :
                 inventoryLoaderLocal.run()
@@ -58,6 +57,13 @@ class Exporter implements Controller {
                 break
 
             case 'ticket' :
+                ticketExporter.export(testServers, projectNodeDir)
+                break
+
+            case 'all' :
+                inventoryLoaderLocal.run()
+                inventoryLoaderDatabase.initialize()
+                inventoryLoaderDatabase.export(testServers, projectNodeDir)
                 ticketExporter.export(testServers, projectNodeDir)
                 break
 

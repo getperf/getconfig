@@ -45,7 +45,12 @@ class ConfigEnv {
     }
 
     void readInventoryDBConfig() {
-        this.dbConfig = Config.instance.readConfig(this.getInventoryDBConfigPath())
+        String configPath = this.getInventoryDBConfigPath()
+        if (new File(configPath).exists()) {
+            this.dbConfig = Config.instance.readConfig(configPath)
+        } else {
+            log.warn("not found : ${configPath}")
+        }
     }
 
     void setAccount(Server sv) {

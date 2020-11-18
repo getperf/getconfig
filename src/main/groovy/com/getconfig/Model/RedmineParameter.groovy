@@ -21,11 +21,36 @@ class RedmineParameter {
         return parameters?.get(parameterName)
     }
 
+    String inventoryField() {
+        return getField('inventory')
+    }
+
+    String rackLocationField() {
+        return getField('rack_location')
+    }
+
+    String rackLocationFieldPrefix() {
+        return getParameter('rack_location_prefix')
+    }
+
+    String portListTracker() {
+        return getParameter('port_list_tracker')
+    }
+
+    String rackLocation(String subject) {
+        String prefix = this.rackLocationFieldPrefix()
+        return (prefix) ? prefix + subject : subject
+    }
+
+    int inOperationStatusId() {
+        return in_operation_status_id
+    }
+
     void setTicketManager(TicketManager manager) {
-        manager.inventoryField = getField('inventory')
-        manager.rackLocationField = getField('rack_location')
-        manager.rackLocationFieldPrefix = getParameter('rack_location_prefix')
-        manager.trackerPortList = getParameter('port_list_tracker')
-        manager.inOperationStatusId = in_operation_status_id
+//        manager.inventoryField = getField('inventory')
+//        manager.rackLocationField = getField('rack_location')
+//        manager.rackLocationFieldPrefix = getParameter('rack_location_prefix')
+//        manager.trackerPortList = getParameter('port_list_tracker')
+//        manager.inOperationStatusId = in_operation_status_id
     }
 }

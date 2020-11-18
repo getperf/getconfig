@@ -1,6 +1,8 @@
 package com.getconfig.Document
 
+import com.getconfig.ConfigEnv
 import com.getconfig.Model.ResultGroup
+import com.getconfig.Model.Server
 import com.getconfig.Model.TestScenario
 import com.getconfig.ProjectManager.TicketExporter
 import com.getconfig.TestData
@@ -25,10 +27,11 @@ class TicketExporterTest extends Specification {
 
     def "チケット登録"() {
         when:
-        TicketManager ticketManager = new TicketManager()
-        TicketExporter exporter = new TicketExporter(this.testScenario,
-                reportMaker, ticketManager)
-        exporter.make()
+        List<Server> testServers = TestData.readTestServers()
+        TicketExporter exporter = new TicketExporter()
+        ConfigEnv.instance.setDryRun()
+        ConfigEnv.instance.accept(exporter)
+        exporter.export(testServers, "src/test/resources/node")
 
         then:
         1 == 1
