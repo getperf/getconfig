@@ -63,6 +63,7 @@ class AgentLogTest extends Specification {
         "\\server02\\WindowsConf\\cpu" | "Windows" | AgentLogMode.NORMAL
     }
 
+    @IgnoreIf({ !System.getProperty("os.name").contains("windows") })
     def "DryRunログパス解析"() {
         when:
         def agentLog = new AgentLog("\\centos80\\VMWare\\centos80\\cpu").parse()
@@ -72,6 +73,7 @@ class AgentLogTest extends Specification {
         agentLog.platform == 'VMWare'
     }
 
+    @IgnoreIf({ !System.getProperty("os.name").contains("windows") })
     def "DryRunバッチログパス解析"(String inPath, String outPath) {
         expect:
         List<Server> testServers = TestData.readTestServers()
