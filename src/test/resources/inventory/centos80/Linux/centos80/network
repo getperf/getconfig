@@ -9,6 +9,6 @@
     inet 192.168.0.5/24 brd 192.168.0.255 scope global noprefixroute ens192
        valid_lft forever preferred_lft forever
     inet6 240b:10:a001:8100:e0bb:4b96:93e9:e0b6/64 scope global dynamic noprefixroute 
-       valid_lft 296sec preferred_lft 296sec
+       valid_lft 274sec preferred_lft 274sec
     inet6 fe80::3cd7:50f8:bc50:6ed2/64 scope link noprefixroute 
        valid_lft forever preferred_lft forever

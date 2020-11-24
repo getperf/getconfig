@@ -1,0 +1,56 @@
+# Zabbix inventory scenario has no metric definition
+
+[[metrics]]
+
+id = "hosts"
+name = "ホストID"
+category = "Zabbix設定"
+
+[[metrics]]
+
+id = "hostGroup"
+name = "ホストグループ"
+category = "Zabbix設定"
+
+[[metrics]]
+
+id = "template"
+name = "テンプレート"
+category = "Zabbix設定"
+
+[[metrics]]
+
+id = "interface"
+name = "インターフェース"
+category = "Zabbix設定"
+
+[[metrics]]
+
+id = "status"
+name = "ステータス"
+category = "Zabbix設定"
+
+[[metrics]]
+
+id = "available"
+name = "稼働状態"
+category = "Zabbix設定"
+
+[[metrics]]
+
+id = "macros"
+name = "マクロの有無"
+category = "Zabbix設定マクロ"
+
+[[metrics]]
+
+id = "logItems"
+name = "ログ監視"
+category = "Zabbix設定ログ"
+
+[[metrics]]
+
+id = "triggers"
+name = "トリガー監視"
+category = "Zabbix設定トリガー"
+

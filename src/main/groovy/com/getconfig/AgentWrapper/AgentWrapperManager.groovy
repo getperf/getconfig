@@ -21,6 +21,7 @@ class AgentWrapperManager {
             it["VMHost"] = new VMHost()
             it["CiscoUCS"] = new CiscoUCS()
             it["HPiLO"] = new HPiLO()
+            it["Zabbix"] = new Zabbix()
             it[AgentConstants.AGENT_LABEL_REMOTE] = new RemoteAgent()
             it[AgentConstants.AGENT_LABEL_LOCAL_FILE] = new LocalAgent()
         }

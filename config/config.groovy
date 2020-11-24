@@ -85,3 +85,9 @@ account.CiscoUCS.Account01.password = 'P@ssw0rd'
 
 account.HPiLO.Account01.user     = 'root'
 account.HPiLO.Account01.password = 'P@ssw0rd'
+
+// ZabbixÚ‘±î•ñ
+
+account.Zabbix.Account01.server   = 'http://zabbix:8081/zabbix'
+account.Zabbix.Account01.user     = 'Admin'
+account.Zabbix.Account01.password = 'zabbix'

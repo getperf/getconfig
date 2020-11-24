@@ -1,0 +1,2 @@
+get local vm defined in 'server' parameter : vm '' not found
+not found json query[centos80:base_datastore] : 'Storage.PerDatastoreUsage'
