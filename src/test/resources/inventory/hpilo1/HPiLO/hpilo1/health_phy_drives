@@ -1,0 +1,68 @@
+{
+    "next_page": null,
+    "ams_ready": "AMS_READY",
+    "data_state": "DATA_AMS",
+    "in_post": 0,
+    "phy_drive_arrays": [
+        {
+            "storage_type": "SMART_ARRAY_CONTROLLER_TYPE",
+            "accel_tot_mem": "2097152 KB",
+            "encr_self_stat": "OP_STATUS_OK",
+            "enclosures": [
+                {
+                    "name": "Drive Enclosure Port 1I Box 1",
+                    "ports": "4",
+                    "status": "OP_STATUS_OK"
+                },
+                {
+                    "name": "Drive Enclosure Port 2I Box 0",
+                    "ports": "4",
+                    "status": "OP_STATUS_OK"
+                }
+            ],
+            "has_accel": 1,
+            "physical_drives": [
+                {
+                    "drive_type": "PHY_ARRAY",
+                    "drive_mediatype": "HDD",
+                    "phys_idx": 0,
+                    "name": "Physical Drive in Port 1I Box 1 Bay 1",
+                    "encr_stat": "ENCR_NOT_ENCR",
+                    "model": "EG000600JWJNP",
+                    "location": "Port 1I Box 1 Bay 1",
+                    "serial_no": "XXXXXXXXXXX",
+                    "fw_version": "HPD2",
+                    "phys_status": "PHYS_OK",
+                    "status": "OP_STATUS_OK",
+                    "capacity": "600 GB"
+                },
+                {
+                    "drive_type": "PHY_ARRAY",
+                    "drive_mediatype": "HDD",
+                    "phys_idx": 1,
+                    "name": "Physical Drive in Port 1I Box 1 Bay 2",
+                    "encr_stat": "ENCR_NOT_ENCR",
+                    "model": "EG000600JWJNP",
+                    "location": "Port 1I Box 1 Bay 2",
+                    "serial_no": "XXXXXXXXXXX",
+                    "fw_version": "HPD2",
+                    "phys_status": "PHYS_OK",
+                    "status": "OP_STATUS_OK",
+                    "capacity": "600 GB"
+                }
+            ],
+            "accel_cond": "OP_STATUS_OK",
+            "accel_serial": "               ",
+            "hw_status": "OP_STATUS_OK",
+            "name": "Controller on System Board",
+            "encr_stat": "ENCR_NOT_ENABLED",
+            "model": "HPE Smart Array P408i-a SR Gen10",
+            "encr_csp_stat": "OP_STATUS_OK",
+            "serial_no": "XXXXXXXXXXX ",
+            "fw_version": "1.99",
+            "has_encrypt": 1,
+            "status": "OP_STATUS_OK"
+        }
+    ],
+    "hostpwr_state": "ON"
+}

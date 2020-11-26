@@ -19,7 +19,10 @@ void overview(TestUtil t) {
      'ilo_fw_version','isUEFI','system_rom','ip_address',
      'system_health'].each { String metric ->
         t.setMetric(metric, json[metric])
-     }
+    }
+    if (json?.ip_address) {
+        t.portList(json?.ip_address, 'HPiLO', true)
+    }
 }
 
 @Parser("License")
