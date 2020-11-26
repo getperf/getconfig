@@ -36,6 +36,10 @@ void network(TestUtil t) {
     def csv = []
     addresses.each { 
         csv << [it?.Address, it?.SubnetMask, it?.AddressOrigin, it?.Gateway]
+        if (it?.Address) {
+            t.portList(it?.Address, 'iRMC', true)
+        }
+
     }    
     t.devices(['Adress', 'Subnet', 'Origin', 'Gateway'], csv)
     t.setMetric("ip", addresses*.Address)

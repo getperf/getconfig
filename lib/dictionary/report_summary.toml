@@ -19,6 +19,7 @@ redmineField = "機種"
 
     [columns.inventories]
     HPiLO = "product_name"
+    Primergy = "product_name"
     CiscoUCS = "productname"
     XSCF = "hardconf.system"
     AIX = "prtconf.System Model"
@@ -32,6 +33,7 @@ redmineField = "型番"
 
     [columns.inventories]
     HPiLO = "product_id"
+    Primergy = "product_id"
     CiscoUCS = "productid"
     Eternus = "enclosure.ModelName"
     HitachiVSP = "storage.modelName"
@@ -44,6 +46,7 @@ redmineField = "S/N"
 
     [columns.inventories]
     HPiLO = "serial_num"
+    Primergy = "serial_num"
     CiscoUCS = "sn"
     XSCF = "hardconf.serial"
     AIX = "prtconf.Machine Serial Number"
@@ -184,7 +187,7 @@ name = "管理LAN"
 
     [columns.inventories]
     HPiLO = "ip_address"
-    Primergy = "network"
+    Primergy = "ip"
     CiscoUCS = "net.address"
     XSCF = "network"
 
