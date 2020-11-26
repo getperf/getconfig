@@ -1,0 +1,73 @@
+{
+  "@odata.context":"\/redfish\/v1\/$metadata#ServiceRoot(Oem,Id,Name,RedfishVersion,UUID,Links,Systems,Chassis,Managers,Tasks,SessionService,AccountService,EventService,Registries,JsonSchemas)",
+  "@odata.id":"\/redfish\/v1\/",
+  "@odata.type":"#ServiceRoot.v1_0_5.ServiceRoot",
+  "Oem":{
+    "ts_fujitsu":{
+      "@odata.type":"http:\/\/ts.fujitsu.com\/redfish-schemas\/v1\/FTSSchema.v1_0_0#FTSServiceRoot.v1_2_0.FTSServiceRoot",
+      "FileDownload":{
+        "@odata.id":"\/redfish\/v1\/Oem\/ts_fujitsu\/FileDownload"
+      },
+      "DumpDownload":{
+        "@odata.id":"\/redfish\/v1\/Oem\/ts_fujitsu\/DumpDownload"
+      },
+      "CASConfiguration":{
+        "Enabled":false,
+        "DisplayLoginPage":false,
+        "ServerLoginUrl":null,
+        "ServerLogoutUrl":null
+      },
+      "AutoDiscoveryDescription":{
+        "ServerNodeInformation":{
+          "SlotNumber":255,
+          "Model":"PRIMERGY RX2530 M5",
+          "SerialNumber":"MALU0000000"
+        },
+        "ChassisInformation":{
+          "Model":"PRIMERGY RX2530 M5",
+          "SerialNumber":"MALU0000000"
+        }
+      }
+    }
+  },
+  "Id":"RootService",
+  "Name":"Root Service",
+  "RedfishVersion":"1.0.5",
+  "UUID":"8927afb7-1b6a-48ed-8eaa-311700000000",
+  "Links":{
+    "Oem":{
+    },
+    "Sessions":{
+      "@odata.id":"\/redfish\/v1\/SessionService\/Sessions"
+    }
+  },
+  "Systems":{
+    "@odata.id":"\/redfish\/v1\/Systems"
+  },
+  "Chassis":{
+    "@odata.id":"\/redfish\/v1\/Chassis"
+  },
+  "Managers":{
+    "@odata.id":"\/redfish\/v1\/Managers"
+  },
+  "Tasks":{
+    "@odata.id":"\/redfish\/v1\/TaskService"
+  },
+  "SessionService":{
+    "@odata.id":"\/redfish\/v1\/SessionService"
+  },
+  "AccountService":{
+    "@odata.id":"\/redfish\/v1\/AccountService"
+  },
+  "EventService":{
+    "@odata.id":"\/redfish\/v1\/EventService"
+  },
+  "Registries":{
+    "@odata.id":"\/redfish\/v1\/Registries"
+  },
+  "JsonSchemas":{
+    "@odata.id":"\/redfish\/v1\/JsonSchemas"
+  },
+  "@Redfish.Copyright":"Copyright 2014-2018 DMTF. For the full DMTF copyright policy, see http:\/\/www.dmtf.org\/about\/policies\/copyright",
+  "@odata.etag":"1598995621"
+}

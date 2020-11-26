@@ -1,0 +1,89 @@
+[[overview]]
+
+id = "overview"
+category = "ファームウェア"
+level = 0
+
+[[metrics]]
+
+id = "product_name"
+name = "機種"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "product_id"
+name = "型番"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "serial_num"
+name = "S/N"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "bios"
+name = "BIOSバージョン"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "bmc"
+name = "BMCバージョン"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "bmc_build"
+name = "BMCビルド"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "network"
+name = "ネットワーク"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "ip"
+name = "IPアドレス"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "subnet"
+name = "サブネット"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "origin"
+name = "ネットオリジン"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "gateway"
+name = "ゲートウェイ"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "nic"
+name = "NIC"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "ntp0"
+name = "NTPサーバ#0"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "ntp1"
+name = "NTPサーバ#1"
+category = "ファームウェア"

@@ -4,53 +4,53 @@
 
 id = "hosts"
 name = "ホストID"
-category = "Zabbix設定"
+category = "Zabbix"
 
 [[metrics]]
 
 id = "hostGroup"
 name = "ホストグループ"
-category = "Zabbix設定"
+category = "Zabbix"
 
 [[metrics]]
 
 id = "template"
 name = "テンプレート"
-category = "Zabbix設定"
+category = "Zabbix"
 
 [[metrics]]
 
 id = "interface"
 name = "インターフェース"
-category = "Zabbix設定"
+category = "Zabbix"
 
 [[metrics]]
 
 id = "status"
 name = "ステータス"
-category = "Zabbix設定"
+category = "Zabbix"
 
 [[metrics]]
 
 id = "available"
 name = "稼働状態"
-category = "Zabbix設定"
+category = "Zabbix"
 
 [[metrics]]
 
 id = "macros"
 name = "マクロの有無"
-category = "Zabbix設定マクロ"
+category = "Zabbixマクロ"
 
 [[metrics]]
 
 id = "logItems"
 name = "ログ監視"
-category = "Zabbix設定ログ"
+category = "Zabbixログ"
 
 [[metrics]]
 
 id = "triggers"
 name = "トリガー監視"
-category = "Zabbix設定トリガー"
+category = "Zabbixトリガー"
 

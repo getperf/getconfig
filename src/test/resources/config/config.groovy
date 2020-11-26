@@ -85,3 +85,8 @@ account.CiscoUCS.Account01.password = 'P@ssw0rd'
 
 account.HPiLO.Account01.user     = 'root'
 account.HPiLO.Account01.password = 'P@ssw0rd'
+
+// Primergy Ú‘±î•ñ
+
+account.Primergy.Account01.user     = 'admin'
+account.Primergy.Account01.password = 'P@ssw0rd'

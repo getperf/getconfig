@@ -1,0 +1,10 @@
+{
+  "@odata.context":"\/redfish\/v1\/$metadata#Managers\/Members\/iRMC\/Oem\/ts_fujitsu\/iRMCConfiguration\/Time\/NtpServers\/Members\/$entity(Name,Id,NtpServerName)",
+  "@odata.id":"\/redfish\/v1\/Managers\/iRMC\/Oem\/ts_fujitsu\/iRMCConfiguration\/Time\/NtpServers\/1",
+  "@odata.type":"http:\/\/ts.fujitsu.com\/redfish-schemas\/v1\/FTSSchema.v1_0_0#FTSNtpServer.v1_0_0.FTSNtpServer",
+  "Name":"NTP Server Configuration",
+  "Id":"1",
+  "NtpServerName":"",
+  "@Redfish.Copyright":"Copyright 2017-2018 FUJITSU LIMITED",
+  "@odata.etag":"1598995638"
+}
