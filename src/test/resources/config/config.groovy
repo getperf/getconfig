@@ -90,3 +90,8 @@ account.HPiLO.Account01.password = 'P@ssw0rd'
 
 account.Primergy.Account01.user     = 'admin'
 account.Primergy.Account01.password = 'P@ssw0rd'
+
+// Solaris Ú‘±î•ñ
+
+account.Solaris.Account01.user     = 'someuser'
+account.Solaris.Account01.password = 'P@ssw0rd'

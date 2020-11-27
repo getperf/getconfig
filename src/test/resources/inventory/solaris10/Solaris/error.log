@@ -1,0 +1,17 @@
+Too many ('s
+run centos80:hostname_fqdn : run shell: Process exited with status 1
+psrinfo: Command not found
+run centos80:psrinfo : run command: Process exited with status 1
+ipadm: Command not found
+run centos80:ipadm : run command: Process exited with status 1
+metastat: sol: there are no existing databases
+
+run centos80:metastat : run command: Process exited with status 1
+2: No such file or directory
+run centos80:patches : run command: Process exited with status 2
+sh: /usr/bin/pkg: not found
+run centos80:solaris11_build : run command: Process exited with status 1
+poolstat: couldn't open pools state file: Facility is not active
+run centos80:poolstat : run command: Process exited with status 1
+egrep: can't open /etc/snmp/snmpd.conf
+run centos80:snmp_trap : run command: Process exited with status 2

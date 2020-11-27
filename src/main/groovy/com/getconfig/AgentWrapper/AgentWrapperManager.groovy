@@ -19,6 +19,7 @@ class AgentWrapperManager {
             it["Windows"] = new Windows()
             it["VMWare"] = new VMWare()
             it["VMHost"] = new VMHost()
+            it["Solaris"] = new Solaris()
             it["CiscoUCS"] = new CiscoUCS()
             it["HPiLO"] = new HPiLO()
             it["Zabbix"] = new Zabbix()

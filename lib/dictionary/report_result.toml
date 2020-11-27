@@ -74,7 +74,7 @@ tracker = "IAサーバ"
 
 [[sheets]]
 
-name = "IAサーバ(OS不明)"
+name = "IAサーバ"
 tracker = "IAサーバ"
 
     [sheets.platforms]
@@ -84,18 +84,18 @@ tracker = "IAサーバ"
 
 [[sheets]]
 
-name = "SPARCサーバ"
+name = "Solaris"
 tracker = "SPARCサーバ"
 
     [sheets.platforms]
 
-        OS = ["Solaris"]
         HW = ["XSCF", "OracleVMServer", "SolarisZone"]
+        OS = ["Solaris"]
         MONITOR = ["Zabbix"]
 
 [[sheets]]
 
-name = "SPARCサーバ(OS無し)"
+name = "SPARCサーバ"
 tracker = "SPARCサーバ"
 
     [sheets.platforms]
