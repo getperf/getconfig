@@ -1,0 +1,9 @@
+bash: /usr/sbin/metastat: No such file or directory
+run solaris11:metastat : run command: Process exited with status 127
+run solaris11:patches : run command: Process exited with status 2
+poolstat: couldn't open pools state file: Facility is not active
+run solaris11:poolstat : run command: Process exited with status 1
+grep: can't open /etc/resolv.conf
+run solaris11:resolve_conf : run command: Process exited with status 2
+egrep: can't open /etc/snmp/snmpd.conf
+run solaris11:snmp_trap : run command: Process exited with status 2

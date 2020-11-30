@@ -1,5 +1,6 @@
 package com.getconfig.AgentLogParser
 
+import org.apache.commons.codec.binary.Hex
 import spock.lang.Specification
 import java.nio.file.Paths
 import com.getconfig.Testing.TestUtil
@@ -104,6 +105,15 @@ class LinuxParserTest extends Specification {
         1 == 1
     }
 
+    def "subnet"() {
+        when:
+        String hexString = "ffffffff";
+        byte[] bytes = Hex.decodeHex(hexString.toCharArray());
+        println bytes
+
+        then:
+        1 == 1
+    }
     def "net_onboot"() {
         when:
         TestUtil t = new TestUtil("centos80", "Linux", "net_onboot")

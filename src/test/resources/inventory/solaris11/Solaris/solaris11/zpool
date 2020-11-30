@@ -1,0 +1,22 @@
+  pool: ora_pool
+ state: ONLINE
+  scan: none requested
+config:
+
+	NAME                STATE     READ WRITE CKSUM
+	ora_pool            ONLINE       0     0     0
+	  /dev/rdsk/c1d1s0  ONLINE       0     0     0
+	  c1d12             ONLINE       0     0     0
+
+errors: No known data errors
+
+  pool: rpool
+ state: ONLINE
+  scan: none requested
+config:
+
+	NAME    STATE     READ WRITE CKSUM
+	rpool   ONLINE       0     0     0
+	  c1d0  ONLINE       0     0     0
+
+errors: No known data errors

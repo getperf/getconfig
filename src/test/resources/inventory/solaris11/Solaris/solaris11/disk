@@ -1,0 +1,1036 @@
+  / (picl, 21a00000001)
+  :PICLVersion	 1.100000 
+  :_class	 picl 
+  :name	 / 
+     platform (sun4v, 21a00000005)
+      :PlatformGroup	 sun4v 
+      :OS-Version	 11.3 
+      :OS-Release	 5.11 
+      :HostName	 ae01 
+      :OS-Name	 SunOS 
+      :#size-cells	 0x2 
+      :#address-cells	 0x2 
+      :device_type	 sun4v 
+      :breakpoint-trap	 0x7f 
+      :hv-api-groups	
+ 00  00  00  00  00  00  00  01  00  00  01  00  00  00  00  03  00  00  01  01 
+ 00  00  01  05  00  00  01  08  00  00  01  1d  00  00  00  06  00  00  01  18 
+ 00  00  01  07 
+      :stick-frequency	 0x3b9aca00 
+      :banner-name	 SPARC S7-2 
+      :product-name	 SPARC S7-2 
+      :storage-variant	 8dbp 
+      :ios-perf-counters	 ORCL,sn-ios-pr 
+      :non-ios-perf-counters	 ORCL,sn-non-ios-pr 
+      :priq-eq-sizes	 0x3 
+      :#priqs-per-cpu	 0x10 
+      :#priqs-per-pcibus	 0x10 
+      :pcie-ari-supported
+      :idprom	
+ 01  84  00  14  4f  f8  3b  ec  00  00  00  00  f8  3b  ec  de  00  00  00  00 
+ 00  00  00  00  00  00  00  00  00  00  00  00 
+      :scsi-initiator-id	 0x7 
+      :compatible	(21a00000017TBL) 
+       | chassis.SPARC-S7-2-8dbp |
+       | chassis,Sun-Microsystems.SPARC-S7-2.unknown.unknown |
+       | chassis,Sun-Microsystems.SPARC-S7-2 |
+       | chassis.SPARC-S7-2 |
+       | sun4v |
+      :PAGESIZE	 0x2000 
+      :MMU_PAGESIZE	 0x2000 
+      :MMU_PAGEOFFSET	 0x1fff 
+      :relative-addressing	 0x1 
+      :fm-capable	 0x9 
+      :fm-ereport-capable
+      :fm-errcb-capable
+      :pm-hardware-state	 no-suspend-resume 
+      :devfs-path	 / 
+      :driver-name	 rootnex 
+      :binding-name	 ORCL,SPARC-S7-2 
+      :bus-addr	  
+      :instance	 -1 
+      :PlatformName	 ORCL,SPARC-S7-2 
+      :_class	 sun4v 
+      :name	 platform 
+         scsi_vhci (devctl, 21a00000031)
+          :scsi-enumeration	 0 
+          :scsi-options	 0x107ff8 
+          :scsi-reset-delay	 0xbb8 
+          :scsi-watchdog-tick	 0xa 
+          :scsi-selection-timeout	 0xfa 
+          :scsi-tag-age-limit	 0x2 
+          :scsi-poll-timeout	 0xa 
+          :scsi-transport-timeout	 0x3c 
+          :scsi-initiator-id	 0x7 
+          :initiator-interconnect-type	 SPI 
+          :ddi-child-instance-transient	 yes 
+          :iport-rlentime-snapshot-interval	 0x1e 
+          :spread-iport-reservation	 yes 
+          :scsi-vhci-update-pathstate-on-reset	(21a00000048TBL) 
+           | Pillar  Axiom |
+           | yes |
+           | Oracle  Oracle FS |
+           | yes |
+          :ddi-forceload	(21a0000003fTBL) 
+           | misc/scsi_vhci/scsi_vhci_f_asym_sun |
+           | misc/scsi_vhci/scsi_vhci_f_asym_lsi |
+           | misc/scsi_vhci/scsi_vhci_f_asym_emc |
+           | misc/scsi_vhci/scsi_vhci_f_sym_emc |
+           | misc/scsi_vhci/scsi_vhci_f_sym_hds |
+           | misc/scsi_vhci/scsi_vhci_f_sym |
+           | misc/scsi_vhci/scsi_vhci_f_tpgs |
+          :auto-failback	 enable 
+          :load-balance	 round-robin 
+          :class	 root 
+          :fm-ereport-capable
+          :pm-want-child-notification?
+          :devfs-path	 /scsi_vhci 
+          :driver-name	 scsi_vhci 
+          :binding-name	 scsi_vhci 
+          :bus-addr	  
+          :instance	 0 
+          :_class	 devctl 
+          :name	 scsi_vhci 
+         memory (memory, 21a00000164)
+          :Size	 0x800000000 
+          :UnitAddress	 3,d0000000 
+          :available	
+ 00  00  00  27  c8  eb  00  00  00  00  00  00  00  2b  a0  00  00  00  00  27 
+ c0  00  00  00  00  00  00  00  08  cd  e0  00  00  00  00  20  50  00  00  00 
+ 00  00  00  07  50  00  00  00  00  00  00  04  10  00  00  00  00  00  00  00 
+ 40  00  00  00  00  00  00  03  d0  40  00  00  00  00  00  00  3f  bd  00  00 
+          :reg	
+ 00  00  00  03  d0  00  00  00  00  00  00  00  80  00  00  00  00  00  00  20 
+ 50  00  00  00  00  00  00  07  80  00  00  00 
+          :devfs-path	 /memory 
+          :binding-name	 memory 
+          :instance	 -1 
+          :_class	 memory 
+          :name	 memory 
+         cpu (cpu, 21a0000017d)
+          :StateBegin	 Thu Nov 19 18:03:21 2020 
+          :FPUType	 sparcv9 
+          :ProcessorType	 sparcv9 
+          :State	 on-line 
+          :ID	 0 
+          :dtlb-entries	 128 
+          :itlb-entries	 64 
+          :l2-dcache-line-size	 64 
+          :l2-dcache-size	 262144 
+          :l2-dcache-associativity	 8 
+          :l1-dcache-line-size	 32 
+          :l1-dcache-size	 16384 
+          :l1-dcache-associativity	 4 
+          :l3-cache-line-size	 64 
+          :l3-cache-size	 8388608 
+          :l3-cache-associativity	 8 
+          :l2-icache-line-size	 64 
+          :l2-icache-size	 262144 
+          :l2-icache-associativity	 8 
+          :l1-icache-line-size	 64 
+          :l1-icache-size	 16384 
+          :l1-icache-associativity	 4 
+          :portid	 0 
+          :cpuid	 0 
+          :UnitAddress	 c0000000,0 
+          :reg	 c0  00  00  00  00  00  00  00  00  00  00  00  00  00  00  00 
+          :device_type	 cpu 
+          :compatible	(21a00000186TBL) 
+           | SPARC-S7 |
+           | SPARC-3e42 |
+           | SPARC-3e40 |
+           | SUNW,sun4v-cpu |
+           | sun4v |
+          :clock-frequency64	 0xfe4e8a00 
+          :clock-frequency	 0xfe4e8a00 
+          :devfs-path	 /cpu 
+          :binding-name	 cpu 
+          :instance	 -1 
+          :_class	 cpu 
+          :name	 cpu 
+         cpu (cpu, 21a0000018e)
+          :StateBegin	 Thu Nov 19 18:03:21 2020 
+          :FPUType	 sparcv9 
+          :ProcessorType	 sparcv9 
+          :State	 on-line 
+          :ID	 1 
+          :dtlb-entries	 128 
+          :itlb-entries	 64 
+          :l2-dcache-line-size	 64 
+          :l2-dcache-size	 262144 
+          :l2-dcache-associativity	 8 
+          :l1-dcache-line-size	 32 
+          :l1-dcache-size	 16384 
+          :l1-dcache-associativity	 4 
+          :l3-cache-line-size	 64 
+          :l3-cache-size	 8388608 
+          :l3-cache-associativity	 8 
+          :l2-icache-line-size	 64 
+          :l2-icache-size	 262144 
+          :l2-icache-associativity	 8 
+          :l1-icache-line-size	 64 
+          :l1-icache-size	 16384 
+          :l1-icache-associativity	 4 
+          :portid	 1 
+          :cpuid	 1 
+          :UnitAddress	 c0000001,0 
+          :reg	 c0  00  00  01  00  00  00  00  00  00  00  00  00  00  00  00 
+          :device_type	 cpu 
+          :compatible	(21a00000197TBL) 
+           | SPARC-S7 |
+           | SPARC-3e42 |
+           | SPARC-3e40 |
+           | SUNW,sun4v-cpu |
+           | sun4v |
+          :clock-frequency64	 0xfe4e8a00 
+          :clock-frequency	 0xfe4e8a00 
+          :devfs-path	 /cpu 
+          :binding-name	 cpu 
+          :instance	 -1 
+          :_class	 cpu 
+          :name	 cpu 
+         cpu (cpu, 21a0000019f)
+          :StateBegin	 Thu Nov 19 18:03:21 2020 
+          :FPUType	 sparcv9 
+          :ProcessorType	 sparcv9 
+          :State	 on-line 
+          :ID	 2 
+          :dtlb-entries	 128 
+          :itlb-entries	 64 
+          :l2-dcache-line-size	 64 
+          :l2-dcache-size	 262144 
+          :l2-dcache-associativity	 8 
+          :l1-dcache-line-size	 32 
+          :l1-dcache-size	 16384 
+          :l1-dcache-associativity	 4 
+          :l3-cache-line-size	 64 
+          :l3-cache-size	 8388608 
+          :l3-cache-associativity	 8 
+          :l2-icache-line-size	 64 
+          :l2-icache-size	 262144 
+          :l2-icache-associativity	 8 
+          :l1-icache-line-size	 64 
+          :l1-icache-size	 16384 
+          :l1-icache-associativity	 4 
+          :portid	 2 
+          :cpuid	 2 
+          :UnitAddress	 c0000002,0 
+          :reg	 c0  00  00  02  00  00  00  00  00  00  00  00  00  00  00  00 
+          :device_type	 cpu 
+          :compatible	(21a000001a8TBL) 
+           | SPARC-S7 |
+           | SPARC-3e42 |
+           | SPARC-3e40 |
+           | SUNW,sun4v-cpu |
+           | sun4v |
+          :clock-frequency64	 0xfe4e8a00 
+          :clock-frequency	 0xfe4e8a00 
+          :devfs-path	 /cpu 
+          :binding-name	 cpu 
+          :instance	 -1 
+          :_class	 cpu 
+          :name	 cpu 
+         cpu (cpu, 21a000001b0)
+          :StateBegin	 Thu Nov 19 18:03:21 2020 
+          :FPUType	 sparcv9 
+          :ProcessorType	 sparcv9 
+          :State	 on-line 
+          :ID	 3 
+          :dtlb-entries	 128 
+          :itlb-entries	 64 
+          :l2-dcache-line-size	 64 
+          :l2-dcache-size	 262144 
+          :l2-dcache-associativity	 8 
+          :l1-dcache-line-size	 32 
+          :l1-dcache-size	 16384 
+          :l1-dcache-associativity	 4 
+          :l3-cache-line-size	 64 
+          :l3-cache-size	 8388608 
+          :l3-cache-associativity	 8 
+          :l2-icache-line-size	 64 
+          :l2-icache-size	 262144 
+          :l2-icache-associativity	 8 
+          :l1-icache-line-size	 64 
+          :l1-icache-size	 16384 
+          :l1-icache-associativity	 4 
+          :portid	 3 
+          :cpuid	 3 
+          :UnitAddress	 c0000003,0 
+          :reg	 c0  00  00  03  00  00  00  00  00  00  00  00  00  00  00  00 
+          :device_type	 cpu 
+          :compatible	(21a000001b9TBL) 
+           | SPARC-S7 |
+           | SPARC-3e42 |
+           | SPARC-3e40 |
+           | SUNW,sun4v-cpu |
+           | sun4v |
+          :clock-frequency64	 0xfe4e8a00 
+          :clock-frequency	 0xfe4e8a00 
+          :devfs-path	 /cpu 
+          :binding-name	 cpu 
+          :instance	 -1 
+          :_class	 cpu 
+          :name	 cpu 
+         cpu (cpu, 21a000001c1)
+          :StateBegin	 Thu Nov 19 18:03:21 2020 
+          :FPUType	 sparcv9 
+          :ProcessorType	 sparcv9 
+          :State	 on-line 
+          :ID	 4 
+          :dtlb-entries	 128 
+          :itlb-entries	 64 
+          :l2-dcache-line-size	 64 
+          :l2-dcache-size	 262144 
+          :l2-dcache-associativity	 8 
+          :l1-dcache-line-size	 32 
+          :l1-dcache-size	 16384 
+          :l1-dcache-associativity	 4 
+          :l3-cache-line-size	 64 
+          :l3-cache-size	 8388608 
+          :l3-cache-associativity	 8 
+          :l2-icache-line-size	 64 
+          :l2-icache-size	 262144 
+          :l2-icache-associativity	 8 
+          :l1-icache-line-size	 64 
+          :l1-icache-size	 16384 
+          :l1-icache-associativity	 4 
+          :portid	 4 
+          :cpuid	 4 
+          :UnitAddress	 c0000004,0 
+          :reg	 c0  00  00  04  00  00  00  00  00  00  00  00  00  00  00  00 
+          :device_type	 cpu 
+          :compatible	(21a000001caTBL) 
+           | SPARC-S7 |
+           | SPARC-3e42 |
+           | SPARC-3e40 |
+           | SUNW,sun4v-cpu |
+           | sun4v |
+          :clock-frequency64	 0xfe4e8a00 
+          :clock-frequency	 0xfe4e8a00 
+          :devfs-path	 /cpu 
+          :binding-name	 cpu 
+          :instance	 -1 
+          :_class	 cpu 
+          :name	 cpu 
+         cpu (cpu, 21a000001d2)
+          :StateBegin	 Thu Nov 19 18:03:21 2020 
+          :FPUType	 sparcv9 
+          :ProcessorType	 sparcv9 
+          :State	 on-line 
+          :ID	 5 
+          :dtlb-entries	 128 
+          :itlb-entries	 64 
+          :l2-dcache-line-size	 64 
+          :l2-dcache-size	 262144 
+          :l2-dcache-associativity	 8 
+          :l1-dcache-line-size	 32 
+          :l1-dcache-size	 16384 
+          :l1-dcache-associativity	 4 
+          :l3-cache-line-size	 64 
+          :l3-cache-size	 8388608 
+          :l3-cache-associativity	 8 
+          :l2-icache-line-size	 64 
+          :l2-icache-size	 262144 
+          :l2-icache-associativity	 8 
+          :l1-icache-line-size	 64 
+          :l1-icache-size	 16384 
+          :l1-icache-associativity	 4 
+          :portid	 5 
+          :cpuid	 5 
+          :UnitAddress	 c0000005,0 
+          :reg	 c0  00  00  05  00  00  00  00  00  00  00  00  00  00  00  00 
+          :device_type	 cpu 
+          :compatible	(21a000001dbTBL) 
+           | SPARC-S7 |
+           | SPARC-3e42 |
+           | SPARC-3e40 |
+           | SUNW,sun4v-cpu |
+           | sun4v |
+          :clock-frequency64	 0xfe4e8a00 
+          :clock-frequency	 0xfe4e8a00 
+          :devfs-path	 /cpu 
+          :binding-name	 cpu 
+          :instance	 -1 
+          :_class	 cpu 
+          :name	 cpu 
+         cpu (cpu, 21a000001e3)
+          :StateBegin	 Thu Nov 19 18:03:21 2020 
+          :FPUType	 sparcv9 
+          :ProcessorType	 sparcv9 
+          :State	 on-line 
+          :ID	 6 
+          :dtlb-entries	 128 
+          :itlb-entries	 64 
+          :l2-dcache-line-size	 64 
+          :l2-dcache-size	 262144 
+          :l2-dcache-associativity	 8 
+          :l1-dcache-line-size	 32 
+          :l1-dcache-size	 16384 
+          :l1-dcache-associativity	 4 
+          :l3-cache-line-size	 64 
+          :l3-cache-size	 8388608 
+          :l3-cache-associativity	 8 
+          :l2-icache-line-size	 64 
+          :l2-icache-size	 262144 
+          :l2-icache-associativity	 8 
+          :l1-icache-line-size	 64 
+          :l1-icache-size	 16384 
+          :l1-icache-associativity	 4 
+          :portid	 6 
+          :cpuid	 6 
+          :UnitAddress	 c0000006,0 
+          :reg	 c0  00  00  06  00  00  00  00  00  00  00  00  00  00  00  00 
+          :device_type	 cpu 
+          :compatible	(21a000001ecTBL) 
+           | SPARC-S7 |
+           | SPARC-3e42 |
+           | SPARC-3e40 |
+           | SUNW,sun4v-cpu |
+           | sun4v |
+          :clock-frequency64	 0xfe4e8a00 
+          :clock-frequency	 0xfe4e8a00 
+          :devfs-path	 /cpu 
+          :binding-name	 cpu 
+          :instance	 -1 
+          :_class	 cpu 
+          :name	 cpu 
+         cpu (cpu, 21a000001f4)
+          :StateBegin	 Thu Nov 19 18:03:21 2020 
+          :FPUType	 sparcv9 
+          :ProcessorType	 sparcv9 
+          :State	 on-line 
+          :ID	 7 
+          :dtlb-entries	 128 
+          :itlb-entries	 64 
+          :l2-dcache-line-size	 64 
+          :l2-dcache-size	 262144 
+          :l2-dcache-associativity	 8 
+          :l1-dcache-line-size	 32 
+          :l1-dcache-size	 16384 
+          :l1-dcache-associativity	 4 
+          :l3-cache-line-size	 64 
+          :l3-cache-size	 8388608 
+          :l3-cache-associativity	 8 
+          :l2-icache-line-size	 64 
+          :l2-icache-size	 262144 
+          :l2-icache-associativity	 8 
+          :l1-icache-line-size	 64 
+          :l1-icache-size	 16384 
+          :l1-icache-associativity	 4 
+          :portid	 7 
+          :cpuid	 7 
+          :UnitAddress	 c0000007,0 
+          :reg	 c0  00  00  07  00  00  00  00  00  00  00  00  00  00  00  00 
+          :device_type	 cpu 
+          :compatible	(21a000001fdTBL) 
+           | SPARC-S7 |
+           | SPARC-3e42 |
+           | SPARC-3e40 |
+           | SUNW,sun4v-cpu |
+           | sun4v |
+          :clock-frequency64	 0xfe4e8a00 
+          :clock-frequency	 0xfe4e8a00 
+          :devfs-path	 /cpu 
+          :binding-name	 cpu 
+          :instance	 -1 
+          :_class	 cpu 
+          :name	 cpu 
+         virtual-devices (virtual-devices, 21a00000205)
+          :UnitAddress	 c0000100,0 
+          :compatible	(21a00000216TBL) 
+           | SUNW,sun4v-virtual-devices |
+           | SUNW,virtual-devices |
+          :device_type	 virtual-devices 
+          :#size-cells	 0 
+          :#address-cells	 0x1 
+          :reg	 c0  00  01  00  00  00  00  00  00  00  00  00  00  00  00  00 
+          :#interrupt-cells	 0x1 
+          :interrupt-map-mask	 00  00  00  1f  00  ff  ff  ff  00  00  00  03 
+          :interrupt-map	 00  00  00  01  00  00  00  01  f0  29  fb  38  00  00  00  11 
+          :numaio-root-lgrp
+          :devfs-path	 /virtual-devices@100 
+          :driver-name	 vnex 
+          :binding-name	 SUNW,sun4v-virtual-devices 
+          :bus-addr	 100 
+          :instance	 0 
+          :_class	 virtual-devices 
+          :name	 virtual-devices 
+             flashprom (flashprom, 21a00000219)
+              :UnitAddress	 0 
+              :reg	 00  00  00  00 
+              :devfs-path	 /virtual-devices@100/flashprom 
+              :binding-name	 flashprom 
+              :instance	 -1 
+              :_class	 flashprom 
+              :name	 flashprom 
+             random-number-generator (obp-device, 21a00000220)
+              :UnitAddress	 e 
+              :reg	 00  00  00  0e 
+              :compatible	 ORCL,m7-rng 
+              :rng-#units	 0x1 
+              :numaio-root-lgrp
+              :ddi-forceattach	 0x1 
+              :ddi-no-autodetach	 0x1 
+              :devfs-path	 /virtual-devices@100/random-number-generator@e 
+              :driver-name	 n2rng 
+              :binding-name	 ORCL,m7-rng 
+              :bus-addr	 e 
+              :instance	 0 
+              :_class	 obp-device 
+              :name	 random-number-generator 
+             dax (obp-device, 21a0000022e)
+              :UnitAddress	 a 
+              :reg	 00  00  00  0a 
+              :compatible	(21a00000239TBL) 
+               | ORCL,sun4v-dax-fc |
+               | ORCL,sun4v-dax |
+              :#interrupts	 0x3f 
+              :numaio-root-lgrp
+              :devfs-path	 /virtual-devices@100/dax@a 
+              :driver-name	 dax 
+              :binding-name	 dax 
+              :bus-addr	 a 
+              :instance	 0 
+              :_class	 obp-device 
+              :name	 dax 
+             console (serial, 21a0000023d)
+              :UnitAddress	 1 
+              :interrupts	 00  00  00  01 
+              :compatible	 SUNW,sun4v-console 
+              :device_type	 serial 
+              :reg	 00  00  00  01 
+              :numaio-root-lgrp
+              :ddi-no-autodetach	 0x1 
+              :devfs-path	 /virtual-devices@100/console@1 
+              :driver-name	 qcn 
+              :binding-name	 SUNW,sun4v-console 
+              :bus-addr	 1 
+              :instance	 0 
+              :_class	 serial 
+              :name	 console 
+             channel-devices (channel-devices, 21a0000024b)
+              :UnitAddress	 200 
+              :device_type	 channel-devices 
+              :compatible	 SUNW,sun4v-channel-devices 
+              :reg	 00  00  02  00 
+              :#size-cells	 0 
+              :#address-cells	 0x1 
+              :numaio-root-lgrp
+              :devfs-path	 /virtual-devices@100/channel-devices@200 
+              :driver-name	 cnex 
+              :binding-name	 SUNW,sun4v-channel-devices 
+              :bus-addr	 200 
+              :instance	 0 
+              :_class	 channel-devices 
+              :name	 channel-devices 
+                 network (network, 21a00000259)
+                  :UnitAddress	 0 
+                  :device_type	 network 
+                  :compatible	 SUNW,sun4v-network 
+                  :reg	 00  00  00  00 
+                  :address-bits	 0x30 
+                  :max-frame-size	 0x4000 
+                  :local-mac-address	 00  14  4f  fa  69  43 
+                  :numaio-root-lgrp
+                  :devfs-path	 /virtual-devices@100/channel-devices@200/network@0 
+                  :driver-name	 vnet 
+                  :binding-name	 SUNW,sun4v-network 
+                  :bus-addr	 0 
+                  :instance	 0 
+                  :_class	 network 
+                  :name	 network 
+                 network (network, 21a00000268)
+                  :UnitAddress	 1 
+                  :device_type	 network 
+                  :compatible	 SUNW,sun4v-network 
+                  :reg	 00  00  00  01 
+                  :address-bits	 0x30 
+                  :max-frame-size	 0x4000 
+                  :local-mac-address	 00  14  4f  fa  22  21 
+                  :numaio-root-lgrp
+                  :devfs-path	 /virtual-devices@100/channel-devices@200/network@1 
+                  :driver-name	 vnet 
+                  :binding-name	 SUNW,sun4v-network 
+                  :bus-addr	 1 
+                  :instance	 1 
+                  :_class	 network 
+                  :name	 network 
+                 network (network, 21a00000277)
+                  :UnitAddress	 2 
+                  :device_type	 network 
+                  :compatible	 SUNW,sun4v-network 
+                  :reg	 00  00  00  02 
+                  :address-bits	 0x30 
+                  :max-frame-size	 0x4000 
+                  :local-mac-address	 00  14  4f  f8  fc  d1 
+                  :numaio-root-lgrp
+                  :devfs-path	 /virtual-devices@100/channel-devices@200/network@2 
+                  :driver-name	 vnet 
+                  :binding-name	 SUNW,sun4v-network 
+                  :bus-addr	 2 
+                  :instance	 2 
+                  :_class	 network 
+                  :name	 network 
+                 network (network, 21a00000286)
+                  :UnitAddress	 3 
+                  :device_type	 network 
+                  :compatible	 SUNW,sun4v-network 
+                  :reg	 00  00  00  03 
+                  :address-bits	 0x30 
+                  :max-frame-size	 0x4000 
+                  :local-mac-address	 00  14  4f  fb  a6  b6 
+                  :numaio-root-lgrp
+                  :devfs-path	 /virtual-devices@100/channel-devices@200/network@3 
+                  :driver-name	 vnet 
+                  :binding-name	 SUNW,sun4v-network 
+                  :bus-addr	 3 
+                  :instance	 3 
+                  :_class	 network 
+                  :name	 network 
+                 network (network, 21a00000295)
+                  :UnitAddress	 5 
+                  :device_type	 network 
+                  :compatible	 SUNW,sun4v-network 
+                  :reg	 00  00  00  05 
+                  :address-bits	 0x30 
+                  :max-frame-size	 0x4000 
+                  :local-mac-address	 00  14  4f  fa  69  d9 
+                  :numaio-root-lgrp
+                  :devfs-path	 /virtual-devices@100/channel-devices@200/network@5 
+                  :driver-name	 vnet 
+                  :binding-name	 SUNW,sun4v-network 
+                  :bus-addr	 5 
+                  :instance	 5 
+                  :_class	 network 
+                  :name	 network 
+                 network (network, 21a000002a4)
+                  :UnitAddress	 4 
+                  :device_type	 network 
+                  :compatible	 SUNW,sun4v-network 
+                  :reg	 00  00  00  04 
+                  :address-bits	 0x30 
+                  :max-frame-size	 0x4000 
+                  :local-mac-address	 00  14  4f  f9  33  c2 
+                  :numaio-root-lgrp
+                  :devfs-path	 /virtual-devices@100/channel-devices@200/network@4 
+                  :driver-name	 vnet 
+                  :binding-name	 SUNW,sun4v-network 
+                  :bus-addr	 4 
+                  :instance	 4 
+                  :_class	 network 
+                  :name	 network 
+                 pciv-communication (obp-device, 21a000002b3)
+                  :UnitAddress	 0 
+                  :reg	 00  00  00  00 
+                  :compatible	 SUNW,sun4v-pciv-comm 
+                  :numaio-root-lgrp
+                  :ddi-forceattach	 0x1 
+                  :devfs-path	 /virtual-devices@100/channel-devices@200/pciv-communication@0 
+                  :driver-name	 vpci 
+                  :binding-name	 SUNW,sun4v-pciv-comm 
+                  :bus-addr	 0 
+                  :instance	 0 
+                  :_class	 obp-device 
+                  :name	 pciv-communication 
+                 virtual-domain-service (obp-device, 21a000002bf)
+                  :UnitAddress	 0 
+                  :reg	 00  00  00  00 
+                  :compatible	 SUNW,sun4v-domain-service 
+                  :numaio-root-lgrp
+                  :devfs-path	 /virtual-devices@100/channel-devices@200/virtual-domain-service@0 
+                  :driver-name	 vlds 
+                  :binding-name	 SUNW,sun4v-domain-service 
+                  :bus-addr	 0 
+                  :instance	 0 
+                  :_class	 obp-device 
+                  :name	 virtual-domain-service 
+         pseudo (devctl, 21a000002f2)
+          :class	 root 
+          :devfs-path	 /pseudo 
+          :driver-name	 pseudo 
+          :binding-name	 pseudo 
+          :bus-addr	  
+          :instance	 0 
+          :_class	 devctl 
+          :name	 pseudo 
+             zconsnex (devctl, 21a000002fb)
+              :valid-children	 zcons 
+              :devfs-path	 /pseudo/zconsnex@1 
+              :driver-name	 pseudo 
+              :binding-name	 zconsnex 
+              :bus-addr	 1 
+              :instance	 1 
+              :_class	 devctl 
+              :name	 zconsnex 
+     obp (picl, 21a0000002e)
+      :_class	 picl 
+      :name	 obp 
+         packages (packages, 21a0000005a)
+          :devfs-path	 /packages 
+          :binding-name	 packages 
+          :instance	 -1 
+          :_class	 packages 
+          :name	 packages 
+             SUNW,builtin-drivers (SUNW,builtin-drivers, 21a00000060)
+              :builtin-drivers	(21a00000067TBL) 
+               | class010802 |
+               | nvme |
+               | pciex108e,2188.108e.0 |
+               | sibs |
+               | pciex108e,2198.108e.0 |
+               | sibs |
+               | ibport |
+               | ibport |
+               | uvnic |
+               | uvnic |
+               | pci1000,70 |
+               | pci1000,70 |
+               | pciex1000,72 |
+               | pci1000,70 |
+               | pciex1000,72.1000.72 |
+               | pci1000,70 |
+               | pciex1000,87.1000.87 |
+               | pci1000,70 |
+               | pciex1000,72.108e.6273 |
+               | pci1000,70 |
+               | pciex1000,97.1000.90 |
+               | pci1000,70 |
+               | pciex |
+               | sun4v-vpci |
+               | class060400 |
+               | class060400 |
+               | ORCL,m4ios-pr |
+               | sun4v-perf-cnt |
+               | pciex8086,1528.108e.4848 |
+               | ophir |
+               | pciex8086,1515.108e.4848 |
+               | ophir |
+               | pciex8086,1521.108e.7b1a |
+               | ophir |
+               | pciex8086,1586.108e.4857 |
+               | fortville |
+               | pciex8086,1586.108e.7b1e |
+               | fortville |
+               | pciex8086,1589.108e.7b1e |
+               | fortville |
+               | pciex8086,1586.108e.0 |
+               | fortville |
+               | pciex8086,1589.108e.0 |
+               | fortville |
+               | pciex8086,154c.108e.4857 |
+               | fortville-vf |
+               | pciex8086,154c.108e.0 |
+               | fortville-vf |
+               | pci1a03,2000.1a03.2000 |
+               | ast-graphics |
+               | pci102b,522.19a2.102 |
+               | matrox-graphics |
+               | pciex102b,522.19a2.102 |
+               | matrox-graphics |
+               | pciex102b,522 |
+               | matrox-graphics |
+              :devfs-path	 /packages/SUNW,builtin-drivers 
+              :binding-name	 SUNW,builtin-drivers 
+              :instance	 -1 
+              :_class	 SUNW,builtin-drivers 
+              :name	 SUNW,builtin-drivers 
+             pci-prober (pci-prober, 21a000000a0)
+              :devfs-path	 /packages/pci-prober 
+              :binding-name	 pci-prober 
+              :instance	 -1 
+              :_class	 pci-prober 
+              :name	 pci-prober 
+             deblocker (deblocker, 21a000000a6)
+              :disk-write-fix
+              :lba64
+              :devfs-path	 /packages/deblocker 
+              :binding-name	 deblocker 
+              :instance	 -1 
+              :_class	 deblocker 
+              :name	 deblocker 
+             disk-label (disk-label, 21a000000ae)
+              :supported-labels	(21a000000b6TBL) 
+               | gpt |
+               | sun |
+               | mbr |
+              :gpt
+              :devfs-path	 /packages/disk-label 
+              :binding-name	 disk-label 
+              :instance	 -1 
+              :_class	 disk-label 
+              :name	 disk-label 
+             terminal-emulator (terminal-emulator, 21a000000ba)
+              :iso6429-1983-colors
+              :devfs-path	 /packages/terminal-emulator 
+              :binding-name	 terminal-emulator 
+              :instance	 -1 
+              :_class	 terminal-emulator 
+              :name	 terminal-emulator 
+             dropins (dropins, 21a000000c1)
+              :source	 /flashprom: 
+              :devfs-path	 /packages/dropins 
+              :binding-name	 dropins 
+              :instance	 -1 
+              :_class	 dropins 
+              :name	 dropins 
+             SUNW,asr (SUNW,asr, 21a000000c8)
+              :devfs-path	 /packages/SUNW,asr 
+              :binding-name	 SUNW,asr 
+              :instance	 -1 
+              :_class	 SUNW,asr 
+              :name	 SUNW,asr 
+             kbd-translator (kbd-translator, 21a000000ce)
+              :devfs-path	 /packages/kbd-translator 
+              :binding-name	 kbd-translator 
+              :instance	 -1 
+              :_class	 kbd-translator 
+              :name	 kbd-translator 
+             obp-tftp (obp-tftp, 21a000000d4)
+              :devfs-path	 /packages/obp-tftp 
+              :binding-name	 obp-tftp 
+              :instance	 -1 
+              :_class	 obp-tftp 
+              :name	 obp-tftp 
+             vdisk-helper-pkg (vdisk-helper-pkg, 21a000000da)
+              :lba64
+              :devfs-path	 /packages/vdisk-helper-pkg 
+              :binding-name	 vdisk-helper-pkg 
+              :instance	 -1 
+              :_class	 vdisk-helper-pkg 
+              :name	 vdisk-helper-pkg 
+             vnet-helper-pkg (vnet-helper-pkg, 21a000000e1)
+              :devfs-path	 /packages/vnet-helper-pkg 
+              :binding-name	 vnet-helper-pkg 
+              :instance	 -1 
+              :_class	 vnet-helper-pkg 
+              :name	 vnet-helper-pkg 
+             zfs-file-system (zfs-file-system, 21a000000e7)
+              :devfs-path	 /packages/zfs-file-system 
+              :binding-name	 zfs-file-system 
+              :instance	 -1 
+              :_class	 zfs-file-system 
+              :name	 zfs-file-system 
+             hsfs-file-system (hsfs-file-system, 21a000000ed)
+              :devfs-path	 /packages/hsfs-file-system 
+              :binding-name	 hsfs-file-system 
+              :instance	 -1 
+              :_class	 hsfs-file-system 
+              :name	 hsfs-file-system 
+         chosen (chosen, 21a000000f3)
+          :root-be-uuid	 7f02e367-855a-4c70-aa93-b7d199b64bb8 
+          :root-uuid-chk	 1 
+          :stdout-#lines	 0xffffffff 
+          :stdin	 0xfef37c70 
+          :stdout	 0xfef376c0 
+          :memory	 0xfff04d48 
+          :mmu	 0xfff04b38 
+          :openboot-reserved	 0x40000000 
+          :bootpath	 /virtual-devices@100/channel-devices@200/disk@0:a 
+          :bootargs	 0 
+          :fstype	 zfs 
+          :bootfs	 0xfefc9ed0 
+          :zfs-bootfs	 rpool/314 
+          :bootarchive	 /ramdisk-root 
+          :archive-fstype	 hsfs 
+          :archfs	 0xfef41108 
+          :elfheader-address	 0x50000000 
+          :elfheader-length	 0x346000 
+          :impl-arch-name	 sun4v 
+          :whoami	 /platform/sun4v/kernel/sparcv9/unix 
+          :fs-package	 hsfs-file-system 
+          :devfs-path	 /chosen 
+          :binding-name	 chosen 
+          :instance	 -1 
+          :_class	 chosen 
+          :name	 chosen 
+         openprom (openprom, 21a0000010e)
+          :relative-addressing
+          :aligned-allocator
+          :model	 SUNW,4.42.3 
+          :version	 OBP 4.42.3 2017/11/29 08:32 
+          :devfs-path	 /openprom 
+          :binding-name	 openprom 
+          :instance	 -1 
+          :_class	 openprom 
+          :name	 openprom 
+             client-services (client-services, 21a00000118)
+              :devfs-path	 /openprom/client-services 
+              :binding-name	 client-services 
+              :instance	 -1 
+              :_class	 client-services 
+              :name	 client-services 
+         options (options, 21a0000011e)
+          :nvramrc
+          :use-nvramrc?	 false 
+          :boot-device-index	 0 
+          :multipath-boot?	 false 
+          :boot-device	 /virtual-devices@100/channel-devices@200/disk@0:a disk net 
+          :boot-file
+          :boot-command	 boot 
+          :network-boot-arguments
+          :os-root-device
+          :auto-boot?	 true 
+          :load-base	 16384 
+          :auto-boot-on-error?	 false 
+          :input-device	 virtual-console 
+          :output-device	 virtual-console 
+          :screen-#rows	 34 
+          :screen-#columns	 80 
+          :ansi-terminal?	 true 
+          :oem-banner?	 false 
+          :oem-banner
+          :oem-logo?	 false 
+          :oem-logo
+          :scsi-initiator-id	 0x37 
+          :fcode-debug?	 false 
+          :local-mac-address?	 true 
+          :diag-switch?	 false 
+          :verbosity	 min 
+          :security-#badlogins	 0 
+          :security-password
+          :security-mode	 none 
+          :reboot-command
+          :keyboard-layout
+          :pci-probe-policy	 all 
+          :class	 root 
+          :ttymodes	
+ 00  00  25  02  00  00  18  05  00  00  00  bd  00  00  8a  3b  03  1c  7f  15 
+ 04  00  00  00  11  13  1a  19  12  0f  17  16  00  00  00  00 
+          :devfs-path	 /options 
+          :driver-name	 options 
+          :binding-name	 options 
+          :bus-addr	  
+          :instance	 0 
+          :_class	 options 
+          :name	 options 
+         aliases (aliases, 21a00000148)
+          :virtual-console	 /virtual-devices/console@1 
+          :disk	 /virtual-devices@100/channel-devices@200/disk@0 
+          :net	 /virtual-devices@100/channel-devices@200/network@0 
+          :vnet0	 /virtual-devices@100/channel-devices@200/network@0 
+          :vnet1	 /virtual-devices@100/channel-devices@200/network@1 
+          :vnet2	 /virtual-devices@100/channel-devices@200/network@2 
+          :vnet3	 /virtual-devices@100/channel-devices@200/network@3 
+          :vnet5	 /virtual-devices@100/channel-devices@200/network@5 
+          :vnet4	 /virtual-devices@100/channel-devices@200/network@4 
+          :vdisk-os	 /virtual-devices@100/channel-devices@200/disk@0 
+          :vdisk-users	 /virtual-devices@100/channel-devices@200/disk@1 
+          :vdisk-crs1	 /virtual-devices@100/channel-devices@200/disk@2 
+          :vdisk-crs2	 /virtual-devices@100/channel-devices@200/disk@3 
+          :vdisk-crs3	 /virtual-devices@100/channel-devices@200/disk@4 
+          :vdisk-redo1	 /virtual-devices@100/channel-devices@200/disk@5 
+          :vdisk-redo2	 /virtual-devices@100/channel-devices@200/disk@6 
+          :vdisk-mgmt	 /virtual-devices@100/channel-devices@200/disk@7 
+          :vdisk-data	 /virtual-devices@100/channel-devices@200/disk@8 
+          :vdisk-users2	 /virtual-devices@100/channel-devices@200/disk@c 
+          :vdisk-dgdata	 /virtual-devices@100/channel-devices@200/disk@9 
+          :disk2g_01	 /virtual-devices@100/channel-devices@200/disk@a 
+          :disk2g_02	 /virtual-devices@100/channel-devices@200/disk@b 
+          :devfs-path	 /aliases 
+          :binding-name	 aliases 
+          :instance	 -1 
+          :_class	 aliases 
+          :name	 aliases 
+         virtual-memory (virtual-memory, 21a0000016c)
+          :page-size	 0x2000 
+          :available	
+ ff  ff  f8  00  00  00  00  00  00  00  07  fc  00  00  00  00  00  00  00  01 
+ 00  00  00  00  00  00  07  ff  00  00  00  00  00  00  00  00  ff  ff  00  00 
+ 00  00  00  00  00  00  e0  00  00  00  00  00  56  f6  20  00  00  00  00  00 
+ 99  09  e0  00  00  00  00  00  30  00  00  00  00  00  00  00  21  00  00  00 
+ 00  00  00  00  01  47  20  00  00  00  00  00  0e  b8  e0  00  00  00  00  00 
+ 00  f8  00  00  00  00  00  00  00  48  20  00  00  00  00  00  00  00  00  00 
+ 00  00  00  00  00  a0  00  00  00  00  00  00  f2  20  00  00  00  00  00  00 
+ 0c  a2  60  00 
+          :existing	
+ 00  00  00  00  00  00  00  00  00  00  08  00  00  00  00  00  ff  ff  f8  00 
+ 00  00  00  00  00  00  08  00  00  00  00  00 
+          :translations	
+ 00  00  00  00  00  00  20  00  00  00  00  00  00  9f  e0  00  80  00  00  03 
+ d0  40  25  40  00  00  00  00  00  a0  00  00  00  00  00  00  00  58  00  00 
+ 80  00  00  27  cf  17  85  40  00  00  00  00  01  40  20  00  00  00  00  00 
+ 00  07  00  00  80  00  00  27  c8  e3  e5  40  00  00  00  00  10  00  00  00 
+ 00  00  00  00  10  00  00  00  80  00  00  27  b0  00  05  40  00  00  00  00 
+ 20  00  00  00  00  00  00  00  10  00  00  00  80  00  00  27  a0  00  05  40 
+ 00  00  00  00  51  00  00  00  00  00  00  00  05  f6  20  00  80  00  00  27 
+ c9  21  65  40  00  00  00  00  f0  00  00  00  00  00  00  00  00  40  00  00 
+ 80  00  00  03  d0  00  05  50  00  00  00  00  f0  40  00  00  00  00  00  00 
+ 00  6b  00  00  80  00  00  27  cf  89  05  50  00  00  00  00  fe  c2  60  00 
+ 00  00  00  00  00  08  c0  00  80  00  00  27  c9  16  a5  50  00  00  00  00 
+ fe  cb  20  00  00  00  00  00  00  0d  e0  00  80  00  00  27  c8  cd  e5  50 
+ 00  00  00  00  fe  d9  00  00  00  00  00  00  00  00  80  00  80  00  00  27 
+ c9  1f  65  50  00  00  00  00  fe  d9  80  00  00  00  00  00  00  00  80  00 
+ 80  00  00  27  cf  6f  85  50  00  00  00  00  fe  da  00  00  00  00  00  00 
+ 00  00  20  00  80  00  00  27  cf  88  05  50  00  00  00  00  fe  da  20  00 
+ 00  00  00  00  00  08  00  00  80  00  00  27  cf  70  05  50  00  00  00  00 
+ fe  e2  20  00  00  00  00  00  00  00  60  00  80  00  00  27  cf  88  25  50 
+ 00  00  00  00  fe  e2  80  00  00  00  00  00  00  08  00  00  80  00  00  27 
+ cf  78  05  50  00  00  00  00  fe  ea  80  00  00  00  00  00  00  00  60  00 
+ 80  00  00  27  cf  88  85  50  00  00  00  00  fe  ea  e0  00  00  00  00  00 
+ 00  08  00  00  80  00  00  27  cf  80  05  50  00  00  00  00  fe  f2  e0  00 
+ 00  00  00  00  00  00  20  00  80  00  00  27  cf  88  e5  50  00  00  00  00 
+ fe  f3  00  00  00  00  00  00  00  00  40  00  80  00  00  27  cf  fc  05  50 
+ 00  00  00  00  fe  f3  40  00  00  00  00  00  00  01  00  00  80  00  00  27 
+ cf  fc  a5  50  00  00  00  00  fe  f4  40  00  00  00  00  00  00  08  00  00 
+ 80  00  00  27  cf  f4  05  50  00  00  00  00  fe  fc  40  00  00  00  00  00 
+ 00  00  40  00  80  00  00  27  cf  fd  a5  50  00  00  00  00  fe  fc  80  00 
+ 00  00  00  00  00  00  40  00  80  00  00  27  cf  fe  05  50  00  00  00  00 
+ fe  fd  00  00  00  00  00  00  00  00  20  00  80  00  00  27  cf  fd  e5  50 
+ 00  00  00  00  fe  fd  20  00  00  00  00  00  00  00  c0  00  80  00  00  27 
+ cf  ff  45  50  00  00  00  00  fe  fd  e0  00  00  00  00  00  00  01  80  00 
+ 80  00  00  04  0f  fd  05  50  00  00  00  00  fe  ff  60  00  00  00  00  00 
+ 00  00  20  00  80  00  00  04  0f  fe  c5  50  00  00  00  00  fe  ff  80  00 
+ 00  00  00  00  00  00  80  00  80  00  00  04  0f  ff  05  50  00  00  00  00 
+ ff  f0  00  00  00  00  00  00  00  01  00  00  80  00  00  03  d0  1f  05  50 
+          :devfs-path	 /virtual-memory 
+          :binding-name	 virtual-memory 
+          :instance	 -1 
+          :_class	 virtual-memory 
+          :name	 virtual-memory 
+         iscsi-hba (iscsi-hba, 21a00000176)
+          :compatible	 SUNW,iscsi-hba 
+          :devfs-path	 /iscsi-hba 
+          :binding-name	 iscsi-hba 
+          :instance	 -1 
+          :_class	 iscsi-hba 
+          :name	 iscsi-hba 
+         fcoe (fcoe, 21a000002ca)
+          :numaio-root-lgrp
+          :devfs-path	 /fcoe 
+          :driver-name	 fcoe 
+          :binding-name	 fcoe 
+          :bus-addr	  
+          :instance	 0 
+          :_class	 fcoe 
+          :name	 fcoe 
+         iscsi (iscsi, 21a000002d3)
+          :numaio-root-lgrp
+          :scsi-enumeration	 0 
+          :scsi-options	 0x107ff8 
+          :scsi-reset-delay	 0xbb8 
+          :scsi-watchdog-tick	 0xa 
+          :scsi-selection-timeout	 0xfa 
+          :scsi-tag-age-limit	 0x2 
+          :scsi-poll-timeout	 0xa 
+          :scsi-transport-timeout	 0x3c 
+          :scsi-initiator-id	 0x7 
+          :initiator-interconnect-type	 iSCSI 
+          :ddi-child-instance-transient	 yes 
+          :load-balance	 round-robin 
+          :mpxio-disable	 no 
+          :so-rcvbuf	 0x40000 
+          :so-sndbuf	 0x40000 
+          :tcp-nodelay	 0 
+          :tcp-conn-notify-threshold	 0x7d0 
+          :tcp-conn-abort-threshold	 0x2710 
+          :tcp-abort-threshold	 0x7530 
+          :config-storm-delay	 0x5 
+          :fm-ereport-capable
+          :initiator-port	 iqn.1986-03.com.sun:01:00144ff83bec.5fb634e6,4000002a00ff 
+          :devfs-path	 /iscsi 
+          :driver-name	 iscsi 
+          :binding-name	 iscsi 
+          :bus-addr	  
+          :instance	 0 
+          :_class	 iscsi 
+          :name	 iscsi 

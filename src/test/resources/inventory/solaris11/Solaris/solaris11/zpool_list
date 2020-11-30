@@ -1,0 +1,3 @@
+NAME       SIZE  ALLOC   FREE  CAP  DEDUP  HEALTH  ALTROOT
+ora_pool   119G   105G  14.5G  87%  1.00x  ONLINE  -
+rpool     49.8G  21.5G  28.2G  43%  1.00x  ONLINE  -

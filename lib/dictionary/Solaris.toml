@@ -29,6 +29,8 @@ uname -n
 [[metrics]]
 
 id = "hostname_fqdn"
+name = "FQDN名"
+category = "OSリリース"
 type = "Script"
 text = '''
 (
@@ -42,34 +44,155 @@ fi
 [[metrics]]
 
 id = "kernel"
+name = "OS名"
+category = "OSリリース"
 text = '''
 uname -X
 '''
 
 [[metrics]]
 
-id = "cpu"
-text = '''
-kstat -p cpu_info
-'''
+id = "Release"
+name = "OSリリース"
+category = "OSリリース"
 
 [[metrics]]
 
-id = "psrinfo"
-text = '''
-psrinfo
-'''
+id = "KernelID"
+name = "カーネル"
+category = "OSリリース"
+
+[[metrics]]
+
+id = "Machine"
+name = "アーキテクチャ"
+category = "OSリリース"
 
 [[metrics]]
 
 id = "machineid"
+name = "ホストID"
+category = "OSリリース"
 text = '''
 hostid
 '''
 
 [[metrics]]
 
+id = "patches"
+category = "OS設定"
+name = "パッチ構成"
+text = '''
+ls /var/sadm/patch 2>/dev/null
+'''
+
+[[metrics]]
+
+id = "solaris11_build"
+category = "OS設定"
+name = "Solaris11 SRU情報"
+text = '''
+sh -c "LANG=C; /usr/bin/pkg info entire"
+'''
+
+[[metrics]]
+
+id = "virturization"
+category = "OS設定"
+name = "Solarisゾーン名"
+text = '''
+/usr/bin/zonename
+'''
+
+[[metrics]]
+
+id = "zoneadm"
+category = "OS設定"
+name = "Solarisゾーン設定"
+text = '''
+/usr/sbin/zoneadm list -vc
+'''
+
+[[metrics]]
+
+id = "poolstat"
+category = "OS設定"
+name = "Solarisゾーンプール設定"
+text = '''
+poolstat -r all
+'''
+
+[[metrics]]
+
+id = "system_etc"
+category = "OS設定"
+name = "システムパラメータ"
+text = '''
+cat /etc/system
+'''
+
+[[metrics]]
+
+id = "coreadm"
+category = "OS設定"
+name = "コアダンプ有効化"
+text = '''
+coreadm
+'''
+
+[[metrics]]
+
+id = "cpu"
+name = "CPU情報"
+category = "CPU"
+text = '''
+kstat -p cpu_info
+'''
+
+[[metrics]]
+
+id = "model_name"
+category = "CPU"
+name = "プロセッサーモデル"
+
+[[metrics]]
+
+id = "mhz"
+category = "CPU"
+name = "クロック"
+
+[[metrics]]
+
+id = "cpu_total"
+category = "CPU"
+name = "CPUスレッド数"
+
+[[metrics]]
+
+id = "cpu_core"
+category = "CPU"
+name = "CPUコア数"
+
+[[metrics]]
+
+id = "cpu_real"
+category = "CPU"
+name = "CPUソケット数"
+
+[[metrics]]
+
+id = "psrinfo"
+category = "CPU"
+name = "プロセッサー状態"
+text = '''
+/usr/sbin/psrinfo
+'''
+
+[[metrics]]
+
 id = "memory"
+category = "メモリ"
+name = "搭載メモリGB"
 type = "Script"
 text = '''
 /usr/sbin/prtconf |grep Memory
@@ -78,6 +201,8 @@ text = '''
 [[metrics]]
 
 id = "swap"
+category = "メモリ"
+name = "スワップ"
 text = '''
 /usr/sbin/swap -s
 '''
@@ -85,6 +210,8 @@ text = '''
 [[metrics]]
 
 id = "network"
+category = "ネットワーク"
+name = "ネットワーク"
 text = '''
 /usr/sbin/ifconfig -a
 '''
@@ -92,6 +219,8 @@ text = '''
 [[metrics]]
 
 id = "ipadm"
+category = "ネットワーク"
+name = "ネットワーク(Solaris11のみ)"
 text = '''
 ipadm
 '''
@@ -99,6 +228,8 @@ ipadm
 [[metrics]]
 
 id = "net_route"
+category = "ネットワーク"
+name = "ゲートウェイ"
 text = '''
 /usr/sbin/route -v -n get default
 '''
@@ -106,132 +237,26 @@ text = '''
 [[metrics]]
 
 id = "ndd"
+category = "ネットワーク"
+name = "TCPパラメータ"
 text = '''
 /usr/sbin/ndd -get /dev/tcp tcp_rexmit_interval_max tcp_ip_abort_interval tcp_keepalive_interval
 '''
 
 [[metrics]]
 
-id = "disk"
-text = '''
-/usr/sbin/prtpicl -v
-'''
-
-[[metrics]]
-
-id = "metastat"
-text = '''
-/usr/sbin/metastat
-'''
-
-[[metrics]]
-
-id = "filesystem"
-text = '''
-df -ha
-'''
-
-[[metrics]]
-
-id = "zpool"
-text = '''
-/usr/sbin/zpool status
-'''
-
-[[metrics]]
-
-id = "zpool_list"
-text = '''
-/usr/sbin/zpool list
-'''
-
-[[metrics]]
-
-id = "patches"
-text = '''
-ls /var/sadm/patch 2>/dev/null
-'''
-
-[[metrics]]
-
-id = "solaris11_build"
-text = '''
-sh -c "LANG=C; /usr/bin/pkg info entire"
-'''
-
-[[metrics]]
-
-id = "virturization"
-text = '''
-/usr/bin/zonename
-'''
-
-[[metrics]]
-
-id = "packages"
-text = '''
-/usr/bin/pkginfo -l
-'''
-
-[[metrics]]
-
-id = "user"
-text = '''
-cat /etc/passwd
-'''
-
-[[metrics]]
-
-id = "group"
-text = '''
-cat /etc/group
-'''
-
-[[metrics]]
-
-id = "service"
-text = '''
-sh -c "LANG=C /usr/bin/svcs -a"
-'''
-
-[[metrics]]
-
-id = "zoneadm"
-text = '''
-/usr/sbin/zoneadm list -vc
-'''
-
-[[metrics]]
-
-id = "poolstat"
-text = '''
-poolstat -r all
-'''
-
-[[metrics]]
-
-id = "system_etc"
-text = '''
-cat /etc/system
-'''
-
-[[metrics]]
-
 id = "resolve_conf"
+category = "ネットワーク"
+name = "DNSサーバ設定"
 text = '''
 grep nameserver /etc/resolv.conf
 '''
 
 [[metrics]]
 
-id = "coreadm"
-text = '''
-coreadm
-'''
-
-[[metrics]]
-
 id = "ntp"
+category = "ネットワーク"
+name = "NTPサーバ設定"
 text = '''
 egrep -e '^server' /etc/inet/ntp.conf
 '''
@@ -239,6 +264,79 @@ egrep -e '^server' /etc/inet/ntp.conf
 [[metrics]]
 
 id = "snmp_trap"
+category = "ネットワーク"
+name = "SNMPトラップ設定"
 text = '''
 egrep -e '^\\s*trapsink' /etc/snmp/snmpd.conf
 '''
+
+# [[metrics]]
+
+# id = "disk"
+# category = "ディスク"
+# name = "ディスク"
+# text = '''
+# /usr/sbin/prtpicl -v
+# '''
+
+# [[metrics]]
+
+# id = "metastat"
+# text = '''
+# /usr/sbin/metastat
+# '''
+
+[[metrics]]
+
+id = "filesystem"
+category = "ストレージ"
+name = "ディスク情報"
+text = '''
+df -ha
+'''
+
+[[metrics]]
+
+id = "zpool"
+category = "ストレージ"
+name = "ZFSプール状態"
+text = '''
+/usr/sbin/zpool status
+'''
+
+[[metrics]]
+
+id = "zpool_list"
+category = "ストレージ"
+name = "ZFSプール情報"
+text = '''
+/usr/sbin/zpool list
+'''
+
+[[metrics]]
+
+id = "packages"
+category = "パッケージ"
+name = "パッケージ情報"
+text = '''
+/usr/bin/pkginfo -l
+'''
+
+[[metrics]]
+
+id = "user"
+category = "ユーザ"
+name = "ユーザ情報"
+text = '''
+cat /etc/passwd
+'''
+
+[[metrics]]
+
+id = "service"
+category = "サービス"
+name = "サービス情報"
+text = '''
+sh -c "LANG=C /usr/bin/svcs -a"
+'''
+

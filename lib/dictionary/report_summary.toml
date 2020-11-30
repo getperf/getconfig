@@ -62,7 +62,7 @@ redmineField = "OS名"
     Linux = "lsb"
     Windows = "os_caption"
     VMHost = "summary.version"
-    Solaris = "System"
+    Solaris = "kernel"
     AIX = "osname"
 
 [[columns]]
@@ -97,7 +97,7 @@ name = "CPUコア数"
     Linux = "cpu_total"
     Windows = "cpu_total"
     VMHost = "NumCpuCores"
-    Solaris = "cpu_total"
+    Solaris = "cpu_core"
     AIX = "prtconf.Number Of Processors"
     NetAppONTAP = "hw.cpu"
 

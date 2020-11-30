@@ -1,0 +1,19 @@
+NAME              CLASS/TYPE STATE        UNDER      ADDR
+ipmp0             ipmp       ok           --         --
+   ipmp0/v4       static     ok           --         192.169.10.21/24
+lo0               loopback   ok           --         --
+   lo0/v4         static     ok           --         127.0.0.1/8
+   lo0/v6         static     ok           --         ::1/128
+net0              ip         ok           --         --
+   net0/v4        static     ok           --         192.168.10.71/22
+   net0/v4a       static     ok           --         192.168.10.72/22
+net1              ip         ok           --         --
+   net1/v4        static     ok           --         192.168.11.11/16
+   net1/v4a       static     ok           --         192.168.11.12/16
+net2              ip         ok           --         --
+   net2/v4        static     ok           --         192.168.10.11/24
+net3              ip         ok           --         --
+   net3/v4        static     ok           --         192.170.10.11/24
+   net3/v4a       static     ok           --         192.170.10.13/24
+net4              ip         ok           ipmp0      --
+net5              ip         ok           ipmp0      --
