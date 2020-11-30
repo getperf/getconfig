@@ -95,123 +95,123 @@ category = "ファームウェア"
 
 id = "health_phy_drives"
 name = "内臓ディスク"
-category = "内臓ディスク"
+category = "ファームウェア"
 level = 0
 
 [[metrics]]
 
 id = "disk.drives"
 name = "内臓ディスクドライブ"
-category = "内臓ディスク"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "health_drives"
 name = "内臓ディスク論理ボリューム"
-category = "内臓ディスク"
+category = "ファームウェア"
 level = 0
 
 [[metrics]]
 
 id = "disk.raid"
 name = "内臓ディスクRAID"
-category = "内臓ディスク"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "ip_address"
 name = "管理IP"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "network"
 name = "ネットワーク"
-category = "管理LAN"
+category = "ファームウェア"
 level = 0
 
 [[metrics]]
 
 id = "net.address"
 name = "IPv4アドレス"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "net.gateway"
 name = "IPv4ゲートウェイ"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "net.origin"
 name = "IPv4 origin"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "net.subnet"
 name = "IPv4サブネット"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "ipv6.address"
 name = "IPv6アドレス"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "ipv6.origin"
 name = "IPv6 origin"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "net.autoneg"
 name = "自動ネゴシエーション"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "net.mac"
 name = "MACアドレス"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "snmp"
 name = "SNMP"
-category = "ファームウェア設定"
+category = "ファームウェア"
 level = 0
 
 [[metrics]]
 
 id = "snmp.community"
 name = "SNMPコミュニティ"
-category = "ファームウェア設定"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "snmp.dest"
 name = "SNMPトラップ通知"
-category = "ファームウェア設定"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "power_regulator"
 name = "電源制御モード"
-category = "ファームウェア設定"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "power_summary"
 name = "最大ワット数"
-category = "ファームウェア設定"
+category = "ファームウェア"
 level = 0
 
 [[metrics]]
 
 id = "power_cap_mode"
 name = "電源容量モード"
-category = "ファームウェア設定"
+category = "ファームウェア"

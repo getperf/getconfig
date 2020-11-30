@@ -1,0 +1,22 @@
+---
+    controller: MRAID
+    composite-health: Good
+    controller-status: Optimal
+    roc-temperature-w-units: 53 degrees C
+    product-name: Cisco 12G Modular Raid Controller with 2GB cache (max 16 drives)
+    serial-number: SK99999999
+    firmware-package-build: 50.1.0-1408
+    vendor: LSI Logic
+    battery-status: Optimal
+    nvram-size: 128 KB
+    memory-size: 2048 MB
+    flash-size: 16 MB
+    cache-memory-size: 1420 MB
+    boot-drive: 0
+    boot-drive-is-PD: false
+    tty-log-status: Not Downloaded
+    lock-key-assigned: 0
+    has-pinned-cache: false
+
+CLI output format set to yaml
+

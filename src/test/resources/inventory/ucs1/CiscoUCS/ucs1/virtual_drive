@@ -1,0 +1,29 @@
+---
+    virtual-drive: 0
+    virtual-drive-health: Good
+    virtual-drive-status: Optimal
+    virtual-drive-visibility: Visible
+    name: disk0
+    size: 285148 MB
+    physical-drives: 1, 2
+    raid-level: RAID 1
+    is-boot-drive: true
+    fde-capable: 0
+    fde-enabled: 0
+    target-id: 0
+    strip-size: 64 KB
+    drives-per-span: 2
+    span-depth: 1
+    access-policy: Read-Write
+    cache-policy: Direct
+    read-ahead-policy: None
+    requested-write-cache-policy: Write Back Good BBU
+    current-write-cache-policy: Write Back
+    disk-cache-policy: Unchanged
+    auto-snapshot: 
+    auto-delete-oldest: 
+    allow-background-init: true
+
+...
+CLI output format set to yaml
+

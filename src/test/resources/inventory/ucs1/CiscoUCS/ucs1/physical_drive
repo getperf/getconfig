@@ -1,0 +1,147 @@
+---
+    physical-drive: 1
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 134
+    device-id: 17
+    lsi-drive-number: 1
+    physical-drive-health: Good
+    physical-drive-status: Online
+    is-boot-drive: false
+    vendor: SEAGATE
+    product-id: ST300MM0048
+    predictive-failure-count: 0
+    product-revision-level: N0B1
+    media-type: HDD
+    block-size: 512
+    physical-block-size: 512
+    link-speed: 12.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: online
+    foreign-locked: 0
+    enclosure-association: Direct Attached
+    enclosure-logical-id: N/A
+    enclosure-sas-address-0: N/A
+    enclosure-sas-address-1: N/A
+    power-cycle-count: Not Available
+    power-on-hours: Not Available
+    percentage-life-left: Not Available
+    wear-status-in-days: Not Available
+    percent-rsvd-capacity-consumed: Not Available
+    time-of-last-SMART-refresh: 
+    operating-temperature: Not Available
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SAS
+    block-count: 585937500
+    raw-size: 286102 MB
+    non-coerced-size: 285590 MB
+    coerced-size: 285148 MB
+    sas-address-0: 5000c500b8501329
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 2
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 134
+    device-id: 16
+    lsi-drive-number: 2
+    physical-drive-health: Good
+    physical-drive-status: Online
+    is-boot-drive: false
+    vendor: SEAGATE
+    product-id: ST300MM0048
+    predictive-failure-count: 0
+    product-revision-level: N0B1
+    media-type: HDD
+    block-size: 512
+    physical-block-size: 512
+    link-speed: 12.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: online
+    foreign-locked: 0
+    enclosure-association: Direct Attached
+    enclosure-logical-id: N/A
+    enclosure-sas-address-0: N/A
+    enclosure-sas-address-1: N/A
+    power-cycle-count: Not Available
+    power-on-hours: Not Available
+    percentage-life-left: Not Available
+    wear-status-in-days: Not Available
+    percent-rsvd-capacity-consumed: Not Available
+    time-of-last-SMART-refresh: 
+    operating-temperature: Not Available
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SAS
+    block-count: 585937500
+    raw-size: 286102 MB
+    non-coerced-size: 285590 MB
+    coerced-size: 285148 MB
+    sas-address-0: 5000c500b8501c71
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 3
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 134
+    device-id: 18
+    lsi-drive-number: 3
+    physical-drive-health: Good
+    physical-drive-status: Global Hot Spare
+    is-boot-drive: false
+    vendor: SEAGATE
+    product-id: ST300MM0048
+    predictive-failure-count: 0
+    product-revision-level: N0B1
+    media-type: HDD
+    block-size: 512
+    physical-block-size: 512
+    link-speed: 12.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: hot spare
+    foreign-locked: 0
+    enclosure-association: Direct Attached
+    enclosure-logical-id: N/A
+    enclosure-sas-address-0: N/A
+    enclosure-sas-address-1: N/A
+    power-cycle-count: Not Available
+    power-on-hours: Not Available
+    percentage-life-left: Not Available
+    wear-status-in-days: Not Available
+    percent-rsvd-capacity-consumed: Not Available
+    time-of-last-SMART-refresh: 
+    operating-temperature: Not Available
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SAS
+    block-count: 585937500
+    raw-size: 286102 MB
+    non-coerced-size: 285590 MB
+    coerced-size: 285148 MB
+    sas-address-0: 5000c500b8502539
+    sas-address-1: 0x0
+    power-state: powersave
+
+...
+CLI output format set to yaml
+

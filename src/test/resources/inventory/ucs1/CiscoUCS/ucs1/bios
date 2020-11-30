@@ -1,0 +1,14 @@
+---
+    bios-version: C240M5.3.1.3e.0.0613181139
+    bios-backup-version: C240M5.3.1.3d.0.0312180914
+    boot-order: (none)
+    fw-status: None, OK
+    secure-boot: disabled
+    boot-mode: Uefi
+    act-boot-mode: Uefi
+    last-upd-cfg: BIOS
+    one-time-boot-device: (none)
+
+...
+CLI output format set to yaml
+

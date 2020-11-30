@@ -188,7 +188,7 @@ name = "管理LAN"
     [columns.inventories]
     HPiLO = "ip_address"
     Primergy = "ip"
-    CiscoUCS = "net.address"
+    CiscoUCS = "network"
     XSCF = "network"
 
 [[columns]]

@@ -1,0 +1,13 @@
+---
+    powerstate: on
+    sn: WZP9999999
+    productname: UCS C240 M5S
+    productid: UCSC-C240-M5S
+    uuid: 99999999999-9999-9999-9999-9999999999999
+    locator-led: off
+    description: 
+    asset-tag: 
+
+...
+CLI output format set to yaml
+

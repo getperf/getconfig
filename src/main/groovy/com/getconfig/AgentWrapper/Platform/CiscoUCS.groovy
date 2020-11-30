@@ -19,6 +19,13 @@ class CiscoUCS implements AgentConfigWrapper {
     }
 
     class CiscoUCSConfig {
+        String  server
+        String  url
+        String  user
+        String  password
+        String  ssh_key
+        boolean insecure
+
         List<ServerModel> servers = new ArrayList<>()
     }
 
@@ -29,7 +36,7 @@ class CiscoUCS implements AgentConfigWrapper {
 
     @Override
     String getConfigName() {
-        return "cisco_ucs_conf.toml"
+        return "ciscoucs.toml"
     }
 
     @Override
@@ -45,16 +52,22 @@ class CiscoUCS implements AgentConfigWrapper {
     @Override
     def makeServerConfig(Server server) {
         def config = new CiscoUCSConfig(
-                servers: [
-                        new ServerModel(
-                                server : server.serverName,
-                                url : server.ip,
-                                user : server.user,
-                                password : server.password,
-                                ssh_key : server.loginOption,
-                                insecure : true,
-                        ),
-                ],
+                server : server.serverName,
+                url : server.ip,
+                user : server.user,
+                password : server.password,
+                ssh_key : server.loginOption,
+                insecure : true,
+                // servers: [
+                //         new ServerModel(
+                //                 server : server.serverName,
+                //                 url : server.ip,
+                //                 user : server.user,
+                //                 password : server.password,
+                //                 ssh_key : server.loginOption,
+                //                 insecure : true,
+                //         ),
+                // ],
         )
         return config
     }

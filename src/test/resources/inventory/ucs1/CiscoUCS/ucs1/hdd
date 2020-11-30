@@ -1,0 +1,30 @@
+---
+    Disk: 1
+    Controller: MRAID
+    Description: 300GB 12G SAS 10K RPM SFF HDD
+    PID: UCS-HD300G10K12N
+    Vendor: SEAGATE
+    Model: ST300MM0048
+    SerialNumber: W0K23XXXXXXXXXXXXXXXB
+
+---
+    Disk: 2
+    Controller: MRAID
+    Description: 300GB 12G SAS 10K RPM SFF HDD
+    PID: UCS-HD300G10K12N
+    Vendor: SEAGATE
+    Model: ST300MM0048
+    SerialNumber: W0K23XXXXXXXXXXXXXXXQ
+
+---
+    Disk: 3
+    Controller: MRAID
+    Description: 300GB 12G SAS 10K RPM SFF HDD
+    PID: UCS-HD300G10K12N
+    Vendor: SEAGATE
+    Model: ST300MM0048
+    SerialNumber: W0K23XXXXXXXXXXXXXXXU
+
+...
+CLI output format set to yaml
+

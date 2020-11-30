@@ -14,6 +14,11 @@ def extract_yaml(String lines) {
     def is_body = false
     def yaml = []
     lines.eachLine {
+        // Trim yaml warning message
+        if (it =~ /set to yaml/) {
+            is_body = false
+            return
+        }
         it = it.replaceAll(/::/, "'::'")
         // Convert S/N to String for disable parse as number.
         // e.g. SerialNumber: 18341E3024F6 => SerialNumber: "18341E3024F6"
@@ -94,8 +99,16 @@ void cpu(TestUtil t) {
 @Parser("memory")
 void memory(TestUtil t) {
     def yaml = new Yaml().load(extract_yaml(t.readAll()))
+    def headers = ['memoryspeed','totalmemory','effectivememory',
+        'redundantmemory','failedmemory','ignoredmemory',
+        'numignoreddimms','numfaileddimms','raspossible',
+        'configuration']
+    def row = []
+    headers.each { header ->
+        row << yaml.get(header) ?: 'N/A'
+    }
+    t.devices(headers, [row])
     t.setMetric('memory', yaml."totalmemory" ?: 'N/A')
-    t.setMetric('memoryspeed', yaml."memoryspeed" ?: 'N/A')
 }
 
 @Parser("hdd")
@@ -198,15 +211,17 @@ void network(TestUtil t) {
     def row = yaml.values() as List<String>
 
     t.devices(headers, [row])
-    t.setMetric("network", yaml."v4-enabled")
-    t.setMetric("net.address", yaml."v4-addr")
-    t.setMetric("net.gateway", yaml."v4-gateway")
-    t.setMetric("net.dhcp",  yaml."dhcp-enabled")
-    t.setMetric("net.subnet",  yaml."v4-netmask")
-    t.setMetric("ipv6.enabled",  yaml."v6-enabled")
-    // t.setMetric("ipv6.linklocal",  yaml."v6-linklocal")
-    t.setMetric("ipv6.dhcp-enabled",  yaml."v6-dhcp-enabled")
-    t.setMetric("net.mac",  yaml."mac")
+    // t.setMetric("network", yaml."v4-enabled")
+    t.setMetric("network", yaml."v4-addr" ?: 'N/A')
+    t.setMetric("gateway", yaml."v4-gateway" ?: 'N/A')
+    t.setMetric("dhcp",  yaml."dhcp-enabled" ?: 'N/A')
+    t.setMetric("subnet",  yaml."v4-netmask" ?: 'N/A')
+    t.setMetric("ipv6.enabled",  yaml."v6-enabled" ?: 'N/A')
+    t.setMetric("ipv6.dhcp-enabled",  yaml."v6-dhcp-enabled" ?: 'N/A')
+    t.setMetric("mac",  yaml."mac" ?: 'N/A')
+    if (yaml."v4-addr") {
+        t.portList(yaml."v4-addr", 'CiscoUCS', true)
+    }
 }
 
 @Parser("snmp")

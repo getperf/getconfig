@@ -1,0 +1,40 @@
+---
+    v4-enabled: yes
+    v4-addr: 192.168.2.11
+    v4-netmask: 255.255.254.0
+    v4-gateway: 192.168.2.1
+    dhcp-enabled: no
+    ddns-enabled: yes
+    ddns-update-domain: 
+    ddns-refresh-interval: 0
+    dns-use-dhcp: no
+    preferred-dns-server: 0.0.0.0
+    alternate-dns-server: 0.0.0.0
+    v6-enabled: no
+    v6-addr: ::
+    v6-prefix: 64
+    v6-gateway: ::
+    v6-linklocal: ::
+    v6-slaac-addr: ::
+    v6-dhcp-enabled: no
+    v6-dns-use-dhcp: no
+    v6-preferred-dns-server: ::
+    v6-alternate-dns-server: ::
+    vlan-enabled: no
+    vlan-id: 1
+    vlan-priority: 0
+    port-profile: 
+    hostname: ucs1
+    mac: 78:0C:F0:FF:FF:FF
+    mode: dedicated
+    redundancy: none
+    vic-slot: riser1
+    auto-negotiate: yes
+    net-speed: auto
+    duplex: auto
+    op-net-speed: 1Gbps
+    op-duplex: full
+
+...
+CLI output format set to yaml
+

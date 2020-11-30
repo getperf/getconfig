@@ -1,0 +1,15 @@
+---
+    memoryspeed: 2666 MHz
+    totalmemory: 786432 MB
+    effectivememory: 786432 MB
+    redundantmemory: 0 MB
+    failedmemory: 0 MB
+    ignoredmemory: 0 MB
+    numignoreddimms: 0
+    numfaileddimms: 0
+    raspossible: MaximumPerformance Mirroring
+    configuration: MaximumPerformance
+
+...
+CLI output format set to yaml
+

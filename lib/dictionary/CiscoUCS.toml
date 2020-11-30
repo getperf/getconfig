@@ -4,6 +4,11 @@ id = "bios"
 name = "BIOS"
 category = "ファームウェア"
 level = 0
+type = "Script"
+text = '''
+top
+show bios detail
+'''
 
 [[metrics]]
 
@@ -20,8 +25,13 @@ category = "ファームウェア"
 [[metrics]]
 
 id = "chassis"
-name = "筐体状態"
+name = "電源状態"
 category = "ファームウェア"
+type = "Script"
+text = '''
+top
+show chassis detail
+'''
 
 [[metrics]]
 
@@ -46,6 +56,11 @@ category = "ファームウェア"
 id = "cimc"
 name = "CIMC バージョン"
 category = "ファームウェア"
+type = "Script"
+text = '''
+top
+show cimc detail
+'''
 
 [[metrics]]
 
@@ -59,6 +74,12 @@ id = "cpu"
 name = "CPU情報"
 category = "ファームウェア"
 level = 0
+type = "Script"
+text = '''
+top
+scope chassis
+show cpu detail
+'''
 
 [[metrics]]
 
@@ -66,131 +87,171 @@ id = "memory"
 name = "メモリ"
 category = "ファームウェア"
 level = 0
-
-[[metrics]]
-
-id = "memoryspeed"
-name = "メモリスピード"
-category = "ファームウェア"
+type = "Script"
+text = '''
+top
+scope chassis
+show dimm-summary
+'''
 
 [[metrics]]
 
 id = "hdd"
 name = "内臓ディスク"
-category = "内臓ディスク"
+category = "ファームウェア"
 level = 0
+type = "Script"
+text = '''
+top
+scope chassis
+show  hdd-pid detail
+'''
 
 [[metrics]]
 
 id = "storageadapter"
 name = "ディスクアダプター状態"
-category = "内臓ディスク"
+category = "ファームウェア"
 level = 0
+type = "Script"
+text = '''
+top
+scope chassis
+show  storageadapter detail
+'''
 
 [[metrics]]
 
 id = "physical_drive"
 name = "ドライブ状態"
-category = "内臓ディスク"
+category = "ファームウェア"
 level = 0
+type = "Script"
+text = '''
+top
+scope chassis
+scope storageadapter MRAID
+show  physical-drive detail
+'''
 
 [[metrics]]
 
 id = "virtual_drive"
 name = "ボリューム状態"
-category = "内臓ディスク"
+category = "ファームウェア"
 level = 0
+type = "Script"
+text = '''
+top
+scope chassis
+scope storageadapter MRAID
+show  virtual-drive detail
+'''
 
 [[metrics]]
 
 id = "disk_volume"
 name = "ボリューム構成"
-category = "内臓ディスク"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "network"
-name = "ネットワーク状態"
-category = "管理LAN"
+name = "ネットワーク"
+category = "ファームウェア"
 level = 0
+type = "Script"
+text = '''
+top
+show cimc/network detail
+'''
 
 [[metrics]]
 
-id = "net.address"
-name = "IPv4アドレス"
-category = "管理LAN"
-
-[[metrics]]
-
-id = "net.gateway"
+id = "gateway"
 name = "IPv4ゲートウェイ"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
-id = "net.dhcp"
+id = "dhcp"
 name = "IPv4 DHCP"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
-id = "net.subnet"
+id = "subnet"
 name = "IPv4サブネット"
-category = "管理LAN"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "mac"
+name = "MACアドレス"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "ipv6.enabled"
 name = "IPv6 有効化"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "ipv6.dhcp-enabled"
 name = "IPv6 DHCP"
-category = "管理LAN"
-
-[[metrics]]
-
-id = "net.mac"
-name = "MACアドレス"
-category = "管理LAN"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "snmp"
 name = "SNMP有効化"
-category = "ファームウェア設定"
+category = "ファームウェア"
 level = 0
+type = "Script"
+text = '''
+top
+show snmp detail
+'''
 
 [[metrics]]
 
 id = "snmp.port"
 name = "SNMPポート"
-category = "ファームウェア設定"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "snmp.community"
 name = "SNMPコミュニティ"
-category = "ファームウェア設定"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "snmp.trapcom"
 name = "SNMP TRAP コミュニティ"
-category = "ファームウェア設定"
+category = "ファームウェア"
 
 [[metrics]]
 
 id = "snmp_trap"
 name = "SNMP TRAP 構成"
-category = "ファームウェア設定"
+category = "ファームウェア"
 level = 0
+type = "Script"
+text = '''
+top
+show snmp/trap-destinations detail
+'''
 
 [[metrics]]
 
 id = "ntp"
 name = "NTP 構成"
-category = "ファームウェア設定"
+category = "ファームウェア"
 level = 0
+type = "Script"
+text = '''
+top
+show /cimc/network/ntp detail
+'''
