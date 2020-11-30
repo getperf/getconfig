@@ -30,7 +30,7 @@ tracker = "IAサーバ"
 
 [[sheets]]
 
-name = "Windows(オンプレ)"
+name = "Windows"
 tracker = "IAサーバ"
 
     [sheets.platforms]
@@ -52,7 +52,7 @@ tracker = "IAサーバ"
 
 [[sheets]]
 
-name = "Linux(オンプレ)"
+name = "Linux"
 tracker = "IAサーバ"
 
     [sheets.platforms]

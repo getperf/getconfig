@@ -640,7 +640,7 @@ void packages(TestUtil t) {
     if (package_list) {
         def verify = true
         package_list.each { package_name ->
-            def test_id = "packages.required.${package_name}"
+            def test_id = "pkg.req.${package_name}"
             def version = versions[package_name] ?: 'Not Found'
             if (version == 'Not Found') {
                 verify = false
@@ -654,7 +654,7 @@ void packages(TestUtil t) {
         // if (package_list?."${package_name}") {
         //     return
         // }
-        def test_id = "packages.Etc.${package_name}"
+        def test_id = "pkg.${package_name}"
         t.newMetric(test_id, package_name, "'${version}'")
     }
     t.devices(headers, csv)
