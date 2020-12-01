@@ -1,0 +1,439 @@
+# Oracle データベースインベントリ収集シナリオ
+
+# JDBC 経由で Oracle に接続し、メトリック定義のSQL 群を実行します
+
+# Excel 検査対象シート
+
+# 設定パラメータは以下の通りです
+# 
+# 対象サーバ
+#     データベース名を入力
+# プラットフォーム
+#     Oracle
+# URL,IPアドレス
+#     IPアドレス
+# ユーザID
+#     config/config.groovy 内に記述した、JDBC 接続アカウント。
+#     Account01を指定した場合、以下のパラメータを参照します
+#      // Oracle 接続情報
+#      account.Oracle.Account01.user      = 'scott'
+#      account.Oracle.Account01.password  = 'tiger'
+
+# [[metrics]]
+
+# メトリック定義SQLリスト
+# 
+# id  
+#     メトリックID。必須。ユニークにする必要あり
+# name 
+#     メトリック名
+# category 
+#     メトリックの分類
+# level 
+#     採取レベル。高い方が優先度が下がる
+#     -1, 0, 1, 2 から選択、-1の場合、コマンドを実行しない。既定は0
+# comment
+#     メトリックの定義
+# text 
+#     SQL実行テキスト、 ''' で括る
+#     空白の場合、メトリックの定義のみでコマンドは実行しません
+
+[[metrics]]
+
+id = "dbstorage"
+name = "ストレージ"
+category = "Oracle"
+text = '''
+select 
+  tablespace_name, 
+  nvl(total_bytes / 1024 / 1024, 0) as "size(MB)",
+  nvl((total_bytes - free_total_bytes) / 1024 / 1024, 0) as "used(MB)", 
+  nvl(free_total_bytes / 1024 / 1024, 0) as "free(MB)", 
+  nvl((total_bytes - free_total_bytes) / total_bytes * 100, 100) as "rate(%)" 
+from 
+  (
+    select 
+      tablespace_name, 
+      sum(bytes) total_bytes 
+    from 
+      dba_data_files 
+    group by 
+      tablespace_name
+  ), 
+  (
+    select 
+      tablespace_name free_tablespace_name, 
+      sum(bytes) free_total_bytes 
+    from 
+      dba_free_space 
+    group by 
+      tablespace_name
+  ) 
+where 
+  tablespace_name = free_tablespace_name(+)
+'''
+
+[[metrics]]
+
+id = "dbattrs"
+name = "dbattrs"
+category = "Oracle"
+text = '''
+SELECT *
+  FROM v$database
+'''
+
+[[metrics]]
+
+id = "dbinstance"
+name = "dbinstance"
+category = "Oracle"
+text = '''
+SELECT *
+  FROM v$instance
+'''
+
+[[metrics]]
+
+id = "hostconfig"
+name = "hostconfig"
+category = "Oracle"
+text = '''
+SELECT LOWER(stat_name),
+       value
+  FROM v$osstat
+ WHERE LOWER(stat_name) in ('physical_memory_bytes','num_cpu_cores','num_cpus','num_cpu_sockets')
+'''
+
+[[metrics]]
+
+id = "dbregistry"
+name = "dbregistry"
+category = "Oracle"
+text = '''
+SELECT comp_name
+     , version
+     , status
+  FROM dba_registry
+ ORDER BY comp_name
+'''
+
+[[metrics]]
+
+id = "dbcomps"
+name = "dbcomps"
+category = "Oracle"
+text = '''
+SELECT comp_name
+     , version
+     , status
+  FROM dba_registry
+ ORDER BY comp_name
+'''
+
+[[metrics]]
+
+id = "dbfeatusage"
+name = "dbfeatusage"
+category = "Oracle"
+text = '''
+SELECT u1.name
+     , u1.detected_usages
+     , INITCAP(u1.currently_used) currently_used
+     , u1.version
+  FROM dba_feature_usage_statistics u1
+ WHERE version = (SELECT MAX(u2.version)
+                    FROM dba_feature_usage_statistics u2
+                   WHERE u2.name = u1.name
+                 )
+   AND u1.detected_usages > 0
+   AND u1.dbid = (SELECT dbid FROM v$database)
+'''
+
+[[metrics]]
+
+id = "dbinfo"
+name = "dbinfo"
+category = "Oracle"
+text = '''
+SELECT a.NAME,a.VALUE from v$parameter a 
+'''
+
+[[metrics]]
+
+id = "dbvers"
+name = "dbvers"
+category = "Oracle"
+text = '''
+SELECT product
+     , version
+     , status
+  FROM product_component_version
+ ORDER BY product
+'''
+
+[[metrics]]
+
+id = "nls"
+name = "nls"
+category = "Oracle"
+text = '''
+SELECT   LOWER(name)
+       , value$ value
+       , comment$ as "comment"
+    FROM sys.props$
+   WHERE upper(name) LIKE 'NLS%'
+      OR upper(name) LIKE 'DEFAULT%'
+ORDER BY name
+       , value
+'''
+
+[[metrics]]
+
+id = "parmdef"
+name = "parmdef"
+category = "Oracle"
+text = '''
+SELECT   name
+       , value
+       , description
+    FROM v$parameter
+ORDER BY name
+       , value
+       , description
+'''
+
+[[metrics]]
+
+id = "redoinfo"
+name = "redoinfo"
+category = "Oracle"
+text = '''
+SELECT   group#
+       , thread#
+       , members
+       , bytes
+       , status
+       , archived
+       , first_change#
+       , to_char(first_time, 'yyyy-mm-dd hh24:mi:ss') first_time
+    FROM v$log
+'''
+
+[[metrics]]
+
+id = "sgasize"
+name = "sgasize"
+category = "Oracle"
+text = '''
+SELECT   name
+       , value
+    FROM v$sga
+ORDER BY name
+'''
+
+[[metrics]]
+
+id = "sysmetric"
+name = "sysmetric"
+category = "Oracle"
+text = '''
+SELECT   TO_CHAR(begin_time , 'YYYY-MM-DD HH24:MI:SS') begin_time
+       , TO_CHAR(end_time   , 'YYYY-MM-DD HH24:MI:SS') end_time
+--       , intsize_csec
+--       , group_id
+--       , metric_id
+       , value
+       , metric_name
+--       , metric_unit
+    FROM v$sysmetric
+   WHERE group_id = 2
+ORDER BY begin_time
+       , metric_name
+'''
+
+[[metrics]]
+
+id = "systime"
+name = "systime"
+category = "Oracle"
+text = '''
+SELECT  LPAD(' ', 2*level-1)||stat_name stat_name
+      , ROUND(value/1000000,2) seconds
+      , ROUND(value/1000000/60,2) minutes
+   FROM (select 0 id, 9 pid, null stat_name, null value from dual
+          UNION
+         SELECT DECODE(stat_name,'DB time',10) id
+              , DECODE(stat_name,'DB time',0) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'DB time'
+          UNION
+         SELECT DECODE(stat_name,'DB CPU',20) id
+              , DECODE(stat_name,'DB CPU',10) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'DB CPU'
+          UNION
+         SELECT DECODE(stat_name,'connection management call elapsed time',21) id
+              , DECODE(stat_name,'connection management call elapsed time',10) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'connection management call elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'sequence load elapsed time',22) id
+              , DECODE(stat_name,'sequence load elapsed time',10) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'sequence load elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'sql execute elapsed time',23) id
+              , DECODE(stat_name,'sql execute elapsed time',10) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'sql execute elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'parse time elapsed',24) id
+              , DECODE(stat_name,'parse time elapsed',10) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'parse time elapsed'
+          UNION
+         SELECT DECODE(stat_name,'hard parse elapsed time',30) id
+              , DECODE(stat_name,'hard parse elapsed time',24) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'hard parse elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'hard parse (sharing criteria) elapsed time',40) id
+              , DECODE(stat_name,'hard parse (sharing criteria) elapsed time',30) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'hard parse (sharing criteria) elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'hard parse (bind mismatch) elapsed time',50) id
+              , DECODE(stat_name,'hard parse (bind mismatch) elapsed time',40) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'hard parse (bind mismatch) elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'failed parse elapsed time',31) id
+              , DECODE(stat_name,'failed parse elapsed time',24) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'failed parse elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'failed parse (out of shared memory) elapsed time',41) id
+              , DECODE(stat_name,'failed parse (out of shared memory) elapsed time',31) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'failed parse (out of shared memory) elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'PL/SQL execution elapsed time',25) id
+              , DECODE(stat_name,'PL/SQL execution elapsed time',10) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'PL/SQL execution elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'inbound PL/SQL rpc elapsed time',26) id
+              , DECODE(stat_name,'inbound PL/SQL rpc elapsed time',10) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'inbound PL/SQL rpc elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'PL/SQL compilation elapsed time',27) id
+              , DECODE(stat_name,'PL/SQL compilation elapsed time',10) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'PL/SQL compilation elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'Java execution elapsed time',28) id
+              , DECODE(stat_name,'Java execution elapsed time',10) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'Java execution elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'repeated bind elapsed time',29) id
+              , DECODE(stat_name,'repeated bind elapsed time',10) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'repeated bind elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'background elapsed time',1) id
+              , DECODE(stat_name,'background elapsed time',0) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'background elapsed time'
+          UNION
+         SELECT DECODE(stat_name,'background cpu time',2) id
+              , DECODE(stat_name,'background cpu time',1) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'background cpu time'
+          UNION
+         SELECT DECODE(stat_name,'RMAN cpu time (backup/restore)',3) id
+              , DECODE(stat_name,'RMAN cpu time (backup/restore)',2) pid
+              , stat_name
+              , value
+           FROM v$sys_time_model
+          WHERE stat_name = 'RMAN cpu time (backup/restore)'
+        )
+CONNECT BY PRIOR id = pid START WITH id = 0
+'''
+
+[[metrics]]
+
+id = "tabstorage"
+name = "tabstorage"
+category = "Oracle"
+text = '''
+SELECT   tab.owner owner
+       , tab.table_name table_name
+       , ROUND(SUM(seg.bytes/1024/1024),3) mbytes
+    FROM (SELECT owner
+               , segment_name
+               , bytes
+            FROM dba_segments
+           WHERE 1=1
+         ) seg
+       , dba_tables tab
+   WHERE seg.owner = tab.owner
+     AND seg.segment_name = tab.table_name
+GROUP BY tab.owner
+       , tab.table_name
+ORDER BY tab.owner
+       , tab.table_name
+'''
+
+[[metrics]]
+
+id = "sumstorage"
+name = "sumstorage"
+category = "Oracle"
+text = '''
+select 'datafiles' type, sum(bytes)/1024/1024 total from dba_data_files
+ union
+select 'tempfiles' type, sum(bytes)/1024/1024 total from dba_temp_files
+ union
+select 'redologs' type, sum(bytes)/1024/1024 total from v$log
+ union
+select 'controlfiles' type, sum(block_size*file_size_blks)/1024/1024 total from v$controlfile
+'''

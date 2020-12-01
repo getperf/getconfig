@@ -1,15 +1,49 @@
-# Additional metrics list of VMWare Managed Object. 
-# 
-# Notice: 
-#   The results of all added metrics are saved in the "all".
+# VMWare ESXi インベントリ収集シナリオ
+
+# REST で vCenter サーバに接続し、メトリック定義の対象オブジェクト群を取得します
+# MWare Managed Object を使用します
 #
 # Reference : https://code.vmware.com/apis/42/vsphere/doc/vim.HostSystem.html
+
+# Excel 検査対象シート
+
+# 設定パラメータは以下の通りです
 # 
+# 対象サーバ
+#     ESXi ホスト名
+# プラットフォーム
+#     VMHost
+# URL,IPアドレス
+#     未入力
+# ユーザID
+#     config/config.groovy 内に記述した、REST 接続アカウント。
+#     Account01を指定した場合、以下のパラメータを参照します
+#      // VMHost 接続情報
+#      
+#      account.VMHost.Account01.server   = '192.168.0.200'
+#      account.VMHost.Account01.user     = 'test_user'
+#      account.VMHost.Account01.password = 'P@ssword'
+# エイリアス名
+#      vCenter上のホスト名。未記入の場合は対象サーバ名を使用します
+
 # [[metrics]]
+
+# メトリック定義コマンドリスト
 # 
-# id = "config"   # object key
-# level = 0       # command level [0-2]
-# text = "config" # If not defined, use id instead
+# id  
+#     メトリックID。必須。ユニークにする必要あり
+# name 
+#     メトリック名
+# category 
+#     メトリックの分類
+# level 
+#     採取レベル。高い方が優先度が下がる
+#     -1, 0, 1, 2 から選択、-1の場合、コマンドを実行しない。既定は0
+# comment
+#     メトリックの定義
+# text 
+#     VMWare Managed Object テキスト、 ''' で括る
+#     空白の場合、メトリックの定義のみでコマンドは実行しません
 
 [[metrics]]
 

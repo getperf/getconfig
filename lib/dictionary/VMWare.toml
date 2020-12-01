@@ -1,9 +1,50 @@
-# Additional metrics list of VMWare Managed Object. 
-#
-# Notice: 
-#   The results of all added metrics are saved in the "all".
+# VMWare 仮想マシン インベントリ収集シナリオ
+
+# REST で vCenter サーバに接続し、メトリック定義の対象オブジェクト群を取得します
+# MWare Managed Object を使用します
 #
 # Reference : http://pubs.vmware.com/vsphere-60/topic/com.vmware.wssdk.apiref.doc/vim.VirtualMachine.html
+
+# Excel 検査対象シート
+
+# 設定パラメータは以下の通りです
+# 
+# 対象サーバ
+#     OS ホスト名と同じにしてください
+# プラットフォーム
+#     VMWare
+# URL,IPアドレス
+#     未入力
+# ユーザID
+#     config/config.groovy 内に記述した、REST 接続アカウント。
+#     Account01を指定した場合、以下のパラメータを参照します
+#      // VMWare 接続情報
+#      
+#      account.VMWare.Account01.server   = '192.168.0.200'
+#      account.VMWare.Account01.user     = 'test_user'
+#      account.VMWare.Account01.password = 'P@ssword'
+# エイリアス名
+#      vCenter上の仮想マシン名。未記入の場合は対象サーバ名を使用します
+
+# [[metrics]]
+
+# メトリック定義コマンドリスト
+# 
+# id  
+#     メトリックID。必須。ユニークにする必要あり
+# name 
+#     メトリック名
+# category 
+#     メトリックの分類
+# level 
+#     採取レベル。高い方が優先度が下がる
+#     -1, 0, 1, 2 から選択、-1の場合、コマンドを実行しない。既定は0
+# comment
+#     メトリックの定義
+# text 
+#     VMWare Managed Object テキスト、 ''' で括る
+#     空白の場合、メトリックの定義のみでコマンドは実行しません
+#
 
 [[metrics]]
 

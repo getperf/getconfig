@@ -1,4 +1,32 @@
-# Zabbix inventory scenario has no metric definition
+# Zabbix 監視設定 インベントリ収集シナリオ
+
+# JSON RPC で Zabbix 管理用 IF ； Zabbix API に接続し、メトリック定義のコマンド
+# 群を実行します
+
+# Excel 検査対象シート
+
+# 設定パラメータは以下の通りです
+# 
+# 対象サーバ
+#     OS ホスト名と同じにしてください
+# プラットフォーム
+#     Zabbix
+# URL,IPアドレス
+#     未記入
+# ユーザID
+#     config/config.groovy 内に記述した、JSON RPC 接続アカウント。
+#     Account01を指定した場合、以下のパラメータを参照します
+#      // Zabbix 接続情報
+#      account.Zabbix.Account01.server   = 'http://zabbix:8081/zabbix'
+#      account.Zabbix.Account01.user      = 'admin'
+#      account.Zabbix.Account01.password  = 'admin'
+
+# [[metrics]]
+
+# メトリック定義コマンドリスト
+# 
+# Zabbix API の既定の実行コマンドリストはハードコーディングされており、
+# 変更できません。以下リストは抽出項目のメトリック定義のみになります。
 
 [[metrics]]
 

@@ -1,3 +1,47 @@
+# Windows OS インベントリ収集シナリオ
+
+# WinRM で対象 Windows サーバに接続し、メトリック定義のコマンド群を実行します
+
+# Excel 検査対象シート
+
+# 設定パラメータは以下の通りです
+# 
+# 対象サーバ
+#     OS ホスト名
+# プラットフォーム
+#     Windows
+# URL,IPアドレス
+#     SSH 接続先のIPもしくは、IP:ポート番号 を入力します。
+# ユーザID
+#     config/config.groovy 内に記述した、SSH 接続アカウント。
+#     Account01を指定した場合、以下のパラメータを参照します
+#      // Windows 接続情報
+#      account.Windows.Account01.user      = 'administrator'
+#      account.Windows.Account01.password  = 'P@ssw0rd'
+
+# [[metrics]]
+
+# メトリック定義コマンドリスト
+# 
+# id  
+#     メトリックID。必須。ユニークにする必要あり
+# name 
+#     メトリック名
+# category 
+#     メトリックの分類
+# level 
+#     採取レベル。高い方が優先度が下がる
+#     -1, 0, 1, 2 から選択、-1の場合、コマンドを実行しない。既定は0
+# deviceFlasg
+#     true, false. デバイス結果を登録する場合、trueにする
+# comment
+#     メトリックの定義
+# type = "Cmdlet"
+#     PowerShellコマンドの場合、"Cmdlet"、DOSコマンドの場合、"Cmd"
+# text 
+#     コマンド実行テキスト、 ''' で括る
+#     空白の場合、メトリックの定義のみでコマンドは実行しません
+
 [[metrics]]
 
 id = "Domain"

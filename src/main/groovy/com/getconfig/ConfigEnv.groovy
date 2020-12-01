@@ -315,8 +315,8 @@ class ConfigEnv {
 
     // Redmine API Key
     String getRedmineApiKey() {
-        return System.getenv("REDMINE_API_KEY") ?: this.dbConfig?.redmine?.url ?:
-                'http://redmine/redmine'
+        return System.getenv("REDMINE_API_KEY") ?: this.dbConfig?.redmine?.api_key ?:
+                ''
     }
 
     String getRedmineConfigPath() {

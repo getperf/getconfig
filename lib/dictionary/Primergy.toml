@@ -1,3 +1,42 @@
+# 富士通 PRIMERGY HW インベントリ収集シナリオ
+
+# REST で 富士通 管理用 IF ； iRMC に接続し、
+# メトリック定義のコマンド群を実行します
+
+# Excel 検査対象シート
+
+# 設定パラメータは以下の通りです
+# 
+# 対象サーバ
+#     OS ホスト名と同じにしてください
+# プラットフォーム
+#     Primergy
+# URL,IPアドレス
+#     REST 接続先のIPもしくは、URL を入力します。
+#     IP のみを入力した場合、 https://{IP} の URLに変換されます
+# ユーザID
+#     config/config.groovy 内に記述した、REST 接続アカウント。
+#     Account01を指定した場合、以下のパラメータを参照します
+#      // Primergy 接続情報
+#      account.Primergy.Account01.user      = 'admin'
+#      account.Primergy.Account01.password  = 'admin'
+
+# [[metrics]]
+
+# メトリック定義コマンドリスト
+# 
+# 富士通 PRIMERGY の既定の実行コマンドリストはハードコーディングされており、
+# 変更できません。以下リストは抽出項目のメトリック定義のみになります。
+# コマンドを追加する場合は以下の様に記述します
+# 
+# example:
+# 
+# [[metrics]]
+# 
+# id = "oviewview" # unique key
+# level = 0        # command level [0-2]
+# text = "/redfish/v1/"
+
 [[metrics]]
 
 id = "product_name"
