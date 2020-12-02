@@ -1,6 +1,6 @@
 package com.getconfig.AgentWrapper
 
-
+import com.getconfig.ConfigEnv
 import com.getconfig.Model.*
 import com.getconfig.Utils.TomlUtils
 import spock.lang.Specification
@@ -12,44 +12,35 @@ import java.text.SimpleDateFormat
 
 class OracleTest extends Specification {
     AgentWrapperManager agentWrapperManager = AgentWrapperManager.instance
-    AgentConfigWrapper wrapper
+    DirectExecutorWrapper wrapper
+    Server server
 
     def setup() {
-        wrapper = agentWrapperManager.getWrapper("Oracle")
-    }
-
-    def "gconfコマンド用構設定ファイル変換"() {
-        when:
-        com.getconfig.Model.Server server = new com.getconfig.Model.Server(serverName:"hoge",
-            domain:"Oracle",
-            ip:"192.168.10.1",
-            accountId:"Account01")
-        def gconf = wrapper.makeServerConfig(server)
-        TomlWriter tomlWriter = new TomlWriter()
-        def toml = tomlWriter.write(gconf)
-
-        then:
-        println toml
-        toml.size() > 0
-    }
-
-    def "設定ファイル変換メトリック付き"() {
-        when:
-        com.getconfig.Model.Server server = new com.getconfig.Model.Server(serverName:"hoge",
+        server = new com.getconfig.Model.Server(serverName:"hoge",
                 domain:"Oracle",
                 ip:"192.168.10.1",
                 accountId:"Account01")
-        PlatformMetric metrics = TomlUtils.read("lib/dictionary/Oracle.toml", PlatformMetric)
+        DirectExecutor executor = new DirectExecutor("Oracle", server)
+        ConfigEnv.instance.accept(executor)
+        executor.setPlatformMetricFromLibs()
 
-        def gconf = wrapper.makeServerConfig(server)
-        // gconf に　メトリックは追加せずに、個別に metrics を追加する
-//        gconf.metrics = metrics
-        TomlWriter tomlWriter = new TomlWriter()
-        def toml = tomlWriter.write(gconf)
-
-        then:
-        println toml
-        toml.size() > 0
+        wrapper = agentWrapperManager.getDirectExecutorWrapper("Oracle")
+        executor.accept(wrapper)
     }
 
+    def "Oracle ラッパー初期化"() {
+        when:
+        def label = wrapper.getLabel()
+
+        then:
+        label == "oracleconf"
+    }
+
+    def "Oracle ラッパー実行"() {
+        when:
+        wrapper.dryRun()
+
+        then:
+        1 == 1
+    }
 }

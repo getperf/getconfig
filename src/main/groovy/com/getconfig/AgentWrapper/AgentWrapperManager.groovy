@@ -12,6 +12,7 @@ import com.getconfig.AgentWrapper.Platform.*
 @Singleton(strict = false)
 class AgentWrapperManager {
     Map<String, AgentConfigWrapper> agentWrappers = new LinkedHashMap<>()
+    Map<String, DirectExecutorWrapper> directExecutorWrapper = new LinkedHashMap<>()
 
     private AgentWrapperManager() {
         agentWrappers.with {
@@ -23,10 +24,12 @@ class AgentWrapperManager {
             it["CiscoUCS"] = new CiscoUCS()
             it["HPiLO"] = new HPiLO()
             it["Primergy"] = new Primergy()
-            it["Oracle"] = new Oracle()
             it["Zabbix"] = new Zabbix()
             it[AgentConstants.AGENT_LABEL_REMOTE] = new RemoteAgent()
             it[AgentConstants.AGENT_LABEL_LOCAL_FILE] = new LocalAgent()
+        }
+        directExecutorWrapper.with {
+            it["Oracle"] = new Oracle()
         }
     }
 
@@ -36,5 +39,9 @@ class AgentWrapperManager {
             throw new IllegalArgumentException("not found agent wrapper : " + platform)
         } 
         return agentWrappers[platform] as AgentConfigWrapper
+    }
+
+    DirectExecutorWrapper getDirectExecutorWrapper(String platform) {
+        return directExecutorWrapper.get(platform) as DirectExecutorWrapper
     }
 }

@@ -61,6 +61,21 @@ class CollectorTest extends Specification {
         collector.testServers.size() > 0
     }
 
+    def "ダイレクト実行"() {
+        when:
+        List<Server> oracleServers = TestData.readTestServers("oracle")
+        Collector collector = new Collector(oracleServers)
+        ConfigEnv.instance.accept(collector)
+//        collector.filterServer = "server02"
+        collector.classifyTestServers()
+//        collector.runAgent()
+
+        then:
+        println oracleServers
+        println collector.testServerGroups
+//        collector.testServers.size() > 0
+        1 == 1
+    }
 
     def "ドライラン"() {
         when:

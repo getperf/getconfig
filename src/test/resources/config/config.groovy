@@ -95,3 +95,8 @@ account.Primergy.Account01.password = 'P@ssw0rd'
 
 account.Solaris.Account01.user     = 'someuser'
 account.Solaris.Account01.password = 'P@ssw0rd'
+
+// Oracle Ú‘±î•ñ
+
+account.Oracle.Account01.user     = 'scott'
+account.Oracle.Account01.password = 'tiger'

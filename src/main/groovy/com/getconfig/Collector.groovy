@@ -3,6 +3,7 @@ package com.getconfig
 import com.getconfig.AgentWrapper.AgentConfigWrapper
 import com.getconfig.AgentWrapper.AgentExecutor
 import com.getconfig.AgentWrapper.AgentMode
+import com.getconfig.AgentWrapper.DirectExecutor
 import com.getconfig.AgentWrapper.LogManager
 import com.getconfig.AgentWrapper.LocalAgentExecutor
 import com.getconfig.AgentWrapper.LocalAgentBatchExecutor
@@ -46,6 +47,8 @@ class Collector implements Controller {
             return AgentMode.RemoteAgentHub
         } else if (domain == '{Agent}') {
             return AgentMode.RemoteAgent
+        }else if (AgentWrapperManager.instance.getDirectExecutorWrapper(domain)) {
+            return AgentMode.Direct
         } else {
             AgentConfigWrapper wrapper = AgentWrapperManager.instance.getWrapper(domain)
             if (wrapper.getBatchEnable()) {
@@ -107,6 +110,9 @@ class Collector implements Controller {
                 case AgentMode.LocalAgent:
                 case AgentMode.DryRun:
                     agentExecutor = new LocalAgentExecutor(domain, server)
+                    break
+                case AgentMode.Direct:
+                    agentExecutor = new DirectExecutor(domain, server)
                     break
                 case AgentMode.LocalAgentBatch:
                     agentExecutor = new LocalAgentBatchExecutor(key, testServerGroup)

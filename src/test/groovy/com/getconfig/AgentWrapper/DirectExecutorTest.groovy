@@ -19,21 +19,8 @@ class DirectExecutorTest extends Specification {
          ConfigEnv.instance.accept(executor)
 
          then:
-         println executor.args()
-         println executor.toml()
-         executor.toml().size() > 0
-         executor.gconfExe.size() > 0
+         executor.getMetricLibsText() != null
      }
-
-    def "TOML読込み"() {
-        when:
-        def executor = new DirectExecutor("Oracle", server)
-        ConfigEnv.instance.accept(executor)
-        executor.metricLib = 'src/test/resources/lib/dictionary'
-
-        then:
-        executor.getMetricLibsText().size() > 0
-    }
 
     def "不明プラットフォーム初期化"() {
         when:
@@ -43,10 +30,11 @@ class DirectExecutorTest extends Specification {
         thrown(IllegalArgumentException)
     }
 
-    def "エージェントコマンド実行"() {
+    def "実行"() {
         when:
         def executor = new DirectExecutor("Oracle", server)
         ConfigEnv.instance.accept(executor)
+        executor.level = 99
         def rc =executor.run()
 
         then:
@@ -54,15 +42,4 @@ class DirectExecutorTest extends Specification {
 //        rc == 0
     }
 
-    def "リモートエージェント初期化"() {
-        when:
-        def executor = new RemoteAgentExecutor(server)
-
-        executor.currentLogDir = "build/log"
-        executor.tlsConfigDir = "config/network"
-
-        then:
-        println executor.args()
-        executor.args().size() > 0
-    }
 }

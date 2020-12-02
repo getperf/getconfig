@@ -1,34 +1,26 @@
 package com.getconfig.AgentWrapper.Platform
 
-import com.getconfig.Model.PlatformMetric
 import groovy.transform.*
 import groovy.util.logging.Slf4j
+import java.sql.SQLException
+import java.sql.SQLSyntaxErrorException
+import com.xlson.groovycsv.CsvParser
+import oracle.jdbc.*
+import oracle.jdbc.pool.*
 
+import com.getconfig.Model.Metric
+import com.getconfig.Model.PlatformMetric
 import com.getconfig.AgentWrapper.*
 import com.getconfig.Model.Server
 
 @Slf4j
 @InheritConstructors
-class Oracle implements AgentConfigWrapper {
-    class ServerModel {
-        String  server
-        String  url
-        String  user
-        String  password
-        String  ssh_key
-        boolean insecure
-    }
-
-    class OracleConfig {
-        String  server
-        String  url
-        String  user
-        String  password
-        String  ssh_key
-        boolean insecure
-        List<ServerModel> servers = new ArrayList<>()
-        PlatformMetric metrics
-    }
+class Oracle implements DirectExecutorWrapper {
+    Server server
+    PlatformMetric platformMetric
+    String currentLogDir
+    int timeout = 0
+    int level = 0
 
     @Override
     String getLabel() {
@@ -36,30 +28,34 @@ class Oracle implements AgentConfigWrapper {
     }
 
     @Override
-    String getConfigName() {
-        return "oracleconf.toml"
+    void setEnvironment(DirectExecutor executor) {
+        this.currentLogDir = executor.currentLogDir
+        this.timeout = executor.timeout
+        this.level = executor.level
+        this.server = executor.server
+        this.platformMetric = executor.platformMetric
     }
 
     @Override
-    boolean getBatchEnable() {
-        return false
+    int run() {
+        log.info("run Oracle direct executor ${this.server.serverName}")
+        this.platformMetric?.getAll().each { Metric metric ->
+            if (metric.level <= this.level) {
+                return
+            }
+            println "ID:${metric.id},LV:${metric.level},${this.level}"
+        }
+        return 0
     }
 
-    @Override
-    def makeAllServersConfig(List<Server> servers) {
-        // TODO: Create specification
-    }
-
-    @Override
-    def makeServerConfig(Server server) {
-        def config = new OracleConfig(
-            server : server.serverName,
-            url : server.ip,
-            user : server.user,
-            password : server.password,
-            ssh_key : server.loginOption,
-            insecure : true,
-        )
-        return config
+    int dryRun() {
+        log.info("run Oracle direct executor ${this.server.serverName}")
+        this.platformMetric?.getAll().each { Metric metric ->
+            if (metric.level <= this.level) {
+                return
+            }
+            println "ID:${metric.id},LV:${metric.level},${this.level}"
+        }
+        return 0
     }
 }
