@@ -78,6 +78,7 @@ void Config(TestUtil t) {
     id = 0
     def diskSizes = [:].withDefault{0}
     def csv_disk = []
+    // println json?.StorageDevice
     json?.StorageDevice?.ScsiLun.each { lun ->
         def block = (double)(lun?.Capacity?.Block ?: 0)
         def size = (double)(lun?.Capacity?.BlockSize ?: 0)
@@ -87,6 +88,16 @@ void Config(TestUtil t) {
             diskSizes["${diskTotal}G"] ++
             csv_disk << [m2, diskTotal]
         }
+    }
+    json?.StorageDevice?.HostBusAdapter.each { lun ->
+        def device = lun.Device
+        def model = lun.Model
+        if (device) {
+            diskSizes[device] = 0
+            csv_disk << [model, 0]
+        }
+        // println new JsonBuilder( lun ).toPrettyString()
+        // return true
     }
     t.setMetric("Disk", diskSizes.toString())
     t.devices(['Model', 'Size'], csv_disk, "Disk")
