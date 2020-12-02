@@ -34,12 +34,11 @@ class DirectExecutorTest extends Specification {
         when:
         def executor = new DirectExecutor("Oracle", server)
         ConfigEnv.instance.accept(executor)
-        executor.level = 99
+        executor.dryRun = true
         def rc =executor.run()
 
         then:
-        1 == 1
-//        rc == 0
+        rc == 0
     }
 
 }

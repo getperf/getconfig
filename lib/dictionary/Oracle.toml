@@ -40,9 +40,363 @@
 
 [[metrics]]
 
+category = "システム情報"
+name = "インスタンス名"
+id = "dbinfo.instance_name"
+
+[[metrics]]
+
+category = "システム情報"
+name = "データベース名"
+id = "dbinfo.db_name"
+
+[[metrics]]
+
+category = "システム情報"
+name = "データベースユニーク名"
+id = "dbinfo.db_unique_name"
+
+[[metrics]]
+
+category = "システム情報"
+name = "ドメイン名"
+id = "dbinfo.db_domain"
+
+[[metrics]]
+
+category = "システム情報"
+name = "DBブロックサイズ"
+id = "dbinfo.db_block_size"
+
+[[metrics]]
+
+category = "システム情報"
+name = "DBID"
+id = "dbattrs.dbid"
+
+[[metrics]]
+
+category = "システム情報"
+name = "バージョン"
+id = "dbcomps.version"
+
+[[metrics]]
+
+category = "システム情報"
+name = "コンパチブルバージョン"
+id = "dbinfo.compatible"
+
+[[metrics]]
+
+category = "システム情報"
+name = "エディション"
+id = "dbinstance.edition"
+
+[[metrics]]
+
+category = "システム情報"
+name = "データベース製品名"
+id = "dbvers.Oracle Database"
+
+[[metrics]]
+
+category = "RAC情報"
+name = "クラスターインスタンス"
+id = "dbinfo.cluster_database_instances"
+
+[[metrics]]
+
+category = "RAC情報"
+name = "Oracle Real Application Clusters"
+id = "dbcomps.Oracle Real Application Clusters"
+
+[[metrics]]
+
+category = "RAC情報"
+name = "クラスターデータベース"
+id = "dbinfo.cluster_database"
+
+[[metrics]]
+
+category = "データベース設定"
+name = "カレントSCN"
+id = "dbattrs.current_scn"
+
+[[metrics]]
+
+category = "データベース設定"
+name = "オープンモード"
+id = "dbattrs.open_mode"
+
+[[metrics]]
+
+category = "データベース設定"
+name = "フォースロギング"
+id = "dbattrs.force_logging"
+
+[[metrics]]
+
+category = "データベース設定"
+name = "アーカイバー"
+id = "dbinstance.archiver"
+
+[[metrics]]
+
+category = "データベース設定"
+name = "ログイン数"
+id = "dbinstance.logins"
+
+[[metrics]]
+
+category = "データベース設定"
+name = "ログモード"
+id = "dbattrs.log_mode"
+
+[[metrics]]
+
+category = "ホスト構成"
+name = "CPUソケット数"
+id = "hostconfig.num_cpu_sockets"
+
+[[metrics]]
+
+category = "ホスト構成"
+name = "CPUコア数"
+id = "hostconfig.num_cpu_cores"
+
+[[metrics]]
+
+category = "ホスト構成"
+name = "トータルCPU数"
+id = "hostconfig.num_cpus"
+
+[[metrics]]
+
+category = "ホスト構成"
+name = "物理メモリMB"
+id = "hostconfig.physical_memory_mb"
+
+[[metrics]]
+
+category = "ホスト構成"
+name = "プラットフォーム名"
+id = "dbattrs.platform_name"
+
+[[metrics]]
+
+category = "言語・ロケール"
+name = "パラメータ：nls_territory"
+id = "nls.nls_territory"
+
+[[metrics]]
+
+category = "言語・ロケール"
+name = "パラメータ：nls_language"
+id = "nls.nls_language"
+
+[[metrics]]
+
+category = "言語・ロケール"
+name = "パラメータ：nls_nchar_characterset"
+id = "nls.nls_nchar_characterset"
+
+[[metrics]]
+
+category = "言語・ロケール"
+name = "パラメータ：nls_length_semantics"
+id = "nls.nls_length_semantics"
+
+[[metrics]]
+
+category = "言語・ロケール"
+name = "パラメータ：nls_characterset"
+id = "nls.nls_characterset"
+
+[[metrics]]
+
+category = "メモリ構成"
+name = "パラメータ：memory_management"
+id = "dbinfo.memory_management"
+
+[[metrics]]
+
+category = "メモリ構成"
+name = "パラメータ：statistics_level"
+id = "dbinfo.statistics_level"
+
+[[metrics]]
+
+category = "メモリ構成"
+name = "パラメータ：sga_target"
+id = "dbinfo.sga_target"
+
+[[metrics]]
+
+category = "メモリ構成"
+name = "パラメータ：sga_max_size"
+id = "dbinfo.sga_max_size"
+
+[[metrics]]
+
+category = "メモリ構成"
+name = "パラメータ：memory_target"
+id = "dbinfo.memory_target"
+
+[[metrics]]
+
+category = "メモリ構成"
+name = "パラメータ：memory_max_target"
+id = "dbinfo.memory_max_target"
+
+[[metrics]]
+
+category = "メモリ構成"
+name = "パラメータ：pga_aggregate_target"
+id = "dbinfo.pga_aggregate_target"
+
+[[metrics]]
+
+category = "メモリ構成"
+name = "SGAデータベースバッファー"
+id = "sgasize.Database Buffers"
+
+[[metrics]]
+
+category = "メモリ構成"
+name = "SGA固定サイズ"
+id = "sgasize.Fixed Size"
+
+[[metrics]]
+
+category = "メモリ構成"
+name = "SGA REDOバッファー"
+id = "sgasize.Redo Buffers"
+
+[[metrics]]
+
+category = "メモリ構成"
+name = "SGA可変サイズ"
+id = "sgasize.Variable Size"
+
+[[metrics]]
+
+category = "メモリプール割当て"
+name = "パラメータ：shared_pool_size"
+id = "dbinfo.shared_pool_size"
+
+[[metrics]]
+
+category = "メモリプール割当て"
+name = "パラメータ：streams_pool_size"
+id = "dbinfo.streams_pool_size"
+
+[[metrics]]
+
+category = "メモリプール割当て"
+name = "パラメータ：large_pool_size"
+id = "dbinfo.large_pool_size"
+
+[[metrics]]
+
+category = "メモリプール割当て"
+name = "パラメータ：java_pool_size"
+id = "dbinfo.java_pool_size"
+
+[[metrics]]
+
+category = "メモリプール割当て"
+name = "パラメータ：db_cache_size"
+id = "dbinfo.db_cache_size"
+
+[[metrics]]
+
+category = "ストレージ構成"
+name = "パラメータ：db_recovery_file_dest"
+id = "dbinfo.db_recovery_file_dest"
+
+[[metrics]]
+
+category = "ストレージ構成"
+name = "パラメータ：db_recovery_file_dest_size"
+id = "dbinfo.db_recovery_file_dest_size"
+
+[[metrics]]
+
+category = "ストレージ構成"
+name = "パラメータ：default_tbs_type"
+id = "nls.default_tbs_type"
+
+[[metrics]]
+
+category = "ストレージ構成"
+name = "パラメータ：default_permanent_tablespace"
+id = "nls.default_permanent_tablespace"
+
+[[metrics]]
+
+category = "ストレージ構成"
+name = "パラメータ：default_temp_tablespace"
+id = "nls.default_temp_tablespace"
+
+[[metrics]]
+
+category = "ストレージ構成"
+name = "パラメータ：spfile"
+id = "dbinfo.spfile"
+
+[[metrics]]
+
+category = "ストレージ構成"
+name = "パラメータ：diagnostic_dest"
+id = "dbinfo.diagnostic_dest"
+
+[[metrics]]
+
+category = "ストレージ構成"
+name = "REDOログ数"
+id = "redoinfo.redo_count"
+
+[[metrics]]
+
+category = "ストレージ構成"
+name = "REDOログミラーリング"
+id = "redoinfo.redo_mirror"
+
+[[metrics]]
+
+category = "ストレージ構成"
+name = "REDOログサイズ"
+id = "redoinfo.redo_size"
+
+[[metrics]]
+
+category = "ストレージサマリ"
+name = "表領域のディスク総容量[MB]"
+id = "sumstorage.datafiles"
+
+[[metrics]]
+
+category = "ストレージサマリ"
+name = "一時表領域のディスク総容量[MB]"
+id = "sumstorage.tempfiles"
+
+[[metrics]]
+
+category = "ストレージサマリ"
+name = "Redoログのディスク総容量[MB]"
+id = "sumstorage.redologs"
+
+[[metrics]]
+
+category = "ストレージサマリ"
+name = "制御ファイルのディスク総容量[MB]"
+id = "sumstorage.controlfiles"
+
+[[metrics]]
+
 id = "dbstorage"
 name = "ストレージ"
-category = "Oracle"
+category = "SQL実行結果"
 text = '''
 select 
   tablespace_name, 
@@ -76,8 +430,9 @@ where
 [[metrics]]
 
 id = "dbattrs"
-name = "dbattrs"
-category = "Oracle"
+name = "データベース情報"
+category = "SQL実行結果"
+comment = "'V$DATABASE' の検索"
 text = '''
 SELECT *
   FROM v$database
@@ -86,8 +441,9 @@ SELECT *
 [[metrics]]
 
 id = "dbinstance"
-name = "dbinstance"
-category = "Oracle"
+name = "DBインスタンス"
+category = "SQL実行結果"
+comment = "'V$INSTANCE' の検索"
 text = '''
 SELECT *
   FROM v$instance
@@ -96,8 +452,9 @@ SELECT *
 [[metrics]]
 
 id = "hostconfig"
-name = "hostconfig"
-category = "Oracle"
+name = "ホスト構成"
+category = "SQL実行結果"
+comment = "'V$OSSTAT' の検索"
 text = '''
 SELECT LOWER(stat_name),
        value
@@ -107,22 +464,10 @@ SELECT LOWER(stat_name),
 
 [[metrics]]
 
-id = "dbregistry"
-name = "dbregistry"
-category = "Oracle"
-text = '''
-SELECT comp_name
-     , version
-     , status
-  FROM dba_registry
- ORDER BY comp_name
-'''
-
-[[metrics]]
-
 id = "dbcomps"
-name = "dbcomps"
-category = "Oracle"
+name = "データベース構成"
+category = "SQL実行結果"
+comment = "'DBA_REGISTRY' の検索"
 text = '''
 SELECT comp_name
      , version
@@ -134,8 +479,9 @@ SELECT comp_name
 [[metrics]]
 
 id = "dbfeatusage"
-name = "dbfeatusage"
-category = "Oracle"
+name = "データベース機能"
+category = "SQL実行結果"
+comment = "'DBA_FEATURE_USAGE_STATISTICS'の検索"
 text = '''
 SELECT u1.name
      , u1.detected_usages
@@ -153,46 +499,9 @@ SELECT u1.name
 [[metrics]]
 
 id = "dbinfo"
-name = "dbinfo"
-category = "Oracle"
-text = '''
-SELECT a.NAME,a.VALUE from v$parameter a 
-'''
-
-[[metrics]]
-
-id = "dbvers"
-name = "dbvers"
-category = "Oracle"
-text = '''
-SELECT product
-     , version
-     , status
-  FROM product_component_version
- ORDER BY product
-'''
-
-[[metrics]]
-
-id = "nls"
-name = "nls"
-category = "Oracle"
-text = '''
-SELECT   LOWER(name)
-       , value$ value
-       , comment$ as "comment"
-    FROM sys.props$
-   WHERE upper(name) LIKE 'NLS%'
-      OR upper(name) LIKE 'DEFAULT%'
-ORDER BY name
-       , value
-'''
-
-[[metrics]]
-
-id = "parmdef"
-name = "parmdef"
-category = "Oracle"
+name = "DBパラメータ"
+comment = "'V$PARAMETER' の検索"
+category = "SQL実行結果"
 text = '''
 SELECT   name
        , value
@@ -205,9 +514,42 @@ ORDER BY name
 
 [[metrics]]
 
+id = "dbvers"
+name = "DBバージョン"
+category = "SQL実行結果"
+comment = "'PRODUCT_COMPONENT_VERSION' の検索"
+text = '''
+SELECT product
+     , version
+     , status
+  FROM product_component_version
+ ORDER BY product
+'''
+
+[[metrics]]
+
+id = "nls"
+name = "言語・ロケール"
+category = "SQL実行結果"
+comment = "'SYS.PROPS$' の検索"
+text = '''
+SELECT   LOWER(name)
+       , value$ value
+       , comment$ as "comment"
+    FROM sys.props$
+   WHERE upper(name) LIKE 'NLS%'
+      OR upper(name) LIKE 'DEFAULT%'
+ORDER BY name
+       , value
+'''
+
+
+[[metrics]]
+
 id = "redoinfo"
-name = "redoinfo"
-category = "Oracle"
+name = "Redoログ構成"
+comment = "'V$LOG' の検索"
+category = "SQL実行結果"
 text = '''
 SELECT   group#
        , thread#
@@ -224,7 +566,8 @@ SELECT   group#
 
 id = "sgasize"
 name = "sgasize"
-category = "Oracle"
+comment = "'V$SGA' の検索"
+category = "SQL実行結果"
 text = '''
 SELECT   name
        , value
@@ -235,8 +578,9 @@ ORDER BY name
 [[metrics]]
 
 id = "sysmetric"
-name = "sysmetric"
-category = "Oracle"
+name = "データベース統計"
+comment = "'V$SYSMETRIC' の検索"
+category = "SQL実行結果"
 text = '''
 SELECT   TO_CHAR(begin_time , 'YYYY-MM-DD HH24:MI:SS') begin_time
        , TO_CHAR(end_time   , 'YYYY-MM-DD HH24:MI:SS') end_time
@@ -255,8 +599,9 @@ ORDER BY begin_time
 [[metrics]]
 
 id = "systime"
-name = "systime"
-category = "Oracle"
+name = "処理時間統計"
+comment = "'V$SYS_TIME_MODEL' の検索"
+category = "SQL実行結果"
 text = '''
 SELECT  LPAD(' ', 2*level-1)||stat_name stat_name
       , ROUND(value/1000000,2) seconds
@@ -402,8 +747,9 @@ CONNECT BY PRIOR id = pid START WITH id = 0
 [[metrics]]
 
 id = "tabstorage"
-name = "tabstorage"
-category = "Oracle"
+name = "テーブル構成"
+comment = "'DBA_TABLES'の検索"
+category = "SQL実行結果"
 text = '''
 SELECT   tab.owner owner
        , tab.table_name table_name
@@ -426,8 +772,9 @@ ORDER BY tab.owner
 [[metrics]]
 
 id = "sumstorage"
-name = "sumstorage"
-category = "Oracle"
+name = "ストレージサマリ"
+comment = "各データベースストレージの総容量[MB]の検索"
+category = "SQL実行結果"
 text = '''
 select 'datafiles' type, sum(bytes)/1024/1024 total from dba_data_files
  union

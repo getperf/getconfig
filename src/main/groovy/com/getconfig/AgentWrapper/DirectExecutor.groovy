@@ -25,10 +25,12 @@ class DirectExecutor implements AgentExecutor {
     DirectExecutorWrapper wrapper
 
     String currentLogDir
+    String logPath
     String tlsConfigDir
     String metricLib
     int timeout = 0
     int level = 0
+    boolean dryRun
 
     DirectExecutor(String platform, Server server) {
         this.platform = platform
@@ -45,6 +47,7 @@ class DirectExecutor implements AgentExecutor {
         this.metricLib     = env.getMetricLib()
         this.level         = env.getLevel()
         this.timeout       = env.getGconfTimeout(this.platform)
+        this.dryRun        = env.getDryRun(this.platform)
     }
 
     void accept(DirectExecutorWrapper visitor) {
@@ -72,13 +75,15 @@ class DirectExecutor implements AgentExecutor {
     }
 
     String makeAgentLogDir() {
-        String logPath = getAgentLogDir()
-        new File(logPath).mkdirs()
-        return logPath
+        this.logPath = getAgentLogDir()
+        if (!dryRun) {
+            new File(this.logPath).mkdirs()
+        }
+        return this.logPath
     }
 
     String getAgentLogDir() {
-        return Paths.get(this.currentLogDir, server.serverName, server.domain)
+        return Paths.get(this.currentLogDir, server.serverName, server.domain, server.remoteAlias)
     }
 
     int run() {
@@ -86,8 +91,9 @@ class DirectExecutor implements AgentExecutor {
         long start = System.currentTimeMillis()
         log.info "Run ${title}"
         setPlatformMetricFromLibs()
+        makeAgentLogDir()
         accept(wrapper)
-        return wrapper.run()
+        return (dryRun) ? wrapper.dryRun() : wrapper.run()
     }
 }
 
