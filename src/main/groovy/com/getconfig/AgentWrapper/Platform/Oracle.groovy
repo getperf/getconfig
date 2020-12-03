@@ -54,6 +54,9 @@ class Oracle implements DirectExecutorWrapper {
             if (metric.level > this.level) {
                 return
             }
+            if (!metric.text) {
+                return
+            }
             log.info "run ${metric.id}"
             try {
                 def rows = db.rows(metric.text)
