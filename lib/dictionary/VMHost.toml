@@ -14,7 +14,8 @@
 # プラットフォーム
 #     VMHost
 # URL,IPアドレス
-#     未入力。ユーザIDで指定したvCenterのIPで接続します
+#     vCenter 構成の場合は未入力。ユーザIDで指定したvCenterのIPで接続します
+#     vCenter を使用せず ESXi 単体サーバの場合は、ESXi の IP を入力します
 # ユーザID
 #     config/config.groovy 内に記述した、REST 接続アカウント。
 #     Account01を指定した場合、以下のパラメータを参照します

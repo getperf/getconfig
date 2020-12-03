@@ -25,6 +25,7 @@ redmineField = "機種"
     AIX = "prtconf.System Model"
     Eternus = "enclosure.StorageSystemName"
     NetAppONTAP = "processor"
+    Oracle = "dbvers.Oracle Database"
 
 [[columns]]
 id = "type"
@@ -38,6 +39,7 @@ redmineField = "型番"
     Eternus = "enclosure.ModelName"
     HitachiVSP = "storage.modelName"
     NetAppONTAP = "version"
+    Oracle = "dbcomps.version"
 
 [[columns]]
 id = "serial"
@@ -75,6 +77,7 @@ name = "アーキテクチャ"
     VMHost = "summary.arch"
     Solaris = "Machine"
     HitachiVSP = "storage.network"
+    Oracle = "dbattrs.platform_name"
 
 [[columns]]
 id = "cpu"
@@ -88,6 +91,7 @@ redmineField = "CPU数"
     Solaris = "cpu_total"
     AIX = "prtconf.Number Of Processors"
     NetAppONTAP = "hw.cpu"
+    Oracle = "hostconfig.num_cpus"
 
 [[columns]]
 id = "cpuCore"
@@ -100,6 +104,7 @@ name = "CPUコア数"
     Solaris = "cpu_core"
     AIX = "prtconf.Number Of Processors"
     NetAppONTAP = "hw.cpu"
+    Oracle = "hostconfig.num_cpu_cores"
 
 [[columns]]
 id = "cpuClock"
@@ -122,6 +127,7 @@ redmineField = "MEM容量"
     VMHost = "MemoryTotalGB"
     Solaris = "memory"
     AIX = "prtconf.Memory Size"
+    Oracle = "hostconfig.physical_memory_mb"
 
 [[columns]]
 id = "internalDisk"

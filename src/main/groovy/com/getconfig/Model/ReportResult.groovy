@@ -32,6 +32,9 @@ class ReportResult {
             sheet.platforms.get("OS")?.each { String osPlatform ->
                 platformIndex.put(osPlatform, sheet)
             }
+            sheet.platforms.get("MW")?.each { String mwPlatform ->
+                platformIndex.put(mwPlatform, sheet)
+            }
         }
     }
 
@@ -58,7 +61,7 @@ class ReportResult {
         }
         String hwPlatform = categories.get("HW")
         String osPlatform = categories.get("OS")
-        String paltformKey = osPlatform ?: hwPlatform 
+        String paltformKey = osPlatform ?: hwPlatform ?: categories.get("MW")
         if ( hwPlatform && osPlatform) {
             paltformKey = "${hwPlatform}.${osPlatform}" as String
         }

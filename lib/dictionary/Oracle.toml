@@ -107,8 +107,8 @@ id = "dbinfo.cluster_database_instances"
 [[metrics]]
 
 category = "RAC情報"
-name = "Oracle Real Application Clusters"
-id = "dbcomps.Oracle Real Application Clusters"
+name = "Oracle RAC"
+id = "dbcomps.RAC"
 
 [[metrics]]
 
@@ -185,73 +185,73 @@ id = "dbattrs.platform_name"
 [[metrics]]
 
 category = "言語・ロケール"
-name = "パラメータ：nls_territory"
+name = "nls_territory"
 id = "nls.nls_territory"
 
 [[metrics]]
 
 category = "言語・ロケール"
-name = "パラメータ：nls_language"
+name = "nls_language"
 id = "nls.nls_language"
 
 [[metrics]]
 
 category = "言語・ロケール"
-name = "パラメータ：nls_nchar_characterset"
+name = "nls_nchar_characterset"
 id = "nls.nls_nchar_characterset"
 
 [[metrics]]
 
 category = "言語・ロケール"
-name = "パラメータ：nls_length_semantics"
+name = "nls_length_semantics"
 id = "nls.nls_length_semantics"
 
 [[metrics]]
 
 category = "言語・ロケール"
-name = "パラメータ：nls_characterset"
+name = "nls_characterset"
 id = "nls.nls_characterset"
 
 [[metrics]]
 
 category = "メモリ構成"
-name = "パラメータ：memory_management"
+name = "memory_management"
 id = "dbinfo.memory_management"
 
 [[metrics]]
 
 category = "メモリ構成"
-name = "パラメータ：statistics_level"
+name = "statistics_level"
 id = "dbinfo.statistics_level"
 
 [[metrics]]
 
 category = "メモリ構成"
-name = "パラメータ：sga_target"
+name = "sga_target"
 id = "dbinfo.sga_target"
 
 [[metrics]]
 
 category = "メモリ構成"
-name = "パラメータ：sga_max_size"
+name = "sga_max_size"
 id = "dbinfo.sga_max_size"
 
 [[metrics]]
 
 category = "メモリ構成"
-name = "パラメータ：memory_target"
+name = "memory_target"
 id = "dbinfo.memory_target"
 
 [[metrics]]
 
 category = "メモリ構成"
-name = "パラメータ：memory_max_target"
+name = "memory_max_target"
 id = "dbinfo.memory_max_target"
 
 [[metrics]]
 
 category = "メモリ構成"
-name = "パラメータ：pga_aggregate_target"
+name = "pga_aggregate_target"
 id = "dbinfo.pga_aggregate_target"
 
 [[metrics]]
@@ -281,73 +281,73 @@ id = "sgasize.Variable Size"
 [[metrics]]
 
 category = "メモリプール割当て"
-name = "パラメータ：shared_pool_size"
+name = "shared_pool_size"
 id = "dbinfo.shared_pool_size"
 
 [[metrics]]
 
 category = "メモリプール割当て"
-name = "パラメータ：streams_pool_size"
+name = "streams_pool_size"
 id = "dbinfo.streams_pool_size"
 
 [[metrics]]
 
 category = "メモリプール割当て"
-name = "パラメータ：large_pool_size"
+name = "large_pool_size"
 id = "dbinfo.large_pool_size"
 
 [[metrics]]
 
 category = "メモリプール割当て"
-name = "パラメータ：java_pool_size"
+name = "java_pool_size"
 id = "dbinfo.java_pool_size"
 
 [[metrics]]
 
 category = "メモリプール割当て"
-name = "パラメータ：db_cache_size"
+name = "db_cache_size"
 id = "dbinfo.db_cache_size"
 
 [[metrics]]
 
 category = "ストレージ構成"
-name = "パラメータ：db_recovery_file_dest"
+name = "db_recovery_file_dest"
 id = "dbinfo.db_recovery_file_dest"
 
 [[metrics]]
 
 category = "ストレージ構成"
-name = "パラメータ：db_recovery_file_dest_size"
+name = "db_recovery_file_dest_size"
 id = "dbinfo.db_recovery_file_dest_size"
 
 [[metrics]]
 
 category = "ストレージ構成"
-name = "パラメータ：default_tbs_type"
+name = "default_tbs_type"
 id = "nls.default_tbs_type"
 
 [[metrics]]
 
 category = "ストレージ構成"
-name = "パラメータ：default_permanent_tablespace"
+name = "default_permanent_tablespace"
 id = "nls.default_permanent_tablespace"
 
 [[metrics]]
 
 category = "ストレージ構成"
-name = "パラメータ：default_temp_tablespace"
+name = "default_temp_tablespace"
 id = "nls.default_temp_tablespace"
 
 [[metrics]]
 
 category = "ストレージ構成"
-name = "パラメータ：spfile"
+name = "spfile"
 id = "dbinfo.spfile"
 
 [[metrics]]
 
 category = "ストレージ構成"
-name = "パラメータ：diagnostic_dest"
+name = "diagnostic_dest"
 id = "dbinfo.diagnostic_dest"
 
 [[metrics]]
@@ -371,25 +371,25 @@ id = "redoinfo.redo_size"
 [[metrics]]
 
 category = "ストレージサマリ"
-name = "表領域のディスク総容量[MB]"
+name = "表領域容量[MB]"
 id = "sumstorage.datafiles"
 
 [[metrics]]
 
 category = "ストレージサマリ"
-name = "一時表領域のディスク総容量[MB]"
+name = "一時表領域容量[MB]"
 id = "sumstorage.tempfiles"
 
 [[metrics]]
 
 category = "ストレージサマリ"
-name = "Redoログのディスク総容量[MB]"
+name = "Redoログ容量[MB]"
 id = "sumstorage.redologs"
 
 [[metrics]]
 
 category = "ストレージサマリ"
-name = "制御ファイルのディスク総容量[MB]"
+name = "制御ファイル容量[MB]"
 id = "sumstorage.controlfiles"
 
 [[metrics]]

@@ -15,6 +15,7 @@
     ]
 
     MW = [
+        "Oracle",
     ]
 
 [[sheets]]
@@ -132,3 +133,13 @@ tracker = "ストレージ"
 
         HW = ["NetAppDataONTAP"]
         MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "Software"
+tracker = "ソフトウェア"
+
+    [sheets.platforms]
+
+        MW = ["Oracle"]
+
