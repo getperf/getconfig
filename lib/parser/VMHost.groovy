@@ -89,15 +89,27 @@ void Config(TestUtil t) {
             csv_disk << [m2, diskTotal]
         }
     }
-    json?.StorageDevice?.HostBusAdapter.each { lun ->
-        def device = lun.Device
-        def model = lun.Model
-        if (device) {
-            diskSizes[device] = 0
-            csv_disk << [model, 0]
+    // json?.StorageDevice?.HostBusAdapter.each { lun ->
+    //     def device = lun.Device
+    //     def model = lun.Model
+    //     if (device) {
+    //         diskSizes[device] = 0
+    //         csv_disk << [model, 0]
+    //     }
+    //     // println new JsonBuilder( lun ).toPrettyString()
+    //     // return true
+    // }
+    json.FileSystemVolume?.MountInfo*.Volume.each { vol ->
+        // println new JsonBuilder( vol ).toPrettyString()
+        def type = vol.Type
+        def name = vol.Name
+        def capacity = vol.Capacity
+        if (type && name && capacity) {
+            def device = "${type}:${name}"
+            def size = capacity / (1024.0 ** 3) as Integer
+            diskSizes[name] = size
+            csv_disk << [device, size]
         }
-        // println new JsonBuilder( lun ).toPrettyString()
-        // return true
     }
     t.setMetric("Disk", diskSizes.toString())
     t.devices(['Model', 'Size'], csv_disk, "Disk")
