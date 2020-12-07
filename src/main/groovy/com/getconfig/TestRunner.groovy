@@ -85,7 +85,8 @@ class TestRunner implements Controller {
         log.info "prepare report data elapse : ${elapse} ms"
 
         this.testScenario = manager.testScenario
-        Reporter reporter = new Reporter(this.testScenario, "build/check_sheet.xlsx")
+        Reporter reporter = new Reporter(this.testScenario)
+        ConfigEnv.instance.accept(reporter)
         reporter.run()
     }
 

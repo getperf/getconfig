@@ -1,5 +1,8 @@
 package com.getconfig.Command
 
+import com.getconfig.ProjectManager.BackupManager
+import com.getconfig.ProjectManager.ConfigFileEncoder
+import com.getconfig.ProjectManager.ProjectConstants
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
@@ -27,10 +30,10 @@ import com.getconfig.ProjectManager.ProjectInitializer
                 GetconfigCommand.InitCommand.class,
                 GetconfigCommand.RunCommand.class,
                 GetconfigCommand.BackupCommand.class,
-                GetconfigCommand.ListCommand.class,
+                // GetconfigCommand.ListCommand.class,
                 GetconfigCommand.UpdateCommand.class,
-                GetconfigCommand.RegistCommand.class,
-                EncodeCommand.class
+                // GetconfigCommand.RegistCommand.class,
+                GetconfigCommand.EncodeCommand.class
         ])
 public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IExitCodeExceptionMapper {
 
@@ -60,7 +63,8 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
     @Override
     public String[] getVersion() {
         // return new String[]{buildProperties.getVersion()};
-        return new String[]{"Getconfig inventory collector v1.9"};
+        return new String[]{"Getconfig inventory collector v" +
+                ProjectConstants.VERSION};
     }
 
     void run() {
@@ -118,16 +122,25 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
                 description="archive project zip file")
         File zipPath
 
+        @Option(names = ["-f", "--force"], description="Force backup without checking the integrity of the project directory")
+        Boolean force
+
         @Parameters(paramLabel = "DIR", description = "project directory to backup")
         String projectDir
 
         @Override
         public Integer call() {
-            def args = ConfigEnv.instance.commandArgs
-            args.zipPath = zipPath
-            args.projectDir = projectDir
-            println "backup ${zipPath}, ${projectDir}"
-            return ExitCode.OK
+            try {
+                def env = ConfigEnv.instance
+                env.commandArgs.copyPropeties(this)
+                BackupManager manager = new BackupManager()
+                env.accept(manager)
+                manager.backupProject(zipPath, projectDir, force)
+            } catch (Exception e) {
+                log.error "run command : " + e
+                return ExitCode.SOFTWARE
+            }
+            return ExitCode.OK;
         }
     }
 
@@ -207,38 +220,52 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
                 description = "config file password")
         String password
 
+        @Option(names = ["-r", "--restore"], 
+                description = "decode config file")
+        Boolean restore
+
         @Override
         public Integer call() {
-            def args = ConfigEnv.instance.commandArgs
-            args.configFile = configFile
-            args.password = password
-            println("encript");
+            try {
+                def env = ConfigEnv.instance
+                env.commandArgs.copyPropeties(this)
+                ConfigFileEncoder manager = new ConfigFileEncoder()
+                env.accept(manager)
+                if (restore) {
+                    manager.restore()
+                } else {
+                    manager.run()
+                }
+            } catch (Exception e) {
+                log.error "run command : " + e
+                return ExitCode.SOFTWARE
+            }
             return ExitCode.OK;
         }
     }
 
-    @Command(name = "ls", mixinStandardHelpOptions = true,
-            versionProvider = GetconfigCommand.class,
-            description = "list inventory")
-    static class ListCommand implements Callable<Integer> {
+    // @Command(name = "ls", mixinStandardHelpOptions = true,
+    //         versionProvider = GetconfigCommand.class,
+    //         description = "list inventory")
+    // static class ListCommand implements Callable<Integer> {
 
-        @Option(names = ["-a", "--all"], description="print all inventory list")
-        boolean allFlag
+    //     @Option(names = ["-a", "--all"], description="print all inventory list")
+    //     boolean allFlag
 
-        @Option(names = ["-s", "--server"], description = "keyword of filtering server")
-        String keywordServer
+    //     @Option(names = ["-s", "--server"], description = "keyword of filtering server")
+    //     String keywordServer
 
-        @Option(names = ["-p", "--platform"], description = "keyword of filtering platform")
-        String keywordPlatform
+    //     @Option(names = ["-p", "--platform"], description = "keyword of filtering platform")
+    //     String keywordPlatform
 
-        @Override
-        public Integer call() {
-            ConfigEnv.instance.commandArgs.copyPropeties(this)
+    //     @Override
+    //     public Integer call() {
+    //         ConfigEnv.instance.commandArgs.copyPropeties(this)
 
-            println("list");
-            return ExitCode.OK;
-        }
-    }
+    //         println("list");
+    //         return ExitCode.OK;
+    //     }
+    // }
 
     @Command(name = "update", mixinStandardHelpOptions = true,
             versionProvider = GetconfigCommand.class,
@@ -295,30 +322,30 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
         }
     }
 
-    @Command(name = "regist", mixinStandardHelpOptions = true,
-            versionProvider = GetconfigCommand.class,
-            description = "regist redmine inventory ticket")
-    static class RegistCommand implements Callable<Integer> {
+    // @Command(name = "regist", mixinStandardHelpOptions = true,
+    //         versionProvider = GetconfigCommand.class,
+    //         description = "regist redmine inventory ticket")
+    // static class RegistCommand implements Callable<Integer> {
 
-        @Option(names = ["-c", "--config"], paramLabel = "FILE",
-                description = "config file path (default : config/config.groovy)")
-        File configFile
+    //     @Option(names = ["-c", "--config"], paramLabel = "FILE",
+    //             description = "config file path (default : config/config.groovy)")
+    //     File configFile
 
-        @Option(names = ["-p", "--password"], 
-                description = "config file password")
-        String password
+    //     @Option(names = ["-p", "--password"], 
+    //             description = "config file password")
+    //     String password
 
-        @Option(names = ["--project"], description = "redmine project")
-        String project
+    //     @Option(names = ["--project"], description = "redmine project")
+    //     String project
 
-        @Override
-        public Integer call() {
-            def args = ConfigEnv.instance.commandArgs
-            args.configFile = configFile
-            args.password = password
-            args.redmineProject = project
-            println("regist");
-            return ExitCode.OK;
-        }
-    }
+    //     @Override
+    //     public Integer call() {
+    //         def args = ConfigEnv.instance.commandArgs
+    //         args.configFile = configFile
+    //         args.password = password
+    //         args.redmineProject = project
+    //         println("regist");
+    //         return ExitCode.OK;
+    //     }
+    // }
 }

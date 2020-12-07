@@ -221,6 +221,10 @@ class ConfigEnv {
         return this.commandArgs.configFile ?: configFile
     }
 
+    String getConfigFileEncripted() {
+        return getConfigFile() + "-encrypted"
+    }
+
     String getPassword() {
         return this.commandArgs.password
     }

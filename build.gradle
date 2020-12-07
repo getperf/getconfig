@@ -8,10 +8,10 @@ plugins {
 
 def language  = 'jp' // 'en'
 
-// sourceCompatibility = '1.8'
-// targetCompatibility = '1.8'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
-version = '0.2.12'
+version = '0.3.1'
 
 repositories {
     jcenter()
@@ -63,6 +63,7 @@ dependencies {
     compile 'org.apache.poi:poi:4.1.2'
     compile 'org.apache.poi:poi-ooxml:4.1.2'
     compile 'com.github.ozlerhakan:poiji:2.8.0'
+    compile 'org.zeroturnaround:zt-zip:1.14'
 
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     compile 'com.google.code.gson:gson:2.8.6'
@@ -112,7 +113,7 @@ goBuild {
 }
 
 task zipApp(type: Zip, dependsOn: shadowJar) {
-    def target  = 'server-acceptance'
+    def target  = 'server-acceptance2'
     archiveName = "${baseName}-${version}.${extension}"
     // Issue: Copy hidden file
     // http://stackoverflow.com/questions/29504250/how-to-copy-hidden-resource-files-in-gradle
@@ -120,30 +121,21 @@ task zipApp(type: Zip, dependsOn: shadowJar) {
 
     into("./${target}/") {
         from file("src/main/resources/root/.gitignore")
-        // from fileTree(dir: "image")
         from fileTree(dir: "src/main/resources/root/${language}")
-        // from fileTree(dir: "docs/${language}").include('Readme.md', 'Usage.md')
-        from fileTree(dir : '.').include('gcbat*', 'getconfig*', 'LICENSE.txt', 'Changes.txt')
+        from fileTree(dir : '.').include('Readme.md', 'LICENSE.txt', 'Changes.txt')
     }
-    // def check_sheet = (language == 'jp') ? 'サーバチェックシート.xlsx' : 'check_sheet.xlsx'
-    // into("./${target}/${check_sheet}") {
-    //     from file(dir: "src/main/resources/root/${language}/check_sheet.xlsx")
-    // }
-    // into("./${target}/image") {
-    //     from fileTree(dir: "image/")
-    // }
-    // into("./${target}/docs/html") {
-    //     from fileTree(dir: "docs/${language}/sphinx-doc/_build/html/")
-    // }
+    into("./${target}/") {
+        fileMode 0755
+        from fileTree(dir : '.').include('gconf', 'gconf.exe', 'getcf', 'getcf.bat')
+    }
     into ("./${target}/config") {
-        from fileTree(dir : 'config').include("*.xml")
+        from fileTree(dir : 'config').include(
+            'config.groovy', 'cmdb_sample.groovy', "*.xml")
     }
     [
         'lib',
-        // 'template',
-        // 'cleansing',
         'build/libs',
-        // 'src/test/resources/log'
+        'src/test/resources/inventory'
     ].each { path ->
         into ("./${target}/${path}") {
             from path
