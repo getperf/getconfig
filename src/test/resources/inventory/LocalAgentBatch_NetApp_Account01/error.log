@@ -1,0 +1,9 @@
+subsystem_health : run command: Process exited with status 255
+storage_failover : run command: Process exited with status 255
+memory : run command: Process exited with status 255
+license : run command: Process exited with status 255
+processor : run command: Process exited with status 255
+volume : run command: Process exited with status 255
+aggregate_status : run command: Process exited with status 255
+sysconfig : run command: Process exited with status 255
+sysconfig_raid : run command: Process exited with status 255

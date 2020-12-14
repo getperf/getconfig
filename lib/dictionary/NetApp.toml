@@ -1,0 +1,47 @@
+# NetApp 監視設定 インベントリ収集シナリオ
+
+# JSON RPC で NetApp 管理用 IF ； NetApp API に接続し、メトリック定義のコマンド
+# 群を実行します
+
+# Excel 検査対象シート
+
+# 設定パラメータは以下の通りです
+# 
+# 対象サーバ
+#     OS ホスト名と同じにしてください
+# プラットフォーム
+#     NetApp
+# URL,IPアドレス
+#     未記入
+# ユーザID
+#     config/config.groovy 内に記述した、JSON RPC 接続アカウント。
+#     Account01を指定した場合、以下のパラメータを参照します
+#      // NetApp 接続情報
+#      account.NetApp.Account01.server   = 'http://zabbix:8081/zabbix'
+#      account.NetApp.Account01.user      = 'admin'
+#      account.NetApp.Account01.password  = 'admin'
+
+# [[metrics]]
+
+# メトリック定義コマンドリスト
+# 
+# NetApp API の既定の実行コマンドリストはハードコーディングされており、
+# 変更できません。以下リストは抽出項目のメトリック定義のみになります。
+
+[[metrics]]
+
+id = "aggregate_status"
+name = "ストレージ"
+category = "リリース"
+
+[[metrics]]
+
+id = "sysconfig"
+name = "ストレージ"
+category = "リリース"
+
+[[metrics]]
+
+id = "sysconfig_raid"
+name = "ストレージ"
+category = "リリース"

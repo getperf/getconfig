@@ -1,0 +1,24 @@
+{
+  "data" : [ {
+    "userObjectId" : "infra",
+    "userId" : "infra",
+    "authentication" : "local",
+    "userGroupNames" : [ "Administrator User Group", "Support Personnel Group" ],
+    "isBuiltIn" : false,
+    "isAccountStatus" : true
+  }, {
+    "userObjectId" : "maintenance",
+    "userId" : "maintenance",
+    "authentication" : "local",
+    "userGroupNames" : [ "Administrator User Group", "Support Personnel Group" ],
+    "isBuiltIn" : true,
+    "isAccountStatus" : true
+  }, {
+    "userObjectId" : "monitor",
+    "userId" : "monitor",
+    "authentication" : "local",
+    "userGroupNames" : [ "Storage Monitor" ],
+    "isBuiltIn" : false,
+    "isAccountStatus" : true
+  } ]
+}

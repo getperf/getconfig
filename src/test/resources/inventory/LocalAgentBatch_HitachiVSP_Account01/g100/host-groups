@@ -1,0 +1,27 @@
+{
+  "data" : [ {
+    "hostGroupId" : "CL1-A,0",
+    "portId" : "CL1-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "1A-G00",
+    "hostMode" : "VMWARE_EX"
+  }, {
+    "hostGroupId" : "CL2-A,0",
+    "portId" : "CL2-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "2A-G00",
+    "hostMode" : "VMWARE_EX"
+  }, {
+    "hostGroupId" : "CL3-A,0",
+    "portId" : "CL3-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "3A-G00",
+    "hostMode" : "LINUX/IRIX"
+  }, {
+    "hostGroupId" : "CL4-A,0",
+    "portId" : "CL4-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "4A-G00",
+    "hostMode" : "LINUX/IRIX"
+  } ]
+}

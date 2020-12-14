@@ -1,0 +1,6 @@
+
+server<|>version<|>
+NTP Server Host Name, IPv4 or IPv6 Address<|>NTP Version for Server (default: auto)<|>
+192.168.0.153<|>auto<|>
+192.168.0.154<|>auto<|>
+

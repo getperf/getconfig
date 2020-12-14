@@ -1,0 +1,49 @@
+{
+  "isSNMPAgentEnabled" : true,
+  "snmpVersion" : "v2c",
+  "sendingTrapSetting" : {
+    "snmpv1v2cSettings" : [ {
+      "community" : "cloud",
+      "sendTrapTo" : [ "192.168.0.161" ]
+    }, {
+      "community" : "public",
+      "sendTrapTo" : [ "192.168.0.162" ]
+    } ]
+  },
+  "requestAuthenticationSetting" : {
+    "snmpv1v2cSettings" : [ {
+      "community" : "cloud",
+      "requestsPermitted" : [ ]
+    } ]
+  },
+  "systemGroupInformation" : {
+    "storageSystemName" : "G800",
+    "contact" : "",
+    "location" : "X-XXX(#2)"
+  },
+  "snmpEngineID" : "0x80000074043163303564383061"
+}{
+  "isSNMPAgentEnabled" : true,
+  "snmpVersion" : "v2c",
+  "sendingTrapSetting" : {
+    "snmpv1v2cSettings" : [ {
+      "community" : "cloud",
+      "sendTrapTo" : [ "192.168.0.161" ]
+    }, {
+      "community" : "public",
+      "sendTrapTo" : [ "192.168.0.162" ]
+    } ]
+  },
+  "requestAuthenticationSetting" : {
+    "snmpv1v2cSettings" : [ {
+      "community" : "cloud",
+      "requestsPermitted" : [ ]
+    } ]
+  },
+  "systemGroupInformation" : {
+    "storageSystemName" : "G800",
+    "contact" : "",
+    "location" : "X-XXX(#2)"
+  },
+  "snmpEngineID" : "0x80000074043163303564383061"
+}

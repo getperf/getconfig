@@ -4,8 +4,8 @@
 
 // Excel inspection result file output path
 
-    // evidence.target='./build/check_sheet.xlsx'
-    evidence.target='./build/check_sheet_<date>.xlsx'
+    evidence.target='./build/check_sheet.xlsx'
+    // evidence.target='./build/check_sheet_<date>.xlsx'
 
 // Test command log directory
 
@@ -55,7 +55,7 @@
 
 // vCenter virtual machine management REST API connection
 //
-//   vSphere Web Services API account information
+//   vSphere Web Services API account
 
 account.VMWare.Account01.server   = '192.168.0.200'  // IP or "https://{IP}/sdk"
 account.VMWare.Account01.user     = 'test_user'
@@ -72,14 +72,14 @@ account.VMHost.Account01.password = 'P@ssw0rd'
 
 // Linux server SSH connection
 //
-//   Linux server to be inspected SSH connection account information
+//   Linux server to be inspected SSH connection account
 
 account.Linux.Account01.user      = 'zabbix'
 account.Linux.Account01.password  = 'P@ssw0rd'
 
 // Windows server WinRM connection
 //
-//   Windows server to be inspected WinRM connection account information
+//   Windows server to be inspected WinRM connection account
 //   December 2020 Currently, only Basic authentication is supported. 
 //   Basic authentication to the server Permission required
 
@@ -90,70 +90,72 @@ account.Windows.Account01.password = 'P@ssw0rd'
 
 // CiscoUCS IA server firmware connection 
 //
-//   Cisco UCS CIMC SSH connection account information
+//   Cisco UCS CIMC SSH connection account
 
 account.CiscoUCS.Account01.user     = 'root'
 account.CiscoUCS.Account01.password = 'P@ssw0rd'
 
 // HPE IA server firmware connection
 //
-//   HP iLO REST API connection account information
+//   HP iLO REST API connection account
 
 account.HPiLO.Account01.user     = 'root'
 account.HPiLO.Account01.password = 'P@ssw0rd'
 
 // Fujitsu IA server firmware connection
 //
-//   Primergy iRMC REST API connection account information
+//   Primergy iRMC REST API connection account
 
 account.Primergy.Account01.user     = 'admin'
 account.Primergy.Account01.password = 'P@ssw0rd'
 
 // Solaris server SSH connection
 //
-//   Solaris server SSH connection account information
+//   Solaris server SSH connection account
 
 account.Solaris.Account01.user     = 'someuser'
 account.Solaris.Account01.password = 'P@ssw0rd'
 
 // Solaris server firmware connection
 //
-//   Solaris XSCF API SSH connection account information
+//   Solaris XSCF API SSH connection account
 
 account.XSCF.Account01.user     = 'admin'
 account.XSCF.Account01.password = 'P@ssw0rd'
 
-// NetAPP storage firmware connection
+// NetApp storage firmware connection
 //
-//   NetAPP ONTAP System Manager SSH connection account information
+//   NetApp ONTAP System Manager SSH connection account
 
-account.NetAPP.Account01.user     = 'admin'
-account.NetAPP.Account01.password = 'P@ssw0rd'
+account.NetApp.Account01.server   = '192.168.0.105'
+account.NetApp.Account01.user     = 'admin'
+account.NetApp.Account01.password = 'P@ssw0rd'
 
 // HitachiVSP storage firmware connection
 //
-//   Hitachi Command Suite REST API connection account information
+//   Hitachi Command Suite REST API connection account
 
+account.HitachiVSP.Account01.server   = 'http://192.168.0.104'
 account.HitachiVSP.Account01.user     = 'admin'
 account.HitachiVSP.Account01.password = 'P@ssw0rd'
 
 // Fujitsu Eternus storage firmware connection
 //
-//   Fujitsu  Eternus CLI SSH connection account information
+//   Fujitsu  Eternus CLI SSH connection account
 
 account.Eternus.Account01.user     = 'admin'
 account.Eternus.Account01.password = 'P@ssw0rd'
 
 // Oracle database connection
 //
-//   Oracle JDBC connection account information
+//   Oracle JDBC connection account
 
 account.Oracle.Account01.user     = 'scott'
 account.Oracle.Account01.password = 'tiger'
 
 // Zabbix management account connection
 //
-//   Zabbix API JSON-RPC connection account information
+//   Zabbix API JSON-RPC connection account
 
 account.Zabbix.Account01.server   = 'http://zabbix:8081/zabbix'
 account.Zabbix.Account01.user     = 'Admin'

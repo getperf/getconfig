@@ -1,0 +1,14 @@
+{
+  "storageDeviceId" : "83200000996999",
+  "model" : "VSP G100",
+  "serialNumber" : 00996999,
+  "svpIp" : "192.168.0.164",
+  "rmiPort" : 1099,
+  "ctl1Ip" : "192.168.0.148",
+  "ctl2Ip" : "192.168.0.149",
+  "dkcMicroVersion" : "83-05-29/00",
+  "communicationModes" : [ {
+    "communicationMode" : "lanConnectionMode"
+  } ],
+  "isSecure" : true
+}

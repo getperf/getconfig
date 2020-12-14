@@ -1,0 +1,807 @@
+
+	NetApp Release 9.3P7: Wed Jul 25 06:16:06 EDT 2018
+	System ID: 0538001905 (netapp1BM); partner ID: 0537148894 (netapp1AM)
+	System Serial Number: 451829000152 (netapp1BM)
+	System Rev: A4
+	System Storage Configuration: Multi-Path HA
+	System ACP Connectivity: Inband Active
+	All-Flash Optimized: false
+	Backplane Part Number: 111-02495
+	Backplane Rev: A4
+	Backplane Serial Number: 021824026336
+	slot 0: System Board 1.7 GHz (System Board XXII B2)
+                Model Name:         FAS8200
+                Part Number:        111-02493
+                Revision:           B2
+                Serial Number:      021825003297
+                BIOS version:       11.2
+                Loader version:     6.0.2
+                Processors:         16
+                Processor ID:       0x50664
+                Microcode Version:  0xf00000c
+                Processor type:     Intel(R) Xeon(R) CPU D-1587 @ 1.70GHz
+                Memory Size:        131072 MB
+                Memory Attributes:  Hoisting
+                                    Rank Interleaving
+                                    Channel Interleaving
+                                    Chipkill ECC
+                NVMEM Size:         8190 MB of Main Memory Used
+                Controller:         B
+                PCIE Switch 0:      id 0 519 1.05
+                PCIE Switch 1:      id 1 519 1.08
+                TPM FW Version:     0005.0033
+	Service Processor           Status: Online
+		Firmware Version:   5.3
+		Mgmt MAC Address:   00:A0:98:DF:E3:E7
+		Ethernet Link:      up, full duplex, auto-neg complete
+		Using DHCP:         no
+	IPv4 configuration:
+		IP Address:         192.168.0.86
+		Netmask:            255.255.254.0
+		Gateway:            192.168.0.1
+	IPv6 configuration:         Disabled
+	[Service Processor cached network information determined at Mon Dec 14 15:28:43 JST 2020]
+	slot 0: Internal 10/100/1000 Ethernet Switch
+		Wrench:             auto-1000t-fd-up
+		Device Type:        88E6176
+	slot 0: Gigabit Ethernet I210
+		e0M MAC Address:    00:a0:98:df:e3:e5 (auto-1000t-fd-up)
+		Device Type:        1533
+		Firmware Version:   3.25-5.5 0x80000674
+	slot 0: 10 Gigabit Ethernet Controller IX5-SFP+
+		e0a MAC Address:    00:a0:98:df:e3:d5 (auto-10g_twinax-fd-up)
+		    SFP Vendor:         Amphenol        
+		    SFP Part Number:    616310003       
+		    SFP Serial Number:  APF16450210457  
+		e0b MAC Address:    00:a0:98:df:e3:d6 (auto-10g_twinax-fd-up)
+		    SFP Vendor:         Amphenol        
+		    SFP Part Number:    616310003       
+		    SFP Serial Number:  APF16450210615  
+		Device Type:        X550EM
+		Firmware Version:   0.86-5.1
+	slot 0: 1/10 Gigabit Ethernet Controller IX4-T
+		e0c MAC Address:    00:a0:98:df:e3:d7 (auto-10g_t-fd-up)
+		e0d MAC Address:    00:a0:98:df:e3:d8 (auto-10g_t-fd-up)
+		Device Type:        X550
+		Firmware Version:   1.0-5.1
+	slot 0: 1G/10G Ethernet Controller CNA EP 8324
+		(Multiple Dual-port, QLogic CNA 8324(8362) rev. 2)
+		e0e MAC Address:    00:a0:98:df:e3:d9 (auto-unknown-fd-down)
+		e0f MAC Address:    00:a0:98:df:e3:da (auto-unknown-fd-down)
+		e0g MAC Address:    00:a0:98:df:e3:db (auto-unknown-fd-down)
+		e0h MAC Address:    00:a0:98:df:e3:dc (auto-unknown-fd-down)
+		Device Type:        EP8324N
+		Firmware Version:   5.4.66.0
+	slot 0: PLX DMA Engine 2 (PLX87d0)
+		State:	           Active
+	slot 0: Interconnect HBA: Generic OFED Provider
+		Port Name:          ic0a
+		GID:                fe80:0000:0000:0000:0000:0000:0000:0105
+		Base LID:           0x105
+		Active MTU:         8192
+	slot 0: NTB Interconnect (PLX87b0)
+		Max HW Data Rate:  PCIe Gen 3 x 8
+		HW Data Rate:	   PCIe Gen 3 x 8
+		SW Data Rate:	   PCIe Gen 3 x 8
+		Logical Link:	   Up
+		Port State:	   Enabled
+	slot 0: SAS Host Adapter 0a (PMC-Sierra PM8072 rev. C, SAS, <UP>)
+		Firmware rev:       03.08.09.00
+		Base WWN:           5:00a098:00b0490:c0
+		Phy State:          [12] Enabled, 12.0 Gb/s
+		                    [13] Enabled, 12.0 Gb/s
+		                    [14] Enabled, 12.0 Gb/s
+		                    [15] Enabled, 12.0 Gb/s
+		Mini-SAS HD Vendor:        Molex Inc.      
+		Mini-SAS HD Part Number:   112-00439+A0    
+		Mini-SAS HD Type:          Passive Copper (unequalized) 5m ID:01
+		Mini-SAS HD Serial Number: 815830653
+                00.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8FQ)
+                00.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8VX)
+                00.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8PH)
+                00.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8EF)
+                00.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DH0KDBZ)
+                00.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DH0JBGZ)
+                00.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DH1B1MZ)
+                00.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKW20MD)
+                00.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DGTBPMZ)
+                00.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG6NMWD)
+                00.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKMAEGD)
+                00.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKN3K6D)
+                01.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BXEB4)
+                01.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8Z4)
+                01.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8G9)
+                01.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8M2)
+                01.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8WH)
+                01.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8GH)
+                01.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8SA)
+                01.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8MR)
+                01.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8MW)
+                01.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8GK)
+                01.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8LH)
+                01.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8J8)
+                02.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BYW0M)
+                02.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0NX)
+                02.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB13E)
+                02.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB10J)
+                02.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0X4)
+                02.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1C2MRR)
+                02.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9YV)
+                02.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0N6)
+                02.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0PC)
+                02.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0SV)
+                02.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0HG)
+                02.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0QJ)
+                03.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0X2)
+                03.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0TM)
+                03.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0XT)
+                03.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KM)
+                03.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0WN)
+                03.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0PK)
+                03.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB10Z)
+                03.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0XC)
+                03.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0RP)
+                03.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KB)
+                03.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0MS)
+                03.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BYV39)
+                04.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0YT)
+                04.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9NB)
+                04.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CCEC6)
+                04.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0TS)
+                04.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBAE8)
+                04.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9J3)
+                04.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9NC)
+                04.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1C4523)
+                04.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBAAK)
+                04.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9PG)
+                04.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0L2)
+                04.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBAE3)
+                05.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YGDDVND)
+                05.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG9RBRD)
+                05.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG1JH5D)
+                05.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DGW1GZZ)
+                05.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG13W8D)
+                05.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKS1AED)
+                05.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG0A7SD)
+                05.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YGB9TRD)
+                05.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKSKETD)
+                05.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG6ZGVD)
+                05.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXE2TW)
+                05.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKUKDUD)
+                06.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8KD)
+                06.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8LC)
+                06.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8SK)
+                06.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8T2)
+                06.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8V7)
+                06.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8J0)
+                06.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8KK)
+                06.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8H7)
+                06.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8GD)
+                06.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8P0)
+                06.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8XE)
+                06.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8V1)
+		Shelf 0: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 1: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 2: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 3: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 4: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 5: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 6: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+	slot 0: SAS Host Adapter 0b (PMC-Sierra PM8072 rev. C, SAS, <OFFLINE (hard)>)
+		Firmware rev:       03.08.09.00
+		Base WWN:           5:00a098:00b0490:c4
+		Phy State:          [8] Disabled
+		                    [9] Disabled
+		                    [10] Disabled
+		                    [11] Disabled
+		Mini-SAS HD Vendor:        not available
+		Mini-SAS HD Part Number:   not available
+		Mini-SAS HD Type:          not available
+		Mini-SAS HD Serial Number: not available
+	slot 0: SAS Host Adapter 0c (PMC-Sierra PM8072 rev. C, SAS, <UP>)
+		Firmware rev:       03.08.09.00
+		Base WWN:           5:00a098:00b0490:c8
+		Phy State:          [0] Enabled, 12.0 Gb/s
+		                    [1] Enabled, 12.0 Gb/s
+		                    [2] Enabled, 12.0 Gb/s
+		                    [3] Enabled, 12.0 Gb/s
+		Mini-SAS HD Vendor:        Molex Inc.      
+		Mini-SAS HD Part Number:   112-00439+A0    
+		Mini-SAS HD Type:          Passive Copper (unequalized) 5m ID:00
+		Mini-SAS HD Serial Number: 629830747
+                20.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BMWTG)
+                20.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8VR)
+                20.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BMYGK)
+                20.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8L1)
+                20.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8N7)
+                20.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8ST)
+                20.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BMYQE)
+                20.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BMW4G)
+                20.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8JA)
+                20.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BMYTT)
+                20.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8K0)
+                20.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8V2)
+                21.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0YC)
+                21.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB11T)
+                21.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8S7)
+                21.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8PK)
+                21.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8LE)
+                21.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BXEB1)
+                21.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0VG)
+                21.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KG)
+                21.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0W2)
+                21.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0PR)
+                21.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0N4)
+                21.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB1AF)
+                22.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB196)
+                22.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0Q3)
+                22.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KN)
+                22.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB11E)
+                22.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0HJ)
+                22.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BYW19)
+                22.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9T9)
+                22.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BYW5J)
+                22.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB12C)
+                22.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KD)
+                22.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BYTZP)
+                22.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA18F3PQ)
+                23.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXEAUW)
+                23.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY7L8W)
+                23.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY47KW)
+                23.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYHZSW)
+                23.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZG7UW)
+                23.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY44JW)
+                23.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ5MBW)
+                23.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXZ07W)
+                23.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXZ2JW)
+                23.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZDYGW)
+                23.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYJNHW)
+                23.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZBT9W)
+                24.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXZS4W)
+                24.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ5T7W)
+                24.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXZZ5W)
+                24.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZANNW)
+                24.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY26WW)
+                24.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZABPW)
+                24.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYK0XW)
+                24.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ67PW)
+                24.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXVD1W)
+                24.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY48NW)
+                24.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYAMAW)
+                24.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYG3VW)
+                25.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG2J36D)
+                25.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKVVSJD)
+                25.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TK7NWDD)
+                25.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKBWXDD)
+                25.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKG1R6D)
+                25.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG4X89D)
+                25.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG2W3VD)
+                25.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKV4K8D)
+                25.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKUVT8D)
+                25.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKL17VD)
+                25.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKY1XWD)
+                25.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKE5WWD)
+                26.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKS7E0D)
+                26.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7PJDH9JG)
+                26.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DH13ZLZ)
+                26.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG1TN0D)
+                26.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8SG)
+                26.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8KG)
+                26.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8LD)
+                26.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8S5)
+                26.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8VP)
+                26.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8GS)
+                26.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8RD)
+                26.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8F1)
+		Shelf 20: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 21: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 22: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 23: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 24: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 25: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 26: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+	slot 0: SAS Host Adapter 0d (PMC-Sierra PM8072 rev. C, SAS, <UP>)
+		Firmware rev:       03.08.09.00
+		Base WWN:           5:00a098:00b0490:cc
+		Phy State:          [4] Enabled, 12.0 Gb/s
+		                    [5] Enabled, 12.0 Gb/s
+		                    [6] Enabled, 12.0 Gb/s
+		                    [7] Enabled, 12.0 Gb/s
+		Mini-SAS HD Vendor:        Molex Inc.      
+		Mini-SAS HD Part Number:   112-00439+A0    
+		Mini-SAS HD Type:          Passive Copper (unequalized) 5m ID:01
+		Mini-SAS HD Serial Number: 815830681
+                10.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0JX)
+                10.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY92F)
+                10.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8PM)
+                10.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB11B)
+                10.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB11Z)
+                10.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0H2)
+                10.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9T8)
+                10.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0T8)
+                10.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KW)
+                10.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0MV)
+                10.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0Z4)
+                10.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0HC)
+                11.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHX3N4W)
+                11.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY7AGW)
+                11.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA180LVZ)
+                11.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY2PVW)
+                11.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ6M9W)
+                11.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY486W)
+                11.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY2ARW)
+                11.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY4HWW)
+                11.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY4GWW)
+                11.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ680W)
+                11.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXEBAW)
+                11.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZEWPW)
+                12.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZBURW)
+                12.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYRKGW)
+                12.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY4GJW)
+                12.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZDA3W)
+                12.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ5BWW)
+                12.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY6DEW)
+                12.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY22EW)
+                12.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYG3LW)
+                12.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY656W)
+                12.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYRG1W)
+                12.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHX3P7W)
+                12.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ9HYW)
+                13.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHURU5W)
+                13.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZHB0W)
+                13.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ9KGW)
+                13.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZG7PW)
+                13.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXEHPW)
+                13.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY3VJW)
+                13.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY5MNW)
+                13.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYBNHW)
+                13.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYLMVW)
+                13.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYS17W)
+                13.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHVJ83W)
+                13.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHTAL6W)
+                14.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0R6)
+                14.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0VA)
+                14.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0P6)
+                14.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0WM)
+                14.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB125)
+                14.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8LR)
+                14.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1C3FC6)
+                14.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA157K75)
+                14.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8QX)
+                14.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8XY)
+                14.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8D6)
+                14.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8JM)
+                15.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY27JW)
+                15.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY4A7W)
+                15.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYK0JW)
+                15.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZT6HW)
+                15.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKBPB4D)
+                15.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG3PU3D)
+                15.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG5G9AD)
+                15.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKD83GD)
+                15.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKPKSJD)
+                15.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKDZB3D)
+                15.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG502AD)
+                15.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKWA77D)
+                16.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBA11)
+                16.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9ZJ)
+                16.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBABF)
+                16.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBA2H)
+                16.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA18ET71)
+                16.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBAHD)
+                16.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0XF)
+                16.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8FY)
+                16.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BV0TS)
+                16.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBA20)
+                16.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0K5)
+                16.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CA7BZ)
+		Shelf 10: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 11: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 12: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 13: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 14: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 15: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 16: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+        slot 0: Fibre Channel Target Host Adapter 0e
+                (QLogic CNA 8324 (8362) rev. 2, <LINK NOT CONNECTED>)
+                Firmware rev:      8.7.0
+                Flash rev:         5.0.2
+                Host Port Addr:    000000
+                FC Nodename:       50:0a:09:80:80:11:41:f1 (500a0980801141f1)
+                FC Portname:       50:0a:09:82:80:11:41:f1 (500a0982801141f1)
+                Connection:        No link
+                Switch Port:       Unknown
+        slot 0: Fibre Channel Target Host Adapter 0f
+                (QLogic CNA 8324 (8362) rev. 2, <LINK NOT CONNECTED>)
+                Firmware rev:      8.7.0
+                Flash rev:         5.0.2
+                Host Port Addr:    000000
+                FC Nodename:       50:0a:09:80:80:11:41:f1 (500a0980801141f1)
+                FC Portname:       50:0a:09:81:80:11:41:f1 (500a0981801141f1)
+                Connection:        No link
+                Switch Port:       Unknown
+        slot 0: Fibre Channel Target Host Adapter 0g
+                (QLogic CNA 8324 (8362) rev. 2, <LINK NOT CONNECTED>)
+                Firmware rev:      8.7.0
+                Flash rev:         5.0.2
+                Host Port Addr:    000000
+                FC Nodename:       50:0a:09:80:80:11:41:f1 (500a0980801141f1)
+                FC Portname:       50:0a:09:84:80:11:41:f1 (500a0984801141f1)
+                Connection:        No link
+                Switch Port:       Unknown
+        slot 0: Fibre Channel Target Host Adapter 0h
+                (QLogic CNA 8324 (8362) rev. 2, <LINK NOT CONNECTED>)
+                Firmware rev:      8.7.0
+                Flash rev:         5.0.2
+                Host Port Addr:    000000
+                FC Nodename:       50:0a:09:80:80:11:41:f1 (500a0980801141f1)
+                FC Portname:       50:0a:09:83:80:11:41:f1 (500a0983801141f1)
+                Connection:        No link
+                Switch Port:       Unknown
+        slot 0: Intel BDW SATA Controller u0a (0x92911000)
+                boot0   SV9MST6D120GLM41NP     FW1122 114473MB  512B/sect        (SPG181608N3)
+	slot 0: Intel USB EHCI Adapter u0b (0x92912000)
+	slot 1: 40 Gigabit Ethernet Controller XL710 QSFP+
+		e1a MAC Address:    3c:fd:fe:c0:d7:58 (auto-40g_cr4-fd-up)
+		    QSFP Vendor:         CISCO-TYCO      
+		    QSFP Part Number:    2821248-7       
+		    QSFP Serial Number:  TED2044KJFK-B   
+		e1e MAC Address:    3c:fd:fe:c0:d7:59 (auto-40g_cr4-fd-up)
+		    QSFP Vendor:         CISCO-TYCO      
+		    QSFP Part Number:    2821248-7       
+		    QSFP Serial Number:  TED2044KK84-A   
+		Device Type:        XL710 B1, PBA J27441-003
+		Firmware Version:   fw 5.0 nvm 5.04 etid 800028f2
+		Serial Number:      3CFDFEC0D758
+	slot 2: SAS Host Adapter 2a (PMC-Sierra PM8072 rev. C, SAS, <UP>)
+		MFG Part Number:    Microsemi Corp. 110-03801 rev. A0
+		Part number:        111-03801+A0
+		Serial number:      7A2863D4013
+		Date Code:          20170719
+		Firmware rev:       03.08.09.00
+		Base WWN:           5:0000d1:7037fc2:80
+		Phy State:          [12] Enabled, 12.0 Gb/s
+		                    [13] Enabled, 12.0 Gb/s
+		                    [14] Enabled, 12.0 Gb/s
+		                    [15] Enabled, 12.0 Gb/s
+		Mini-SAS HD Vendor:        Molex Inc.      
+		Mini-SAS HD Part Number:   112-00439+A0    
+		Mini-SAS HD Type:          Passive Copper (unequalized) 5m ID:00
+		Mini-SAS HD Serial Number: 815830730
+                10.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0JX)
+                10.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY92F)
+                10.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8PM)
+                10.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB11B)
+                10.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB11Z)
+                10.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0H2)
+                10.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9T8)
+                10.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0T8)
+                10.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KW)
+                10.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0MV)
+                10.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0Z4)
+                10.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0HC)
+                11.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHX3N4W)
+                11.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY7AGW)
+                11.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA180LVZ)
+                11.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY2PVW)
+                11.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ6M9W)
+                11.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY486W)
+                11.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY2ARW)
+                11.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY4HWW)
+                11.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY4GWW)
+                11.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ680W)
+                11.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXEBAW)
+                11.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZEWPW)
+                12.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZBURW)
+                12.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYRKGW)
+                12.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY4GJW)
+                12.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZDA3W)
+                12.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ5BWW)
+                12.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY6DEW)
+                12.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY22EW)
+                12.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYG3LW)
+                12.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY656W)
+                12.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYRG1W)
+                12.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHX3P7W)
+                12.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ9HYW)
+                13.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHURU5W)
+                13.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZHB0W)
+                13.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ9KGW)
+                13.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZG7PW)
+                13.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXEHPW)
+                13.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY3VJW)
+                13.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY5MNW)
+                13.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYBNHW)
+                13.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYLMVW)
+                13.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYS17W)
+                13.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHVJ83W)
+                13.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHTAL6W)
+                14.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0R6)
+                14.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0VA)
+                14.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0P6)
+                14.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0WM)
+                14.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB125)
+                14.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8LR)
+                14.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1C3FC6)
+                14.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA157K75)
+                14.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8QX)
+                14.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8XY)
+                14.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8D6)
+                14.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8JM)
+                15.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY27JW)
+                15.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY4A7W)
+                15.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYK0JW)
+                15.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZT6HW)
+                15.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKBPB4D)
+                15.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG3PU3D)
+                15.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG5G9AD)
+                15.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKD83GD)
+                15.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKPKSJD)
+                15.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKDZB3D)
+                15.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG502AD)
+                15.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKWA77D)
+                16.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBA11)
+                16.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9ZJ)
+                16.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBABF)
+                16.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBA2H)
+                16.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA18ET71)
+                16.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBAHD)
+                16.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0XF)
+                16.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8FY)
+                16.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BV0TS)
+                16.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBA20)
+                16.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0K5)
+                16.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CA7BZ)
+		Shelf 10: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 11: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 12: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 13: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 14: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 15: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 16: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+	slot 2: SAS Host Adapter 2b (PMC-Sierra PM8072 rev. C, SAS, <UP>)
+		MFG Part Number:    Microsemi Corp. 110-03801 rev. A0
+		Part number:        111-03801+A0
+		Serial number:      7A2863D4013
+		Date Code:          20170719
+		Firmware rev:       03.08.09.00
+		Base WWN:           5:0000d1:7037fc2:84
+		Phy State:          [8] Enabled, 12.0 Gb/s
+		                    [9] Enabled, 12.0 Gb/s
+		                    [10] Enabled, 12.0 Gb/s
+		                    [11] Enabled, 12.0 Gb/s
+		Mini-SAS HD Vendor:        Molex Inc.      
+		Mini-SAS HD Part Number:   112-00439+A0    
+		Mini-SAS HD Type:          Passive Copper (unequalized) 5m ID:00
+		Mini-SAS HD Serial Number: 815830585
+                00.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8FQ)
+                00.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8VX)
+                00.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8PH)
+                00.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8EF)
+                00.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DH0KDBZ)
+                00.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DH0JBGZ)
+                00.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DH1B1MZ)
+                00.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKW20MD)
+                00.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DGTBPMZ)
+                00.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG6NMWD)
+                00.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKMAEGD)
+                00.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKN3K6D)
+                01.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BXEB4)
+                01.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8Z4)
+                01.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8G9)
+                01.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8M2)
+                01.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8WH)
+                01.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8GH)
+                01.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8SA)
+                01.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8MR)
+                01.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8MW)
+                01.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8GK)
+                01.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8LH)
+                01.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8J8)
+                02.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BYW0M)
+                02.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0NX)
+                02.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB13E)
+                02.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB10J)
+                02.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0X4)
+                02.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1C2MRR)
+                02.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9YV)
+                02.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0N6)
+                02.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0PC)
+                02.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0SV)
+                02.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0HG)
+                02.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0QJ)
+                03.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0X2)
+                03.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0TM)
+                03.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0XT)
+                03.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KM)
+                03.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0WN)
+                03.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0PK)
+                03.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB10Z)
+                03.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0XC)
+                03.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0RP)
+                03.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KB)
+                03.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0MS)
+                03.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BYV39)
+                04.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0YT)
+                04.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9NB)
+                04.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CCEC6)
+                04.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0TS)
+                04.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBAE8)
+                04.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9J3)
+                04.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9NC)
+                04.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1C4523)
+                04.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBAAK)
+                04.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9PG)
+                04.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0L2)
+                04.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CBAE3)
+                05.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YGDDVND)
+                05.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG9RBRD)
+                05.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG1JH5D)
+                05.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DGW1GZZ)
+                05.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG13W8D)
+                05.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKS1AED)
+                05.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG0A7SD)
+                05.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YGB9TRD)
+                05.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKSKETD)
+                05.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG6ZGVD)
+                05.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXE2TW)
+                05.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKUKDUD)
+                06.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8KD)
+                06.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8LC)
+                06.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8SK)
+                06.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8T2)
+                06.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8V7)
+                06.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8J0)
+                06.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8KK)
+                06.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8H7)
+                06.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8GD)
+                06.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8P0)
+                06.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8XE)
+                06.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8V1)
+		Shelf 0: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 1: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 2: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 3: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 4: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 5: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 6: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+	slot 2: SAS Host Adapter 2c (PMC-Sierra PM8072 rev. C, SAS, <OFFLINE (hard)>)
+		MFG Part Number:    Microsemi Corp. 110-03801 rev. A0
+		Part number:        111-03801+A0
+		Serial number:      7A2863D4013
+		Date Code:          20170719
+		Firmware rev:       03.08.09.00
+		Base WWN:           5:0000d1:7037fc2:88
+		Phy State:          [0] Disabled
+		                    [1] Disabled
+		                    [2] Disabled
+		                    [3] Disabled
+		Mini-SAS HD Vendor:        not available
+		Mini-SAS HD Part Number:   not available
+		Mini-SAS HD Type:          not available
+		Mini-SAS HD Serial Number: not available
+	slot 2: SAS Host Adapter 2d (PMC-Sierra PM8072 rev. C, SAS, <UP>)
+		MFG Part Number:    Microsemi Corp. 110-03801 rev. A0
+		Part number:        111-03801+A0
+		Serial number:      7A2863D4013
+		Date Code:          20170719
+		Firmware rev:       03.08.09.00
+		Base WWN:           5:0000d1:7037fc2:8c
+		Phy State:          [4] Enabled, 12.0 Gb/s
+		                    [5] Enabled, 12.0 Gb/s
+		                    [6] Enabled, 12.0 Gb/s
+		                    [7] Enabled, 12.0 Gb/s
+		Mini-SAS HD Vendor:        Molex Inc.      
+		Mini-SAS HD Part Number:   112-00439+A0    
+		Mini-SAS HD Type:          Passive Copper (unequalized) 5m ID:00
+		Mini-SAS HD Serial Number: 629830735
+                20.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BMWTG)
+                20.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8VR)
+                20.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BMYGK)
+                20.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8L1)
+                20.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8N7)
+                20.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8ST)
+                20.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BMYQE)
+                20.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BMW4G)
+                20.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8JA)
+                20.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BMYTT)
+                20.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8K0)
+                20.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8V2)
+                21.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0YC)
+                21.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB11T)
+                21.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8S7)
+                21.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8PK)
+                21.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8LE)
+                21.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BXEB1)
+                21.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0VG)
+                21.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KG)
+                21.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0W2)
+                21.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0PR)
+                21.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0N4)
+                21.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB1AF)
+                22.0 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB196)
+                22.1 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0Q3)
+                22.2 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KN)
+                22.3 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB11E)
+                22.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0HJ)
+                22.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BYW19)
+                22.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB9T9)
+                22.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BYW5J)
+                22.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB12C)
+                22.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1CB0KD)
+                22.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BYTZP)
+                22.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA18F3PQ)
+                23.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXEAUW)
+                23.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY7L8W)
+                23.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY47KW)
+                23.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYHZSW)
+                23.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZG7UW)
+                23.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY44JW)
+                23.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ5MBW)
+                23.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXZ07W)
+                23.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXZ2JW)
+                23.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZDYGW)
+                23.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYJNHW)
+                23.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZBT9W)
+                24.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXZS4W)
+                24.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ5T7W)
+                24.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXZZ5W)
+                24.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZANNW)
+                24.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY26WW)
+                24.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZABPW)
+                24.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYK0XW)
+                24.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHZ67PW)
+                24.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHXVD1W)
+                24.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHY48NW)
+                24.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYAMAW)
+                24.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7SHYG3VW)
+                25.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG2J36D)
+                25.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKVVSJD)
+                25.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TK7NWDD)
+                25.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKBWXDD)
+                25.4 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKG1R6D)
+                25.5 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG4X89D)
+                25.6 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG2W3VD)
+                25.7 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKV4K8D)
+                25.8 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKUVT8D)
+                25.9 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKL17VD)
+                25.10: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKY1XWD)
+                25.11: NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKE5WWD)
+                26.0 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2TKS7E0D)
+                26.1 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (7PJDH9JG)
+                26.2 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (1DH13ZLZ)
+                26.3 : NETAPP   X318_HLBRE08TA07 NA01 7486.1GB 520B/sect (2YG1TN0D)
+                26.4 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8SG)
+                26.5 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8KG)
+                26.6 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8LD)
+                26.7 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8S5)
+                26.8 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8VP)
+                26.9 : NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8GS)
+                26.10: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8RD)
+                26.11: NETAPP   X318_SMKPE08TA07 NA02 7486.1GB 520B/sect (ZA1BY8F1)
+		Shelf 20: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 21: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 22: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 23: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 24: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 25: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+		Shelf 26: DS212-12  Firmware rev. IOM12 A: 0220  IOM12 B: 0220
+	slot 3: Flash Cache NVMe
+		Serial Number:      S3K6NX0K403736
+		Part Number:        119-00329
+		Hardware Revision:  A0
+		Firmware Version:   NA00
+		Model Name:         X3311A
+		Capacity:           1024 GB
+		Vendor Name:        Samsung
+		State:              ok
+	slot 4: Flash Cache NVMe
+		Serial Number:      S3K6NX0K403439
+		Part Number:        119-00329
+		Hardware Revision:  A0
+		Firmware Version:   NA00
+		Model Name:         X3311A
+		Capacity:           1024 GB
+		Vendor Name:        Samsung
+		State:              ok
+

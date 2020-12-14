@@ -24,6 +24,8 @@ class AgentWrapperManager {
             it["CiscoUCS"] = new CiscoUCS()
             it["HPiLO"] = new HPiLO()
             it["Primergy"] = new Primergy()
+            it["HitachiVSP"] = new HitachiVSP()
+            it["NetApp"] = new NetApp()
             it["Zabbix"] = new Zabbix()
             it[AgentConstants.AGENT_LABEL_REMOTE] = new RemoteAgent()
             it[AgentConstants.AGENT_LABEL_LOCAL_FILE] = new LocalAgent()

@@ -25,6 +25,7 @@ redmineField = "機種"
     AIX = "prtconf.System Model"
     Eternus = "enclosure.StorageSystemName"
     NetAppONTAP = "processor"
+    HitachiVSP = "model"
     Oracle = "dbvers.Oracle Database"
 
 [[columns]]
@@ -37,7 +38,6 @@ redmineField = "型番"
     Primergy = "product_id"
     CiscoUCS = "productid"
     Eternus = "enclosure.ModelName"
-    HitachiVSP = "storage.modelName"
     NetAppONTAP = "version"
     Oracle = "dbcomps.version"
 
@@ -53,7 +53,7 @@ redmineField = "S/N"
     XSCF = "hardconf.serial"
     AIX = "prtconf.Machine Serial Number"
     Eternus = "enclosure.SerialNumber"
-    HitachiVSP = "storage.serial"
+    HitachiVSP = "serialNumber"
 
 [[columns]]
 id = "os"
@@ -76,7 +76,6 @@ name = "アーキテクチャ"
     Windows = "os_architecture"
     VMHost = "summary.arch"
     Solaris = "Machine"
-    HitachiVSP = "storage.network"
     Oracle = "dbattrs.platform_name"
 
 [[columns]]
@@ -148,6 +147,7 @@ name = "ディスク構成"
     VMHost = "Disk"
     Solaris = "filesystem"
     AIX = "prtconf.disk"
+    HitachiVSP = "parity-groups"
     Eternus = "raid_groups"
     NetAppONTAP = "storage.volume"
 

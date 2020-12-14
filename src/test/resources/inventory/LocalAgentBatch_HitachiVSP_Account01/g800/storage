@@ -1,0 +1,14 @@
+{
+  "storageDeviceId" : "99999999999999",
+  "model" : "VSP G800",
+  "serialNumber" : 999994,
+  "svpIp" : "192.168.0.164",
+  "rmiPort" : 1099,
+  "ctl1Ip" : "192.168.0.28",
+  "ctl2Ip" : "192.168.0.29",
+  "dkcMicroVersion" : "83-05-29/00",
+  "communicationModes" : [ {
+    "communicationMode" : "lanConnectionMode"
+  } ],
+  "isSecure" : true
+}
