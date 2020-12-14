@@ -1,0 +1,1 @@
+[{"LOWER(STAT_NAME)":"num_cpus","VALUE":8},{"LOWER(STAT_NAME)":"num_cpu_cores","VALUE":1},{"LOWER(STAT_NAME)":"num_cpu_sockets","VALUE":1},{"LOWER(STAT_NAME)":"physical_memory_bytes","VALUE":34359738368}]
