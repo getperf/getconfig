@@ -1,0 +1,35 @@
+{
+  "data" : [ {
+    "portId" : "CL1-A",
+    "portType" : "ISCSI",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "AUT",
+    "loopId" : "00",
+    "fabricMode" : false,
+    "lunSecuritySetting" : true
+  }, {
+    "portId" : "CL2-A",
+    "portType" : "ISCSI",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "AUT",
+    "loopId" : "00",
+    "fabricMode" : false,
+    "lunSecuritySetting" : true
+  }, {
+    "portId" : "CL3-A",
+    "portType" : "ISCSI",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "AUT",
+    "loopId" : "00",
+    "fabricMode" : false,
+    "lunSecuritySetting" : false
+  }, {
+    "portId" : "CL4-A",
+    "portType" : "ISCSI",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "AUT",
+    "loopId" : "00",
+    "fabricMode" : false,
+    "lunSecuritySetting" : false
+  } ]
+}

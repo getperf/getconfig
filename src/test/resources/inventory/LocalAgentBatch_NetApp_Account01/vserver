@@ -1,0 +1,8 @@
+
+vserver<|>type<|>subtype<|>uuid<|>rootvolume<|>aggregate<|>nisdomain<|>rootvolume-security-style<|>ldap-client<|>language<|>snapshot-policy<|>comment<|>quota-policy<|>aggr-list<|>max-volumes<|>admin-state<|>operational-state<|>operational-state-stopped-reason<|>allowed-protocols<|>disallowed-protocols<|>is-repository<|>qos-policy-group<|>caching-policy<|>config-lock<|>ipspace<|>foreground<|>
+Vserver<|>Vserver Type<|>Vserver Subtype<|>Vserver UUID<|>Root Volume<|>Aggregate<|>NIS Domain<|>Root Volume Security Style<|>LDAP Client<|>Default Volume Language Code<|>Snapshot Policy<|>Comment<|>Quota Policy<|>List of Aggregates Assigned<|>Limit on Maximum Number of Volumes allowed<|>Vserver Admin State<|>Vserver Operational State<|>Vserver Operational State Stopped Reason<|>Allowed Protocols<|>Disallowed Protocols<|>Is Vserver with Infinite Volume<|>QoS Policy Group<|>Caching Policy Name<|>Config Lock<|>IPspace Name<|>Foreground Process<|>
+netapp1AM<|>node<|>-<|>eff82446-a47b-11e8-a3f1-00a098dec514<|>-<|>-<|>-<|>-<|>-<|>C<|>-<|>""<|>-<|>-<|>-<|>-<|>-<|>-<|>-<|>-<|>false<|>-<|>-<|>-<|>-<|>-<|>
+netapp1BM<|>node<|>-<|>eecc3e79-a4f8-11e8-9d5e-00a098dfe3e5<|>-<|>-<|>-<|>-<|>-<|>C<|>-<|>""<|>-<|>-<|>-<|>-<|>-<|>-<|>-<|>-<|>false<|>-<|>-<|>-<|>-<|>-<|>
+netappCM<|>admin<|>-<|>1b6153a2-b747-11e8-a3e0-00a098dec514<|>-<|>-<|>-<|>-<|>-<|>en_US<|>none<|>"The administrative vserver."<|>-<|>-<|>-<|>-<|>-<|>-<|>-<|>-<|>false<|>-<|>-<|>false<|>Default<|>-<|>
+netappSV<|>data<|>default<|>6d6c795d-b80e-11e8-aa1c-00a098dec514<|>NTAPP_K11S911SV_root<|>aggr11<|>-<|>unix<|>-<|>ja.UTF-8<|>default<|>""<|>default<|>-<|>unlimited<|>running<|>running<|>-<|>nfs<|>cifs,fcp,iscsi,ndmp<|>false<|>-<|>-<|>false<|>Default<|>-<|>
+

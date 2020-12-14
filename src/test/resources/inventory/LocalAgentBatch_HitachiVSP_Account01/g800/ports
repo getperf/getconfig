@@ -1,0 +1,403 @@
+{
+  "data" : [ {
+    "portId" : "CL1-A",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "EF",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a00"
+  }, {
+    "portId" : "CL1-B",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "E1",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a01"
+  }, {
+    "portId" : "CL1-C",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "B2",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a02"
+  }, {
+    "portId" : "CL1-D",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "AC",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a03"
+  }, {
+    "portId" : "CL1-E",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "CD",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a04"
+  }, {
+    "portId" : "CL2-A",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "D9",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a10"
+  }, {
+    "portId" : "CL2-B",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "D3",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a11"
+  }, {
+    "portId" : "CL2-C",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "A7",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a12"
+  }, {
+    "portId" : "CL2-D",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "9F",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a13"
+  }, {
+    "portId" : "CL2-E",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "C3",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a14"
+  }, {
+    "portId" : "CL3-A",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "E8",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a20"
+  }, {
+    "portId" : "CL3-B",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "E0",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a21"
+  }, {
+    "portId" : "CL3-C",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "B1",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a22"
+  }, {
+    "portId" : "CL3-D",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "AB",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a23"
+  }, {
+    "portId" : "CL3-E",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "CC",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a24"
+  }, {
+    "portId" : "CL4-A",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "D6",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a30"
+  }, {
+    "portId" : "CL4-B",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "D2",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a31"
+  }, {
+    "portId" : "CL4-C",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "A6",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a32"
+  }, {
+    "portId" : "CL4-D",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "9E",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a33"
+  }, {
+    "portId" : "CL4-E",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "BC",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a34"
+  }, {
+    "portId" : "CL5-A",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "E4",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a40"
+  }, {
+    "portId" : "CL5-B",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "DC",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a41"
+  }, {
+    "portId" : "CL5-C",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "AE",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a0099"
+  }, {
+    "portId" : "CL5-D",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "AA",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a43"
+  }, {
+    "portId" : "CL5-E",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "CB",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a44"
+  }, {
+    "portId" : "CL6-A",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "D5",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a50"
+  }, {
+    "portId" : "CL6-B",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "D1",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a51"
+  }, {
+    "portId" : "CL6-C",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "A5",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a52"
+  }, {
+    "portId" : "CL6-D",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "9D",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a53"
+  }, {
+    "portId" : "CL6-E",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "BA",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a54"
+  }, {
+    "portId" : "CL7-A",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "E2",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a60"
+  }, {
+    "portId" : "CL7-B",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "DA",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a61"
+  }, {
+    "portId" : "CL7-C",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "AD",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a62"
+  }, {
+    "portId" : "CL7-D",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "A9",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a63"
+  }, {
+    "portId" : "CL7-E",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "CA",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a64"
+  }, {
+    "portId" : "CL8-A",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "D4",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a70"
+  }, {
+    "portId" : "CL8-B",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "CE",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a71"
+  }, {
+    "portId" : "CL8-C",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "A3",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a72"
+  }, {
+    "portId" : "CL8-D",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "9B",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a73"
+  }, {
+    "portId" : "CL8-E",
+    "portType" : "FIBRE",
+    "portAttributes" : [ "TAR", "MCU", "RCU", "ELUN" ],
+    "portSpeed" : "16G",
+    "loopId" : "B9",
+    "fabricMode" : true,
+    "portConnection" : "PtoP",
+    "lunSecuritySetting" : false,
+    "wwn" : "50060e8012388a74"
+  } ]
+}

@@ -1,0 +1,14 @@
+{
+  "system" : {
+    "powerConsumption" : 777
+  },
+  "ctls" : [ {
+    "location" : "CTL1",
+    "status" : "Normal",
+    "temperature" : 20
+  }, {
+    "location" : "CTL2",
+    "status" : "Normal",
+    "temperature" : 20
+  } ]
+}

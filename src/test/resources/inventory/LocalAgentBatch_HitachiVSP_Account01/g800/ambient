@@ -1,0 +1,14 @@
+{
+  "system" : {
+    "powerConsumption" : 1848
+  },
+  "ctls" : [ {
+    "location" : "CTL1",
+    "status" : "Normal",
+    "temperature" : 16
+  }, {
+    "location" : "CTL2",
+    "status" : "Normal",
+    "temperature" : 16
+  } ]
+}

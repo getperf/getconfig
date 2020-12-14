@@ -1,0 +1,243 @@
+{
+  "data" : [ {
+    "hostGroupId" : "CL1-A,0",
+    "portId" : "CL1-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "1A-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL1-B,0",
+    "portId" : "CL1-B",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "1B-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL1-C,0",
+    "portId" : "CL1-C",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "1C-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL1-D,0",
+    "portId" : "CL1-D",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "1D-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL1-E,0",
+    "portId" : "CL1-E",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "1E-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL2-A,0",
+    "portId" : "CL2-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "2A-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL2-B,0",
+    "portId" : "CL2-B",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "2B-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL2-C,0",
+    "portId" : "CL2-C",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "2C-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL2-D,0",
+    "portId" : "CL2-D",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "2D-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL2-E,0",
+    "portId" : "CL2-E",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "2E-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL3-A,0",
+    "portId" : "CL3-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "3A-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL3-B,0",
+    "portId" : "CL3-B",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "3B-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL3-C,0",
+    "portId" : "CL3-C",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "3C-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL3-D,0",
+    "portId" : "CL3-D",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "3D-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL3-E,0",
+    "portId" : "CL3-E",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "3E-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL4-A,0",
+    "portId" : "CL4-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "4A-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL4-B,0",
+    "portId" : "CL4-B",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "4B-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL4-C,0",
+    "portId" : "CL4-C",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "4C-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL4-D,0",
+    "portId" : "CL4-D",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "4D-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL4-E,0",
+    "portId" : "CL4-E",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "4E-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL5-A,0",
+    "portId" : "CL5-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "5A-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL5-B,0",
+    "portId" : "CL5-B",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "5B-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL5-C,0",
+    "portId" : "CL5-C",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "5C-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL5-D,0",
+    "portId" : "CL5-D",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "5D-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL5-E,0",
+    "portId" : "CL5-E",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "5E-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL6-A,0",
+    "portId" : "CL6-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "6A-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL6-B,0",
+    "portId" : "CL6-B",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "6B-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL6-C,0",
+    "portId" : "CL6-C",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "6C-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL6-D,0",
+    "portId" : "CL6-D",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "6D-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL6-E,0",
+    "portId" : "CL6-E",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "6E-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL7-A,0",
+    "portId" : "CL7-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "7A-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL7-B,0",
+    "portId" : "CL7-B",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "7B-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL7-C,0",
+    "portId" : "CL7-C",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "7C-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL7-D,0",
+    "portId" : "CL7-D",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "7D-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL7-E,0",
+    "portId" : "CL7-E",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "7E-G00",
+    "hostMode" : "LINUX/IRIX"
+  }, {
+    "hostGroupId" : "CL8-A,0",
+    "portId" : "CL8-A",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "8A-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL8-B,0",
+    "portId" : "CL8-B",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "8B-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL8-C,0",
+    "portId" : "CL8-C",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "8C-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL8-D,0",
+    "portId" : "CL8-D",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "8D-G00",
+    "hostMode" : "SOLARIS"
+  }, {
+    "hostGroupId" : "CL8-E,0",
+    "portId" : "CL8-E",
+    "hostGroupNumber" : 0,
+    "hostGroupName" : "8E-G00",
+    "hostMode" : "LINUX/IRIX"
+  } ]
+}

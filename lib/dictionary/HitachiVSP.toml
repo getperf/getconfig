@@ -1,0 +1,155 @@
+# HitachiVSP 監視設定 インベントリ収集シナリオ
+
+# JSON RPC で HitachiVSP 管理用 IF ； HitachiVSP API に接続し、メトリック定義のコマンド
+# 群を実行します
+
+# Excel 検査対象シート
+
+# 設定パラメータは以下の通りです
+# 
+# 対象サーバ
+#     OS ホスト名と同じにしてください
+# プラットフォーム
+#     HitachiVSP
+# URL,IPアドレス
+#     未記入
+# ユーザID
+#     config/config.groovy 内に記述した、JSON RPC 接続アカウント。
+#     Account01を指定した場合、以下のパラメータを参照します
+#      // HitachiVSP 接続情報
+#      account.HitachiVSP.Account01.server   = 'http://zabbix:8081/zabbix'
+#      account.HitachiVSP.Account01.user      = 'admin'
+#      account.HitachiVSP.Account01.password  = 'admin'
+
+# [[metrics]]
+
+# メトリック定義コマンドリスト
+# 
+# HitachiVSP API の既定の実行コマンドリストはハードコーディングされており、
+# 変更できません。以下リストは抽出項目のメトリック定義のみになります。
+
+[[metrics]]
+
+id = "storageDeviceId"
+name = "ストレージデバイスID"
+category = "リリース"
+
+[[metrics]]
+
+id = "model"
+name = "モデル"
+category = "リリース"
+
+[[metrics]]
+
+id = "serialNumber"
+name = "S/N"
+category = "リリース"
+
+[[metrics]]
+
+id = "gumVersion"
+name =  "GUMバージョン"
+category = "リリース"
+
+[[metrics]]
+
+id = "dkcMicroVersion"
+name = "マイクロコードバージョン"
+category = "リリース"
+
+[[metrics]]
+
+id = "ctl1Ip"
+name =   "IPアドレス コントローラ1"
+category = "ネットワーク構成"
+
+[[metrics]]
+
+id = "ctl2Ip"
+name =   "IPアドレス コントローラ2"
+category = "ネットワーク構成"
+
+[[metrics]]
+
+id = "host-groups"
+name = "ホストグループ"
+category = "ネットワーク構成"
+
+[[metrics]]
+
+id = "ports"
+name = "ポート"
+category = "ネットワーク構成"
+
+[[metrics]]
+
+id = "parity-groups"
+name = "RAIDグループ"
+category = "ディスク構成"
+
+[[metrics]]
+
+id = "ldevs"
+name = "ストレージ"
+category = "ディスク構成"
+
+[[metrics]]
+
+id = "users"
+name = "ユーザ情報"
+category = "その他設定"
+
+[[metrics]]
+
+id = "isSNMPAgentEnabled"
+name = "SNMP 有効化"
+category = "その他設定"
+
+[[metrics]]
+
+id = "snmpVersion"
+name = "SNMP バージョン"
+category = "その他設定"
+
+[[metrics]]
+
+id = "location"
+name = "設置場所"
+category = "その他設定"
+
+[[metrics]]
+
+id = "snmpTrapCommunity"
+name = "SNMPトラップ コミュニティ名"
+category = "その他設定"
+
+[[metrics]]
+
+id = "snmpTrapTo"
+name = "SNMPトラップ 通知先"
+category = "その他設定"
+
+[[metrics]]
+
+id = "snmpCommunity"
+name = "SNMPリクエスト コミュニティ名"
+category = "その他設定"
+
+[[metrics]]
+
+id = "snmpRequestsPermitted"
+name = "SNMPリクエスト パーミッション"
+category = "その他設定"
+
+[[metrics]]
+
+id = "powerConsumption"
+name = "消費電力"
+category = "その他設定"
+
+[[metrics]]
+
+id = "status"
+name = "コントローラステータス"
+category = "その他設定"
