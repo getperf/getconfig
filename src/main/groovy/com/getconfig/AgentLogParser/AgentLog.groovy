@@ -40,6 +40,9 @@ class AgentLog {
             this.platform = paths[0].tokenize('_')[1]
             this.alias = paths[1]
             this.agentLogMode = AgentLogMode.BATCH
+//            this.agentLogMode = AgentLogMode.BATCH
+//            this.platform = paths[0].tokenize('_')[1]
+//            this.alias = (paths.length < 3) ? null : paths[1]
 
         // リモートエージェントログの解析
         // 例：\server01\LinuxConf\20200722\103500\centos80\cpu

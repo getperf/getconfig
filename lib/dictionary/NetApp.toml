@@ -245,6 +245,12 @@ category = "ディスク構成"
 
 [[metrics]]
 
+id = "df"
+name = "ディスク容量"
+category = "ディスク構成"
+
+[[metrics]]
+
 id = "sysconfig"
 name = "システム構成"
 category = "その他設定"

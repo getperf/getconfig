@@ -67,7 +67,7 @@ redmineField = "OS名"
     VMHost = "summary.version"
     Solaris = "kernel"
     AIX = "osname"
-    NetApp = "subsystem_health"
+    NetApp = "version"
 
 [[columns]]
 id = "arch"

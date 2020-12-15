@@ -53,21 +53,6 @@ void version(TestUtil t) {
     }
 }
 
-void network_interface(TestUtil t) {
-    t.metricFile = 'network_interface'
-    res = t.readOtherLogAll('network_interface', '', true)
-    def csv_info = this.parse_csv(res)
-    t.devices(csv_info.headers, csv_info.csv)
-    csv_info.rows.each { row ->
-        def node = row."Current Node" ?: 'N/A'
-        def ip = row."Network Address" ?: 'N/A'
-        def port = row."Current Port" ?: 'N/A'
-        if (t.serverName == node) {
-            t.portList(ip, port, true)
-        }
-    }
-}
-
 void ntp(TestUtil t) {
     t.metricFile = 'ntp'
     res = t.readOtherLogAll('ntp', '', true)
@@ -101,6 +86,13 @@ void vserver(TestUtil t) {
     t.devices(csv_info.headers, csv_info.csv)
 }
 
+void df(TestUtil t) {
+    t.metricFile = 'df'
+    res = t.readOtherLogAll('df', '', true)
+    def csv_info = this.parse_csv(res)
+    t.devices(csv_info.headers, csv_info.csv)
+}
+
 @Parser("subsystem_health")
 void subsystem_health(TestUtil t) {
     def csv_info = this.parse_csv(t.readAll())
@@ -110,6 +102,11 @@ void subsystem_health(TestUtil t) {
         def health = row.Health ?: 'N/A'
         t.setMetric("status.${subsystem}", health)
     }
+    ntp(t)
+    snmp(t)
+    vserver(t)
+    version(t)
+    df(t)
 }
 
 @Parser("storage_failover")
@@ -127,10 +124,6 @@ void license(TestUtil t) {
     def csv_info = this.parse_csv(t.readAll())
     t.devices(csv_info.headers, csv_info.csv)
     network_interface(t)
-    ntp(t)
-    snmp(t)
-    vserver(t)
-    version(t)
 }
 
 @Parser("processor")
@@ -177,6 +170,19 @@ void volume(TestUtil t) {
     t.results(infos.toString())
 }
 
+@Parser("network_interface")
+void network_interface(TestUtil t) {
+    def csv_info = this.parse_csv(t.readAll())
+    t.devices(csv_info.headers, csv_info.csv)
+    csv_info.rows.each { row ->
+        def ip = row."Network Address"
+        def port = row."Current Port" ?: 'N/A'
+        if (ip) {
+            t.portList(ip, port, true)
+        }
+    }
+}
+
 @Parser("sysconfig")
 void sysconfig(TestUtil t) {
     // println t.readAll()
@@ -210,7 +216,6 @@ void sysconfig_raid(TestUtil t) {
             raid_group = m1
         }
         (it =~ /^\s+(dparity|parity|data)\s.+\s(\d+)\/(\d+)\s*$/).each {m0, m1, m2, m3 ->
-println "$m1, $m2, $m3"
             drive_nodes[m1]["${m2}MB"] += 1
             raid_groups["${node}.${raid_group}"] += 1
         }
@@ -221,6 +226,5 @@ println "$m1, $m2, $m3"
     }
     infos['sysconfig_raid'] = "${raid_groups.size()} RAID groups"
     t.results(infos)
-    println infos
     t.devices(['message'], csv)
 }

@@ -1,7 +1,0 @@
- system controller show
-node<|>system-id<|>model<|>part-number<|>revision<|>serial-number<|>controller-type<|>status<|>chassis-id<|>
-Node<|>System ID<|>Model Name<|>Part Number<|>Revision<|>Serial Number<|>Controller Type<|>Status<|>Chassis ID<|>
-NetAPP1-01<|>538116376<|>AFF-A300<|>111-02493<|>A5<|>451934000005<|>none<|>ok<|>021922023204<|>
-NetAPP1-02<|>538116524<|>AFF-A300<|>111-02493<|>A5<|>451934000006<|>none<|>ok<|>021922023204<|>
-
-NetAPP1
