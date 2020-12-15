@@ -10,6 +10,7 @@
 .mtj.tmp/
 /libdeps/
 /config/cmdb.groovy
+/config/config_*.groovy
 
 # Ignore Gradle build output directory
 /build
