@@ -30,18 +30,222 @@
 
 [[metrics]]
 
-id = "aggregate_status"
-name = "ストレージ"
-category = "リリース"
+id = "version"
+name = "バージョン"
+category = "コントローラ"
 
 [[metrics]]
 
-id = "sysconfig"
-name = "ストレージ"
-category = "リリース"
+id = "os.System ID"
+name = "システムID"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "os.Model Name"
+name = "モデル"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "os.Part Number"
+name = "部品ID"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "os.Revision"
+name = "リビジョン"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "os.Serial Number"
+name = "S/N"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "release_date"
+name = "リリース日付"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "subsystem_health"
+name = "ステータス"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "status.SAS-connect"
+name = "ステータス SAS接続"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "status.Environment"
+name = "ステータス 環境"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "status.Memory"
+name = "ステータス メモリ"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "status.Service-Processor"
+name = "ステータス CPU"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "status.Motherboard"
+name = "ステータス マザーボード"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "status.IO"
+name = "ステータス I/O"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "hw.Processors"
+name = "CPU数"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "hw.Processor type"
+name = "CPUモデル"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "hw.Memory Size"
+name = "メモリ容量"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "hw.NVMEM Size"
+name = "NVメモリ容量"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "storage_failover"
+name = "HAクラスター構成"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "license"
+name = "ライセンス構成"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "memory"
+name = "メモリ構成"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "vserver"
+name = "仮想ストレージ構成"
+category = "コントローラ"
+
+[[metrics]]
+
+id = "network_interface"
+name = "ネットワーク"
+category = "ネットワーク"
+
+[[metrics]]
+
+id = "ntp"
+name = "NTP 設定"
+category = "ネットワーク"
+
+[[metrics]]
+
+id = "snmp"
+name = "SNMP 設定"
+category = "ネットワーク"
+
+[[metrics]]
+
+id = "snmp.Enable Value"
+name = "SNMP 有効化"
+category = "ネットワーク"
+
+[[metrics]]
+
+id = "snmp.SNMPv3 Enable Value"
+name = "SNMP v3 有効化"
+category = "ネットワーク"
+
+[[metrics]]
+
+id = "snmp.Trap Hosts"
+name = "SNMP トラップ"
+category = "ネットワーク"
+
+[[metrics]]
+
+id = "snmp.Community"
+name = "SNMP コミュニティ名"
+category = "ネットワーク"
+
+[[metrics]]
+
+id = "snmp.Access"
+name = "SNMP アクセス権限"
+category = "ネットワーク"
 
 [[metrics]]
 
 id = "sysconfig_raid"
-name = "ストレージ"
-category = "リリース"
+name = "ディスク情報"
+category = "ディスク構成"
+
+[[metrics]]
+id = "drive.dparity"
+name = "ドライブ数(dparty)"
+category = "ディスク構成"
+
+[[metrics]]
+
+id = "drive.parity"
+name = "ドライブ数(party)"
+category = "ディスク構成"
+
+[[metrics]]
+
+id = "drive.data"
+name = "ドライブ数(data)"
+category = "ディスク構成"
+
+[[metrics]]
+
+id = "aggregate_status"
+name = "RAID構成"
+category = "ディスク構成"
+
+[[metrics]]
+
+id = "volume"
+name = "ディスクボリューム"
+category = "ディスク構成"
+
+[[metrics]]
+
+id = "sysconfig"
+name = "システム構成"
+category = "その他設定"
+

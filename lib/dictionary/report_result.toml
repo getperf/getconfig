@@ -131,7 +131,7 @@ tracker = "ストレージ"
 
     [sheets.platforms]
 
-        HW = ["NetAppDataONTAP"]
+        HW = ["NetApp"]
         MONITOR = ["Zabbix"]
 
 [[sheets]]

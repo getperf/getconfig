@@ -24,7 +24,7 @@ redmineField = "機種"
     XSCF = "hardconf.system"
     AIX = "prtconf.System Model"
     Eternus = "enclosure.StorageSystemName"
-    NetAppONTAP = "processor"
+    NetApp = "os.Model Name"
     HitachiVSP = "model"
     Oracle = "dbvers.Oracle Database"
 
@@ -38,7 +38,7 @@ redmineField = "型番"
     Primergy = "product_id"
     CiscoUCS = "productid"
     Eternus = "enclosure.ModelName"
-    NetAppONTAP = "version"
+    NetApp = "os.Part Number"
     Oracle = "dbcomps.version"
 
 [[columns]]
@@ -53,6 +53,7 @@ redmineField = "S/N"
     XSCF = "hardconf.serial"
     AIX = "prtconf.Machine Serial Number"
     Eternus = "enclosure.SerialNumber"
+    NetApp = "os.Serial Number"
     HitachiVSP = "serialNumber"
 
 [[columns]]
@@ -66,6 +67,7 @@ redmineField = "OS名"
     VMHost = "summary.version"
     Solaris = "kernel"
     AIX = "osname"
+    NetApp = "subsystem_health"
 
 [[columns]]
 id = "arch"
@@ -89,7 +91,7 @@ redmineField = "CPU数"
     VMHost = "NumCpuPkgs"
     Solaris = "cpu_total"
     AIX = "prtconf.Number Of Processors"
-    NetAppONTAP = "hw.cpu"
+    NetApp = "hw.Processors"
     Oracle = "hostconfig.num_cpus"
 
 [[columns]]
@@ -102,7 +104,6 @@ name = "CPUコア数"
     VMHost = "NumCpuCores"
     Solaris = "cpu_core"
     AIX = "prtconf.Number Of Processors"
-    NetAppONTAP = "hw.cpu"
     Oracle = "hostconfig.num_cpu_cores"
 
 [[columns]]
@@ -149,7 +150,7 @@ name = "ディスク構成"
     AIX = "prtconf.disk"
     HitachiVSP = "parity-groups"
     Eternus = "raid_groups"
-    NetAppONTAP = "storage.volume"
+    NetApp = "volume"
 
 [[columns]]
 id = "network"
@@ -162,7 +163,6 @@ name = "ネットワーク構成"
     Solaris = "network"
     AIX = "network"
     Eternus = "network"
-    NetAppONTAP = "network_interface"
 
 [[columns]]
 id = "subnet"
@@ -206,6 +206,7 @@ name = "NTP"
     Windows = "ntp"
     VMHost = "NTP"
     Solaris = "ntp"
+    NetApp = "ntp"
 
 [[columns]]
 id = "console"

@@ -1,8 +1,8 @@
 
 node<|>pds-id<|>slotname<|>socket<|>channel<|>slot-no<|>serial<|>part-no<|>cecc-count<|>uecc-count<|>monitor<|>status<|>name<|>display-name<|>
 Node<|>DIMM ID<|>Slot Name<|>CPU Socket<|>Channel<|>Slot Number on a Channel<|>Serial Number<|>Part Number<|>Correctable ECC Error Count<|>Uncorrectable ECC Error Count<|>Health Monitor Name<|>Status<|>Unique Name of DIMM<|>Display Name for the DIMM<|>
-netapp1BM<|>1<|>DIMM-1<|>0<|>0<|>0<|>CE-02-1809-387FDA7E<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-1<|>DIMM-1<|>
-netapp1BM<|>2<|>DIMM-2<|>0<|>0<|>1<|>CE-02-1809-387FDB48<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-2<|>DIMM-2<|>
-netapp1BM<|>3<|>DIMM-3<|>0<|>1<|>0<|>CE-02-1809-387F1CB6<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-3<|>DIMM-3<|>
-netapp1BM<|>4<|>DIMM-4<|>0<|>1<|>1<|>CE-02-1809-387F1CDF<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-4<|>DIMM-4<|>
+netapp1bm<|>1<|>DIMM-1<|>0<|>0<|>0<|>CE-02-1809-387FDA7E<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-1<|>DIMM-1<|>
+netapp1bm<|>2<|>DIMM-2<|>0<|>0<|>1<|>CE-02-1809-387FDB48<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-2<|>DIMM-2<|>
+netapp1bm<|>3<|>DIMM-3<|>0<|>1<|>0<|>CE-02-1809-387F1CB6<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-3<|>DIMM-3<|>
+netapp1bm<|>4<|>DIMM-4<|>0<|>1<|>1<|>CE-02-1809-387F1CDF<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-4<|>DIMM-4<|>
 

@@ -43,9 +43,184 @@ def parse_csv(String lines) {
     return csv_info
 }
 
+void version(TestUtil t) {
+    t.metricFile = 'version'
+    t.readOtherLogLine('version', '', true) {
+        (it =~/^(.+?):\s*(.+?)$/).each { m0, os, release ->
+            t.results(os)
+            t.setMetric("release_date", release)
+        }
+    }
+}
+
+void network_interface(TestUtil t) {
+    t.metricFile = 'network_interface'
+    res = t.readOtherLogAll('network_interface', '', true)
+    def csv_info = this.parse_csv(res)
+    t.devices(csv_info.headers, csv_info.csv)
+    csv_info.rows.each { row ->
+        def node = row."Current Node" ?: 'N/A'
+        def ip = row."Network Address" ?: 'N/A'
+        def port = row."Current Port" ?: 'N/A'
+        if (t.serverName == node) {
+            t.portList(ip, port, true)
+        }
+    }
+}
+
+void ntp(TestUtil t) {
+    t.metricFile = 'ntp'
+    res = t.readOtherLogAll('ntp', '', true)
+    def csv_info = this.parse_csv(res)
+    t.devices(csv_info.headers, csv_info.csv)
+    def ntp = []
+    csv_info.rows.each { row ->
+        row.each { name, value ->
+            (name=~/Address/).each {
+                ntp << value
+            }
+        }
+    }
+    t.results(ntp.toString())
+}
+
+void snmp(TestUtil t) {
+    t.metricFile = 'snmp'
+    res = t.readOtherLogAll('snmp', '', true)
+    def csv_info = this.parse_csv(res)
+    t.devices(csv_info.headers, csv_info.csv)
+    csv_info.rows?.get(0).each { metric, value ->
+        t.setMetric("snmp.${metric}", value)
+    }
+}
+
+void vserver(TestUtil t) {
+    t.metricFile = 'vserver'
+    res = t.readOtherLogAll('vserver', '', true)
+    def csv_info = this.parse_csv(res)
+    t.devices(csv_info.headers, csv_info.csv)
+}
+
 @Parser("subsystem_health")
 void subsystem_health(TestUtil t) {
-    println t.readAll()
     def csv_info = this.parse_csv(t.readAll())
     t.devices(csv_info.headers, csv_info.csv)
+    csv_info.rows.each { row ->
+        def subsystem = row.Subsystem ?: 'N/A'
+        def health = row.Health ?: 'N/A'
+        t.setMetric("status.${subsystem}", health)
+    }
+}
+
+@Parser("storage_failover")
+void storage_failover(TestUtil t) {
+    def csv_info = this.parse_csv(t.readAll())
+    def csv = []
+    csv_info.rows?.get(0).each { metric, value ->
+        csv << [metric, value]
+    }
+    t.devices(["name", "value"], csv)
+}
+
+@Parser("license")
+void license(TestUtil t) {
+    def csv_info = this.parse_csv(t.readAll())
+    t.devices(csv_info.headers, csv_info.csv)
+    network_interface(t)
+    ntp(t)
+    snmp(t)
+    vserver(t)
+    version(t)
+}
+
+@Parser("processor")
+void processor(TestUtil t) {
+    def csv_info = this.parse_csv(t.readAll())
+    // println csv_info.rows
+    csv_info.rows?.get(0).each { metric, value ->
+        // println "os.${metric}  : ${value}"
+        t.setMetric("os.${metric}", value)
+    }
+    t.devices(csv_info.headers, csv_info.csv)
+}
+
+@Parser("memory")
+void memory(TestUtil t) {
+    def csv_info = this.parse_csv(t.readAll())
+    t.devices(csv_info.headers, csv_info.csv)
+}
+
+@Parser("aggregate_status")
+void aggregate_status(TestUtil t) {
+    def csv_info = this.parse_csv(t.readAll())
+    t.devices(csv_info.headers, csv_info.csv)
+    def infos = [:].withDefault{[]}
+    csv_info.rows.each { row ->
+        infos[row['Size']] << row['Aggregate']
+    }
+    def id = 1
+    infos.each { size, aggregate ->
+        t.newMetric("raid.${id}.name", "RAID[${id}] name", aggregate)
+        t.newMetric("raid.${id}.size", "RAID[${id}] size", size)
+        id ++
+    }
+}
+
+@Parser("volume")
+void volume(TestUtil t) {
+    def csv_info = this.parse_csv(t.readAll())
+    t.devices(csv_info.headers, csv_info.csv)
+    def infos = [:].withDefault{0}
+    csv_info.rows.each { row ->
+        infos[row['Volume Size']] += 1
+    }
+    t.results(infos.toString())
+}
+
+@Parser("sysconfig")
+void sysconfig(TestUtil t) {
+    // println t.readAll()
+    def infos = [:].withDefault{[:].withDefault{0}}
+    def csv = []
+    t.readLine {
+        (it =~ /^\s*(\w.+?):\s(.+?)$/).each { m0, item, value->
+            (item=~/^(Node|System ID|System Serial Number|Processors|Processor type|Memory Size|NVMEM Size)$/).each {
+                infos["hw.${item}"] = value.trim()
+            }
+        }
+        csv << [it]
+    }
+    t.results(infos)
+    t.devices(['message'], csv)
+}
+
+@Parser("sysconfig_raid")
+void sysconfig_raid(TestUtil t) {
+    def infos = [:]
+    def drive_nodes = [:].withDefault{[:].withDefault{0}}
+    def raid_groups = [:].withDefault{0}
+    def node       = 'unkown'
+    def raid_group = 'unkown'
+    def csv = []
+    t.readLine {
+        (it =~ /^Node: (.+)$/).each {m0, m1 ->
+            node = m1
+        }
+        (it =~ /^\s+RAID group (.+?)\s/).each {m0, m1 ->
+            raid_group = m1
+        }
+        (it =~ /^\s+(dparity|parity|data)\s.+\s(\d+)\/(\d+)\s*$/).each {m0, m1, m2, m3 ->
+println "$m1, $m2, $m3"
+            drive_nodes[m1]["${m2}MB"] += 1
+            raid_groups["${node}.${raid_group}"] += 1
+        }
+        csv << [it]
+    }
+    drive_nodes.each { drive_node, info ->
+        infos["drive.${drive_node}"] = "${info}"
+    }
+    infos['sysconfig_raid'] = "${raid_groups.size()} RAID groups"
+    t.results(infos)
+    println infos
+    t.devices(['message'], csv)
 }

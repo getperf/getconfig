@@ -1,17 +1,17 @@
 
 subsystem<|>health<|>init-state<|>outstanding-alert-count<|>suppressed-alert-count<|>node<|>refresh-interval<|>
 Subsystem<|>Health<|>Initialization State<|>Number of Outstanding Alerts<|>Number of Suppressed Alerts<|>Node<|>Subsystem Refresh Interval<|>
-SAS-connect<|>ok<|>initialized<|>0<|>0<|>netapp1AM,netapp1BM<|>30m,30m<|>
-Environment<|>ok<|>initialized<|>0<|>0<|>netapp1AM,netapp1BM,netapp1BM<|>10m,10m,10m<|>
-Memory<|>ok<|>initialized<|>0<|>0<|>netapp1AM,netapp1BM<|>30m,30m<|>
-Service-Processor<|>ok<|>initialized<|>0<|>0<|>netapp1AM,netapp1BM<|>10m,10m<|>
-Switch-Health<|>ok<|>initialized<|>0<|>0<|>netapp1BM<|>5m<|>
-CIFS-NDO<|>ok<|>initialized<|>0<|>0<|>netapp1AM,netapp1BM<|>5m,5m<|>
-Motherboard<|>ok<|>initialized<|>0<|>0<|>netapp1AM,netapp1BM<|>30m,30m<|>
-IO<|>ok<|>initialized<|>0<|>0<|>netapp1AM,netapp1BM<|>30m,30m<|>
-MetroCluster<|>ok<|>initialized<|>0<|>0<|>netapp1BM<|>5m<|>
-MetroCluster_Node<|>ok<|>initialized<|>0<|>0<|>netapp1AM,netapp1BM<|>15m,15m<|>
-FHM-Switch<|>ok<|>initialized<|>0<|>0<|>netapp1BM<|>1h<|>
-FHM-Bridge<|>ok<|>initialized<|>0<|>0<|>netapp1BM<|>1h<|>
-SAS-connect_Cluster<|>ok<|>initialized<|>0<|>0<|>netapp1BM<|>30m<|>
+SAS-connect<|>ok<|>initialized<|>0<|>0<|>netapp1am,netapp1bm<|>30m,30m<|>
+Environment<|>ok<|>initialized<|>0<|>0<|>netapp1am,netapp1bm,netapp1bm<|>10m,10m,10m<|>
+Memory<|>ok<|>initialized<|>0<|>0<|>netapp1am,netapp1bm<|>30m,30m<|>
+Service-Processor<|>ok<|>initialized<|>0<|>0<|>netapp1am,netapp1bm<|>10m,10m<|>
+Switch-Health<|>ok<|>initialized<|>0<|>0<|>netapp1bm<|>5m<|>
+CIFS-NDO<|>ok<|>initialized<|>0<|>0<|>netapp1am,netapp1bm<|>5m,5m<|>
+Motherboard<|>ok<|>initialized<|>0<|>0<|>netapp1am,netapp1bm<|>30m,30m<|>
+IO<|>ok<|>initialized<|>0<|>0<|>netapp1am,netapp1bm<|>30m,30m<|>
+MetroCluster<|>ok<|>initialized<|>0<|>0<|>netapp1bm<|>5m<|>
+MetroCluster_Node<|>ok<|>initialized<|>0<|>0<|>netapp1am,netapp1bm<|>15m,15m<|>
+FHM-Switch<|>ok<|>initialized<|>0<|>0<|>netapp1bm<|>1h<|>
+FHM-Bridge<|>ok<|>initialized<|>0<|>0<|>netapp1bm<|>1h<|>
+SAS-connect_Cluster<|>ok<|>initialized<|>0<|>0<|>netapp1bm<|>30m<|>
 

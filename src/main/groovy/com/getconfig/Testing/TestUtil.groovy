@@ -58,9 +58,15 @@ class TestUtil {
         }
     }
 
-    def readOtherLogLine = { String metricFile, String charset = 'UTF-8',
-                             Closure closure ->
+    def readOtherLogLine = { String metricFile, String charset = 'UTF-8', 
+                             boolean isCommon = false, Closure closure ->
         String parentDir  = new File(this.logPath).getAbsoluteFile().getParent()
+        if (charset == "") {
+            charset = 'UTF-8'
+        }
+        if (isCommon) {
+            parentDir = new File(parentDir).getParent()
+        }
         String otherLogPath = Paths.get(parentDir, metricFile)
         try {
             new File(otherLogPath).withReader(charset) { reader ->
@@ -74,9 +80,46 @@ class TestUtil {
         }
     }
 
+    // def readOtherCommonLogLine = { String metricFile, String charset = 'UTF-8',
+    //                          Closure closure ->
+    //     String parentDir  = new File(this.logPath).getAbsoluteFile().getParent()
+    //     parentDir = new File(parentDir).getParent()
+    //     String otherLogPath = Paths.get(parentDir, metricFile)
+    //     try {
+    //         new File(otherLogPath).withReader(charset) { reader ->
+    //             def line
+    //             while ((line = reader.readLine()) != null) {
+    //                 closure.call(line)
+    //             }
+    //         }
+    //     } catch(FileNotFoundException e) {
+    //         log.error("read ${this.serverName}, ${metricFile}: ${e}")
+    //     }
+    // }
+
     String readAll(String charset = 'UTF-8') {
         return new File(this.logPath).getText(charset)
     }
+
+    String readOtherLogAll(String metricFile, String charset = 'UTF-8', 
+                           boolean isCommon = false) {
+        String parentDir  = new File(this.logPath).getAbsoluteFile().getParent()
+        if (charset == "") {
+            charset = 'UTF-8'
+        }
+        if (isCommon) {
+            parentDir = new File(parentDir).getParent()
+        }
+        String otherLogPath = Paths.get(parentDir, metricFile)
+        return new File(otherLogPath).getText(charset)
+    }
+
+    // String readOtherCommonLogAll(String metricFile, String charset = 'UTF-8') {
+    //     String parentDir  = new File(this.logPath).getAbsoluteFile().getParent()
+    //     parentDir = new File(parentDir).getParent()
+    //     String otherLogPath = Paths.get(parentDir, metricFile)
+    //     return new File(otherLogPath).getText(charset)
+    // }
 
     void setMetric(String metric, Object value) {
         ResultRegister.setMetric(this, metric, value)
