@@ -32,7 +32,7 @@
     test.timeout.Default = 30
     test.timeout.Linux   = 30
     test.timeout.Windows = 300
-    test.timeout.VMWare = 300
+    test.timeout.VMWare  = 300
 
 // Test command debug mode
 
@@ -50,12 +50,12 @@
 
 // Account information of the server to be inspected
 // 
-//    The following example is an example of setting a user ID called 'Account01'. 
-//    Copy each text and change the part of Account01 to the user ID to be added.
+//  The following example is connection setting of user ID called 'Account01'. 
+//  Copy each platform and change the part of Account01 to the specific user ID.
 
 // vCenter virtual machine management REST API connection
 //
-//   vSphere Web Services API account
+//  vSphere Web Services API account
 
 account.VMWare.Account01.server   = '192.168.0.200'  // IP or "https://{IP}/sdk"
 account.VMWare.Account01.user     = 'test_user'
@@ -63,8 +63,8 @@ account.VMWare.Account01.password = 'P@ssw0rd'
 
 // ESXi server management REST API connection
 // 
-//    Same as vCenter connection information above. For a single ESXi server, 
-//    specify the IP of the ESXi server
+//  Same as vCenter connection information above. For a single ESXi server, 
+//  specify the IP of the ESXi server
 
 account.VMHost.Account01.server   = '192.168.0.200'  // IP or "https://{IP}/sdk"
 account.VMHost.Account01.user     = 'test_user'
@@ -72,60 +72,60 @@ account.VMHost.Account01.password = 'P@ssw0rd'
 
 // Linux server SSH connection
 //
-//   Linux server to be inspected SSH connection account
+//  Linux server to be inspected SSH connection account
 
 account.Linux.Account01.user      = 'zabbix'
 account.Linux.Account01.password  = 'P@ssw0rd'
 
 // Windows server WinRM connection
 //
-//   Windows server to be inspected WinRM connection account
-//   December 2020 Currently, only Basic authentication is supported. 
-//   Basic authentication to the server Permission required
-
+//  Windows server to be inspected WinRM connection account
+//  December 2020 Currently, only Basic authentication is supported. 
+//  Basic authentication to the server Permission required
+//
 //    RefferenceÅF https://github.com/masterzen/winrm
 
 account.Windows.Account01.user     = 'administrator'
 account.Windows.Account01.password = 'P@ssw0rd'
 
-// CiscoUCS IA server firmware connection 
+// Cisco UCS IA server firmware connection 
 //
-//   Cisco UCS CIMC SSH connection account
+//  Cisco CIMC SSH connection account
 
 account.CiscoUCS.Account01.user     = 'root'
 account.CiscoUCS.Account01.password = 'P@ssw0rd'
 
 // HPE IA server firmware connection
 //
-//   HP iLO REST API connection account
+//  HP iLO REST API connection account
 
 account.HPiLO.Account01.user     = 'root'
 account.HPiLO.Account01.password = 'P@ssw0rd'
 
 // Fujitsu IA server firmware connection
 //
-//   Primergy iRMC REST API connection account
+//  Fujitsu iRMC REST API connection account
 
 account.Primergy.Account01.user     = 'admin'
 account.Primergy.Account01.password = 'P@ssw0rd'
 
 // Solaris server SSH connection
 //
-//   Solaris server SSH connection account
+//  Solaris server SSH connection account
 
 account.Solaris.Account01.user     = 'someuser'
 account.Solaris.Account01.password = 'P@ssw0rd'
 
 // Solaris server firmware connection
 //
-//   Solaris XSCF API SSH connection account
+//  Solaris XSCF API SSH connection account
 
 account.XSCF.Account01.user     = 'admin'
 account.XSCF.Account01.password = 'P@ssw0rd'
 
 // NetApp storage firmware connection
 //
-//   NetApp ONTAP System Manager SSH connection account
+//  NetApp ONTAP System Manager SSH connection account
 
 account.NetApp.Account01.server   = '192.168.0.105'
 account.NetApp.Account01.user     = 'admin'
@@ -133,7 +133,7 @@ account.NetApp.Account01.password = 'P@ssw0rd'
 
 // HitachiVSP storage firmware connection
 //
-//   Hitachi Command Suite REST API connection account
+//  Hitachi Command Suite REST API connection account
 
 account.HitachiVSP.Account01.server   = 'http://192.168.0.104'
 account.HitachiVSP.Account01.user     = 'admin'
@@ -141,21 +141,21 @@ account.HitachiVSP.Account01.password = 'P@ssw0rd'
 
 // Fujitsu Eternus storage firmware connection
 //
-//   Fujitsu  Eternus CLI SSH connection account
+//  Fujitsu  Eternus CLI SSH connection account
 
 account.Eternus.Account01.user     = 'admin'
 account.Eternus.Account01.password = 'P@ssw0rd'
 
 // Oracle database connection
 //
-//   Oracle JDBC connection account
+//  Oracle JDBC connection account
 
 account.Oracle.Account01.user     = 'scott'
 account.Oracle.Account01.password = 'tiger'
 
 // Zabbix management account connection
 //
-//   Zabbix API JSON-RPC connection account
+//  Zabbix API JSON-RPC connection account
 
 account.Zabbix.Account01.server   = 'http://zabbix:8081/zabbix'
 account.Zabbix.Account01.user     = 'Admin'

@@ -1,14 +1,17 @@
 package com.getconfig.Document
 
-import com.getconfig.Model.*
 import com.getconfig.ConfigEnv
+import com.getconfig.Document.SpecReader.ServerSpec
+import com.getconfig.Utils.TomlUtils
 import spock.lang.Specification
+import com.moandjiezana.toml.TomlWriter
 
 // gradle --daemon test --tests "SpecReaderTest.設定ファイルとのマージ"
 
 class SpecReaderTest extends Specification {
 
     String checkSheet = './src/test/resources/getconfig.xlsx'
+    String checkSheetToml = './src/test/resources/getconfig.toml'
     String paramTestSheet = './src/test/resources/getconfig_param_test.xlsx'
     String configFile = './src/test/resources/config/config.groovy'
 
@@ -20,6 +23,31 @@ class SpecReaderTest extends Specification {
 
         then:
         specReader.serverCount() > 0
+    }
+
+    def "TOML変換"() {
+        when:
+        def specReader = new SpecReader(inExcel : checkSheet)
+        specReader.parse()
+        TomlWriter tomlWriter = new TomlWriter()
+        def toml = tomlWriter.write(specReader.serverSpec)
+
+        then:
+        println toml
+        specReader.serverCount() > 0
+    }
+
+    def "TOML読込み"() {
+        when:
+//        ServerSpec serverSpec = TomlUtils.read(checkSheetToml, ServerSpec)
+        def specReader = new SpecReader(inExcel : checkSheetToml)
+        specReader.parse()
+        specReader.print()
+
+//        println org.apache.commons.io.FilenameUtils.getExtension(checkSheetToml)
+
+        then:
+        1 == 1
     }
 
     def "不明ファイル"() {
@@ -44,7 +72,7 @@ class SpecReaderTest extends Specification {
         then:
         specReader.print()
         specReader.serverCount() > 0
-        servers[0].user == "someuser"
+        servers[0].user == "test_user"
         servers[0].password == "P@ssword"
     }
 
@@ -54,8 +82,8 @@ class SpecReaderTest extends Specification {
         specReader.parse()
 
         then:
-        specReader.platformParameters.get('Packages').values.size() > 0
-        specReader.platformParameters.get('Hoge').values[0] == 1
-        specReader.platformParameters.get('None').values.size() == 0
+        specReader.platformParameters().get('Packages').values.size() > 0
+        specReader.platformParameters().get('Hoge').values[0] == 1
+        specReader.platformParameters().get('None').values.size() == 0
     }
 }

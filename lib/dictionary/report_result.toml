@@ -143,3 +143,12 @@ tracker = "ソフトウェア"
 
         MW = ["Oracle"]
 
+[[sheets]]
+
+name = "監視のみ"
+tracker = "監視のみ"
+
+    [sheets.platforms]
+
+        MW = ["Zabbix"]
+

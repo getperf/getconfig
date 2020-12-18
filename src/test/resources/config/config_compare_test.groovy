@@ -85,3 +85,15 @@ account.CiscoUCS.Account01.password = 'P@ssw0rd'
 
 account.HPiLO.Account01.user     = 'root'
 account.HPiLO.Account01.password = 'P@ssw0rd'
+
+// Zabbix management account connection
+//
+//   Zabbix API JSON-RPC connection account
+
+account.Zabbix.Account01.server   = 'http://zabbix:8081/zabbix'
+account.Zabbix.Account01.user     = 'Admin'
+account.Zabbix.Account01.password = 'P@ssw0rd'
+
+account.Zabbix.Account02.server   = 'http://zabbix2:8081/zabbix'
+account.Zabbix.Account02.user     = 'Admin2'
+account.Zabbix.Account02.password = 'zabbix2'

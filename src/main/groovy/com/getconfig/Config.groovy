@@ -1,7 +1,9 @@
 package com.getconfig
 
+import com.getconfig.Utils.DirUtils
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
+import org.apache.commons.io.FilenameUtils
 
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
@@ -49,29 +51,49 @@ class Config {
                 return new String(buffer, CharacterCode)
             }
         }
-        // if (keyword) {
-        //     configFile = configFile + "-encrypted"
-        // }
-        // new File(configFile).with {
-        //     def decryptedFile = it.name.replaceAll(/-encrypted$/, "")
-        //     if (decryptedFile != it.name || keyword == null) {
-        //         return it.getText(CharacterCode)
-        //     }
-        //     SecretKeySpec key = new SecretKeySpec(keyword.getBytes(), EncryptionMode)
-        //     def buffer = decryptData(it.getBytes(), key)
-        //     return new String(buffer, CharacterCode)
-        // }
     }
 
-    ConfigObject readConfig(String configFile = 'config/config.groovy', String keyword = null) {
+    ConfigObject readMultiConfig(String configFile = 'config/config.groovy',
+                                 String keyword = null) {
+        def baseDir = new File(configFile).getParent()
+        String configPrefix = FilenameUtils.getBaseName(configFile)
+        ConfigObject config = new ConfigObject()
+        String encryptSuffix = (keyword) ? '-encrypted' : ''
+        DirUtils.ls(baseDir,/^${configPrefix}_.*.groovy${encryptSuffix}$/).each {
+            File addedConfigFile ->
+                String addedConfigPath = addedConfigFile.toString()
+                addedConfigPath = addedConfigPath.replaceAll(/-encrypted$/, "")
+                config = config.merge(readConfig(addedConfigPath, keyword))
+                        as ConfigObject
+        }
+        return config
+    }
+
+    ConfigObject readConfig(String configFile = 'config/config.groovy',
+                            String keyword = null, Boolean multiConfig = false) {
         this.configFile = configFile
         String configText = this.readConfigWithEncryption(configFile, keyword)
         ConfigSlurper slurper = new ConfigSlurper()
-        // this.config = slurper.parse(configText)
-        return slurper.parse(configText)
+        ConfigObject config = slurper.parse(configText)
+        if (multiConfig) {
+            ConfigObject currentConfig = readMultiConfig(configFile, keyword)
+            config = config.merge(currentConfig) as ConfigObject
+        }
+        return config
     }
 
-    void encrypt(String configFileName, String keyword = null)
+    void encryptMultiConfig(String configFile, String keyword = null) {
+        def baseDir = new File(configFile).getParent()
+        String configPrefix = FilenameUtils.getBaseName(configFile)
+        DirUtils.ls(baseDir,/^${configPrefix}_.*.groovy$/).each {
+            File addedConfigFile ->
+                String addedConfigPath = addedConfigFile.toString()
+                encrypt(addedConfigPath, keyword)
+        }
+    }
+
+    void encrypt(String configFileName, String keyword = null, 
+                 Boolean multiConfig = false)
         throws IOException {
         SecretKeySpec key = new SecretKeySpec(keyword.getBytes(), EncryptionMode)
         File configFile = new File(configFileName)
@@ -82,9 +104,23 @@ class Config {
             log.info "OK\nEncrypted ${configFileEncrypted}"
         }
         configFile.delete()
+        if (multiConfig) {
+            encryptMultiConfig(configFileName, keyword)
+        }
     }
 
-    void decrypt(String configFileEncrypted, String keyword = null)
+    void decryptMultiConfig(String configFile, String keyword = null) {
+        def baseDir = new File(configFile).getParent()
+        String configPrefix = FilenameUtils.getBaseName(configFile)
+        DirUtils.ls(baseDir,/^${configPrefix}_.*.groovy-encrypted$/).each {
+            File addedConfigFile ->
+                String addedConfigPath = addedConfigFile.toString()
+                decrypt(addedConfigPath, keyword)
+        }
+    }
+
+    void decrypt(String configFileEncrypted, String keyword = null,
+                 Boolean multiConfig = false)
         throws IOException, IllegalArgumentException {
         SecretKeySpec key = new SecretKeySpec(keyword.getBytes(), EncryptionMode)
         new File(configFileEncrypted).with {
@@ -97,6 +133,9 @@ class Config {
             def configFileDecrypted = new File(it.parent, decrypteFile)
             configFileDecrypted.setBytes(data)
             log.info "OK\nDecrypted ${configFileDecrypted}"
+        }
+        if (multiConfig) {
+            decryptMultiConfig(configFileEncrypted, keyword)
         }
     }
 }

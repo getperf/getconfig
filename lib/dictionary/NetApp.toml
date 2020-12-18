@@ -1,6 +1,6 @@
 # NetApp 監視設定 インベントリ収集シナリオ
 
-# JSON RPC で NetApp 管理用 IF ； NetApp API に接続し、メトリック定義のコマンド
+# SSH経由で NetApp 管理コンソールに接続し、メトリック定義のコマンド
 # 群を実行します
 
 # Excel 検査対象シート
@@ -8,25 +8,171 @@
 # 設定パラメータは以下の通りです
 # 
 # 対象サーバ
-#     OS ホスト名と同じにしてください
+#     ホスト名
 # プラットフォーム
 #     NetApp
 # URL,IPアドレス
-#     未記入
+#     未記入。ユーザ IDに指定した管理サーバのアドレスに接続します
 # ユーザID
-#     config/config.groovy 内に記述した、JSON RPC 接続アカウント。
+#     config/config.groovy 内に記述した、NetApp 管理用サーバ SSH 接続アカウント。
 #     Account01を指定した場合、以下のパラメータを参照します
-#      // NetApp 接続情報
-#      account.NetApp.Account01.server   = 'http://zabbix:8081/zabbix'
-#      account.NetApp.Account01.user      = 'admin'
-#      account.NetApp.Account01.password  = 'admin'
-
-# [[metrics]]
+#
+#     // 設定例
+#
+#         // NetApp 管理サーバのSSH 接続用 IP アドレス
+#         // ポートを指定する場合は、'{IP}:{ポート}' を入力します
+#         account.NetApp.Account01.server   = '192.168.0.1'  
+#         account.NetApp.Account01.user      = 'admin'
+#         account.NetApp.Account01.password  = 'admin'
 
 # メトリック定義コマンドリスト
+
+# NetApp 情報採取用コマンドを追加する場合、以下リストに追加します。
 # 
-# NetApp API の既定の実行コマンドリストはハードコーディングされており、
-# 変更できません。以下リストは抽出項目のメトリック定義のみになります。
+# NetApp CLI リファレンス:
+#
+#  https://library.netapp.com/ecmdocs/ECMP1719718/html/frameset.html
+#
+# 設定例:
+#
+# [[metrics]]
+# 
+# id = "sysconfig"   # ユニークなID
+# level = 0          # コマンド制限レベル(0-2 , 既定は 0)
+# remote = true      # 管理サーバ自身の情報採取の場合は false とし、
+#                    # 各ノードの情報採取の場合は true をセット
+#                    # true の場合、text パラメータで '{host}' 特殊文字列
+#                    # を使用して、コマンド引数にノード名を渡します
+# type = "Cmd"       # "Cmd" 、 "Shell"
+# text = '''         # コマンドライン。'{host}' はノード名に置換されます
+# run {host} sysconfig -a
+# '''
+# 
+# 以下リストは既定の NetApp コマンドリストになります。これら設定は
+# ハードコーディングされており、変更する場合はコメントアウトを外して
+# 修正してください。
+
+# [[metrics]]
+# 
+# id = "subsystem_health"
+# remote = true
+# text = '''
+# system health subsystem show -node {host}
+# '''
+# 
+# [[metrics]]
+# 
+# id = "storage_failover"
+# remote = true
+# text = '''
+# storage failover show -node {host}
+# '''
+# 
+# [[metrics]]
+# 
+# id = "memory"
+# remote = true
+# text = '''
+# system controller memory dimm show -node {host}
+# '''
+# 
+# [[metrics]]
+# 
+# id = "license"
+# remote = true
+# text = '''
+# system license show -owner {host}
+# '''
+# 
+# [[metrics]]
+# 
+# id = "processor"
+# remote = true
+# text = '''
+# system controller show -node {host}
+# '''
+# 
+# [[metrics]]
+# 
+# id = "volume"
+# remote = true
+# text = '''
+# volume show -nodes {host}
+# '''
+# 
+# [[metrics]]
+# 
+# id = "aggregate_status"
+# remote = true
+# text = '''
+# aggr show -owner-name {host}
+# '''
+# 
+# [[metrics]]
+# 
+# id = "sysconfig"
+# remote = true
+# text = '''
+# run {host} sysconfig -a
+# '''
+# 
+# [[metrics]]
+# 
+# id = "sysconfig_raid"
+# remote = true
+# text = '''
+# run {host} sysconfig -r
+# '''
+# 
+# [[metrics]]
+# 
+# id = "snmp"
+# remote = false
+# text = '''
+# system snmp show
+# '''
+# 
+# [[metrics]]
+# 
+# id = "ntp"
+# remote = false
+# text = '''
+# cluster time-service ntp server show
+# '''
+# 
+# [[metrics]]
+# 
+# id = "version"
+# remote = false
+# text = '''
+# version
+# '''
+#
+# [[metrics]]
+# 
+# id = "network_interface"
+# remote = true
+# text = '''
+# network interface show -curr-node {host}
+# '''
+# 
+# [[metrics]]
+# 
+# id = "vserver"
+# remote = false
+# text = '''
+# vserver show
+# '''
+#
+# [[metrics]]
+# 
+# id = "df"
+# remote = false
+# text = '''
+# df
+# '''
+
+# 以下リストは結果シート登録用のメトリック定義になります。
 
 [[metrics]]
 

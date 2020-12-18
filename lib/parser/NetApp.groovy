@@ -43,9 +43,9 @@ def parse_csv(String lines) {
     return csv_info
 }
 
+@Parser("version")
 void version(TestUtil t) {
-    t.metricFile = 'version'
-    t.readOtherLogLine('version', '', true) {
+    t.readLine {
         (it =~/^(.+?):\s*(.+?)$/).each { m0, os, release ->
             t.results(os)
             t.setMetric("release_date", release)
@@ -53,10 +53,9 @@ void version(TestUtil t) {
     }
 }
 
+@Parser("ntp")
 void ntp(TestUtil t) {
-    t.metricFile = 'ntp'
-    res = t.readOtherLogAll('ntp', '', true)
-    def csv_info = this.parse_csv(res)
+    def csv_info = this.parse_csv(t.readAll())
     t.devices(csv_info.headers, csv_info.csv)
     def ntp = []
     csv_info.rows.each { row ->
@@ -69,27 +68,24 @@ void ntp(TestUtil t) {
     t.results(ntp.toString())
 }
 
+@Parser("snmp")
 void snmp(TestUtil t) {
-    t.metricFile = 'snmp'
-    res = t.readOtherLogAll('snmp', '', true)
-    def csv_info = this.parse_csv(res)
+    def csv_info = this.parse_csv(t.readAll())
     t.devices(csv_info.headers, csv_info.csv)
     csv_info.rows?.get(0).each { metric, value ->
         t.setMetric("snmp.${metric}", value)
     }
 }
 
+@Parser("vserver")
 void vserver(TestUtil t) {
-    t.metricFile = 'vserver'
-    res = t.readOtherLogAll('vserver', '', true)
-    def csv_info = this.parse_csv(res)
+    def csv_info = this.parse_csv(t.readAll())
     t.devices(csv_info.headers, csv_info.csv)
 }
 
+@Parser("df")
 void df(TestUtil t) {
-    t.metricFile = 'df'
-    res = t.readOtherLogAll('df', '', true)
-    def csv_info = this.parse_csv(res)
+    def csv_info = this.parse_csv(t.readAll())
     t.devices(csv_info.headers, csv_info.csv)
 }
 
@@ -102,11 +98,6 @@ void subsystem_health(TestUtil t) {
         def health = row.Health ?: 'N/A'
         t.setMetric("status.${subsystem}", health)
     }
-    ntp(t)
-    snmp(t)
-    vserver(t)
-    version(t)
-    df(t)
 }
 
 @Parser("storage_failover")
