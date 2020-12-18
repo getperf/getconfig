@@ -47,12 +47,33 @@ class LogParser implements Controller {
         env.accept(resultGroupManager)
     }
 
+    void addBatchCommonLog(AgentLog agentLog, List<Server> servers) {
+        if (agentLog.metricFile == 'error.log') {
+            return
+        }
+        servers.each { Server server ->
+            if (server.domain == agentLog.platform) {
+                AgentLog addedAgentLog = new AgentLog(agentLog)
+                addedAgentLog.serverName = server.serverName
+                this.agentLogs << addedAgentLog
+            }
+        }
+    }
+
     void makeAgentLogLists() {
         def serverNameAliases = new ServerNameAliases(this.testServers)
         def baseDir = new File(this.agentLogPath)
         baseDir.eachFileRecurse(FileType.FILES) { logFile ->
             def path = logFile.getPath() - baseDir
             AgentLog agentLog = new AgentLog(path, this.agentLogPath).parse()
+
+            // バッチモードでサーバディレクトリがない共通ログの場合、対象ドメインの全サーバログとして登録
+            if (agentLog.agentLogMode == AgentLogMode.BATCH &&
+                !agentLog.alias) {
+                this.addBatchCommonLog(agentLog, this.testServers)
+                return
+            }
+            
             // ログパス名がエイリアスの場合、ServerNameAliases 辞書からサーバ名を取得する
             agentLog.patchServerName(serverNameAliases)
             if (this.filterServer && !(agentLog.serverName=~/${this.filterServer}/) ||
@@ -103,4 +124,5 @@ class LogParser implements Controller {
         saveTestResultGroups()
         return 0
     }
+
 }

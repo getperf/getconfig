@@ -52,6 +52,17 @@ class AgentLogTest extends Specification {
     }
 
     @IgnoreIf({ !System.getProperty("os.name").contains("windows") })
+    def "ローカルエージェントバッチ共通ログパス解析"() {
+        when:
+        def path = "\\LocalAgentBatch_vCenter_192.168.10.100_Account01\\error.log"
+        def agentLog = new AgentLog(path).parse()
+        println agentLog
+
+        then:
+        1 == 1
+    }
+
+    @IgnoreIf({ !System.getProperty("os.name").contains("windows") })
     def "Hub サーバログパス解析"(String path, String platform, AgentLogMode agentLogMode) {
         expect:
         def agentLog = new AgentLog(path).parse()

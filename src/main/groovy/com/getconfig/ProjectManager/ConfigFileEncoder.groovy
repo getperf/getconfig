@@ -16,6 +16,7 @@ class ConfigFileEncoder implements Controller {
     String configFile
     String configFileEncrypted
     String password
+    Boolean multiConfig
     ProjectUtil projectUtil = new ProjectUtil()
 
     void setEnvironment(ConfigEnv env) {
@@ -23,6 +24,7 @@ class ConfigFileEncoder implements Controller {
         this.configFile = env.getConfigFile()
         this.configFileEncrypted = env.getConfigFileEncripted()
         this.password = env.getPassword()
+        this.multiConfig = env.getMultiConfig()
         env.accept(projectUtil)
     }
 
@@ -34,7 +36,8 @@ class ConfigFileEncoder implements Controller {
             throw new IllegalArgumentException(
                     "config file not found : ${this.configFile}")
         }
-        Config.getInstance().encrypt(this.configFile, this.password)
+        Config.getInstance().encrypt(this.configFile, this.password,
+            multiConfig)
         return 0
     }
 
@@ -46,7 +49,8 @@ class ConfigFileEncoder implements Controller {
             throw new IllegalArgumentException(
                     "encrypted config file not found : ${this.configFileEncrypted}")
         }
-        Config.getInstance().decrypt(this.configFileEncrypted, this.password)
+        Config.getInstance().decrypt(this.configFileEncrypted, this.password,
+            multiConfig)
         return 0
     }
 }

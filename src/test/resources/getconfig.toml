@@ -1,0 +1,35 @@
+[[testServers]]
+
+serverName = "centos80"
+domain = "Linux"
+ip = "192.168.0.5"
+accountId = "Account01"
+compareServer = "centos75"
+
+[[testServers]]
+
+serverName = "centos80"
+domain = "VMWare"
+accountId = "Account01"
+compareServer = "centos75"
+
+[[testServers]]
+
+serverName = "centos7g"
+domain = "Linux"
+ip = "192.168.0.16"
+accountId = "Account01"
+compareServer = "centos75"
+
+[[testServers]]
+
+serverName = "centos7g"
+domain = "VMWare"
+accountId = "Account01"
+remoteAlias = "cent7g"
+compareServer = "centos75"
+
+[platformParameters.Packages]
+
+values = ["binutils", "compat-libcap1", "compat-libstdc++-33", "glibc", "glibc-devel", "ksh", "libaio", "libaio-devel", "libgcc", "libstdc++", "libstdc++-devel", "libxcb", "libX11", "libXau", "libXi", "libXtst", "make"]
+

@@ -1,5 +1,6 @@
 package com.getconfig.ProjectManager
 
+import com.getconfig.Utils.DirUtils
 import com.getconfig.ConfigEnv
 import com.getconfig.Controller
 import groovy.io.FileType
@@ -12,11 +13,13 @@ import groovy.util.logging.Slf4j
 @Slf4j
 class ProjectInitializer implements Controller {
     String installDir
+    String baseConfigDir
     // String projectDir
     ProjectUtil projectUtil = new ProjectUtil()
 
     void setEnvironment(ConfigEnv env) {
         this.installDir = env.getGetconfigHome()
+        this.baseConfigDir = env.getBaseConfigDir()
         // this.projectDir = env.getProjectHome()
         env.accept(projectUtil)
     }
@@ -38,6 +41,11 @@ class ProjectInitializer implements Controller {
         // copy config file under home
         ['config.groovy'].each {base ->
             projectUtil.copyFile('config', 'config.groovy')
+        }
+        DirUtils.ls(baseConfigDir, /^config_.*.groovy$/).each {
+            File configFile ->
+                println "CONFIGFILE:$configFile, ${configFile.getName()}"
+                projectUtil.copyFile('config', configFile.getName())
         }
         // copy all files under the directory
         List<String> copyDirs = ['lib']

@@ -23,23 +23,49 @@ class AgentLog {
         this.agentLogMode = AgentLogMode.UNKNOWN
     }
 
+    AgentLog(AgentLog parent) {
+        this.path = parent.path
+        this.agentLogMode = parent.agentLogMode
+        this.serverName = parent.serverName
+        this.alias = parent.alias
+        this.platform = parent.platform
+        this.metricFile = parent.metricFile
+        this.base = parent.base
+    }
+
     AgentLog parse() {
         String[] paths = new File(this.path).toPath().collect()*.toString()
         this.agentLogMode = AgentLogMode.UNKNOWN
         this.metricFile = (paths.length>0)?paths[(paths.length-1)]:null;
-        if (!this.metricFile || paths.length <= 2) {
+        // if (!this.metricFile || paths.length <= 2) {
+        //     return this
+        // }
+        if (!this.metricFile) {
             return this
         }
 
         // ローカルエージェントバッチログの解析
         // 例：\LocalAgentBatch_vCenter_192.168.10.100_Account01\centos80\all.json
         if (paths[0].startsWith("LocalAgentBatch")) {
-            if (paths.length < 3) {
-                return this
-            }
+            // if (paths.length < 3) {
+            //     return this
+            // }
+            // this.platform = paths[0].tokenize('_')[1]
+            // this.alias = paths[1]
+            // this.agentLogMode = AgentLogMode.BATCH
+
             this.platform = paths[0].tokenize('_')[1]
-            this.alias = paths[1]
+            if (!platform) {
+                 return this
+            }
             this.agentLogMode = AgentLogMode.BATCH
+            if (paths.length >= 3) {
+                this.alias = paths[1]
+            }
+
+        // ローカルエージェントバッチ以外で2階層以下のログは除外する
+        } else if (paths.length <= 2) {
+            return this
 
         // リモートエージェントログの解析
         // 例：\server01\LinuxConf\20200722\103500\centos80\cpu

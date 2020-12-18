@@ -17,17 +17,17 @@ class ConfigEnv {
     final static String DefaultDateFormat = "yyyyMMdd_HHmmss"
     final static int DefaultGconfTimeout = 120
     final static int DefaultAutoTagNumber = 10
+    final static Boolean DefaultUseMultiConfig = true
+    final static String accountNotFound = "account not found in config.groovy"
 
     ConfigObject config
     ConfigObject dbConfig
     ConfigCommandArgs commandArgs = new ConfigCommandArgs()
 
-    final static String accountNotFound = "account not found in config.groovy"
-
     void readConfig(String configFile = null, String keyword = null) {
         this.config = Config.instance.readConfig(
                 configFile ?: this.getConfigFile() as String,
-                keyword ?: this.getPassword())
+                keyword ?: this.getPassword(), this.getMultiConfig())
         convertDateFormat()
         readInventoryDBConfig()
     }
@@ -191,6 +191,11 @@ class ConfigEnv {
         return Paths.get(this.getGetconfigHome(), "node")
     }
 
+    // ベース設定ファイル保存ディレクトリ  {home}/config
+    String getBaseConfigDir() {
+        return Paths.get(this.getGetconfigHome(), "config")
+    }
+
     // 検査スクリプト /lib/InfraTestSpec
     String getTestSpecDir() {
         return Paths.get(this.getProjectHome(), "node")
@@ -331,5 +336,9 @@ class ConfigEnv {
     String getExcelTemplatePath() {
         return this.config?.excel_template_path ?:
                 Paths.get(this.getProjectHome(), 'lib/template/report_summary.xlsx')
+    }
+
+    boolean getMultiConfig() {
+        return System.getenv("USE_MULTI_CONFIG") ?: this.DefaultUseMultiConfig
     }
 }

@@ -1,5 +1,6 @@
 package com.getconfig
 
+import com.getconfig.AgentLogParser.AgentLog
 import spock.lang.Specification
 import com.getconfig.Model.*
 import com.getconfig.Document.*
@@ -56,4 +57,22 @@ class LogParserTest extends Specification {
         logParser.run() == 0
     }
 
+    def "バッチシナリオパース"() {
+        when:
+        def testServers2 = TestData.readTestServers("netapp")
+//        println testServers2
+        LogParser logParser = new LogParser(testServers2)
+        logParser.agentLogPath = this.currentLogDir
+        logParser.parserLibPath = "./lib/parser"
+        logParser.makeAgentLogLists()
+//        println logParser.agentLogs
+        logParser.agentLogs.each { AgentLog agentLog ->
+            if (agentLog.platform == 'NetApp') {
+                println agentLog
+            }
+        }
+        then:
+//        logParser.run() == 0
+        1 == 1
+    }
 }

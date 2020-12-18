@@ -29,7 +29,7 @@ class ConfigEnvTest extends Specification {
         configEnv.setAccount(server)
 
         then:
-        server.user == "someuser"
+        server.user == "test_user"
     }
 
     def "不明アカウントセット"() {

@@ -1,32 +1,111 @@
 # HitachiVSP 監視設定 インベントリ収集シナリオ
 
-# JSON RPC で HitachiVSP 管理用 IF ； HitachiVSP API に接続し、メトリック定義のコマンド
-# 群を実行します
+# REST で HitachiVSP 管理用 IF ； HitachiVSP API に接続し、
+# メトリック定義リストのコマンドを実行します
 
 # Excel 検査対象シート
 
 # 設定パラメータは以下の通りです
 # 
 # 対象サーバ
-#     OS ホスト名と同じにしてください
+#     ホスト名
 # プラットフォーム
 #     HitachiVSP
 # URL,IPアドレス
-#     未記入
+#     未記入。ユーザ IDに指定した管理サーバのアドレスに接続します
 # ユーザID
-#     config/config.groovy 内に記述した、JSON RPC 接続アカウント。
+#     config/config.groovy 内に記述した、HitachiVSP API 接続アカウント。
 #     Account01を指定した場合、以下のパラメータを参照します
-#      // HitachiVSP 接続情報
-#      account.HitachiVSP.Account01.server   = 'http://zabbix:8081/zabbix'
-#      account.HitachiVSP.Account01.user      = 'admin'
-#      account.HitachiVSP.Account01.password  = 'admin'
-
-# [[metrics]]
+#
+#      // 設定例
+#
+#         // HitachiVSP REST API 接続用アドレス。IPアドレスの場合、
+#         // http 接続します。https 接続、ポート名を指定したい場合は、
+#         // URL 形式で、'https://192.168.10.1:59443' などと指定します
+#         account.HitachiVSP.Account01.server   = 'http://192.168.10.1'
+#         account.HitachiVSP.Account01.user      = 'admin'
+#         account.HitachiVSP.Account01.password  = 'admin'
 
 # メトリック定義コマンドリスト
+
+# HitachiVSP API 情報採取用 URL を追加する場合、以下リストに追加します。
+# Excel 検査対象シートに記載した、アドレスを前に追加した URL で REST API
+# にアクセスします。IP アドレスを指定した場合は、http://{IPアドレス}/{URL}
+# の形式でアクセスします。
+#
+# HitachiVSP API リファレンス : 
 # 
-# HitachiVSP API の既定の実行コマンドリストはハードコーディングされており、
-# 変更できません。以下リストは抽出項目のメトリック定義のみになります。
+# http://itdoc.hitachi.co.jp/manuals/3021/3021901610/INDEX.HTM
+#
+# 設定例:
+#
+# [[metrics]]
+# 
+# id = "storage"   # ユニークなID
+# level = 0        # コマンド制限レベル(0-2 , 既定は 0)
+# text = '''       # Rest URL。'{id}' はストレージデバイスIDに置換されます
+# /ConfigurationManager/v1/objects/storages/{id}
+# '''
+# 
+# 以下リストは既定の REST API URL リストになります。これら設定は
+# ハードコーディングされており、変更する場合はコメントアウトを外して
+# 修正してください。
+
+# [[metrics]]
+# 
+# id = "storage"
+# level = 0
+# text = "/ConfigurationManager/v1/objects/storages/{id}"
+#
+# [[metrics]]
+# 
+# id = "host-groups"
+# level = 0
+# text = "/ConfigurationManager/v1/objects/storages/{id}/host-groups"
+#
+# [[metrics]]
+# 
+# id = "ports"
+# level = 0
+# text = "/ConfigurationManager/v1/objects/storages/{id}/ports"
+#
+# [[metrics]]
+# 
+# id = "ports"
+# level = 0
+# text = "/ConfigurationManager/v1/objects/storages/{id}/ports"
+#
+# [[metrics]]
+# 
+# id = "parity-groups"
+# level = 0
+# text = "/ConfigurationManager/v1/objects/storages/{id}/parity-groups"
+#
+# [[metrics]]
+# 
+# id = "ldevs"
+# level = 0
+# text = "/ConfigurationManager/v1/objects/storages/{id}/ldevs?headLdevId=0&count=100"
+#
+# [[metrics]]
+# 
+# id = "users"
+# level = 0
+# text = "/ConfigurationManager/v1/objects/storages/{id}/users"
+#
+# [[metrics]]
+# 
+# id = "ambient"
+# level = 0
+# text = "/ConfigurationManager/v1/objects/storages/{id}/components/instance"
+#
+# [[metrics]]
+# 
+# id = "snmp"
+# level = 0
+# text = "/ConfigurationManager/v1/objects/storages/{id}/snmp-settings/instance"
+
+# 以下リストは結果シート登録用のメトリック定義になります。
 
 [[metrics]]
 

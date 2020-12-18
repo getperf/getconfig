@@ -131,7 +131,7 @@ tracker = "ストレージ"
 
     [sheets.platforms]
 
-        HW = ["NetAppDataONTAP"]
+        HW = ["NetApp"]
         MONITOR = ["Zabbix"]
 
 [[sheets]]
@@ -142,4 +142,13 @@ tracker = "ソフトウェア"
     [sheets.platforms]
 
         MW = ["Oracle"]
+
+[[sheets]]
+
+name = "監視のみ"
+tracker = "監視のみ"
+
+    [sheets.platforms]
+
+        MW = ["Zabbix"]
 

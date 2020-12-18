@@ -1,15 +1,15 @@
 
 serial-number<|>package<|>owner<|>expiration<|>description<|>type<|>legacy<|>customer-id<|>
 Serial Number<|>Package<|>Owner<|>Expiration<|>Description<|>Type<|>Legacy<|>Customer ID<|>
-1-81-0000000000000451829000151<|>NFS<|>netapp1AM<|>-<|>"NFS License"<|>license<|>no<|>none<|>
-1-81-0000000000000451829000151<|>CIFS<|>netapp1AM<|>-<|>"CIFS License"<|>license<|>no<|>none<|>
-1-81-0000000000000451829000151<|>iSCSI<|>netapp1AM<|>-<|>"iSCSI License"<|>license<|>no<|>none<|>
-1-81-0000000000000451829000151<|>FCP<|>netapp1AM<|>-<|>"FCP License"<|>license<|>no<|>none<|>
-1-81-0000000000000451829000151<|>SnapRestore<|>netapp1AM<|>-<|>"SnapRestore License"<|>license<|>no<|>none<|>
-1-81-0000000000000451829000151<|>SnapMirror<|>netapp1AM<|>-<|>"SnapMirror License"<|>license<|>no<|>none<|>
-1-81-0000000000000451829000151<|>FlexClone<|>netapp1AM<|>-<|>"FlexClone License"<|>license<|>no<|>none<|>
-1-81-0000000000000451829000151<|>SnapVault<|>netapp1AM<|>-<|>"SnapVault License"<|>license<|>no<|>none<|>
-1-81-0000000000000451829000151<|>SnapManagerSuite<|>netapp1AM<|>-<|>"SnapManagerSuite License"<|>license<|>no<|>none<|>
-1-81-0000000000000451829000151<|>TPM<|>netapp1AM<|>-<|>"Trusted Platform Module License"<|>license<|>no<|>none<|>
-1-81-0000000000000451829000151<|>VE<|>netapp1AM<|>-<|>"Volume Encryption License"<|>license<|>no<|>none<|>
+1-81-0000000000000451829000151<|>NFS<|>netapp1am<|>-<|>"NFS License"<|>license<|>no<|>none<|>
+1-81-0000000000000451829000151<|>CIFS<|>netapp1am<|>-<|>"CIFS License"<|>license<|>no<|>none<|>
+1-81-0000000000000451829000151<|>iSCSI<|>netapp1am<|>-<|>"iSCSI License"<|>license<|>no<|>none<|>
+1-81-0000000000000451829000151<|>FCP<|>netapp1am<|>-<|>"FCP License"<|>license<|>no<|>none<|>
+1-81-0000000000000451829000151<|>SnapRestore<|>netapp1am<|>-<|>"SnapRestore License"<|>license<|>no<|>none<|>
+1-81-0000000000000451829000151<|>SnapMirror<|>netapp1am<|>-<|>"SnapMirror License"<|>license<|>no<|>none<|>
+1-81-0000000000000451829000151<|>FlexClone<|>netapp1am<|>-<|>"FlexClone License"<|>license<|>no<|>none<|>
+1-81-0000000000000451829000151<|>SnapVault<|>netapp1am<|>-<|>"SnapVault License"<|>license<|>no<|>none<|>
+1-81-0000000000000451829000151<|>SnapManagerSuite<|>netapp1am<|>-<|>"SnapManagerSuite License"<|>license<|>no<|>none<|>
+1-81-0000000000000451829000151<|>TPM<|>netapp1am<|>-<|>"Trusted Platform Module License"<|>license<|>no<|>none<|>
+1-81-0000000000000451829000151<|>VE<|>netapp1am<|>-<|>"Volume Encryption License"<|>license<|>no<|>none<|>
 

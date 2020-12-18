@@ -1,8 +1,8 @@
 
 node<|>pds-id<|>slotname<|>socket<|>channel<|>slot-no<|>serial<|>part-no<|>cecc-count<|>uecc-count<|>monitor<|>status<|>name<|>display-name<|>
 Node<|>DIMM ID<|>Slot Name<|>CPU Socket<|>Channel<|>Slot Number on a Channel<|>Serial Number<|>Part Number<|>Correctable ECC Error Count<|>Uncorrectable ECC Error Count<|>Health Monitor Name<|>Status<|>Unique Name of DIMM<|>Display Name for the DIMM<|>
-netapp1AM<|>1<|>DIMM-1<|>0<|>0<|>0<|>CE-02-1615-32182739<|>"SHB724G4LML23P2-SB  "<|>0<|>0<|>controller<|>ok<|>DIMM-1<|>DIMM-1<|>
-netapp1AM<|>2<|>DIMM-2<|>0<|>0<|>1<|>CE-02-1809-387F33FA<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-2<|>DIMM-2<|>
-netapp1AM<|>3<|>DIMM-3<|>0<|>1<|>0<|>CE-02-1809-387F33FB<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-3<|>DIMM-3<|>
-netapp1AM<|>4<|>DIMM-4<|>0<|>1<|>1<|>CE-02-1809-387F304C<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-4<|>DIMM-4<|>
+netapp1am<|>1<|>DIMM-1<|>0<|>0<|>0<|>CE-02-1615-32182739<|>"SHB724G4LML23P2-SB  "<|>0<|>0<|>controller<|>ok<|>DIMM-1<|>DIMM-1<|>
+netapp1am<|>2<|>DIMM-2<|>0<|>0<|>1<|>CE-02-1809-387F33FA<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-2<|>DIMM-2<|>
+netapp1am<|>3<|>DIMM-3<|>0<|>1<|>0<|>CE-02-1809-387F33FB<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-3<|>DIMM-3<|>
+netapp1am<|>4<|>DIMM-4<|>0<|>1<|>1<|>CE-02-1809-387F304C<|>X4B32QA4BNRCSO-B-NT1<|>0<|>0<|>controller<|>ok<|>DIMM-4<|>DIMM-4<|>
 

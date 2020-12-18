@@ -61,7 +61,7 @@ class ReportResult {
         }
         String hwPlatform = categories.get("HW")
         String osPlatform = categories.get("OS")
-        String paltformKey = osPlatform ?: hwPlatform ?: categories.get("MW")
+        String paltformKey = osPlatform ?: hwPlatform ?: categories.get("MW") ?: categories.get("MONITOR")
         if ( hwPlatform && osPlatform) {
             paltformKey = "${hwPlatform}.${osPlatform}" as String
         }
