@@ -42,6 +42,12 @@ import pathlib
 import subprocess
 import argparse
 
+Description='''
+Getconfig のインベントリ収集(run)、DB登録(update)コマンド
+をバッチ実行します。 
+実行済みのプロジェクトの設定ファイルを引数に指定して実行します。
+'''
+
 class GetconfigExecuter():
     GETCONFIG_TIMEOUT = 300
 
@@ -53,6 +59,7 @@ class GetconfigExecuter():
         _logger = logging.getLogger(__name__)
         self.config_paths = args.config.split(',')
         self.base_config = self.config_paths[0]
+        self.excel = args.excel
         self.collect_level = args.level
         self.dry_run = args.dry
         self.redmine = args.redmine
@@ -64,6 +71,9 @@ class GetconfigExecuter():
             sys.exit(1)
         else:
             _logger.info('set home : {}'.format(self.home))
+
+    def get_command_name(self):
+        return "getcf.bat" if os.name == 'nt' else "getcf"
 
     def check_os_config(self, config_path):
         """
@@ -84,13 +94,19 @@ class GetconfigExecuter():
             home = match_dir.group(1)
         return home
 
-    def get_cmd_base(self, config_path):
+    def get_cmd_base(self, config_path, cmd):
         """
         getconfig -c config.groovy コマンドラインを取得する。
         Getconfi ホームから実行するよう、 config_path を相対パスに変更する。
         """
         path = str(pathlib.Path(config_path).resolve())
-        return "getconfig.bat -c {}".format(path.replace(self.home, '.'))
+        opt_excel = ""
+        if self.excel:
+            opt_excel = " -e " + str(pathlib.Path(self.excel).resolve())
+        return "{} {} -c {}{}".format(self.get_command_name(), 
+                                 cmd,
+                                 path.replace(self.home, '.'),
+                                 opt_excel)
 
     def spawn(self, command):
         """
@@ -104,29 +120,21 @@ class GetconfigExecuter():
 
     def spawn_get_inventory(self, config_path):
         """
-        インベントリ収集コマンド getconfig -c config.groovy 実行。
+        インベントリ収集コマンド getcf run 実行。
         """
-        cmd_base = self.get_cmd_base(config_path)
+        cmd_base = self.get_cmd_base(config_path, "run")
         self.spawn(cmd_base + " --level {}".format(self.collect_level))
-        self.spawn(cmd_base + " -u local")
-
-    def spawn_regist_redmine(self):
-        """
-        Redmine チケット登録コマンド getconfig -c config.groovy -r 実行。
-        """
-        cmd_base = self.get_cmd_base(self.base_config)
-        if self.redmine:
-            self.spawn(cmd_base + " -rp {}".format(self.redmine))
-        else:
-            self.spawn(cmd_base + " -r")
 
     def spawn_regist_inventory_db(self):
         """
-        インベントリDB登録コマンド getconfig -c config.groovy -u db-all 実行。
+        DB登録コマンド getcf update all -c config.groovy  実行。
         """
-        cmd_base = self.get_cmd_base(self.base_config)
-        self.spawn(cmd_base + " -u db-all")
-
+        cmd_base = self.get_cmd_base(self.base_config, "update all")
+        if self.redmine:
+            self.spawn(cmd_base + " --redmine {}".format(self.redmine))
+        else:
+            self.spawn(cmd_base)
+            
     def run(self):
         """
         Getconfigのインベントリ収集からDB登録までをバッチ実行する。
@@ -134,11 +142,8 @@ class GetconfigExecuter():
         _logger = logging.getLogger(__name__)
         try:
             for config_path in self.config_paths:
-                cmd_base = self.get_cmd_base(config_path)
-                self.check_os_config(config_path)
                 self.spawn_get_inventory(config_path)
 
-            self.spawn_regist_redmine()
             self.spawn_regist_inventory_db()
         except Exception as e:
               print("Command error :{}".format(e.args))
@@ -147,10 +152,12 @@ class GetconfigExecuter():
         """
         コマンド実行オプションの解析
         """
-        parser = argparse.ArgumentParser()
+        parser = argparse.ArgumentParser(description=Description)
         parser.add_argument("-c", "--config", type = str, required = True, 
-                            help = "<path>\\config.groovy, ...")
-        parser.add_argument("-l", "--level", type = int, default = 1, 
+                            help = "<path>\\config.groovy")
+        parser.add_argument("-e", "--excel", type = str,  
+                            help = "getconfig.(xlsx|toml)")
+        parser.add_argument("-l", "--level", type = int, default = 0, 
                             help = "collection level")
         parser.add_argument("-d", "--dry", action="store_true", 
                             help = "dry run")

@@ -295,7 +295,7 @@ class ConfigEnv {
 
     // インベントリDB接続 ユーザ
     String getInventoryDBUsername() {
-        return System.getenv("CMDB_USER") ?: this.dbConfig?.cmdb?.user ?:
+        return System.getenv("CMDB_USER") ?: this.dbConfig?.cmdb?.username ?:
                 'sa'
     }
 

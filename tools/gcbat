@@ -1,7 +1,6 @@
-@echo off
+#!/bin/sh
 
-set getconfig_home="%~dp0"
+CWD=`dirname $0`
 
-python "%~dp0/gcbat.py" %*
-
-exit /b %ERRORLEVEL%
+export GETCONFIG_HOME="$CWD/.."
+python "$GETCONFIG_HOME/tools/gcbat.py"  $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15}
