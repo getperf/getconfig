@@ -20,18 +20,6 @@ Parametrs
     未指定の場合は、REDMINE_PROJECT 環境変数を選択し、環境変数がない場合は、
     Redmine 既定プロジェクトを選択します。
 
-Usage
------
-
-Cisco UCS のサーバのインベントリ収集、登録する。
-
-    gcbat.py  -c .\\template\\Cisco_UCS\\config_ucs.groovy,.\\config\\config.groovy
-
-コンフィグファイルは絶対パスでの指定も可能です。パスからホームを検索します。
-
-     gcbat.py -c C:\\cleansing_data\\import\\v2.4\\test2\\config\\config.groovy
-
-
 """
 
 import re
@@ -43,9 +31,8 @@ import subprocess
 import argparse
 
 Description='''
-Getconfig のインベントリ収集(run)、DB登録(update)コマンド
+Getconfig コマンドのrun(インベントリの収集)、update all(収集結果のDB登録)
 をバッチ実行します。 
-実行済みのプロジェクトの設定ファイルを引数に指定して実行します。
 '''
 
 class GetconfigExecuter():
@@ -74,14 +61,6 @@ class GetconfigExecuter():
 
     def get_command_name(self):
         return "getcf.bat" if os.name == 'nt' else "getcf"
-
-    def check_os_config(self, config_path):
-        """
-        config_path が OS用途の場合は、既定の設定として登録する
-        """
-        if re.search(r'[/|\\]config\.groovy', config_path) or \
-           re.search(r'[/|\\]config_(aix|solaris|esxi)\.groovy', config_path):
-            self.base_config = config_path
 
     def get_home(self, config_path):
         """
