@@ -41,11 +41,14 @@ class SpecReaderExcel implements SpecReaderBase {
     PlatformParameter parseParameterSheet(Sheet sheet) {
         PlatformParameter platformParameter = new PlatformParameter()
         for (int i=0; i <= sheet.getLastRowNum(); i++){
-            Cell cell = sheet.getRow(i).getCell(0)
-            Object value = CellUtil.getCellValue(cell)
-            if (value) {
-                platformParameter.add(value)
+            Cell cell = sheet.getRow(i)?.getCell(0)
+            if (cell) {
+                Object value = CellUtil.getCellValue(cell)
+                if (value) {
+                    platformParameter.add(value)
+                }
             }
+
         }
         return platformParameter
     }

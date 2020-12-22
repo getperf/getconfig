@@ -31,8 +31,8 @@ import pandas as pd
 import toml
 
 Description='''
+引数に移行元、移行先のプロジェクトディレクトリを指定して
 旧 Getconfig プロジェクトを新しいプロジェクトに移行します。
-引数に移行元、移行先のプロジェクトディレクトリを指定して実行します。
 '''
 
 class GetconfigMigration():
@@ -48,6 +48,7 @@ class GetconfigMigration():
         self.target_project = args.target
         self.dry_run = args.dry
         self.home = self.source_project
+        print(self)
 
     def get_command_name(self):
         return "getcf.bat" if os.name == 'nt' else "getcf"
@@ -76,8 +77,10 @@ class GetconfigMigration():
         _logger = logging.getLogger(__name__)
         _logger.info("run : {}".format(command))
         if not self.dry_run:
-            subprocess.check_call(command.split(), cwd=self.home, \
+            subprocess.check_call(command.split(), \
                 timeout=self.GETCONFIG_TIMEOUT)
+            # subprocess.check_call(command.split(), cwd=self.home, \
+            #     timeout=self.GETCONFIG_TIMEOUT)
 
     def spawn_init_project(self):
         """
@@ -91,12 +94,14 @@ class GetconfigMigration():
         Excel から「検査対象」シートを読み込み、整形する。
         結果は pandas データフレームにして返す。
         """
+        # print(excel_file)
         logger = logging.getLogger(__name__)
         master_list = pd.DataFrame()
         file = pd.ExcelFile(excel_file)
         if not ("検査対象" in file.sheet_names):
             return
         df = file.parse(sheet_name = "検査対象", skiprows=  2)
+        # df = pd.read_excel(excel_file, sheet_name = "検査対象", header = 2)
         if df.empty:
             return
         df = df.dropna(subset=["domain", "server_name"])
@@ -152,19 +157,32 @@ class GetconfigMigration():
 
     def write_getconfig_toml(self, df):
         dict_toml = {'testServers' : []}
-        headers = ["ip","account_id","password","remote_alias",
-                   "compare_server"]
+        headers = {"ip":"ip",
+                    "account_id":"accountId",
+                    "password":"password",
+                    "remote_alias":"remoteAlias",
+                    "compare_server":"compareServer"}
         for index, rows in df.iterrows(): 
             server = {
-                "server_name":index[0], 
-                "platform":index[1],
+                "serverName":index[0], 
+                "domain":index[1],
             }
-            for header in headers:
+            if server["serverName"] == "vsp1" and server["domain"] == "HitachiVSP":
+                continue
+            for header,value in headers.items():
                 if rows[header]:
-                    server[header] = rows[header]
+                    server[value] = rows[header]
             dict_toml['testServers'].append(server)
+            if server["domain"] in ["Linux", "Windows"]:
+                vm = {
+                    "serverName":server["serverName"], 
+                    "domain":"VMWare",
+                    "accountId":server["accountId"],
+                    "remoteAlias":server["remoteAlias"],
+                }
+                dict_toml['testServers'].append(vm)
 
-        spec_file = os.path.join(self.target_project, "getconfig.toml")
+                spec_file = os.path.join(self.target_project, "getconfig.toml")
         toml.dump(dict_toml, open(spec_file, mode='w'))
 
     def run(self):
@@ -190,7 +208,7 @@ class GetconfigMigration():
         parser.add_argument("-d", "--dry", action="store_true", 
                             help = "dry run")
         return parser.parse_args()
-m1
+
     def main(self):
         logging.basicConfig(
             level=getattr(logging, 'INFO'),
