@@ -69,8 +69,8 @@ void Config(TestUtil t) {
         }
 
     }
-    t.setMetric("floppyStartConnected", floppyDevice.Connectable?.StartConnected)
-    t.setMetric("floppyConnected", floppyDevice.Connectable?.Connected)
+    t.setMetric("floppyStartConnected", floppyDevice?.Connectable?.StartConnected ?: 'N/A')
+    t.setMetric("floppyConnected", floppyDevice?.Connectable?.Connected ?: 'N/A')
 // println disks
     t.setMetric("videoRamKB", videoCard.VideoRamSizeInKB)
     def headers = ['dev', 'usage', 'datastore', 'thin', 'writeThrough', 'level', 'shares']
