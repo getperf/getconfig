@@ -32,7 +32,7 @@ import toml
 
 Description='''
 旧 Getconfig プロジェクトを新しいプロジェクトに移行します。
-引数に移行元、移行先の新旧両プロジェクトディレクトリを指定して実行します。
+引数に移行元、移行先のプロジェクトディレクトリを指定して実行します。
 '''
 
 class GetconfigMigration():
@@ -52,14 +52,6 @@ class GetconfigMigration():
     def get_command_name(self):
         return "getcf.bat" if os.name == 'nt' else "getcf"
 
-    def check_os_config(self, config_path):
-        """
-        config_path が OS用途の場合は、既定の設定として登録する
-        """
-        if re.search(r'[/|\\]config\.groovy', config_path) or \
-           re.search(r'[/|\\]config_(aix|solaris|esxi)\.groovy', config_path):
-            self.base_config = config_path
-
     def get_home(self, config_path):
         """
         Getconfg ホームを、{home}/ccnfig/config.groovy のパスから検索する
@@ -73,8 +65,7 @@ class GetconfigMigration():
 
     def get_cmd_base(self, cmd):
         """
-        getconfig -c config.groovy コマンドラインを取得する。
-        Getconfi ホームから実行するよう、 config_path を相対パスに変更する。
+        getconfig コマンドラインを取得する。
         """
         return "{} {}".format(self.get_command_name(), cmd)
 
@@ -90,13 +81,16 @@ class GetconfigMigration():
 
     def spawn_init_project(self):
         """
-        インベントリ収集コマンド getcf init 実行。
+        プロジェクト作成コマンド getcf init 実行。
         """
         cmd_base = self.get_cmd_base("init")
         self.spawn(cmd_base + " {}".format(self.target_project))
 
     def load_sepc_sheet(self, excel_file):
-        """台帳読み込み"""
+        """
+        Excel から「検査対象」シートを読み込み、整形する。
+        結果は pandas データフレームにして返す。
+        """
         logger = logging.getLogger(__name__)
         master_list = pd.DataFrame()
         file = pd.ExcelFile(excel_file)
@@ -134,11 +128,10 @@ class GetconfigMigration():
 
     def load_sepc_sheet_all(self):
         """
-        Excel 検査シートの読込、プロジェクト下の全Excelファイルを
-        順に読み込む
+        プロジェクト下のExcel検査シートを全て読み込む
         """
         master_data = pd.DataFrame()
-        # プロジェクトルートの xlsx ファイルを読む
+        # プロジェクトホーム下の xlsx ファイルを読む
         for excel in os.listdir(self.source_project):
             excel = os.path.join(self.source_project, excel)
             if not os.path.isfile(excel):
@@ -147,7 +140,7 @@ class GetconfigMigration():
                 df = self.load_sepc_sheet(excel)
                 master_data = pd.concat([master_data, df])
 
-        # プロジェクトルートの xlsx ファイルを読む
+        # template ディレクトリ下の xlsx ファイルを読む
         template_dir = os.path.join(self.source_project, "template")
         for root, dirs, files in os.walk(template_dir):
             for file in files:
@@ -155,24 +148,20 @@ class GetconfigMigration():
                     excel = os.path.join(root, file)
                     df = self.load_sepc_sheet(excel)
                     master_data = pd.concat([master_data, df])
-
-        print(master_data.columns)
-        print(master_data)
-
         return master_data
 
     def write_getconfig_toml(self, df):
         dict_toml = {'testServers' : []}
+        headers = ["ip","account_id","password","remote_alias",
+                   "compare_server"]
         for index, rows in df.iterrows(): 
             server = {
                 "server_name":index[0], 
                 "platform":index[1],
-                "ip":rows.ip,
-                "account_id":rows.account_id,
-                "password":rows.password,
-                "remote_alias":rows.remote_alias,
-                "compare_server":rows.compare_server,
             }
+            for header in headers:
+                if rows[header]:
+                    server[header] = rows[header]
             dict_toml['testServers'].append(server)
 
         spec_file = os.path.join(self.target_project, "getconfig.toml")
@@ -186,11 +175,8 @@ class GetconfigMigration():
         _logger = logging.getLogger(__name__)
         # try:
         self.spawn_init_project()
-        df = self.load_sepc_sheet_all()
-        self.write_getconfig_toml(df)
-            # print(df.to_json())
-        # except Exception as e:
-        #       print("Command error :{}".format(e.args))
+        master_data = self.load_sepc_sheet_all()
+        self.write_getconfig_toml(master_data)
 
     def parser(self):
         """
@@ -204,7 +190,7 @@ class GetconfigMigration():
         parser.add_argument("-d", "--dry", action="store_true", 
                             help = "dry run")
         return parser.parse_args()
-
+m1
     def main(self):
         logging.basicConfig(
             level=getattr(logging, 'INFO'),
