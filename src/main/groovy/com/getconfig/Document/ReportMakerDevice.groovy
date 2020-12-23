@@ -23,6 +23,7 @@ class ReportMakerDevice {
 
     void make() {
         reportMaker.setTemplateSheet("Device")
+        int dummyAnchorIndex = 100
         Table<String, String, ResultLine> devices = this.testScenario.devices
         SheetManager manager
         devices.columnKeySet().each {String sheetName ->
@@ -76,6 +77,8 @@ class ReportMakerDevice {
                     row ++
                 }
             }
+            dummyAnchorIndex ++
+            manager.resetHeader(dummyAnchorIndex)
         }
     }
 }
