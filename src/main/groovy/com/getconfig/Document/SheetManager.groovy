@@ -3,19 +3,10 @@ package com.getconfig.Document
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.ClientAnchor;
-import org.apache.poi.ss.usermodel.Comment;
-import org.apache.poi.ss.usermodel.CreationHelper;
-import org.apache.poi.ss.usermodel.PrintSetup;
-import org.apache.poi.ss.usermodel.RichTextString;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet
+import org.apache.poi.ss.usermodel.*
 import org.apache.poi.ss.util.CellRangeAddress
-import org.apache.poi.ss.util.CellRangeAddressList;
-import static com.getconfig.Document.ExcelConstants.*
+
+import static com.getconfig.Document.ExcelConstants.DEFAULT_CELL_STYLE_ID
 
 @TypeChecked
 @CompileStatic
@@ -28,6 +19,9 @@ class SheetManager {
     private int offset;
     private int rowIndex;
     private int columnIndex;
+    private int dummyCount;
+    private Comment dummyComment;
+    private ClientAnchor dummyAncor;
     private Map<String,CellStyle> cellStyles = new LinkedHashMap<>();
     private Map<String,Integer> headers;
 
@@ -69,6 +63,30 @@ class SheetManager {
             }
         }
         return this.headers
+    }
+
+    // ヘッダーのコメントを削除して、オートフィルターを設定する
+    // headerCell.removeCellComment() の　NullPointer Exception を回避するため、
+    // ダミーの comment を作成する。Anchor の位置を変える必要があるので一位の引数を指定する
+    void resetHeader(int dummyIndex) {
+        Row headerRow = sheet.getRow(sheet.getFirstRowNum())
+        Row headerRow2 = sheet.getRow(sheet.getFirstRowNum()+1)
+        if (!this.dummyAncor) {
+            Drawing drawing = sheet.createDrawingPatriarch();
+            this.dummyAncor = drawing.createAnchor(0, 0, 0, 0, dummyIndex, 2, dummyIndex, 2);
+            this.dummyComment = drawing.createCellComment(this.dummyAncor)
+        }
+        List<Cell> headerCells = headerRow as List<Cell>
+        headerCells.addAll(headerRow2 as List<Cell>)
+        for (Cell headerCell : headerCells) {
+            Comment comment = headerCell.getCellComment()
+            if (headerCell && comment) {
+                headerCell.removeCellComment()
+            }
+        }
+        // ヘッダーにオートフィルター設定
+        sheet.setAutoFilter(new CellRangeAddress(
+                0,sheet.getLastRowNum(), 0, headerRow.size() - 1))
     }
 
     /**

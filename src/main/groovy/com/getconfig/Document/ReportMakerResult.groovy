@@ -150,6 +150,7 @@ class ReportMakerResult {
     void make() {
         reportMaker.parseCellStyles("CellStyle")
         def resultSheetServerKeys = testScenario.resultSheetServerKeys.asMap()
+        int dummyAnchorIndex
         resultSheetServerKeys.each { String sheetName,
                                      Collection<String> refServers ->
             List<String> servers = this.reOrderServersByTag(refServers as List)
@@ -190,7 +191,9 @@ class ReportMakerResult {
             groupRows << row
             this.makeRowGroup(groupRows)
             int column = this.columnSize(servers.size())
-            manager.sheet.setAutoFilter(new CellRangeAddress(0, 0, 0, column))
+            // manager.sheet.setAutoFilter(new CellRangeAddress(0, 0, 0, column))
+            dummyAnchorIndex ++
+            manager.resetHeader(dummyAnchorIndex)
         }
     }
 
