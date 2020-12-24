@@ -79,8 +79,6 @@ void addIopsLimitDevice(TestUtil t, json) {
     }
     List headers2 = headers.values() as List<String>
     t.devices(headers2, csv)
-println csv
-println limits
     def status = (limits.size() == 0) ? 'NoLimit' : limits.toString()
     t.setMetric("vm_iops_limit", status)
 }
@@ -159,7 +157,6 @@ void Config(TestUtil t) {
     def videoCard
     def disks = []
 	json.Hardware.Device.each { node -> 
-        // println node
         if (node['Key'] == 8000) {  // Label:Floppy drive
             floppyDevice = node
         } else if (node['Key'] == 500) {   // Label:Video card
@@ -170,7 +167,6 @@ void Config(TestUtil t) {
     }
     t.setMetric("floppyStartConnected", floppyDevice?.Connectable?.StartConnected?:'N/A')
     t.setMetric("floppyConnected", floppyDevice?.Connectable?.Connected?:'N/A')
-// println disks
     t.setMetric("videoRamKB", videoCard.VideoRamSizeInKB)
     addStorageConfig(t, disks)
 

@@ -122,7 +122,7 @@ name = "MEM容量"
 redmineField = "MEM容量"
 
     [columns.inventories]
-    Linux = "mem_total"
+    Linux = "meminfo"
     Windows = "visible_memory"
     VMHost = "MemoryTotalGB"
     Solaris = "memory"
