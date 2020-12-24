@@ -1,9 +1,10 @@
 # VMWare 仮想マシン インベントリ収集シナリオ
 
-# REST で vCenter サーバに接続し、メトリック定義の対象オブジェクト群を取得します
-# MWare Managed Object を使用します
+# REST で vCenter サーバに接続し、VMware vSphere API にアクセスして、
+# 仮想マシンのインベントリ情報を収集します。
 #
-# Reference : http://pubs.vmware.com/vsphere-60/topic/com.vmware.wssdk.apiref.doc/vim.VirtualMachine.html
+# Reference : 
+#     https://code.vmware.com/apis/968/vsphere
 
 # Excel 検査対象シート
 
@@ -42,22 +43,56 @@
 # comment
 #     メトリックの定義
 # text 
-#     VMWare Managed Object テキスト、 ''' で括る
+#     VMWare Managed Object 名、複数行の場合は ''' で括る
 #     空白の場合、メトリックの定義のみでコマンドは実行しません
 #
 
+# 以下リストは既定の VMWare Managed Object のリストになります。これら設定は
+# ハードコーディングされており、変更する場合はコメントアウトを外して
+# 修正してください。
+
+# [[metrics]]
+# 
+# id = "summary"
+# level = 0
+# text = "summary"
+# 
+# [[metrics]]
+# 
+# id = "resourceConfig"
+# level = 0
+# text = "resourceConfig"
+# 
+# [[metrics]]
+# 
+# id = "guestHeartbeatStatus"
+# level = 0
+# text = "guestHeartbeatStatus"
+# 
+# [[metrics]]
+# 
+# id = "config"
+# level = 0
+# text = "config"
+# 
+# [[metrics]]
+# 
+# id = "guest"
+# level = 0
+# text = "guest"
+
+# 以下リストは結果シート登録用のメトリック定義になります。
+
 [[metrics]]
 
-id = "summary"
+id = "vm"
 name = "仮想マシン名"
-level = 0
 category = "VM設定"
 
 [[metrics]]
 
 id = "hostName"
 name = "ESXiホスト名"
-level = -1
 category = "VM設定"
 
 [[metrics]]
@@ -65,168 +100,111 @@ category = "VM設定"
 id = "numCpu"
 name = "CPU割り当て数"
 category = "VM設定"
-level = -1
 comment = "仮想マシンのCPU仮想ソケット数"
-
-[[metrics]]
-
-id = "powerState"
-name = "電源状態"
-category = "VM設定"
-level = -1
-comment = "電源On/Off"
 
 [[metrics]]
 
 id = "memoryMB"
 name = "メモリ割り当て"
 category = "VM設定"
-level = -1
 comment = "メモリ割り当てサイズ[MB]"
+
+[[metrics]]
+
+id = "powerState"
+name = "電源状態"
+category = "VM設定"
+comment = "電源On/Off"
+
+[[metrics]]
+
+id = "guestHeartbeatStatus"
+name = "ハートビート状態"
+category = "VM設定"
 
 [[metrics]]
 
 id = "template"
 name = "テンプレート使用"
-level = -1
-category = "VM設定"
-
-[[metrics]]
-
-id = "guestId"
-name = "ゲストID"
-level = -1
-category = "VM設定"
-
-[[metrics]]
-
-id = "resourceConfig"
-name = "CPU,メモリ割り当て制限"
-level = 0
-category = "VM設定"
-
-[[metrics]]
-
-id = "cpuAffinity"
-name = "CPUアフィニティ"
-level = -1
-category = "VM設定"
-
-[[metrics]]
-
-id = "memAffinity"
-name = "メモリアフィニティ"
-level = -1
-category = "VM設定"
-
-[[metrics]]
-
-id = "cpuHotAdd"
-name = "CPUホットアドの有効化"
-level = -1
-category = "VM設定"
-
-[[metrics]]
-
-id = "memoryReserveLock"
-name = "すべてのゲストメモリを予約"
-level = -1
-category = "VM設定"
-comment = "すべてのゲストメモリを予約（全てロック）"
-
-[[metrics]]
-
-id = "memHotAdd"
-name = "メモリホットプラグ"
-level = -1
-category = "VM設定"
-comment = "メモリホットプラグ"
-
-[[metrics]]
-
-id = "vm_iops_limit"
-name = "ストレージIOPS制限"
-level = -1
-category = "VM設定"
-
-[[metrics]]
-
-id = "floppyConnected"
-name = "フロッピー接続状態"
-level = -1
-category = "VM設定"
-
-[[metrics]]
-
-id = "floppyStartConnected"
-name = "OS起動時にフロッピー自動接続"
-level = -1
-category = "VM設定"
-
-[[metrics]]
-
-id = "videoRamKB"
-name = "ビデオラム[KB]"
-level = -1
 category = "VM設定"
 
 [[metrics]]
 
 id = "toolsStatus"
 name = "ツールインストール状態"
-level = -1
 category = "VM設定"
 
 [[metrics]]
 
-id = "internalversion"
-name = "ツールバージョン(Internal)"
-level = -1
+id = "vm_iops_limit"
+name = "ストレージIOPS制限"
 category = "VM設定"
 
 [[metrics]]
 
-id = "requiredversion"
-name = "ツールバージョン(Required)"
-level = -1
-category = "VM設定"
-
-[[metrics]]
-
-id = "vm_timesync"
-name = "VMWareツール時刻同期"
-level = -1
-category = "VM設定"
-
-[[metrics]]
-
-id = "guestHeartbeatStatus"
-name = "ハートビート状態"
-level = 0
-category = "VM設定"
-
-[[metrics]]
-
-id = "config"
+id = "disk"
 name = "ストレージ構成"
-level = 0
 category = "VM設定"
 
 [[metrics]]
 
-id = "guest"
+id = "net"
 name = "ネットワーク構成"
-level = 0
 category = "VM設定"
-
-
-# Metric definitions used in the check sheet report. 
-# Get value from VMWare Managed Object result
 
 [[metrics]]
 
-id = "vm.Cluster"
-name = "vCenterクラスター名"
-level = -1
-category = "VM設定"
+id = "guestId"
+name = "ゲストID"
+category = "VM設定その他"
+
+[[metrics]]
+
+id = "cpuAffinity"
+name = "CPUアフィニティ"
+category = "VM設定その他"
+
+[[metrics]]
+
+id = "memAffinity"
+name = "メモリアフィニティ"
+category = "VM設定その他"
+
+[[metrics]]
+
+id = "cpuHotAdd"
+name = "CPUホットアドの有効化"
+category = "VM設定その他"
+
+[[metrics]]
+
+id = "memoryReserveLock"
+name = "すべてのゲストメモリを予約"
+category = "VM設定その他"
+comment = "すべてのゲストメモリを予約（全てロック）"
+
+[[metrics]]
+
+id = "memHotAdd"
+name = "メモリホットプラグ"
+category = "VM設定その他"
+comment = "メモリホットプラグ"
+
+[[metrics]]
+
+id = "floppyConnected"
+name = "フロッピー接続状態"
+category = "VM設定その他"
+
+[[metrics]]
+
+id = "floppyStartConnected"
+name = "OS起動時にフロッピー自動接続"
+category = "VM設定その他"
+
+[[metrics]]
+
+id = "videoRamKB"
+name = "ビデオラム[KB]"
+category = "VM設定その他"
 

@@ -83,7 +83,7 @@ class Oracle implements DirectExecutorWrapper {
             if (metric.level > this.level) {
                 return
             }
-            println "ID:${metric.id},LV:${metric.level},${this.level}"
+            // println "ID:${metric.id},LV:${metric.level},${this.level}"
         }
         return 0
     }
