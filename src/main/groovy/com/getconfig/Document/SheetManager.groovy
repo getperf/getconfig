@@ -86,7 +86,7 @@ class SheetManager {
         }
         // ヘッダーにオートフィルター設定
         sheet.setAutoFilter(new CellRangeAddress(
-                0,sheet.getLastRowNum(), 0, headerRow.size() - 1))
+                0,sheet.getLastRowNum() - 1, 0, headerRow.size() - 1))
     }
 
     /**
