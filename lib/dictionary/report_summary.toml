@@ -227,14 +227,14 @@ id = "hostGroup"
 name = "監視ホストグループ"
 
     [columns.inventories]
-    Zabbix = "groups"
+    Zabbix = "hostGroup"
 
 [[columns]]
 id = "template"
 name = "監視テンプレート"
 
     [columns.inventories]
-    Zabbix = "parentTemplates"
+    Zabbix = "template"
 
 [[columns]]
 id = "misc"

@@ -65,6 +65,9 @@ class LogParser implements Controller {
         def baseDir = new File(this.agentLogPath)
         baseDir.eachFileRecurse(FileType.FILES) { logFile ->
             def path = logFile.getPath() - baseDir
+            if (logFile.length() == 0) {
+                return
+            }
             AgentLog agentLog = new AgentLog(path, this.agentLogPath).parse()
 
             // バッチモードでサーバディレクトリがない共通ログの場合、対象ドメインの全サーバログとして登録
