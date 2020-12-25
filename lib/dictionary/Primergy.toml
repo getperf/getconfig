@@ -75,38 +75,26 @@ category = "ファームウェア"
 
 [[metrics]]
 
+id = "disk"
+name = "ストレージ構成"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "disk_drive"
+name = "物理ディスク構成"
+category = "ファームウェア"
+
+[[metrics]]
+
 id = "network"
 name = "ネットワーク"
 category = "ファームウェア"
 
 [[metrics]]
 
-id = "ip"
-name = "IPアドレス"
-category = "ファームウェア"
-
-[[metrics]]
-
-id = "subnet"
-name = "サブネット"
-category = "ファームウェア"
-
-[[metrics]]
-
-id = "origin"
-name = "ネットオリジン"
-category = "ファームウェア"
-
-[[metrics]]
-
-id = "gateway"
-name = "ゲートウェイ"
-category = "ファームウェア"
-
-[[metrics]]
-
 id = "nic"
-name = "NIC"
+name = "ネットワークI/F"
 category = "ファームウェア"
 
 [[metrics]]
@@ -119,4 +107,28 @@ category = "ファームウェア"
 
 id = "ntp1"
 name = "NTPサーバ#1"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "snmp.trap"
+name = "SNMPトラップ有効化"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "snmp.community"
+name = "SNMPコミュニティ"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "snmp.dest"
+name = "SNMPトラップ通知先"
+category = "ファームウェア"
+
+[[metrics]]
+
+id = "snmp.port"
+name = "SNMPポート"
 category = "ファームウェア"
