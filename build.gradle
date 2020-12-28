@@ -131,7 +131,7 @@ task buildLinuxAgent(type: Exec, dependsOn:cloneAgentRepo) {
     environment "GOOS", "linux"
     environment "GOARCH", "amd64"
     commandLine 'go', 'build', '-ldflags', '-s -w', 
-        '-o', "./gconf", 
+        '-o', "$rootDir/gconf", 
         'github.com/getperf/getperf2/cmd/gconf'
 }
 
@@ -140,7 +140,7 @@ task buildWindowsAgent(type: Exec, dependsOn:buildLinuxAgent) {
     environment "GOOS", "windows"
     environment "GOARCH", "386"
     commandLine 'go', 'build', '-ldflags', '-s -w', 
-        '-o', "./gconf.exe", 
+        '-o', "$rootDir/gconf.exe", 
         'github.com/getperf/getperf2/cmd/gconf'
 }
 
@@ -158,11 +158,7 @@ task zipApp(type: Zip, dependsOn: [shadowJar, buildWindowsAgent]) {
     }
     into("${target}/") {
         fileMode 0755
-        from fileTree(dir : '.').include('getcf', 'getcf.bat')
-    }
-    into("${target}/") {
-        fileMode 0755
-        from fileTree(dir : "$buildDir/getperf2").include('gconf', 'gconf.exe')
+        from fileTree(dir : '.').include('gconf', 'gconf.exe', 'getcf', 'getcf.bat')
     }
     into ("${target}/config") {
         from fileTree(dir : 'config').include(
