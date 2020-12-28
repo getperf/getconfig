@@ -1,0 +1,18 @@
+
+
+DeviceID                  : CPU0
+Name                      : Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz
+MaxClockSpeed             : 3193
+SocketDesignation         : CPU socket #0
+NumberOfCores             : 2
+NumberOfLogicalProcessors : 2
+
+DeviceID                  : CPU1
+Name                      : Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz
+MaxClockSpeed             : 3193
+SocketDesignation         : CPU socket #1
+NumberOfCores             : 2
+NumberOfLogicalProcessors : 2
+
+
+

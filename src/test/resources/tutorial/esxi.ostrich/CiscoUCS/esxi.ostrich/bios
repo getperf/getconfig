@@ -1,0 +1,14 @@
+show bios detail
+---
+    bios-version: C240M5.4.0.1g.0.0912180338
+    bios-backup-version: C240M5.4.0.2a.0.1102180333
+    boot-order: (none)
+    fw-status: None, OK
+    secure-boot: disabled
+    boot-mode: Uefi
+    act-boot-mode: Uefi
+    last-upd-cfg: BIOS
+    one-time-boot-device: (none)
+
+...
+esxi.ostrich

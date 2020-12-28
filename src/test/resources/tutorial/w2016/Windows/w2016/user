@@ -1,0 +1,24 @@
+
+
+UserName         : Administrator
+DontExpirePasswd : True
+AccountDisable   : False
+SID              : S-1-5-21-4127652004-385634555-3113667412-500
+
+UserName         : DefaultAccount
+DontExpirePasswd : True
+AccountDisable   : True
+SID              : S-1-5-21-4127652004-385634555-3113667412-503
+
+UserName         : Guest
+DontExpirePasswd : True
+AccountDisable   : True
+SID              : S-1-5-21-4127652004-385634555-3113667412-501
+
+UserName         : testuser
+DontExpirePasswd : False
+AccountDisable   : False
+SID              : S-1-5-21-4127652004-385634555-3113667412-1000
+
+
+

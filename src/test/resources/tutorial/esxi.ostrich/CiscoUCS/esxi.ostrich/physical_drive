@@ -1,0 +1,675 @@
+show physical-drive detail
+---
+    physical-drive: 3
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 0
+    lsi-drive-number: 3
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:44
+    operating-temperature: 22
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c0182
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 4
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 1
+    lsi-drive-number: 4
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:44
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c0183
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 5
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 2
+    lsi-drive-number: 5
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:44
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c0184
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 6
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 3
+    lsi-drive-number: 6
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:44
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c0185
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 7
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 4
+    lsi-drive-number: 7
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:44
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c0186
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 8
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 5
+    lsi-drive-number: 8
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:45
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c0187
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 9
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 6
+    lsi-drive-number: 9
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:45
+    operating-temperature: 22
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c0188
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 10
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 7
+    lsi-drive-number: 10
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:45
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c0189
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 11
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 8
+    lsi-drive-number: 11
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:45
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c018a
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 12
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 9
+    lsi-drive-number: 12
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:46
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c018b
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 13
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 10
+    lsi-drive-number: 13
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:46
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c018c
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 14
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 11
+    lsi-drive-number: 14
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:46
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c018d
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 15
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 12
+    lsi-drive-number: 15
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:46
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c018e
+    sas-address-1: 0x0
+    power-state: active
+
+---
+    physical-drive: 16
+    controller: MRAID
+    info-valid: Yes
+    error: 
+    enclosure-device-id: 14
+    device-id: 13
+    lsi-drive-number: 16
+    physical-drive-health: Good
+    physical-drive-status: Unconfigured Good
+    is-boot-drive: false
+    vendor: ATA
+    product-id: Micron_5100_MTFDDAK1T6TCC
+    predictive-failure-count: 0
+    product-revision-level: D0MU054
+    media-type: SSD
+    block-size: 512
+    physical-block-size: 4096
+    link-speed: 6.0 Gb/s
+    locator-led: false
+    fde-capable: 0
+    fde-enabled: 0
+    secured: 0
+    locked: 0
+    state: unconfigured good
+    foreign-locked: 0
+    enclosure-association: Expander Attached
+    enclosure-logical-id: 0x0
+    enclosure-sas-address-0: 0x0
+    enclosure-sas-address-1: 0x0
+    power-cycle-count: 48
+    power-on-hours: 5146
+    percentage-life-left: 100
+    wear-status-in-days: 1825
+    percent-rsvd-capacity-consumed: 0
+    time-of-last-SMART-refresh: 2019-09-26 16:46
+    operating-temperature: 21
+    media-error-count: 0
+    other-error-count: 0
+    interface-type: SATA
+    block-count: 3125627567
+    raw-size: 1526185 MB
+    non-coerced-size: 1526185 MB
+    coerced-size: 1526185 MB
+    sas-address-0: 5b08bcf10b4c018f
+    sas-address-1: 0x0
+    power-state: active
+
+...
+esxi.ostrich /chassis/storageadapter 

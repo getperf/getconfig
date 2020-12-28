@@ -1,0 +1,26 @@
+
+
+Index              : 63
+EntryType          : Error
+InstanceId         : 1000
+Message            : 障害が発生しているアプリケーション名: LogonUI.exe、バージョン: 10.0.17763.1、タイム スタンプ: 0x5ab44f80
+                     障害が発生しているモジュール名: Windows.UI.Xaml.dll、バージョン: 10.0.17763.1457、タイム スタンプ: 0x06c5567a
+                     例外コード: 0xc000027b
+                     障害オフセット: 0x0000000000701ce2
+                     障害が発生しているプロセス ID: 0x48c
+                     障害が発生しているアプリケーションの開始時刻: 0x01d696c0906d09e9
+                     障害が発生しているアプリケーション パス: C:\Windows\system32\LogonUI.exe
+                     障害が発生しているモジュール パス: C:\Windows\System32\Windows.UI.Xaml.dll
+                     レポート ID: 8c739878-70cc-46be-9e95-c3eab692329f
+                     障害が発生しているパッケージの完全な名前: 
+                     障害が発生しているパッケージに関連するアプリケーション ID: 
+Category           : アプリケーション クラッシュ イベント
+CategoryNumber     : 100
+ReplacementStrings : {LogonUI.exe, 10.0.17763.1, 5ab44f80, Windows.UI.Xaml.dll...}
+Source             : Application Error
+TimeGenerated      : 2020/09/30 9:36:01
+TimeWritten        : 2020/09/30 9:36:01
+UserName           : 
+
+
+

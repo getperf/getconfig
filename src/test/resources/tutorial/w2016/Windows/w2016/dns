@@ -1,0 +1,44 @@
+
+
+InterfaceAlias  : イーサネット
+InterfaceIndex  : 3
+AddressFamily   : IPv4
+ServerAddresses : {192.168.0.1}
+
+InterfaceAlias  : イーサネット
+InterfaceIndex  : 3
+AddressFamily   : IPv6
+ServerAddresses : {240b:10:a001:8100:fab7:97ff:fe36:1ed0}
+
+InterfaceAlias  : Loopback Pseudo-Interface 1
+InterfaceIndex  : 1
+AddressFamily   : IPv4
+ServerAddresses : {}
+
+InterfaceAlias  : Loopback Pseudo-Interface 1
+InterfaceIndex  : 1
+AddressFamily   : IPv6
+ServerAddresses : {fec0:0:0:ffff::1, fec0:0:0:ffff::2, fec0:0:0:ffff::3}
+
+InterfaceAlias  : isatap.{534C22FF-5D21-4D60-87B1-8A60947B1308}
+InterfaceIndex  : 2
+AddressFamily   : IPv4
+ServerAddresses : {192.168.0.1}
+
+InterfaceAlias  : isatap.{534C22FF-5D21-4D60-87B1-8A60947B1308}
+InterfaceIndex  : 2
+AddressFamily   : IPv6
+ServerAddresses : {240b:10:a001:8100:fab7:97ff:fe36:1ed0}
+
+InterfaceAlias  : Teredo Tunneling Pseudo-Interface
+InterfaceIndex  : 4
+AddressFamily   : IPv4
+ServerAddresses : {}
+
+InterfaceAlias  : Teredo Tunneling Pseudo-Interface
+InterfaceIndex  : 4
+AddressFamily   : IPv6
+ServerAddresses : {}
+
+
+

@@ -115,7 +115,7 @@ goBuild {
 }
 
 task zipApp(type: Zip, dependsOn: shadowJar) {
-    def target  = 'server-acceptance2'
+    def target  = 'server-config'
     archiveName = "${baseName}-${version}.${extension}"
     // Issue: Copy hidden file
     // http://stackoverflow.com/questions/29504250/how-to-copy-hidden-resource-files-in-gradle
@@ -137,11 +137,13 @@ task zipApp(type: Zip, dependsOn: shadowJar) {
     [
         'lib',
         'build/libs',
-        'src/test/resources/inventory'
     ].each { path ->
         into ("./${target}/${path}") {
             from path
         }
+    }
+    into ("./${target}/src/test/resources/inventory") {
+        from 'src/test/resources/tutorial'
     }
 }
 

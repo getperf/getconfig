@@ -1,0 +1,26 @@
+
+
+DataBasePath                 : C:\Windows\System32\drivers\etc
+Domain                       : 
+ForwardBroadcasts            : 0
+ICSDomain                    : mshome.net
+IPEnableRouter               : 0
+NameServer                   : 
+SyncDomainWithMembership     : 1
+NV Hostname                  : w2019
+Hostname                     : w2019
+SearchList                   : 
+UseDomainNameDevolution      : 1
+EnableICMPRedirect           : 1
+DeadGWDetectDefault          : 1
+DontAddDefaultGatewayDefault : 0
+PSPath                       : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
+                               \Tcpip\Parameters
+PSParentPath                 : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
+                               \Tcpip
+PSChildName                  : Parameters
+PSDrive                      : HKLM
+PSProvider                   : Microsoft.PowerShell.Core\Registry
+
+
+

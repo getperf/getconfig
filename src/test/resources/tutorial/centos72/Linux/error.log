@@ -1,0 +1,9 @@
+Unit iptables.service could not be found.
+run centos72:iptables : run shell: Process exited with status 4
+cat: /etc/snmp/snmpd.conf: そのようなファイルやディレクトリはありません
+run centos72:snmp_trap : run command: Process exited with status 1
+sudo: sudo を実行するには tty がなければいけません。すみません
+run centos72:cron : run command: Process exited with status 1
+grep: /var/log/messages: 許可がありません
+sudo: sudo を実行するには tty がなければいけません。すみません
+run centos72:oracle_module : run command: Process exited with status 1

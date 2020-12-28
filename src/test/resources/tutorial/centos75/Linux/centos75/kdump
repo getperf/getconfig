@@ -1,0 +1,16 @@
+● kdump.service - Crash recovery kernel arming
+   Loaded: loaded (/usr/lib/systemd/system/kdump.service; enabled; vendor preset: enabled)
+   Active: active (exited) since 木 2020-10-22 08:34:02 JST; 6h ago
+ Main PID: 5053 (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/kdump.service
+
+10月 22 08:34:01 centos75 dracut[6959]: drwxr-xr-x   2 root     root            0 Oct 22 08:33 usr/share/zoneinfo/Asia
+10月 22 08:34:01 centos75 dracut[6959]: -rw-r--r--   1 root     root          292 May  9  2018 usr/share/zoneinfo/Asia/Tokyo
+10月 22 08:34:01 centos75 dracut[6959]: drwxr-xr-x   2 root     root            0 Oct 22 08:33 var
+10月 22 08:34:01 centos75 dracut[6959]: lrwxrwxrwx   1 root     root           11 Oct 22 08:33 var/lock -> ../run/lock
+10月 22 08:34:01 centos75 dracut[6959]: lrwxrwxrwx   1 root     root            6 Oct 22 08:33 var/run -> ../run
+10月 22 08:34:01 centos75 dracut[6959]: ========================================================================
+10月 22 08:34:01 centos75 dracut[6959]: *** Creating initramfs image file '/boot/initramfs-3.10.0-1127.19.1.el7.x86_64kdump.img' done ***
+10月 22 08:34:02 centos75 kdumpctl[5053]: kexec: loaded kdump kernel
+10月 22 08:34:02 centos75 kdumpctl[5053]: Starting kdump: [OK]
+10月 22 08:34:02 centos75 systemd[1]: Started Crash recovery kernel arming.

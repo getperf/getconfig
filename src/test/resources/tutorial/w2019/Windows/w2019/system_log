@@ -1,0 +1,84 @@
+
+
+Index              : 640
+EntryType          : Error
+InstanceId         : 3221232495
+Message            : Update Orchestrator Service サービスは、次のエラーで終了しました: 
+                     %%2147549471
+Category           : (0)
+CategoryNumber     : 0
+ReplacementStrings : {Update Orchestrator Service, %%2147549471}
+Source             : Service Control Manager
+TimeGenerated      : 2020/09/30 9:43:36
+TimeWritten        : 2020/09/30 9:43:36
+UserName           : 
+
+Index              : 630
+EntryType          : Error
+InstanceId         : 20
+Message            : インストールの失敗: エラー 0x80240017 で次の更新プログラムのインストールに失敗しました: Windows Defender Antivirus マルウェア対策プラットフォームの更新プ
+                     ログラム - KB4052623 (Version 4.18.2001.10)。
+Category           : (1)
+CategoryNumber     : 1
+ReplacementStrings : {0x80240017, Windows Defender Antivirus マルウェア対策プラットフォームの更新プログラム - KB4052623 (Version 4.18.2001.10)
+                     , {62afbd9b-097b-4300-9e4d-275c9a35be2c}, 201...}
+Source             : Microsoft-Windows-WindowsUpdateClient
+TimeGenerated      : 2020/09/30 9:42:43
+TimeWritten        : 2020/09/30 9:42:43
+UserName           : NT AUTHORITY\SYSTEM
+
+Index              : 629
+EntryType          : Error
+InstanceId         : 20
+Message            : インストールの失敗: エラー 0x80240017 で次の更新プログラムのインストールに失敗しました: Update for Adobe Flash Player for Windows Serv
+                     er 2019 (1809) for x64-based Systems (KB4462930)。
+Category           : (1)
+CategoryNumber     : 1
+ReplacementStrings : {0x80240017, Update for Adobe Flash Player for Windows Server 2019 (1809) for x64-based Systems (K
+                     B4462930), {b8ea1a5b-3636-4905-ae4b-d171014df7a6}, 201...}
+Source             : Microsoft-Windows-WindowsUpdateClient
+TimeGenerated      : 2020/09/30 9:42:43
+TimeWritten        : 2020/09/30 9:42:43
+UserName           : NT AUTHORITY\SYSTEM
+
+Index              : 289
+EntryType          : Error
+InstanceId         : 3221232502
+Message            : Printer Extensions and Notifications サービスは、対話型サービスとしてマークされています。しかし、システムは対話型サービスを許可しないように構成されています。こ
+                     のサービスは正常に機能しない可能性があります。
+Category           : (0)
+CategoryNumber     : 0
+ReplacementStrings : {Printer Extensions and Notifications}
+Source             : Service Control Manager
+TimeGenerated      : 2020/09/30 9:17:25
+TimeWritten        : 2020/09/30 9:17:25
+UserName           : 
+
+Index              : 83
+EntryType          : Error
+InstanceId         : 3221232495
+Message            : IP Helper サービスは、次のエラーで終了しました: 
+                     %%21
+Category           : (0)
+CategoryNumber     : 0
+ReplacementStrings : {IP Helper, %%21}
+Source             : Service Control Manager
+TimeGenerated      : 2020/09/30 0:15:48
+TimeWritten        : 2020/09/30 0:15:48
+UserName           : 
+
+Index              : 69
+EntryType          : Error
+InstanceId         : 3221232495
+Message            : Spooler サービスは、次のエラーで終了しました: 
+                     %%2147942414
+Category           : (0)
+CategoryNumber     : 0
+ReplacementStrings : {Spooler, %%2147942414}
+Source             : Service Control Manager
+TimeGenerated      : 2020/09/30 0:15:48
+TimeWritten        : 2020/09/30 0:15:48
+UserName           : 
+
+
+

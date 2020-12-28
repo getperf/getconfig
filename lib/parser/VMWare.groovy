@@ -187,7 +187,7 @@ void Guest(TestUtil t) {
         def label = net.Network ?: 'Default'
         def dhcp = net.IpConfig?.Dhcp
         if (dhcp) {
-            dhcp = dhcp.collect { key,value -> "${key}:${value.Enable}" }
+            dhcp = dhcp.collect { key,value -> "${key}:${value?.Enable}" }
         } else {
             dhcp = 'Disable'
         }
