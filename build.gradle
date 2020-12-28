@@ -170,6 +170,7 @@ task zipApp(type: Zip, dependsOn: [shadowJar, buildWindowsAgent]) {
     }
     [
         'lib',
+        'tools',
         'build/libs',
     ].each { path ->
         into ("./${target}/${path}") {
