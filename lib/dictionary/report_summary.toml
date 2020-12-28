@@ -122,7 +122,7 @@ name = "MEM容量"
 redmineField = "MEM容量"
 
     [columns.inventories]
-    Linux = "mem_total"
+    Linux = "meminfo"
     Windows = "visible_memory"
     VMHost = "MemoryTotalGB"
     Solaris = "memory"
@@ -193,7 +193,7 @@ name = "管理LAN"
 
     [columns.inventories]
     HPiLO = "ip_address"
-    Primergy = "ip"
+    Primergy = "network"
     CiscoUCS = "network"
     XSCF = "network"
 
@@ -227,14 +227,14 @@ id = "hostGroup"
 name = "監視ホストグループ"
 
     [columns.inventories]
-    Zabbix = "groups"
+    Zabbix = "hostGroup"
 
 [[columns]]
 id = "template"
 name = "監視テンプレート"
 
     [columns.inventories]
-    Zabbix = "parentTemplates"
+    Zabbix = "template"
 
 [[columns]]
 id = "misc"

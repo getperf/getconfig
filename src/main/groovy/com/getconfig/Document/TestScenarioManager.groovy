@@ -59,16 +59,16 @@ class TestScenarioManager implements Controller {
 
     void setAddedMetrics(Map<String,ResultGroup> resultGroups) {
         resultGroups.each { String serverName, ResultGroup resultGroup ->
-            int order = 1
+            int order = 0
             String oldParentMetricId
             resultGroup.addedTestMetrics.each { String metricId, AddedMetric addedMetric ->
                 String parentMetricId = addedMetric.parentMetricId()
-                if (!this.testScenario.setChildMetric(order, addedMetric)) {
-                    return
-                }
                 order ++
                 if (oldParentMetricId && oldParentMetricId != parentMetricId) {
                     order = 1
+                }
+                if (!this.testScenario.setChildMetric(order, addedMetric)) {
+                    return
                 }
                 oldParentMetricId = parentMetricId
             }

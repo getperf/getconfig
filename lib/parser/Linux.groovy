@@ -90,9 +90,6 @@ void sestatus(TestUtil t) {
         ( it =~ /SELinux status:\s+(.+?)$/).each {m0,m1->
             res['sestatus'] = m1
         }
-        ( it =~ /Current mode:\s+(.+?)$/).each {m0,m1->
-            res['se_mode'] = m1
-        }
     }
     t.results(res)
 }
@@ -242,8 +239,8 @@ void meminfo(TestUtil t) {
         }
         label = CommonUtil.toCamelCase(label)
         (it =~ /^MemTotal:\s+(\d+) (.+)$/).each {m0,m1,m2->
-            meminfo['meminfo'] = "${m1} ${m2}" 
-            meminfo['mem_total'] = norm(m1, m2)
+            meminfo['meminfo'] = norm(m1, m2)
+            meminfo['mem_total'] = "${m1} ${m2}" 
         }
         (it =~ /^MemFree:\s+(\d+) (.+)$/).each {m0,m1,m2->
             meminfo['mem_free'] = norm(m1, m2)
@@ -439,11 +436,14 @@ void block_device(TestUtil t) {
 
 @Parser("mdadb")
 void mdadb(TestUtil t) {
+    def devices = []
     t.readLine {
         (it =~ /^(\w+?)\s*:\s*(\w.+?)$/).each {m0, device, config->
             t.newMetric("mdadb.${device}", "[${device}]", config)
+            devices << device
         }
     }
+    t.results((devices.size() == 0) ? 'Disable' : devices.toString())
 }
 
 def convert_mount_short_name(String path) {
@@ -571,7 +571,7 @@ void filesystem_df_ip(TestUtil t) {
             def pct = NumberUtils.toDouble(usage)
             def limit = Math.ceil(pct/10) * 10.0
             res[mount] = "< ${limit} %"
-           t.newMetric("inode.${mount}", "Inode [${mount}]", inodes)
+           // t.newMetric("inode.${mount}", "Inode [${mount}]", inodes)
         }
     }
     def headers = ['inodes', 'iused', 'ifree', 'usage', 'mount']
@@ -834,7 +834,8 @@ void iptables(TestUtil t) {
             }
         }
     }
-    t.results(services.toString())
+    def status = (services.size() == 0) ? 'Disable' : services.toString()
+    t.results(status)
 }
 
 @Parser("runlevel")

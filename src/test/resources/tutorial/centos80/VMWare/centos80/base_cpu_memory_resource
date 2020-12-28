@@ -1,0 +1,1 @@
+{"CpuAllocation":{"Reservation":0,"ExpandableReservation":null,"Limit":-1,"Shares":{"Shares":1000,"Level":"normal"},"OverheadLimit":null},"MemoryAllocation":{"Reservation":0,"ExpandableReservation":null,"Limit":-1,"Shares":{"Shares":20480,"Level":"normal"},"OverheadLimit":null}}

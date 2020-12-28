@@ -44,7 +44,6 @@ class ProjectInitializer implements Controller {
         }
         DirUtils.ls(baseConfigDir, /^config_.*.groovy$/).each {
             File configFile ->
-                println "CONFIGFILE:$configFile, ${configFile.getName()}"
                 projectUtil.copyFile('config', configFile.getName())
         }
         // copy all files under the directory

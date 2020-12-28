@@ -42,10 +42,7 @@ void network(TestUtil t) {
 
     }    
     t.devices(['Adress', 'Subnet', 'Origin', 'Gateway'], csv)
-    t.setMetric("ip", addresses*.Address)
-    t.setMetric("subnet", addresses*.SubnetMask)
-    t.setMetric("origin", addresses*.AddressOrigin)
-    t.setMetric("gateway", addresses*.Gateway)
+    t.results(addresses*.Address.toString())
 }
 
 @Parser("nic")
@@ -70,4 +67,112 @@ void ntp0(TestUtil t) {
 void ntp1(TestUtil t) {
     def json = new JsonSlurper().parseText(t.readAll())
     t.results(json?.NtpServerName ?: 'N/A')
+}
+
+def size_info(arr = [:]) {
+    if (arr['#text'] && arr['@Unit']) {
+        return "${arr['#text']}${arr['@Unit']}"
+    } else {
+        return 'Unkown'
+    }
+}
+
+void physical_disks(TestUtil t, disks) {
+    def labels = [:].withDefault{0}
+    def csv = []
+    def headers = ['Slot', 'PDStatus', 'Interface', 'Type', 'Vendor',
+         'Product', 'Size']
+    disks.each { disk ->
+        def row = []
+        def label = []
+        headers.each { header ->
+            def value = disk.get(header)
+            if (header == 'Size') {
+                value = size_info(value)
+            }
+            if (value == null) {
+                value = 'N/A'
+            }
+            if (header == 'Type' || header == 'Size') {
+                label << value
+            }
+            row << value
+        }
+        csv << row
+        labels[label.toString()] ++
+    }
+    t.devices(headers, csv, "disk_drive")
+    t.setMetric("disk_drive", labels.toString())
+}
+
+void logical_disks(TestUtil t, disks) {
+    def labels = [:].withDefault{0}
+    def csv = []
+    def headers = ['RaidLevel', 'WriteMode', 'ReadMode', 
+        'CacheMode', 'DiskCacheMode', 'Stripe', 'InitMode', 
+        'LDStatus', 'Name', 'Size']
+    disks.each { disk ->
+        def row = []
+        def label = []
+        headers.each { header ->
+            def value = disk.get(header)
+            if (header == 'Size' || header == 'Stripe') {
+                value = size_info(value)
+            }
+            if (value == null) {
+                value = 'N/A'
+            }
+            if (header == 'RaidLevel') {
+                label << "RAID${value}"
+            }
+            if (header == 'Size') {
+                label << value
+            }
+            row << value
+        }
+        csv << row
+        labels[label.toString()] ++
+    }
+    t.devices(headers, csv, "disk")
+    t.setMetric("disk", labels.toString())
+}
+
+@Parser("disk")
+void disk(TestUtil t) {
+    def json = new JsonSlurper().parseText(t.readAll())
+    def infos = json.get("Server")?.
+        get("HWConfigurationIrmc")?.
+        get("Adapters")?.
+        get("RAIDAdapter")?.
+        get(0)
+    physical_disks(t, infos?.get('PhysicalDisks')?.get('PhysicalDisk'))
+    logical_disks(t, infos?.get('LogicalDrives')?.get('LogicalDrive'))
+}
+
+@Parser("snmp")
+void snmp(TestUtil t) {
+    def json = new JsonSlurper().parseText(t.readAll())
+    def results = [:]
+    def infos = json.get("Server")?.
+        get("SystemConfig")?.
+        get("IrmcConfig")?.
+        get("NetworkServices")
+
+    infos?.get('Snmp').with {
+        def trap_dests = []
+        it['TrapDestinations']['TrapDestination'].each {
+            if (it['Name'])
+                trap_dests << "${it['Name']} ${it['Protocol']}"
+        }
+        t.setMetric("snmp.trap", it?.Enabled)
+        t.setMetric("snmp.community", it?.CommunityName)
+        t.setMetric("snmp.dest", (trap_dests.size() == 0) ? 
+            "NoDestination" : trap_dests.toString())
+        it.each { item,value ->
+            if (item == 'ServicePort') {
+                value = "'${value}'"
+            }
+            t.setMetric("snmp.port", value)
+        }
+    }
 }

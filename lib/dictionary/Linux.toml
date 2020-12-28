@@ -151,13 +151,6 @@ text = '''
 
 [[metrics]]
 
-id = "se_mode"
-name = "SELinux モード"
-category = "OS設定"
-comment = "SELinuxモードの検索。SELinuxが無効の場合は空白"
-
-[[metrics]]
-
 id = "machineid"
 name = "マシンID"
 category = "OS設定"
@@ -417,20 +410,6 @@ type = "Cmd"
 text = '''
 cat /proc/cpuinfo
 '''
-
-[[metrics]]
-
-id = "mem_total"
-name = "メモリ総容量"
-category = "メモリ"
-comment = "メモリ総容量[GB]"
-
-[[metrics]]
-
-id = "mem_free"
-name = "メモリ空容量"
-category = "メモリ"
-comment = "メモリ空き容量[GB]"
 
 [[metrics]]
 

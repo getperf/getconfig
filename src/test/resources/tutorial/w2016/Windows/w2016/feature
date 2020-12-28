@@ -1,0 +1,702 @@
+
+
+Name                      : Web-Server
+DisplayName               : Web サーバー (IIS)
+Description               : Web サーバー (IIS) は、信頼性、管理性に優れた、スケーラブルな Web アプリケーション インフラストラクチャです。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role
+Path                      : Web サーバー (IIS)
+Depth                     : 1
+DependsOn                 : {}
+Parent                    : 
+ServerComponentDescriptor : ServerComponent_Web_Server
+SubFeatures               : {Web-WebServer, Web-Ftp-Server, Web-Mgmt-Tools}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : Microsoft/Windows/WebServer
+EventQuery                : WebServer.Events.xml
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-WebServer
+DisplayName               : Web サーバー
+Description               : Web サーバーでは HTML Web サイトのほか、必要に応じて ASP.NET、ASP、および Web サーバー拡張がサポートされます。Web サーバーを使用して、内部または外部
+                            の Web サイトをホストしたり、開発者に Web ベースのアプリケーションの開発環境を提供することができます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー
+Depth                     : 2
+DependsOn                 : {}
+Parent                    : Web-Server
+ServerComponentDescriptor : ServerComponent_Web_WebServer
+SubFeatures               : {Web-Common-Http, Web-Security, Web-Performance, Web-Health...}
+SystemService             : {APPHOSTSVC, WAS, W3SVC}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Common-Http
+DisplayName               : HTTP 共通機能
+Description               : HTTP 共通機能は、標準ファイル形式の配信やサーバー プロパティのカスタム構成など、基本的な HTTP 機能をサポートするものです。HTTP 共通機能を使用して、独自のエラー メッ
+                            セージを作成したり、ドキュメント指定のない要求に対するサーバーの応答方法を構成したり、いくつかの要求を自動的に別の場所にリダイレクトすることができます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\HTTP 共通機能
+Depth                     : 3
+DependsOn                 : {}
+Parent                    : Web-WebServer
+ServerComponentDescriptor : ServerComponent_Web_Common_Http
+SubFeatures               : {Web-Http-Errors, Web-Dir-Browsing, Web-Default-Doc, Web-Static-Content...}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Http-Errors
+DisplayName               : HTTP エラー
+Description               : HTTP エラーでは、Web サーバーで障害状態が検出されたときにユーザーのブラウザーに表示するエラー メッセージをカスタマイズできます。HTTP エラーを使用して、ユーザーにエラー
+                             メッセージをわかりやすく表示してください。エラー解決に協力できる担当者の電子メール アドレスをユーザーに公開することもお勧めします。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\HTTP 共通機能\HTTP エラー
+Depth                     : 4
+DependsOn                 : {}
+Parent                    : Web-Common-Http
+ServerComponentDescriptor : ServerComponent_Web_Http_Errors
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Dir-Browsing
+DisplayName               : ディレクトリの参照
+Description               : ディレクトリの参照によって、ユーザーは Web サーバー上のディレクトリのコンテンツを確認できます。ディレクトリの参照を使用すると、ユーザーが URL でファイルを指定せず、既定のド
+                            キュメントが無効であるか構成されていない場合に、ディレクトリ内で閲覧可能なすべてのディレクトリとファイルの一覧が自動的に生成されます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\HTTP 共通機能\ディレクトリの参照
+Depth                     : 4
+DependsOn                 : {}
+Parent                    : Web-Common-Http
+ServerComponentDescriptor : ServerComponent_Web_Dir_Browsing
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Default-Doc
+DisplayName               : 既定のドキュメント
+Description               : 既定のドキュメントを使用して Web サーバーに既定のファイルを構成し、ユーザーが URL でファイルを指定しなかった場合に既定のファイルを返すことができます。既定のドキュメントを使
+                            用すると、ユーザーが Web サイトにアクセスしやすくなります。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\HTTP 共通機能\既定のドキュメント
+Depth                     : 4
+DependsOn                 : {}
+Parent                    : Web-Common-Http
+ServerComponentDescriptor : ServerComponent_Web_Default_Doc
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Static-Content
+DisplayName               : 静的なコンテンツ
+Description               : 静的なコンテンツを使用すると、Web サーバーでは HTML ページや画像ファイルなどの静的な Web ファイル形式を公開できます。静的なコンテンツを使用して Web サーバーで公開
+                            したファイルは、ユーザーが Web ブラウザーを使用して閲覧できます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\HTTP 共通機能\静的なコンテンツ
+Depth                     : 4
+DependsOn                 : {}
+Parent                    : Web-Common-Http
+ServerComponentDescriptor : ServerComponent_Web_Static_Content
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Security
+DisplayName               : セキュリティ
+Description               : セキュリティは、ユーザーや要求から Web サーバーを保護するためのインフラストラクチャです。IIS では複数の認証方法がサポートされているので、サーバーの役割に応じて適切な認証スキ
+                            ームを選択できます。すべての着信要求にフィルターを適用し、ユーザー定義の値と一致する要求は処理しないで拒否する、発信元アドレス空間に基づいて要求を制限するなどの対策をとることをお勧め
+                            します。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\セキュリティ
+Depth                     : 3
+DependsOn                 : {}
+Parent                    : Web-WebServer
+ServerComponentDescriptor : ServerComponent_Web_Security
+SubFeatures               : {Web-Filtering, Web-Cert-Auth, Web-IP-Security, Web-CertProvider...}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Filtering
+DisplayName               : 要求フィルター
+Description               : 要求フィルターでは、サーバーへの着信要求がすべてスクリーンされ、管理者によって設定された規則に基づきフィルターが適用されます。悪意のある攻撃の多くは、極端に長い要求、異常な処理の要求
+                            など共通の特徴を備えています。要求をフィルター処理することは、この種の要求による影響を軽減するのに役立ちます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\セキュリティ\要求フィルター
+Depth                     : 4
+DependsOn                 : {}
+Parent                    : Web-Security
+ServerComponentDescriptor : ServerComponent_Web_Filtering
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Performance
+DisplayName               : パフォーマンス
+Description               : パフォーマンスは出力キャッシュを行うためのインフラストラクチャです。これは、ASP.NET の動的出力キャッシュ機能と IIS 6.0 で提供されていた静的出力キャッシュ機能を統合す
+                            ることによって実現されます。IIS では Gzip や Deflate などの一般的な圧縮メカニズムも提供され、これにより帯域幅を効率的に使用できます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\パフォーマンス
+Depth                     : 3
+DependsOn                 : {}
+Parent                    : Web-WebServer
+ServerComponentDescriptor : ServerComponent_Web_Performance
+SubFeatures               : {Web-Stat-Compression, Web-Dyn-Compression}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Stat-Compression
+DisplayName               : 静的なコンテンツの圧縮
+Description               : 静的なコンテンツの圧縮は、静的なコンテンツの HTTP 圧縮を構成するためのインフラストラクチャです。これにより、帯域幅の効率的な使用が可能になります。動的な応答とは異なり、圧縮され
+                            た静的な応答はキャッシュすることができ、CPU リソースの能力を低下させることはありません。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\パフォーマンス\静的なコンテンツの圧縮
+Depth                     : 4
+DependsOn                 : {}
+Parent                    : Web-Performance
+ServerComponentDescriptor : ServerComponent_Web_Stat_Compression
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Health
+DisplayName               : 状態と診断
+Description               : 状態と診断は、Web サーバー、Web サイト、Web アプリケーションの正常性を監視、管理、トラブルシューティングするためのインフラストラクチャです。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\状態と診断
+Depth                     : 3
+DependsOn                 : {}
+Parent                    : Web-WebServer
+ServerComponentDescriptor : ServerComponent_Web_Health
+SubFeatures               : {Web-Http-Logging, Web-ODBC-Logging, Web-Custom-Logging, Web-Http-Tracing...}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Http-Logging
+DisplayName               : HTTP ログ
+Description               : HTTP ログを使用すると、このサーバーに対する Web サイト アクティビティをログに記録できます。ログ可能なイベント (通常 HTTP トランザクション) が発生したとき、IIS
+                             では選択されているログ モジュールが呼び出され、そのログ モジュールによって、Web サーバーのファイル システムに格納されているログの 1 つに書き込みが行われます。これらのログ
+                            は、オペレーティング システムで提供されるログとは別の追加ログです。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\状態と診断\HTTP ログ
+Depth                     : 4
+DependsOn                 : {}
+Parent                    : Web-Health
+ServerComponentDescriptor : ServerComponent_Web_Http_Logging
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Http-Tracing
+DisplayName               : トレース
+Description               : トレースは、Web アプリケーションを診断しトラブルシューティングするためのインフラストラクチャです。失敗した要求のトレースを行うと、パフォーマンスの低下や認証関連の失敗など捕捉が難
+                            しいイベントをトラブルシューティングできます。この機能では要求のトレース イベントがバッファーされ、要求が失敗してユーザー定義のエラー状態になったときにのみ、バッファー内のトレース 
+                            イベントがディスクにフラッシュされます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\状態と診断\トレース
+Depth                     : 4
+DependsOn                 : {}
+Parent                    : Web-Health
+ServerComponentDescriptor : ServerComponent_Web_Http_Tracing
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Request-Monitor
+DisplayName               : 要求の監視
+Description               : 要求の監視は、Web アプリケーションの状態を監視するためのインフラストラクチャです。IIS のワーカー プロセスで HTTP 要求に関する情報を取得することによって監視を行います。
+                            ワーカー プロセスが応答しなくなったり処理が非常に遅くなった場合、管理者と開発者は要求の監視を使用して、ワーカー プロセスでどの HTTP 要求が実行されているかを確認できます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\Web サーバー\状態と診断\要求の監視
+Depth                     : 4
+DependsOn                 : {}
+Parent                    : Web-Health
+ServerComponentDescriptor : ServerComponent_Web_Request_Monitor
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Mgmt-Tools
+DisplayName               : 管理ツール
+Description               : 管理ツールは、IIS 10 を実行する Web サーバーを管理するインフラストラクチャを提供します。IIS ユーザー インターフェイス、コマンドライン ツール、およびスクリプトを使用
+                            して Web サーバーを管理できます。また、構成ファイルを直接編集できます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\管理ツール
+Depth                     : 2
+DependsOn                 : {}
+Parent                    : Web-Server
+ServerComponentDescriptor : ServerComponent_Web_Mgmt_Tools
+SubFeatures               : {Web-Mgmt-Console, Web-Mgmt-Compat, Web-Scripting-Tools, Web-Mgmt-Service}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Web-Mgmt-Console
+DisplayName               : IIS 管理コンソール
+Description               : IIS 管理コンソールは、ユーザー インターフェイスを使用して IIS 10 を管理するインフラストラクチャを提供します。IIS 管理コンソールを使用して、IIS 10 を実行するロ
+                            ーカルまたはリモート Web サーバーを管理できます。SMTP を管理するには、IIS 6 管理コンソールをインストールして使用する必要があります。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : Web サーバー (IIS)\管理ツール\IIS 管理コンソール
+Depth                     : 3
+DependsOn                 : {}
+Parent                    : Web-Mgmt-Tools
+ServerComponentDescriptor : ServerComponent_Web_Mgmt_Console
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : FileAndStorage-Services
+DisplayName               : ファイル サービスと記憶域サービス
+Description               : ファイル サービスおよび記憶域サービスには、常にインストールされるサービスと、ファイル サーバーおよび記憶域の管理に役立てるためにインストールできる機能が含まれています。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role
+Path                      : ファイル サービスと記憶域サービス
+Depth                     : 1
+DependsOn                 : {}
+Parent                    : 
+ServerComponentDescriptor : ServerComponent_FileAndStorage_Services
+SubFeatures               : {File-Services, Storage-Services}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : Microsoft/Windows/FileServices
+EventQuery                : FileServer.Events.xml
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Storage-Services
+DisplayName               : 記憶域サービス
+Description               : 記憶域サービスは、常にインストールされて削除できない記憶域管理機能を提供します。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Role Service
+Path                      : ファイル サービスと記憶域サービス\記憶域サービス
+Depth                     : 2
+DependsOn                 : {}
+Parent                    : FileAndStorage-Services
+ServerComponentDescriptor : ServerComponent_Storage_Services
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : NET-Framework-Features
+DisplayName               : .NET Framework 3.5 Features
+Description               : .NET Framework 3.5 は、魅力的なユーザー インターフェイスや、ユーザーの個人情報の保護、シームレスで安全な通信、幅広いビジネス プロセスをモデリングする機能を提供す
+                            るアプリケーションを構築できる新しいテクノロジと、.NET Framework 2.0 API の強力な機能とを組み合わせます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : .NET Framework 3.5 Features
+Depth                     : 1
+DependsOn                 : {}
+Parent                    : 
+ServerComponentDescriptor : ServerComponent_NET_Framework_Features
+SubFeatures               : {NET-Framework-Core, NET-HTTP-Activation, NET-Non-HTTP-Activ}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : NET-Framework-Core
+DisplayName               : .NET Framework 3.5 (.NET 2.0 および 3.0 を含む)
+Description               : .NET Framework 3.5 は、魅力的なユーザー インターフェイスや、ユーザーの個人情報の保護、シームレスで安全な通信、幅広いビジネス プロセスをモデリングする機能を提供す
+                            るアプリケーションを構築できる新しいテクノロジと、.NET Framework 2.0 API の強力な機能とを組み合わせます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : .NET Framework 3.5 Features\.NET Framework 3.5 (.NET 2.0 および 3.0 を含む)
+Depth                     : 2
+DependsOn                 : {}
+Parent                    : NET-Framework-Features
+ServerComponentDescriptor : ServerComponent_NET_Framework_Core
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : NET-Framework-45-Features
+DisplayName               : .NET Framework 4.6 Features
+Description               : .NET Framework 4.6 は、デスクトップ PC、サーバー、スマートフォン、パブリックおよびプライベート クラウドなど、さまざまなプラットフォーム向けに作成されたアプリケ
+                            ーションを迅速かつ簡単に作成、実行するための広範で一貫したプログラミング モデルを提供します。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : .NET Framework 4.6 Features
+Depth                     : 1
+DependsOn                 : {}
+Parent                    : 
+ServerComponentDescriptor : ServerComponent_NET_Framework_45_Features
+SubFeatures               : {NET-Framework-45-Core, NET-Framework-45-ASPNET, NET-WCF-Services45}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : NET-Framework-45-Core
+DisplayName               : .NET Framework 4.6
+Description               : .NET Framework 4.6 は、デスクトップ PC、サーバー、スマートフォン、パブリックおよびプライベート クラウドなど、さまざまなプラットフォーム向けに作成されたアプリケ
+                            ーションを迅速かつ簡単に作成、実行するための広範で一貫したプログラミング モデルを提供します。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : .NET Framework 4.6 Features\.NET Framework 4.6
+Depth                     : 2
+DependsOn                 : {}
+Parent                    : NET-Framework-45-Features
+ServerComponentDescriptor : ServerComponent_NET_Framework_45_Core
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : NET-WCF-Services45
+DisplayName               : WCF サービス
+Description               : Windows Communication Foundation (WCF) アクティブ化では、Windows プロセス アクティブ化サービスを使用し、HTTP、メッセージ キュー、
+                            TCP、および名前付きパイプなどのプロトコルを利用してネットワークを介してアプリケーションをリモートに起動します。この結果、アプリケーションは着信した作業項目に応答して動的に開始およ
+                            び停止でき、アプリケーションのホスティングはより堅牢で、管理しやすく、効率が良くなります。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : .NET Framework 4.6 Features\WCF サービス
+Depth                     : 2
+DependsOn                 : {NET-Framework-45-Core}
+Parent                    : NET-Framework-45-Features
+ServerComponentDescriptor : ServerComponent_NET_WCF_Services45
+SubFeatures               : {NET-WCF-HTTP-Activation45, NET-WCF-TCP-Activation45, NET-WCF-TCP-PortSharing45, NET-WCF-MS
+                            MQ-Activation45...}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : NET-WCF-TCP-PortSharing45
+DisplayName               : TCP ポート共有
+Description               : TCP ポート共有を使用すると、複数の net.tcp アプリケーションが 1 つの TCP ポートを共有できます。この結果、これらのアプリケーションは、ポート 808 などの TC
+                            P ポートを介してトラフィックを送受信するために必要なネットワーク インフラストラクチャを共有しつつ、個別に独立したプロセスとして同一の物理的なコンピューター上で共存できます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : .NET Framework 4.6 Features\WCF サービス\TCP ポート共有
+Depth                     : 3
+DependsOn                 : {NET-Framework-45-Core}
+Parent                    : NET-WCF-Services45
+ServerComponentDescriptor : ServerComponent_NET_WCF_TCP_PortSharing45
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : FS-SMB1
+DisplayName               : SMB 1.0/CIFS ファイル共有のサポート
+Description               : SMB 1.0/CIFS ファイル共有プロトコルと、コンピューター ブラウザー プロトコルのサポート。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : SMB 1.0/CIFS ファイル共有のサポート
+Depth                     : 1
+DependsOn                 : {}
+Parent                    : 
+ServerComponentDescriptor : ServerComponent_FS_SMB1
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Windows-Defender-Features
+DisplayName               : Windows Defender の機能
+Description               : Windows Defender は、お使いのコンピューターをマルウェアから保護するために役立ちます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : Windows Defender の機能
+Depth                     : 1
+DependsOn                 : {}
+Parent                    : 
+ServerComponentDescriptor : ServerComponent_Windows_Defender_Features
+SubFeatures               : {Windows-Defender, Windows-Defender-Gui}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Windows-Defender
+DisplayName               : Windows Defender
+Description               : Windows Defender は、お使いのコンピューターをマルウェアから保護するために役立ちます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : Windows Defender の機能\Windows Defender
+Depth                     : 2
+DependsOn                 : {}
+Parent                    : Windows-Defender-Features
+ServerComponentDescriptor : ServerComponent_Windows_Defender
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : Windows-Defender-Gui
+DisplayName               : Windows Defender の GUI
+Description               : Windows Defender の GUI です。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : Windows Defender の機能\Windows Defender の GUI
+Depth                     : 2
+DependsOn                 : {Windows-Defender}
+Parent                    : Windows-Defender-Features
+ServerComponentDescriptor : ServerComponent_Windows_Defender_Gui
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : PowerShellRoot
+DisplayName               : Windows PowerShell
+Description               : Windows PowerShell を使用すると、ローカルおよびリモートの Windows 管理を自動化できます。このタスク ベースのコマンドライン シェルとスクリプト言語は、Mi
+                            crosoft .NET Framework の上に構築されています。数多くの組み込みのコマンドが用意されており、独自のコマンドおよびスクリプトを記述して配布できます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : Windows PowerShell
+Depth                     : 1
+DependsOn                 : {}
+Parent                    : 
+ServerComponentDescriptor : ServerComponent_PowerShellRoot
+SubFeatures               : {PowerShell, PowerShell-V2, DSC-Service, PowerShell-ISE...}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : PowerShell
+DisplayName               : Windows PowerShell 5.1
+Description               : Windows PowerShell を使用すると、ローカルおよびリモートの Windows 管理を自動化できます。このタスク ベースのコマンドライン シェルとスクリプト言語は、Mi
+                            crosoft .NET Framework の上に構築されています。数多くの組み込みのコマンドが用意されており、独自のコマンドおよびスクリプトを記述して配布できます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : Windows PowerShell\Windows PowerShell 5.1
+Depth                     : 2
+DependsOn                 : {NET-Framework-45-Core}
+Parent                    : PowerShellRoot
+ServerComponentDescriptor : ServerComponent_PowerShell
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : PowerShell-V2
+DisplayName               : Windows PowerShell 2.0 エンジン
+Description               : Windows PowerShell 2.0 エンジンには、既存の Windows PowerShell ホスト アプリケーションとの下位互換性のために、Windows PowerS
+                            hell 2.0 のコア コンポーネントが含まれています。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : Windows PowerShell\Windows PowerShell 2.0 エンジン
+Depth                     : 2
+DependsOn                 : {PowerShell, NET-Framework-Core}
+Parent                    : PowerShellRoot
+ServerComponentDescriptor : ServerComponent_PowerShell_V2
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : PowerShell-ISE
+DisplayName               : Windows PowerShell ISE
+Description               : Windows PowerShell Integrated Scripting Environment (ISE) では、グラフィカルな環境でスクリプトを構成、編集、およびデバッグし
+                            、複数行の対話型のコマンドを実行できます。機能としては、IntelliSense、タブ補完、スニペット、色付き構文、行の番号設定、選択的な実行、グラフィカルなデバッグ、右から左方向の
+                            言語と Unicode のサポートがあります。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : Windows PowerShell\Windows PowerShell ISE
+Depth                     : 2
+DependsOn                 : {PowerShell, NET-Framework-45-Core}
+Parent                    : PowerShellRoot
+ServerComponentDescriptor : ServerComponent_PowerShell_ISE
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : WinRM-IIS-Ext
+DisplayName               : WinRM IIS 拡張機能
+Description               : Windows リモート管理 (WinRM) IIS 拡張機能により、WS-Management を使用して、クライアントからの管理要求をサーバーで受信できるようになります。WinR
+                            M は、Microsoft が実装する WS-Management プロトコルで、Web サービスを使用してローカルおよびリモートのコンピューターと安全に通信できます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : WinRM IIS 拡張機能
+Depth                     : 1
+DependsOn                 : {Web-Static-Content, Web-Default-Doc, Web-Dir-Browsing, Web-Http-Errors...}
+Parent                    : 
+ServerComponentDescriptor : ServerComponent_WinRM_IIS_Ext
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+Name                      : WoW64-Support
+DisplayName               : WoW64 サポート
+Description               : Server Core インストール上での 32 ビット アプリケーションの実行をサポートするために、WoW64 のすべてが含まれています。この機能は、Server の完全インストー
+                            ルには必須です。WoW64 サポートをアンインストールすると、Server の完全インストールは Server Core インストールに変換されます。
+Installed                 : True
+InstallState              : Installed
+FeatureType               : Feature
+Path                      : WoW64 サポート
+Depth                     : 1
+DependsOn                 : {}
+Parent                    : 
+ServerComponentDescriptor : ServerComponent_WoW64_Support
+SubFeatures               : {}
+SystemService             : {}
+Notification              : {}
+BestPracticesModelId      : 
+EventQuery                : 
+PostConfigurationNeeded   : False
+AdditionalInfo            : {MajorVersion, MinorVersion, NumericId, InstallName}
+
+
+
