@@ -151,20 +151,20 @@ task zipApp(type: Zip, dependsOn: [shadowJar, buildWindowsAgent]) {
     // http://stackoverflow.com/questions/29504250/how-to-copy-hidden-resource-files-in-gradle
     org.apache.tools.ant.DirectoryScanner.removeDefaultExclude("**/.gitignore")
 
-    into("./${target}/") {
+    into("${target}/") {
         from file("src/main/resources/root/.gitignore")
         from fileTree(dir: "src/main/resources/root/${language}")
         from fileTree(dir : '.').include('Readme.md', 'LICENSE.txt', 'Changes.txt')
     }
-    into("./${target}/") {
+    into("${target}/") {
         fileMode 0755
         from fileTree(dir : '.').include('getcf', 'getcf.bat')
     }
-    into("./${target}/") {
+    into("${target}/") {
         fileMode 0755
         from fileTree(dir : "$buildDir/getperf2").include('gconf', 'gconf.exe')
     }
-    into ("./${target}/config") {
+    into ("${target}/config") {
         from fileTree(dir : 'config').include(
             'config.groovy', 'cmdb_sample.groovy', "*.xml")
     }
@@ -173,11 +173,11 @@ task zipApp(type: Zip, dependsOn: [shadowJar, buildWindowsAgent]) {
         'tools',
         'build/libs',
     ].each { path ->
-        into ("./${target}/${path}") {
+        into ("${target}/${path}") {
             from path
         }
     }
-    into ("./${target}/src/test/resources/inventory") {
+    into ("${target}/src/test/resources/inventory") {
         from 'src/test/resources/tutorial'
     }
 }
