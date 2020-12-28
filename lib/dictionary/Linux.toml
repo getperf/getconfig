@@ -301,12 +301,6 @@ fi
 
 [[metrics]]
 
-id = "nameservers"
-name = "DNSサーバ名"
-category = "OS設定"
-
-[[metrics]]
-
 id = "keyboard"
 name = "キーボード配列"
 category = "OS設定"
@@ -366,10 +360,15 @@ fi
 
 [[metrics]]
 
-id = "model_name"
-name = "プロセッサーモデル"
+id = "cpu"
+name = "CPU情報"
 category = "CPU"
-comment = "CPUプロセッサーモデル"
+level = 0
+comment = "/proc/cpuinfo を検索し,プロセッサ構成を検索"
+type = "Cmd"
+text = '''
+cat /proc/cpuinfo
+'''
 
 [[metrics]]
 
@@ -398,18 +397,6 @@ id = "cpu_real"
 name = "CPUソケット数"
 category = "CPU"
 comment = "CPUソケット数"
-
-[[metrics]]
-
-id = "cpu"
-name = "CPU情報"
-category = "CPU"
-level = 0
-comment = "/proc/cpuinfo を検索し,プロセッサ構成を検索"
-type = "Cmd"
-text = '''
-cat /proc/cpuinfo
-'''
 
 [[metrics]]
 
@@ -487,6 +474,24 @@ type = "Cmd"
 text = '''
 cat /proc/sys/net/ipv4/tcp_keepalive_intvl /proc/sys/net/ipv4/tcp_keepalive_time /proc/sys/net/ipv4/tcp_keepalive_probes
 '''
+
+[[metrics]]
+
+id = "tcpKeepaliveIntvl"
+name = "keepalive packetを送信する間隔[秒]"
+category = "ネットワーク"
+
+[[metrics]]
+
+id = "tcpKeepaliveTime"
+name = "keepalive packetを送信するまでの時間[秒]"
+category = "ネットワーク"
+
+[[metrics]]
+
+id = "tcpKeepaliveProbes"
+name = "keepalive packetを送信する回数"
+category = "ネットワーク"
 
 [[metrics]]
 

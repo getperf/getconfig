@@ -34,9 +34,11 @@ void uname(TestUtil t) {
 
     t.readLine {
         (it =~ /^(.+)\.(.+?)\s*#/).each {m0, kernel, arch ->
-            t.setMetric('uname', "${kernel}.${arch}")
-            t.setMetric('kernel', kernel)
+            (kernel =~ /^.+\s(.+)$/).each {n0, n1 ->
+                kernel = n1
+            }
             t.setMetric('arch', arch)
+            t.setMetric('uname', kernel)
         }
         (it =~/uek/).each {
             oracle_linux_kernel = 'UEK'
@@ -85,13 +87,17 @@ void virturization(TestUtil t) {
 
 @Parser("sestatus")
 void sestatus(TestUtil t) {
+    def csv = []
     def res = [:]
     t.readLine {
-        ( it =~ /SELinux status:\s+(.+?)$/).each {m0,m1->
-            res['sestatus'] = m1
+        ( it =~ /^(.+):\s+(.+?)$/).each {m0,m1,m2->
+            csv << [m1, m2]
+            if (m1 == "SELinux status") {
+                t.results(m2)
+            }
         }
     }
-    t.results(res)
+    t.devices(['name', 'value'], csv)
 }
 
 @Parser("machineid")
@@ -308,14 +314,14 @@ void network(TestUtil t) {
 
         // link/ether 00:0c:29:c2:69:4b brd ff:ff:ff:ff:ff:ff promiscuity 0
         (it =~ /link\/ether\s+(.*?)\s/).each {m0, m1->
-            t.newMetric("network.mac.${device}", "[${device}] MAC", m1)
+            // t.newMetric("network.mac.${device}", "[${device}] MAC", m1)
             exclude_compares << "network.mac.${device}"
         }
         (it =~ /inet6/).each { m0 ->
             ipv6 = 'Enabled'
         }
     }
-    t.newMetric("network.ipv6_enabled", "Network.IPv6", ipv6)
+    t.newMetric("network.ipv6.${device}", "[${device}] IPv6", ipv6)
     // mtu:1500, qdisc:noqueue, state:DOWN, ip:172.17.0.1/16
     def csv        = []
     network.each { device_id, items ->
@@ -394,6 +400,9 @@ void tcp_keepalive(TestUtil t) {
             infos[row++] = m1
         }
     }
+    t.setMetric("tcpKeepaliveIntvl", infos[0])
+    t.setMetric("tcpKeepaliveTime", infos[1])
+    t.setMetric("tcpKeepaliveProbes", infos[2])
     t.devices(headers, [[infos[0], infos[1], infos[2]]])
     t.results(infos.values().toString())
     // test_item.verify_text_search_list('net_route', infos)
@@ -860,14 +869,11 @@ void resolve_conf(TestUtil t) {
     def nameserver_number = 1
     t.readLine {
         ( it =~ /^nameserver\s+(\w.+)$/).each {m0,m1->
-            nameservers["nameserver${nameserver_number}"] = m1
+            nameservers["DNS${nameserver_number}"] = m1
             nameserver_number ++
         }
     }
-    t.results([
-        'resolve_conf' : (nameserver_number == 1) ? 'off' : 'on',
-        'nameservers' : nameservers
-    ])
+    t.results((nameserver_number == 1) ? 'Disable' : nameservers.toString())
 }
 
 @Parser("grub")
