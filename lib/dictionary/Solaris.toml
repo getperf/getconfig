@@ -357,6 +357,13 @@ cat /etc/passwd
 
 [[metrics]]
 
+id = "group"
+text = '''
+cat /etc/group
+'''
+
+[[metrics]]
+
 id = "service"
 category = "サービス"
 name = "サービス情報"
