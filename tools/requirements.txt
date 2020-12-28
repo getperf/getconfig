@@ -1,0 +1,8 @@
+click
+nose
+python-redmine
+pandas
+xlrd
+openpyxl
+mysqlclient
+zenhan
