@@ -344,15 +344,20 @@ void network(TestUtil t) {
 
 @Parser("net_onboot")
 void net_onboot(TestUtil t) {
-    def infos = [:]
+    def infos = [:].withDefault{[]}
+    def csv = []
     t.readLine {
         (it =~ /^ifcfg-(.+):ONBOOT=(.+)$/).each {m0,m1,m2->
-            infos[m1] = m2
+            infos[m2] << m1
+            csv << [m1, m2]
         }
     }
-    t.results(infos.toString())
-    // test_item.verify_text_search_list('net_onboot', infos)
-
+    if (infos.get('no')) {
+        t.results(infos.toString())
+    } else {
+        t.results("AllEnable")
+    }
+    t.devices(['device', 'status'], csv)
 }
 
 @Parser("net_route")
@@ -365,29 +370,24 @@ void net_route(TestUtil t) {
         }
     }
     t.results(infos.toString())
-    // test_item.verify_text_search_list('net_route', infos)
-
 }
 
 @Parser("net_bond")
 void net_bond(TestUtil t) {
-    def configured = 'NotConfigured'
-    def devices    = []
-    def options    = []
+    def devices = []
+    def csv = []
     t.readLine {
         // DEVICE=bond0
         (it =~ /^DEVICE=(.+)$/).each {m0,m1->
             devices << m1
-            configured = 'Configured'
         }
-        // BONDING_OPTS="mode=1 miimon=100 updelay=100"
-        (it =~ /^BONDING_OPTS="(.+)"$/).each {m0,m1->
-            options << m1
+        (it =~ /^(NAME|MASTER|BONDING_OPTS|IPADDR)=(.+)$/).each { m0,m1,m2->
+            csv << [m1, m2]
         }
     }
-    def results = ['bonding': configured, 'devices': devices, 'options': options]
-    t.results(results.toString())
 
+    t.results((devices.size() == 0) ? 'Disable' : devices.toString())
+    t.devices(['name', 'value'], csv)
 }
 
 @Parser("tcp_keepalive")

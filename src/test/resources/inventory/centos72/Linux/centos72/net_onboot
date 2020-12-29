@@ -1,2 +1,8 @@
-ifcfg-ens192:ONBOOT="yes"
+ifcfg-bond-slave-eno1:ONBOOT=yes
+ifcfg-bond-slave-eno3:ONBOOT=yes
+ifcfg-bond0:ONBOOT=yes
+ifcfg-eno1:ONBOOT=no
+ifcfg-eno2:ONBOOT=no
+ifcfg-eno3:ONBOOT=no
+ifcfg-eno4:ONBOOT=no
 ifcfg-lo:ONBOOT=yes
