@@ -63,10 +63,12 @@ class Collector implements Controller {
         String serverGroupKey = "${agentMode}"
         testServer.with {
             if (agentMode == AgentMode.LocalAgentBatch) {
-//                String ipAlias = CommonUtil.toCamelCase(ip)
-//                println "IP:$ip,$ipAlias"
-//                serverGroupKey += "_${domain}_${ipAlias}_${accountId}"
-                serverGroupKey += "_${domain}_${accountId}"
+                if (indirectConnection) {
+                    serverGroupKey += "_${domain}_${accountId}"
+                } else {
+                    String ipAlias = CommonUtil.toCamelCase(ip)
+                    serverGroupKey += "_${domain}_${ipAlias}_${accountId}"
+                }
             } else {
                 serverGroupKey += "_${serverName}_${domain}"
             }

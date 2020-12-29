@@ -42,6 +42,7 @@ public class Server {
     String loginOption = "";
 
     boolean dryRun = false;
+    boolean indirectConnection = false;
 
     // キー項目の有無をチェックをします
     public boolean checkKey(String previousServerName = null, 
@@ -88,8 +89,10 @@ public class Server {
     }
 
     void setAccount(ConfigObject account) {
-        if (this.ip == "")
+        if (this.ip == "") {
+            this.indirectConnection = true
             this.ip = account["server"]
+        }
         if (this.user == "")
             this.user = account["user"]
         if (this.password == "")

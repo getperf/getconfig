@@ -47,8 +47,7 @@ class LinuxParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
-        t.get("Linux", "uname").value == "Linux centos80.getperf 4.18.0-147.el8.x86_64"
-        t.get("Linux", "kernel").value == "Linux centos80.getperf 4.18.0-147.el8"
+        t.get("Linux", "uname").value == "4.18.0-147.el8"
         t.get("Linux", "arch").value == "x86_64"
     }
 
@@ -91,8 +90,8 @@ class LinuxParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
-        t.get("Linux", "meminfo").value == "1873544 kB"
-        t.get("Linux", "mem_total").value > 1.7
+//        t.get("Linux", "meminfo").value == "1873544 kB"
+        t.get("Linux", "meminfo").value > 1.7
     }
 
     def "network"() {
@@ -121,7 +120,7 @@ class LinuxParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
-        t.get().value == "[ens192:yes]"
+        t.get().value == "AllEnable"
     }
 
     def "net_route"() {
@@ -141,7 +140,7 @@ class LinuxParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
-        t.get().value == "[bonding:NotConfigured, devices:[], options:[]]"
+        t.get().value == "Disable"
     }
 
     def "block_device"() {
