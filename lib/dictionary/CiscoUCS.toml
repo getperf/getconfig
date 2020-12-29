@@ -179,6 +179,12 @@ show  physical-drive detail
 
 [[metrics]]
 
+id = "drive_conf"
+name = "ドライブ構成"
+category = "ファームウェア"
+
+[[metrics]]
+
 id = "virtual_drive"
 name = "ボリューム状態"
 category = "ファームウェア"

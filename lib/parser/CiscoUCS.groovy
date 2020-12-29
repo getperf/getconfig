@@ -156,6 +156,7 @@ void physical_drive(TestUtil t) {
 
     def headers
     def res = [:].withDefault{0}
+    def drives = [:].withDefault{[:].withDefault{0}}
     def csv = []
     yaml.each { disk ->
         if (!headers) {
@@ -168,8 +169,11 @@ void physical_drive(TestUtil t) {
         }
         res[disk.'physical-drive-health' ?: 'N/A'] = 1
         csv << row
+        def drive = disk?."vendor" + " " + disk?."media-type"
+        drives[drive][disk?."physical-drive-status"] ++
     }
     t.devices(headers, csv)
+    t.setMetric("drive_conf", drives.toString())
     t.setMetric("physical_drive", res.keySet().toString())
 }
 
