@@ -1,6 +1,6 @@
 # HitachiVSP 監視設定 インベントリ収集シナリオ
 
-# REST で HitachiVSP 管理用 IF ； HitachiVSP API に接続し、
+# REST で HitachiVSP 管理用インターフェースの HitachiVSP API に接続し、
 # メトリック定義リストのコマンドを実行します
 
 # Excel 検査対象シート
@@ -29,8 +29,9 @@
 # メトリック定義コマンドリスト
 
 # HitachiVSP API 情報採取用 URL を追加する場合、以下リストに追加します。
-# Excel 検査対象シートに記載した、アドレスを前に追加した URL で REST API
-# にアクセスします。IP アドレスを指定した場合は、http://{IPアドレス}/{URL}
+# text に定義したパスに Excel 検査対象シートに記載したアドレス追加した
+# URL で REST APIにアクセスします。
+# IP アドレスを指定した場合は、http://{IPアドレス}/{text}
 # の形式でアクセスします。
 #
 # HitachiVSP API リファレンス : 
