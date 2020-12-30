@@ -32,8 +32,8 @@ class WindowsPy implements DirectExecutorWrapper {
         this.timeout = executor.timeout
         this.level = executor.level
         this.server = executor.server
-        String gconfExeName = CommonUtil.isWindows() ? "gcwinrm.bat" : "gcwinrm"
-        this.gconfExe = Paths.get(executor.toolsDir, gconfExeName)
+        this.gconfExe = Paths.get(executor.toolsDir, 
+             CommonUtil.isWindows() ? "gcwinrm.bat" : "gcwinrm")
     }
 
     List<String> args(LocalAgentExecutor executor) {
@@ -59,7 +59,6 @@ class WindowsPy implements DirectExecutorWrapper {
         new File(executor.gconfConfigDir).mkdirs()
         new File(executor.tomlPath()).write(executor.toml(), "UTF-8")
 
-        println "COMMAND: ${this.args(executor)}"
         log.debug "agent command args : ${this.args(executor)}"
         def exec = new CommandExec(this.timeout * 1000)
         def rc = exec.run(this.gconfExe, this.args(executor) as String[])
