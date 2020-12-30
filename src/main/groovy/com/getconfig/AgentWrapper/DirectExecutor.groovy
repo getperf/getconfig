@@ -4,6 +4,7 @@ import com.getconfig.CommandExec
 import com.getconfig.ConfigEnv
 import com.getconfig.Model.PlatformMetric
 import com.getconfig.Model.Server
+import com.getconfig.Utils.CommonUtil
 import com.getconfig.Utils.DirUtils
 import com.getconfig.Utils.TomlUtils
 import com.moandjiezana.toml.Toml
@@ -28,6 +29,7 @@ class DirectExecutor implements AgentExecutor {
     String logPath
     String tlsConfigDir
     String metricLib
+    String toolsDir
     int timeout = 0
     int level = 0
     boolean dryRun
@@ -35,7 +37,7 @@ class DirectExecutor implements AgentExecutor {
     DirectExecutor(String platform, Server server) {
         this.platform = platform
         this.server = server
-        this.wrapper = AgentWrapperManager.instance.getDirectExecutorWrapper(platform)
+        this.wrapper = AgentWrapperManager.instance.getDirectExecutorWrapper(platform, server.domainExt)
         if (!this.wrapper) {
             throw new IllegalArgumentException("not found agent wrapper : " + platform)
         }
@@ -45,6 +47,7 @@ class DirectExecutor implements AgentExecutor {
         this.currentLogDir = env.getCurrentLogDir()
         this.tlsConfigDir  = env.getTlsConfigDir()
         this.metricLib     = env.getMetricLib()
+        this.toolsDir      = env.getGetconfigToolsDir()
         this.level         = env.getLevel()
         this.timeout       = env.getGconfTimeout(this.platform)
         this.dryRun        = env.getDryRun(this.platform)
@@ -83,7 +86,13 @@ class DirectExecutor implements AgentExecutor {
     }
 
     String getAgentLogDir() {
-        return Paths.get(this.currentLogDir, server.serverName, server.domain, server.remoteAlias)
+        if (server.remoteAlias) {
+            return Paths.get(this.currentLogDir, server.serverName, 
+                             server.domain, server.remoteAlias)
+        } else {
+            return Paths.get(this.currentLogDir, server.serverName, 
+                             server.domain)
+        }
     }
 
     int run() {

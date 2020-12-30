@@ -2,6 +2,7 @@ package com.getconfig
 
 
 import com.getconfig.Model.Server
+import com.getconfig.Utils.CommonUtil
 import groovy.transform.CompileStatic
 import groovy.transform.TypeCheckingMode
 import groovy.util.logging.Slf4j
@@ -73,10 +74,10 @@ class ConfigEnv {
         this.config.test.dry_run[platform] = true
     }
 
-    boolean isWindows() {
-        String osName = System.properties['os.name']
-        return (osName.toLowerCase().contains('windows'))
-    }
+//    boolean isWindows() {
+//        String osName = System.properties['os.name']
+//        return (osName.toLowerCase().contains('windows'))
+//    }
 
     void accept(Controller visitor) {
         visitor.setEnvironment(this)
@@ -104,14 +105,19 @@ class ConfigEnv {
 
     // gconf 実行パス
     String getGconfExe() {
-        String gconfExe = (this.isWindows()) ? "gconf.exe" : "gconf"
+        String gconfExe = (CommonUtil.isWindows()) ? "gconf.exe" : "gconf"
         return Paths.get(this.getGetconfigHome(), gconfExe)
     }
 
     // getconfig 実行パス
     String getGetconfigExe() {
-        String getconfigExe = (this.isWindows()) ? "getconfig.bat" : "getconfig"
+        String getconfigExe = (CommonUtil.isWindows()) ? "getconfig.bat" : "getconfig"
         return Paths.get(this.getGetconfigHome(), getconfigExe)
+    }
+
+    // getconfig tools パス
+    String getGetconfigToolsDir() {
+        return Paths.get(this.getGetconfigHome(), 'tools')
     }
 
     // 検査シートパス  チェックシート.xslx

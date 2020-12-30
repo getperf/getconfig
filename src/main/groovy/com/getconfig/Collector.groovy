@@ -42,15 +42,17 @@ class Collector implements Controller {
         return testServerGroups
     }
 
-    AgentMode getAgentMode(String domain) {
+    AgentMode getAgentMode(String domain, String domainExt) {
+        AgentWrapperManager manager = AgentWrapperManager.instance
+        domain = manager.normalizePlatform(domain, domainExt)
         if (domain == '{LocalFile}') {
             return AgentMode.RemoteAgentHub
         } else if (domain == '{Agent}') {
             return AgentMode.RemoteAgent
-        }else if (AgentWrapperManager.instance.getDirectExecutorWrapper(domain)) {
+        }else if (manager.getDirectExecutorWrapper(domain)) {
             return AgentMode.Direct
         } else {
-            AgentConfigWrapper wrapper = AgentWrapperManager.instance.getWrapper(domain)
+            AgentConfigWrapper wrapper = manager.getWrapper(domain)
             if (wrapper.getBatchEnable()) {
                 return AgentMode.LocalAgentBatch
             } else {
@@ -88,7 +90,7 @@ class Collector implements Controller {
             }
             AgentMode agentMode = AgentMode.DryRun
             if (!(server.dryRun)) {
-                agentMode = this.getAgentMode(server.domain)
+                agentMode = this.getAgentMode(server.domain, server.domainExt)
             }
             String serverGroupKey = this.getServerGroupKey(agentMode, server)
             if (!testServerGroups.get(serverGroupKey)) {

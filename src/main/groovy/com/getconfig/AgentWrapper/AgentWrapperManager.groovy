@@ -1,6 +1,6 @@
 package com.getconfig.AgentWrapper
 
-
+import com.getconfig.Utils.CommonUtil
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
@@ -32,10 +32,19 @@ class AgentWrapperManager {
         }
         directExecutorWrapper.with {
             it["Oracle"] = new Oracle()
+            it["WindowsPy"] = new WindowsPy()
         }
     }
 
-    AgentConfigWrapper getWrapper(String platform) {
+    String normalizePlatform(String platform, String domainExt) {
+        if (domainExt != "") {
+            platform = platform + CommonUtil.toCamelCase(domainExt, true)
+        }
+        return platform
+    }
+
+    AgentConfigWrapper getWrapper(String platform, String domainExt = "") {
+        platform = normalizePlatform(platform, domainExt)
         def agentConfigWrapper = agentWrappers[platform]
         if (!agentConfigWrapper) {
             throw new IllegalArgumentException("not found agent wrapper : " + platform)
@@ -43,7 +52,8 @@ class AgentWrapperManager {
         return agentWrappers[platform] as AgentConfigWrapper
     }
 
-    DirectExecutorWrapper getDirectExecutorWrapper(String platform) {
+    DirectExecutorWrapper getDirectExecutorWrapper(String platform, String domainExt = "") {
+        platform = normalizePlatform(platform, domainExt)
         return directExecutorWrapper.get(platform) as DirectExecutorWrapper
     }
 }

@@ -191,17 +191,17 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
 
         @Override
         public Integer call() {
-            try {
+            // try {
                 def env = ConfigEnv.instance
                 env.commandArgs.copyPropeties(this)
                 env.readConfig()
                 TestRunner runner = new TestRunner()
                 env.accept(runner)
                 runner.run()
-            } catch (Exception e) {
-                log.error "run command : " + e
-                return ExitCode.SOFTWARE
-            }
+            // } catch (Exception e) {
+            //     log.error "run command : " + e
+            //     return ExitCode.SOFTWARE
+            // }
             return ExitCode.OK
         }
     }

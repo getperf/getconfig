@@ -180,6 +180,9 @@ class WindowsCollector():
         検査対象 Windows サーバのインベントリを収集する
         """
         _logger = logging.getLogger(__name__)
+        if os.name == 'nt':
+            _logger.fatal("not support windows platform")
+            sys.exit(1)
         self.read_scenario()
         self.prepare_datasotre_base(self.output)
         err_file = open(os.path.join(self.output, 'error.log'), 'wb')
@@ -211,6 +214,7 @@ class WindowsCollector():
             format='%(asctime)s [%(levelname)s] %(module)s %(message)s',
             datefmt='%Y/%m/%d %H:%M:%S',
         )
+
         args = self.parser()
         self.set_envoronment(args)
         self.run()

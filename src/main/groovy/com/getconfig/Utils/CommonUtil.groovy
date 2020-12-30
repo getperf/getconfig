@@ -1,6 +1,11 @@
 package com.getconfig.Utils
 
 class CommonUtil {
+    static boolean isWindows() {
+        String osName = System.properties['os.name']
+        return (osName.toLowerCase().contains('windows'))
+    }
+
     static boolean resetDir(String targetDir) {
         def dir = new File(targetDir)
         if (dir.exists()) {

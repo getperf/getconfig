@@ -50,6 +50,7 @@ public class SpecReader {
         List<Server> normalizedServers = new ArrayList<>()
 
         testServers.each { server ->
+            server.initDomain()
             // サーバー名があり、比較対象がない行は、比較対象なしとして前行の比較対象をリセットする
             if (server.serverName && !(server.compareServer)) {
                 previousCompareServer = null

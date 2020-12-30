@@ -43,6 +43,7 @@ public class Server {
 
     boolean dryRun = false;
     boolean indirectConnection = false;
+    String domainExt = "";
 
     // キー項目の有無をチェックをします
     public boolean checkKey(String previousServerName = null, 
@@ -62,6 +63,7 @@ public class Server {
         if (this.serverName == "" || this.domain == "") {
             notFoundMsgs << "server_name or domain"
         }
+
         if (this.dryRun) {
             return true
         }
@@ -114,5 +116,12 @@ public class Server {
         addedServer.dryRun = true
 
         return addedServer
+    }
+
+    void initDomain() {
+        (this.domain=~/(.+)\.(.+)/).each { String m0, m1, m2 ->
+            this.domain = m1
+            this.domainExt = m2
+        }
     }
 }
