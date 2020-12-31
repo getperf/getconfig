@@ -42,7 +42,7 @@ void ResourceConfig(TestUtil t) {
 }
 
 void addIopsLimitDevice(TestUtil t, json) {
-    t.metricFile = "vm_iops_limit"
+    t.setMetricFile("vm_iops_limit")
     def limits = []
     def csv = []
     def headers = ["Label":"label", "Summary":"summary", "Limit":"limit", 
@@ -97,7 +97,7 @@ void addToolStatus(TestUtil t, json) {
 }
 
 void addStorageConfig(TestUtil t, disks) {
-    t.metricFile = 'disk'
+    t.setMetricFile('disk')
     def headers = ['dev', 'usage', 'datastore', 'thin', 'writeThrough', 
         'level', 'shares']
     def csv = []

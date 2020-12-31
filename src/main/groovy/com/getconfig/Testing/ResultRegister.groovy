@@ -51,4 +51,8 @@ class ResultRegister {
         t.testResultGroup.setValue(t.platform, metric, value, t.metricFile)
         log.debug  "SET ${metric},${value}"
     }
+
+    static void setMetricFile(TestUtil t, String metricFile) {
+        t.metricFile = metricFile
+    }
 }
