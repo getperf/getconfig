@@ -1,10 +1,6 @@
 # VMWare 仮想マシン インベントリ収集シナリオ
 
-# REST で vCenter サーバに接続し、VMware vSphere API にアクセスして、
-# 仮想マシンのインベントリ情報を収集します。
-#
-# Reference : 
-#     https://code.vmware.com/apis/968/vsphere
+# REST で vCenter サーバに接続し、 メトリック定義リストのコマンドを実行します
 
 # Excel 検査対象シート
 
@@ -27,25 +23,32 @@
 # エイリアス名
 #      vCenter上の仮想マシン名。未記入の場合は対象サーバ名を使用します
 
+
 # [[metrics]]
 
 # メトリック定義コマンドリスト
 # 
-# id  
-#     メトリックID。必須。ユニークにする必要あり
-# name 
-#     メトリック名
-# category 
-#     メトリックの分類
-# level 
-#     採取レベル。高い方が優先度が下がる
-#     -1, 0, 1, 2 から選択、-1の場合、コマンドを実行しない。既定は0
-# comment
-#     メトリックの定義
-# text 
-#     VMWare Managed Object 名、複数行の場合は ''' で括る
-#     空白の場合、メトリックの定義のみでコマンドは実行しません
+# VMWare Managed Object、採取メトリックを追加する場合、以下リストに追加します。
+# 
+# govmomi リファレンス:
 #
+#    https://godoc.org/github.com/vmware/govmomi
+#
+# vSphere API リファレンス : 
+# 
+#     https://code.vmware.com/apis/968/vsphere
+#
+# 設定例:
+# 
+# [[metrics]]
+# 
+# id = "summary"       # ユニークなID
+# name = "サマリ"      # メトリック名
+# category = "VM設定"  # メトリックの分類
+# comment = ""         # メトリック定義 
+# level = 0            # コマンド制限レベル(0-2 , 既定は 0)
+# text = "summary"     # VMWare Managed Objectテキスト。
+#                      # 空白の場合、メトリックの定義のみで、実行はしません
 
 # 以下リストは既定の VMWare Managed Object のリストになります。これら設定は
 # ハードコーディングされており、変更する場合はコメントアウトを外して
@@ -54,31 +57,26 @@
 # [[metrics]]
 # 
 # id = "summary"
-# level = 0
 # text = "summary"
 # 
 # [[metrics]]
 # 
 # id = "resourceConfig"
-# level = 0
 # text = "resourceConfig"
 # 
 # [[metrics]]
 # 
 # id = "guestHeartbeatStatus"
-# level = 0
 # text = "guestHeartbeatStatus"
 # 
 # [[metrics]]
 # 
 # id = "config"
-# level = 0
 # text = "config"
 # 
 # [[metrics]]
 # 
 # id = "guest"
-# level = 0
 # text = "guest"
 
 # 以下リストは結果シート登録用のメトリック定義になります。

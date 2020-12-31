@@ -1,6 +1,6 @@
 # Zabbix 監視設定 インベントリ収集シナリオ
 
-# JSON RPC で Zabbix 管理用 IF ； Zabbix API に接続し、メトリック定義のコマンド
+# JSON RPC で Zabbix 管理用インターフェースに接続し、メトリック定義のコマンド
 # 群を実行します
 
 # Excel 検査対象シート

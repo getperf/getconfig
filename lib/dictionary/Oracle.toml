@@ -1,42 +1,51 @@
 # Oracle データベースインベントリ収集シナリオ
 
-# JDBC 経由で Oracle に接続し、メトリック定義のSQL 群を実行します
+# JDBC 経由で Oracle に接続し、メトリック定義の SQL を実行します
 
 # Excel 検査対象シート
 
 # 設定パラメータは以下の通りです
 # 
 # 対象サーバ
-#     データベース名を入力
+#     「データベース名@ホスト名」 の形式で入力
 # プラットフォーム
 #     Oracle
 # URL,IPアドレス
-#     IPアドレス
+#     IPアドレスを入力。ポート番号を指定する場合は、IP:ポート番号 を入力
 # ユーザID
 #     config/config.groovy 内に記述した、JDBC 接続アカウント。
 #     Account01を指定した場合、以下のパラメータを参照します
 #      // Oracle 接続情報
 #      account.Oracle.Account01.user      = 'scott'
 #      account.Oracle.Account01.password  = 'tiger'
+# エイリアス名
+#     データベースインスタンス名を入力
 
 # [[metrics]]
 
 # メトリック定義SQLリスト
 # 
-# id  
-#     メトリックID。必須。ユニークにする必要あり
-# name 
-#     メトリック名
-# category 
-#     メトリックの分類
-# level 
-#     採取レベル。高い方が優先度が下がる
-#     -1, 0, 1, 2 から選択、-1の場合、コマンドを実行しない。既定は0
-# comment
-#     メトリックの定義
-# text 
-#     SQL実行テキスト、 ''' で括る
-#     空白の場合、メトリックの定義のみでコマンドは実行しません
+# Oracle SQL、採取メトリックを追加する場合、以下リストに追加します。
+#
+# 設定例:
+#
+# [[metrics]]
+# 
+# id = "dbinfo"            # ユニークなID
+# name = "DBパラメータ"    # メトリック名
+# category = "SQL実行結果" # メトリックの分類
+#                          # メトリック定義
+# comment = "'V$PARAMETER' の検索"
+# level = 0                # コマンド制限レベル(0-2 , 既定は 0)
+# text = '''               # SQL 実行テキスト。''' で括る。
+# SELECT   name            # 空白の場合、メトリックの定義のみで、実行はしません
+#        , value
+#        , description
+#     FROM v$parameter
+# ORDER BY name
+#        , value
+#        , description
+# '''
 
 [[metrics]]
 

@@ -1,7 +1,7 @@
-# CiscoUCS HW インベントリ収集シナリオ
+# CiscoUCS サーバファームウェア インベントリ収集シナリオ
 
 # SSH で Cisco UCS管理用インターフェースの CIMC に接続し、
-# メトリック定義のコマンド群を実行します
+# メトリック定義のコマンドを実行します
 
 # Excel 検査対象シート
 
@@ -22,24 +22,26 @@
 
 # [[metrics]]
 
-# メトリック定義コマンドリスト
+# CIMC コマンド、採取メトリックを追加する場合、以下リストに追加します。
+#
+# CIMC リファレンス：
+#
+#   https://www.cisco.com/c/ja_jp/support/servers-unified-computing/ucs-c-series-integrated-management-controller/series.html
+
+# 設定例:
 # 
-# id  
-#     メトリックID。必須。ユニークにする必要あり
-# name 
-#     メトリック名
-# category 
-#     メトリックの分類
-# level 
-#     採取レベル。高い方が優先度が下がる
-#     -1, 0, 1, 2 から選択、-1の場合、コマンドを実行しない。既定は0
-# comment
-#     メトリックの定義。省略可
-# type = "Cmd"
-#     コマンドが1行の実行の場合、"Cmd"、複数行の場合、"Script"
-# text 
-#     コマンド実行テキスト、 ''' で括る。
-#     未指定、空白の場合、メトリックの定義のみでコマンドは実行しません
+# [[metrics]]
+# 
+# id = "bios"                 # ユニークなID
+# name = "BIOS"               # メトリック名
+# category = "ファームウェア" # メトリックの分類
+# commeint = ""               # メトリック定義
+# level = 0                   # コマンド制限レベル(0-2 , 既定は 0)
+# type = "Script"             # コマンドが1行の場合、"Cmd"、複数行の場合、"Script"
+# text = '''                  # コマンド実行テキスト。''' で括る。
+# top                         # 空白の場合、メトリックの定義のみで、実行はしません
+# show bios detail
+# '''
 
 [[metrics]]
 

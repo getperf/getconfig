@@ -1,4 +1,4 @@
-# HitachiVSP 監視設定 インベントリ収集シナリオ
+# HitachiVSP ストレージファームウェア インベントリ収集シナリオ
 
 # REST で HitachiVSP 管理用インターフェースの HitachiVSP API に接続し、
 # メトリック定義リストのコマンドを実行します
@@ -26,9 +26,11 @@
 #         account.HitachiVSP.Account01.user      = 'admin'
 #         account.HitachiVSP.Account01.password  = 'admin'
 
-# メトリック定義コマンドリスト
+# [[metrics]]
 
-# HitachiVSP API 情報採取用 URL を追加する場合、以下リストに追加します。
+# メトリック定義コマンドリスト
+#
+# HitachiVSP API の情報採取 URL を追加する場合、以下リストに追加します。
 # text に定義したパスに Excel 検査対象シートに記載したアドレス追加した
 # URL で REST APIにアクセスします。
 # IP アドレスを指定した場合は、http://{IPアドレス}/{text}
@@ -36,7 +38,7 @@
 #
 # HitachiVSP API リファレンス : 
 # 
-# http://itdoc.hitachi.co.jp/manuals/3021/3021901610/INDEX.HTM
+#   http://itdoc.hitachi.co.jp/manuals/3021/3021901610/INDEX.HTM
 #
 # 設定例:
 #
@@ -55,55 +57,46 @@
 # [[metrics]]
 # 
 # id = "storage"
-# level = 0
 # text = "/ConfigurationManager/v1/objects/storages/{id}"
 #
 # [[metrics]]
 # 
 # id = "host-groups"
-# level = 0
 # text = "/ConfigurationManager/v1/objects/storages/{id}/host-groups"
 #
 # [[metrics]]
 # 
 # id = "ports"
-# level = 0
 # text = "/ConfigurationManager/v1/objects/storages/{id}/ports"
 #
 # [[metrics]]
 # 
 # id = "ports"
-# level = 0
 # text = "/ConfigurationManager/v1/objects/storages/{id}/ports"
 #
 # [[metrics]]
 # 
 # id = "parity-groups"
-# level = 0
 # text = "/ConfigurationManager/v1/objects/storages/{id}/parity-groups"
 #
 # [[metrics]]
 # 
 # id = "ldevs"
-# level = 0
 # text = "/ConfigurationManager/v1/objects/storages/{id}/ldevs?headLdevId=0&count=100"
 #
 # [[metrics]]
 # 
 # id = "users"
-# level = 0
 # text = "/ConfigurationManager/v1/objects/storages/{id}/users"
 #
 # [[metrics]]
 # 
 # id = "ambient"
-# level = 0
 # text = "/ConfigurationManager/v1/objects/storages/{id}/components/instance"
 #
 # [[metrics]]
 # 
 # id = "snmp"
-# level = 0
 # text = "/ConfigurationManager/v1/objects/storages/{id}/snmp-settings/instance"
 
 # 以下リストは結果シート登録用のメトリック定義になります。

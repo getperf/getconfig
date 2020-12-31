@@ -1,7 +1,7 @@
-# NetApp 監視設定 インベントリ収集シナリオ
+# NetApp ストレージファームウェア インベントリ収集シナリオ
 
 # SSH経由で NetApp 管理コンソールに接続し、メトリック定義のコマンド
-# 群を実行します
+# を実行します
 
 # Excel 検査対象シート
 
@@ -25,9 +25,11 @@
 #         account.NetApp.Account01.user      = 'admin'
 #         account.NetApp.Account01.password  = 'admin'
 
-# メトリック定義コマンドリスト
+# [[metrics]]
 
-# NetApp 情報採取用コマンドを追加する場合、以下リストに追加します。
+# メトリック定義コマンドリスト
+# 
+# NetApp コマンド、採取メトリックを追加する場合、以下リストに追加します。
 # 
 # NetApp CLI リファレンス:
 #

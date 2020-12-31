@@ -1,6 +1,6 @@
-# HP iLO HW インベントリ収集シナリオ
+# HP iLO サーバファームウェア インベントリ収集シナリオ
 
-# REST で HP 管理用 IF ； HP iLO に接続し、
+# REST で HP 管理用インターフェースの HP iLO に接続し、
 # メトリック定義のコマンド群を実行します
 
 # Excel 検査対象シート
@@ -24,18 +24,84 @@
 # [[metrics]]
 
 # メトリック定義コマンドリスト
-# 
-# HP iLO の既定の実行コマンドリストはハードコーディングされており、
-# 変更できません。以下リストは抽出項目のメトリック定義のみになります。
-# コマンドを追加する場合は以下の様に記述します
-# 
-# example:
+
+# HP iLO API の URL、採取メトリックを追加する場合、以下リストに追加します。
+# text に定義したパス名に Excel 検査対象シートに記載したアドレス追加した
+# URL で REST APIにアクセスします。
+# IP アドレスを指定した場合は、http://{IPアドレス}/{text}
+# の形式でアクセスします。
+#
+# HP iLO リファレンス:
+#
+#   https://h50146.www5.hpe.com/lib/products/servers/proliant/manuals/880740-191_ja.pdf
+#
+# 設定例:
 # 
 # [[metrics]]
 # 
-# id = "oviewview" # unique key
-# level = 0        # command level [0-2]
+# id = "proc_info"            # ユニークなID
+# name = "CPU情報"            # メトリック名
+# category = "ファームウェア" # メトリックの分類
+# commeint = ""               # メトリック定義
+# level = 0                   # コマンド制限レベル(0-2 , 既定は 0)
+# text = "/json/proc_info"    # REST API 実行 URL
+#                             # 空白の場合、メトリックの定義のみで、実行はしません
+
+# 以下リストは既定の HP iLO コマンドリストになります。これら設定は
+# ハードコーディングされており、変更する場合はコメントアウトを外して
+# 修正してください。
+
+# [[metrics]]
+# 
+# id = "overview"
 # text = "/json/overview"
+# 
+# [[metrics]]
+# 
+# id = "license"
+# text = "/redfish/v1/Managers/1/LicenseService/1/"
+# 
+# [[metrics]]
+# 
+# id = "proc_info"
+# text = "/json/proc_info"
+# 
+# [[metrics]]
+# 
+# id = "mem_info"
+# text = "/json/mem_info"
+# 
+# [[metrics]]
+# 
+# id = "network"
+# text = "/redfish/v1/Managers/1/EthernetInterfaces/1"
+# 
+# [[metrics]]
+# 
+# id = "health_drives"
+# text = "/json/health_drives"
+# 
+# [[metrics]]
+# 
+# id = "health_phy_drives"
+# text = "/json/health_phy_drives"
+# 
+# [[metrics]]
+# 
+# id = "snmp"
+# text = "/redfish/v1/Managers/1/snmpservice/snmpalertdestinations/1"
+# 
+# [[metrics]]
+# 
+# id = "power_regulator"
+# text = "/json/power_regulator"
+# 
+# [[metrics]]
+# 
+# id = "power_summary"
+# text = "/json/power_summary"
+
+# 以下リストは結果シート登録用のメトリック定義になります。
 
 [[metrics]]
 

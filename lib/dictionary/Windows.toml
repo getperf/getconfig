@@ -11,7 +11,7 @@
 # プラットフォーム
 #     Windows
 # URL,IPアドレス
-#     SSH 接続先のIPもしくは、IP:ポート番号 を入力します。
+#     WinRM 接続先のIPもしくは、IP:ポート番号 を入力します。
 # ユーザID
 #     config/config.groovy 内に記述した、SSH 接続アカウント。
 #     Account01を指定した場合、以下のパラメータを参照します
@@ -21,26 +21,24 @@
 
 # [[metrics]]
 
-# メトリック定義コマンドリスト
+# Windows コマンド、採取メトリックを追加する場合、以下リストに追加します。
+
+# 設定例:
 # 
-# id  
-#     メトリックID。必須。ユニークにする必要あり
-# name 
-#     メトリック名
-# category 
-#     メトリックの分類
-# level 
-#     採取レベル。高い方が優先度が下がる
-#     -1, 0, 1, 2 から選択、-1の場合、コマンドを実行しない。既定は0
-# deviceFlasg
-#     true, false. デバイス結果を登録する場合、trueにする
-# comment
-#     メトリックの定義
-# type = "Cmdlet"
-#     PowerShellコマンドの場合、"Cmdlet"、DOSコマンドの場合、"Cmd"
-# text 
-#     コマンド実行テキスト、 ''' で括る
-#     空白の場合、メトリックの定義のみでコマンドは実行しません
+# [[metrics]]
+# 
+# id = "system"            # ユニークなID
+# name = "システム名"      # メトリック名
+# category = "OSリリース"  # メトリックの分類
+#                          # メトリック定義
+# comment = "Win32_ComputerSystem オブジェクトを検索"
+# level = 0                # コマンド制限レベル(0-2 , 既定は 0)
+#                          # PowerShellコマンドの場合、"Cmdlet"、
+# type = "Cmdlet"          # DOSコマンドの場合、"Cmd"
+#                          # コマンド実行テキスト。''' で括る。
+# text = '''               # 空白の場合、メトリックの定義のみで、実行はしません
+# Get-WmiObject -Class Win32_ComputerSystem
+# '''
 
 [[metrics]]
 
