@@ -54,6 +54,19 @@
 # ハードコーディングされており、変更する場合はコメントアウトを外して
 # 修正してください。
 
+# [[metrics]]
+# 
+# id = "summary"
+# level = 0
+# text = "summary"
+# 
+# [[metrics]]
+# 
+# id = "config"
+# level = 0
+# text = "config"
+
+
 # 以下リストは結果シート登録用のメトリック定義になります。
 
 [[metrics]]
@@ -95,13 +108,6 @@ category = "OS設定"
 
 id = "NTP"
 name = "NTP"
-level = -1
-category = "OS設定"
-
-[[metrics]]
-
-id = "Parent"
-name = "クラスター"
 level = -1
 category = "OS設定"
 
