@@ -149,8 +149,8 @@ class TestUtil {
         ResultRegister.newMetric(this, metric, description, value)
     }
 
-    void setMetricFile(String metricFile) {
-        ResultRegister.setMetricFile(this, metricFile)
+    void resetMetric(String metricFile) {
+        ResultRegister.resetMetric(this, metricFile)
     }
 
     void portList(String ip, String device, boolean forManagement = false) {

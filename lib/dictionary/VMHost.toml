@@ -71,119 +71,102 @@
 
 [[metrics]]
 
-id = "summary"
-name = "バージョン"
-level = 0
+id = "osname"
+name = "OS名"
 category = "OSリリース"
 
 [[metrics]]
 
-id = "Build"
-name = "ビルド"
-level = -1
+id = "arch"
+name = "アーキテクチャ"
 category = "OSリリース"
 
 [[metrics]]
 
 id = "Manufacturer"
 name = "メーカー"
-level = -1
 category = "OSリリース"
 
 [[metrics]]
 
 id = "HyperthreadingActive"
 name = "ハイパースレッディング"
-level = -1
 category = "OS設定"
 
 [[metrics]]
 
 id = "TimeZone"
 name = "タイムゾーン"
-level = -1
 category = "OS設定"
 
 [[metrics]]
 
 id = "NTP"
 name = "NTP"
-level = -1
 category = "OS設定"
 
 [[metrics]]
 
 id = "PowerState"
 name = "電源状態"
-level = -1
 category = "OS設定"
 
 [[metrics]]
 
 id = "NumCpuPkgs"
 name = "CPUソケット数"
-level = -1
 category = "CPU"
 
 [[metrics]]
 
 id = "NumCpuCores"
 name = "CPUコア数"
-level = -1
 category = "CPU"
 
 [[metrics]]
 
 id = "CputTotal"
 name = "CPUスレッド数"
-level = -1
 category = "CPU"
 
 [[metrics]]
 
 id = "CpuTotalMhz"
 name = "CPUクロック"
-level = -1
 category = "CPU"
 
 [[metrics]]
 
 id = "ProcessorType"
 name = "プロセッサタイプ"
-level = -1
 category = "CPU"
 
 [[metrics]]
 
 id = "MemoryTotalGB"
 name = "メモリ容量"
-level = -1
 category = "メモリ"
 
 [[metrics]]
 
-id = "config"
+id = "network"
 name = "ネットワーク"
-level = 0
 category = "ネットワーク"
 
 [[metrics]]
 
 id = "DefaultGateway"
 name = "デフォルトゲートウェイ"
-level = -1
 category = "ネットワーク"
 
 [[metrics]]
 
 id = "SubnetMask"
 name = "サブネットマスク"
-level = -1
 category = "ネットワーク"
 
 [[metrics]]
 
 id = "Disk"
 name = "ディスク容量"
-level = -1
 category = "ディスク"

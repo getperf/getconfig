@@ -25,25 +25,21 @@ void Summary(TestUtil t) {
     t.setMetric("ProcessorType", json.Hardware?.CpuModel)
 
     def os = "ESXi ${json.Config.Product.Version} Build ${json.Config.Product.Build}"
-    t.newMetric("summary.version", "ESXi Version", os)
+    t.setMetric("osname", os)
     def arch = "x86_64"
     if (!(json.Hardware?.CpuModel =~ /Intel/)) {
         arch = json.Hardware?.CpuModel
     }
-    t.newMetric("summary.arch", "ESXi Architecture", arch)
+    t.setMetric("arch", arch)
 
     def memTotal = (json.Hardware?.MemorySize ?: 0) / (1024.0 ** 3)
     t.setMetric("MemoryTotalGB", memTotal)
 }
 
-@Parser("config")
-void Config(TestUtil t) {
-    def json = new JsonSlurper().parseText(t.readAll())
-
-    t.results(json.Network?.Vnic*.Spec?.Ip?.IpAddress.toString())
-
+void addNetwork(TestUtil t, json) {
     def id = 0
     def csv = []
+    t.setMetricFile('network')
     def headers = ['Ip', 'Dhcp', 'IpV6Auto', 'Mac', 'Mtu', 'NetStack', 'PortGroup']
     json.Network?.Vnic*.Spec.each {
         def row = [
@@ -68,17 +64,15 @@ void Config(TestUtil t) {
     }
     t.devices(headers, csv)
 
+    t.results(json.Network?.Vnic*.Spec?.Ip?.IpAddress.toString())
     t.setMetric("DefaultGateway", json.Network?.IpRouteConfig?.DefaultGateway)
     t.setMetric("SubnetMask", json.Network?.Vnic*.Spec?.Ip?.SubnetMask)
-    t.setMetric("HyperthreadingActive", json?.HyperThread?.Active)
-    t.setMetric("TimeZone", json?.DateTimeInfo?.TimeZone?.Description)
-    t.setMetric("Parent", json?.VsanHostConfig?.ClusterInfo?.toString())
-    t.setMetric("NTP", json?.DateTimeInfo?.NtpConfig?.Server?.toString())
+}
 
+void addDisk(TestUtil t, json) {
     id = 0
     def diskSizes = [:].withDefault{0}
     def csv_disk = []
-    // println json?.StorageDevice
     json?.StorageDevice?.ScsiLun.each { lun ->
         def block = (double)(lun?.Capacity?.Block ?: 0)
         def size = (double)(lun?.Capacity?.BlockSize ?: 0)
@@ -113,12 +107,19 @@ void Config(TestUtil t) {
     }
     t.setMetric("Disk", diskSizes.toString())
     t.devices(['Model', 'Size'], csv_disk, "Disk")
-    // json.FileSystemVolume?.MountInfo*.Volume?.Extent*.DiskName.each {
-    //     (it =~/^(.+?)__+(.+?)__+(.+)/).each { m0, m1, m2, m3 ->
-    //         t.newMetric("Disk.model.${id}", "[${id}] Model", m2)
-    //         id ++
-    //     }
-    // }
+}
+
+@Parser("config")
+void Config(TestUtil t) {
+    def json = new JsonSlurper().parseText(t.readAll())
+    addNetwork(t, json)
+    addDisk(t, json)
+
+    t.setMetric("HyperthreadingActive", json?.HyperThread?.Active)
+    t.setMetric("TimeZone", json?.DateTimeInfo?.TimeZone?.Description)
+    t.setMetric("Parent", json?.VsanHostConfig?.ClusterInfo?.toString())
+    t.setMetric("NTP", json?.DateTimeInfo?.NtpConfig?.Server?.toString())
+
 }
 
 // @Parser("configManager")
@@ -130,7 +131,11 @@ void Config(TestUtil t) {
 @Parser("capability")
 void Capability(TestUtil t) {
     def json = new JsonSlurper().parseText(t.readAll())
-
-    t.setMetric("VMSwapfilePolicy", json.findAll { it =~ /Swap/ }.toString())
+    // println new JsonBuilder( json ).toPrettyString()
+    json.findAll { 
+        // println it        
+        // value = 'N/A' if (value == null)
+    }
+    // t.setMetric("VMSwapfilePolicy", json.findAll { it =~ /Swap/ }.toString())
 }
 

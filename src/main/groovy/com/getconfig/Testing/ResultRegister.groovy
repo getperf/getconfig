@@ -52,7 +52,7 @@ class ResultRegister {
         log.debug  "SET ${metric},${value}"
     }
 
-    static void setMetricFile(TestUtil t, String metricFile) {
+    static void resetMetric(TestUtil t, String metricFile) {
         t.metricFile = metricFile
     }
 }

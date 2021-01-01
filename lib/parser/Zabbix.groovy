@@ -74,7 +74,7 @@ void Hosts(TestUtil t) {
     t.setMetric("interface", interfaces ?: 'N/A')
 
     def macros = []
-    t.setMetricFile('macros')
+    t.resetMetric('macros')
     t.results((json.macros) ? 'Enable' : 'N/A')
     def csvMacros = []
     json.macros.each { 
