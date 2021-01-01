@@ -65,10 +65,10 @@ class SheetManager {
         return this.headers
     }
 
-    // ヘッダーのコメントを削除して、オートフィルターを設定する
+    // ヘッダーのコメントを削除する
     // headerCell.removeCellComment() の　NullPointer Exception を回避するため、
     // ダミーの comment を作成する。Anchor の位置を変える必要があるので一位の引数を指定する
-    void resetHeader(int dummyIndex) {
+    void removeHeaderComment(int dummyIndex) {
         Row headerRow = sheet.getRow(sheet.getFirstRowNum())
         Row headerRow2 = sheet.getRow(sheet.getFirstRowNum()+1)
         if (!this.dummyAncor) {
@@ -84,9 +84,16 @@ class SheetManager {
                 headerCell.removeCellComment()
             }
         }
-        // ヘッダーにオートフィルター設定
+    }
+
+    // ヘッダーにオートフィルター設定
+    void setHeaderAutoFilter(int column = -1, int row = -1) {
+        if (column == -1)
+            column = sheet.getRow(sheet.getFirstRowNum()).size() - 1
+        if (row == -1)
+            row = sheet.getLastRowNum() - 1
         sheet.setAutoFilter(new CellRangeAddress(
-                0,sheet.getLastRowNum() - 1, 0, headerRow.size() - 1))
+                0, row, 0, column))
     }
 
     /**

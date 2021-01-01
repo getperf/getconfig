@@ -19,26 +19,6 @@ class ReportMakerSummary {
         this.reportMaker = reportMaker
     }
 
-//    void resetHeader(SheetManager manager) {
-//        Sheet sheet = manager.sheet
-//        Row headerRow = sheet.getRow(sheet.getFirstRowNum())
-//        // ヘッダーのコメントを削除。
-//        // headerCell.removeCellComment() の　NullPointer Exception を回避するため、
-//        // A2 列にダミーの comment を作成する
-//        final Drawing drawing = sheet.createDrawingPatriarch();
-//        final ClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 0, 1, 0, 1);
-//        final Comment dummyComment = drawing.createCellComment(anchor)
-//        for (Cell headerCell : (headerRow as List<Cell>)) {
-//            Comment comment = headerCell.getCellComment()
-//            if (headerCell && comment) {
-//                headerCell.removeCellComment()
-//            }
-//        }
-//        // ヘッダーにオートフィルター設定
-//        sheet.setAutoFilter(new CellRangeAddress(
-//                0,sheet.getLastRowNum(), 0, headerRow.size() - 1))
-//    }
-
     void make() {
         reportMaker.setTemplateSheet("Summary")
         reportMaker.copyTemplate("サマリレポート")
@@ -95,6 +75,7 @@ class ReportMakerSummary {
             // manager.shiftRows()
             order++
         }
-        manager.resetHeader(0)
+        manager.removeHeaderComment(0)
+        manager.setHeaderAutoFilter()
     }
 }

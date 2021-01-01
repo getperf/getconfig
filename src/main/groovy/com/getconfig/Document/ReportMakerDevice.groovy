@@ -72,13 +72,13 @@ class ReportMakerDevice {
                 links.sort().reverseEach {String backSheetName, Hyperlink link ->
                     manager.setPosition(row + 2, 0)
                     manager.cell.setHyperlink(link)
-//                    manager.setCell("${backSheetName}に戻る", "LinkNoFrame")
                     manager.setCell(backSheetName, "LinkNoFrame")
                     row ++
                 }
             }
             dummyAnchorIndex ++
-            manager.resetHeader(dummyAnchorIndex)
+            // manager.removeHeaderComment(dummyAnchorIndex)
+            manager.setHeaderAutoFilter(columnSize, row)
         }
     }
 }

@@ -9,7 +9,6 @@ import com.getconfig.Model.TestScenario
 import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
-import org.apache.poi.ss.util.CellRangeAddress
 
 @Slf4j
 @TypeChecked
@@ -191,9 +190,9 @@ class ReportMakerResult {
             groupRows << row
             this.makeRowGroup(groupRows)
             int column = this.columnSize(servers.size())
-            // manager.sheet.setAutoFilter(new CellRangeAddress(0, 0, 0, column))
-            dummyAnchorIndex ++
-            manager.resetHeader(dummyAnchorIndex)
+            // dummyAnchorIndex ++
+            // manager.removeHeaderComment(dummyAnchorIndex)
+            manager.setHeaderAutoFilter(column, row)
         }
     }
 
