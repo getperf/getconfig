@@ -1,0 +1,152 @@
+Getconfig 動作検証
+==================
+
+centos8検証
+	最小インストール
+	jdk インストール
+	Python 環境インストール
+	モジュールダウンロード
+開発環境インストール
+	gradle インストール
+	go 環境インストール
+centos6検証
+windows検証
+
+事前準備
+--------
+
+ダウンロードサイト構築
+
+cp build/distributions/getconfig-0.3.1.zip /var/www/html/
+
+wget http://192.168.0.5/getconfig-0.3.1.zip
+
+cent8検証
+---------
+
+* jdk インストール
+* getcoonfig-0.x.zip ダウンロードサイト準備
+* 動作確認
+
+jdk インストール
+
+sudo yum -y install wget unzip
+sudo yum -y install java-11-openjdk
+
+モジュールダウンロード
+
+wget http://192.168.0.5/getconfig-0.3.1.zip
+
+HOME 下に解凍
+
+unzip getconfig-0.3.1.zip
+
+.bash_profile にパスを追加
+
+vi ~/.bash_profile
+
+最終行に追加
+
+export PATH=$HOME/server-config/:$HOME/server-config/tools/:$PATH
+
+source ~/.bash_profile
+
+動作確認
+
+getcf init test1 -t
+cd test1
+getcf run -d
+
+Python 環境検証
+---------------
+
+Minicondaインストール
+
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  
+bash Miniconda3-latest-Linux-x86_64.sh
+
+/home/zabbix/miniconda3
+
+init　を yes に
+
+ssh セッションを終了し、再接続する
+
+Python ライブラリインストール
+
+pip install pandas toml
+
+pywinrm , kerberos インストール
+
+ sudo yum install gcc krb5-devel krb5-workstation
+ pip install pywinrm[kerberos]
+
+開発環境インストール
+--------------------
+
+go 環境インストール
+wget https://golang.org/dl/go1.15.6.linux-amd64.tar.gz
+
+sudo tar -C /usr/local -xzf go1.15.6.linux-amd64.tar.gz
+
+vi ~/.bash_profile
+
+export PATH=$PATH:/usr/local/go/bin
+
+source ~/.bash_profile
+
+go version
+
+git などツールインストール
+
+sudo yum install gcc zlib-devel bzip2 bzip2-devel readline readline-devel sqlite sqlite-devel openssl openssl-devel git libffi-devel curl zip
+
+gradle インストール
+
+curl -s "https://get.sdkman.io" | bash 
+
+vi ~/.bash_profile
+
+source "$PATH/.sdkman/bin/sdkman-init.sh"
+
+source ~/.bash_profile
+ 
+sdk install gradle 6.7.1
+
+モジュールダウンロード
+
+git clone https://github.com/getperf/getconfig/
+
+cd getconfig
+gradle zip
+
+centos6 検証
+------------
+
+krb5 ソースインストール
+
+scp ~/Downloads/krb5-1.18.3.tar.gz psadmin@192.168.0.101:~/work/
+
+wget https://web.mit.edu/kerberos/dist/krb5/1.18/krb5-1.18.3.tar.gz
+
+cd src
+./configure
+make
+sudo make install
+
+エラー発生
+
+wget http://mirror.centos.org/centos/6/os/x86_64/Packages/krb5-devel-1.10.3-65.el6.x86_64.rpm
+wget http://mirror.centos.org/centos/6/os/x86_64/Packages/krb5-workstation-1.10.3-65.el6.x86_64.rpm
+
+wget https://vault.centos.org/centos/6/os/x86_64/Packages/krb5-devel-1.10.3-65.el6.x86_64.rpm
+wget https://vault.centos.org/centos/6/os/x86_64/Packages/krb5-workstation-1.10.3-65.el6.x86_64.rpm
+
+http://vault.centos.org/6.10/os/Source/SPackages/krb5-1.10.3-65.el6.src.rpm 
+
+Mirror 	mirror.centos.org
+
+Source Package 	http://vault.centos.org/6.10/os/Source/SPackages/krb5-1.10.3-65.el6.src.rpm 
+
+sudo rpm -ihv krb5-devel-1.10.3-65.el6.x86_64.rpm
+sudo rpm -ihv krb5-workstation-1.10.3-65.el6.x86_64.rpm
+
