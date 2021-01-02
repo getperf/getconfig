@@ -129,7 +129,7 @@ class WindowsCollector():
     # def execute(self, err_file, session, id, type, text):
     def execute(self, err_file, id, type, text):
         text = text.strip()
-        print("run:{},{},{}".format(id, type, text))
+        # print("run:{},{},{}".format(id, type, text))
         if type == "Cmdlet":
             result = self.run_ps(text)
         else:
@@ -140,7 +140,7 @@ class WindowsCollector():
             err_file.write(err_msg.encode()) 
             err_file.write(result.std_err) 
 
-        print(result.std_out.decode('utf-8'))
+        # print(result.std_out.decode('utf-8'))
 
         with open(os.path.join(self.datastore, id), 'wb') as out_file:
             out_file.write(result.std_out)

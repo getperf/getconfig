@@ -119,8 +119,8 @@ git clone https://github.com/getperf/getconfig/
 cd getconfig
 gradle zip
 
-centos6 検証
-------------
+centos6 検証(NG)
+-----------------
 
 krb5 ソースインストール
 
@@ -149,4 +149,46 @@ Source Package 	http://vault.centos.org/6.10/os/Source/SPackages/krb5-1.10.3-65.
 
 sudo rpm -ihv krb5-devel-1.10.3-65.el6.x86_64.rpm
 sudo rpm -ihv krb5-workstation-1.10.3-65.el6.x86_64.rpm
+
+ImportError: /lib64/libkrb5.so.3: symbol krb5int_buf_len, version krb5support_0_MIT not defined in file libkrb5support.so.0 with link time reference
+
+ rpm -qa | grep -i krb
+sudo rpm -e pam_krb5-2.3.11-9.el6.x86_64
+sudo rpm -e krb5-workstation-1.10.3-65.el6.x86_64
+sudo rpm -e sssd-krb5-common-1.13.3-60.el6_10.2.x86_64
+sudo rpm -e sssd-krb5-1.13.3-60.el6_10.2.x86_64
+sudo rpm -e krb5-devel-1.10.3-65.el6.x86_64
+sudo rpm -e krb5-libs-1.10.3-65.el6.x86_64
+sudo rpm -e python-krbV-1.0.90-3.el6.x86_64
+
+互換性の問題？
+
+centos6 検証2
+-----------------
+
+別環境で再確認
+
+python --version
+Python 3.6.3 :: Anaconda, Inc.
+
+wget https://vault.centos.org/centos/6/os/x86_64/Packages/krb5-devel-1.10.3-65.el6.x86_64.rpm
+wget https://vault.centos.org/centos/6/os/x86_64/Packages/krb5-workstation-1.10.3-65.el6.x86_64.rpm
+
+sudo rpm -ivh krb5-devel-1.10.3-65.el6.x86_64.rpm
+sudo rpm -ivh krb5-workstation-1.10.3-65.el6.x86_64.rpm
+
+ pip install pywinrm[kerberos]
+
+normality 0.6.1 has requirement six>=1.11.0, but you'll have six 1.10.0 which is incompatible.
+dataset 1.1.0 has requirement six>=1.11.0, but you'll have six 1.10.0 which is incompatible.
+
+ pip install six --user -U
+
+git clone https://github.com/getperf/getconfig
+cd getconfig/tools/
+
+export PATH=$HOME/getconfig/:$HOME/getconfig/tools/:$PATH
+
+urllib3 のワーニングが発生
+
 
