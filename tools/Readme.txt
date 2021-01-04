@@ -6,11 +6,11 @@ Getconfig 管理用ツール
 
 Simply run:
 
-    $ pip install -e .
+    $ python.exe -m pip install -e .
 
 # 開発環境のインストール
 
-    $ pip install --force-reinstall --editable .
+    $ python.exe -m pip install --force-reinstall --editable .
 
 # Usage
 

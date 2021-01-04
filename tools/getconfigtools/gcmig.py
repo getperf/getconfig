@@ -29,6 +29,7 @@ import argparse
 import numpy as np
 import pandas as pd
 import toml
+from getconfigtools.util import gcutil
 
 Description='''
 引数に移行元、移行先のプロジェクトディレクトリを指定して
@@ -48,21 +49,9 @@ class GetconfigMigration():
         self.target_project = args.target
         self.dry_run = args.dry
         self.home = self.source_project
-        print(self)
 
     def get_command_name(self):
         return "getcf.bat" if os.name == 'nt' else "getcf"
-
-    def get_home(self, config_path):
-        """
-        Getconfg ホームを、{home}/ccnfig/config.groovy のパスから検索する
-        """
-        home = None
-        path = str(pathlib.Path(config_path).resolve())
-        match_dir = re.search(r'^(.+?)[/|\\](config|template)[/|\\]', path)
-        if match_dir:
-            home = match_dir.group(1)
-        return home
 
     def get_cmd_base(self, cmd):
         """
@@ -173,7 +162,7 @@ class GetconfigMigration():
                 if rows[header]:
                     server[value] = rows[header]
             dict_toml['testServers'].append(server)
-            if server["domain"] in ["Linux", "Windows"]:
+            if server["domain"] in ["Linux", "Windows"] and "remoteAlias" in server:
                 vm = {
                     "serverName":server["serverName"], 
                     "domain":"VMWare",

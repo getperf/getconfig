@@ -40,6 +40,7 @@ import argparse
 import shutil
 import toml
 import codecs
+from getconfigtools.util import gcutil
 
 Description='''
 Windows インベントリ収集の Python エミュレータ―。
@@ -146,7 +147,6 @@ class WindowsCollector():
             out_file.write(result.std_out)
 
     def collect_inventorys(self, err_file, server):
-        print(server)
         self.datastore = os.path.join(self.output, server['server'])
         os.makedirs(self.datastore)
         # session = winrm.Session(server['url'],

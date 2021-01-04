@@ -32,8 +32,9 @@ class WindowsPy implements DirectExecutorWrapper {
         this.timeout = executor.timeout
         this.level = executor.level
         this.server = executor.server
-        this.gconfExe = Paths.get(executor.toolsDir, 
-             CommonUtil.isWindows() ? "gcwinrm.bat" : "gcwinrm")
+//        this.gconfExe = Paths.get(executor.toolsDir,
+//             CommonUtil.isWindows() ? "gcwinrm.bat" : "gcwinrm")
+        this.gconfExe = "gcwinrm"
     }
 
     List<String> args(LocalAgentExecutor executor) {

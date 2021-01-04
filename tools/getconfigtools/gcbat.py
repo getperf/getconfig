@@ -29,6 +29,7 @@ import logging
 import pathlib
 import subprocess
 import argparse
+from getconfigtools.util import gcutil
 
 Description='''
 Getconfig コマンドのrun(インベントリの収集)、update all(収集結果のDB登録)
@@ -47,12 +48,13 @@ class GetconfigExecuter():
         self.config_paths = args.config.split(',')
         self.base_config = self.config_paths[0]
         self.excel = args.excel
+        self.password = args.password
         self.collect_level = args.level
         self.dry_run = args.dry
         self.redmine = args.redmine
         if not self.redmine:
             self.redmine = os.environ.get('REDMINE_PROJECT')
-        self.home = self.get_home(self.base_config)
+        self.home = gcutil.get_home(self.base_config)
         if not self.home:
             _logger.critical('config path not found')
             sys.exit(1)
@@ -61,17 +63,6 @@ class GetconfigExecuter():
 
     def get_command_name(self):
         return "getcf.bat" if os.name == 'nt' else "getcf"
-
-    def get_home(self, config_path):
-        """
-        Getconfg ホームを、{home}/ccnfig/config.groovy のパスから検索する
-        """
-        home = None
-        path = str(pathlib.Path(config_path).resolve())
-        match_dir = re.search(r'^(.+?)[/|\\](config|template)[/|\\]', path)
-        if match_dir:
-            home = match_dir.group(1)
-        return home
 
     def get_cmd_base(self, config_path, cmd):
         """
@@ -82,10 +73,14 @@ class GetconfigExecuter():
         opt_excel = ""
         if self.excel:
             opt_excel = " -e " + str(pathlib.Path(self.excel).resolve())
-        return "{} {} -c {}{}".format(self.get_command_name(), 
+        opt_password = ""
+        if self.password:
+            opt_password = " -p " + self.password
+        return "{} {} -c {}{}{}".format(self.get_command_name(), 
                                  cmd,
                                  path.replace(self.home, '.'),
-                                 opt_excel)
+                                 opt_excel,
+                                 opt_password)
 
     def spawn(self, command):
         """
@@ -136,6 +131,8 @@ class GetconfigExecuter():
                             help = "<path>\\config.groovy")
         parser.add_argument("-e", "--excel", type = str,  
                             help = "getconfig.(xlsx|toml)")
+        parser.add_argument("-p", "--password", type = str,  
+                            help = "config file password")
         parser.add_argument("-l", "--level", type = int, default = 0, 
                             help = "collection level")
         parser.add_argument("-d", "--dry", action="store_true", 
