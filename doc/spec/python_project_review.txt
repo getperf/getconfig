@@ -1,4 +1,4 @@
-Python ディレクトリ再構成
+Python ソース再構成
 =========================
 
 リファレンス調査
@@ -22,8 +22,50 @@ Hatch
 
 https://github.com/ofek/hatch
 
+httpie
+
+https://github.com/httpie/httpie
+
+    if 'win32' in str(sys.platform).lower():
+        # Terminal colors for Windows
+        install_requires.extend(install_requires_win_only)
+
+python-cli-template
+
+https://github.com/talperetz/python-cli-template
+
+
 検証
 -----
 
+* プロトタイプ
+	コマンド
+	テストスクリプト
+	モジュール化
+* 移行検討
+	共通モジュール抽出
+	
+コマンド検証
+------------
+
+ File "/home/psadmin/getconfig/tools/getconfigtools/cli/gcwinrm.py", line 1, in <module>
+    from getconfigtools.gwinrm import WindowsCollector
+ModuleNotFoundError: No module named 'getconfigtools.gwinrm'
+
+/home/psadmin/getconfig/tools
+
+テスト検証
+----------
+
+pytest 採用
+unittest
+
+Windows 移行
+------------
+
+pip 動作確認
 pip install -e .
+
+gcmig
+gcbat
 

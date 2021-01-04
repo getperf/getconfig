@@ -1,9 +1,14 @@
-clsss SessionLinux(Session):
-    def __init__(self, output, args=()):
-        self.output = output
-        pass
+import os
+import logging
+import winrm
+from winrm import Response
+from winrm.protocol import Protocol
+from base64 import b64encode
+from getconfigtools.winrm.session import Session
 
-    def connect(self, server):
+class SessionLinux(Session):
+    def connect(self, output, server):
+        self.output = output
         self.datastore = os.path.join(self.output, server['server'])
         os.makedirs(self.datastore)
         # session = winrm.Session(server['url'],

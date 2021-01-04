@@ -29,20 +29,21 @@ Getconfig インストール手順
       認証をサポートしていないため、代替ライブラリとして　Python ライブラリを使用します
     - 監視対象の Windows サーバが Basic認証の設定がされており、Basic 認証のみ
       を使用する場合、本インストールは不要です
-    - Python のインストールで、Python ディストリビューション Miniconda を使用します
 
 * 開発環境のインストール (オプション)
 
     Getconfig ソースからビルドする場合、以下のソフトウェアをインストールします。
 
-    - Go 14.4 以降を使用します
-    - Gradle 6.5 以降を使用します
+    - Go 14.4 以降
+    - Gradle 6.5 以降
 
 RHEL/CentOS 環境のインストール
 -------------------------------
 
 Python インストール(オプション)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note:: Linux 環境のみのサポートで Windows は未対応です
 
 Windows Kerberos/GSSAPI 認証を使用する場合に、Python をインストールします
 
@@ -62,11 +63,32 @@ license terms? を yes に、conda init? を yes を入力して、インスト�
     python --version
     Python 3.8.5
 
-Python WinRM Kerberos 認証ライブラリインストール
+Python WinRM Kerberos 認証ライブラリインストールします
 
 ::
 
     sudo yum install gcc krb5-devel krb5-workstation
+
+.. note::
+
+    RHEL / CentOS 6系のインストールについて
+
+    サポートが終了した RHEL 6系の場合、 vault.centos.org がから、Kerberos ライブラリをインストールします
+
+    ::
+
+        wget https://vault.centos.org/centos/6/os/x86_64/Packages/krb5-devel-1.10.3-65.el6.x86_64.rpm
+        wget https://vault.centos.org/centos/6/os/x86_64/Packages/krb5-workstation-1.10.3-65.el6.x86_64.rpm
+
+    ::
+
+        sudo rpm -ihv krb5-devel-1.10.3-65.el6.x86_64.rpm
+        sudo rpm -ihv krb5-workstation-1.10.3-65.el6.x86_64.rpm
+
+Python WinRM ライブラリ pywinrm をインストールします
+
+::
+
     pip install pywinrm[kerberos]
 
 その他の Python ライブラリをインストールします
@@ -74,23 +96,8 @@ Python WinRM Kerberos 認証ライブラリインストール
 ::
 
     cd $HOME/server-config/tools
-    pip install -r requirements.txt
+    pip install -e .
 
-    .. note::
-
-        RHEL / CentOS 6系のインストールについて
-
-        サポートが終了した RHEL 6系の場合、 vault.centos.org がから、Kerberos ライブラリをインストールします
-
-        ::
-
-            wget https://vault.centos.org/centos/6/os/x86_64/Packages/krb5-devel-1.10.3-65.el6.x86_64.rpm
-            wget https://vault.centos.org/centos/6/os/x86_64/Packages/krb5-workstation-1.10.3-65.el6.x86_64.rpm
-
-        ::
-
-            sudo rpm -ihv krb5-devel-1.10.3-65.el6.x86_64.rpm
-            sudo rpm -ihv krb5-workstation-1.10.3-65.el6.x86_64.rpm
 
 java インストール
 ^^^^^^^^^^^^^^^^^

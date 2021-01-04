@@ -9,7 +9,7 @@ gconf -t windowsconf run と同等の処理を行います
 Krberos/GSS API プロトコルに対応していないため、代替として、
 Python ライブラリ pywinrm を使用したインベントリ収集スクリプトを
 利用します。
-本スクリプトは暫定対応で、今後、 Go の gconf への統合を計画しています
+本スクリプトは暫定版となり、今後、 Go の gconf への統合を計画しています
 
 Parameters
 ----------
@@ -41,6 +41,8 @@ import shutil
 import toml
 import codecs
 from getconfigtools.util import gcutil
+from getconfigtools.winrm import session_linux
+from getconfigtools.winrm import session_windows
 
 Description='''
 Windows インベントリ収集の Python エミュレータ―。
@@ -62,29 +64,6 @@ class WindowsCollector():
         self.level = args.level
         self.timeout = args.timeout
 
-    def get_home(self, config_path):
-        """
-        Getconfg ホームを、{home}/build/gconf/config.toml のパスから検索する
-        """
-        home = None
-        path = str(pathlib.Path(config_path).resolve())
-        match_dir = re.search(r'^(.+?)[/|\\](build)[/|\\]', path)
-        if match_dir:
-            home = match_dir.group(1)
-        return home
-
-    def spawn(self, command):
-        """
-        外部コマンドを実行する。終了コードエラー、タイムアウトの場合は例外を発生する。
-        """
-        _logger = logging.getLogger(__name__)
-        _logger.info("run : {}".format(command))
-        if not self.dry_run:
-            subprocess.check_call(command.split(), \
-                timeout=self.GETCONFIG_TIMEOUT)
-            # subprocess.check_call(command.split(), cwd=self.home, \
-            #     timeout=self.GETCONFIG_TIMEOUT)
-
     def read_scenario(self):
         exporter = toml.load(open(self.config))
         if not 'servers' in exporter:
@@ -94,70 +73,9 @@ class WindowsCollector():
             raise Exception("metrics not found in '{}'".format(self.config))
         self.metrics = exporter['metrics']
 
-    # マルチバイト結果が文字化けする問題対処
-    # run_cmd と run_ps のラッパー作成。以下Issueの対応し、
-    # open_shell(codepage=655001)を追加
-
-    # https://github.com/diyan/pywinrm/issues/288
-
-    # 例： system 結果が文字化けする
-    # PrimaryOwnerName    : Windows ????
-    # TotalPhysicalMemory : 6441979904
-
-
-    def run_cmd(self, command, args=()):
-        # TODO optimize perf. Do not call open/close shell every time
-        shell_id = self.protocol.open_shell(codepage=65001)
-        command_id = self.protocol.run_command(shell_id, command, args)
-        rs = Response(self.protocol.get_command_output(shell_id, command_id))
-        self.protocol.cleanup_command(shell_id, command_id)
-        self.protocol.close_shell(shell_id)
-        return rs
-
-    def run_ps(self, script):
-        """base64 encodes a Powershell script and executes the powershell
-        encoded script command
-        """
-        # must use utf16 little endian on windows
-        encoded_ps = b64encode(script.encode('utf_16_le')).decode('ascii')
-        rs = self.run_cmd('powershell -encodedcommand {0}'.format(encoded_ps))
-        # if len(rs.std_err):
-        #     # if there was an error message, clean it it up and make it human
-        #     # readable
-        #     rs.std_err = self._clean_error_msg(rs.std_err)
-        return rs
-
-    # def execute(self, err_file, session, id, type, text):
-    def execute(self, err_file, id, type, text):
-        text = text.strip()
-        # print("run:{},{},{}".format(id, type, text))
-        if type == "Cmdlet":
-            result = self.run_ps(text)
-        else:
-            result = self.run_cmd(text)
-
-        if result.status_code != 0:
-            err_msg = "id:{},rc:{}\n".format(id, result.status_code)
-            err_file.write(err_msg.encode()) 
-            err_file.write(result.std_err) 
-
-        # print(result.std_out.decode('utf-8'))
-
-        with open(os.path.join(self.datastore, id), 'wb') as out_file:
-            out_file.write(result.std_out)
-
     def collect_inventorys(self, err_file, server):
-        self.datastore = os.path.join(self.output, server['server'])
-        os.makedirs(self.datastore)
-        # session = winrm.Session(server['url'],
-        #                         auth=(server['user'], server['password']),
-        #                         transport='ntlm')
-        self.protocol = Protocol(
-            endpoint='http://{}:5985/wsman'.format(server['url']),
-            transport='ntlm',
-            username=server['user'],
-            password=server['password']
-        )
+        session = session_linux.SessionLinux()
+        session.connect(self.output, server)
         for metric in self.metrics:
             if not 'id' in metric or not 'text' in metric:
                 continue
@@ -165,7 +83,8 @@ class WindowsCollector():
             if level > self.level:
                 continue
             type = 'Cmdlet' if not 'type' in metric else metric['type']
-            self.execute(err_file, metric['id'], type, metric['text'])
+            session.execute(err_file, metric['id'], type, metric['text'])
+            # self.execute(err_file, metric['id'], type, metric['text'])
 
     def prepare_datasotre_base(self, datastore):
         print("prepare : {}".format(datastore))
