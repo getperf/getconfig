@@ -63,7 +63,7 @@ license terms? を yes に、conda init? を yes を入力して、インスト�
     python --version
     Python 3.8.5
 
-Python WinRM Kerberos 認証ライブラリインストールします
+Python Kerberos 認証ライブラリインストールします
 
 ::
 
@@ -288,6 +288,17 @@ Python 3.x (オプション)をインストールします
 ::
 
     choco install -y python
+    choco install -y miniconda3
+
+
+    conda install --yes --file requirements.txt
+
+パス追加
+
+C:\Tools\miniconda3
+C:\Tools\miniconda3\Scripts
+C:\Tools\miniconda3\Library\bin
+
 
 Getconfig インストール
 ^^^^^^^^^^^^^^^^^^^^^^
