@@ -1,0 +1,29 @@
+Python ディレクトリ再構成
+=========================
+
+リファレンス調査
+検証
+変更調査
+単体検査
+結合
+
+リファレンス調査
+------------------
+
+Python 製コマンドラインツール
+
+https://masudak.hatenablog.jp/entry/2015/01/13/234000
+
+How To Package Your Python Code
+
+https://python-packaging.readthedocs.io/en/latest/
+
+Hatch
+
+https://github.com/ofek/hatch
+
+検証
+-----
+
+pip install -e .
+

@@ -63,7 +63,7 @@ class WindowsCollector():
 
     def get_home(self, config_path):
         """
-        Getconfg ホームを、{home}/build/gconf/config.groovy のパスから検索する
+        Getconfg ホームを、{home}/build/gconf/config.toml のパスから検索する
         """
         home = None
         path = str(pathlib.Path(config_path).resolve())

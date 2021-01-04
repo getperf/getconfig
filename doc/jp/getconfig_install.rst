@@ -24,8 +24,8 @@ Getconfig インストール手順
 
 * Python (オプション)
 
-    - Getconfig は WinRM を使用して Windows インベントリ収集をします
-    - Getconfig の Go アプリライブラリは Windows OS標準設定の Kerberos/GSSAPI 
+    - Getconfig は WinRM を使用して Windows インベントリの収集をします
+    - Getconfig の Go アプリライブラリは Windows OS 標準設定の Kerberos/GSSAPI 
       認証をサポートしていないため、代替ライブラリとして　Python ライブラリを使用します
     - 監視対象の Windows サーバが Basic認証の設定がされており、Basic 認証のみ
       を使用する場合、本インストールは不要です
@@ -251,14 +251,75 @@ gradle zip コマンドでビルドし、build/distributions 下に、getconfig-
 Windows 環境のインストール
 --------------------------
 
-Python インストール(オプション)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Java, Python(オプション) のインストール
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Windows パッケージ管理ツール chocolaty をインストールします
 
-Java インストール
-^^^^^^^^^^^^^^^^^
+Chocolatey サイトへアクセスにアクセスし、Step2 にあるインストールコマンドを確認します
+
+::
+
+    https://chocolatey.org/install#installing-chocolatey
+
+スタート、Xを同時にキーボード入力して、メニューを表示します。
+メニューから、Windows PowerShell(管理者)(A) を選択します。
+
+上記 URL のサイトのインストールコマンドのコピーアイコンをクリックし、
+PowerShell コンソールに貼り付けて、Enter を押します。
+
+インストールスクリプトが起動し、完了するまで待ちます。
+
+PowerShell コンソールから、以下のコマンドで OpenJDK 11 をインストールします。
+
+::
+
+    choco install -y ojdkbuild11
+
+Python 3.x (オプション)をインストールします
+
+::
+
+    choco install -y python
 
 Getconfig インストール
 ^^^^^^^^^^^^^^^^^^^^^^
 
+Web ブラウザを開いて、以下のモジュールダウンロードサイトから、getconfig-0.3.1.zip　
+をダウンロードします
+
+::
+
+    http://192.168.0.5/getconfig-0.3.1.zip
+
+エクスプローラーを起動し、ダウンロードした getconfig-0.3.1.zip を選択します
+
+メニュー、圧縮フォルダー 、全て展開　を選択し、展開先の指定に c:\ を入力して
+展開します
+
+環境変数の設定
+
+スタート、Xを同時にキーボード入力して、メニューを表示します。
+
+システムを選択し、設定の検索に、環境変数　を入力して、環境変数設定画面を開きます。
+
+::
+
+    C:\server-config
+
+ユーザ環境変数、Path を選択し、編集をクリックします。先頭行に以下パスを追加します。
+
+::
+
+    C:\server-config
+    C:\server-config\tools
+
+PowerShell を開いて Getconfig コマンドの動作確認をします。
+
+::
+
+    cd $env:TEMP
+    getcf init test1 -t
+    cd test1
+    getcf run -d
 
