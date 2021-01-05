@@ -61,3 +61,6 @@ class SessionLinux(Session):
 
         with open(os.path.join(self.datastore, id), 'wb') as out_file:
             out_file.write(result.std_out)
+
+    def finish(self):
+        pass

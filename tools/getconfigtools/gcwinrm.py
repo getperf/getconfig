@@ -31,6 +31,7 @@ import sys
 import os
 import logging
 import winrm
+import codecs
 from winrm import Response
 from winrm.protocol import Protocol
 from base64 import b64encode
@@ -65,7 +66,11 @@ class WindowsCollector():
         self.timeout = args.timeout
 
     def read_scenario(self):
-        exporter = toml.load(open(self.config))
+        # f = codecs.open(self.config, 'r', 'utf8', 'ignore')
+        f = codecs.open(self.config, 'r', 'utf8')
+        toml_string = f.read()
+        print(toml_string)
+        exporter = toml.loads(toml_string)
         if not 'servers' in exporter:
             raise Exception("servers not found in '{}'".format(self.config))
         self.servers = exporter['servers']
@@ -74,16 +79,20 @@ class WindowsCollector():
         self.metrics = exporter['metrics']
 
     def collect_inventorys(self, err_file, server):
-        session = session_linux.SessionLinux()
+        if os.name == 'nt':
+            session = session_windows.SessionWindows()
+        else:
+            session = session_linux.SessionLinux()
         session.connect(self.output, server)
         for metric in self.metrics:
-            if not 'id' in metric or not 'text' in metric:
-                continue
-            level = 0 if not 'level' in metric else metric['level']
-            if level > self.level:
-                continue
-            type = 'Cmdlet' if not 'type' in metric else metric['type']
-            session.execute(err_file, metric['id'], type, metric['text'])
+            print(metric)
+            # if not 'id' in metric or not 'text' in metric:
+            #     continue
+            # level = 0 if not 'level' in metric else metric['level']
+            # if level > self.level:
+            #     continue
+            # type = 'Cmdlet' if not 'type' in metric else metric['type']
+            # session.execute(err_file, metric['id'], type, metric['text'])
             # self.execute(err_file, metric['id'], type, metric['text'])
 
     def prepare_datasotre_base(self, datastore):
