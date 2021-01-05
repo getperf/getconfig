@@ -67,10 +67,9 @@ class WindowsCollector():
 
     def read_scenario(self):
         # f = codecs.open(self.config, 'r', 'utf8', 'ignore')
-        f = codecs.open(self.config, 'r', 'utf8')
-        toml_string = f.read()
-        print(toml_string)
-        exporter = toml.loads(toml_string)
+        # toml_string = f.read()
+        # exporter = toml.loads(toml_string)
+        exporter = toml.load(open(self.config))
         if not 'servers' in exporter:
             raise Exception("servers not found in '{}'".format(self.config))
         self.servers = exporter['servers']
@@ -85,18 +84,16 @@ class WindowsCollector():
             session = session_linux.SessionLinux()
         session.connect(self.output, server)
         for metric in self.metrics:
-            print(metric)
-            # if not 'id' in metric or not 'text' in metric:
-            #     continue
-            # level = 0 if not 'level' in metric else metric['level']
-            # if level > self.level:
-            #     continue
-            # type = 'Cmdlet' if not 'type' in metric else metric['type']
-            # session.execute(err_file, metric['id'], type, metric['text'])
+            if not 'id' in metric or not 'text' in metric:
+                continue
+            level = 0 if not 'level' in metric else metric['level']
+            if level > self.level:
+                continue
+            type = 'Cmdlet' if not 'type' in metric else metric['type']
+            session.execute(err_file, metric['id'], type, metric['text'])
             # self.execute(err_file, metric['id'], type, metric['text'])
 
     def prepare_datasotre_base(self, datastore):
-        print("prepare : {}".format(datastore))
         if os.path.exists(datastore):
             shutil.rmtree(datastore)  
         if not os.path.exists(datastore):
