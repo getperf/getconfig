@@ -1,11 +1,11 @@
 // Excel specification sheet path
 
-    evidence.source = './getconfig.xlsx'
+    evidence.source = 'getconfig.xlsx'
 
 // Excel inspection result file output path
 
-    evidence.target='./build/check_sheet.xlsx'
-    // evidence.target='./build/check_sheet_<date>.xlsx'
+    // evidence.target=Å@'check_sheet.xlsx'
+    evidence.target = 'check_sheet_<date>.xlsx'
 
 // Test command log directory
 

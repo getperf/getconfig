@@ -16,6 +16,7 @@ import groovy.util.logging.Slf4j
 class Exporter implements Controller {
     String checkSheetPath
     String projectNodeDir
+    String inventoryDbConfigPath
     String mode
     List<Server> testServers
     InventoryLoaderLocal inventoryLoaderLocal = new InventoryLoaderLocal()
@@ -32,6 +33,7 @@ class Exporter implements Controller {
         env.accept(ticketExporter)
         this.checkSheetPath = env.getCheckSheetPath()
         this.projectNodeDir = env.getProjectNodeDir()
+        this.inventoryDbConfigPath = env.getInventoryDBConfigPath()
         this.mode = env.getTargetType()
     }
 
@@ -45,6 +47,12 @@ class Exporter implements Controller {
         log.info "read excel, found ${serverCount} servers"
     }
 
+    void checkInventoryDBConfig() {
+        if (!(new File(this.inventoryDbConfigPath).exists())) {
+            throw new IllegalArgumentException(
+                "'${this.inventoryDbConfigPath}' not found, please check 'cmdb_sample.groovy'")
+        }
+    }
     void runExporter() {
         switch (mode) {
             case 'local' :
@@ -52,15 +60,18 @@ class Exporter implements Controller {
                 break
 
             case 'db' :
+                checkInventoryDBConfig()
                 inventoryLoaderDatabase.initialize()
                 inventoryLoaderDatabase.export(testServers, projectNodeDir)
                 break
 
             case 'ticket' :
+                checkInventoryDBConfig()
                 ticketExporter.export(testServers, projectNodeDir)
                 break
 
             case 'all' :
+                checkInventoryDBConfig()
                 inventoryLoaderLocal.run()
                 inventoryLoaderDatabase.initialize()
                 inventoryLoaderDatabase.export(testServers, projectNodeDir)

@@ -12,8 +12,8 @@ cmdb.password = "sa"
 cmdb.url = "jdbc:h2:mem:"
 cmdb.driver = "org.h2.Driver"
 
-// Production database environment. You need to install the "redmine_getconfig" plugin.
-// If the following system parameters are set, this value has priority first.
+// Production database environment. Required the Redmine plugin "redmine_getconfig".
+// If the following sysenv parameters are set, this value has priority first.
 //     CMDB_USER, CMDB_PASSWORD, CMDB_URL, CMDB_DRIVER
 //
 //cmdb.username = "redmine"
@@ -22,7 +22,7 @@ cmdb.driver = "org.h2.Driver"
 //cmdb.driver = "com.mysql.jdbc.Driver"
 
 // For Redmine ticket registration.
-// If the following system parameters are set, this value has priority first.
+// If the following sysenv parameters are set, this value has priority first.
 //     REDMINE_URL, REDMINE_API_KEY
 
 redmine.url = "http://redmine/redmine"

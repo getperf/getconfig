@@ -29,21 +29,21 @@ class ConfigEnv {
         this.config = Config.instance.readConfig(
                 configFile ?: this.getConfigFile() as String,
                 keyword ?: this.getPassword(), this.getMultiConfig())
-        convertDateFormat()
+//        convertDateFormat()
         readInventoryDBConfig()
     }
 
-    void convertDateFormat() {
-        def localDateTime = LocalDateTime.now()
-        def formatter = DateTimeFormatter.ofPattern(DefaultDateFormat)
-        def nowLabel = localDateTime.format(formatter)
-        def evidence = (Map<String, GString>) this.config?.evidence
-        if (evidence) {
-            evidence.each { key, value ->
-                evidence[key] = value.replaceAll(/<date>/, nowLabel)
-            }
-        }
-    }
+//    void convertDateFormat() {
+//        def localDateTime = LocalDateTime.now()
+//        def formatter = DateTimeFormatter.ofPattern(DefaultDateFormat)
+//        def nowLabel = localDateTime.format(formatter)
+//        def evidence = (Map<String, GString>) this.config?.evidence
+//        if (evidence) {
+//            evidence.each { key, value ->
+//                evidence[key] = value.replaceAll(/<date>/, nowLabel)
+//            }
+//        }
+//    }
 
     void readInventoryDBConfig() {
         String configPath = this.getInventoryDBConfigPath()
@@ -100,7 +100,7 @@ class ConfigEnv {
 
     // テナント名
     String getTenantName() {
-        return System.getProperty("CMDB_TENANT") ?: '_Default'
+        return System.getenv("CMDB_TENANT") ?: '_Default'
     }
 
     // gconf 実行パス
@@ -171,9 +171,15 @@ class ConfigEnv {
 
     // 検査結果    buikd/チェックシート_<date>.xlsx
     String getEvidenceSheetPath() {
-        return this.config?.output_evidence ?:
+        String evidenceSheetName = System.getenv("EVIDENCE_TARGET") ?:
                 this.config?.evidence?.target ?:
-                        Paths.get(this.getProjectHome(), "build/check_sheet.xlsx")
+                        'check_sheet.xlsx'
+        def localDateTime = LocalDateTime.now()
+        def formatter = DateTimeFormatter.ofPattern(DefaultDateFormat)
+        def nowLabel = localDateTime.format(formatter)
+        evidenceSheetName = evidenceSheetName.replaceAll(/<date>/, nowLabel)
+
+        return Paths.get(this.getProjectHome(), 'build', evidenceSheetName)
     }
 
     // 一時ログディレクトリ  /build/log

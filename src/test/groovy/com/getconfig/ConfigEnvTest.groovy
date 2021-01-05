@@ -61,7 +61,7 @@ class ConfigEnvTest extends Specification {
         when:
         def env = ConfigEnv.instance
         env.readConfig(configFile)
-        println env.getTlsConfigDir()
+        println env.getEvidenceSheetPath()
 
         then:
         env.getProjectName() == "getconfig"
