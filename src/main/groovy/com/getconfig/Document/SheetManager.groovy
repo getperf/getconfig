@@ -56,11 +56,8 @@ class SheetManager {
         this.headers = new LinkedHashMap<>()
         Row headerRow = templateSheet.getRow(templateSheet.getFirstRowNum())
         for (Cell headerCell : headerRow) {
-            Comment comment = headerCell.getCellComment()
-            if (comment) {
-                String headerId = comment.getString() as String
-                this.headers.put(headerId, new Integer(headerCell.getColumnIndex()))
-            }
+            String headerId = headerCell.getStringCellValue()
+            this.headers.put(headerId, new Integer(headerCell.getColumnIndex()))
         }
         return this.headers
     }

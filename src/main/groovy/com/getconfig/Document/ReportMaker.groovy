@@ -87,15 +87,25 @@ class ReportMaker {
         }
         Map<String, CellStyle> cellStyles = new LinkedHashMap<>()
         for (Row cellStyleRow : cellStyleSheet) {
-            for (Cell cellStyleCell : cellStyleRow) {
-                Comment comment = cellStyleCell.getCellComment()
-                if (comment) {
-                    String headerId = comment.getString() as String
-                    CellStyle newStyle = this.wb.createCellStyle()
-                    newStyle.cloneStyleFrom(cellStyleCell.getCellStyle())
-                    cellStyles.put(headerId, newStyle)
-                }
+            if (cellStyleRow.getLastCellNum() != 3) {
+                continue
             }
+            String headerId = cellStyleRow.getCell(1)?.getStringCellValue()
+            Cell cellStyleCell = cellStyleRow.getCell(2)
+            if (headerId && cellStyleCell) {
+                CellStyle newStyle = this.wb.createCellStyle()
+                newStyle.cloneStyleFrom(cellStyleCell.getCellStyle())
+                cellStyles.put(headerId, newStyle)
+            }
+//            for (Cell cellStyleCell : cellStyleRow) {
+//                Comment comment = cellStyleCell.getCellComment()
+//                if (comment) {
+//                    String headerId = comment.getString() as String
+//                    CellStyle newStyle = this.wb.createCellStyle()
+//                    newStyle.cloneStyleFrom(cellStyleCell.getCellStyle())
+//                    cellStyles.put(headerId, newStyle)
+//                }
+//            }
         }
         return cellStyles
     }

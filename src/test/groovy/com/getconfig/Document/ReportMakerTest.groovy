@@ -83,7 +83,7 @@ class ReportMakerTest extends Specification {
         reportMaker.write("build/report3.xlsx")
 
         then:
-        println reportMaker.cellStyles
+        println reportMaker.cellStyles.keySet()
         1 == 1
     }
 

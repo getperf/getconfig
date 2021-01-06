@@ -25,14 +25,20 @@ class ReportMakerSummary {
         SheetManager manager = reportMaker.createSheetManager()
 
         Map<String, Integer>headers = manager.parseHeaderComment()
-        // この間でシートの編集操作を実行
-        manager.setPosition(1,0)
-
         Map<String, String> domains = testScenario.getDomains()
         Map<String, ReportSummary.ReportColumn> summaryColumns =
                 testScenario.reportSummary.getColumns()
-
+        // ヘッダ編集
+        def headerNames = headers.sort { a, b ->
+            a.value <=> b.value }.keySet()
+        manager.setPosition(0,0)
+        headerNames.each {String headerName ->
+            String headerLabel = summaryColumns.get(headerName)?.getName() ?: headerName
+            manager.setCell(headerLabel, "HeaderServer")
+        }
         int order = 1
+        // ボディ編集
+        manager.setPosition(1,0)
         testScenario.servers.each { String server ->
             List<String> platforms
             platforms = testScenario.serverPlatformKeys.get(server) as List<String>

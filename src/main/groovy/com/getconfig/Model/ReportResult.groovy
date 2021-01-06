@@ -9,16 +9,16 @@ import groovy.transform.TypeChecked
 @ToString(includePackage = false)
 class ReportResult {
 
-    // @ToString(includePackage = false)
-    // class ResultSheet {
-    //     String name
-    //     String tracker
-    //     Map <String, List<String>> platforms
-    //     Set <String> servers
-    // }
+    @ToString(includePackage = false)
+    class ReportColumn {
+        String id
+        String name
+    }
+
     List<ResultSheet> sheets = new ArrayList<>()
     Map<String, List<String>> platforms = new LinkedHashMap<>()
     Map <String, ResultSheet> platformIndex
+    List<ReportColumn> columns = new ArrayList<>()
 
     void makePlatformIndex() {
         platformIndex = new LinkedHashMap<>()
@@ -73,4 +73,13 @@ class ReportResult {
         String platformKey = makePlatformKey(platforms)
         return platformIndex.get(platformKey)
     }
+
+    Map<String, ReportColumn> getColumns() {
+        Map<String, ReportColumn> reportColumns = new LinkedHashMap<>()
+        this.columns.each { column ->
+            reportColumns.put(column.id, column)
+        }
+        return reportColumns
+    }
+
 }

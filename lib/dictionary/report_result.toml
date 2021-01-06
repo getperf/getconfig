@@ -152,3 +152,38 @@ tracker = "監視のみ"
 
         MW = ["Zabbix"]
 
+[[columns]]
+
+id = "level"
+name = "レベル"
+
+[[columns]]
+
+id = "category"
+name = "分類"
+
+[[columns]]
+
+id = "metric"
+name = "メトリック名"
+
+[[columns]]
+
+id = "id"
+name = "メトリックID"
+
+[[columns]]
+
+id = "detail"
+name = "詳細"
+
+[[columns]]
+
+id = "comment"
+name = "メトリック定義"
+
+[[columns]]
+
+id = "platform"
+name = "プラットフォーム"
+

@@ -2,6 +2,7 @@ package com.getconfig.Document
 
 import com.getconfig.Model.Metric
 import com.getconfig.Model.MetricId
+import com.getconfig.Model.ReportResult
 import com.getconfig.Model.Result
 import com.getconfig.Model.ResultSheet
 import com.getconfig.Model.ResultTag
@@ -42,6 +43,17 @@ class ReportMakerResult {
 
     void makeHeader(List<String> servers) {
         int columnPosition = 7
+        Map<String, ReportResult.ReportColumn> resultColumns =
+                testScenario.reportResult.getColumns()
+        Map<String, Integer>headers = manager.parseHeaderComment()
+        def headerNames = headers.sort { a, b ->
+            a.value <=> b.value }.keySet()
+        manager.setPosition(0,0)
+        headerNames.each {String headerName ->
+            String headerLabel = resultColumns.get(headerName)?.getName() ?: headerName
+            manager.setCell(headerLabel, "HeaderServer")
+        }
+
         manager.sheet.setColumnHidden(5, true)
         manager.setPosition(0, columnPosition)
         tagExists = null
