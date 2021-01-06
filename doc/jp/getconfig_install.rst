@@ -279,25 +279,38 @@ PowerShell コンソールに貼り付けて、Enter を押します。
 
 PowerShell コンソールから、以下のコマンドで OpenJDK 11 をインストールします。
 
+
 ::
 
     choco install -y ojdkbuild11
 
-Python 3.x (オプション)をインストールします
+PowerShell のリモートアクセス設定
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+PowerShell でリモートアクセスをできるようにします。
+管理者ユーザで PowerShell を起動し、以下コマンドを実行して、「信頼されたホストの一覧」
+に追加します。
 
 ::
 
-    choco install -y python
-    choco install -y miniconda3
+   Set-Item wsman:\localhost\Client\TrustedHosts -Value * -Force
 
 
-    conda install --yes --file requirements.txt
+.. Python 3.x (オプション)をインストールします
 
-パス追加
+.. ::
 
-C:\Tools\miniconda3
-C:\Tools\miniconda3\Scripts
-C:\Tools\miniconda3\Library\bin
+..     choco install -y python
+..     choco install -y miniconda3
+
+
+..     conda install --yes --file requirements.txt
+
+.. パス追加
+
+.. C:\Tools\miniconda3
+.. C:\Tools\miniconda3\Scripts
+.. C:\Tools\miniconda3\Library\bin
 
 
 Getconfig インストール
