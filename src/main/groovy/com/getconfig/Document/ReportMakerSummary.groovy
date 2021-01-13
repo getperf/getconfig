@@ -81,7 +81,7 @@ class ReportMakerSummary {
             // manager.shiftRows()
             order++
         }
-        manager.removeHeaderComment(0)
+        // manager.removeHeaderComment(0)
         manager.setHeaderAutoFilter()
     }
 }
