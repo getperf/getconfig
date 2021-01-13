@@ -1,4 +1,4 @@
-Python ソース再構成
+Python ディレクトリ再構成
 =========================
 
 リファレンス調査
@@ -18,54 +18,36 @@ How To Package Your Python Code
 
 https://python-packaging.readthedocs.io/en/latest/
 
-Hatch
-
-https://github.com/ofek/hatch
-
-httpie
-
-https://github.com/httpie/httpie
-
-    if 'win32' in str(sys.platform).lower():
-        # Terminal colors for Windows
-        install_requires.extend(install_requires_win_only)
-
-python-cli-template
-
-https://github.com/talperetz/python-cli-template
-
-
 検証
 -----
 
-* プロトタイプ
-	コマンド
-	テストスクリプト
-	モジュール化
-* 移行検討
-	共通モジュール抽出
-	
-コマンド検証
-------------
-
- File "/home/psadmin/getconfig/tools/getconfigtools/cli/gcwinrm.py", line 1, in <module>
-    from getconfigtools.gwinrm import WindowsCollector
-ModuleNotFoundError: No module named 'getconfigtools.gwinrm'
-
-/home/psadmin/getconfig/tools
-
-テスト検証
-----------
-
-pytest 採用
-unittest
-
-Windows 移行
-------------
-
-pip 動作確認
 pip install -e .
 
-gcmig
-gcbat
+startup failed:
+C:\home\getconfig\src\main\groovy\com\getconfig\Ticket\PortListRegister.groovy: 
+4: unable to resolve class com.getconfig.TestItem
+ @ line 4, column 1.
+   import com.getconfig.TestItem
+   ^
 
+C:\home\getconfig\src\main\groovy\com\getconfig\Ticket\TestResultRegister.groovy: 3: unable to resolve class com.getconfig.Model.TestResult
+ @ line 3, column 1.
+   import com.getconfig.Model.TestResult
+   ^
+
+C:\home\getconfig\src\main\groovy\com\getconfig\Ticket\TestResultRegister.groovy: 4: unable to resolve class com.getconfig.Model.TestResultGroup
+ @ line 4, column 1.
+   import com.getconfig.Model.TestResultGroup
+   ^
+
+C:\home\getconfig\src\main\groovy\com\getconfig\Ticket\TestResultRegister.groovy: 5: unable to resolve class com.getconfig.TestItem
+ @ line 5, column 1.
+   import com.getconfig.TestItem
+   ^
+
+    creating build\src.win32-3.9\numpy\distutils
+    building library "npymath" sources
+    error: Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
+    ----------------------------------------
+ERROR: Command errored out with exit status 1: 'c:\python39\python.exe' 'c:\python39\lib\site-packages\pip\_vendor\pep517\_in_process.py' prepare_metadata_for_build_wheel 'C:\Users\frsw3\AppData\Local\Temp\tmpto34wb11' Check the logs for full command output.
+   

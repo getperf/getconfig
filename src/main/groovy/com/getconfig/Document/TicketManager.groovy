@@ -229,6 +229,9 @@ class TicketManager implements Controller {
             def msg = "update '${trackerName}:${subject}' set to '${customFields}' : ${e}."
             log.error(msg)
             throw new NotFoundException(msg)
+        } catch (IllegalArgumentException e) {
+            def msg = "https://github.com/taskadapter/redmine-java-api/issues : ${e}."
+            log.warn(msg)
         }
         log.info "resister(#${issue.id}) '${trackerName}:${subject}'"
     }
@@ -284,7 +287,12 @@ class TicketManager implements Controller {
             // println "RELATIONS:${relations}"
             if (relations.size() > 0) {
                 ticket_from.addRelations(relations)
-                this.issueManager.update(ticket_from)
+                try {
+                    this.issueManager.update(ticket_from)
+                } catch (IllegalArgumentException e) {
+                    def msg = "https://github.com/taskadapter/redmine-java-api/issues : ${e}."
+                    log.warn(msg)
+                }
             }
             isok = true
         } catch (RedmineProcessingException e) {
