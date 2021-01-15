@@ -91,9 +91,9 @@ class TestRunner implements Controller {
     }
 
     int run() {
+        this.setLogLevel()
         long start = System.currentTimeMillis()
         log.info new GetconfigCommand().getVersion() as String
-        this.setLogLevel()
         this.readExcel()
         this.runCollector()
         this.runLogParser()

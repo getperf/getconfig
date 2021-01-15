@@ -183,7 +183,7 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
         @Option(names = ["-s", "--server"], description = "keyword of filtering server")
         String keywordServer
 
-        @Option(names = ["-t", "--test"], description = "keyword of filtering test")
+        @Option(names = ["-t", "--test"], description = "keyword of filtering platform")
         String keywordTest
 
         @Option(names = ["--silent"], description="silent mode")
