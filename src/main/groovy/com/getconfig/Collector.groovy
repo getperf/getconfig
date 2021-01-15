@@ -25,6 +25,7 @@ class Collector implements Controller {
     String projectLogDir
     String currentLogDir
     String filterServer
+    String filterPlatform
 
     Collector(List<Server> testServers) {
         this.testServers = testServers
@@ -34,6 +35,7 @@ class Collector implements Controller {
     void setEnvironment(ConfigEnv env) {
         this.dryRun = env.getDryRun()
         this.filterServer = env.getKeywordServer()
+        this.filterPlatform = env.getKeywordPlatform()
         this.projectLogDir = env.getProjectLogDir()
         this.currentLogDir = env.getCurrentLogDir()
     }
@@ -78,15 +80,30 @@ class Collector implements Controller {
         return serverGroupKey
     }
 
+    boolean checkServerFilter(Server server) {
+        if ((this.filterServer) && !(server.serverName =~ /${this.filterServer}/)) {
+            return true
+        }
+        if ((this.filterPlatform) && !(server.domain =~ /${this.filterPlatform}/)) {
+            return true
+        }
+        return false
+    }
+
     void classifyTestServers() {
         if (this.filterServer) {
             log.info "set server filter : ${this.filterServer}"
         }
+        if (this.filterPlatform) {
+            log.info "set platform filter : ${this.filterPlatform}"
+        }
         testServers.each { server ->
-            if (!(server.dryRun) && (this.filterServer) && !(server.serverName =~ /${this.filterServer}/)) {
-                server.order = -1
-                log.info "skip:${server.serverName}, ${server.domain}"
-                return
+            if (!(server.dryRun)) {
+                if (this.checkServerFilter(server)) {
+//                    server.order = -1
+                    log.info "skip:${server.serverName}, ${server.domain}"
+                    return
+                }
             }
             AgentMode agentMode = AgentMode.DryRun
             if (!(server.dryRun)) {

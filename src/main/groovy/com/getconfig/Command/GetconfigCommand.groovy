@@ -184,7 +184,7 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
         String keywordServer
 
         @Option(names = ["-t", "--test"], description = "keyword of filtering platform")
-        String keywordTest
+        String keywordPlatform
 
         @Option(names = ["--silent"], description="silent mode")
         Boolean silent

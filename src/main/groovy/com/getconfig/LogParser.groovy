@@ -26,7 +26,7 @@ class LogParser implements Controller {
     Map<String, ResultGroup> testResultGroups = new LinkedHashMap<>()
     ResultGroupManager resultGroupManager = new ResultGroupManager()
     String filterServer
-    String filterMetric
+    String filterPlatform
 
     LogParser(List<Server> testServers,
               Map<String,PlatformParameter> platformParameters = null) {
@@ -41,7 +41,7 @@ class LogParser implements Controller {
     @Override
     void setEnvironment(ConfigEnv env) {
         this.filterServer = env.getKeywordServer()
-        this.filterMetric = env.getKeywordTest()
+        this.filterPlatform = env.getKeywordTest()
         this.agentLogPath = env.getCurrentLogDir()
         this.parserLibPath = env.getAgentLogParserLib()
         env.accept(resultGroupManager)
@@ -80,7 +80,7 @@ class LogParser implements Controller {
             // ログパス名がエイリアスの場合、ServerNameAliases 辞書からサーバ名を取得する
             agentLog.patchServerName(serverNameAliases)
             if (this.filterServer && !(agentLog.serverName=~/${this.filterServer}/) ||
-                    (this.filterMetric && !(agentLog.metricFile=~/${this.filterMetric}/))) {
+                    (this.filterPlatform && !(agentLog.platform=~/${this.filterPlatform}/))) {
                 return
             }
             if (agentLog.agentLogMode != AgentLogMode.UNKNOWN) {

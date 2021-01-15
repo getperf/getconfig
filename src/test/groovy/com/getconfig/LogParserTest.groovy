@@ -3,7 +3,6 @@ package com.getconfig
 import com.getconfig.AgentLogParser.AgentLog
 import spock.lang.Specification
 import com.getconfig.Model.*
-import com.getconfig.Document.*
 
 // gradle --daemon test --tests "LogParserTest.初期化"
 
@@ -39,7 +38,7 @@ class LogParserTest extends Specification {
         logParser.agentLogPath = this.currentLogDir
         logParser.parserLibPath = "./lib/parser"
         logParser.filterServer = 'centos80'
-        logParser.filterMetric = 'summary'
+        logParser.filterPlatform = 'summary'
 
         then:
         logParser.run() == 0
