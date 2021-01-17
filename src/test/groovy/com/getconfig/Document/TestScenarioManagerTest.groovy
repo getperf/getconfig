@@ -45,7 +45,7 @@ class TestScenarioManagerTest extends Specification {
         TestScenario testScenario = manager.readMetrics()
 
         then:
-        testScenario.reportResult.findSheet(["Linux"]).name == "Linux"
+        testScenario.reportResult.findSheet(["Linux"]).name == "Linux(HW不明)"
         println testScenario.reportSummary.columns.get("hostName").name == "ホスト名"
     }
 
