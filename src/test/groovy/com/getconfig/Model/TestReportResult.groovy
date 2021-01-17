@@ -26,11 +26,12 @@ class TestReportResult extends Specification {
     def "プラットフォーム索引作成"(String platformIndex, String sheetName) {
         expect:
         reports.platformIndex.get(platformIndex)?.name == sheetName
+        print reports.platformIndex.get("Windows")
 
         where:
         platformIndex    | sheetName
         "VMWare.Windows" | "Windows(VM)"
-        "Windows"        | "Windows"
+        "Windows"        | "Windows(HW不明)"
         "HPiLO.Linux"    | "Linux"
         "HPiLO"          | "IAサーバ"
         "XSCF"           | "SPARCサーバ"
