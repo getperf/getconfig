@@ -49,6 +49,39 @@ class CollectorTest extends Specification {
         collector.testServers.size() > 0
     }
 
+    def "フィルター処理(サーバ)"() {
+        when:
+        Collector collector = new Collector(testServers)
+        ConfigEnv.instance.accept(collector)
+        collector.filterServer = "centos80"
+        collector.classifyTestServers()
+
+        then:
+        collector.testServerGroups.each {key, serverGroup ->
+            println key
+            println serverGroup.testServers*.serverName
+            println serverGroup.testServers*.domain
+        }
+        1 == 1
+    }
+
+    def "フィルター処理(プラットフォーム)"() {
+        when:
+        Collector collector = new Collector(testServers)
+        ConfigEnv.instance.accept(collector)
+        collector.filterServer = "centos80"
+        collector.filterPlatform = "Linux"
+        collector.classifyTestServers()
+
+        then:
+        collector.testServerGroups.each {key, serverGroup ->
+            println key
+            println serverGroup.testServers*.serverName
+            println serverGroup.testServers*.domain
+        }
+        1 == 1
+    }
+
     def "リモートエージェント処理"() {
         when:
         Collector collector = new Collector(testServers)

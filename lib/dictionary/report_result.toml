@@ -64,6 +64,27 @@ tracker = "IAサーバ"
 
 [[sheets]]
 
+name = "Linux(HW不明)"
+tracker = "IAサーバ"
+
+    [sheets.platforms]
+
+        OS = ["Linux"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "Windows(HW不明)"
+tracker = "IAサーバ"
+
+    [sheets.platforms]
+
+        OS = ["Windows"]
+        MONITOR = ["Zabbix"]
+
+
+[[sheets]]
+
 name = "ESXi"
 tracker = "IAサーバ"
 

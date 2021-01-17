@@ -30,7 +30,7 @@ class TestReportResult extends Specification {
         where:
         platformIndex    | sheetName
         "VMWare.Windows" | "Windows(VM)"
-        "Windows"        | "Windows"
+        "Windows"        | "Windows(HW不明)"
         "HPiLO.Linux"    | "Linux"
         "HPiLO"          | "IAサーバ"
         "XSCF"           | "SPARCサーバ"
