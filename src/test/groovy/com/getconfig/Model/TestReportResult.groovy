@@ -26,7 +26,6 @@ class TestReportResult extends Specification {
     def "プラットフォーム索引作成"(String platformIndex, String sheetName) {
         expect:
         reports.platformIndex.get(platformIndex)?.name == sheetName
-        print reports.platformIndex.get("Windows")
 
         where:
         platformIndex    | sheetName
