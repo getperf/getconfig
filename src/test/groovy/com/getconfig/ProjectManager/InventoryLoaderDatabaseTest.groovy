@@ -14,6 +14,7 @@ class InventoryLoaderDatabaseTest extends Specification {
 
     def setup() {
         configEnv.readConfig('config/config.groovy')
+        configEnv.dbConfig = null
         configEnv.accept(loader)
         loader.initialize()
     }

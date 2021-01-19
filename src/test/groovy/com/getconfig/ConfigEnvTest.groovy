@@ -72,7 +72,7 @@ class ConfigEnvTest extends Specification {
         env.getPassword() == null
         env.getLevel() == 0
         env.getAutoTagFlag() == false
-        env.getAutoTagNumber() == 10
+        env.getAutoTagNumber() == 1
         env.getKeywordServer() == null
         env.getKeywordTest() == null
         env.getKeywordPlatform() == null

@@ -80,6 +80,7 @@ class TestRunner implements Controller {
         TestScenarioManager manager
         manager = new TestScenarioManager("lib/dictionary",
                                           this.testResultGroups)
+        ConfigEnv.instance.accept(manager)
         manager.run()
         long elapse = System.currentTimeMillis() - start
         log.info "prepare report data elapse : ${elapse} ms"

@@ -25,6 +25,7 @@ class ResultComparatorTest extends Specification {
         when:
         Reporter reporter = new Reporter(this.testScenario, reportPath)
         println this.testScenario.servers
+        new TagGenerator(testScenario).run()
         new ResultComparator(testScenario).run()
         reporter.initReport()
         reporter.makeResultReport()

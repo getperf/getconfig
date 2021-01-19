@@ -7,6 +7,7 @@ import com.getconfig.Document.ReportMakerResult
 import com.getconfig.Document.ReportMakerSummary
 import com.getconfig.Document.ResultComparator
 import com.getconfig.Document.SheetManager
+import com.getconfig.Document.TagGenerator
 import com.getconfig.Model.Metric
 import com.getconfig.Model.MetricId
 import com.getconfig.Model.PlatformMetric
@@ -27,6 +28,8 @@ class Reporter implements Controller {
     ReportMaker reportMaker
     String reportPath
     String excelTemplate = "lib/template/report_summary.xlsx"
+    Boolean autoTagFlag = false
+    int autoTagNumber = 1
 
     Reporter(TestScenario testScenario, String reportPath = null) {
         this.testScenario = testScenario
@@ -35,6 +38,13 @@ class Reporter implements Controller {
 
     void setEnvironment(ConfigEnv env) {
         this.reportPath = env.getEvidenceSheetPath()
+        this.autoTagFlag = env.getAutoTagFlag()
+        this.autoTagNumber = env.getAutoTagNumber()
+    }
+
+    void makeAutoTag() {
+        TagGenerator tagGenerator = new TagGenerator(testScenario, autoTagNumber)
+        tagGenerator.run()
     }
 
     void compareData() {
@@ -74,6 +84,9 @@ class Reporter implements Controller {
     }
 
     int run() {
+        if (autoTagFlag) {
+            makeAutoTag()
+        }
         compareData()
         initReport()
         makeSummaryReport()

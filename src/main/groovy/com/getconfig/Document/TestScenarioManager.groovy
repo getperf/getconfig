@@ -19,8 +19,9 @@ class TestScenarioManager implements Controller {
     TestScenario testScenario
     Map<String,ResultGroup> resultGroups
     Map<Integer,String> serverOrders = new LinkedHashMap<>()
+    Boolean autoTagFlag = false
 
-    TestScenarioManager(String metricLib = null, 
+    TestScenarioManager(String metricLib = null,
                         Map<String,ResultGroup> resultGroups = null) {
         this.testScenario = new TestScenario()
         this.metricLib = metricLib
@@ -29,6 +30,7 @@ class TestScenarioManager implements Controller {
 
     void setEnvironment(ConfigEnv env) {
         this.metricLib = env.getMetricLib()
+        this.autoTagFlag = env.getAutoTagFlag()
     }
 
     void setPortLists(String serverName, ServerPortList serverPortList) {
@@ -40,7 +42,7 @@ class TestScenarioManager implements Controller {
 
     void setResultGroup(String serverName, ResultGroup resultGroup) {
         this.serverOrders.put(resultGroup.order, serverName)
-        if (resultGroup.compareServer) {
+        if ((!this.autoTagFlag) && resultGroup.compareServer) {
             this.testScenario.serverGroupTags.put(resultGroup.compareServer,
                 serverName)
         }

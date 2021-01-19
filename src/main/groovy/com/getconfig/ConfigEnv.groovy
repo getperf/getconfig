@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter
 class ConfigEnv {
     final static String DefaultDateFormat = "yyyyMMdd_HHmmss"
     final static int DefaultGconfTimeout = 120
-    final static int DefaultAutoTagNumber = 10
+    final static int DefaultAutoTagNumber = 1
     final static Boolean DefaultUseMultiConfig = true
     final static String accountNotFound = "account not found in config.groovy"
 
@@ -251,12 +251,16 @@ class ConfigEnv {
     }
 
     boolean getAutoTagFlag() {
+        if (this.commandArgs.autoTagNumber) {
+            return true
+        }
         return this.commandArgs.autoTagFlag ?: false
     }
 
     int getAutoTagNumber() {
         return this.commandArgs.autoTagNumber ?: DefaultAutoTagNumber
     }
+
     String getKeywordServer() {
         return this.commandArgs.keywordServer
     }

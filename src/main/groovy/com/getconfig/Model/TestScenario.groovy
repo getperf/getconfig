@@ -152,6 +152,17 @@ class TestScenario {
         return serverGroupTags.containsKey(server)
     }
 
+    String getServerGroupTag(String server) {
+        String compareServer
+        this.serverGroupTags.entries().each {
+            if (server == it.getValue()) {
+                compareServer = it.getKey()
+                return
+            }
+        }
+        return compareServer
+    }
+
     PortList getPortList(String server, String ip) {
         String portListKey = "${server}.${ip}"
         return this.portLists?.get(portListKey)

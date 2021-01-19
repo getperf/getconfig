@@ -58,7 +58,9 @@ class ReportMakerResult {
         manager.setPosition(0, columnPosition)
         tagExists = null
         servers.each { String server ->
-            manager.setCell(server, "HeaderServer")
+            String compareServer = testScenario.getServerGroupTag(server)
+            String suffix = (compareServer) ? ":${compareServer}" : ""
+            manager.setCell(server+suffix, "HeaderServer")
             manager.sheet.setColumnWidth(columnPosition, 48*256)
             if (testScenario.checkTagServer(server)) {
                 tagExists = server
