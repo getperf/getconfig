@@ -49,6 +49,7 @@ class GetconfigExecuter():
         self.base_config = self.config_paths[0]
         self.excel = args.excel
         self.password = args.password
+        self.test = args.test
         self.collect_level = args.level
         self.dry_run = args.dry
         self.redmine = args.redmine
@@ -96,8 +97,11 @@ class GetconfigExecuter():
         """
         インベントリ収集コマンド getcf run 実行。
         """
+        opt_test = ""
+        if self.test:
+            opt_test = " -t " + self.test
         cmd_base = self.get_cmd_base(config_path, "run")
-        self.spawn(cmd_base + " --level {}".format(self.collect_level))
+        self.spawn(cmd_base + " --level {}{}".format(self.collect_level, opt_test))
 
     def spawn_regist_inventory_db(self):
         """
@@ -135,6 +139,8 @@ class GetconfigExecuter():
                             help = "config file password")
         parser.add_argument("-l", "--level", type = int, default = 0, 
                             help = "collection level")
+        parser.add_argument("-t", "--test", type = str,  
+                            help = "filtering test platfomr")
         parser.add_argument("-d", "--dry", action="store_true", 
                             help = "dry run")
         parser.add_argument("-r", "--redmine", type = str,
