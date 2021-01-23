@@ -78,11 +78,15 @@ class GetconfigExecuter():
         opt_password = ""
         if self.password:
             opt_password = " -p " + self.password
-        return "{} {} -c {}{}{}".format(self.get_command_name(), 
+        opt_dry = ""
+        if self.dry:
+            opt_dry = " -d "
+        return "{} {} -c {}{}{}{}".format(self.get_command_name(), 
                                  cmd,
                                  path.replace(self.home, '.'),
                                  opt_excel,
-                                 opt_password)
+                                 opt_password,
+                                 opt_dry)
 
     def spawn(self, command):
         """
@@ -101,14 +105,10 @@ class GetconfigExecuter():
         opt_test = ""
         if self.test:
             opt_test = " -t " + self.test
-        opt_dry = ""
-        if self.dry:
-            opt_dry = " -d "
         cmd_base = self.get_cmd_base(config_path, "run")
-        self.spawn(cmd_base + " --level {}{}{}".format(
+        self.spawn(cmd_base + " --level {}{}".format(
             self.collect_level, 
-            opt_test,
-            opt_dry))
+            opt_test))
 
     def spawn_regist_inventory_db(self):
         """
