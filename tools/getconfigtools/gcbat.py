@@ -13,7 +13,7 @@ Parametrs
         -c .\\template\\Cisco_UCS\\config_ucs.groovy,.\\config\\config.groovy
 -l collect_level : int
     Getconfig インベントリ収集レベルを指定します。既定は、1
--d dry_run : bool
+-d printonly : bool
     True の場合、実行コマンドの出力のみの予行演習モードで実行します。既定は False
 -r redmine_id : str
     チケット登録する Redmine のプロジェクトを指定します。
@@ -51,7 +51,8 @@ class GetconfigExecuter():
         self.password = args.password
         self.test = args.test
         self.collect_level = args.level
-        self.dry_run = args.dry
+        self.dry = args.dry
+        self.printonly = args.printonly
         self.redmine = args.redmine
         if not self.redmine:
             self.redmine = os.environ.get('REDMINE_PROJECT')
@@ -77,11 +78,15 @@ class GetconfigExecuter():
         opt_password = ""
         if self.password:
             opt_password = " -p " + self.password
-        return "{} {} -c {}{}{}".format(self.get_command_name(), 
+        opt_dry = ""
+        if self.dry:
+            opt_dry = " -d "
+        return "{} {} -c {}{}{}{}".format(self.get_command_name(), 
                                  cmd,
                                  path.replace(self.home, '.'),
                                  opt_excel,
-                                 opt_password)
+                                 opt_password,
+                                 opt_dry)
 
     def spawn(self, command):
         """
@@ -89,7 +94,7 @@ class GetconfigExecuter():
         """
         _logger = logging.getLogger(__name__)
         _logger.info("run : {}".format(command))
-        if not self.dry_run:
+        if not self.printonly:
             subprocess.check_call(command.split(), cwd=self.home, \
                 timeout=self.GETCONFIG_TIMEOUT)
 
@@ -101,7 +106,9 @@ class GetconfigExecuter():
         if self.test:
             opt_test = " -t " + self.test
         cmd_base = self.get_cmd_base(config_path, "run")
-        self.spawn(cmd_base + " --level {}{}".format(self.collect_level, opt_test))
+        self.spawn(cmd_base + " --level {}{}".format(
+            self.collect_level, 
+            opt_test))
 
     def spawn_regist_inventory_db(self):
         """
@@ -143,6 +150,8 @@ class GetconfigExecuter():
                             help = "filtering test platfomr")
         parser.add_argument("-d", "--dry", action="store_true", 
                             help = "dry run")
+        parser.add_argument("-o", "--printonly", action="store_true", 
+                            help = "print only")
         parser.add_argument("-r", "--redmine", type = str,
                             help = "redmine project id")
         return parser.parse_args()
