@@ -293,7 +293,7 @@ class ConfigEnv {
 
     // update サブコマンド用
     String getRedmineProject() {
-        return this.commandArgs?.redmineProject ?: 'cmdb'
+        return this.commandArgs?.redmineProject ?: System.getenv("REDMINE_PROJECT") ?: 'cmdb'
     }
 
     // 検査シートパス  チェックシート.xslx
@@ -334,14 +334,16 @@ class ConfigEnv {
 
     // Redmine URL
     String getRedmineUrl() {
-        return System.getenv("REDMINE_URL") ?: this.dbConfig?.redmine?.url ?:
-                'http://redmine/redmine'
+        return this.dbConfig?.redmine?.url ?:
+                System.getenv("REDMINE_URL") ?: 
+                '{redmine.url parameter in config/cmdb.groovy}'
     }
 
     // Redmine API Key
     String getRedmineApiKey() {
-        return System.getenv("REDMINE_API_KEY") ?: this.dbConfig?.redmine?.api_key ?:
-                ''
+        return this.dbConfig?.redmine?.api_key ?:
+                System.getenv("REDMINE_API_KEY") ?: 
+                '{redmine.api_key parameter in config/cmdb.groovy}'
     }
 
     String getRedmineConfigPath() {
