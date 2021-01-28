@@ -92,4 +92,10 @@ class Exporter implements Controller {
         log.info "total elapse : ${elapse} ms"
         return 0
     }
+
+    void showConfig() {
+        println "db config : ${this.inventoryDbConfigPath}"
+        inventoryLoaderDatabase.showConfig()
+        ticketExporter.showConfig()
+    }
 }

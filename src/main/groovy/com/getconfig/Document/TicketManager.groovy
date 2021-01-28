@@ -324,7 +324,15 @@ class TicketManager implements Controller {
         }
     }
 
+    void showConfig() {
+        println "redmine loader config"
+        println "    url     : ${redmineUrl}"
+        println "    api key : ${redmineApiKey}"
+        println "    project : ${redmineProject}"
+    }
+
     int run() {
         return 0
     }
+
 }

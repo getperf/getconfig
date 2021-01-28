@@ -190,8 +190,15 @@ class InventoryLoaderDatabase implements Controller {
         }
      }
 
+    void showConfig() {
+       println "mysql loader config"
+       println "    url      : ${this.url}"
+       println "    user     : ${this.username}"
+       println "    password : ${this.password}"
+       println "    driver   : ${this.driver}"
+    }
+
     int run() {
         return 0
     }
-
 }

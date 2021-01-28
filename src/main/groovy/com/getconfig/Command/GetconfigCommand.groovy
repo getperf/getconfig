@@ -284,6 +284,10 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
                 description="generate project dirdectory with test")
         Boolean dryRun
 
+        @Option(names = ["-s", "--show-config"], 
+                description="print database config parameter")
+        Boolean showConfig
+
         @Option(names = ["-e", "--excel"], paramLabel="FILE", 
                 description="check sheet input (default: check_sheet.xlsx)")
         File checkSheetPath
@@ -291,7 +295,8 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
         @Option(names = ["-r", "--redmine"], description = "redmine project")
         String redmineProject
 
-        @Parameters(paramLabel = "[local|db|ticket|all]", description = "update inventory database")
+        @Parameters(paramLabel = "[local|db|ticket|all]", defaultValue = "local",
+                description = "update inventory database")
         String targetType = "local"
 
         @Override
@@ -302,7 +307,11 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
                 env.readConfig()
                 Exporter exporter = new Exporter()
                 env.accept(exporter)
-                exporter.run()
+                if (this.showConfig) {
+                    exporter.showConfig()
+                }else {
+                    exporter.run()
+                }
 
                 // ProjectManager manager = new ProjectManager()
                 // env.accept(manager)

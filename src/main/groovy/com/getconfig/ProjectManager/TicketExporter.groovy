@@ -124,6 +124,10 @@ class TicketExporter implements Controller {
         }
     }
 
+    void showConfig() {
+        this.ticketManager.showConfig()
+    }
+
     int run() {
         return 0
     }
