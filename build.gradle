@@ -144,7 +144,7 @@ task buildWindowsAgent(type: Exec, dependsOn:buildLinuxAgent) {
         'github.com/getperf/getperf2/cmd/gconf'
 }
 
-task zipWindowsAgentApp(type: Zip, dependsOn: [buildWindowsAgent]) {
+task packWindowsAgentApp(type: Zip, dependsOn: [buildWindowsAgent]) {
     def target  = 'ptune'
     archiveName = "gconf-MSWin32-${version}.${extension}"
     // Issue: Copy hidden file
