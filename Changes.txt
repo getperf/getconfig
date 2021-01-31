@@ -1,8 +1,9 @@
 Changes for 0.3.4 (2021-2-1)
 ------------------------------------------------------------------------------
 New features:
-* Windows 版エージェントのインベントリ収集用パッケージのビルドスクリプト追加。
-  gradle zipWindowsAgentApp でパッケージをビルド
+* Windows 版エージェント用パッケージのビルドスクリプト作成。
+  gradle arcWindowsAgentApp でパッケージをビルド
+* DB登録コマンド update にDB接続パラメータ表示オプション --show-config 追加
 
 Bug fixes:
 * Redmine 接続用パラメータで設定ファイルよりも環境変数が優先される問題対処
