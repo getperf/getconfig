@@ -3,3 +3,5 @@ pandas
 toml==0.10.2
 urllib3==1.26.2
 pywinrm==0.2.2
+openpyxl
+xlrd

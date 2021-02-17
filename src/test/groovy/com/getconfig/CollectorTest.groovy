@@ -82,6 +82,23 @@ class CollectorTest extends Specification {
         1 == 1
     }
 
+    def "フィルター処理(複数プラットフォーム)"() {
+        when:
+        Collector collector = new Collector(testServers)
+        ConfigEnv.instance.accept(collector)
+        collector.filterServer = "centos80"
+        collector.filterPlatform = "Linux,VMWare"
+        collector.classifyTestServers()
+
+        then:
+        collector.testServerGroups.each {key, serverGroup ->
+            println key
+            println serverGroup.testServers*.serverName
+            println serverGroup.testServers*.domain
+        }
+        1 == 1
+    }
+
     def "リモートエージェント処理"() {
         when:
         Collector collector = new Collector(testServers)

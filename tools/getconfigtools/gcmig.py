@@ -138,6 +138,10 @@ class GetconfigMigration():
         template_dir = os.path.join(self.source_project, "template")
         for root, dirs, files in os.walk(template_dir):
             for file in files:
+                if  re.match('HitachiVSP', file):
+                    continue
+                if  re.match('ETERNUS', file):
+                    continue
                 if  re.match('(.+)\.xlsx$', file):
                     excel = os.path.join(root, file)
                     df = self.load_sepc_sheet(excel)
@@ -152,9 +156,16 @@ class GetconfigMigration():
                     "remote_alias":"remoteAlias",
                     "compare_server":"compareServer"}
         for index, rows in df.iterrows(): 
+            domain = index[1]
+            if domain == "iLO":
+                domain = 'HPiLO'
+            if domain == "ESXi":
+                domain = 'VMHost'
+            if domain == "NetAppDataONTAP":
+                domain = 'NetApp'
             server = {
                 "serverName":index[0], 
-                "domain":index[1],
+                "domain":domain,
             }
             if server["serverName"] == "vsp1" and server["domain"] == "HitachiVSP":
                 continue
@@ -171,7 +182,7 @@ class GetconfigMigration():
                 }
                 dict_toml['testServers'].append(vm)
 
-                spec_file = os.path.join(self.target_project, "getconfig.toml")
+        spec_file = os.path.join(self.target_project, "getconfig.toml")
         toml.dump(dict_toml, open(spec_file, mode='w'))
 
     def run(self):

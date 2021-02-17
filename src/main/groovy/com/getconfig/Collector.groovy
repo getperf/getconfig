@@ -81,13 +81,34 @@ class Collector implements Controller {
     }
 
     boolean checkServerFilter(Server server) {
-        if ((this.filterServer) && !(server.serverName =~ /${this.filterServer}/)) {
+        if (!(this.filterServer) && !(this.filterPlatform)) {
             return true
         }
-        if ((this.filterPlatform) && !(server.domain =~ /${this.filterPlatform}/)) {
-            return true
+        boolean foundServer = false
+        if (this.filterServer) {
+            String[] keywords = this.filterServer.split(/,/)
+            keywords.each {String keyword ->
+                if (server.serverName =~/${keyword}/) {
+                    foundServer = true
+                    return
+                }
+            }
         }
-        return false
+        boolean foundPlatform = false
+        if (this.filterPlatform) {
+            String[] keywords = this.filterPlatform.split(/,/)
+            keywords.each {String keyword ->
+                if (server.domain =~/${keyword}/) {
+                    foundPlatform = true
+                    return
+                }
+            }
+        }
+        if (this.filterServer && this.filterPlatform) {
+            return foundServer && foundPlatform
+        } else {
+            return foundServer || foundPlatform
+        }
     }
 
     void classifyTestServers() {
@@ -99,7 +120,8 @@ class Collector implements Controller {
         }
         testServers.each { server ->
             if (!(server.dryRun)) {
-                if (this.checkServerFilter(server)) {
+                boolean filterOk = this.checkServerFilter(server)
+                if (!filterOk) {
 //                    server.order = -1
                     log.info "skip:${server.serverName}, ${server.domain}"
                     return

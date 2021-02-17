@@ -1,0 +1,15 @@
+node {
+    properties([pipelineTriggers([cron('H/60 7 * * 4'),
+    [$class: 'GitHubPushTrigger']])])
+
+    stage('scm') {
+        checkout scm
+        bat 'git submodule update --init'
+    }
+
+    stage('test1') {
+        bat """
+        gcbat -c C:/inventory/import/test1/config/config.groovy -e C:/inventory/import/test1/getconfig.toml -o -d -t VMWare,Zabbix
+        """
+    }
+}
