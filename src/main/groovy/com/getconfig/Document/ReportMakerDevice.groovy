@@ -78,7 +78,9 @@ class ReportMakerDevice {
             }
             dummyAnchorIndex ++
             // manager.removeHeaderComment(dummyAnchorIndex)
-            manager.setHeaderAutoFilter(columnSize, row)
+            if (manager) {
+                manager.setHeaderAutoFilter(columnSize, row)
+            }
         }
     }
 }

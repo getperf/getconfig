@@ -37,7 +37,7 @@ Getconfig コマンドのrun(インベントリの収集)、update all(収集結
 '''
 
 class GetconfigExecuter():
-    GETCONFIG_TIMEOUT = 300
+    GETCONFIG_TIMEOUT = 1800
 
     def set_envoronment(self, args):
         """

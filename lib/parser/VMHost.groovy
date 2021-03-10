@@ -45,7 +45,7 @@ void addNetwork(TestUtil t, json) {
         def row = [
             it.Ip.IpAddress,
             it.Ip.Dhcp,
-            it.Ip.IpV6Config.AutoConfigurationEnabled,
+            it.Ip.IpV6Config?.AutoConfigurationEnabled,
             it.Mac,
             it.Mtu,
             it.NetStackInstanceKey,
