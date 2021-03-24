@@ -19,6 +19,13 @@ class HPiLO implements AgentConfigWrapper {
     }
 
     class HPiLOConfig {
+        String  server
+        String  url
+        String  user
+        String  password
+        String  ssh_key
+        boolean insecure
+
         List<ServerModel> servers = new ArrayList<>()
     }
 
@@ -45,16 +52,22 @@ class HPiLO implements AgentConfigWrapper {
     @Override
     def makeServerConfig(Server server) {
         def config = new HPiLOConfig(
-                servers: [
-                        new ServerModel(
-                                server : server.serverName,
-                                url : server.ip,
-                                user : server.user,
-                                password : server.password,
-                                ssh_key : server.loginOption,
-                                insecure : true,
-                        ),
-                ],
+                server : server.serverName,
+                url : server.ip,
+                user : server.user,
+                password : server.password,
+                ssh_key : server.loginOption,
+                insecure : true,
+                // servers: [
+                //         new ServerModel(
+                //                 server : server.serverName,
+                //                 url : server.ip,
+                //                 user : server.user,
+                //                 password : server.password,
+                //                 ssh_key : server.loginOption,
+                //                 insecure : true,
+                //         ),
+                // ],
         )
         return config
     }
