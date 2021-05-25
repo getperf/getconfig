@@ -25,14 +25,14 @@ void overview(TestUtil t) {
     }
 }
 
-@Parser("License")
-void License(TestUtil t) {
+@Parser("license")
+void license(TestUtil t) {
     def json = new JsonSlurper().parseText(t.readAll())
-
     def license = json.License ?: 'N/A'
     def key = json.ConfirmationRequest?.EON?.LicenseKey ?: 'N/A'
     t.setMetric("license_key", key)
     t.devices(['license', 'key'], [[license, key]])
+
     t.results(license)
 }
 

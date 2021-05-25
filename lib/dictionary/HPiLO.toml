@@ -123,12 +123,6 @@ category = "ファームウェア"
 
 [[metrics]]
 
-id = "license"
-name = "ライセンスタイプ"
-category = "ファームウェア"
-
-[[metrics]]
-
 id = "ilo_fw_version"
 name = "FWバージョン"
 category = "ファームウェア"
@@ -153,7 +147,7 @@ category = "ファームウェア"
 
 [[metrics]]
 
-id = "License"
+id = "license"
 name = "FWライセンス"
 category = "ファームウェア"
 level = 0

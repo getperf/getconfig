@@ -12,6 +12,12 @@
 /config/cmdb.groovy
 /config/config_*.groovy
 
+# Ignore vscode project file
+.classpath
+.project
+.settings/
+bin/
+
 # Ignore Gradle build output directory
 /build
 /node
