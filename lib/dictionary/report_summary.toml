@@ -225,6 +225,7 @@ name = "パッケージ"
 [[columns]]
 id = "hostGroup"
 name = "監視ホストグループ"
+redmineField = "ホストグループ"
 
     [columns.inventories]
     Zabbix = "hostGroup"
@@ -232,6 +233,7 @@ name = "監視ホストグループ"
 [[columns]]
 id = "template"
 name = "監視テンプレート"
+redmineField = "監視テンプレート"
 
     [columns.inventories]
     Zabbix = "template"

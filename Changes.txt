@@ -1,3 +1,35 @@
+Changes for 0.3.8 (2021-6-25)
+------------------------------------------------------------------------------
+Bug fixes:
+* HPiLO項目名のタイポミス
+* サマリ設定ファイルの Redmine カスタムフィールド登録漏れ
+* サマリシートの並びが検査シートの入力順にソートされない問題対処
+* Redmine 登録でマルチバイトの文字列が文字化けする問題対処
+
+マルチバイト文字化け
+
+cmdb.groovy 設定,環境の問題切り分け。検証環境だと、文字化けしない 
+
+cmdb.url = "jdbc:mysql://192.168.0.66:3306/bitnami_redmine?useUnicode=true&characterEncoding=utf8mb4"
+
+characterEncoding=utf8
+
+サマリ列の修正
+
+ReportMakerResult.groovy
+
+reOrderServersByTag(resServers) の前後にデバッグ分を追加して調査
+
+make()
+
+        resultSheetServerKeys.each { String sheetName,
+                                     Collection<String> refServers ->
+            println("REFSERVERS:${refServers}")
+            List<String> servers = this.reOrderServersByTag(refServers as List)
+            println("SERVERS:${servers}")
+            reportMaker.setTemplateSheet("TestResult")
+
+
 Changes for 0.3.7 (2021-5-25)
 ------------------------------------------------------------------------------
 Bug fixes:

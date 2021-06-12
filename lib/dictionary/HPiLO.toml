@@ -187,27 +187,27 @@ category = "ファームウェア"
 [[metrics]]
 
 id = "health_phy_drives"
-name = "内臓ディスク"
+name = "内蔵ディスク"
 category = "ファームウェア"
 level = 0
 
 [[metrics]]
 
 id = "disk.drives"
-name = "内臓ディスクドライブ"
+name = "内蔵ディスクドライブ"
 category = "ファームウェア"
 
 [[metrics]]
 
 id = "health_drives"
-name = "内臓ディスク論理ボリューム"
+name = "内蔵ディスク論理ボリューム"
 category = "ファームウェア"
 level = 0
 
 [[metrics]]
 
 id = "disk.raid"
-name = "内臓ディスクRAID"
+name = "内蔵ディスクRAID"
 category = "ファームウェア"
 
 [[metrics]]
