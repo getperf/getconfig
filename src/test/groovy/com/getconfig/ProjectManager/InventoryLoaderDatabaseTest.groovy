@@ -119,7 +119,8 @@ class InventoryLoaderDatabaseTest extends Specification {
                 csv: [
                         ["value01", true],
                         ["value02", false],
-                        ["value03"],
+                        ["value03日本語"],
+
                 ]
         ]
         loader.resistDevice(1, metric_id, devices.header, devices.csv)

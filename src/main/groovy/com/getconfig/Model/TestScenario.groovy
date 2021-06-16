@@ -35,12 +35,12 @@ class TestScenario {
 
     TestScenario() {
         this.servers = new ArrayList<>()
-        this.serverPlatformKeys = HashMultimap.create()
-        this.platformServerKeys = HashMultimap.create()
+        this.serverPlatformKeys = LinkedHashMultimap.create()
+        this.platformServerKeys = LinkedHashMultimap.create()
         this.platformMetricKeys = HashMultimap.create()
         this.portListKeys = HashMultimap.create()
         this.metricIndex = new LinkedHashMap<>()
-        this.resultSheetServerKeys = HashMultimap.create()
+        this.resultSheetServerKeys = LinkedHashMultimap.create()
         this.serverGroupTags = HashMultimap.create()
 
         this.results = HashBasedTable.create()
