@@ -25,6 +25,7 @@ class ReportMakerSummary {
         SheetManager manager = reportMaker.createSheetManager()
 
         Map<String, Integer>headers = manager.parseHeaderComment()
+
         Map<String, String> domains = testScenario.getDomains()
         Map<String, ReportSummary.ReportColumn> summaryColumns =
                 testScenario.reportSummary.getColumns()
@@ -39,6 +40,7 @@ class ReportMakerSummary {
         int order = 1
         // ボディ編集
         manager.setPosition(1,0)
+
         testScenario.servers.each { String server ->
             List<String> platforms
             platforms = testScenario.serverPlatformKeys.get(server) as List<String>

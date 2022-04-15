@@ -26,6 +26,7 @@ setup(
             'gcbat = getconfigtools.cli.gcbat:main',
             'gcmig = getconfigtools.cli.gcmig:main',
             'gcwinrm = getconfigtools.cli.gcwinrm:main',
+            'gcreport = getconfigtools.cli.gcreport:main',
         ],
     },
     classifiers=[

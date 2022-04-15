@@ -1,0 +1,52 @@
+# Fujitsu Eternus ストレージインベントリ収集シナリオ
+
+# SSH で対象 Eternus ストレージに接続し、メトリック定義のコマンド群を実行します
+
+# Excel 検査対象シート
+
+# 設定パラメータは以下の通りです
+# 
+# 対象サーバ
+#     ストレージホスト名
+# プラットフォーム
+#     Eternus
+# URL,IPアドレス
+#     SSH 接続先のIPもしくは、IP:ポート番号 を入力します。
+# ユーザID
+#     config/config.groovy 内に記述した、SSH 接続アカウント。
+#     Account01を指定した場合、以下のパラメータを参照します
+#      // Eternus 接続情報
+#      account.Eternus.Account01.user      = 'admin'
+#      account.Eternus.Account01.password  = 'admin'
+
+# [[metrics]]
+
+# メトリック定義コマンドリスト
+#
+# Eternus コマンド、採取メトリックを追加する場合、以下リストに追加します。
+#
+# 設定例:
+# 
+# [[metrics]]
+# 
+# id = "hostname"          # ユニークなID
+# name = "ホスト名"        # メトリック名
+# category = "OSリリース"  # メトリックの分類
+#                          # メトリック定義
+# comment = "uname -n　コマンドで、ホスト名を検索" 
+# level = 0                # コマンド制限レベル(0-2 , 既定は 0)
+# type = "Cmd"             # コマンドが1行の場合、"Cmd"、複数行の場合、"Script"
+# text = '''               # コマンド実行テキスト。''' で括る。
+# uname -n                 # 空白の場合、メトリックの定義のみで、実行はしません
+# '''
+
+[[metrics]]
+
+id = "hostname"
+name = "ホスト名"
+category = "OSリリース"
+level = 0
+text = '''
+uname -n
+'''
+
