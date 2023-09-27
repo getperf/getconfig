@@ -135,10 +135,13 @@ class TicketManager implements Controller {
         }
     }
 
-    Issue getIssue(String subject) {
+    Issue getIssue(String subject, int trackerId = -1) {
         def params = new HashMap<String,String>();
         params.put("status_id","*");
         params.put("subject", subject);
+        if (trackerId != -1) {
+            params.put("tracker_id", Integer.toString(trackerId));
+        }
         def results = this.issueManager.getIssues(params).getResults()
         // getIssues()だと、リレーションの検索が出来ないため、再度getIssueById()で検索する
         return (results.isEmpty()) ? null :
@@ -178,7 +181,9 @@ class TicketManager implements Controller {
                 log.error(msg)
                 throw new NotFoundException(msg)
             }
-            issue = getIssue(subject)
+println "TRACKER:${tracker.id},${trackerName}"
+
+            issue = getIssue(subject, tracker.id)
             if (!issue) {
                 def newIssue = IssueFactory.create(null)
                 newIssue.setProjectId(project.id)  // プロジェクト

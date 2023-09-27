@@ -49,18 +49,28 @@ void uname(TestUtil t) {
 
 @Parser("lsb")
 void lsb(TestUtil t) {
-    def scan_lines = [:]
+    def os_names = [:]
+    // cat /etc/*-release の実行結果からOS名を抽出します
     t.readLine {
         it = it.trim()
+        // PRETTY_NAME={OS名}または、{OS名}のみの行の値を抽出
+        (it =~ /^PRETTY_NAME="(.+)"/).each {m0, pretty_name ->
+            os_names[pretty_name] = ''
+            return
+        }
         if (it.indexOf('=') == -1 && it.size() > 0) {
-            scan_lines[it] = ''
+            os_names[it] = ''
         }
     }
-    def lsb = scan_lines.keySet().toString()
-    (lsb =~ /^\[(.+) ([\d\.]+)/).each {m0, os, os_release ->
-        t.setMetric('os_release', os_release)
+    // 出力結果は最初に有効な値が出力される傾向があるので、
+    // 最初に抽出したOS名を代表のOS名として抽出します
+    if (os_names.size() > 0) {
+        def lsb = os_names.keySet()[0]
+        (lsb =~ /^(.+) ([\d\.]+)/).each {m0, os, os_release ->
+            t.setMetric('os_release', os_release)
+        }
+        t.results(lsb)
     }
-    t.results(lsb)
 }
 
 @Parser("fips")
@@ -562,6 +572,32 @@ void lvm(TestUtil t) {
     t.devices(headers, csv)
     res['lvm'] = config
     t.results(res)
+}
+
+@Parser("filesystem_df")
+void filesystem_df(TestUtil t) {
+    // Filesystem              1K-blocks     Used Available Use% Mounted on
+    // devtmpfs                   485944        0    485944   0% /dev
+    def csv    = []
+    def res = [:]
+    t.readLine {
+        def columns = it.split(/\s+/)
+        if (columns.size() == 6) {
+            def mount = columns[5]
+            def usage = columns[4]
+            (usage=~/^(\d+)%/).each {
+                u0, usage_pct ->
+                if (mount =~/^\/(dev|run|sys|boot)/) {
+                    return
+                }
+                res[mount] = usage_pct
+                csv << columns
+            }
+        }
+    }
+    def headers = ['filesystem', 'size', 'used', 'avail', 'usage', 'mount']
+    t.devices(headers, csv)
+    t.results(res.toString())
 }
 
 @Parser("filesystem_df_ip")

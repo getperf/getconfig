@@ -1,0 +1,177 @@
+# AIX OS インベントリ収集シナリオ
+
+# SSH で対象 AIX サーバに接続し、メトリック定義のコマンド群を実行します
+
+# Excel 検査対象シート
+
+# 設定パラメータは以下の通りです
+# 
+# 対象サーバ
+#     ホスト名、※ OSホスト名と同じにします
+# プラットフォーム
+#     AIX
+# URL,IPアドレス
+#     SSH 接続先のIPもしくは、IP:ポート番号 を入力します。
+#     Telnet で接続する場合、「telnet://{ip}」を入力します
+# ユーザID
+#     config/config.groovy 内に記述した、SSH 接続アカウント。
+#     Account01を指定した場合、以下のパラメータを参照します
+#      // AIX 接続情報
+#      account.AIX.Account01.user      = 'admin'
+#      account.AIX.Account01.password  = 'admin'
+
+# [[metrics]]
+
+# メトリック定義コマンドリスト
+#
+# AIX コマンド、採取メトリックを追加する場合、以下リストに追加します。
+#
+# 設定例:
+# 
+# [[metrics]]
+# 
+# id = "hostname"          # ユニークなID
+# name = "ホスト名"        # メトリック名
+# category = "OSリリース"  # メトリックの分類
+#                          # メトリック定義
+# comment = "uname -n　コマンドで、ホスト名を検索" 
+# level = 0                # コマンド制限レベル(0-2 , 既定は 0)
+# type = "Cmd"             # コマンドが1行の場合、"Cmd"、複数行の場合、"Script"
+# text = '''               # コマンド実行テキスト。''' で括る。
+# uname -n                 # 空白の場合、メトリックの定義のみで、実行はしません
+# '''
+
+[[metrics]]
+
+id = "oslevel"
+name = "OS情報"
+category = "OSリリース"
+text = '''
+oslevel -s
+'''
+
+[[metrics]]
+
+id = "osname"
+name = "OS名"
+category = "OSリリース"
+
+[[metrics]]
+
+id = "prtconf.System Model"
+name = "モデル"
+category = "OSリリース"
+
+[[metrics]]
+
+id = "prtconf.Machine Serial Number"
+name = "シリアル"
+category = "OSリリース"
+
+[[metrics]]
+
+id = "prtconf.Platform Firmware level"
+name = "ファームレアレベル"
+category = "OS設定"
+
+[[metrics]]
+
+id = "prtconf.Firmware Version"
+name = "ファームウェアバージョン"
+category = "OS設定"
+
+[[metrics]]
+
+id = "prtconf.Console Login"
+name = "コンソールログイン"
+category = "OS設定"
+
+[[metrics]]
+
+id = "prtconf.Auto Restart"
+name = "自動起動"
+category = "OS設定"
+
+[[metrics]]
+
+id = "prtconf.Full Core"
+name = "全CPUコアの有効化"
+category = "OS設定"
+
+[[metrics]]
+
+id = "prtconf.NX Crypto Acceleration"
+name = "NX Crypto Acceleration"
+category = "OS設定"
+
+[[metrics]]
+
+id = "prtconf.Kernel Type"
+name = "カーネルタイプ"
+category = "OS設定"
+
+[[metrics]]
+
+id = "prtconf.LPAR Info"
+name = "LPAR構成"
+category = "OS設定"
+
+[[metrics]]
+
+id = "prtconf.Processor Type"
+name = "プロセッサータイプ"
+category = "CPU"
+
+[[metrics]]
+
+id = "prtconf.Processor Implementation Mode"
+name = "プロセッサーモード"
+category = "CPU"
+
+[[metrics]]
+
+id = "prtconf.Processor Version"
+name = "プロセッサーバージョン"
+category = "CPU"
+
+[[metrics]]
+
+id = "prtconf.Number Of Processors"
+name = "CPU数"
+category = "CPU"
+
+[[metrics]]
+
+id = "prtconf.Processor Clock Speed"
+name = "CPUクロック"
+category = "CPU"
+
+[[metrics]]
+
+id = "prtconf.CPU Type"
+name = "CPUタイプ"
+category = "CPU"
+
+[[metrics]]
+
+id = "prtconf.Memory Size"
+name = "メモリサイズ"
+category = "メモリ"
+
+[[metrics]]
+
+id = "prtconf"
+name = "システム構成情報"
+category = "OSリリース"
+text = '''
+LANG=c prtconf
+'''
+
+[[metrics]]
+
+id = "network"
+name = "ネットワーク情報"
+category = "ネットワーク"
+text = '''
+ifconfig -a
+'''
