@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory
 class TestRunner implements Controller {
     boolean silent = false
     boolean dryRun = false
+    boolean skipExcelReport = false
     String checkSheetPath
     String evidenceSheetPath
     List<Server> testServers
@@ -32,6 +33,7 @@ class TestRunner implements Controller {
     void setEnvironment(ConfigEnv env) {
         this.silent = env.getSilent()
         this.dryRun = env.getDryRun()
+        this.skipExcelReport = env.getSkipExcelReport()
         this.checkSheetPath = env.getCheckSheetPath()
         this.evidenceSheetPath = env.getEvidenceSheetPath()
     }
@@ -98,7 +100,11 @@ class TestRunner implements Controller {
         this.readExcel()
         this.runCollector()
         this.runLogParser()
-        this.runReporter()
+        if (this.skipExcelReport) {
+            log.info ("skip excel report")
+        } else {
+            this.runReporter()
+        }
         long elapse = System.currentTimeMillis() - start
         log.info "total elapse : ${elapse} ms"
         return 0

@@ -2,7 +2,7 @@ in_operation_status_id = 10
 
 [parameters]
 
-rack_location_prefix = "RackTables:"
+rack_location_prefix = ""
 port_list_tracker = "ポートリスト"
 
 [custom_fields]

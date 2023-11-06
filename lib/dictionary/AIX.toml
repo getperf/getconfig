@@ -1,6 +1,6 @@
-# AIX OS インベントリ収集シナリオ
+# XSCF HW インベントリ収集シナリオ
 
-# SSH で対象 AIX サーバに接続し、メトリック定義のコマンド群を実行します
+# SSH、Telnet で対象 XSCF サーバに接続し、メトリック定義のコマンド群を実行します
 
 # Excel 検査対象シート
 
@@ -9,22 +9,22 @@
 # 対象サーバ
 #     ホスト名、※ OSホスト名と同じにします
 # プラットフォーム
-#     AIX
+#     XSCF
 # URL,IPアドレス
 #     SSH 接続先のIPもしくは、IP:ポート番号 を入力します。
 #     Telnet で接続する場合、「telnet://{ip}」を入力します
 # ユーザID
 #     config/config.groovy 内に記述した、SSH 接続アカウント。
 #     Account01を指定した場合、以下のパラメータを参照します
-#      // AIX 接続情報
-#      account.AIX.Account01.user      = 'admin'
-#      account.AIX.Account01.password  = 'admin'
+#      // XSCF 接続情報
+#      account.XSCF.Account01.user      = 'admin'
+#      account.XSCF.Account01.password  = 'admin'
 
 # [[metrics]]
 
 # メトリック定義コマンドリスト
 #
-# AIX コマンド、採取メトリックを追加する場合、以下リストに追加します。
+# XSCF コマンド、採取メトリックを追加する場合、以下リストに追加します。
 #
 # 設定例:
 # 
@@ -48,6 +48,15 @@ name = "OS情報"
 category = "OSリリース"
 text = '''
 oslevel -s
+'''
+
+[[metrics]]
+
+id = "prtconf"
+name = "システム構成情報"
+category = "OSリリース"
+text = '''
+LANG=c prtconf
 '''
 
 [[metrics]]
@@ -160,12 +169,9 @@ category = "メモリ"
 
 [[metrics]]
 
-id = "prtconf"
-name = "システム構成情報"
-category = "OSリリース"
-text = '''
-LANG=c prtconf
-'''
+id = "disk"
+name = "ディスク構成"
+category = "ディスク"
 
 [[metrics]]
 

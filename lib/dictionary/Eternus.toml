@@ -42,11 +42,618 @@
 
 [[metrics]]
 
-id = "hostname"
-name = "ホスト名"
-category = "OSリリース"
-level = 0
+id = "status"
+name = "総合ステータス"
+category = "ハードウェア"
+comment = "総合ステータス"
 text = '''
-uname -n
+show status
 '''
 
+[[metrics]]
+
+id = "enclosure_status"
+name = "エンクロージャステータス"
+category = "ハードウェア"
+comment = "コントローラーエンクロージャ、フロントエンドエンクロージャ、またはドライブエンクロージャのステータス詳細"
+text = '''
+show enclosure-status
+'''
+
+[[metrics]]
+
+id = "enclosure.StorageSystemName"
+name = "ストレージシステム名"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "enclosure.ModelUpgradeStatus"
+name = "モデルアップグレードステータス"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "enclosure.ModelName"
+name = "モデル名"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "enclosure.SerialNumber"
+name = "シリアル番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "enclosure.DeviceIdentificationNumber"
+name = "デバイス番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "enclosure.CacheMode"
+name = "キャッシュモード"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "enclosure.RemoteSupport"
+name = "リモートサポート"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "enclosure.OperationMode"
+name = "オペレーションモード"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "enclosure.CLIConnectingControllerModule"
+name = "CLI コントローラモジュール"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "enclosure.FirmwareVersion"
+name = "ファームウェアバージョン"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "fru_ce"
+name = "コントローラエンクロージャ"
+category = "ハードウェア"
+comment = "コントローラーエンクロージャのコンポーネント(保守部品ユニット：FRU)のステータス"
+text = '''
+show fru-ce
+'''
+
+[[metrics]]
+
+id = "CPU.0.CPUStatus/StatusCode"
+name = "コントローラ1 CPUステータス"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.MemorySize"
+name = "コントローラ1 メモリサイズ"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.PartsNumber"
+name = "コントローラ1 部品番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.SerialNumber"
+name = "コントローラ1 シリアル番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.HardRevision"
+name = "コントローラ1 ハードリビジョン"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.CPUClock"
+name = "コントローラ1 CPUクロック"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.Memory#0"
+name = "コントローラ1 メモリ#0"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.Memory#0PartsNumber"
+name = "コントローラ1 メモリ#0部品番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.Memory#0SerialNumber"
+name = "コントローラ1 メモリ#0シリアル番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.Memory#0HardRevision"
+name = "コントローラ1 メモリ#0ハードリビジョン"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.BUD"
+name = "コントローラ1 BUD"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.BUDPartsNumber"
+name = "コントローラ1 BUD部品番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.BUDSerialNumber"
+name = "コントローラ1 BUDシリアル番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.0.BUDHardRevision"
+name = "コントローラ1 BUDハードリビジョン"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.CPUStatus/StatusCode"
+name = "コントローラ2 CPUステータス"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.MemorySize"
+name = "コントローラ2 メモリサイズ"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.PartsNumber"
+name = "コントローラ2 部品番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.SerialNumber"
+name = "コントローラ2 シリアル番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.HardRevision"
+name = "コントローラ2 ハードリビジョン"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.CPUClock"
+name = "コントローラ2 CPUクロック"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.Memory#0"
+name = "コントローラ2 メモリ#0"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.Memory#0PartsNumber"
+name = "コントローラ2 メモリ#0部品番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.Memory#0SerialNumber"
+name = "コントローラ2 メモリ#0シリアル番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.Memory#0HardRevision"
+name = "コントローラ2 メモリ#0ハードリビジョン"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.BUD"
+name = "コントローラ2 BUD"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.BUDPartsNumber"
+name = "コントローラ2 BUD部品番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.BUDSerialNumber"
+name = "コントローラ2 BUDシリアル番号"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "CPU.1.BUDHardRevision"
+name = "コントローラ2 BUDハードリビジョン"
+category = "ハードウェア"
+
+[[metrics]]
+
+id = "subsystem_parameters"
+name = "サブシステムパラメータ"
+category = "ハードウェア"
+comment = "サブシステムパラメータ"
+text = '''
+show subsystem-parameters
+'''
+
+[[metrics]]
+
+id = "eco_mode"
+name = "エコモード管理"
+category = "ハードウェア"
+comment = "エコモード管理"
+text = '''
+show eco-mode
+'''
+
+[[metrics]]
+
+id = "storage_system_name"
+name = "登録されている装置名"
+category = "ストレージ"
+comment = "登録されている装置名"
+text = '''
+show storage-system-name
+'''
+
+[[metrics]]
+
+id = "disks"
+name = "ドライブ詳細。SSDの健全性(寿命)"
+category = "ストレージ"
+comment = "ドライブの詳細およびステータス。SSDの健全性(寿命)"
+text = '''
+show disks
+'''
+
+[[metrics]]
+
+id = "hardware_information"
+name = "ハードウェア情報"
+category = "ストレージ"
+comment = "各エンクロージャおよび各コンポーネントのハードウェア情報"
+text = '''
+show hardware-information
+'''
+
+[[metrics]]
+
+id = "raid_groups"
+name = "RAIDグループリスト"
+category = "ストレージ"
+comment = "RAIDグループの簡易リスト"
+text = '''
+show raid-groups
+'''
+
+[[metrics]]
+
+id = "volumes"
+name = "ボリュームの詳細"
+category = "ストレージ"
+comment = "すべてのボリュームまたは指定されたボリュームの詳細"
+text = '''
+show volumes
+'''
+
+[[metrics]]
+
+id = "fc_parameters"
+name = "FCホストインターフェースポート"
+category = "ストレージ"
+comment = "各FCホストインターフェースポートのパラメーター"
+text = '''
+show fc-parameters
+'''
+
+[[metrics]]
+
+id = "host_affinity"
+name = "マッピング定義のリスト"
+category = "ストレージ"
+comment = "LUNグループとホスト識別子を関連付けるマッピング定義のリスト"
+text = '''
+show host-affinity
+'''
+
+[[metrics]]
+
+id = "role"
+name = "ユーザ権限"
+category = "ユーザ"
+comment = "ユーザ権限"
+text = '''
+show role
+'''
+
+[[metrics]]
+
+id = "user_policy"
+name = "ユーザポリシー"
+category = "ユーザ"
+comment = "ユーザポリシー"
+text = '''
+show user-policy
+'''
+
+[[metrics]]
+
+id = "users"
+name = "ユーザーアカウント"
+category = "ユーザ"
+comment = "登録されているすべてのユーザーアカウント"
+text = '''
+show users
+'''
+
+[[metrics]]
+
+id = "network"
+name = "ネットワーク(LAN)構成"
+category = "ネットワーク"
+comment = "ネットワーク(LAN)構成パラメーター"
+text = '''
+show network
+'''
+
+[[metrics]]
+
+id = "firewall"
+name = "Firewallステータス"
+category = "ネットワーク"
+comment = "各アプリケーションサービスポートのステータス"
+text = '''
+show firewall
+'''
+
+[[metrics]]
+
+id = "ssl_version"
+name = "SSLバージョン"
+category = "ネットワーク"
+comment = "SSLバージョン"
+text = '''
+show ssl-version
+'''
+
+[[metrics]]
+
+id = "snmp"
+name = "SNMPパラメーター"
+category = "SNMP"
+comment = "SNMPパラメーター"
+text = '''
+show snmp
+'''
+
+[[metrics]]
+
+id = "snmp_manager"
+name = "SNMPマネージャーの設定"
+category = "SNMP"
+comment = "SNMPマネージャーの設定"
+text = '''
+show snmp-manager
+'''
+
+[[metrics]]
+
+id = "snmp_user"
+name = "登録されているSNMPユーザーのリスト"
+category = "SNMP"
+comment = "登録されているSNMPユーザーのリスト"
+text = '''
+show snmp-user
+'''
+
+[[metrics]]
+
+id = "snmp_trap"
+name = "定義されているSNMPトラップのリスト"
+category = "SNMP"
+comment = "定義されているSNMPトラップのリスト"
+text = '''
+show snmp-trap
+'''
+
+[[metrics]]
+
+id = "snmp_view"
+name = "SNMP MIB ビューリスト"
+category = "SNMP"
+comment = "SNMP MIB ビューリスト"
+text = '''
+show snmp-view
+'''
+
+[[metrics]]
+
+id = "ntp"
+name = "SMI-NTP構成"
+category = "NTP"
+comment = "NTP構成"
+text = '''
+show ntp
+'''
+
+[[metrics]]
+
+id = "email_notification"
+name = "E-mail通知機能"
+category = "その他設定"
+comment = "E-mail通知機能に関連するパラメーター"
+text = '''
+show email-notification
+'''
+
+[[metrics]]
+
+id = "event_notification"
+name = "イベント通知"
+category = "その他設定"
+comment = "イベント通知に使用されるパラメーター"
+text = '''
+show event-notification
+'''
+
+[[metrics]]
+
+id = "syslog_notification"
+name = "イベント通知"
+category = "その他設定"
+comment = "イベント通知に使用されるパラメーター"
+text = '''
+show syslog-notification
+'''
+
+[[metrics]]
+
+id = "smi_s"
+name = "SMI-S機能"
+category = "その他設定"
+comment = "SMI-S機能およびSMI-S性能情報応答の設定"
+text = '''
+show smi-s
+'''
+
+[[metrics]]
+
+id = "raid_tuning"
+name = "RAIDグループの性能チューニング"
+comment = "すべてのRAIDグループの性能チューニングパラメーター"
+category = "その他設定"
+text = '''
+show raid-tuning
+'''
+
+[[metrics]]
+
+id = "cache_parameters"
+name = "ボリュームキャッシュデータ制御条件"
+comment = "すべてのボリュームに対するキャッシュデータ制御条件"
+category = "その他設定"
+text = '''
+show cache-parameters
+'''
+
+[[metrics]]
+
+id = "firmware_version"
+name = "ファームウェアのバージョン"
+comment = "システムに登録されたコントローラーファームウェアのバージョン"
+category = "その他設定"
+text = '''
+show firmware-version
+'''
+
+[[metrics]]
+
+id = "disk_error"
+name = "ディスクエラーの詳細"
+comment = "ディスクエラーの詳細"
+category = "その他設定"
+text = '''
+show disk-error
+'''
+
+[[metrics]]
+
+id = "port_error"
+name = "ポートエラー詳細情報"
+comment = "SASエクスパンダーポート(コントローラーとドライブエンクロージャをリンクするインターフェース)のエラー詳細情報"
+category = "その他設定"
+text = '''
+show port-error
+'''
+
+[[metrics]]
+
+id = "led"
+name = "LEDのステータス"
+comment = "各エンクロージャおよび各モジュールのLEDのステータス"
+category = "その他設定"
+text = '''
+show led
+'''
+
+[[metrics]]
+
+id = "disk_patrol"
+name = "ディスクパトロール機能の設定"
+comment = "ディスクパトロール機能の設定"
+category = "その他設定"
+text = '''
+show disk-patrol
+'''
+
+[[metrics]]
+
+id = "thin_provisioning"
+name = "シン・プロビジョニング機能"
+comment = "シン・プロビジョニング機能"
+category = "その他設定"
+text = '''
+show thin-provisioning
+'''
+
+[[metrics]]
+
+id = "host_wwn_names"
+name = "ホストWWN 名"
+comment = "ホストWWN 名"
+category = "その他設定"
+text = '''
+show host-wwn-names
+'''
+
+[[metrics]]
+
+id = "host_groups"
+name = "ホストグループリスト"
+comment = "ホストグループリスト"
+category = "その他設定"
+text = '''
+show host-groups
+'''
+
+[[metrics]]
+
+id = "port_groups"
+name = "ポートグループリスト"
+comment = "ポートグループリスト"
+category = "その他設定"
+text = '''
+show port-groups -all
+'''

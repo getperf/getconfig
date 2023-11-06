@@ -43,11 +43,63 @@
 
 [[metrics]]
 
-id = "hostname"
-name = "ホスト名"
-category = "OSリリース"
-level = 0
+id = "hardconf"
+name = "ハードウェア"
+category = "HW構成状態"
+comment = "'showhardconf’ コマンドで各HW構成のステータスを検索"
 text = '''
-uname -n
+showhardconf
+'''
+
+[[metrics]]
+
+id = "hardconf.system"
+name = "システム情報"
+category = "システム名"
+
+[[metrics]]
+
+id = "hardconf.serial"
+name = "システム情報"
+category = "シリアル番号"
+
+[[metrics]]
+
+id = "fwversion"
+name = "システム情報"
+category = "FWバージョン"
+comment = "'version -c xcp -v' コマンドでFWバージョンを検索"
+text = '''
+version -c xcp -v
+'''
+
+[[metrics]]
+
+id = "cpu_activate"
+name = "CPU"
+category = "CPUアクティベーション"
+comment = "'showcod -v -s cpu' コマンドでCPUアクティベーションを検索"
+text = '''
+showcod -v -s cpu
+'''
+
+[[metrics]]
+
+id = "network"
+name = "ネットワーク"
+category = "ネットワーク構成"
+comment = "'shownetwork -a' コマンドでネットワーク構成を検索"
+text = '''
+shownetwork -a
+'''
+
+[[metrics]]
+
+id = "snmp"
+name = "SNMP"
+category = "SNMP構成"
+comment = "'showsnmp' コマンドで SNMP 構成を検索"
+text = '''
+showsnmp
 '''
 

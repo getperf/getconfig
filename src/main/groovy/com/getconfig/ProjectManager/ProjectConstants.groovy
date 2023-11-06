@@ -7,5 +7,5 @@ import groovy.transform.TypeChecked
 @CompileStatic
 class ProjectConstants {
     // プロジェクトバージョン
-    static final String VERSION = "3.11"
+    static final String VERSION = "3.13"
 }

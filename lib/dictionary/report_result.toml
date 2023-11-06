@@ -7,7 +7,7 @@
     ]
 
     OS = [
-        "Windows", "Linux", "VMHost", "Solaris",
+        "Windows", "Linux", "VMHost", "Solaris", "AIX",
     ]
 
     MONITOR = [
@@ -123,6 +123,16 @@ tracker = "SPARCサーバ"
     [sheets.platforms]
 
         HW = ["XSCF", "OracleVMServer", "SolarisZone"]
+        MONITOR = ["Zabbix"]
+
+[[sheets]]
+
+name = "POWERサーバ"
+tracker = "POWERサーバ"
+
+    [sheets.platforms]
+
+        OS = ["AIX"]
         MONITOR = ["Zabbix"]
 
 [[sheets]]

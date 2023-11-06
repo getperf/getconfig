@@ -18,7 +18,14 @@ void Summary(TestUtil t) {
     t.setMetric("numCpu", json.Config?.NumCpu ?: 'N/A')
     t.setMetric("powerState", json.Runtime?.PowerState ?: 'N/A')
     t.setMetric("memoryMB", json.Config?.MemorySizeMB ?: 'N/A')
-    t.setMetric("VmftState", json.Runtime?.FaultToleranceState ?: 'N/A')
+    def vmftState = json.Runtime?.FaultToleranceState;
+    if (vmftState) {
+        def vmftStateAlias = 'VM';
+        if (vmftState != 'notConfigured') {
+            vmftStateAlias = "VMFT(${vmftState})";
+        }
+        t.setMetric("VmftState", vmftStateAlias)
+    }
 }
 
 @Parser("host.txt")
