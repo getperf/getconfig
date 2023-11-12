@@ -106,7 +106,7 @@ class GetconfigExecuter():
         if self.test:
             opt_test = " -t " + self.test
         cmd_base = self.get_cmd_base(config_path, "run")
-        self.spawn(cmd_base + " --level {}{}".format(
+        self.spawn(cmd_base + " -x --level {}{}".format(
             self.collect_level, 
             opt_test))
 
