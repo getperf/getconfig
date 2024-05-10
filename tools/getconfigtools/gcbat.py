@@ -95,8 +95,7 @@ class GetconfigExecuter():
         _logger = logging.getLogger(__name__)
         _logger.info("run : {}".format(command))
         if not self.printonly:
-            subprocess.check_call(command.split(), cwd=self.home, \
-                timeout=self.GETCONFIG_TIMEOUT)
+            subprocess.check_call(command.split(), cwd=self.home)
 
     def spawn_get_inventory(self, config_path):
         """
@@ -131,7 +130,7 @@ class GetconfigExecuter():
 
             self.spawn_regist_inventory_db()
         except Exception as e:
-              print("Command error :{}".format(e.args))
+              print("Command error :{}".format(vars(e)))
 
     def parser(self):
         """
