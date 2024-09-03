@@ -21,6 +21,7 @@ class AgentWrapperManager {
             it["VMWare"] = new VMWare()
             it["VMHost"] = new VMHost()
             it["Solaris"] = new Solaris()
+            it["AIX"] = new AIX()
             it["CiscoUCS"] = new CiscoUCS()
             it["HPiLO"] = new HPiLO()
             it["Primergy"] = new Primergy()
