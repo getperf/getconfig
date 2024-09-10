@@ -58,7 +58,7 @@ class LinuxParserTest extends Specification {
         logParsers.invoke(t)
 
         then:
-        t.get("Linux", "lsb").value == "[CentOS Linux release 8.1.1911 (Core)]"
+        t.get("Linux", "lsb").value == "CentOS Linux release 8.1.1911 (Core)"
         t.get("Linux", "os_release").value == "8.1.1911"
     }
 

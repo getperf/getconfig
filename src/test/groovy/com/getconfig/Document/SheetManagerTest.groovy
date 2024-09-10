@@ -25,7 +25,7 @@ class SheetManagerTest extends Specification {
         SheetManager manager = new SheetManager(templateSheet, sheet)
 
         then:
-        manager.getPrintArea() == "A1:Y1"
+        manager.getPrintArea() == "A1:AA1"
     }
 
     def "ヘッダコメント取得"() {
