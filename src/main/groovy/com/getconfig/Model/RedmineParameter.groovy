@@ -9,7 +9,8 @@ import groovy.transform.ToString
 @CompileStatic
 @ToString(includePackage = false)
 class RedmineParameter {
-    int in_operation_status_id
+    int in_operation_status_id // Redmine default status id
+    int offline_status_id = 15 // Redmine offline status id
     Map<String,String> parameters = new LinkedHashMap<>()
     Map<String,String> custom_fields = new LinkedHashMap<>()
 
@@ -44,6 +45,10 @@ class RedmineParameter {
 
     int inOperationStatusId() {
         return in_operation_status_id
+    }
+
+    int offlineStatusId() {
+        return offline_status_id
     }
 
     void setTicketManager(TicketManager manager) {

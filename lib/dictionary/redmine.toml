@@ -1,4 +1,5 @@
 in_operation_status_id = 10
+offline_status_id = 14
 
 [parameters]
 
