@@ -194,6 +194,7 @@ println "TRACKER:${tracker.id},${trackerName}"
             issue.setProjectId(project.id)
             issue.setSubject(subject)
             issue.setTracker(tracker)
+            // println "REGIST:${subject}, ${inOperation}"
             if (inOperation) {
                 issue.setStatusId(redmineParam.inOperationStatusId())
             }
@@ -216,6 +217,33 @@ println "TRACKER:${tracker.id},${trackerName}"
         }
         if (customField) {
             customField.setValue(value)
+        }
+    }
+
+    def updatePortListsOffline(Set<Integer> issueIds) {
+        issueIds.each { issueId ->
+            updatePortListStatus(issueId, false)
+        }
+    }
+
+    def updatePortListStatus(int issueId, boolean online) {
+        // println "updatePortListStatus: ${issueId}, ${online}"
+        try {
+            def issue = this.issueManager.getIssueById(issueId)
+            // println "issue:${issue}"
+            def trackerName = issue.getTracker().getName()
+            if (trackerName == redmineParam.portListTracker()) {
+                if (online) {
+                    issue.setStatusId(redmineParam.inOperationStatusId())
+                } else {
+                    issue.setStatusId(redmineParam.offlineStatusId())
+                }
+                this.issueManager.update(issue)
+            }
+            // println "tracker:${trackerName}"
+        } catch (IllegalArgumentException e) {
+            def msg = "https://github.com/taskadapter/redmine-java-api/issues : ${e}."
+            log.warn(msg)
         }
     }
 
@@ -268,18 +296,17 @@ println "TRACKER:${tracker.id},${trackerName}"
         def fields = this.getPortListCustomFields(customFields)
         def lookedUp = this.checkLookedUpPortList(customFields)
         return this.resisterTicket(projectName, redmineParam.portListTracker(),
-                subject, fields, lookedUp)
+                subject, fields, true)
     }
 
     Boolean link(Issue ticket_from, List<Integer> ticket_to_ids) {
         Boolean isok = false
         // 関連するチケットIDの洗い出し
-        def existing_relations = [:]
+        def existing_relations = new LinkedHashMap<Integer,Boolean>()
         ticket_from.getRelations().each { issue ->
             existing_relations[issue.issueId] = true
             existing_relations[issue.issueToId] = true
         }
-        // println "EXISTING_RELATIONS:${existing_relations}"
         def relations =[]
         try {
             ticket_to_ids.each { ticket_to_id ->
@@ -287,6 +314,8 @@ println "TRACKER:${tracker.id},${trackerName}"
                     relations << this.issueManager.createRelation(ticket_from.id,
                             ticket_to_id,
                             'relates')
+                } else {
+                    existing_relations.remove(ticket_to_id)
                 }
             }
             // println "RELATIONS:${relations}"
@@ -299,6 +328,7 @@ println "TRACKER:${tracker.id},${trackerName}"
                     log.warn(msg)
                 }
             }
+            updatePortListsOffline(existing_relations.keySet())
             isok = true
         } catch (RedmineProcessingException e) {
             def msg = "link error '${ticket_from}' to '${ticket_to_ids}' : ${e}."

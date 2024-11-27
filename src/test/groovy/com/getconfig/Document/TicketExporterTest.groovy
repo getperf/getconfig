@@ -36,4 +36,27 @@ class TicketExporterTest extends Specification {
         then:
         1 == 1
     }
+
+    def "ポートリストステータス更新"() {
+        when:
+        // esxit.ostrich IA#8025 は、ポートリスト #8026,#8027,#8028 とリンク
+        // ポートリスト #8026,#8027 リンク処理にて、対象外の #8028 が オフライン
+        // ステータスになることを確認
+        //
+        // gradle test  --tests com.getconfig.Document.TicketExporterTest
+
+        TicketManager ticketManager = new TicketManager()
+        ConfigEnv.instance.setDryRun()
+        ConfigEnv.instance.accept(ticketManager)
+        ticketManager.readConfig()
+        ticketManager.init()
+        def ticket = ticketManager.getIssue("esxi.ostrich")
+        println(ticket)
+        def ticket_to_ids = [8026, 8027] // , 8028]
+        ticketManager.link(ticket, ticket_to_ids)
+        println(ticket_to_ids)
+
+        then:
+        1 == 1
+    }
 }
