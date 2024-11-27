@@ -109,6 +109,7 @@ class TicketExporter implements Controller {
         ticketManager.readConfig()
         ticketManager.init()
         testScenario.servers.each { String server ->
+            println "TEST: export : ${server}"
             String tracker = testScenario.getTracker(server)
             if (!tracker) {
                 return
