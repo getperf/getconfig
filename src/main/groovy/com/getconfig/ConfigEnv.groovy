@@ -232,6 +232,10 @@ class ConfigEnv {
         return this.commandArgs.dryRun ?: dryRun
     }
 
+    boolean getSkipExcelReport() {
+        return this.commandArgs.skipExcelReport ?: false
+    }
+
     // 共通設定
     String getConfigFile() {
         def configFile = Paths.get(this.getProjectHome(), 'config/config.groovy')

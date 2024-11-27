@@ -16,6 +16,7 @@ class ConfigCommandArgs {
 
     // run サブコマンド用
     Boolean dryRun
+    Boolean skipExcelReport
     String projectDir
     Integer level
     Boolean autoTagFlag

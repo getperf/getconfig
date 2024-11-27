@@ -44,7 +44,7 @@ redmineField = "型番"
 [[columns]]
 id = "serial"
 name = "S/N"
-redmineField = "S/N"
+redmineField = "シリアルNO"
 
     [columns.inventories]
     HPiLO = "serial_num"
@@ -70,6 +70,14 @@ redmineField = "OS名"
     NetApp = "version"
 
 [[columns]]
+id = "vm"
+name = "仮想マシン"
+redmineField = "仮想"
+
+    [columns.inventories]
+    VMWare = "VmftState"
+
+[[columns]]
 id = "arch"
 name = "アーキテクチャ"
 
@@ -78,7 +86,21 @@ name = "アーキテクチャ"
     Windows = "os_architecture"
     VMHost = "arch"
     Solaris = "Machine"
+    AIX = "prtconf"
     Oracle = "dbattrs.platform_name"
+
+[[columns]]
+id = "cpuName"
+name = "CPU名"
+redmineField = "CPU名"
+
+    [columns.inventories]
+    Linux = "cpu"
+    Windows = "model_name"
+    VMHost = "ProcessorType"
+    Solaris = "model_name"
+    AIX = "prtconf.Processor Type"
+    NetApp = "hw.Processor type"
 
 [[columns]]
 id = "cpu"
@@ -97,6 +119,7 @@ redmineField = "CPU数"
 [[columns]]
 id = "cpuCore"
 name = "CPUコア数"
+redmineField = "CPUコア"
 
     [columns.inventories]
     Linux = "cpu_total"
@@ -109,17 +132,19 @@ name = "CPUコア数"
 [[columns]]
 id = "cpuClock"
 name = "CPUクロック数"
+redmineField = "CPUクロック"
 
     [columns.inventories]
     Linux = "mhz"
     Windows = "mhz"
     VMHost = "CpuTotalMhz"
     Solaris = "mhz"
+    AIX = "prtconf.Processor Clock Speed"
 
 [[columns]]
 id = "mem"
 name = "MEM容量"
-redmineField = "MEM容量"
+redmineField = "MEM(GB)"
 
     [columns.inventories]
     Linux = "meminfo"
@@ -132,6 +157,7 @@ redmineField = "MEM容量"
 [[columns]]
 id = "internalDisk"
 name = "内臓ディスク"
+redmineField = "HDD(GB)"
 
     [columns.inventories]
     HPiLO = "disk.drives"
@@ -147,7 +173,7 @@ name = "ディスク構成"
     Windows = "filesystem"
     VMHost = "Disk"
     Solaris = "filesystem"
-    AIX = "prtconf.disk"
+    AIX = "disk"
     HitachiVSP = "parity-groups"
     Eternus = "raid_groups"
     NetApp = "volume"

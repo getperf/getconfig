@@ -116,6 +116,13 @@ comment = "電源On/Off"
 
 [[metrics]]
 
+id = "VmftState"
+name = "VMFT状態"
+category = "VM設定"
+comment = "VMFTの有効化"
+
+[[metrics]]
+
 id = "guestHeartbeatStatus"
 name = "ハートビート状態"
 category = "VM設定"

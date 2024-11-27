@@ -172,6 +172,10 @@ public class GetconfigCommand implements Callable<Integer>, IVersionProvider, IE
                 description="dry run test")
         Boolean dryRun
 
+        @Option(names = ["-x", "--skip-excel"], 
+                description="skip excel report")
+        Boolean skipExcelReport
+
         @Option(names = ["-e", "--excel"], paramLabel="FILE", 
                 description="check sheet input (default: check_sheet.xlsx)")
         File checkSheetPath

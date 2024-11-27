@@ -3,7 +3,7 @@ offline_status_id = 14
 
 [parameters]
 
-rack_location_prefix = "RackTables:"
+rack_location_prefix = ""
 port_list_tracker = "ポートリスト"
 
 [custom_fields]

@@ -294,7 +294,7 @@ void nic_teaming(TestUtil t) {
     def teaming = 'N/A'
     def alias = ''
     t.readLine {
-        println it
+        // println it
         (it =~ /^Name\s+:\s(.+)/).each {m0, m1->
             teaming = 'Configured'
             alias = m1
@@ -819,16 +819,31 @@ void patch_lists(TestUtil t) {
     def row = 0
     def csv = []
     def res = [:]
-    t.readLine("UTF-16") {
-        (it =~ /\s(KB\d+)\s/).each {m0, knowledge_base ->
-            csv << [knowledge_base]
+    def last_updated = ''
+    def knowledge_base = ''
+    // t.readLine("UTF-16") { // Windows10環境だとUTF-16で出力される
+        // println it
+    t.readLine() {
+        (it =~ /\s(KB\d+)\s/).each {m0, id ->
+            knowledge_base = id
             t.newMetric("patch_lists.${knowledge_base}", 
                         knowledge_base, 'Enable')
         }
+        (it =~ /\s(Update|Security Update).+\s(\d+)\/(\d+)\/(\d+)\s/).each {
+            m0, desc, month, day, year ->
+            def updated = sprintf("%04d/%02d/%02d", 
+                year as int, month as int, day as int)
+            csv << [desc, knowledge_base, updated]
+            if (desc == 'Update') {
+                if (last_updated.compareTo(updated) < 0) {
+                    last_updated = updated 
+                }
+            }
+        }
     }
-    def headers = ['knowledge_base']
+    def headers = ['description', 'knowledge_base', 'updated']
     t.devices(headers, csv)
-    t.results("${csv.size()} patches")
+    t.results(last_updated)
 }
 
 @Parser("feature")
