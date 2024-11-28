@@ -67,7 +67,7 @@ class Exporter implements Controller {
 
             case 'ticket' :
                 checkInventoryDBConfig()
-                println("TEST: export:", testServers)
+                // println "TEST: export:${testServers}"
                 ticketExporter.export(testServers, projectNodeDir)
                 break
 
