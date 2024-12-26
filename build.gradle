@@ -22,7 +22,7 @@ def language  = 'jp' // 'en'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
-version = '0.3.13'
+version = '0.3.14'
 
 repositories {
     jcenter()

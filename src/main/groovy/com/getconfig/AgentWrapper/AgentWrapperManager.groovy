@@ -29,7 +29,7 @@ class AgentWrapperManager {
             it["HitachiVSP"] = new HitachiVSP()
             it["NetApp"] = new NetApp()
             it["Eternus"] = new Eternus()
-            it["Alltera"] = new Alltera()
+            it["Alletra"] = new Alletra()
             it["Zabbix"] = new Zabbix()
             it[AgentConstants.AGENT_LABEL_REMOTE] = new RemoteAgent()
             it[AgentConstants.AGENT_LABEL_LOCAL_FILE] = new LocalAgent()

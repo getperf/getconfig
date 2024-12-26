@@ -3,7 +3,7 @@
     HW = [
         "VMWare", "HPiLO", "Primergy", "CiscoUCS",
         "XSCF", "OracleVMServer", "SolarisZone",
-        "HitachiVSP", "Eternus", "NetApp", "Alltera",
+        "HitachiVSP", "Eternus", "NetApp", "Alletra",
     ]
 
     OS = [
@@ -157,12 +157,12 @@ tracker = "ストレージ"
 
 [[sheets]]
 
-name = "Alltera"
+name = "Alletra"
 tracker = "ストレージ"
 
     [sheets.platforms]
 
-        HW = ["Alltera"]
+        HW = ["Alletra"]
         MONITOR = ["Zabbix"]
 
 [[sheets]]

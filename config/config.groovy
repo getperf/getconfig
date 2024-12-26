@@ -146,6 +146,14 @@ account.HitachiVSP.Account01.password = 'P@ssw0rd'
 account.Eternus.Account01.user     = 'admin'
 account.Eternus.Account01.password = 'P@ssw0rd'
 
+// HPE Alletra storage firmware connection
+//
+//  Alletra  REST API(Nimble SDK) connection account
+
+account.Alletra.Account01.user     = 'admin'
+account.Alletra.Account01.password = 'P@ssw0rd'
+
+
 // Oracle database connection
 //
 //  Oracle JDBC connection account

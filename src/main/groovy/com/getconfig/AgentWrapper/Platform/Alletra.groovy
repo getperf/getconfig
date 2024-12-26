@@ -8,7 +8,7 @@ import com.getconfig.Model.Server
 
 @Slf4j
 @InheritConstructors
-class Alltera implements AgentConfigWrapper {
+class Alletra implements AgentConfigWrapper {
     class ServerModel {
         String  server
         String  url
@@ -18,7 +18,7 @@ class Alltera implements AgentConfigWrapper {
         boolean insecure
     }
 
-    class AllteraConfig {
+    class AlletraConfig {
         String  server
         String  url
         String  user
@@ -31,12 +31,12 @@ class Alltera implements AgentConfigWrapper {
 
     @Override
     String getLabel() {
-        return "allteraconf"
+        return "Alletraconf"
     }
 
     @Override
     String getConfigName() {
-        return "allteraconf.toml"
+        return "Alletraconf.toml"
     }
 
     @Override
@@ -51,7 +51,7 @@ class Alltera implements AgentConfigWrapper {
 
     @Override
     def makeServerConfig(Server server) {
-        def config = new AllteraConfig(
+        def config = new AlletraConfig(
             server : server.serverName,
             url : server.ip,
             user : server.user,

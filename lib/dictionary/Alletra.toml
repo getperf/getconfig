@@ -1,6 +1,6 @@
-# HPE Alltera ストレージインベントリ収集シナリオ
+# HPE Alletra ストレージインベントリ収集シナリオ
 
-# SSH で対象 Alltera ストレージに接続し、メトリック定義のコマンド群を実行します
+# SSH で対象 Alletra ストレージに接続し、メトリック定義のコマンド群を実行します
 
 # Excel 検査対象シート
 
@@ -9,21 +9,21 @@
 # 対象サーバ
 #     ストレージホスト名
 # プラットフォーム
-#     Alltera
+#     Alletra
 # URL,IPアドレス
 #     SSH 接続先のIPもしくは、IP:ポート番号 を入力します。
 # ユーザID
 #     config/config.groovy 内に記述した、SSH 接続アカウント。
 #     Account01を指定した場合、以下のパラメータを参照します
-#      // Alltera 接続情報
-#      account.Alltera.Account01.user      = 'admin'
-#      account.Alltera.Account01.password  = 'admin'
+#      // Alletra 接続情報
+#      account.Alletra.Account01.user      = 'admin'
+#      account.Alletra.Account01.password  = 'admin'
 
 # [[metrics]]
 
 # メトリック定義コマンドリスト
 #
-# Alltera コマンド、採取メトリックを追加する場合、以下リストに追加します。
+# Alletra コマンド、採取メトリックを追加する場合、以下リストに追加します。
 #
 # 設定例:
 # 
@@ -42,13 +42,24 @@
 
 [[metrics]]
 
-id = "hostname"
+id = "arrays"
 name = "ホスト名"
 category = "ハードウェア"
 comment = "ホスト名"
 text = '''
-hostname -s
+arrays
 '''
+
+[[metrics]]
+
+id = "disks"
+name = "ディスク名"
+category = "ハードウェア"
+comment = "ディスク名"
+text = '''
+disks
+'''
+
 
 [[metrics]]
 
