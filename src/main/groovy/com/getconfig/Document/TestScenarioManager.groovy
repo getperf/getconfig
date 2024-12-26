@@ -115,7 +115,6 @@ class TestScenarioManager implements Controller {
     }
 
     TestScenario setServerToReport() {
-        // println "TEST: setServerToReport"
         testScenario.with {
             this.serverOrders.sort().each {
                 if (it.key > 0) {
@@ -124,7 +123,6 @@ class TestScenarioManager implements Controller {
             }
             Map serverPlatformKeys = serverPlatformKeys.asMap()
             serverPlatformKeys.each { String server, Collection platforms ->
-                // println "TEST: setServerToReport :${server}, ${platforms}"
                 ResultSheet resultSheet
                 resultSheet = reportResult.findSheet(platforms as List)
                 if (resultSheet) {
