@@ -29,9 +29,11 @@ void prtconf(TestUtil t) {
     def volume
     def volumes = [:]
     def csv = []
+    def prtconfLines = []
     def processor = 'unkown'
     def memory_size = 0
     t.readLine { line ->
+        prtconfLines << [line]
         (line=~/Network Information/).each {
             phase = 2
         }
@@ -79,8 +81,16 @@ void prtconf(TestUtil t) {
     t.resetMetric("disk");
     def headers = ['volume', 'pv_name', 'pv_state', 'total_pp[GB]', 'free_pp[GB]', 'free_distribution']
     t.devices(headers, csv)
-    // info['prtconf.disk'] = "$volumes"
-    info['prtconf'] = processor
+
+    def prtconf = t.readAll();
+    t.setMetric("prtconf", processor);
+    t.resetMetric("prtconf");
+    t.devices(['line'], prtconfLines);
+
+    def cpuThreads = info['prtconf.Number Of Processors'] as int
+    info['cpuCores'] = cpuThreads / 8.0;
+    info['cpuSockets'] = 1.0;
+
     t.results(info)
 }
 

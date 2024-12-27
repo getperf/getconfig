@@ -1,0 +1,4 @@
+bash: oslevel: command not found
+run aix1:oslevel : run command: Process exited with status 127
+bash: prtconf: command not found
+run aix1:prtconf : run command: Process exited with status 127

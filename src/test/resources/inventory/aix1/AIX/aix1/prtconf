@@ -1,0 +1,174 @@
+System Model: IBM,9080-MHE
+Machine Serial Number: 680F368
+Processor Type: PowerPC_POWER8
+Processor Implementation Mode: POWER 8
+Processor Version: PV_8_Compat
+Number Of Processors: 4
+Processor Clock Speed: 4356 MHz
+CPU Type: 64-bit
+Kernel Type: 64-bit
+LPAR Info: 30 K1RDDB03V
+Memory Size: 262144 MB
+Good Memory Size: 262144 MB
+Platform Firmware level: SC860_245
+Firmware Version: IBM,FW860.B3 (SC860_245)
+Console Login: enable
+Auto Restart: true
+Full Core: true
+NX Crypto Acceleration: Capable and Enabled
+In-Core Crypto Acceleration: Capable, but not Enabled
+ 
+Network Information
+	Host Name: k1virddb03
+	IP Address: 10.154.10.165
+	Sub Netmask: 255.255.254.0
+	Gateway: 10.154.10.1
+	Name Server: 
+	Domain Name: 
+ 
+Paging Space Information
+	Total Paging Space: 65536MB
+	Percent Used: 0%
+ 
+Volume Groups Information
+============================================================================== 
+Active VGs
+============================================================================== 
+dbvg1:
+PV_NAME           PV STATE          TOTAL PPs   FREE PPs    FREE DISTRIBUTION
+hdisk1            active            999         719         200..00..119..200..200
+hdisk32           active            999         719         200..00..119..200..200
+============================================================================== 
+ 
+rootvg:
+PV_NAME           PV STATE          TOTAL PPs   FREE PPs    FREE DISTRIBUTION
+hdisk0            active            799         311         00..00..00..151..160
+hdisk31           active            799         319         08..00..00..151..160
+============================================================================== 
+ 
+INSTALLED RESOURCE LIST
+
+The following resources are installed on the machine.
++/- = Added or deleted from Resource List.
+*   = Diagnostic support not available.
+	
+  Model Architecture: chrp
+  Model Implementation: Multiple Processor, PCI bus
+	
++ sys0                                                                              System Object
++ sysplanar0                                                                        System Planar
+* vio0                                                                              Virtual I/O Bus
+* vsa0             U9080.MHE.680F368-V30-C0                                         LPAR Virtual Serial Adapter
+* vty0             U9080.MHE.680F368-V30-C0-L0                                      Asynchronous Terminal
++ fcs0             U9080.MHE.680F368-V30-C301-T1                                    Virtual Fibre Channel Client Adapter
+* fscsi0           U9080.MHE.680F368-V30-C301-T1                                    FC SCSI I/O Controller Protocol Device
+* hdisk0           U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L0               MPIO IBM 2145 FC Disk
+* hdisk31          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L0               MPIO IBM 2145 FC Disk
+* sfwcomm0         U9080.MHE.680F368-V30-C301-T1-W0-L0                              Fibre Channel Storage Framework Comm
+* hdisk1           U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L1000000000000   MPIO IBM 2145 FC Disk
+* hdisk2           U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L2000000000000   MPIO IBM 2145 FC Disk
+* hdisk3           U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L3000000000000   MPIO IBM 2145 FC Disk
+* hdisk4           U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L4000000000000   MPIO IBM 2145 FC Disk
+* hdisk5           U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L5000000000000   MPIO IBM 2145 FC Disk
+* hdisk6           U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L6000000000000   MPIO IBM 2145 FC Disk
+* hdisk7           U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L7000000000000   MPIO IBM 2145 FC Disk
+* hdisk8           U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L8000000000000   MPIO IBM 2145 FC Disk
+* hdisk9           U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L9000000000000   MPIO IBM 2145 FC Disk
+* hdisk10          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-LA000000000000   MPIO IBM 2145 FC Disk
+* hdisk11          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-LB000000000000   MPIO IBM 2145 FC Disk
+* hdisk12          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-LC000000000000   MPIO IBM 2145 FC Disk
+* hdisk13          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-LD000000000000   MPIO IBM 2145 FC Disk
+* hdisk14          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-LE000000000000   MPIO IBM 2145 FC Disk
+* hdisk15          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-LF000000000000   MPIO IBM 2145 FC Disk
+* hdisk16          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L10000000000000  MPIO IBM 2145 FC Disk
+* hdisk17          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L11000000000000  MPIO IBM 2145 FC Disk
+* hdisk18          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L12000000000000  MPIO IBM 2145 FC Disk
+* hdisk19          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L13000000000000  MPIO IBM 2145 FC Disk
+* hdisk20          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L14000000000000  MPIO IBM 2145 FC Disk
+* hdisk21          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L15000000000000  MPIO IBM 2145 FC Disk
+* hdisk22          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L16000000000000  MPIO IBM 2145 FC Disk
+* hdisk23          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L17000000000000  MPIO IBM 2145 FC Disk
+* hdisk24          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L18000000000000  MPIO IBM 2145 FC Disk
+* hdisk25          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L19000000000000  MPIO IBM 2145 FC Disk
+* hdisk26          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L1A000000000000  MPIO IBM 2145 FC Disk
+* hdisk27          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L1B000000000000  MPIO IBM 2145 FC Disk
+* hdisk28          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L1C000000000000  MPIO IBM 2145 FC Disk
+* hdisk29          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L1D000000000000  MPIO IBM 2145 FC Disk
+* hdisk30          U9080.MHE.680F368-V30-C301-T1-W500507680C54B315-L1E000000000000  MPIO IBM 2145 FC Disk
+* hdisk32          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L1000000000000   MPIO IBM 2145 FC Disk
+* hdisk33          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L2000000000000   MPIO IBM 2145 FC Disk
+* hdisk34          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L3000000000000   MPIO IBM 2145 FC Disk
+* hdisk35          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L4000000000000   MPIO IBM 2145 FC Disk
+* hdisk36          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L5000000000000   MPIO IBM 2145 FC Disk
+* hdisk37          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L6000000000000   MPIO IBM 2145 FC Disk
+* hdisk38          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L7000000000000   MPIO IBM 2145 FC Disk
+* hdisk39          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L8000000000000   MPIO IBM 2145 FC Disk
+* hdisk40          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L9000000000000   MPIO IBM 2145 FC Disk
+* hdisk41          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-LA000000000000   MPIO IBM 2145 FC Disk
+* hdisk42          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-LB000000000000   MPIO IBM 2145 FC Disk
+* hdisk43          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-LC000000000000   MPIO IBM 2145 FC Disk
+* hdisk44          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-LD000000000000   MPIO IBM 2145 FC Disk
+* hdisk45          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-LE000000000000   MPIO IBM 2145 FC Disk
+* hdisk46          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-LF000000000000   MPIO IBM 2145 FC Disk
+* hdisk47          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L10000000000000  MPIO IBM 2145 FC Disk
+* hdisk48          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L11000000000000  MPIO IBM 2145 FC Disk
+* hdisk49          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L12000000000000  MPIO IBM 2145 FC Disk
+* hdisk50          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L13000000000000  MPIO IBM 2145 FC Disk
+* hdisk51          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L14000000000000  MPIO IBM 2145 FC Disk
+* hdisk52          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L15000000000000  MPIO IBM 2145 FC Disk
+* hdisk53          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L16000000000000  MPIO IBM 2145 FC Disk
+* hdisk54          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L17000000000000  MPIO IBM 2145 FC Disk
+* hdisk55          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L18000000000000  MPIO IBM 2145 FC Disk
+* hdisk56          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L19000000000000  MPIO IBM 2145 FC Disk
+* hdisk57          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L1A000000000000  MPIO IBM 2145 FC Disk
+* hdisk58          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L1B000000000000  MPIO IBM 2145 FC Disk
+* hdisk59          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L1C000000000000  MPIO IBM 2145 FC Disk
+* hdisk60          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L1D000000000000  MPIO IBM 2145 FC Disk
+* hdisk61          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L1E000000000000  MPIO IBM 2145 FC Disk
+* hdisk62          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L1F000000000000  MPIO IBM 2145 FC Disk
+* hdisk63          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L20000000000000  MPIO IBM 2145 FC Disk
+* hdisk64          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L21000000000000  MPIO IBM 2145 FC Disk
+* hdisk65          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L22000000000000  MPIO IBM 2145 FC Disk
+* hdisk66          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L23000000000000  MPIO IBM 2145 FC Disk
+* hdisk67          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L24000000000000  MPIO IBM 2145 FC Disk
+* hdisk68          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L25000000000000  MPIO IBM 2145 FC Disk
+* hdisk69          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L26000000000000  MPIO IBM 2145 FC Disk
+* hdisk70          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L27000000000000  MPIO IBM 2145 FC Disk
+* hdisk71          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L28000000000000  MPIO IBM 2145 FC Disk
+* hdisk72          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L29000000000000  MPIO IBM 2145 FC Disk
+* hdisk73          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L2A000000000000  MPIO IBM 2145 FC Disk
+* hdisk74          U9080.MHE.680F368-V30-C301-T1-W500507680C54B2DC-L2B000000000000  MPIO IBM 2145 FC Disk
++ fcs1             U9080.MHE.680F368-V30-C302-T1                                    Virtual Fibre Channel Client Adapter
+* fscsi1           U9080.MHE.680F368-V30-C302-T1                                    FC SCSI I/O Controller Protocol Device
+* sfwcomm1         U9080.MHE.680F368-V30-C302-T1-W0-L0                              Fibre Channel Storage Framework Comm
++ fcs2             U9080.MHE.680F368-V30-C303-T1                                    Virtual Fibre Channel Client Adapter
+* fscsi2           U9080.MHE.680F368-V30-C303-T1                                    FC SCSI I/O Controller Protocol Device
+* smc0             U9080.MHE.680F368-V30-C303-T1-W5000E1116D8C1066-L1000000000000   IBM 3573 Tape Medium Changer (FCP)
+* sfwcomm2         U9080.MHE.680F368-V30-C303-T1-W0-L0                              Fibre Channel Storage Framework Comm
+* rmt0             U9080.MHE.680F368-V30-C303-T1-W5000E1116D8C1066-L0               IBM 3580 Ultrium Tape Drive (FCP)
++ fcs3             U9080.MHE.680F368-V30-C304-T1                                    Virtual Fibre Channel Client Adapter
+* fscsi3           U9080.MHE.680F368-V30-C304-T1                                    FC SCSI I/O Controller Protocol Device
+* smc1             U9080.MHE.680F368-V30-C304-T1-W5000E1116D8C105C-L1000000000000   IBM 3573 Tape Medium Changer (FCP)
+* sfwcomm3         U9080.MHE.680F368-V30-C304-T1-W0-L0                              Fibre Channel Storage Framework Comm
+* rmt1             U9080.MHE.680F368-V30-C304-T1-W5000E1116D8C105C-L0               IBM 3580 Ultrium Tape Drive (FCP)
+* pci5             U78CD.001.FZHS647-P2                                             PCI Express Bus
++ ent3             U78CD.001.FZHS647-P2-C4-T3-S10                                   PCIe3 4-Port 10GbE SR Adapter VF(df1028e21410e304)
+* pci4             U78CD.001.FZHS647-P2                                             PCI Express Bus
++ ent2             U78CD.001.FZHS647-P2-C4-T1-S9                                    PCIe3 4-Port 10GbE SR Adapter VF(df1028e21410e304)
+* pci3             U78CD.001.FZHR948-P2                                             PCI Express Bus
++ ent1             U78CD.001.FZHR948-P2-C4-T3-S10                                   PCIe3 4-Port 10GbE SR Adapter VF(df1028e21410e304)
+* pci2             U78CD.001.FZHR948-P2                                             PCI Express Bus
++ ent0             U78CD.001.FZHR948-P2-C4-T1-S9                                    PCIe3 4-Port 10GbE SR Adapter VF(df1028e21410e304)
+* pci1             U78CA.001.CSS1616-P1                                             PCI Express Bus
++ ent8             U78CA.001.CSS1616-P1-C6-C1-T1                                    2-port 100GbE RoCE QSFP28 PCIe 3.0 x16 Adapter (b31513101410f704)
++ ent9             U78CA.001.CSS1616-P1-C6-C1-T2                                    2-port 100GbE RoCE QSFP28 PCIe 3.0 x16 Adapter (b31513101410f704)
+* pci0             U78CA.001.CSS15HH-P1                                             PCI Express Bus
++ ent6             U78CA.001.CSS15HH-P1-C6-C1-T1                                    2-port 100GbE RoCE QSFP28 PCIe 3.0 x16 Adapter (b31513101410f704)
++ ent7             U78CA.001.CSS15HH-P1-C6-C1-T2                                    2-port 100GbE RoCE QSFP28 PCIe 3.0 x16 Adapter (b31513101410f704)
++ L2cache0                                                                          L2 Cache
++ mem0                                                                              Memory
++ proc0                                                                             Processor
++ proc8                                                                             Processor
++ proc16                                                                            Processor
++ proc24                                                                            Processor
++ gpfsraid0                                                                         GPFS Raid Device

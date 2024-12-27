@@ -24,7 +24,7 @@ redmineField = "機種"
     XSCF = "hardconf.system"
     AIX = "prtconf.System Model"
     Eternus = "enclosure.StorageSystemName"
-    Alletra = "hostname"
+    Alletra = "brand"
     NetApp = "os.Model Name"
     HitachiVSP = "model"
     Oracle = "dbvers.Oracle Database"
@@ -40,6 +40,7 @@ redmineField = "型番"
     CiscoUCS = "productid"
     Eternus = "enclosure.ModelName"
     NetApp = "os.Part Number"
+    Alletra = "model"
     Oracle = "dbcomps.version"
 
 [[columns]]
@@ -56,6 +57,7 @@ redmineField = "シリアルNO"
     Eternus = "enclosure.SerialNumber"
     NetApp = "os.Serial Number"
     HitachiVSP = "serialNumber"
+    Alletra = "serial"
 
 [[columns]]
 id = "os"
@@ -69,6 +71,7 @@ redmineField = "OS名"
     Solaris = "kernel"
     AIX = "osname"
     NetApp = "version"
+    Alletra = "version"
 
 [[columns]]
 id = "vm"
@@ -178,6 +181,7 @@ name = "ディスク構成"
     HitachiVSP = "parity-groups"
     Eternus = "raid_groups"
     NetApp = "volume"
+    Alletra = "disks"
 
 [[columns]]
 id = "network"

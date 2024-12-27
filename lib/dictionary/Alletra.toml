@@ -1,6 +1,6 @@
 # HPE Alletra ストレージインベントリ収集シナリオ
 
-# SSH で対象 Alletra ストレージに接続し、メトリック定義のコマンド群を実行します
+# Alletra REST API (Nimble SDK) で対象 Alletra ストレージに接続し、メトリック定義のコマンド群を実行します
 
 # Excel 検査対象シート
 
@@ -11,16 +11,15 @@
 # プラットフォーム
 #     Alletra
 # URL,IPアドレス
-#     SSH 接続先のIPもしくは、IP:ポート番号 を入力します。
+#     REST API 接続先のIPもしくは、IP:ポート番号 を入力します。
 # ユーザID
-#     config/config.groovy 内に記述した、SSH 接続アカウント。
+#     config/config.groovy 内に記述した、REST API 接続アカウント。
 #     Account01を指定した場合、以下のパラメータを参照します
 #      // Alletra 接続情報
 #      account.Alletra.Account01.user      = 'admin'
 #      account.Alletra.Account01.password  = 'admin'
 
 # [[metrics]]
-
 # メトリック定義コマンドリスト
 #
 # Alletra コマンド、採取メトリックを追加する場合、以下リストに追加します。
@@ -52,31 +51,99 @@ arrays
 
 [[metrics]]
 
-id = "disks"
-name = "ディスク名"
+id = "brand"
+name = "ブランド名"
 category = "ハードウェア"
-comment = "ディスク名"
-text = '''
-disks
-'''
-
+comment = "ブランド名"
 
 [[metrics]]
 
-id = "serial_number"
+id = "model"
+name = "モデル"
+category = "ハードウェア"
+comment = "モデル"
+
+[[metrics]]
+
+id = "model_sub_type"
+name = "モデルサブタイム"
+category = "ハードウェア"
+comment = "モデルサブタイム"
+
+[[metrics]]
+
+id = "extended_model"
+name = "拡張モデル"
+category = "ハードウェア"
+comment = "拡張モデル"
+
+[[metrics]]
+
+id = "serial"
 name = "シリアル"
 category = "ハードウェア"
-comment = "シリアルNO"
-text = '''
-array --info serial_number
-'''
+comment = "シリアル"
+
+[[metrics]]
+
+id = "version"
+name = "バージョン"
+category = "ハードウェア"
+comment = "バージョン"
+
+[[metrics]]
+
+id = "status"
+name = "ステータス"
+category = "ハードウェア"
+comment = "ステータス"
+
+[[metrics]]
+
+id = "pool_name"
+name = "プール名"
+category = "ハードウェア"
+comment = "プール名"
+
+[[metrics]]
+
+id = "status"
+name = "ステータス"
+category = "ディスク構成"
+comment = "ステータス"
+
+[[metrics]]
+
+id = "pool_name"
+name = "プール名"
+category = "ディスク構成"
+comment = "プール名"
+
+[[metrics]]
+
+id = "usable_capacity_bytes"
+name = "総容量[GB]"
+category = "ディスク構成"
+comment = "総容量[GB]"
+
+[[metrics]]
+
+id = "available_bytes"
+name = "空き容量[GB]"
+category = "ディスク構成"
+comment = "空き容量[GB]"
+
+[[metrics]]
+
+id = "usage"
+name = "使用量[GB]"
+category = "ディスク構成"
+comment = "使用量[GB]"
 
 [[metrics]]
 
 id = "disks"
 name = "ディスク構成"
-category = "ハードウェア"
-comment = "ディスクドライブのリスト"
-text = '''
-disk --list
-'''
+category = "ディスク構成"
+comment = "使用量"
+
