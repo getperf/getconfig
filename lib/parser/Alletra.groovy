@@ -18,7 +18,7 @@ double toGiB(bytes) {
 @Parser("arrays")
 void arrays(TestUtil t) {
     def arrays = new JsonSlurper().parseText(t.readAll())
-    println new JsonBuilder( arrays ).toPrettyString()
+    // println new JsonBuilder( arrays ).toPrettyString()
     arrays.each { array ->
         t.setMetric("arrays", array.name ?: "N/A")
         t.setMetric("brand", array.brand ?: "N/A")
