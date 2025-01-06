@@ -4,7 +4,7 @@
 
 // Excel inspection result file output path
 
-    // evidence.target=Å@'check_sheet.xlsx'
+    // evidence.target=ÔøΩ@'check_sheet.xlsx'
     evidence.target = 'check_sheet_<date>.xlsx'
 
 // Test command log directory
@@ -83,7 +83,7 @@ account.Linux.Account01.password  = 'P@ssw0rd'
 //  December 2020 Currently, only Basic authentication is supported. 
 //  Basic authentication to the server Permission required
 //
-//    RefferenceÅF https://github.com/masterzen/winrm
+//    RefferenceÔøΩF https://github.com/masterzen/winrm
 
 account.Windows.Account01.user     = 'administrator'
 account.Windows.Account01.password = 'P@ssw0rd'
@@ -123,6 +123,14 @@ account.Solaris.Account01.password = 'P@ssw0rd'
 account.XSCF.Account01.user     = 'admin'
 account.XSCF.Account01.password = 'P@ssw0rd'
 
+// AIX server SSH connection
+//
+//  AIX server SSH connection account
+
+account.AIX.Account01.user     = 'someuser'
+account.AIX.Account01.password = 'P@ssw0rd'
+
+
 // NetApp storage firmware connection
 //
 //  NetApp ONTAP System Manager SSH connection account
@@ -130,6 +138,13 @@ account.XSCF.Account01.password = 'P@ssw0rd'
 account.NetApp.Account01.server   = '192.168.0.105'
 account.NetApp.Account01.user     = 'admin'
 account.NetApp.Account01.password = 'P@ssw0rd'
+
+// HPE Alletra storage firmware connection
+//
+//  HPE Alletra (Nimble) Storage SDK connection account
+
+account.Alletra.Account01.user     = 'admin'
+account.Alletra.Account01.password = 'P@ssw0rd'
 
 // HitachiVSP storage firmware connection
 //

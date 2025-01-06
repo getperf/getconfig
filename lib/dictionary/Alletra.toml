@@ -1,6 +1,8 @@
 # HPE Alletra ストレージインベントリ収集シナリオ
 
-# Alletra REST API (Nimble SDK) で対象 Alletra ストレージに接続し、メトリック定義のコマンド群を実行します
+# REST API (HPE Nimble Storage REST API) で対象 Alletra ストレージに接続し、
+# メトリック定義のコマンド群を実行します
+# (参照サイト) https://github.com/hpe-storage/nimble-golang-sdk
 
 # Excel 検査対象シート
 
@@ -8,7 +10,7 @@
 # 
 # 対象サーバ
 #     ストレージホスト名
-# プラットフォーム
+# プラットフォーム(ドメイン名)
 #     Alletra
 # URL,IPアドレス
 #     REST API 接続先のIPもしくは、IP:ポート番号 を入力します。
@@ -107,13 +109,6 @@ comment = "プール名"
 
 [[metrics]]
 
-id = "status"
-name = "ステータス"
-category = "ディスク構成"
-comment = "ステータス"
-
-[[metrics]]
-
 id = "pool_name"
 name = "プール名"
 category = "ディスク構成"
@@ -146,4 +141,18 @@ id = "disks"
 name = "ディスク構成"
 category = "ディスク構成"
 comment = "使用量"
+
+[[metrics]]
+
+id = "networks"
+name = "IPアドレス"
+category = "ネットワーク構成"
+comment = ""
+
+[[metrics]]
+
+id = "netconfig"
+name = "ネットワーク構成"
+category = "ネットワーク構成"
+comment = ""
 

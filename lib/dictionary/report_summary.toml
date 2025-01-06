@@ -24,7 +24,7 @@ redmineField = "機種"
     XSCF = "hardconf.system"
     AIX = "prtconf.System Model"
     Eternus = "enclosure.StorageSystemName"
-    Alletra = "brand"
+    Alletra = "model"
     NetApp = "os.Model Name"
     HitachiVSP = "model"
     Oracle = "dbvers.Oracle Database"
@@ -40,7 +40,7 @@ redmineField = "型番"
     CiscoUCS = "productid"
     Eternus = "enclosure.ModelName"
     NetApp = "os.Part Number"
-    Alletra = "model"
+    Alletra = "extended_model"
     Oracle = "dbcomps.version"
 
 [[columns]]
@@ -55,9 +55,9 @@ redmineField = "シリアルNO"
     XSCF = "hardconf.serial"
     AIX = "prtconf.Machine Serial Number"
     Eternus = "enclosure.SerialNumber"
+    Alletra = "serial"
     NetApp = "os.Serial Number"
     HitachiVSP = "serialNumber"
-    Alletra = "serial"
 
 [[columns]]
 id = "os"
@@ -70,8 +70,8 @@ redmineField = "OS名"
     VMHost = "osname"
     Solaris = "kernel"
     AIX = "osname"
-    NetApp = "version"
     Alletra = "version"
+    NetApp = "version"
 
 [[columns]]
 id = "vm"
@@ -167,6 +167,7 @@ redmineField = "HDD(GB)"
     HPiLO = "disk.drives"
     Primergy = "disk"
     CiscoUCS = "hdd"
+    Alletra = "disks"
 
 [[columns]]
 id = "disk"
@@ -194,6 +195,7 @@ name = "ネットワーク構成"
     Solaris = "network"
     AIX = "network"
     Eternus = "network"
+    Alletra = "networks"
 
 [[columns]]
 id = "subnet"
@@ -227,6 +229,7 @@ name = "管理LAN"
     Primergy = "network"
     CiscoUCS = "network"
     XSCF = "network"
+    Alletra = "netconfig.mgmt_ip"
 
 [[columns]]
 id = "ntp"

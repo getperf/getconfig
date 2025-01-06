@@ -35,36 +35,66 @@ void arrays(TestUtil t) {
         t.setMetric("available_bytes", toGiB(array.available_bytes) ?: "N/A")
         t.setMetric("usage", toGiB(array.usage) ?: "N/A")
     }
-    // println new JsonBuilder( t.portListGroup ).toPrettyString()
-    // ToDo: IPアドレスの抽出
 }
 
 @Parser("disks")
 void disks(TestUtil t) {
-    def csv = []
+    def result = 'NG'
     def disks = new JsonSlurper().parseText(t.readAll())
+    // println new JsonBuilder( disks ).toPrettyString()
     def infos = [:].withDefault{0}
-
     disks.each { disk ->
         def type = disk.type ?: 'unkowon'
         def disk_size = String.format("%.1f", toGiB(disk.size ?: 0))
         // println "${type}:${disk_size}GB"
-        infos["${type}:${disk_size}GB"] ++
-        csv << [
-            disk.serial ?: "N/A",
-            disk.path ?: "N/A",
-            disk.shelf_serial ?: "N/A",
-            disk.shelf_location ?: "N/A",
-            disk.slot ?: "N/A",
-            disk.bank ?: "N/A",
-            disk.model ?: "N/A",
-            disk.vendor ?: "N/A",
-            disk.firmware_version ?: "N/A",
-            disk_size,
-        ] 
+        infos["${type}:${disk_size}GB"] ++ 
     }
-    def headers = ['serial', 'path', 'shelf_serial', 'shelf_location', 'slot', 'bank', 'model', 'vendor', 'firmware_version', 'disk_size']
-    t.devices(headers, csv);
+    // print infos
     t.results("${infos}")
 }
 
+@Parser("networks")
+void networks(TestUtil t) {
+    def networks = new JsonSlurper().parseText(t.readAll())
+    // println new JsonBuilder( networks ).toPrettyString()
+    def ipAddresses = [:]
+    networks.each { network ->
+        def device = network.name ?: 'unkown'
+        // print "device:${device}\n"
+        network?.ip_list.each { ip ->
+            def address = ip.ip
+            if (address) {
+                ipAddresses[address] = device
+            }
+        }
+    }
+    ipAddresses.each { ipAddress, device -> 
+        t.portList(ipAddress, device)
+    }
+    t.results("${ipAddresses}")
+}
+
+@Parser("netconfig")
+void netconfig(TestUtil t) {
+    def netconfig = new JsonSlurper().parseText(t.readAll())
+    // println new JsonBuilder( netconfig ).toPrettyString()
+    def ipAddresses = [:]
+    netconfig.each { network ->
+        network.each { item, value ->
+            if (item =~/_ip$/) {
+                ipAddresses[value] = item
+            } 
+        }
+        network.array_list.each { array_list ->
+            array_list.each { item, value ->
+                if (item =~/_ip$/) {
+                    ipAddresses[value] = item
+                } 
+            }
+        }
+    }
+    ipAddresses.each { ipAddress, device -> 
+        t.newMetric("netconfig.${device}", device, ipAddress)
+    }
+    t.results((ipAddresses)?'OK':'NG')
+}
